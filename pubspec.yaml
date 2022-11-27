@@ -11,6 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0  
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
@@ -20,6 +23,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   # assets:
   #   - images/a_dot_burr.jpeg
