@@ -1,7 +1,5 @@
 {
     "@@locale": "ru",
     "homeAppBarTitle": "Hatim",
-    "@settings": {
-        "lang": "Язык"
-    }
+    "lang": "Язык"
 }

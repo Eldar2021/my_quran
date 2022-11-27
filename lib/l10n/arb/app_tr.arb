@@ -1,7 +1,5 @@
 {
     "@@locale": "tr",
     "homeAppBarTitle": "Hatim",
-    "@settings": {
-        "lang": "Dil"
-    }
+    "lang": "Dil"
 }
