@@ -18,6 +18,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
+      - run: flutter doctor
 
       # format code
       - name: "Check fmt"
