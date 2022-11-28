@@ -1,12 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hatim/app/app.dart';
+
+import 'helpers/helpers.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Punmp app', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpApp();
     await tester.pumpAndSettle();
-    expect(find.text('Language'), findsNothing);
+    expect(find.text('Language'), findsOneWidget);
 
     // Verify that our counter starts at 0.
     // expect(find.text('0'), findsOneWidget);

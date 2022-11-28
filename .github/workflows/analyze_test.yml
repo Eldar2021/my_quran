@@ -28,4 +28,4 @@ jobs:
 
       # unit test
       - name: "Run unit tests"
-        run: flutter test --exclude-tags encointer-node-e2e
+        run: flutter test
