@@ -8,6 +8,7 @@ void main() {
   runApp(
     BlocProvider(
       create: (context) => SettingsCubit(),
+      
       child: const MyApp(),
     ),
   );
