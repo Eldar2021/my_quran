@@ -13,7 +13,7 @@ jobs:
         device:
           - "iPhone 11 Simulator (15.2)"
       fail-fast: true
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
       - name: "List all simulators"
         run: "xcrun xctrace list devices"

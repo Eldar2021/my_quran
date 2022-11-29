@@ -8,7 +8,7 @@ on:
 
 jobs:
   android:
-    runs-on: macos-11
+    runs-on: macos-latest
     strategy:
       matrix:
         api-level:
@@ -22,6 +22,7 @@ jobs:
           flutter-version: "3.3.9"
           channel: stable
       - run: flutter doctor -v
+      - run: flutter doctor --android-licenses
       - name: Install Flutter dependencies
         run: flutter pub get
       - name: Run integration tests
