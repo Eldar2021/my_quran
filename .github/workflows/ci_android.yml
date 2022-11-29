@@ -21,6 +21,7 @@ jobs:
         with:
           flutter-version: "3.3.9"
           channel: stable
+      - run: flutter doctor -v
       - name: Install Flutter dependencies
         run: flutter pub get
       - name: Run integration tests
