@@ -7,29 +7,59 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  drive_android:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        api-level: [30]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v2
-        with:
-          distribution: "zulu"
-          java-version: "11"
-      - uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.3.9"
           channel: "stable"
-      - run: flutter doctor
-      - run: flutter pub get
 
       # Run integration test
       - name: Run Flutter Driver tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          target: default
-          api-level: 30
+          target: ${{ matrix.target }}
+          api-level: ${{ matrix.api-level }}
           arch: x86_64
           profile: Nexus 6
           script: ./scripts/ci_android.sh
-      # # Integration test
-      # - run: flutter drive --target=test_driver/app.dart
+
+      # Update screenshot to artifact
+      # - name: Upload screenshots
+      #   if: always()
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: screenshot
+      #     path: ${{ matrix.path }}screenshots/
+# jobs:
+#   integration_test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-java@v2
+#         with:
+#           distribution: "zulu"
+#           java-version: "11"
+#       - uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: "3.3.9"
+#           channel: "stable"
+#       - run: flutter doctor
+#       - run: flutter pub get
+
+#       # Run integration test
+#       - name: Run Flutter Driver tests
+#         uses: reactivecircus/android-emulator-runner@v2
+#         with:
+#           target: default
+#           api-level: 30
+#           arch: x86_64
+#           profile: Nexus 6
+#           script: ./scripts/ci_android.sh
+#       # # Integration test
+#       # - run: flutter drive --target=test_driver/app.dart
