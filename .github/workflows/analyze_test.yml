@@ -18,14 +18,11 @@ jobs:
           channel: "stable"
       - run: flutter doctor
 
-      # format code
       - name: "Check fmt"
         run: flutter format . --line-length 120 --set-exit-if-changed
 
-      # analyze code
       - name: "Analyze Code"
         run: flutter pub get && flutter analyze  --fatal-warnings
 
-      # unit test
       - name: "Run unit tests"
         run: flutter test

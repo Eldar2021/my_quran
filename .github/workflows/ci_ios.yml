@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  ios:
+  integration_test_ios:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2

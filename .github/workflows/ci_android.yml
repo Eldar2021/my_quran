@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  integration_test_android:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,29 +24,3 @@ jobs:
           api-level: 29
           arch: x86_64
           script: flutter drive --target=test_driver/app.dart
-# jobs:
-#   android:
-#     runs-on: macos-latest
-#     strategy:
-#       matrix:
-#         api-level:
-#           - 29
-#       fail-fast: true
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Setup Flutter SDK
-#         uses: subosito/flutter-action@v2
-#         with:
-#           flutter-version: "3.3.9"
-#           channel: stable
-#       - run: flutter doctor -v
-#       - run: flutter doctor --android-licenses
-#       - name: Install Flutter dependencies
-#         run: flutter pub get
-#       - name: Run integration tests
-#         uses: reactivecircus/android-emulator-runner@v2
-#         with:
-#           api-level: ${{ matrix.api-level }}
-#           arch: x86_64
-#           profile: Nexus 6
-#           script: flutter drive --target=test_driver/app.dart
