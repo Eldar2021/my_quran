@@ -10,9 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: reactivecircus/android-emulator-runner@v1
-        with:
-          api-level: 29
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v2
         with:
@@ -25,5 +22,14 @@ jobs:
       - run: flutter doctor
       - run: flutter pub get
 
-      # Integration test
-      - run: flutter drive --target=test_driver/app.dart
+      # Run integration test
+      - name: Run Flutter Driver tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          target: default
+          api-level: 30
+          arch: x86_64
+          profile: Nexus 6
+          script: flutter drive --
+      # # Integration test
+      # - run: flutter drive --target=test_driver/app.dart
