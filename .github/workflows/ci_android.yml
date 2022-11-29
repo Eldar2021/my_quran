@@ -31,7 +31,7 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
       - name: Run integration tests
-        run: flutter test integration_test --verbose
+        run: flutter drive --target=test_driver/app.dart
 
   android:
     runs-on: macos-11
@@ -55,7 +55,7 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           profile: Nexus 6
-          script: flutter test integration_test --verbose
+          script: flutter drive --target=test_driver/app.dart
 # jobs:
 #   drive_android:
 #     runs-on: macos-latest
