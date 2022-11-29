@@ -11,8 +11,7 @@ jobs:
     strategy:
       matrix:
         device:
-          - "iPhone 8 (13.1)"
-          - "iPhone 11 Pro Max (13.1)"
+          - "iPhone 11 Pro Max (15.0)"
       fail-fast: false
     runs-on: macos-latest
     steps:
