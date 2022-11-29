@@ -9,6 +9,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            device: "pixel_3a"
+            record_video: false
+      fail-fast: false
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v2
