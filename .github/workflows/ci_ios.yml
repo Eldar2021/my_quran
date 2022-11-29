@@ -1,36 +1,36 @@
-name: CI IOS
+# name: CI IOS
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
 
-jobs:
-  drive:
-    strategy:
-      matrix:
-        device:
-          - "iPhone 11 Pro Max (15.0)"
-      fail-fast: false
-    runs-on: macos-latest
-    steps:
-      - name: "List all simulators"
-        run: "xcrun instruments -s"
-      - name: "Start Simulator"
-        run: |
-          UDID=$(
-            xcrun instruments -s |
-            awk \
-              -F ' *[][]' \
-              -v 'device=${{ matrix.device }}' \
-              '$1 == device { print $2 }'
-          )
-          xcrun simctl boot "${UDID:?No Simulator with this name found}"
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: "3.3.9"
-          channel: "stable"
-      - name: "Run Flutter Driver tests"
-        run: "flutter drive --target=test_driver/app.dart"
+# jobs:
+#   drive:
+#     strategy:
+#       matrix:
+#         device:
+#           - "iPhone 11 Pro Max (15.0)"
+#       fail-fast: false
+#     runs-on: macos-latest
+#     steps:
+#       - name: "List all simulators"
+#         run: "xcrun instruments -s"
+#       - name: "Start Simulator"
+#         run: |
+#           UDID=$(
+#             xcrun instruments -s |
+#             awk \
+#               -F ' *[][]' \
+#               -v 'device=${{ matrix.device }}' \
+#               '$1 == device { print $2 }'
+#           )
+#           xcrun simctl boot "${UDID:?No Simulator with this name found}"
+#       - uses: actions/checkout@v1
+#       - uses: subosito/flutter-action@v1
+#         with:
+#           flutter-version: "3.3.9"
+#           channel: "stable"
+#       - name: "Run Flutter Driver tests"
+#         run: "flutter drive --target=test_driver/app.dart"
