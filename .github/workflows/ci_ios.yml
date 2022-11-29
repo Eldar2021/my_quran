@@ -8,28 +8,35 @@ on:
 
 jobs:
   ios:
-    strategy:
-      matrix:
-        device:
-          - "iPhone 11 Simulator (15.2)"
-      fail-fast: true
+    # strategy:
+    #   matrix:
+    #     device:
+    #       - "iPhone 11 Simulator (15.2)"
+    #   fail-fast: true
     runs-on: macos-latest
     steps:
-      - name: "List all simulators"
-        run: "xcrun xctrace list devices"
-      - name: "Start Simulator"
-        run: |
-          UDID=$(xcrun xctrace list devices | grep "^${{ matrix.device }}" | awk '{gsub(/[()]/,""); print $NF}')
-          echo $UDID
-          xcrun simctl boot "${UDID:?No Simulator with this name found}"
-      - uses: actions/checkout@v3
-      - name: Setup Flutter SDK
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v2
+      - uses: futureware-tech/simulator-action@v2
         with:
-          flutter-version: "3.3.9"
-          channel: stable
-      - run: flutter doctor -v
-      - name: Install Flutter dependencies
-        run: flutter pub get
-      - name: Run integration tests
-        run: flutter drive --target=test_driver/app.dart
+          model: "iPhone 14"
+          os_version: "16.0"
+      - run: flutter drive --target=test_driver/app.dart
+    # steps:
+    #   - name: "List all simulators"
+    #     run: "xcrun xctrace list devices"
+    #   - name: "Start Simulator"
+    #     run: |
+    #       UDID=$(xcrun xctrace list devices | grep "^${{ matrix.device }}" | awk '{gsub(/[()]/,""); print $NF}')
+    #       echo $UDID
+    #       xcrun simctl boot "${UDID:?No Simulator with this name found}"
+    #   - uses: actions/checkout@v3
+    #   - name: Setup Flutter SDK
+    #     uses: subosito/flutter-action@v2
+    #     with:
+    #       flutter-version: "3.3.9"
+    #       channel: stable
+    #   - run: flutter doctor -v
+    #   - name: Install Flutter dependencies
+    #     run: flutter pub get
+    #   - name: Run integration tests
+    #     run: flutter drive --target=test_driver/app.dart
