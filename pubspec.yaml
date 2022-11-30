@@ -20,6 +20,7 @@ dependencies:
   equatable: ^2.0.5
   get_it: ^7.2.0
   dartz: ^0.10.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +29,7 @@ dev_dependencies:
     sdk: flutter
   test: ^1.21.4
   very_good_analysis: ^3.1.0 # linter for our app
+  mocktail: ^0.3.0
 
 flutter:
   uses-material-design: true

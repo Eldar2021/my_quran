@@ -14,19 +14,23 @@ void main() async {
     });
   });
 
-  test('importing account', () async {
+  test('test localization', () async {
     await addDelay(1000);
     await driver.waitFor(find.text('Language'));
     await addDelay(1000);
-    await driver.tap(find.text('ky'));
+    await driver.tap(find.text('Кыргызча'));
     await addDelay(1000);
-    await driver.tap(find.text('kk'));
+    await driver.tap(find.text('Türkçe'));
     await addDelay(1000);
-    await driver.tap(find.text('tr'));
+    await driver.tap(find.text('Қазақша'));
     await addDelay(1000);
-    await driver.tap(find.text('ar'));
+    await driver.tap(find.text('Русский'));
     await addDelay(1000);
-    await driver.tap(find.text('ru'));
+    await driver.tap(find.text('Indonesia'));
+    await addDelay(1000);
+    await driver.tap(find.text('العربية'));
+    await addDelay(1000);
+    await driver.tap(find.text('English'));
     await addDelay(1000);
   });
 

@@ -1,5 +1,6 @@
 {
     "@@locale": "ar",
     "homeAppBarTitle": "Hatim",
-    "lang": "اللغة"
+    "lang": "اللغة",
+    "pleaseWait": "يرجى الانتظار"
 }

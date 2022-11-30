@@ -5,7 +5,7 @@ import 'package:hatim/main.dart' as app;
 
 // flutter drive --target=test_driver/app.dart
 
-void main() async {
+Future<void> main() async {
   enableFlutterDriverExtension(
     handler: (command) {
       var result = '';
@@ -17,5 +17,5 @@ void main() async {
       return Future.value(result);
     },
   );
-  app.main();
+  await app.main();
 }

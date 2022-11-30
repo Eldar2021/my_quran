@@ -1,5 +1,6 @@
 {
     "@@locale": "tr",
     "homeAppBarTitle": "Hatim",
-    "lang": "Dil"
+    "lang": "Dil",
+    "pleaseWait": "Lütfen bekleyin"
 }
