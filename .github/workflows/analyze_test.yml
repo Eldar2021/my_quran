@@ -1,0 +1,28 @@
+name: Analyze code and Unit test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  flutter_test:
+    name: Analyze code and Unit test
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.3.9"
+          channel: "stable"
+      - run: flutter doctor
+
+      - name: "Check fmt"
+        run: flutter format . --line-length 120 --set-exit-if-changed
+
+      - name: "Analyze Code"
+        run: flutter pub get && flutter analyze  --fatal-warnings
+
+      - name: "Run unit tests"
+        run: flutter test

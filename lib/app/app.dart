@@ -1,16 +1,3 @@
-import 'package:flutter/material.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Scaffold(),
-    );
-  }
-}
+export 'logic/app_cubit.dart';
+export 'services/app_storage_service.dart';
+export 'view/app_view.dart';

@@ -1,0 +1,24 @@
+name: CI IOS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  integration_test_ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.3.9"
+          channel: stable
+      - run: flutter doctor -v
+      - run: flutter pub get
+      - uses: futureware-tech/simulator-action@v2
+        with:
+          model: "iPhone 14"
+          os_version: "16.0"
+      - run: flutter drive --target=test_driver/app.dart

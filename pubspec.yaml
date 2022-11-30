@@ -7,19 +7,33 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.18.5 <3.0.0"
+  flutter: 3.3.9
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
   cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+  get_it: ^7.2.0
+  dartz: ^0.10.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  test: ^1.21.4
   very_good_analysis: ^3.1.0 # linter for our app
+  mocktail: ^0.3.0
 
 flutter:
   uses-material-design: true
+  generate: true
 
   # assets:
   #   - images/a_dot_burr.jpeg

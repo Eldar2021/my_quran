@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
+import 'package:hatim/bootstrap.dart';
 
-import 'package:hatim/app/app.dart';
-
-void main() {
-  runApp(const MyApp());
-}
+Future<void> main() async => bootstrap();
