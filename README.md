@@ -38,5 +38,5 @@ length of the code to 120.
 * Autoformat on save: Settings > Languages and Frameworks > then tick: `Format code on save`, `Organize imports on save`.
 * Format the whole codebase with:
 ```
-flutter format . --line-length 12
+flutter format . --line-length 120
 ```
