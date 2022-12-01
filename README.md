@@ -1,16 +1,42 @@
 # hatim
 
-A new Flutter project.
+A Quran Hatim Aplication.
 
-## Getting Started
+### Getting Started
 
-This project is a starting point for a Flutter application.
+## Requirements
+- Dart sdk: ">=2.18.5 <3.0.0"
+- Flutter: "3.3.9"
+- Android: minSdkVersion 17
+- iOS: --ios-language swift, Xcode version >= 14.0.0
 
-A few resources to get you started if this is your first Flutter project:
+## Run App
+* If you have an AVD or real device attached, you can do
+```
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Run tests
+* run all tests from the command line:
+```
+flutter test
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Integration tests
+* run integration tests in `test_driver` directory:
+```
+flutter drive --target=test_driver/app.dart
+```
+
+## Fmt
+`dartfmt` lacks config file support, which implies that customizations need to be done by users individually. The default 
+limit of 80 characters line length conflicts with the deeply nested structure of flutter's declarative code for designing 
+widgets. This causes many unwanted linebreaks that reduce the readability of flutter code. Hence, we increase the line
+length of the code to 120.
+
+* Settings > Dart > Line length 120.
+* Autoformat on save: Settings > Languages and Frameworks > then tick: `Format code on save`, `Organize imports on save`.
+* Format the whole codebase with:
+```
+flutter format . --line-length 12
+```
