@@ -22,3 +22,9 @@ jobs:
           model: "iPhone 14"
           os_version: "16.0"
       - run: flutter drive --target=test_driver/app.dart
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: my-artifact
+          path: /screenshots
