@@ -23,6 +23,7 @@ jobs:
           os_version: "16.0"
       - run: flutter drive --target=test_driver/app.dart
 
+      - run: ls
       - uses: actions/upload-artifact@v3
         if: always()
         with:
