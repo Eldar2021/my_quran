@@ -9,6 +9,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
+  void onCreate(BlocBase<dynamic> bloc) {
+    super.onCreate(bloc);
+    log('onCreate(${bloc.state})');
+  }
+
+  @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
     log('onChange(${bloc.runtimeType}, $change)');
@@ -18,6 +24,12 @@ class AppBlocObserver extends BlocObserver {
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
     log('onError(${bloc.runtimeType}, $error, $stackTrace)');
     super.onError(bloc, error, stackTrace);
+  }
+
+  @override
+  void onClose(BlocBase<dynamic> bloc) {
+    super.onClose(bloc);
+    log('onClose(${bloc.runtimeType})');
   }
 }
 
@@ -29,12 +41,22 @@ Future<void> bootstrap() async {
 
   Bloc.observer = AppBlocObserver();
 
-  final appStorageService = AppStorageService(await SharedPreferences.getInstance());
+  final pref = await SharedPreferences.getInstance();
+
+  final appStorageService = AppStorageService(pref);
+  final authStorage = AuthStorage(pref);
 
   await runZonedGuarded(
     () async => runApp(
-      BlocProvider(
-        create: (context) => AppCubit(appStorageService),
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AppCubit(appStorageService),
+          ),
+          BlocProvider(
+            create: (context) => AuthCubit(authStorage),
+          ),
+        ],
         child: const MyApp(),
       ),
     ),
