@@ -95,7 +95,8 @@ mixin CompomnentTheme {
       backgroundColor: colors.surface,
     );
   }
-  ScrollbarThemeData scrollbarThemeData(ColorScheme colors){
+
+  ScrollbarThemeData scrollbarThemeData(ColorScheme colors) {
     return const ScrollbarThemeData(interactive: true);
   }
 }

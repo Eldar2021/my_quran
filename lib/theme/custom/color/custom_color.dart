@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hatim/theme/custom/custom_theme.dart';
 
-
 class CustomColor {
   const CustomColor({
     required this.name,
