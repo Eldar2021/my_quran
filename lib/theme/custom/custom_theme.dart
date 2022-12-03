@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hatim/theme/custom/color/custom_color.dart';
 import 'package:hatim/theme/custom/component/componet_theme.dart';
+// ignore: depend_on_referenced_packages
 import 'package:material_color_utilities/blend/blend.dart';
 
 class CustomTheme with CompomnentTheme {
