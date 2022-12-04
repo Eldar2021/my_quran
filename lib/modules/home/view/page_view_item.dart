@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import 'package:hatim/app/app.dart';
 import 'package:hatim/models/models.dart';
 
 class PageViewItem<T> extends StatelessWidget {
@@ -17,6 +20,7 @@ class PageViewItem<T> extends StatelessWidget {
             child: ListTile(
               leading: Text('${item.id}'),
               title: Text(item.name),
+              onTap: () => context.goNamed(RouterConst.read, extra: item.pages),
             ),
           );
         } else if (item is Surah) {
@@ -25,6 +29,7 @@ class PageViewItem<T> extends StatelessWidget {
               leading: Text('${item.id}'),
               title: Text(item.arabic),
               subtitle: Text(item.name),
+              onTap: () => context.goNamed(RouterConst.read, extra: item.pages),
             ),
           );
         }

@@ -40,7 +40,10 @@ class AppRouter {
           GoRoute(
             name: 'read',
             path: RouterConst.read,
-            builder: (context, state) => const ReadView(),
+            builder: (BuildContext context, GoRouterState state) {
+              final pages = state.extra! as List<int>;
+              return ReadView(pages);
+            },
           ),
           GoRoute(
             name: 'settings',
