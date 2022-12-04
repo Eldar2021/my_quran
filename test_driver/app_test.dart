@@ -22,8 +22,7 @@ void main() async {
 
     await driver.tap(find.byValueKey('login-female'));
     await takeScreenshot(driver, 'login');
-
-    await addDelay(1000);
+    await driver.tap(find.byValueKey('start-login'));
   });
 
   test('home-view', () async {
@@ -39,21 +38,21 @@ void main() async {
     () async {
       await driver.tap(find.byValueKey('2'));
       await driver.waitFor(find.byValueKey('9'));
-      await driver.scroll(
-        find.byValueKey('read-pages-list'),
-        40,
-        -1700,
-        const Duration(seconds: 5),
-      );
+      // await driver.scroll(
+      //   find.byValueKey('read-pages-list'),
+      //   40,
+      //   -1700,
+      //   const Duration(seconds: 5),
+      // );
       await takeScreenshot(driver, 'yaseen');
     },
     timeout: const Timeout(Duration(seconds: 120)),
   );
 
-  test('back-page', () async {
-    await driver.tap(find.pageBack());
-    await addDelay(1000);
-  });
+  // test('back-page', () async {
+  //   await driver.tap(find.pageBack());
+  //   await addDelay(1000);
+  // });
 
   tearDownAll(() async {
     await driver.close();

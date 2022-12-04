@@ -39,6 +39,7 @@ class LoginView extends StatelessWidget {
                     child: Card(
                       color: state.gender == Gender.male ? Colors.green : null,
                       child: ListTile(
+                        key: const Key('login-male'),
                         title: const Text('Male'),
                         onTap: () => context.read<AuthCubit>().setGender(Gender.male),
                       ),
@@ -49,6 +50,7 @@ class LoginView extends StatelessWidget {
                     child: Card(
                       color: state.gender == Gender.female ? Colors.green : null,
                       child: ListTile(
+                        key: const Key('login-female'),
                         title: const Text('FeMale'),
                         onTap: () => context.read<AuthCubit>().setGender(Gender.female),
                       ),
@@ -60,6 +62,7 @@ class LoginView extends StatelessWidget {
           ),
           const SizedBox(height: 50),
           ElevatedButton(
+            key: const Key('start-login'),
             child: const Text('Start'),
             onPressed: () async {
               final user = User(gender: context.read<AuthCubit>().state.gender);
