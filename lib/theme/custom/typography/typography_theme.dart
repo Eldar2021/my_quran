@@ -47,10 +47,4 @@ extension TypographyUtils on BuildContext {
   TextStyle? get bodyMedium => textTheme.bodyMedium?.copyWith(
         color: colors.onSurface,
       );
-  TextStyle? get bodySmall => textTheme.bodySmall?.copyWith(
-        color: colors.onSurface,
-      );
-  // TextStyle get h1 => textTheme.headline1!.copyWith(
-  //       color: colors.onBackground,
-  //     );
 }

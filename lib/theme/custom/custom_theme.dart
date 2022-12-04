@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hatim/theme/custom/color/custom_color.dart';
 import 'package:hatim/theme/custom/component/componet_theme.dart';
-// ignore: depend_on_referenced_packages
 import 'package:material_color_utilities/blend/blend.dart';
 
 class CustomTheme with CompomnentTheme {
@@ -78,10 +77,6 @@ class CustomTheme with CompomnentTheme {
       navigationRailTheme: navigationRailTheme(scheme),
       tabBarTheme: tabBarTheme(scheme),
       drawerTheme: drawerTheme(scheme),
-      buttonTheme: buttonTheme(scheme),
-      inputDecorationTheme: inputDecorationTheme(scheme),
-      elevatedButtonTheme: elevatedButtonThemeData(scheme),
-      // scaffoldBackgroundColor: scheme.background,
       useMaterial3: true,
     );
   }
