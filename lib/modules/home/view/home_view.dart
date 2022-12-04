@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hatim/app/app.dart';
 
 import 'package:hatim/components/components.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/home/logic/home_cubit.dart';
 import 'package:hatim/modules/home/view/page_view_item.dart';
+import 'package:hatim/modules/modules.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -19,6 +21,17 @@ class HomeView extends StatelessWidget {
       body: BlocProvider(
         create: (context) => HomeCubit(),
         child: HomeBody(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await context.read<AuthCubit>().logout().whenComplete(
+            () => Navigator.pushAndRemoveUntil<void>(
+              context,
+              MaterialPageRoute<void>(builder: (context) => const LoginView()),
+              (route) => false,
+            ),
+          );
+        },
       ),
     );
   }
@@ -46,8 +59,8 @@ class HomeBody extends StatelessWidget {
             );
           },
           children: const <int, Widget>{
-            0: PageViewCard(page: 'Juz'),
-            1: PageViewCard(page: 'Surah'),
+            0: PageViewCard(page: 'Juz', key: Key('juz-items')),
+            1: PageViewCard(page: 'Surah', key: Key('surah-items')),
           },
         ),
       ),

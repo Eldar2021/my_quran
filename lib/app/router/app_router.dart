@@ -1,83 +1,67 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/cupertino.dart';
 
-import 'package:hatim/app/app.dart';
+import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
 class AppRouter {
-  AppRouter(this.authState);
+  const AppRouter();
 
-  final AuthState authState;
+  static const String home = '/';
+  static const String juz = '/juz';
+  static const String profile = '/profile';
+  static const String read = '/read';
+  static const String settingspage = '/settings';
+  static const String surah = '/surah';
+  static const String login = '/login';
 
-  late final router = GoRouter(
-    // debugLogDiagnostics: true,
-    initialLocation: RouterConst.home,
-    routes: [
-      GoRoute(
-        name: 'login',
-        path: RouterConst.login,
-        builder: (context, state) => const LoginView(),
-      ),
-      // GoRoute(
-      //   path: '/onboarding',
-      //   builder: (context, state) => const OnboardingScreen(),
-      // ),
-      GoRoute(
-        name: 'home',
-        path: RouterConst.home,
-        builder: (context, state) => const HomeView(),
-        routes: [
-          GoRoute(
-            name: 'juz',
-            path: RouterConst.juz,
-            builder: (context, state) => const JuzView(),
-          ),
-          GoRoute(
-            name: 'profile',
-            path: RouterConst.profile,
-            builder: (context, state) => const ProfileView(),
-          ),
-          GoRoute(
-            name: 'read',
-            path: RouterConst.read,
-            builder: (BuildContext context, GoRouterState state) {
-              final pages = state.extra! as List<int>;
-              return ReadView(pages);
-            },
-          ),
-          GoRoute(
-            name: 'settings',
-            path: RouterConst.settings,
-            builder: (context, state) => const SettingsView(),
-          ),
-          GoRoute(
-            name: 'surah',
-            path: RouterConst.surah,
-            builder: (context, state) => const SurahView(),
-          ),
-        ],
-      ),
-    ],
-    redirect: (BuildContext context, GoRouterState state) {
-      final loggedIn = authState.user != null;
-      final loggingIn = state.subloc == RouterConst.login;
-      if (!loggedIn) {
-        return loggingIn ? null : RouterConst.login;
-      } else {
-        return null;
-      }
-    },
-    errorPageBuilder: (context, state) {
-      return MaterialPage(
-        key: state.pageKey,
-        child: Scaffold(
-          body: Center(
-            child: Text(
-              state.error.toString(),
-            ),
-          ),
-        ),
-      );
-    },
-  );
+  static Route<void> onGenerateRoute(RouteSettings settings, User? user) {
+    switch (settings.name) {
+      case home:
+        return CupertinoPageRoute(
+          builder: (_) {
+            if (user != null) {
+              return const HomeView();
+            } else {
+              return const LoginView();
+            }
+          },
+        );
+      case juz:
+        return CupertinoPageRoute(
+          builder: (_) => const JuzView(),
+          settings: settings,
+        );
+      case surah:
+        return CupertinoPageRoute(
+          builder: (_) => const SurahView(),
+          settings: settings,
+        );
+      case profile:
+        return CupertinoPageRoute(
+          builder: (_) => const ProfileView(),
+          settings: settings,
+        );
+
+      case read:
+        final args = settings.arguments!;
+        return CupertinoPageRoute(
+          builder: (_) => ReadView(args as List<int>),
+          settings: settings,
+        );
+
+      case settingspage:
+        return CupertinoPageRoute(
+          builder: (_) => const SettingsView(),
+          settings: settings,
+        );
+
+      case login:
+        return CupertinoPageRoute(
+          builder: (_) => const LoginView(),
+          settings: settings,
+        );
+      default:
+        throw Exception('no builder specified for route named: [${settings.name}]');
+    }
+  }
 }

@@ -50,12 +50,8 @@ Future<void> bootstrap() async {
     () async => runApp(
       MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => AppCubit(appStorageService),
-          ),
-          BlocProvider(
-            create: (context) => AuthCubit(authStorage),
-          ),
+          BlocProvider(create: (context) => AppCubit(appStorageService)),
+          BlocProvider(create: (context) => AuthCubit(authStorage)),
         ],
         child: const MyApp(),
       ),

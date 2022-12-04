@@ -20,11 +20,16 @@ class AuthStorage {
     }
   }
 
-  Future<void> setUser(User user) async {
+  Future<void> login(User user) async {
     await storage.remove(_token);
     await storage.remove(_gender);
     await storage.setString(_token, user.token);
     await storage.setString(_gender, user.gender.name);
+  }
+
+  Future<void> logout() async {
+    await storage.remove(_token);
+    await storage.remove(_gender);
   }
 
   String get token => _token;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
+
 import 'package:hatim/models/user/user_model.dart';
+import 'package:hatim/modules/home/home.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -61,7 +63,13 @@ class LoginView extends StatelessWidget {
             child: const Text('Start'),
             onPressed: () async {
               final user = User(gender: context.read<AuthCubit>().state.gender);
-              await context.read<AuthCubit>().setUser(user);
+              await context.read<AuthCubit>().login(user).whenComplete(
+                    () => Navigator.pushAndRemoveUntil<void>(
+                      context,
+                      MaterialPageRoute<void>(builder: (context) => const HomeView()),
+                      (route) => false,
+                    ),
+                  );
             },
           ),
           const SizedBox(height: 40),

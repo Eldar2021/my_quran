@@ -9,13 +9,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Flutter Demo',
       locale: context.watch<AppCubit>().state.currentLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.blue),
-      routerConfig: AppRouter(context.watch<AuthCubit>().state).router,
+      onGenerateRoute: (settings) => AppRouter.onGenerateRoute(
+        settings,
+        context.read<AuthCubit>().state.user,
+      ),
     );
   }
 }

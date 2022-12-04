@@ -49,12 +49,14 @@ class _PaginationViewState extends State<PaginationView> {
   @override
   Widget build(BuildContext context) {
     return PagedListView<int, Verse>(
+      key: const Key('read-pages-list'),
       pagingController: _pagingController,
       physics: const BouncingScrollPhysics(),
       builderDelegate: PagedChildBuilderDelegate<Verse>(
         itemBuilder: (context, item, index) => ListTile(
+          key: Key('${item.id}'),
           title: Text(item.textUthmani),
-          leading: Text(item.id.toString()),
+          leading: Text('${item.id}'),
           subtitle: Text(item.verseKey),
         ),
       ),
