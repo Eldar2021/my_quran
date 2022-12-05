@@ -22,6 +22,7 @@ dependencies:
   dartz: ^0.10.1
   shared_preferences: ^2.0.15
   material_color_utilities: ^0.1.5
+  flex_color_scheme: ^6.1.1
 
 dev_dependencies:
   flutter_test:
