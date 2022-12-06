@@ -3,10 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hatim/app/app.dart';
 
 extension PumpApp on WidgetTester {
-  Future<void> pumpApp(AppStorageService service) {
+  Future<void> pumpApp(AppStorageService service, AuthStorage authStorage) {
     return pumpWidget(
-      BlocProvider(
-        create: (context) => AppCubit(service),
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AppCubit(service)),
+          BlocProvider(create: (context) => AuthCubit(authStorage)),
+        ],
         child: const MyApp(),
       ),
     );

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
 import 'package:hatim/l10n/l10.dart';
 
-class SettingView extends StatelessWidget {
-  const SettingView({super.key});
+class SettingsView extends StatelessWidget {
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
