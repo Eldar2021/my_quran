@@ -25,12 +25,12 @@ class HomeView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await context.read<AuthCubit>().logout().whenComplete(
-            () => Navigator.pushAndRemoveUntil<void>(
-              context,
-              MaterialPageRoute<void>(builder: (context) => const LoginView()),
-              (route) => false,
-            ),
-          );
+                () => Navigator.pushAndRemoveUntil<void>(
+                  context,
+                  MaterialPageRoute<void>(builder: (context) => const LoginView()),
+                  (route) => false,
+                ),
+              );
         },
       ),
     );

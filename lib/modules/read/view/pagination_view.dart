@@ -54,7 +54,7 @@ class _PaginationViewState extends State<PaginationView> {
       physics: const BouncingScrollPhysics(),
       builderDelegate: PagedChildBuilderDelegate<Verse>(
         itemBuilder: (context, item, index) => ListTile(
-          key: Key('${item.id}'),
+          key: Key('${item.id}-${item.verseKey}'),
           title: Text(item.textUthmani),
           leading: Text('${item.id}'),
           subtitle: Text(item.verseKey),

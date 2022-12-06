@@ -16,9 +16,10 @@ void main() async {
 
   test('login-view', () async {
     await driver.waitFor(find.text('English'));
-    await takeScreenshot(driver, 'lang_name_en');
 
     await driver.tap(find.text('Кыргызча'));
+    await addDelay(500);
+    await driver.tap(find.text('English'));
 
     await driver.tap(find.byValueKey('login-female'));
     await takeScreenshot(driver, 'login');
@@ -30,29 +31,28 @@ void main() async {
     await takeScreenshot(driver, 'juz_items');
     await driver.tap(find.byValueKey('surah-items'));
     await takeScreenshot(driver, 'surah_items');
-    await driver.tap(find.byValueKey('2'));
+    await driver.tap(find.byValueKey('2-surah'));
   });
 
   test(
     'read-baqarah',
     () async {
-      await driver.tap(find.byValueKey('2'));
-      await driver.waitFor(find.byValueKey('9'));
-      // await driver.scroll(
-      //   find.byValueKey('read-pages-list'),
-      //   40,
-      //   -1700,
-      //   const Duration(seconds: 5),
-      // );
-      await takeScreenshot(driver, 'yaseen');
+      await driver.waitFor(find.byValueKey('read-pages-list'));
+      await driver.scroll(
+        find.byValueKey('read-pages-list'),
+        40,
+        -1700,
+        const Duration(seconds: 5),
+      );
+      await takeScreenshot(driver, 'baqarah');
     },
     timeout: const Timeout(Duration(seconds: 120)),
   );
 
-  // test('back-page', () async {
-  //   await driver.tap(find.pageBack());
-  //   await addDelay(1000);
-  // });
+  test('back-page', () async {
+    await driver.tap(find.pageBack());
+    await addDelay(1000);
+  });
 
   tearDownAll(() async {
     await driver.close();

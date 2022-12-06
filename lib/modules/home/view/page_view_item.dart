@@ -18,7 +18,7 @@ class PageViewItem<T> extends StatelessWidget {
         if (item is Juz) {
           return Card(
             child: ListTile(
-              key: Key('${item.id}'),
+              key: Key('${item.id}-juz'),
               leading: Text('${item.id}'),
               title: Text(item.name),
               onTap: () => Navigator.pushNamed(context, AppRouter.read, arguments: item.pages),
@@ -27,7 +27,7 @@ class PageViewItem<T> extends StatelessWidget {
         } else if (item is Surah) {
           return Card(
             child: ListTile(
-              key: Key('${item.id}'),
+              key: Key('${item.id}-surah'),
               leading: Text('${item.id}'),
               title: Text(item.arabic),
               subtitle: Text(item.name),
