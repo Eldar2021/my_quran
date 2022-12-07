@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
 import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/modules/settings/view/theme_view.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -14,18 +13,6 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.lang),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AppThemeView(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.settings),
-          )
-        ],
       ),
       body: ListView.builder(
         itemCount: appCubit.service.locales.length,

@@ -8,6 +8,7 @@ import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/home/logic/home_cubit.dart';
 import 'package:hatim/modules/home/view/page_view_item.dart';
 import 'package:hatim/modules/modules.dart';
+import 'package:hatim/modules/settings/view/theme_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,6 +18,18 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('HomeView'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const AppThemeView(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.settings),
+          )
+        ],
       ),
       body: BlocProvider(
         create: (context) => HomeCubit(),
