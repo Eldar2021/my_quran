@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hatim/theme/custom/color/custom_color.dart';
 import 'package:hatim/theme/custom/component/componet_theme.dart';
 import 'package:material_color_utilities/blend/blend.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 class CustomTheme with CompomnentTheme {
   const CustomTheme({
@@ -87,3 +88,25 @@ class CustomTheme with CompomnentTheme {
     return CustomTheme(color: newColor ?? color, mode: newMode ?? mode);
   }
 }
+
+enum AppThemes {
+  blueLight,
+  blueDark,
+  redLight,
+  redDark,
+  greenLight,
+  greenDark,
+  mangoLight,
+  mangoDark,
+}
+
+final Map<AppThemes, FlexColorScheme> appThemeData = {
+  AppThemes.blueLight: FlexColorScheme.light(scheme: FlexScheme.blue, useMaterial3: true),
+  AppThemes.blueDark: FlexColorScheme.dark(scheme: FlexScheme.blue, useMaterial3: true),
+  AppThemes.redLight: FlexColorScheme.light(scheme: FlexScheme.red, useMaterial3: true),
+  AppThemes.redDark: FlexColorScheme.dark(scheme: FlexScheme.red, useMaterial3: true),
+  AppThemes.mangoLight: FlexColorScheme.light(scheme: FlexScheme.mango, useMaterial3: true),
+  AppThemes.mangoDark: FlexColorScheme.dark(scheme: FlexScheme.mango, useMaterial3: true),
+  AppThemes.greenLight: FlexColorScheme.light(scheme: FlexScheme.green, useMaterial3: true),
+  AppThemes.greenDark: FlexColorScheme.dark(scheme: FlexScheme.green, useMaterial3: true),
+};
