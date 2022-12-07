@@ -22,6 +22,7 @@ class HomeView extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(
+                // ignore: inference_failure_on_instance_creation
                 MaterialPageRoute(
                   builder: (context) => const AppThemeView(),
                 ),
