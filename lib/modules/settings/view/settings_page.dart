@@ -4,8 +4,8 @@ import 'package:hatim/app/app.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/modules/settings/view/theme_view.dart';
 
-class SettingView extends StatelessWidget {
-  const SettingView({super.key});
+class SettingsView extends StatelessWidget {
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {

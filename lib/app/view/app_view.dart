@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
 import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/modules/modules.dart';
 import 'package:hatim/theme/custom/custom_theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,8 +17,10 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: appThemeData[state.theme]!.toTheme,
-          debugShowCheckedModeBanner: false,
-          home: const SettingView(),
+          onGenerateRoute: (settings) => AppRouter.onGenerateRoute(
+            settings,
+            context.read<AuthCubit>().state.user,
+          ),
         );
       },
     );
