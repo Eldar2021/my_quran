@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:hatim/locator.dart';
 import 'package:hatim/modules/modules.dart';
 
 class ReadView extends StatelessWidget {
@@ -15,7 +15,7 @@ class ReadView extends StatelessWidget {
         title: Text('ReadView $pages'),
       ),
       body: BlocProvider(
-        create: (context) => ReadCubit(fetchPageRepo, pages),
+        create: (context) => ReadCubit(sl<FetchPageRepo>(), pages),
         child: PaginationView(pages),
       ),
     );

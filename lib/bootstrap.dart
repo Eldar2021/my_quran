@@ -3,9 +3,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:hatim/app/app.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hatim/locator.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -41,10 +44,15 @@ Future<void> bootstrap() async {
 
   Bloc.observer = AppBlocObserver();
 
+  final dr = await getApplicationDocumentsDirectory();
+  Hive.init(dr.path);
   final pref = await SharedPreferences.getInstance();
+  final box = await Hive.openBox<String>('data');
 
   final appStorageService = AppStorageService(pref);
   final authStorage = AuthStorage(pref);
+
+  setup(box);
 
   await runZonedGuarded(
     () async => runApp(
