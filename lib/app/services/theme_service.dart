@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import 'package:hatim/core/cache/app_cache.dart';
@@ -25,14 +23,14 @@ class ThemeService {
 
   Color _getColor(String? cacheColor, {required bool isMale}) {
     return cacheColor != null
-        ? jsonDecode(cacheColor) as Color
+        ? targetColors[int.parse(cacheColor)]!
         : isMale
             ? Colors.blue
             : Colors.red;
   }
 
-  Future<void> setColor(Color color) async {
-    await storage.save(key: _colorKey, value: jsonEncode(color.toString()));
+  Future<void> setColor(int index) async {
+    await storage.save(key: _colorKey, value: '$index');
   }
 
   Future<void> setMode({required bool isDark}) async {

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-const targetColors = <Color>[
-  // Color(255, 5, 40, 237),
-  Color.fromARGB(255, 255, 0, 0),
-  Color.fromARGB(255, 0, 255, 255),
-  Color.fromARGB(255, 0, 255, 85),
-  Color.fromARGB(255, 247, 247, 0),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-  // Color(0xff020303),
-];
+Map<int, Color> targetColors = {
+  1: Colors.blue,
+  2: Colors.red,
+  3: Colors.deepOrange,
+  4: Colors.yellow,
+  5: Colors.brown,
+  6: Colors.blueAccent,
+  7: Colors.deepOrangeAccent,
+  8: Colors.deepPurple,
+  9: Colors.deepPurpleAccent,
+  10: Colors.green,
+  11: Colors.indigoAccent,
+  12: Colors.lime,
+  13: Colors.pink,
+  14: Colors.teal,
+  15: Colors.redAccent,
+};

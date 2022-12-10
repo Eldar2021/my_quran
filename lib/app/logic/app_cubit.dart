@@ -26,8 +26,8 @@ class AppCubit extends Cubit<AppState> {
     emit(state.copyWith(theme: state.theme.copyWith(brightness: isDark ? Brightness.dark : Brightness.light)));
   }
 
-  Future<void> changeColor(Color color) async {
-    await themeService.setColor(color);
+  Future<void> changeColor(int index, Color color) async {
+    await themeService.setColor(index);
     emit(state.copyWith(theme: state.theme.copyWith(targetColor: color)));
   }
 }

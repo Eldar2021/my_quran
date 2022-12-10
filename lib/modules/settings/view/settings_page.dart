@@ -47,21 +47,35 @@ class SettingsView extends StatelessWidget {
                 onTap: () async => context.read<AppCubit>().changeMode(isDark: false),
               ),
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              primary: false,
-              itemCount: targetColors.length,
-              itemBuilder: (BuildContext context, int index) {
-                final color = targetColors[index];
-                return Card(
-                  color: color,
-                  child: ListTile(
-                    title: Text(color.toString()),
-                    onTap: () async => context.read<AppCubit>().changeColor(color),
-                  ),
-                );
-              },
+            Wrap(
+              children: targetColors.entries
+                  .map(
+                    (e) => SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: InkWell(
+                        onTap: () async => context.read<AppCubit>().changeColor(e.key, e.value),
+                        child: Card(color: e.value),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
+            // ListView.builder(
+            //   shrinkWrap: true,
+            //   primary: false,
+            //   itemCount: targetColors.length,
+            //   itemBuilder: (BuildContext context, int index) {
+            //     final color = targetColors[index];
+            //     return Card(
+            //       color: color,
+            //       child: ListTile(
+            //         title: Text(color.toString()),
+            //         onTap: () async => context.read<AppCubit>().changeColor(color),
+            //       ),
+            //     );
+            //   },
+            // ),
           ],
         ),
       ),
