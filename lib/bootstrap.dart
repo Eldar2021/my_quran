@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:hatim/app/app.dart';
@@ -46,20 +45,18 @@ Future<void> bootstrap() async {
 
   final dr = await getApplicationDocumentsDirectory();
   Hive.init(dr.path);
-  final pref = await SharedPreferences.getInstance();
-  final box = await Hive.openBox<String>('data');
 
-  final appStorageService = AppStorageService(pref);
-  final authStorage = AuthStorage(pref);
+  final boxData = await Hive.openBox<String>('data');
+  final boxApp = await Hive.openBox<String>('app');
 
-  setup(box);
+  setup(boxData, boxApp);
 
   await runZonedGuarded(
     () async => runApp(
       MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => AppCubit(appStorageService)),
-          BlocProvider(create: (context) => AuthCubit(authStorage)),
+          BlocProvider(create: (context) => AppCubit(sl<LocalService>(), sl<ThemeService>())),
+          BlocProvider(create: (context) => AuthCubit(sl<AuthStorage>())),
         ],
         child: const MyApp(),
       ),

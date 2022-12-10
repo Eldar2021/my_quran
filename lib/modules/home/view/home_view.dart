@@ -17,6 +17,14 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('HomeView'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await Navigator.pushNamed(context, AppRouter.settingsPage);
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
       body: BlocProvider(
         create: (context) => HomeCubit(),

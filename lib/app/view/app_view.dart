@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       locale: context.watch<AppCubit>().state.currentLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: context.watch<AppCubit>().state.theme.themeData,
       onGenerateRoute: (settings) => AppRouter.onGenerateRoute(
         settings,
         context.read<AuthCubit>().state.user,

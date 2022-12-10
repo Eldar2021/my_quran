@@ -1,27 +1,32 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hatim/app/app.dart';
+import 'package:hive/hive.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hatim/app/app.dart';
+import 'package:hatim/core/core.dart';
 
 import 'helpers/helpers.dart';
 
-class MockSharedPreferences extends Mock implements SharedPreferences {}
+class MockBox extends Mock implements Box<String> {}
 
 // flutter test
 
 void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
-    final pref = MockSharedPreferences();
-    final appStorageService = AppStorageService(pref);
-    final authStorage = AuthStorage(pref);
+    final box = MockBox();
+    final appCache = AppCache(box);
+    final localService = LocalService(appCache);
+    final authStorage = AuthStorage(appCache);
+    final themeService = ThemeService(appCache);
 
-    when(() => pref.getString(authStorage.token)).thenReturn(null);
-    when(() => pref.getString(authStorage.gender)).thenReturn(null);
-    when(() => pref.getString(appStorageService.localStorageLocaleKey)).thenReturn('en');
+    when(() => box.get(authStorage.token)).thenReturn(null);
+    when(() => box.get(authStorage.gender)).thenReturn(null);
+    when(() => box.get(localService.localStorageLocaleKey)).thenReturn('en');
+    when(() => box.get(themeService.modeKey)).thenReturn(null);
+    when(() => box.get(themeService.colorKey)).thenReturn(null);
 
     // // Build our app and trigger a frame.
-    await tester.pumpApp(appStorageService, authStorage);
+    await tester.pumpApp(localService, themeService, authStorage);
     await tester.pumpAndSettle();
     expect(find.text('English'), findsOneWidget);
   });

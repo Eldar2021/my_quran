@@ -1,51 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:hatim/theme/custom/color/custom_color.dart';
-import 'package:hatim/theme/custom/component/componet_theme.dart';
-import 'package:material_color_utilities/blend/blend.dart';
+import 'package:hatim/theme/theme.dart';
 
 class CustomTheme with CompomnentTheme {
-  const CustomTheme({
-    required this.color,
-    required this.mode,
-  });
+  const CustomTheme(this.brightness, this.targetColor);
 
-  final Color color;
-  final bool mode;
+  final Brightness brightness;
+  final Color targetColor;
 
-  Color custom(CustomColor custom) {
-    if (custom.blend) {
-      return blend(custom.color);
-    } else {
-      return custom.color;
-    }
-  }
-
-  Color blend(Color targetColor) {
-    return Color(
-      Blend.harmonize(targetColor.value, color.value),
-    );
-  }
-
-  Color source(Color? target) {
-    var source = color;
-    if (target != null) {
-      source = blend(target);
-    }
-    return source;
-  }
-
-  ColorScheme colors(Brightness brightness, Color? targetColor) {
-    // final dynamicPrimary = brightness == Brightness.light
-    //     ? lightDynamic?.primary
-    //     : darkDynamic?.primary;
+  ColorScheme colors() {
     return ColorScheme.fromSeed(
-      seedColor: source(targetColor),
+      seedColor: targetColor,
       brightness: brightness,
     );
   }
 
-  ThemeData light([Color? targetColor]) {
-    final scheme = colors(Brightness.light, targetColor);
+  ThemeData light() {
+    final scheme = colors();
     return ThemeData.light().copyWith(
       colorScheme: scheme,
       appBarTheme: appBarTheme(scheme),
@@ -60,13 +30,12 @@ class CustomTheme with CompomnentTheme {
       inputDecorationTheme: inputDecorationTheme(scheme),
       elevatedButtonTheme: elevatedButtonThemeData(scheme),
       scrollbarTheme: scrollbarThemeData(scheme),
-      // scaffoldBackgroundColor: scheme.background,
       useMaterial3: true,
     );
   }
 
-  ThemeData dark([Color? targetColor]) {
-    final scheme = colors(Brightness.dark, targetColor);
+  ThemeData dark() {
+    final scheme = colors();
     return ThemeData.dark().copyWith(
       colorScheme: scheme,
       appBarTheme: appBarTheme(scheme),
@@ -81,9 +50,9 @@ class CustomTheme with CompomnentTheme {
     );
   }
 
-  ThemeData get theme => mode ? light() : dark();
+  ThemeData get themeData => brightness == Brightness.dark ? dark() : light();
 
-  CustomTheme copy({Color? newColor, bool? newMode}) {
-    return CustomTheme(color: newColor ?? color, mode: newMode ?? mode);
+  CustomTheme copyWith({Brightness? brightness, Color? targetColor}) {
+    return CustomTheme(brightness ?? this.brightness, targetColor ?? this.targetColor);
   }
 }
