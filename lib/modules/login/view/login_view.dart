@@ -17,10 +17,10 @@ class LoginView extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: appCubit.service.locales.length,
+              itemCount: appCubit.localService.locales.length,
               itemBuilder: (BuildContext context, int index) {
-                final locale = context.read<AppCubit>().service.locales[index];
-                final langName = context.read<AppCubit>().service.getName(locale.toLanguageTag());
+                final locale = context.read<AppCubit>().localService.locales[index];
+                final langName = context.read<AppCubit>().localService.getName(locale.toLanguageTag());
                 return Card(
                   color: appCubit.state.currentLocale == locale ? Colors.green : null,
                   child: ListTile(

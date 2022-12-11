@@ -1,11 +1,11 @@
 import 'dart:ui';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hatim/core/core.dart';
 
-class AppStorageService {
-  const AppStorageService(this.storage);
+class LocalService {
+  const LocalService(this.storage);
 
-  final SharedPreferences storage;
+  final AppCache<String> storage;
 
   static const String _localStorageLocaleKey = 'locale';
 
@@ -20,7 +20,7 @@ class AppStorageService {
   ];
 
   Locale init() {
-    final code = storage.getString(localStorageLocaleKey);
+    final code = storage.read(key: localStorageLocaleKey);
     if (code != null) {
       return Locale(code);
     } else {
@@ -34,8 +34,7 @@ class AppStorageService {
   }
 
   Future<Locale> setLocale(int index) async {
-    await storage.remove(localStorageLocaleKey);
-    await storage.setString(localStorageLocaleKey, _locales[index].languageCode);
+    await storage.save(key: localStorageLocaleKey, value: _locales[index].languageCode);
     return _locales[index];
   }
 
