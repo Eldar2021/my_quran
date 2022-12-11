@@ -61,21 +61,6 @@ class SettingsView extends StatelessWidget {
                   )
                   .toList(),
             ),
-            // ListView.builder(
-            //   shrinkWrap: true,
-            //   primary: false,
-            //   itemCount: targetColors.length,
-            //   itemBuilder: (BuildContext context, int index) {
-            //     final color = targetColors[index];
-            //     return Card(
-            //       color: color,
-            //       child: ListTile(
-            //         title: Text(color.toString()),
-            //         onTap: () async => context.read<AppCubit>().changeColor(color),
-            //       ),
-            //     );
-            //   },
-            // ),
           ],
         ),
       ),
