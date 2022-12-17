@@ -6,7 +6,9 @@ import 'package:hatim/modules/modules.dart';
 class AppRouter {
   const AppRouter();
 
-  static const String home = '/';
+  static const String main = '/';
+  static const String home = '/home';
+  static const String quran = '/quran';
   static const String juz = '/juz';
   static const String profile = '/profile';
   static const String read = '/read';
@@ -16,15 +18,25 @@ class AppRouter {
 
   static Route<void> onGenerateRoute(RouteSettings settings, User? user) {
     switch (settings.name) {
-      case home:
+      case main:
         return CupertinoPageRoute(
           builder: (_) {
             if (user != null) {
-              return const HomeView();
+              return const MainView();
             } else {
               return const LoginView();
             }
           },
+        );
+      case home:
+        return CupertinoPageRoute(
+          builder: (_) => const HomeView(),
+          settings: settings,
+        );
+      case quran:
+        return CupertinoPageRoute(
+          builder: (_) => const QuranView(),
+          settings: settings,
         );
       case juz:
         return CupertinoPageRoute(

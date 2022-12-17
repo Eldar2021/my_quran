@@ -9,8 +9,9 @@ class CustomTheme with CompomnentTheme {
 
   ColorScheme colors() {
     return ColorScheme.fromSeed(
-      seedColor: const Color(0xffFA7131),
+      seedColor: const Color(0xffED3727),
       primary: const Color(0xffED3727),
+      primaryContainer: const Color(0xffFA7131),
       secondary: const Color(0xff3A3E45),
       tertiary: const Color(0xff292C31),
       brightness: brightness,

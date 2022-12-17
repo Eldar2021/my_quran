@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/app/app.dart';
-
 import 'package:hatim/components/components.dart';
-import 'package:hatim/models/models.dart';
-import 'package:hatim/modules/home/logic/home_cubit.dart';
-import 'package:hatim/modules/home/view/page_view_item.dart';
+import 'package:intl/intl.dart';
+
+import 'package:hatim/constants/contants.dart';
 import 'package:hatim/modules/modules.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,71 +12,54 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await Navigator.pushNamed(context, AppRouter.settingsPage);
-            },
-            icon: const Icon(Icons.settings),
-          ),
-        ],
-      ),
-      body: BlocProvider(
-        create: (context) => HomeCubit(),
-        child: HomeBody(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await context.read<AuthCubit>().logout().whenComplete(
-                () => Navigator.pushAndRemoveUntil<void>(
-                  context,
-                  MaterialPageRoute<void>(builder: (context) => const LoginView()),
-                  (route) => false,
-                ),
-              );
-        },
+      body: SafeArea(
+        child: BlocProvider(
+          create: (context) => TimeCubit()..change(),
+          child: const HomeBody(),
+        ),
       ),
     );
   }
 }
 
 class HomeBody extends StatelessWidget {
-  HomeBody({super.key});
-
-  final controller = PageController();
+  const HomeBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: CupertinoSlidingSegmentedControl<int>(
-          backgroundColor: CupertinoColors.systemGrey2,
-          thumbColor: Colors.black,
-          groupValue: context.watch<HomeCubit>().state,
-          onValueChanged: (v) async {
-            context.read<HomeCubit>().change(v);
-            await controller.animateToPage(
-              context.read<HomeCubit>().state,
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.easeIn,
-            );
-          },
-          children: const <int, Widget>{
-            0: PageViewCard(page: 'Juz', key: Key('juz-items')),
-            1: PageViewCard(page: 'Surah', key: Key('surah-items')),
-          },
+    return ListView(
+      children: [
+        const SizedBox(height: 10),
+        Assets.icons.alQuran.svg(height: 100),
+        const HomeCard(
+          titleText: 'Jalpy Okulgan Hatim',
+          descriptioText:
+              'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
+          valueText: '147',
+          // verticalSpace: 0,
         ),
-      ),
-      child: PageView(
-        controller: controller,
-        onPageChanged: context.read<HomeCubit>().change,
-        children: [
-          PageViewItem<Juz>(context.read<HomeCubit>().juzs),
-          PageViewItem<Surah>(context.read<HomeCubit>().surahs),
-        ],
-      ),
+        const HomeCard(
+          titleText: 'Siz Okugan Barak sany',
+          descriptioText:
+              'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
+          valueText: '1647',
+          verticalSpace: 0,
+        ),
+        HomeCard(
+          titleText: DateFormat('dd/MM/yyy').format(context.watch<TimeCubit>().state),
+          descriptioText:
+              'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
+          valueText: DateFormat('mm:ss').format(context.watch<TimeCubit>().state),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: CustomButton(
+            text: 'Hatimga Katysh ->',
+            onPressed: () {},
+          ),
+        ),
+        const SizedBox(height: 20),
+      ],
     );
   }
 }

@@ -14,7 +14,7 @@ class SelectGender extends StatelessWidget {
       children: [
         const SizedBox(height: 30),
         Text(
-          'Please select Language',
+          'Please select Gender',
           style: TextStyle(fontSize: 24, color: colorScheme.onBackground),
         ),
         const SizedBox(height: 30),
