@@ -13,7 +13,6 @@ class PageViewCard extends StatelessWidget {
       child: Center(
         child: Text(
           page,
-          style: const TextStyle(color: CupertinoColors.white),
         ),
       ),
     );

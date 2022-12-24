@@ -16,6 +16,10 @@ class HomeView extends StatelessWidget {
     PageViewCard(page: 'Surah', key: Key('surah-items')),
   ];
 
+  TabBar get tabBar => const TabBar(
+        tabs: myTabs,
+      );
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -31,14 +35,9 @@ class HomeView extends StatelessWidget {
               icon: const Icon(Icons.settings),
             ),
           ],
-          bottom: TabBar(
-            indicator: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white,
-            tabs: myTabs,
+          bottom: PreferredSize(
+            preferredSize: tabBar.preferredSize,
+            child: tabBar,
           ),
         ),
         body: BlocProvider(
