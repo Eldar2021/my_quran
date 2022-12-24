@@ -20,7 +20,7 @@ class AppRouter {
         return CupertinoPageRoute(
           builder: (_) {
             if (user != null) {
-              return  const HomeView();
+              return const HomeView();
             } else {
               return const LoginView();
             }

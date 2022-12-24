@@ -69,7 +69,7 @@ class LoginView extends StatelessWidget {
               await context.read<AuthCubit>().login(user).whenComplete(
                     () => Navigator.pushAndRemoveUntil<void>(
                       context,
-                      MaterialPageRoute<void>(builder: (context) =>  const HomeView()),
+                      MaterialPageRoute<void>(builder: (context) => const HomeView()),
                       (route) => false,
                     ),
                   );
