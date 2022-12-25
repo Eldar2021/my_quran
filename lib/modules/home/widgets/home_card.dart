@@ -21,7 +21,6 @@ class HomeCard extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return Card(
       margin: EdgeInsets.symmetric(horizontal: horizontalSpace, vertical: verticalSpace),
-      color: colorScheme.background.withOpacity(0.8),
       child: Padding(
         padding: const EdgeInsets.all(17),
         child: Column(

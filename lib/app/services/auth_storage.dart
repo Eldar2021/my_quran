@@ -14,7 +14,7 @@ class AuthStorage {
     final userToken = storage.read(key: _token);
     final userGender = storage.read(key: _gender);
     if (userToken != null && userGender != null) {
-      return User(token: token, gender: gender == Gender.male.name ? Gender.male : Gender.female);
+      return User(token: token, gender: userGender == Gender.male.name ? Gender.male : Gender.female);
     } else {
       return null;
     }
@@ -23,6 +23,10 @@ class AuthStorage {
   Future<void> login(User user) async {
     await storage.save(key: _token, value: user.token);
     await storage.save(key: _gender, value: user.gender.name);
+  }
+
+  Future<void> changeGender(Gender gender) async {
+    await storage.save(key: _gender, value: gender.name);
   }
 
   Future<void> logout() async => storage.clear();

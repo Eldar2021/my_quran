@@ -22,9 +22,9 @@ mixin CompomnentTheme {
   ElevatedButtonThemeData elevatedButtonThemeData(ColorScheme colors) {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: colors.primary,
-        // fixedSize: Size(200, 50),
-      ),
+          // backgroundColor: colors.primary,
+          // fixedSize: Size(200, 50),
+          ),
     );
   }
 
@@ -98,6 +98,6 @@ mixin CompomnentTheme {
   }
 
   ScrollbarThemeData scrollbarThemeData(ColorScheme colors) {
-    return const ScrollbarThemeData(interactive: true);
+    return const ScrollbarThemeData();
   }
 }

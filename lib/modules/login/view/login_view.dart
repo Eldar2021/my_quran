@@ -68,7 +68,7 @@ class LoginBody extends StatelessWidget {
                 curve: Curves.easeInOut,
               );
             } else {
-              final user = User(gender: context.read<AuthCubit>().state.gender);
+              final user = User(gender: context.read<AppCubit>().state.gender);
               await context.read<AuthCubit>().login(user).whenComplete(
                     () => Navigator.pushAndRemoveUntil<void>(
                       context,

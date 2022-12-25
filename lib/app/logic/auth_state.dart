@@ -1,15 +1,14 @@
 part of 'auth_cubit.dart';
 
 class AuthState extends Equatable {
-  const AuthState({this.user, this.gender = Gender.male});
+  const AuthState({this.user});
 
   final User? user;
-  final Gender gender;
 
   @override
-  List<Object?> get props => [user, gender];
+  List<Object?> get props => [user];
 
-  AuthState copyWith({User? user, Gender? gender}) {
-    return AuthState(user: user ?? this.user, gender: gender ?? this.gender);
+  AuthState copyWith({User? user}) {
+    return AuthState(user: user ?? this.user);
   }
 }

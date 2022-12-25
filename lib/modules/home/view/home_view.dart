@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
         child: ListView(
           children: [
             const SizedBox(height: 10),
-            Assets.icons.alQuran.svg(height: 100),
+            Assets.icons.alQuran.svg(height: 100, color: Theme.of(context).colorScheme.primary),
             const HomeCard(
               titleText: 'Jalpy Okulgan Hatim',
               descriptioText:

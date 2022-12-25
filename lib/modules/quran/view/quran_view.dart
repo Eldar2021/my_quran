@@ -31,8 +31,8 @@ class QuranBody extends StatelessWidget {
         title: const Text('HomeView'),
         backgroundColor: colorScheme.surfaceVariant,
         bottom: TabBar(
-          indicatorColor: colorScheme.primaryContainer,
-          labelColor: colorScheme.onSurface,
+          indicatorColor: colorScheme.primary,
+          labelColor: colorScheme.onSurfaceVariant,
           tabs: const [
             PageViewCard(page: 'Juz', key: Key('juz-items')),
             PageViewCard(page: 'Surah', key: Key('surah-items')),

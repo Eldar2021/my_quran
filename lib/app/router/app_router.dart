@@ -12,9 +12,16 @@ class AppRouter {
   static const String juz = '/juz';
   static const String profile = '/profile';
   static const String read = '/read';
-  static const String settingsPage = '/settings';
   static const String surah = '/surah';
   static const String login = '/login';
+
+  static const String settingsPage = '/settings';
+  static const String langSettings = '/lang-settings';
+  static const String genderSettings = '/gender-settings';
+  static const String themeSettings = '/theme-settings';
+  static const String aboutUs = '/about-us';
+  static const String developers = '/developers';
+  static const String feedback = '/feedback';
 
   static Route<void> onGenerateRoute(RouteSettings settings, User? user) {
     switch (settings.name) {
@@ -53,23 +60,50 @@ class AppRouter {
           builder: (_) => const ProfileView(),
           settings: settings,
         );
-
       case read:
         final args = settings.arguments!;
         return CupertinoPageRoute(
           builder: (_) => ReadView(args as List<int>),
           settings: settings,
         );
-
+      case login:
+        return CupertinoPageRoute(
+          builder: (_) => const LoginView(),
+          settings: settings,
+        );
       case settingsPage:
         return CupertinoPageRoute(
           builder: (_) => const SettingsView(),
           settings: settings,
         );
-
-      case login:
+      case aboutUs:
         return CupertinoPageRoute(
-          builder: (_) => const LoginView(),
+          builder: (_) => const AboutUsVuew(),
+          settings: settings,
+        );
+      case developers:
+        return CupertinoPageRoute(
+          builder: (_) => const DevelopersView(),
+          settings: settings,
+        );
+      case feedback:
+        return CupertinoPageRoute(
+          builder: (_) => const FeedBackSenderView(),
+          settings: settings,
+        );
+      case genderSettings:
+        return CupertinoPageRoute(
+          builder: (_) => const GenderSettingView(),
+          settings: settings,
+        );
+      case langSettings:
+        return CupertinoPageRoute(
+          builder: (_) => const LangSettingsView(),
+          settings: settings,
+        );
+      case themeSettings:
+        return CupertinoPageRoute(
+          builder: (_) => const ThemeSettingsView(),
           settings: settings,
         );
       default:
