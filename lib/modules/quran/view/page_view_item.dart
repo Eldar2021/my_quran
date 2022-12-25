@@ -11,6 +11,7 @@ class PageViewItem<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
       key: const Key('list-view-builder-juz-surah'),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
