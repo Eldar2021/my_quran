@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+import 'package:hatim/app/app.dart';
 import 'package:hatim/components/components.dart';
 import 'package:hatim/constants/contants.dart';
 import 'package:hatim/modules/modules.dart';
@@ -40,7 +41,9 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: CustomButton(
                 text: 'Hatimga Katysh ->',
-                onPressed: () {},
+                onPressed: () async {
+                  await Navigator.pushNamed(context, AppRouter.hatim);
+                },
               ),
             ),
             const SizedBox(height: 20),

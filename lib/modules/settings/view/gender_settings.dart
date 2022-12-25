@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/app/logic/auth_cubit.dart';
 
+import 'package:hatim/app/logic/auth_cubit.dart';
 import 'package:hatim/components/components.dart';
 import 'package:hatim/models/models.dart';
 
@@ -16,6 +16,7 @@ class GenderSettingView extends StatelessWidget {
         title: const Text('Gender Setting View'),
       ),
       body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
         children: [
           GenderCard(
             Gender.male,

@@ -11,7 +11,10 @@ class LangSettingsView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Language Settings View'),
       ),
-      body: const SelectLangFromListViewBuilder(),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 14, vertical: 20),
+        child: SelectLangFromListViewBuilder(),
+      ),
     );
   }
 }

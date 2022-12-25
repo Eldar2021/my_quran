@@ -5,3 +5,5 @@ export 'juz/juz_data.dart';
 export 'surah/surah_data.dart';
 export 'surah/surah_model.dart';
 export 'quran_page/verse_model.dart';
+export 'hatim/hatim_juz.dart';
+export 'hatim/hatim_page.dart';

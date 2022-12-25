@@ -28,7 +28,7 @@ class HomeCard extends StatelessWidget {
           children: [
             Text(
               titleText,
-              style: const TextStyle(fontSize: 28),
+              style: const TextStyle(fontSize: 22),
             ),
             const SizedBox(height: 10),
             Row(
@@ -38,7 +38,7 @@ class HomeCard extends StatelessWidget {
                 Text(
                   valueText,
                   style: TextStyle(
-                    fontSize: 42,
+                    fontSize: 32,
                     color: colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
