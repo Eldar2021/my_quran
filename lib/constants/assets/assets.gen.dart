@@ -20,8 +20,11 @@ class $AssetsIconsGen {
   /// File path: assets/icons/open_book.svg
   SvgGenImage get openBook => const SvgGenImage('assets/icons/open_book.svg');
 
+  /// File path: assets/icons/open_book.svg
+  SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [alQuran, openBook];
+  List<SvgGenImage> get values => [alQuran, openBook, github];
 }
 
 class Assets {
