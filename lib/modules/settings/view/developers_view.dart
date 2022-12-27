@@ -30,36 +30,33 @@ class DevelopersView extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            const SizedBox(height: 30),
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Assets.icons.github.svg(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    Text(
-                      'GitHub',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: MediaQuery.of(context).size.height * 0.04,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+            const Spacer(),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Assets.icons.github.svg(
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  Text(
+                    'GitHub',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: MediaQuery.of(context).size.height * 0.04,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
