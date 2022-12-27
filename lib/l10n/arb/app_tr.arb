@@ -2,5 +2,6 @@
     "@@locale": "tr",
     "homeAppBarTitle": "Hatim",
     "lang": "Dil",
-    "pleaseWait": "Lütfen bekleyin"
+    "pleaseWait": "Lütfen bekleyin",
+    "feedbackSnackbarTitle": "Bu sayfa gelecek sürümlerde eklenecektir"
 }
