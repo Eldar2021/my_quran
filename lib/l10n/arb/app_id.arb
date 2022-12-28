@@ -2,5 +2,6 @@
     "@@locale": "id",
     "homeAppBarTitle": "Hatim",
     "lang": "Bahasa",
-    "pleaseWait": "Silakan tunggu"
+    "pleaseWait": "Silakan tunggu",
+    "feedbackSnackbarTitle": "Halaman ini akan ditambahkan di versi mendatang"
 }

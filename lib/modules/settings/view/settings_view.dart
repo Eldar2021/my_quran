@@ -53,7 +53,14 @@ class SettingsView extends StatelessWidget {
           ListTile(
             title: const Text('Feedback'),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => Navigator.pushNamed(context, AppRouter.feedback),
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(l10n.feedbackSnackbarTitle),
+                ),
+              );
+            },
+            // onTap: () => Navigator.pushNamed(context, AppRouter.feedback),
           ),
           ListTile(
             title: const Text('Developers'),

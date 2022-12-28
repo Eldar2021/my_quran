@@ -2,5 +2,6 @@
     "@@locale": "ar",
     "homeAppBarTitle": "Hatim",
     "lang": "اللغة",
-    "pleaseWait": "يرجى الانتظار"
+    "pleaseWait": "يرجى الانتظار",
+    "feedbackSnackbarTitle": "سيتم إضافة هذه الصفحة في الإصدارات المستقبلية"
 }
