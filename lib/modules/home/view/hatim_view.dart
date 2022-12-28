@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,7 +59,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                   barrierLabel: '',
                   builder: (ctx) {
                     return BlocProvider(
-                      create: (context) => HatimPageCubit(),
+                      create: (context) => HatimPageCubit(hatimJuz.id)..getData(),
                       child: const Dialog(
                         child: HatinPageDailogBody(),
                       ),
@@ -91,7 +92,15 @@ class HatinPageDailogBody extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const HatimPageGridLisrBuilder(),
+          BlocBuilder<HatimPageCubit, HatimPageState>(
+            builder: (context, state) {
+              if (state.pages != null) {
+                return const HatimPageGridLisrBuilder();
+              } else {
+                return const Center(child: CupertinoAlertDialog());
+              }
+            },
+          ),
           DoneProgcessingEmptyHint(
             color: colorScheme.primary,
             hintText: 'This is Done color',
@@ -182,9 +191,9 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
-        itemCount: context.read<HatimPageCubit>().hatimPages.length,
+        itemCount: context.read<HatimPageCubit>().state.pages?.length,
         itemBuilder: (BuildContext context, int index) {
-          final hatimPage = context.read<HatimPageCubit>().hatimPages[index];
+          final hatimPage = context.read<HatimPageCubit>().state.pages![index];
           return Material(
             type: MaterialType.card,
             color: hatimPage.status == PageStatus.done

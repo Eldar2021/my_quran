@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class Verse {
   const Verse({
     required this.id,
@@ -29,8 +27,6 @@ class Verse {
 
   int get juzNumber => int.parse(verseKey.split(':').first);
   int get surahNumber => int.parse(verseKey.split(':').last);
-
-  String get arabicSurahNumber => NumberFormat.decimalPattern('ar').format(surahNumber);
 }
 
 extension NumberConverter on num {
