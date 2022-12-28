@@ -4,7 +4,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
-import 'package:intl/intl.dart';
 
 class PaginationView extends StatefulWidget {
   const PaginationView(this.pages, {super.key});
@@ -73,9 +72,9 @@ class ReadQuranTextView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arabcaFormat = NumberFormat.decimalPattern("ar");
-    String arabcaSayi = arabcaFormat.format(12);
-    print(arabcaSayi);
+    // final arabcaFormat = NumberFormat.decimalPattern("ar");
+    // String arabcaSayi = arabcaFormat.format(12);
+    // print(arabcaSayi);
     // final texts = items.map((e) => e.textUthmani).toList();
     // var text = StringBuffer()..write(items.map((e) => '${e.textUthmani} ${e.surahNumber}'));
     // return Text(

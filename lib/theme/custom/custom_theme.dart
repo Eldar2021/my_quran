@@ -9,7 +9,7 @@ class CustomTheme with CompomnentTheme {
 
   ColorScheme colors() {
     return ColorScheme.fromSeed(
-      seedColor: targetColor, // const Color(0xffED3727),
+      seedColor: targetColor,
       brightness: brightness,
     );
   }

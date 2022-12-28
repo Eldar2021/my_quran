@@ -10,11 +10,7 @@ class PageViewCard extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 2,
       height: 35,
-      child: Center(
-        child: Text(
-          page,
-        ),
-      ),
+      child: Center(child: Text(page)),
     );
   }
 }

@@ -60,9 +60,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                   builder: (ctx) {
                     return BlocProvider(
                       create: (context) => HatimPageCubit(hatimJuz.id)..getData(),
-                      child: const Dialog(
-                        child: HatinPageDailogBody(),
-                      ),
+                      child: const Dialog(child: HatinPageDailogBody()),
                     );
                   },
                 );
@@ -87,10 +85,7 @@ class HatinPageDailogBody extends StatelessWidget {
         children: [
           const Text(
             'Please select pages',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
           BlocBuilder<HatimPageCubit, HatimPageState>(
             builder: (context, state) {
@@ -118,10 +113,7 @@ class HatinPageDailogBody extends StatelessWidget {
           const SizedBox(height: 25),
           const Text(
             'However, as the above widgets use lazy loading/viewport* the size is not determined upfront and an exception is thrown within',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -163,10 +155,7 @@ class DoneProgcessingEmptyHint extends StatelessWidget {
         SizedBox(
           width: 20,
           height: 20,
-          child: Material(
-            type: MaterialType.card,
-            color: color,
-          ),
+          child: Material(type: MaterialType.card, color: color),
         ),
         const SizedBox(width: 14),
         Text(hintText),

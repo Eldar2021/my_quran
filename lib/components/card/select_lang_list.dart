@@ -23,10 +23,7 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
                 ? CircleAvatar(
                     radius: 15,
                     backgroundColor: colorScheme.background,
-                    child: Icon(
-                      Icons.check,
-                      color: colorScheme.primary,
-                    ),
+                    child: Icon(Icons.check, color: colorScheme.primary),
                   )
                 : null,
           ),

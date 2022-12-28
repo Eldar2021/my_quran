@@ -64,10 +64,7 @@ class Dot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedness = Curves.easeOut.transform(
-      max(
-        0,
-        1.0 - ((controller.page ?? controller.initialPage) - index).abs(),
-      ),
+      max(0, 1.0 - ((controller.page ?? controller.initialPage) - index).abs()),
     );
     final zoom = 1.0 + (maxZoom - 1.0) * selectedness;
     return SizedBox(

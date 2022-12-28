@@ -55,9 +55,7 @@ class SettingsView extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(l10n.feedbackSnackbarTitle),
-                ),
+                SnackBar(content: Text(l10n.feedbackSnackbarTitle)),
               );
             },
             // onTap: () => Navigator.pushNamed(context, AppRouter.feedback),
