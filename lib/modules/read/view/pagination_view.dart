@@ -14,7 +14,7 @@ class PaginationView extends StatefulWidget {
 }
 
 class _PaginationViewState extends State<PaginationView> {
-  late final PagingController<int, List<Verse>> _pagingController;
+  late final PagingController<int, QuranPage> _pagingController;
   List<int> useList = [];
   var _index = 0;
 
@@ -23,7 +23,7 @@ class _PaginationViewState extends State<PaginationView> {
     for (var i = widget.pages.first; i <= widget.pages.last; i++) {
       useList.add(i);
     }
-    _pagingController = PagingController<int, List<Verse>>(
+    _pagingController = PagingController<int, QuranPage>(
       firstPageKey: widget.pages.first,
     );
     _pagingController.addPageRequestListener(_fetchPage);
@@ -48,11 +48,11 @@ class _PaginationViewState extends State<PaginationView> {
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView<int, List<Verse>>(
+    return PagedListView<int, QuranPage>(
       key: const Key('read-pages-list'),
       pagingController: _pagingController,
       physics: const BouncingScrollPhysics(),
-      builderDelegate: PagedChildBuilderDelegate<List<Verse>>(
+      builderDelegate: PagedChildBuilderDelegate<QuranPage>(
         itemBuilder: (context, item, index) => ReadQuranTextView(item),
       ),
     );
@@ -66,43 +66,18 @@ class _PaginationViewState extends State<PaginationView> {
 }
 
 class ReadQuranTextView extends StatelessWidget {
-  const ReadQuranTextView(this.items, {super.key});
+  const ReadQuranTextView(this.item, {super.key});
 
-  final List<Verse> items;
+  final QuranPage item;
 
   @override
   Widget build(BuildContext context) {
-    // final arabcaFormat = NumberFormat.decimalPattern("ar");
-    // String arabcaSayi = arabcaFormat.format(12);
-    // print(arabcaSayi);
-    // final texts = items.map((e) => e.textUthmani).toList();
-    // var text = StringBuffer()..write(items.map((e) => '${e.textUthmani} ${e.surahNumber}'));
-    // return Text(
-    //   text.toString(),
-    //   maxLines: 1000,
-    // );
-//     NumberFormat nf = NumberFormat.getInstance(Locale.forLanguageTag("AR"));
-// textView.setText(String.valueOf(nf.format(285))+"\u06DD");
-    return Wrap(
-      alignment: WrapAlignment.end,
-      spacing: 10,
-      runSpacing: 10,
-      children: items
-          .map(
-            (e) => Text(
-              // '${NumberFormat.decimalPattern('ar').format(12.0)}',
-              '\u06dd${e.surahNumber.toArabicDigits()}',
-
-              locale: const Locale('ar'),
-            ),
-          )
-          .toList(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      child: Text(
+        item.samePage.toString(),
+        locale: const Locale('ar'),
+      ),
     );
-    // return ListTile(
-    //   key: Key('${item.id}-${item.verseKey}'),
-    //   title: Text(item.textUthmani),
-    //   leading: Text('${item.id}'),
-    //   subtitle: Text(item.verseKey),
-    // );
   }
 }

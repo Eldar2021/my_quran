@@ -10,16 +10,25 @@ class FetchPageRepo {
   final RemoteClient remoteClient;
   final LocalClient<String> localClient;
 
-  Future<List<Verse>?> gerVerses(int page) async {
+  Future<QuranPage?> gerVerses(int page) async {
     final key = 'quran-$page';
     final localvalue = localClient.read(key: key);
     if (localvalue != null) {
-      final listString = jsonDecode(localvalue) as List;
-      return listString.map((e) => Verse.fromMap(e as Map<String, dynamic>)).toList();
+      final data = jsonDecode(localvalue);
+      return QuranPage.fromJson(data as Map<String, dynamic>);
     } else {
-      final remoteValue = await remoteClient.getVerses(ApiConst.verse(page));
-      await localClient.save(key: key, value: jsonEncode(remoteValue));
-      return remoteValue?.map((e) => Verse.fromMap(e as Map<String, dynamic>)).toList();
+      final remoteValue = await remoteClient.getData<QuranPage>(
+        ApiConst.verse(page),
+        fromJson: QuranPage.fromJson,
+      );
+
+      return remoteValue.fold(
+        (l) => null,
+        (r) async {
+          await localClient.save(key: key, value: jsonEncode(r.toJson()));
+          return r;
+        },
+      );
     }
   }
 }

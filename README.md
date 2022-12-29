@@ -40,3 +40,7 @@ length of the code to 120.
 ```
 flutter format . --line-length 120
 ```
+* Re generate .g files run:
+```
+flutter pub run build_runner build --delete-conflicting-outputs
+```
