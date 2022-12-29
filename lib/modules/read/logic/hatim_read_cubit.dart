@@ -1,24 +1,31 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-// import 'package:hatim/modules/modules.dart';
+import 'package:hatim/modules/modules.dart';
 
-// part 'hatim_read_state.dart';
+part 'hatim_read_state.dart';
 
-// class HatimReadCubit extends Cubit<HatimReadState> {
-//   HatimReadCubit(this.storage) : super(const HatimReadState());
-//   final PageStorage storage;
+class HatimReadCubit extends Cubit<HatimReadState> {
+  HatimReadCubit(this.storage) : super(const HatimReadState([]));
 
-//   List<int> _pages = [];
+  final HatimReadService storage;
 
-//   void init() {
-//     _pages = storage.getPages() ?? <int>[];
-//     emit(state.copyWith(pages: _pages));
-//   }
+  List<int> _pages = [];
 
-//   Future<void> setPages(int newPage) async {
-//     _pages.add(newPage);
-//     await storage.setPages(_pages);
-//     emit(state.copyWith(pages: _pages));
-//   }
-// }
+  void init() {
+    _pages = storage.getPages() ?? <int>[];
+    emit(HatimReadState(_pages));
+  }
+
+  Future<void> setPage(int newPage) async {
+    _pages.add(newPage);
+    emit(HatimReadState(_pages));
+    await storage.setPages(_pages);
+  }
+
+  Future<void> removePage(int newPage) async {
+    _pages.remove(newPage);
+    await storage.setPages(_pages);
+    emit(HatimReadState(_pages));
+  }
+}

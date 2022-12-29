@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:hatim/constants/contants.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
@@ -13,11 +14,35 @@ class HatimView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('HatimView'),
+        actions: [
+          BlocBuilder<HatimReadCubit, HatimReadState>(
+            builder: (context, state) {
+              return Text(
+                '${state.pages.length}',
+                style: const TextStyle(fontSize: 20),
+              );
+            },
+          ),
+          const SizedBox(width: 30)
+        ],
       ),
       body: BlocProvider(
         create: (context) => HatimJuzCubit(),
         child: const HatimJuzListBuilder(),
       ),
+      floatingActionButton: context.select((HatimReadCubit cubit) {
+        if (cubit.state.pages.isNotEmpty) {
+          return FloatingActionButton.extended(
+            onPressed: () {
+              context.read<HatimReadCubit>().setPage(5);
+            },
+            label: const Text('Read'),
+            icon: Assets.icons.openBook.svg(),
+          );
+        } else {
+          return null;
+        }
+      }),
     );
   }
 }
@@ -87,6 +112,7 @@ class HatinPageDailogBody extends StatelessWidget {
             'Please select pages',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
+          const SizedBox(height: 15),
           BlocBuilder<HatimPageCubit, HatimPageState>(
             builder: (context, state) {
               if (state.pages != null) {
@@ -96,6 +122,7 @@ class HatinPageDailogBody extends StatelessWidget {
               }
             },
           ),
+          const SizedBox(height: 15),
           DoneProgcessingEmptyHint(
             color: colorScheme.primary,
             hintText: 'This is Done color',
@@ -169,7 +196,6 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return Expanded(
       child: GridView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
@@ -183,14 +209,41 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
         itemCount: context.read<HatimPageCubit>().state.pages?.length,
         itemBuilder: (BuildContext context, int index) {
           final hatimPage = context.read<HatimPageCubit>().state.pages![index];
-          return Material(
-            type: MaterialType.card,
-            color: hatimPage.status == PageStatus.done
-                ? colorScheme.primary
-                : hatimPage.status == PageStatus.process
-                    ? colorScheme.tertiary
-                    : colorScheme.secondary,
-            child: Center(
+          return HatimPageStatusCard(hatimPage: hatimPage);
+        },
+      ),
+    );
+  }
+}
+
+class HatimPageStatusCard extends StatelessWidget {
+  const HatimPageStatusCard({super.key, required this.hatimPage});
+
+  final HatimPage hatimPage;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return InkWell(
+      onTap: hatimPage.status == PageStatus.empty
+          ? () {
+              if (!context.read<HatimReadCubit>().state.pages.contains(hatimPage.id)) {
+                context.read<HatimReadCubit>().setPage(hatimPage.id);
+              } else {
+                context.read<HatimReadCubit>().removePage(hatimPage.id);
+              }
+            }
+          : null,
+      child: Material(
+        type: MaterialType.card,
+        color: hatimPage.status == PageStatus.done
+            ? colorScheme.primary
+            : hatimPage.status == PageStatus.process
+                ? colorScheme.tertiary
+                : colorScheme.secondary,
+        child: Stack(
+          children: [
+            Center(
               child: Text(
                 '${hatimPage.id}',
                 style: TextStyle(
@@ -202,8 +255,19 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
                 ),
               ),
             ),
-          );
-        },
+            BlocBuilder<HatimReadCubit, HatimReadState>(
+              builder: (context, state) {
+                return Positioned(
+                  right: 2,
+                  top: 2,
+                  child: state.pages.contains(hatimPage.id)
+                      ? Icon(Icons.check, size: 20, color: colorScheme.onPrimary)
+                      : const SizedBox.shrink(),
+                );
+              },
+            )
+          ],
+        ),
       ),
     );
   }

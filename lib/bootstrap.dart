@@ -3,12 +3,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/modules/home/home.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:hatim/app/app.dart';
 import 'package:hatim/locator.dart';
+import 'package:hatim/modules/modules.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -49,8 +49,9 @@ Future<void> bootstrap() async {
 
   final boxData = await Hive.openBox<String>('data');
   final boxApp = await Hive.openBox<String>('app');
+  final boxPages = await Hive.openBox<List<int>>('pages');
 
-  setup(boxData, boxApp);
+  setup(boxData, boxApp, boxPages);
 
   await runZonedGuarded(
     () async => runApp(
@@ -58,6 +59,7 @@ Future<void> bootstrap() async {
         providers: [
           BlocProvider(create: (context) => AppCubit(sl<LocalService>(), sl<ThemeService>())),
           BlocProvider(create: (context) => AuthCubit(sl<AuthStorage>())),
+          BlocProvider(create: (context) => HatimReadCubit(sl<HatimReadService>())..init()),
           BlocProvider(create: (context) => TimeCubit()..change()),
         ],
         child: const MyApp(),

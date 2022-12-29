@@ -1,7 +1,7 @@
 import 'package:hatim/core/core.dart';
 
-class PageStorage {
-  const PageStorage(this.storage);
+class HatimReadService {
+  const HatimReadService(this.storage);
 
   final AppCache<List<int>> storage;
 
