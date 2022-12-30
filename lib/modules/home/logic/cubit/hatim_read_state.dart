@@ -8,11 +8,4 @@ class HatimReadState extends Equatable {
 
   @override
   List<Object> get props => [pages];
-
-  // HatimReadState copyWith({List<int>? pages, int? lastPage}) {
-  //   return HatimReadState(
-  //     pages ?? this.pages,
-  //     lastPage ?? this.lastPage,
-  //   );
-  // }
 }

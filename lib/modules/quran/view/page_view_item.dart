@@ -22,7 +22,14 @@ class PageViewItem<T> extends StatelessWidget {
               key: Key('${item.id}-juz'),
               leading: Text('${item.id}'),
               title: Text(item.name),
-              onTap: () => Navigator.pushNamed(context, AppRouter.read, arguments: item.pages),
+              onTap: () async {
+                final pages = <int>[];
+                for (var i = item.pages.first; i <= item.pages.last; i++) {
+                  pages.add(i);
+                }
+                pages.sort();
+                await Navigator.pushNamed(context, AppRouter.read, arguments: pages);
+              },
             ),
           );
         } else if (item is Surah) {
@@ -32,7 +39,14 @@ class PageViewItem<T> extends StatelessWidget {
               leading: Text('${item.id}'),
               title: Text(item.arabic),
               subtitle: Text(item.name),
-              onTap: () => Navigator.pushNamed(context, AppRouter.read, arguments: item.pages),
+              onTap: () async {
+                final pages = <int>[];
+                for (var i = item.pages.first; i <= item.pages.last; i++) {
+                  pages.add(i);
+                }
+                pages.sort();
+                await Navigator.pushNamed(context, AppRouter.read, arguments: pages);
+              },
             ),
           );
         }

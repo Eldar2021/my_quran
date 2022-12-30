@@ -58,7 +58,6 @@ class SettingsView extends StatelessWidget {
                 SnackBar(content: Text(l10n.feedbackSnackbarTitle)),
               );
             },
-            // onTap: () => Navigator.pushNamed(context, AppRouter.feedback),
           ),
           ListTile(
             title: const Text('Developers'),

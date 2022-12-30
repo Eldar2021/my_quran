@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import 'package:hatim/app/app.dart';
 import 'package:hatim/components/components.dart';
@@ -31,12 +29,7 @@ class HomeView extends StatelessWidget {
               valueText: '1647',
               verticalSpace: 0,
             ),
-            HomeCard(
-              titleText: DateFormat('dd/MM/yyy').format(context.watch<TimeCubit>().state),
-              descriptioText:
-                  'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
-              valueText: DateFormat('mm:ss').format(context.watch<TimeCubit>().state),
-            ),
+            const TimeCard(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: CustomButton(

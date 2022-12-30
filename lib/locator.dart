@@ -9,14 +9,12 @@ import 'package:hatim/modules/modules.dart';
 
 final sl = GetIt.I;
 
-void setup(Box<String> boxData, Box<String> boxApp, Box<List<int>> boxPages) {
+void setup(Box<String> boxData, Box<String> boxApp) {
   sl
     ..registerLazySingleton<AppCache<String>>(() => AppCache(boxApp))
-    ..registerLazySingleton<AppCache<List<int>>>(() => AppCache(boxPages))
     ..registerLazySingleton<AuthStorage>(() => AuthStorage(sl<AppCache<String>>()))
     ..registerLazySingleton<LocalService>(() => LocalService(sl<AppCache<String>>()))
     ..registerLazySingleton<ThemeService>(() => ThemeService(sl<AppCache<String>>()))
-    ..registerLazySingleton<HatimReadService>(() => HatimReadService(sl<AppCache<List<int>>>()))
     ..registerLazySingleton<Connectivity>(Connectivity.new)
     ..registerLazySingleton<RemoteClient>(() => RemoteClient(Dio()))
     ..registerLazySingleton<LocalClient<String>>(() => LocalClient(boxData))

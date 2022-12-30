@@ -15,14 +15,10 @@ class PaginationView extends StatefulWidget {
 
 class _PaginationViewState extends State<PaginationView> {
   late final PagingController<int, QuranPage> _pagingController;
-  List<int> useList = [];
   var _index = 0;
 
   @override
   void initState() {
-    for (var i = widget.pages.first; i <= widget.pages.last; i++) {
-      useList.add(i);
-    }
     _pagingController = PagingController<int, QuranPage>(
       firstPageKey: widget.pages.first,
     );
@@ -32,10 +28,10 @@ class _PaginationViewState extends State<PaginationView> {
 
   Future<void> _fetchPage(int i) async {
     try {
-      final page = useList[_index];
+      final page = widget.pages[_index];
       final newItems = await context.read<ReadCubit>().getPage(page);
       _index++;
-      if (page == useList.last && newItems != null) {
+      if (page == widget.pages.last && newItems != null) {
         _pagingController.appendLastPage([newItems]);
       } else {
         final nextPageKey = page;
