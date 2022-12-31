@@ -38,7 +38,6 @@ void main() async {
     await driver.waitFor(find.byValueKey('al-quran'));
 
     await takeScreenshot(driver, 'home-view');
-    await addDelay(500);
     await driver.tap(find.byValueKey('home-view-button'));
   });
 
@@ -57,7 +56,6 @@ void main() async {
     await driver.tap(find.byValueKey('quran-view-1-juz'));
     await driver.tap(find.byValueKey('cancel-button'));
     await driver.tap(find.pageBack());
-    await addDelay(500);
     await driver.tap(find.byValueKey('quran'));
   });
 
@@ -84,7 +82,6 @@ void main() async {
 
   test('back-page', () async {
     await driver.tap(find.pageBack());
-    await addDelay(500);
   });
 
   test('quran-view', () async {
@@ -93,7 +90,6 @@ void main() async {
     await driver.tap(find.byValueKey('surah-items'));
     await takeScreenshot(driver, 'surah_items');
     await driver.tap(find.byValueKey('quran-view-2-surah'));
-    await addDelay(500);
   });
 
   test(
@@ -113,7 +109,6 @@ void main() async {
 
   test('back-page', () async {
     await driver.tap(find.pageBack());
-    await addDelay(500);
   });
 
   test('settings-view', () async {
@@ -164,7 +159,6 @@ void main() async {
     await driver.tap(find.byValueKey('settings-feedback-view'));
 
     await takeScreenshot(driver, 'settings-feedback-view');
-    await addDelay(500);
   });
 
   test('settings-developers-view', () async {
@@ -173,9 +167,7 @@ void main() async {
 
     await takeScreenshot(driver, 'settings-developers-view');
     await driver.tap(find.pageBack());
-    await addDelay(500);
     await driver.tap(find.byValueKey('home'));
-    await addDelay(500);
   });
 
   tearDownAll(() async {
