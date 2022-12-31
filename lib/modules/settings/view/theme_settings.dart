@@ -14,6 +14,7 @@ class ThemeSettingsView extends StatelessWidget {
         title: const Text('ThemeSettingsView'),
         actions: [
           IconButton(
+            key: const Key('settings-theme-theme-button'),
             onPressed: () {
               context.read<AppCubit>().changeMode(
                     isDark: context.read<AppCubit>().state.theme.brightness == Brightness.light,

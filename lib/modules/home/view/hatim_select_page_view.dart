@@ -54,11 +54,13 @@ class HatimSelectPageView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               OutlinedButton(
+                key: const Key('cancel-button'),
                 onPressed: () => Navigator.pop(context),
                 child: const Text('Cancel'),
               ),
               const SizedBox(width: 12),
               OutlinedButton(
+                key: const Key('ok-button'),
                 onPressed: () {
                   Navigator.pop(context);
                 },

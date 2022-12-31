@@ -39,6 +39,7 @@ class ReadUI extends StatelessWidget {
         title: Text('ReadView $pages'),
         actions: [
           IconButton(
+            key: const Key('read-settings-icon-view'),
             onPressed: () {
               AppBottomSheet.showBottomSheet<void>(
                 context,

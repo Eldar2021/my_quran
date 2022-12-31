@@ -33,14 +33,17 @@ class MainScreen extends StatelessWidget {
         selectedIndex: context.watch<MainCubit>().state,
         destinations: const <Widget>[
           NavigationDestination(
+            key: Key('quran'),
             icon: Icon(Icons.book_rounded),
             label: 'Quran',
           ),
           NavigationDestination(
+            key: Key('home'),
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           NavigationDestination(
+            key: Key('profile'),
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
