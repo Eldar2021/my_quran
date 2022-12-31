@@ -45,37 +45,29 @@ class _PaginationViewState extends State<PaginationView> {
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView<int, QuranPage>(
+    return PagedSliverList<int, QuranPage>.separated(
       key: const Key('read-pages-list'),
       pagingController: _pagingController,
-      physics: const BouncingScrollPhysics(),
+      separatorBuilder: (context, index) => Center(
+        child: Text(
+          widget.pages[index].toString(),
+          style: TextStyle(
+            fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+            color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+          ),
+        ),
+      ),
       builderDelegate: PagedChildBuilderDelegate<QuranPage>(
-        itemBuilder: (context, item, index) => Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-                item.samePage.toString(),
-                locale: const Locale('ar'),
-                style: TextStyle(
-                  fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-                ),
-              ),
+        itemBuilder: (context, item, index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Text(
+            item.samePage.toString(),
+            locale: const Locale('ar'),
+            style: TextStyle(
+              fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+              color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  widget.pages[index].toString(),
-                  style: TextStyle(
-                    fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-                    color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-                  ),
-                ),
-              ],
-            )
-          ],
+          ),
         ),
       ),
     );

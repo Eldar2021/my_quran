@@ -38,30 +38,50 @@ class ReadUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-      appBar: AppBar(
-        title: Text('ReadView $pages'),
-        actions: [
-          IconButton(
-            key: const Key('read-settings-icon-view'),
-            onPressed: () {
-              AppBottomSheet.showBottomSheet<void>(
-                context,
-                (_) => BlocProvider.value(
-                  value: context.read<ReadThemeCubit>(),
-                  child: const ChangeReadTheme(),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            stretch: true,
+            centerTitle: true,
+            backgroundColor: bgReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+            foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+            titleTextStyle: TextStyle(
+              color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+            ),
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: Text(
+                'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ',
+                style: TextStyle(
+                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                 ),
-              );
-            },
-            icon: const Icon(Icons.settings),
-          )
+              ),
+            ),
+            actions: [
+              IconButton(
+                key: const Key('read-settings-icon-view'),
+                onPressed: () {
+                  AppBottomSheet.showBottomSheet<void>(
+                    context,
+                    (_) => BlocProvider.value(
+                      value: context.read<ReadThemeCubit>(),
+                      child: const ChangeReadTheme(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.settings),
+              )
+            ],
+          ),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(
+              vertical: context.watch<ReadThemeCubit>().state.theme.verticalSpace.toDouble(),
+              horizontal: context.watch<ReadThemeCubit>().state.theme.horizontalSpace.toDouble(),
+            ),
+            sliver: PaginationView(pages),
+          ),
         ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.watch<ReadThemeCubit>().state.theme.verticalSpace.toDouble(),
-          horizontal: context.watch<ReadThemeCubit>().state.theme.horizontalSpace.toDouble(),
-        ),
-        child: PaginationView(pages),
       ),
     );
   }
