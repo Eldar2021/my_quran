@@ -58,6 +58,7 @@ class LoginBody extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         CustomButton(
+          key: const Key('login-button'),
           text: loginCubit.state == 0 ? 'Next' : 'Start',
           onPressed: () async {
             if (loginCubit.state == 0) {

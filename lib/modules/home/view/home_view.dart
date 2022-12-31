@@ -17,14 +17,16 @@ class HomeView extends StatelessWidget {
         child: ListView(
           children: [
             const SizedBox(height: 10),
-            Assets.icons.alQuran.svg(height: 100, color: Theme.of(context).colorScheme.primary),
+            Assets.icons.alQuran.svg(key: const Key('al-quran'), height: 100, color: Theme.of(context).colorScheme.primary),
             const HomeCard(
+              key: Key('jalpy-okulgan-hatim'),
               titleText: 'Jalpy Okulgan Hatim',
               descriptioText:
                   'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
               valueText: '147',
             ),
             const HomeCard(
+              key: Key('siz-okugan-barak-sany'),
               titleText: 'Siz Okugan Barak sany',
               descriptioText:
                   'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
@@ -40,6 +42,7 @@ class HomeView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: CustomButton(
+                key: const Key('home-button'),
                 text: 'Hatimga Katysh ->',
                 onPressed: () async {
                   await Navigator.pushNamed(context, AppRouter.hatim);

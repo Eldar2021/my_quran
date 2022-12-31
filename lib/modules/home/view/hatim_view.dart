@@ -12,6 +12,7 @@ class HatimView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: const Key('hatim-view'),
         title: const Text('HatimView'),
       ),
       body: BlocProvider(
@@ -28,6 +29,7 @@ class HatimJuzListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      key: const Key('1-juz'),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
       itemCount: context.read<HatimJuzCubit>().hatimJusData.length,
       itemBuilder: (BuildContext context, int index) {
@@ -119,11 +121,13 @@ class HatinPageDailogBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               OutlinedButton(
+                key: const Key('cancel-button'),
                 onPressed: () => Navigator.pop(context),
                 child: const Text('Cancel'),
               ),
               const SizedBox(width: 12),
               OutlinedButton(
+                key: const Key('ok-button'),
                 onPressed: () {
                   // Todo: bul jerde barakchany tandagan funksya jazylat
                   Navigator.pop(context);

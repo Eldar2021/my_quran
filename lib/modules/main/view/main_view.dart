@@ -33,6 +33,7 @@ class MainScreen extends StatelessWidget {
         selectedIndex: context.watch<MainCubit>().state,
         destinations: const <Widget>[
           NavigationDestination(
+            key: Key('quran'),
             icon: Icon(Icons.book_rounded),
             label: 'Quran',
           ),
@@ -41,6 +42,7 @@ class MainScreen extends StatelessWidget {
             label: 'Home',
           ),
           NavigationDestination(
+            key: Key('settings'),
             icon: Icon(Icons.person),
             label: 'Profile',
           ),

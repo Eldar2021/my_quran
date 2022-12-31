@@ -6,7 +6,7 @@ import 'helpers/helpers.dart';
 void main() async {
   late FlutterDriver driver;
 
-  group('EncointerWallet App', () {
+  group('Hatim App Integration Test', () {
     setUpAll(() async {
       driver = await FlutterDriver.connect();
 
@@ -14,24 +14,98 @@ void main() async {
     });
   });
 
-  test('login-view', () async {
-    await driver.waitFor(find.text('English'));
+  test('login-select-lang-view', () async {
+    await driver.waitFor(find.text('Please select Language'));
 
+    await driver.tap(find.text('English'));
+    await addDelay(500);
     await driver.tap(find.text('Кыргызча'));
     await addDelay(500);
     await driver.tap(find.text('English'));
+    await takeScreenshot(driver, 'select-lang');
+    await driver.tap(find.byValueKey('login-button'));
+  });
 
-    await driver.tap(find.byValueKey('login-female'));
-    await takeScreenshot(driver, 'login');
-    await driver.tap(find.byValueKey('start-login'));
+  test('login-select-gender-view', () async {
+    await driver.waitFor(find.text('Please select Gender'));
+
+    await driver.tap(find.text('Male'));
+    await addDelay(500);
+    await driver.tap(find.text('Female'));
+    await addDelay(500);
+    await driver.tap(find.text('Male'));
+    await takeScreenshot(driver, 'select-gender');
+    await driver.tap(find.byValueKey('login-button'));
   });
 
   test('home-view', () async {
-    await driver.waitFor(find.byValueKey('juz-items'));
+    await driver.waitFor(find.byValueKey('al-quran'));
+
+    await driver.tap(find.byValueKey('jalpy-okulgan-hatim'));
+    await addDelay(500);
+    await driver.tap(find.byValueKey('siz-okugan-barak-sany'));
+    await addDelay(500);
+    await takeScreenshot(driver, 'home-view');
+    await driver.tap(find.byValueKey('home-button'));
+  });
+
+  test('hatim-view', () async {
+    await driver.waitFor(find.byValueKey('hatim-view'));
+
+    await driver.tap(find.byValueKey('1-juz'));
+    await addDelay(500);
+    await takeScreenshot(driver, '1-juz');
+    await driver.tap(find.byValueKey('ok-button'));
+    await addDelay(500);
+    await driver.tap(find.byValueKey('1-juz'));
+    await addDelay(500);
+    await driver.tap(find.byValueKey('cancel-button'));
+    await takeScreenshot(driver, 'home-view');
+    await driver.tap(find.pageBack());
+  });
+
+  test('quran-view', () async {
+    await driver.waitFor(find.byValueKey('al-quran'));
+
+    await driver.tap(find.byValueKey('quran'));
+    await driver.waitFor(find.byValueKey('home-view'));
+    await takeScreenshot(driver, 'quran-view');
+    await addDelay(500);
+    await driver.tap(find.byValueKey('1-juz'));
+    await addDelay(500);
     await takeScreenshot(driver, 'juz_items');
+  });
+
+  test(
+    'read-1-juz',
+    () async {
+      await driver.waitFor(find.byValueKey('read-pages-list'));
+      await driver.scroll(
+        find.byValueKey('read-pages-list'),
+        40,
+        -1700,
+        const Duration(seconds: 2),
+      );
+      await takeScreenshot(driver, '1-juz');
+    },
+    timeout: const Timeout(Duration(seconds: 120)),
+  );
+
+  test('back-page', () async {
+    await driver.tap(find.pageBack());
+    await addDelay(1000);
+  });
+
+  test('quran-view', () async {
+    await driver.waitFor(find.byValueKey('home-view'));
+
     await driver.tap(find.byValueKey('surah-items'));
+    await addDelay(500);
     await takeScreenshot(driver, 'surah_items');
+    await addDelay(500);
     await driver.tap(find.byValueKey('2-surah'));
+    await addDelay(500);
+    await takeScreenshot(driver, 'surah-view');
   });
 
   test(
@@ -42,7 +116,7 @@ void main() async {
         find.byValueKey('read-pages-list'),
         40,
         -1700,
-        const Duration(seconds: 5),
+        const Duration(seconds: 2),
       );
       await takeScreenshot(driver, 'baqarah');
     },
@@ -52,6 +126,76 @@ void main() async {
   test('back-page', () async {
     await driver.tap(find.pageBack());
     await addDelay(1000);
+  });
+
+  test('settings-view', () async {
+    await driver.waitFor(find.byValueKey('home-view'));
+    await driver.tap(find.byValueKey('settings'));
+    await addDelay(500);
+    await takeScreenshot(driver, 'settings-view');
+    await addDelay(500);
+    await driver.tap(find.byValueKey('settings-gender'));
+    await addDelay(500);
+    await driver.tap(find.byValueKey('female-card'));
+    await driver.tap(find.byValueKey('male-card'));
+    await takeScreenshot(driver, 'settings-gender-view');
+    await addDelay(500);
+    await driver.tap(find.pageBack());
+  });
+
+  test('settings-language-view', () async {
+    await driver.waitFor(find.byValueKey('settings-view'));
+    await driver.tap(find.byValueKey('settings-language'));
+    await addDelay(500);
+    await takeScreenshot(driver, 'settings-language-view');
+    await addDelay(500);
+    await driver.tap(find.text('English'));
+    await addDelay(500);
+    await driver.tap(find.text('Кыргызча'));
+    await addDelay(500);
+    await driver.tap(find.text('English'));
+    await addDelay(500);
+    await driver.tap(find.pageBack());
+  });
+
+  test('settings-theme-view', () async {
+    await driver.waitFor(find.byValueKey('settings-view'));
+    await driver.tap(find.byValueKey('settings-theme'));
+
+    await takeScreenshot(driver, 'settings-theme-view');
+    await addDelay(500);
+    await driver.tap(find.byValueKey('theme-button'));
+    await addDelay(500);
+    await takeScreenshot(driver, 'settings-theme2-view');
+    await addDelay(500);
+    await driver.tap(find.pageBack());
+  });
+
+  test('settings-about-us-view', () async {
+    await driver.waitFor(find.byValueKey('settings-view'));
+    await driver.tap(find.byValueKey('settings-about-us'));
+
+    await takeScreenshot(driver, 'settings-about-us-view');
+    await addDelay(500);
+    await driver.tap(find.pageBack());
+  });
+
+  test('settings-feedback-view', () async {
+    await driver.waitFor(find.byValueKey('settings-view'));
+    await driver.tap(find.byValueKey('settings-feedback'));
+
+    await takeScreenshot(driver, 'settings-feedback-view');
+    await addDelay(500);
+  });
+
+  test('settings-developers-view', () async {
+    await driver.waitFor(find.byValueKey('settings-view'));
+    await driver.tap(find.byValueKey('settings-developers'));
+
+    await takeScreenshot(driver, 'settings-about-us-view');
+    await addDelay(500);
+    await driver.tap(find.pageBack());
+    await addDelay(500);
   });
 
   tearDownAll(() async {
