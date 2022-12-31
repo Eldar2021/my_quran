@@ -64,7 +64,7 @@ void main() async {
   test('quran-view', () async {
     await driver.waitFor(find.byValueKey('quran-view'));
 
-    await takeScreenshot(driver, 'quran-view');
+    await takeScreenshot(driver, 'juz_items');
     await driver.tap(find.byValueKey('quran-view-1-juz'));
   });
 
