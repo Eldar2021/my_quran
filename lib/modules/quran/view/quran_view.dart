@@ -28,8 +28,8 @@ class QuranBody extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        key: const Key('home-view'),
-        title: const Text('HomeView'),
+        key: const Key('quran-view'),
+        title: const Text('QuranView'),
         backgroundColor: colorScheme.surfaceVariant,
         bottom: TabBar(
           indicatorColor: colorScheme.primary,

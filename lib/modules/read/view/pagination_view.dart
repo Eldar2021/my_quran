@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:hatim/models/models.dart';
@@ -15,14 +16,10 @@ class PaginationView extends StatefulWidget {
 
 class _PaginationViewState extends State<PaginationView> {
   late final PagingController<int, QuranPage> _pagingController;
-  List<int> useList = [];
   var _index = 0;
 
   @override
   void initState() {
-    for (var i = widget.pages.first; i <= widget.pages.last; i++) {
-      useList.add(i);
-    }
     _pagingController = PagingController<int, QuranPage>(
       firstPageKey: widget.pages.first,
     );
@@ -32,10 +29,10 @@ class _PaginationViewState extends State<PaginationView> {
 
   Future<void> _fetchPage(int i) async {
     try {
-      final page = useList[_index];
+      final page = widget.pages[_index];
       final newItems = await context.read<ReadCubit>().getPage(page);
       _index++;
-      if (page == useList.last && newItems != null) {
+      if (page == widget.pages.last && newItems != null) {
         _pagingController.appendLastPage([newItems]);
       } else {
         final nextPageKey = page;
@@ -53,7 +50,14 @@ class _PaginationViewState extends State<PaginationView> {
       pagingController: _pagingController,
       physics: const BouncingScrollPhysics(),
       builderDelegate: PagedChildBuilderDelegate<QuranPage>(
-        itemBuilder: (context, item, index) => ReadQuranTextView(item),
+        itemBuilder: (context, item, index) => Text(
+          item.samePage.toString(),
+          locale: const Locale('ar'),
+          style: TextStyle(
+            fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+            color: _frColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+          ),
+        ),
       ),
     );
   }
@@ -65,19 +69,6 @@ class _PaginationViewState extends State<PaginationView> {
   }
 }
 
-class ReadQuranTextView extends StatelessWidget {
-  const ReadQuranTextView(this.item, {super.key});
-
-  final QuranPage item;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      child: Text(
-        item.samePage.toString(),
-        locale: const Locale('ar'),
-      ),
-    );
-  }
-}
+Map<int, Color> _frColor = {
+  1: const Color(0xff4F4A4E),
+};

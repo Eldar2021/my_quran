@@ -38,11 +38,12 @@ class MainScreen extends StatelessWidget {
             label: 'Quran',
           ),
           NavigationDestination(
+            key: Key('home'),
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           NavigationDestination(
-            key: Key('settings'),
+            key: Key('profile'),
             icon: Icon(Icons.person),
             label: 'Profile',
           ),

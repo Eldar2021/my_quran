@@ -19,13 +19,13 @@ class GenderSettingView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
         children: [
           GenderCard(
-            key: const Key('male-card'),
+            key: const Key('settings-gender-male-button'),
             Gender.male,
             isSelect: authCubit.state.user?.gender == Gender.male,
             onTap: () => context.read<AuthCubit>().setGender(Gender.male),
           ),
           GenderCard(
-            key: const Key('female-card'),
+            key: const Key('settings-gender-female-button'),
             Gender.female,
             isSelect: authCubit.state.user?.gender == Gender.female,
             onTap: () => context.read<AuthCubit>().setGender(Gender.female),

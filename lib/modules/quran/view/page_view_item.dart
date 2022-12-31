@@ -19,20 +19,34 @@ class PageViewItem<T> extends StatelessWidget {
         if (item is Juz) {
           return Card(
             child: ListTile(
-              key: Key('${item.id}-juz'),
+              key: Key('quran-view-${item.id}-juz'),
               leading: Text('${item.id}'),
               title: Text(item.name),
-              onTap: () => Navigator.pushNamed(context, AppRouter.read, arguments: item.pages),
+              onTap: () async {
+                final pages = <int>[];
+                for (var i = item.pages.first; i <= item.pages.last; i++) {
+                  pages.add(i);
+                }
+                pages.sort();
+                await Navigator.pushNamed(context, AppRouter.read, arguments: pages);
+              },
             ),
           );
         } else if (item is Surah) {
           return Card(
             child: ListTile(
-              key: Key('${item.id}-surah'),
+              key: Key('quran-view-${item.id}-surah'),
               leading: Text('${item.id}'),
               title: Text(item.arabic),
               subtitle: Text(item.name),
-              onTap: () => Navigator.pushNamed(context, AppRouter.read, arguments: item.pages),
+              onTap: () async {
+                final pages = <int>[];
+                for (var i = item.pages.first; i <= item.pages.last; i++) {
+                  pages.add(i);
+                }
+                pages.sort();
+                await Navigator.pushNamed(context, AppRouter.read, arguments: pages);
+              },
             ),
           );
         }

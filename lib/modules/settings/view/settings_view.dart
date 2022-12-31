@@ -20,7 +20,7 @@ class SettingsView extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            key: const Key('settings-gender'),
+            key: const Key('settings-gender-view'),
             title: const Text('Gender'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -33,7 +33,7 @@ class SettingsView extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, AppRouter.genderSettings),
           ),
           ListTile(
-            key: const Key('settings-language'),
+            key: const Key('settings-language-view'),
             title: const Text('Language'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -46,19 +46,19 @@ class SettingsView extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, AppRouter.langSettings),
           ),
           ListTile(
-            key: const Key('settings-theme'),
+            key: const Key('settings-theme-view'),
             title: const Text('Theme'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.themeSettings),
           ),
           ListTile(
-            key: const Key('settings-about-us'),
+            key: const Key('settings-about-us-view'),
             title: const Text('About Us'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.aboutUs),
           ),
           ListTile(
-            key: const Key('settings-feedback'),
+            key: const Key('settings-feedback-view'),
             title: const Text('Feedback'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
@@ -66,10 +66,9 @@ class SettingsView extends StatelessWidget {
                 SnackBar(content: Text(l10n.feedbackSnackbarTitle)),
               );
             },
-            // onTap: () => Navigator.pushNamed(context, AppRouter.feedback),
           ),
           ListTile(
-            key: const Key('settings-developers'),
+            key: const Key('settings-developers-view'),
             title: const Text('Developers'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.developers),
