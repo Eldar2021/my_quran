@@ -5,9 +5,12 @@ import 'package:hatim/modules/modules.dart';
 import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
 import 'package:hatim/utils/urils.dart';
 
-Map<int, Color> _bgColor = {
-  1: const Color(0xffFEEDAD),
-};
+const bgReadThemeColor = [
+  Color(0xffFFFFFF),
+  Color(0xffE1D0A5),
+  Color(0xff363636),
+  Color(0xff000000),
+];
 
 class ReadView extends StatelessWidget {
   const ReadView(this.pages, {super.key});
@@ -34,7 +37,7 @@ class ReadUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _bgColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+      backgroundColor: bgReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
       appBar: AppBar(
         title: Text('ReadView $pages'),
         actions: [
@@ -70,23 +73,93 @@ class ChangeReadTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 20),
       children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 22),
+          child: Text(
+            'Text Size',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
         Slider(
           min: 8,
           max: 40,
           value: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeTextSize(v.toInt()),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 22),
+          child: Text(
+            'Vertical Space',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
         Slider(
           max: 140,
           value: context.watch<ReadThemeCubit>().state.theme.verticalSpace.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeVerticalSpace(v.toInt()),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 22),
+          child: Text(
+            'Horizontal Space',
+            style: TextStyle(fontSize: 18),
+          ),
         ),
         Slider(
           max: 140,
           value: context.watch<ReadThemeCubit>().state.theme.horizontalSpace.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeHorizontalSpace(v.toInt()),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 22),
+          child: Text(
+            'Mode Theme',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        const SizedBox(height: 14),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: List.generate(
+            bgReadThemeColor.length,
+            (index) => InkWell(
+              onTap: () => context.read<ReadThemeCubit>().changeMode(index),
+              child: Material(
+                color: bgReadThemeColor[index],
+                type: MaterialType.card,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                  side: const BorderSide(),
+                ),
+                child: SizedBox(
+                  width: 70,
+                  height: 40,
+                  child: Center(
+                    child: Text('A', style: TextStyle(color: frReadThemeColor[index], fontSize: 22)),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            OutlinedButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            const SizedBox(width: 10),
+            OutlinedButton(
+              onPressed: () {},
+              child: const Text('Save Changes'),
+            ),
+            const SizedBox(width: 20),
+          ],
+        )
       ],
     );
   }

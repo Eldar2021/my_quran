@@ -50,13 +50,32 @@ class _PaginationViewState extends State<PaginationView> {
       pagingController: _pagingController,
       physics: const BouncingScrollPhysics(),
       builderDelegate: PagedChildBuilderDelegate<QuranPage>(
-        itemBuilder: (context, item, index) => Text(
-          item.samePage.toString(),
-          locale: const Locale('ar'),
-          style: TextStyle(
-            fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-            color: _frColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-          ),
+        itemBuilder: (context, item, index) => Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                item.samePage.toString(),
+                locale: const Locale('ar'),
+                style: TextStyle(
+                  fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  widget.pages[index].toString(),
+                  style: TextStyle(
+                    fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+                    color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
@@ -69,6 +88,9 @@ class _PaginationViewState extends State<PaginationView> {
   }
 }
 
-Map<int, Color> _frColor = {
-  1: const Color(0xff4F4A4E),
-};
+const frReadThemeColor = [
+  Color(0xff000000),
+  Color(0xff000000),
+  Color(0xffFFFFFF),
+  Color(0xffFFFFFF),
+];
