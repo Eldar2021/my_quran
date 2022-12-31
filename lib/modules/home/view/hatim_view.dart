@@ -28,6 +28,7 @@ class HatimUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: const Key('hatim-view'),
         title: const Text('HatimView'),
         actions: [
           Text(
@@ -71,6 +72,7 @@ class HatimJuzListBuilder extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
+              key: Key('quran-view-${item.id}-juz'),
               leading: Text('${item.id}'),
               title: Row(
                 children: [
