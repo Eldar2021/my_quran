@@ -50,10 +50,14 @@ class ReadUI extends StatelessWidget {
             ),
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: Text(
-                'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ',
-                style: TextStyle(
-                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+              title: FittedBox(
+                child: Text(
+                  'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ',
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                  ),
                 ),
               ),
             ),
