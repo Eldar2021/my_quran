@@ -17,14 +17,26 @@ class $AssetsIconsGen {
   /// File path: assets/icons/al_quran.svg
   SvgGenImage get alQuran => const SvgGenImage('assets/icons/al_quran.svg');
 
+  /// File path: assets/icons/dua_female.svg
+  SvgGenImage get duaFemale => const SvgGenImage('assets/icons/dua_female.svg');
+
+  /// File path: assets/icons/dua_male.svg
+  SvgGenImage get duaMale => const SvgGenImage('assets/icons/dua_male.svg');
+
+  /// File path: assets/icons/female.svg
+  SvgGenImage get female => const SvgGenImage('assets/icons/female.svg');
+
   /// File path: assets/icons/github.svg
   SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
+
+  /// File path: assets/icons/male.svg
+  SvgGenImage get male => const SvgGenImage('assets/icons/male.svg');
 
   /// File path: assets/icons/open_book.svg
   SvgGenImage get openBook => const SvgGenImage('assets/icons/open_book.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [alQuran, github, openBook];
+  List<SvgGenImage> get values => [alQuran, duaFemale, duaMale, female, github, male, openBook];
 }
 
 class Assets {

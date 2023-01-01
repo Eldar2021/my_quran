@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hatim/app/logic/auth_cubit.dart';
 import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
+import 'package:hatim/utils/show/alerts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:hatim/models/models.dart';
@@ -60,13 +62,28 @@ class _PaginationViewState extends State<PaginationView> {
       builderDelegate: PagedChildBuilderDelegate<QuranPage>(
         itemBuilder: (context, item, index) => Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(
-            item.samePage.toString(),
-            locale: const Locale('ar'),
-            style: TextStyle(
-              fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-              color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                item.samePage.toString(),
+                locale: const Locale('ar'),
+                style: TextStyle(
+                  fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                ),
+              ),
+              if (widget.pages[index] == widget.pages.last)
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                  ),
+                  onPressed: () {
+                    AppAlert.showAmin<void>(context, context.read<AuthCubit>().state.user?.gender ?? Gender.male);
+                  },
+                  child: const Text('Amin'),
+                ),
+            ],
           ),
         ),
       ),
