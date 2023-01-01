@@ -70,12 +70,6 @@ void main() async {
     'read-view-1-juz',
     () async {
       await driver.waitFor(find.byValueKey('read-pages-list'));
-      await driver.scroll(
-        find.byValueKey('read-pages-list'),
-        40,
-        -1700,
-        const Duration(seconds: 2),
-      );
     },
     timeout: const Timeout(Duration(seconds: 120)),
   );
@@ -96,12 +90,6 @@ void main() async {
     'read-baqarah',
     () async {
       await driver.waitFor(find.byValueKey('read-pages-list'));
-      await driver.scroll(
-        find.byValueKey('read-pages-list'),
-        40,
-        -1700,
-        const Duration(seconds: 2),
-      );
       await takeScreenshot(driver, 'baqarah');
     },
     timeout: const Timeout(Duration(seconds: 120)),
