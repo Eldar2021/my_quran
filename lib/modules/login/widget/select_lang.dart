@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hatim/components/components.dart';
+import 'package:hatim/l10n/l10.dart';
 
 class SelectLang extends StatelessWidget {
   const SelectLang({super.key});
@@ -12,7 +13,8 @@ class SelectLang extends StatelessWidget {
       children: [
         const SizedBox(height: 30),
         Text(
-          'Please select Language',
+          context.l10n.loginPleaseSelectLang,
+          key: const Key('login-select-lang-text'),
           style: TextStyle(fontSize: 24, color: colorScheme.onBackground),
         ),
         const SizedBox(height: 30),

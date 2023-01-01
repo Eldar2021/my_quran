@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
-import 'package:hatim/constants/contants.dart';
 
+import 'package:hatim/constants/contants.dart';
+import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
@@ -29,7 +30,7 @@ class HatimUI extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key('hatim-view'),
-        title: const Text('HatimView'),
+        title: Text(context.l10n.homeAppBarTitle),
         actions: [
           Text(
             '${context.watch<HatimReadCubit>().state.pages.length}',
@@ -78,16 +79,16 @@ class HatimJuzListBuilder extends StatelessWidget {
                 children: [
                   Text(item.name),
                   const SizedBox(width: 10),
-                  Text('${item.id} - juz'),
+                  Text('${item.id} - ${context.l10n.juz}'),
                 ],
               ),
               trailing: const Icon(Icons.arrow_forward_ios),
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  VerticalText('Done', '${item.donePercent}%'),
-                  VerticalText('Process', '${item.processPersent}%'),
-                  VerticalText('Empty', '${item.emptyPersent}%'),
+                  VerticalText(context.l10n.hatimDoneRead, '${item.donePercent}%'),
+                  VerticalText(context.l10n.hatimProccessRead, '${item.processPersent}%'),
+                  VerticalText(context.l10n.hatimEmptyRead, '${item.emptyPersent}%'),
                 ],
               ),
               onTap: () async {

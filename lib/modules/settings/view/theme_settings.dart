@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:hatim/app/logic/app_cubit.dart';
+import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/theme/theme.dart';
 
 class ThemeSettingsView extends StatelessWidget {
@@ -11,7 +13,7 @@ class ThemeSettingsView extends StatelessWidget {
     final appCubit = context.watch<AppCubit>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ThemeSettingsView'),
+        title: Text(context.l10n.profileChangeTheme),
         actions: [
           IconButton(
             key: const Key('settings-theme-theme-button'),

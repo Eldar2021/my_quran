@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hatim/modules/modules.dart';
 import 'package:intl/intl.dart';
+
+import 'package:hatim/l10n/l10.dart';
+import 'package:hatim/modules/modules.dart';
 
 class TimeCard extends StatefulWidget {
   const TimeCard({super.key});
@@ -33,8 +35,7 @@ class _TimeCardState extends State<TimeCard> {
   Widget build(BuildContext context) {
     return HomeCard(
       titleText: DateFormat('dd/MM/yyy').format(dateTime),
-      descriptioText:
-          'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
+      descriptioText: context.l10n.homeMotivationTime,
       valueText: DateFormat('mm:ss').format(dateTime),
     );
   }

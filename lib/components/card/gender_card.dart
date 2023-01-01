@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hatim/constants/contants.dart';
+import 'package:hatim/l10n/l10.dart';
 
 import 'package:hatim/models/models.dart';
 
@@ -24,7 +25,7 @@ class GenderCard extends StatelessWidget {
         leading: gender == Gender.male
             ? Assets.icons.male.svg(width: 35, color: colorScheme.onBackground)
             : Assets.icons.female.svg(width: 35),
-        title: Text(gender == Gender.male ? 'Male' : 'Female'),
+        title: Text(gender == Gender.male ? context.l10n.male : context.l10n.female),
         onTap: onTap,
         trailing: isSelect
             ? CircleAvatar(

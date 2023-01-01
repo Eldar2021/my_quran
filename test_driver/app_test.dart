@@ -15,21 +15,15 @@ void main() async {
   });
 
   test('login-select-lang-view', () async {
-    await driver.waitFor(find.text('Please select Language'));
+    await driver.waitFor(find.byValueKey('login-select-lang-text'));
 
-    await driver.tap(find.text('English'));
-    await driver.tap(find.text('Кыргызча'));
-    await driver.tap(find.text('English'));
     await takeScreenshot(driver, 'select-lang');
     await driver.tap(find.byValueKey('login-button'));
   });
 
   test('login-select-gender-view', () async {
-    await driver.waitFor(find.text('Please select Gender'));
+    await driver.waitFor(find.byValueKey('login-select-gender'));
 
-    await driver.tap(find.text('Male'));
-    await driver.tap(find.text('Female'));
-    await driver.tap(find.text('Male'));
     await takeScreenshot(driver, 'select-gender');
     await driver.tap(find.byValueKey('login-button'));
   });
@@ -55,7 +49,7 @@ void main() async {
   });
 
   test('hatim-alert-view', () async {
-    await driver.waitFor(find.text('Please select pages'));
+    await driver.waitFor(find.byValueKey('hatim-select-pages'));
 
     await takeScreenshot(driver, 'hatim-alert-view');
     await driver.tap(find.byValueKey('ok-button'));
@@ -110,9 +104,6 @@ void main() async {
     await driver.waitFor(find.byValueKey('settings-view'));
     await driver.tap(find.byValueKey('settings-language-view'));
     await takeScreenshot(driver, 'settings-language-view');
-    await driver.tap(find.text('English'));
-    await driver.tap(find.text('Кыргызча'));
-    await driver.tap(find.text('English'));
     await driver.tap(find.pageBack());
   });
 

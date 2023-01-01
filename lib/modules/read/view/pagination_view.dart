@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/logic/auth_cubit.dart';
-import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
-import 'package:hatim/utils/show/alerts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import 'package:hatim/l10n/l10.dart';
+import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
+import 'package:hatim/utils/show/alerts.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
@@ -81,7 +82,7 @@ class _PaginationViewState extends State<PaginationView> {
                   onPressed: () {
                     AppAlert.showAmin<void>(context, context.read<AuthCubit>().state.user?.gender ?? Gender.male);
                   },
-                  child: const Text('Amin'),
+                  child: Text(context.l10n.amin),
                 ),
             ],
           ),
