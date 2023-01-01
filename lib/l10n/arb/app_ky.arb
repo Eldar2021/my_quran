@@ -2,5 +2,6 @@
     "@@locale": "ky",
     "homeAppBarTitle": "Hatim",
     "lang": "Тил",
-    "pleaseWait": "Сураныч, күтө туруңуз"
+    "pleaseWait": "Сураныч, күтө туруңуз",
+    "feedbackSnackbarTitle": "Бул баракча кийинки версияларында кошулат"
 }

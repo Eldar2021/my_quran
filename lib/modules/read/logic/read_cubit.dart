@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/read/read.dart';
 
@@ -11,7 +12,7 @@ class ReadCubit extends Cubit<ReadState> {
   final FetchPageRepo repo;
   final List<int> pages;
 
-  Future<List<Verse>?> getPage(int page) async {
+  Future<QuranPage?> getPage(int page) async {
     return repo.gerVerses(page);
   }
 }

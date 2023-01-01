@@ -1,77 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/app/app.dart';
 
+import 'package:hatim/app/app.dart';
 import 'package:hatim/components/components.dart';
-import 'package:hatim/models/models.dart';
-import 'package:hatim/modules/home/logic/home_cubit.dart';
-import 'package:hatim/modules/home/view/page_view_item.dart';
+import 'package:hatim/constants/contants.dart';
 import 'package:hatim/modules/modules.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  static const List<Widget> myTabs = <Widget>[
-    PageViewCard(page: 'Juz', key: Key('juz-items')),
-    PageViewCard(page: 'Surah', key: Key('surah-items')),
-  ];
-
-  TabBar get tabBar => const TabBar(
-        tabs: myTabs,
-      );
-
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: myTabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('HomeView'),
-          actions: [
-            IconButton(
-              onPressed: () async {
-                await Navigator.pushNamed(context, AppRouter.settingsPage);
-              },
-              icon: const Icon(Icons.settings),
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
+          key: const Key('home-list-view'),
+          children: [
+            const SizedBox(height: 10),
+            Assets.icons.alQuran
+                .svg(key: const Key('al-quran'), height: 100, color: Theme.of(context).colorScheme.primary),
+            const HomeCard(
+              titleText: 'Jalpy Okulgan Hatim',
+              descriptioText:
+                  'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
+              valueText: '147',
             ),
+            const HomeCard(
+              titleText: 'Siz Okugan Barak sany',
+              descriptioText:
+                  'Applying VisualDensity allows you to expand or contract the height of list tile. VisualDensity is',
+              valueText: '1647',
+              verticalSpace: 0,
+            ),
+            const TimeCard(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: CustomButton(
+                key: const Key('home-view-button'),
+                text: 'Hatimga Katysh ->',
+                onPressed: () async {
+                  await Navigator.pushNamed(context, AppRouter.hatim);
+                },
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
-          bottom: PreferredSize(
-            preferredSize: tabBar.preferredSize,
-            child: tabBar,
-          ),
-        ),
-        body: BlocProvider(
-          create: (context) => HomeCubit(),
-          child: HomeBody(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await context.read<AuthCubit>().logout().whenComplete(
-                  () => Navigator.pushAndRemoveUntil<void>(
-                    context,
-                    MaterialPageRoute<void>(builder: (context) => const LoginView()),
-                    (route) => false,
-                  ),
-                );
-          },
         ),
       ),
-    );
-  }
-}
-
-class HomeBody extends StatelessWidget {
-  HomeBody({super.key});
-
-  final controller = PageController();
-
-  @override
-  Widget build(BuildContext context) {
-    return TabBarView(
-      children: [
-        PageViewItem<Juz>(context.read<HomeCubit>().juzs),
-        PageViewItem<Surah>(context.read<HomeCubit>().surahs),
-      ],
     );
   }
 }

@@ -7,7 +7,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.18.5 <3.0.0"
-  flutter: 3.3.9
+  flutter: 3.3.10
 
 dependencies:
   flutter:
@@ -26,6 +26,9 @@ dependencies:
   hive: ^2.2.3
   infinite_scroll_pagination: ^3.2.0
   path_provider: ^2.0.11
+  flutter_svg: ^1.1.6
+  json_serializable: ^6.5.4
+  json_annotation: ^4.7.0
 
 dev_dependencies:
   flutter_test:
@@ -35,14 +38,16 @@ dev_dependencies:
   test: ^1.21.4
   very_good_analysis: ^3.1.0 # linter for our app
   mocktail: ^0.3.0
+  build_runner:
+  flutter_gen_runner: ^5.1.0+1
 
 flutter:
   uses-material-design: true
   generate: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    # - assets/images/
+    - assets/icons/
 
   # fonts:
   #   - family: Schyler
@@ -55,3 +60,13 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
+flutter_gen:
+  output: lib/constants/assets/  # Optional (default: lib/gen/)
+  line_length: 80   # Optional (default: 80)
+
+  integrations:
+    flutter_svg: true
+    # flare_flutter: true
+    # rive: true
+    # lottie: true  

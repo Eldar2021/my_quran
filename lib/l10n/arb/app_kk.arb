@@ -2,5 +2,6 @@
     "@@locale": "kk",
     "homeAppBarTitle": "Hatim",
     "lang": "Тіл",
-    "pleaseWait": "Өтінемін, Күте тұрыңыз"
+    "pleaseWait": "Өтінемін, Күте тұрыңыз",
+    "feedbackSnackbarTitle": "Бұл бет болашақ нұсқаларда қосылады"
 }

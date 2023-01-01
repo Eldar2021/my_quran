@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/app/app.dart';
+import 'package:hatim/models/user/user_model.dart';
 import 'package:hatim/theme/custom/custom_theme.dart';
 
 part 'app_state.dart';
@@ -29,5 +30,9 @@ class AppCubit extends Cubit<AppState> {
   Future<void> changeColor(int index, Color color) async {
     await themeService.setColor(index);
     emit(state.copyWith(theme: state.theme.copyWith(targetColor: color)));
+  }
+
+  Future<void> changeGender(Gender gender) async {
+    emit(state.copyWith(gender: gender));
   }
 }

@@ -5,3 +5,5 @@ export 'profile/profile.dart';
 export 'read/read.dart';
 export 'surah/surah.dart';
 export 'login/login.dart';
+export 'main/main.dart';
+export 'quran/quran.dart';
