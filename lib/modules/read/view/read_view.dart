@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/locator.dart';
 import 'package:hatim/modules/modules.dart';
 import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
@@ -98,14 +100,15 @@ class ChangeReadTheme extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 20),
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            'Text Size',
-            style: TextStyle(fontSize: 18),
+            l10n.readTextSize,
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Slider(
@@ -114,11 +117,11 @@ class ChangeReadTheme extends StatelessWidget {
           value: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeTextSize(v.toInt()),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            'Vertical Space',
-            style: TextStyle(fontSize: 18),
+            l10n.readVerticalSpace,
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Slider(
@@ -126,11 +129,11 @@ class ChangeReadTheme extends StatelessWidget {
           value: context.watch<ReadThemeCubit>().state.theme.verticalSpace.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeVerticalSpace(v.toInt()),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            'Horizontal Space',
-            style: TextStyle(fontSize: 18),
+            l10n.readHorizontallSpace,
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Slider(
@@ -138,11 +141,11 @@ class ChangeReadTheme extends StatelessWidget {
           value: context.watch<ReadThemeCubit>().state.theme.horizontalSpace.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeHorizontalSpace(v.toInt()),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            'Mode Theme',
-            style: TextStyle(fontSize: 18),
+            l10n.readScreenMode,
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         const SizedBox(height: 14),
@@ -176,7 +179,7 @@ class ChangeReadTheme extends StatelessWidget {
           children: [
             OutlinedButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(l10n.cancel),
             ),
             const SizedBox(width: 10),
             OutlinedButton(
@@ -185,7 +188,7 @@ class ChangeReadTheme extends StatelessWidget {
                 // ignore: use_build_context_synchronously
                 Navigator.pop(context);
               },
-              child: const Text('Save Changes'),
+              child: Text(l10n.saveChanges),
             ),
             const SizedBox(width: 20),
           ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/modules/modules.dart';
 
 class MainView extends StatelessWidget {
@@ -31,21 +32,21 @@ class MainScreen extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: context.read<MainCubit>().change,
         selectedIndex: context.watch<MainCubit>().state,
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
-            key: Key('quran'),
-            icon: Icon(Icons.book_rounded),
-            label: 'Quran',
+            key: const Key('quran'),
+            icon: const Icon(Icons.book_rounded),
+            label: context.l10n.bottomQuran,
           ),
           NavigationDestination(
-            key: Key('home'),
-            icon: Icon(Icons.home),
-            label: 'Home',
+            key: const Key('home'),
+            icon: const Icon(Icons.home),
+            label: context.l10n.bottomHome,
           ),
           NavigationDestination(
-            key: Key('profile'),
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            key: const Key('profile'),
+            icon: const Icon(Icons.person),
+            label: context.l10n.bottomProfile,
           ),
         ],
       ),

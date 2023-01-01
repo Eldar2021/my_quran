@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/app/app.dart';
 
+import 'package:hatim/app/app.dart';
 import 'package:hatim/components/components.dart';
+import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/models.dart';
 
 class SelectGender extends StatelessWidget {
@@ -16,7 +17,9 @@ class SelectGender extends StatelessWidget {
       children: [
         const SizedBox(height: 30),
         Text(
-          'Please select Gender',
+          context.l10n.loginPleaseSelectGender,
+          key: const Key('login-select-gender'),
+          textAlign: TextAlign.center,
           style: TextStyle(fontSize: 24, color: colorScheme.onBackground),
         ),
         const SizedBox(height: 30),

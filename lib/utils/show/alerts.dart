@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hatim/components/components.dart';
 import 'package:hatim/constants/contants.dart';
 import 'package:hatim/l10n/l10.dart';
@@ -27,13 +28,11 @@ class AppAlert {
           icon: gender == Gender.male
               ? Assets.icons.duaMale.svg(height: 70, color: colorScheme.onBackground)
               : Assets.icons.duaFemale.svg(height: 70),
-          title: const Text('Amin'),
-          content: const Text(
-            'ListTile must be wrapped in a Material widget to animate tileColor, selectedTileColor, focusColor, and hoverColor as these colors are not drawn by the list tile itself but by the material widget ancestor.',
-          ),
+          title: Text(context.l10n.amin),
+          content: Text(context.l10n.aminDua, textAlign: TextAlign.center),
           actions: [
             CustomButton(
-              text: 'Amin',
+              text: context.l10n.amin,
               onPressed: () {
                 if (isHatim) {
                   //Navigator.popUntil(context, (route) => false);

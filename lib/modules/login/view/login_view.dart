@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/app/app.dart';
 import 'package:hatim/components/components.dart';
+import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
@@ -59,7 +60,7 @@ class LoginBody extends StatelessWidget {
         const SizedBox(height: 20),
         CustomButton(
           key: const Key('login-button'),
-          text: loginCubit.state == 0 ? 'Next' : 'Start',
+          text: loginCubit.state == 0 ? context.l10n.next : context.l10n.start,
           onPressed: () async {
             if (loginCubit.state == 0) {
               context.read<LoginCubit>().change(1);

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/app/app.dart';
 import 'package:hatim/l10n/l10.dart';
+import 'package:hatim/models/user/user_model.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -21,11 +22,11 @@ class SettingsView extends StatelessWidget {
         children: [
           ListTile(
             key: const Key('settings-gender-view'),
-            title: const Text('Gender'),
+            title: Text(l10n.profileGender),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(authCubit.state.user?.gender.name ?? ''),
+                Text(authCubit.state.user?.gender == Gender.female ? l10n.female : l10n.male),
                 const SizedBox(width: 17),
                 const Icon(Icons.arrow_forward_ios),
               ],
@@ -34,11 +35,11 @@ class SettingsView extends StatelessWidget {
           ),
           ListTile(
             key: const Key('settings-language-view'),
-            title: const Text('Language'),
+            title: Text(l10n.profileLang),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(appCubit.state.currentLocale.toLanguageTag()),
+                Text(appCubit.localService.getName(appCubit.state.currentLocale.toLanguageTag())),
                 const SizedBox(width: 17),
                 const Icon(Icons.arrow_forward_ios),
               ],
@@ -47,29 +48,29 @@ class SettingsView extends StatelessWidget {
           ),
           ListTile(
             key: const Key('settings-theme-view'),
-            title: const Text('Theme'),
+            title: Text(l10n.profileTheme),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.themeSettings),
           ),
           ListTile(
             key: const Key('settings-about-us-view'),
-            title: const Text('About Us'),
+            title: Text(l10n.aboutUs),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.aboutUs),
           ),
           ListTile(
             key: const Key('settings-feedback-view'),
-            title: const Text('Feedback'),
+            title: Text(l10n.feedback),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(l10n.feedbackSnackbarTitle)),
+                SnackBar(content: Text(l10n.feedBackSms)),
               );
             },
           ),
           ListTile(
             key: const Key('settings-developers-view'),
-            title: const Text('Developers'),
+            title: Text(l10n.profileForDevelopers),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.developers),
           ),

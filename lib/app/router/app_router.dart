@@ -10,10 +10,7 @@ class AppRouter {
   static const String home = '/home';
   static const String hatim = '/hatim';
   static const String quran = '/quran';
-  static const String juz = '/juz';
-  static const String profile = '/profile';
   static const String read = '/read';
-  static const String surah = '/surah';
   static const String login = '/login';
 
   static const String settingsPage = '/settings';
@@ -49,21 +46,6 @@ class AppRouter {
       case quran:
         return CupertinoPageRoute(
           builder: (_) => const QuranView(),
-          settings: settings,
-        );
-      case juz:
-        return CupertinoPageRoute(
-          builder: (_) => const JuzView(),
-          settings: settings,
-        );
-      case surah:
-        return CupertinoPageRoute(
-          builder: (_) => const SurahView(),
-          settings: settings,
-        );
-      case profile:
-        return CupertinoPageRoute(
-          builder: (_) => const ProfileView(),
           settings: settings,
         );
       case read:

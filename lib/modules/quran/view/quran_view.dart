@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/components/components.dart';
+import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
@@ -29,14 +30,14 @@ class QuranBody extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key('quran-view'),
-        title: const Text('QuranView'),
+        title: const Text('Quran'),
         backgroundColor: colorScheme.surfaceVariant,
         bottom: TabBar(
           indicatorColor: colorScheme.primary,
           labelColor: colorScheme.onSurfaceVariant,
-          tabs: const [
-            PageViewCard(page: 'Juz', key: Key('juz-items')),
-            PageViewCard(page: 'Surah', key: Key('surah-items')),
+          tabs: [
+            PageViewCard(page: context.l10n.juzs, key: const Key('juz-items')),
+            PageViewCard(page: context.l10n.surahs, key: const Key('surah-items')),
           ],
         ),
       ),
