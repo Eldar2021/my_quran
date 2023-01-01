@@ -22,7 +22,7 @@ class ReadView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ReadCubit(sl<FetchPageRepo>(), pages)),
-        BlocProvider(create: (context) => ReadThemeCubit()),
+        BlocProvider(create: (context) => ReadThemeCubit(sl<ReadThemeService>())),
       ],
       child: ReadUI(pages: pages),
     );
@@ -45,7 +45,6 @@ class ReadUI extends StatelessWidget {
             stretch: true,
             centerTitle: true,
             backgroundColor: bgReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-            foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
             titleTextStyle: TextStyle(
               color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
             ),
@@ -70,7 +69,10 @@ class ReadUI extends StatelessWidget {
                     ),
                   );
                 },
-                icon: const Icon(Icons.settings),
+                icon: Icon(
+                  Icons.settings,
+                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                ),
               )
             ],
           ),
@@ -174,7 +176,11 @@ class ChangeReadTheme extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () async {
+                await context.read<ReadThemeCubit>().saveChanges();
+                // ignore: use_build_context_synchronously
+                Navigator.pop(context);
+              },
               child: const Text('Save Changes'),
             ),
             const SizedBox(width: 20),

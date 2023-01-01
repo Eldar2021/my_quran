@@ -48,8 +48,9 @@ Future<void> bootstrap() async {
 
   final boxData = await Hive.openBox<String>('data');
   final boxApp = await Hive.openBox<String>('app');
+  final boxReadTheme = await Hive.openBox<int>('read-theme');
 
-  setup(boxData, boxApp);
+  setup(boxData, boxApp, boxReadTheme);
 
   await runZonedGuarded(
     () async => runApp(

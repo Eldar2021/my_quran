@@ -1,10 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hatim/modules/modules.dart';
 
 part 'read_theme_state.dart';
 
 class ReadThemeCubit extends Cubit<ReadThemeState> {
-  ReadThemeCubit() : super(const ReadThemeState(ReadTheme()));
+  ReadThemeCubit(this.service) : super(ReadThemeState(service.init()));
+
+  final ReadThemeService service;
 
   void changeMode(int index) {
     emit(ReadThemeState(state.theme.copyWith(modeIndex: index)));
@@ -20,5 +23,9 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
 
   void changeHorizontalSpace(int space) {
     emit(ReadThemeState(state.theme.copyWith(horizontalSpace: space)));
+  }
+
+  Future<void> saveChanges() async {
+    await service.saveChanges(state.theme);
   }
 }
