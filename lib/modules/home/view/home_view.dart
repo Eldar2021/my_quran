@@ -13,6 +13,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
+          key: const Key('home-list-view'),
           children: [
             const SizedBox(height: 10),
             Assets.icons.alQuran
