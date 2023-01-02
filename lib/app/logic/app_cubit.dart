@@ -14,7 +14,7 @@ class AppCubit extends Cubit<AppState> {
     this.themeService,
   ) : super(AppState(localService.init(), themeService.init()));
 
-  final LocalService localService;
+  final AppService localService;
   final ThemeService themeService;
 
   Future<void> changeLang(int index) async {

@@ -15,8 +15,8 @@ void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
     final box = MockBox();
     final appCache = AppCache(box);
-    final localService = LocalService(appCache);
-    final authStorage = AuthStorage(appCache);
+    final localService = AppService(appCache);
+    final authStorage = AuthService(appCache);
     final themeService = ThemeService(appCache);
 
     when(() => box.get(authStorage.token)).thenReturn(null);

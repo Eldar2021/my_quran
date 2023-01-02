@@ -4,8 +4,8 @@ import 'package:hatim/constants/contants.dart';
 import 'package:hatim/core/core.dart';
 import 'package:hatim/models/models.dart';
 
-class FetchPageRepo {
-  const FetchPageRepo(this.remoteClient, this.localClient);
+class ReadService {
+  const ReadService(this.remoteClient, this.localClient);
 
   final RemoteClient remoteClient;
   final LocalClient<String> localClient;

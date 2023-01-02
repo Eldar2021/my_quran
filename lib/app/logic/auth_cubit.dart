@@ -9,7 +9,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.storage) : super(AuthState(user: storage.init()));
 
-  final AuthStorage storage;
+  final AuthService storage;
 
   Future<void> login(User user) async {
     await storage.login(user);

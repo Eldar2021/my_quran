@@ -27,13 +27,4 @@ class RemoteClient {
       return const Left(ServerExc('unknown error'));
     }
   }
-
-  // Future<List<dynamic>?> getVerses(String path) async {
-  //   final response = await dio.get<Map<String, dynamic>>(path);
-  //   try {
-  //     return response.data!['verses'] as List;
-  //   } catch (e) {
-  //     throw ServerExc('$e');
-  //   }
-  // }
 }

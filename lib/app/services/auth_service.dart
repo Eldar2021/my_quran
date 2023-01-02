@@ -2,8 +2,8 @@ import 'package:hatim/core/core.dart';
 
 import 'package:hatim/models/models.dart';
 
-class AuthStorage {
-  const AuthStorage(this.storage);
+class AuthService {
+  const AuthService(this.storage);
 
   final AppCache<String> storage;
 

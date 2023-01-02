@@ -9,7 +9,7 @@ part 'read_state.dart';
 class ReadCubit extends Cubit<ReadState> {
   ReadCubit(this.repo, this.pages) : super(const ReadState());
 
-  final FetchPageRepo repo;
+  final ReadService repo;
   final List<int> pages;
 
   Future<QuranPage?> getPage(int page) async {

@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:hatim/core/core.dart';
 
-class LocalService {
-  const LocalService(this.storage);
+class AppService {
+  const AppService(this.storage);
 
   final AppCache<String> storage;
 
