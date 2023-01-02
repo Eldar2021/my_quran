@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/app/logic/auth_cubit.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import 'package:hatim/utils/urils.dart';
+import 'package:hatim/app/app.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
-import 'package:hatim/utils/show/alerts.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
@@ -79,8 +79,12 @@ class _PaginationViewState extends State<PaginationView> {
                   style: OutlinedButton.styleFrom(
                     foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                   ),
-                  onPressed: () {
-                    AppAlert.showAmin<void>(context, context.read<AuthCubit>().state.user?.gender ?? Gender.male);
+                  onPressed: () async {
+                    await AppAlert.showAmin<void>(
+                      context,
+                      context.read<AuthCubit>().state.user?.gender ?? Gender.male,
+                      totalPages: widget.pages.length,
+                    );
                   },
                   child: Text(context.l10n.amin),
                 ),
