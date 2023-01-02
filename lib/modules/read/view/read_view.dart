@@ -23,7 +23,7 @@ class ReadView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ReadCubit(sl<FetchPageRepo>(), pages)),
+        BlocProvider(create: (context) => ReadCubit(sl<ReadService>(), pages)),
         BlocProvider(create: (context) => ReadThemeCubit(sl<ReadThemeService>())),
       ],
       child: ReadUI(pages: pages),

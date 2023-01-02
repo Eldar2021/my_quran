@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hatim/app/app.dart';
 
 extension PumpApp on WidgetTester {
-  Future<void> pumpApp(LocalService localService, ThemeService themeService, AuthStorage authStorage) {
+  Future<void> pumpApp(AppService localService, ThemeService themeService, AuthService authStorage) {
     return pumpWidget(
       MultiBlocProvider(
         providers: [
