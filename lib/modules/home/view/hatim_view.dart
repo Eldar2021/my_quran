@@ -30,7 +30,7 @@ class HatimUI extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key('hatim-view'),
-        title: Text(context.l10n.homeAppBarTitle),
+        title: Text(context.l10n.hatim),
         actions: [
           Text(
             '${context.watch<HatimReadCubit>().state.pages.length}',
@@ -46,7 +46,7 @@ class HatimUI extends StatelessWidget {
             onPressed: () async {
               await Navigator.pushNamed(context, AppRouter.read, arguments: cubit.state.pages);
             },
-            label: const Text('Read'),
+            label: Text(context.l10n.read),
             icon: Assets.icons.openBook.svg(),
           );
         } else {
