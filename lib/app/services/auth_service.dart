@@ -9,6 +9,8 @@ class AuthService {
 
   static const String _token = 'token';
   static const String _gender = 'gender';
+  static const String _totalHatim = 'total_hatim';
+  static const String _totalRead = 'total_read';
 
   User? init() {
     final userToken = storage.read(key: _token);
@@ -29,9 +31,28 @@ class AuthService {
     await storage.save(key: _gender, value: gender.name);
   }
 
+  int? getTotalHatim() {
+    final value = storage.read(key: _totalHatim);
+    return value != null ? int.parse(value) : null;
+  }
+
+  int? getTotalRead() {
+    final value = storage.read(key: _totalRead);
+    return value != null ? int.parse(value) : null;
+  }
+
+  Future<void> saveTotalHatim(String value) async {
+    await storage.save(key: _totalHatim, value: value);
+  }
+
+  Future<void> saveTotalRead(String value) async {
+    await storage.save(key: _totalRead, value: value);
+  }
+
   Future<void> logout() async => storage.clear();
 
   String get token => _token;
-
   String get gender => _gender;
+  String get totalHatim => _totalHatim;
+  String get totalRead => _totalRead;
 }

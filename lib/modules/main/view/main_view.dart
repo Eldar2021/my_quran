@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:hatim/app/app.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/modules/modules.dart';
 
-class MainView extends StatelessWidget {
+class MainView extends StatefulWidget {
   const MainView({super.key});
+
+  @override
+  State<MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> {
+  @override
+  void initState() {
+    context.read<AuthCubit>().getTotalHatimAndTotalRead();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

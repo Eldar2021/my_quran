@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/app/app.dart';
 import 'package:hatim/components/components.dart';
@@ -12,6 +13,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final authCubit = context.watch<AuthCubit>();
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -26,12 +28,12 @@ class HomeView extends StatelessWidget {
             HomeCard(
               titleText: l10n.homeAllHatim,
               descriptioText: l10n.homeAllHatimDesc,
-              valueText: '147',
+              valueText: '${authCubit.state.totalHatim ?? 0}',
             ),
             HomeCard(
               titleText: l10n.homeUserReadAllPage,
               descriptioText: l10n.homeUserReadAllPageDesc,
-              valueText: '1647',
+              valueText: '${authCubit.state.totalRead ?? 0}',
               verticalSpace: 0,
             ),
             const TimeCard(),
