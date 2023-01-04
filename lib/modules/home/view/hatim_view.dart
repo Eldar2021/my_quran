@@ -99,7 +99,34 @@ class HatimJuzListBuilder extends StatelessWidget {
                   builder: (ctx) {
                     return BlocProvider(
                       create: (context) => HatimPageCubit(item.id)..getData(),
-                      child: const Dialog(child: HatimSelectPageView()),
+                      child: AlertDialog(
+                        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+                        contentPadding: const EdgeInsets.all(15),
+                        actionsPadding: const EdgeInsets.all(15),
+                        iconPadding: EdgeInsets.zero,
+                        title: Text(
+                          context.l10n.hatimPleaseSelectPage,
+                          key: const Key('hatim-select-pages'),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
+                        content: const HatimSelectPageView(),
+                        actions: [
+                          OutlinedButton(
+                            key: const Key('cancel-button'),
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(context.l10n.cancel),
+                          ),
+                          const SizedBox(width: 12),
+                          OutlinedButton(
+                            key: const Key('ok-button'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(context.l10n.select),
+                          )
+                        ],
+                      ),
                     );
                   },
                 );
