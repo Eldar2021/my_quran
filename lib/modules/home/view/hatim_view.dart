@@ -75,6 +75,7 @@ class HatimJuzListBuilder extends StatelessWidget {
             child: ListTile(
               key: Key('quran-view-${item.id}-juz'),
               leading: Text('${item.id}'),
+              minLeadingWidth: 10,
               title: Row(
                 children: [
                   Text(item.name),

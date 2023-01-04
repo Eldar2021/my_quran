@@ -72,6 +72,7 @@ class _PaginationViewState extends State<PaginationView> {
                 style: TextStyle(
                   fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
                   color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                  height: 2,
                 ),
               ),
               if (widget.pages[index] == widget.pages.last)

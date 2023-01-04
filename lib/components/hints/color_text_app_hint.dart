@@ -20,7 +20,7 @@ class ColorTextAppHint extends StatelessWidget {
           child: Material(type: MaterialType.card, color: color),
         ),
         const SizedBox(width: 14),
-        Text(hintText),
+        Expanded(child: Text(hintText, maxLines: 3)),
       ],
     );
   }
