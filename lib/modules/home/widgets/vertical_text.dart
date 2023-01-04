@@ -8,13 +8,15 @@ class VerticalText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 8),
-        Text(text),
-        const SizedBox(height: 4),
-        Text(value),
-      ],
+    return Expanded(
+      child: Column(
+        children: [
+          const SizedBox(height: 8),
+          Text(text, overflow: TextOverflow.ellipsis),
+          const SizedBox(height: 4),
+          Text(value),
+        ],
+      ),
     );
   }
 }

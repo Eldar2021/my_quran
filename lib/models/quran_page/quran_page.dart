@@ -20,16 +20,16 @@ class QuranPage {
 
 extension NumberConverter on num {
   static const Map<String, String> arabicDigits = <String, String>{
-    '0': '\u0660',
-    '1': '\u0661',
-    '2': '\u0662',
-    '3': '\u0663',
-    '4': '\u0664',
-    '5': '\u0665',
-    '6': '\u0666',
-    '7': '\u0667',
-    '8': '\u0668',
-    '9': '\u0669',
+    '0': '۰',
+    '1': '۱',
+    '2': '۲',
+    '3': '۳',
+    '4': '۴',
+    '5': '۵',
+    '6': '۶',
+    '7': '۷',
+    '8': '۸',
+    '9': '۹',
   };
 
   String toArabicDigits() {

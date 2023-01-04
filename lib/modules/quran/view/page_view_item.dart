@@ -20,6 +20,7 @@ class PageViewItem<T> extends StatelessWidget {
           return Card(
             child: ListTile(
               key: Key('quran-view-${item.id}-juz'),
+              minLeadingWidth: 10,
               leading: Text('${item.id}'),
               title: Text(item.name),
               onTap: () async {
@@ -36,6 +37,7 @@ class PageViewItem<T> extends StatelessWidget {
           return Card(
             child: ListTile(
               key: Key('quran-view-${item.id}-surah'),
+              minLeadingWidth: 10,
               leading: Text('${item.id}'),
               title: Text(item.arabic),
               subtitle: Text(item.name),
