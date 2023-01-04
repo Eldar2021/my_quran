@@ -63,33 +63,37 @@ class _PaginationViewState extends State<PaginationView> {
       builderDelegate: PagedChildBuilderDelegate<QuranPage>(
         itemBuilder: (context, item, index) => Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                item.samePage.toString(),
-                locale: const Locale('ar'),
-                style: TextStyle(
-                  fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-                  height: 2,
-                ),
-              ),
-              if (widget.pages[index] == widget.pages.last)
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+          child: Localizations.override(
+            context: context,
+            locale: const Locale('ar'),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  item.samePage.toString(),
+                  locale: const Locale('ar'),
+                  style: TextStyle(
+                    fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+                    color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                    height: 2,
                   ),
-                  onPressed: () async {
-                    await AppAlert.showAmin<void>(
-                      context,
-                      context.read<AuthCubit>().state.user?.gender ?? Gender.male,
-                      totalPages: widget.pages.length,
-                    );
-                  },
-                  child: Text(context.l10n.amin),
                 ),
-            ],
+                if (widget.pages[index] == widget.pages.last)
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                    ),
+                    onPressed: () async {
+                      await AppAlert.showAmin<void>(
+                        context,
+                        context.read<AuthCubit>().state.user?.gender ?? Gender.male,
+                        totalPages: widget.pages.length,
+                      );
+                    },
+                    child: Text(context.l10n.amin),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
