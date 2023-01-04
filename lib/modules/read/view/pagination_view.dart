@@ -77,6 +77,7 @@ class _PaginationViewState extends State<PaginationView> {
                     color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                     height: 2,
                   ),
+                  textDirection: TextDirection.rtl,
                 ),
                 if (widget.pages[index] == widget.pages.last)
                   OutlinedButton(
