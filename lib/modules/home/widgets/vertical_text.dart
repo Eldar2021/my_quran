@@ -12,7 +12,7 @@ class VerticalText extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 8),
-          Text(text, overflow: TextOverflow.ellipsis,),
+          Text(text, overflow: TextOverflow.ellipsis),
           const SizedBox(height: 4),
           Text(value),
         ],
