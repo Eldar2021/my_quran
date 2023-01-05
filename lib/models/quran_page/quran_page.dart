@@ -14,7 +14,11 @@ class QuranPage {
   final Meta meta;
 
   StringBuffer get samePage {
-    return StringBuffer()..writeAll(verses.map((e) => '${e.textUthmani} \uFD3F${e.ayatNumber.toArabicDigits()}\uFD3E'), '  ');
+    return StringBuffer()
+      ..writeAll(
+        verses.map((e) => '${e.textUthmani} \uFD3F${e.ayatNumber.toArabicDigits()}\uFD3E'),
+        '  ',
+      );
   }
 }
 
