@@ -14,7 +14,7 @@ HatimPage _$HatimPageFromJson(Map<String, dynamic> json) => HatimPage(
 
 Map<String, dynamic> _$HatimPageToJson(HatimPage instance) => <String, dynamic>{
       'id': instance.id,
-      'status': _$PageStatusEnumMap[instance.status],
+      'status': _$PageStatusEnumMap[instance.status]!,
       'isMy': instance.isMy,
     };
 

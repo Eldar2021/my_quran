@@ -6,3 +6,10 @@ linter:
     sort_pub_dependencies: false
     lines_longer_than_80_chars: false
     directives_ordering: false
+
+analyzer:
+  exclude:
+    - lib/generated_plugin_registrant.dart
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "bin/cache/**"
