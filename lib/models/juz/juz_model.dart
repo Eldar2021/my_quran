@@ -1,5 +1,10 @@
-import 'package:hatim/models/juz/juz_surah_model.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+import 'package:hatim/models/models.dart';
+
+part 'juz_model.g.dart';
+
+@JsonSerializable()
 class Juz {
   const Juz({
     required this.id,
@@ -8,18 +13,8 @@ class Juz {
     required this.surahs,
   });
 
-  factory Juz.fromMap(Map<String, dynamic> map) {
-    return Juz(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      pages: List<int>.from(map['pages'] as List<int>),
-      surahs: List<JuzSurah>.from(
-        (map['surahs'] as List).map<JuzSurah>(
-          (x) => JuzSurah.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-    );
-  }
+  factory Juz.fromJson(Map<String, dynamic> json) => _$JuzFromJson(json);
+  Map<String, dynamic> toJson() => _$JuzToJson(this);
 
   final int id;
   final String name;

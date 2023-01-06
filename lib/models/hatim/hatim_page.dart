@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'hatim_page.g.dart';
+
+@JsonSerializable()
 class HatimPage {
   const HatimPage({
     required this.id,
@@ -5,13 +10,8 @@ class HatimPage {
     required this.isMy,
   });
 
-  factory HatimPage.fromJson(Map<String, dynamic> map) {
-    return HatimPage(
-      id: map['id'] as int,
-      status: PageStatus.values.byName(map['status'] as String),
-      isMy: map['isMy'] as bool,
-    );
-  }
+  factory HatimPage.fromJson(Map<String, dynamic> json) => _$HatimPageFromJson(json);
+  Map<String, dynamic> toJson() => _$HatimPageToJson(this);
 
   final int id;
   final PageStatus status;
