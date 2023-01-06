@@ -6,4 +6,6 @@ Map<int, Color> targetColors = {
   2: Colors.green,
   3: Colors.blue,
   4: Colors.purple,
+  5: Colors.deepOrange,
+  6: Colors.brown,
 };
