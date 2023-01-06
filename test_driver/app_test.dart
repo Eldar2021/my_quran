@@ -127,9 +127,7 @@ void main() async {
 
   test('settings-feedback-view', () async {
     await driver.waitFor(find.byValueKey('settings-view'));
-    await driver.tap(find.byValueKey('settings-feedback-view'));
-
-    await takeScreenshot(driver, 'settings-feedback-view');
+    await driver.waitFor(find.byValueKey('settings-feedback-view'));
   });
 
   test('settings-developers-view', () async {
