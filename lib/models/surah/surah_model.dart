@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'surah_model.g.dart';
+
+@JsonSerializable()
 class Surah {
   const Surah({
     required this.id,
@@ -7,15 +12,8 @@ class Surah {
     required this.arabic,
   });
 
-  factory Surah.fromMap(Map<String, dynamic> map) {
-    return Surah(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      aya: map['aya'] as int,
-      pages: List<int>.from(map['pages'] as List<int>),
-      arabic: map['arabic'] as String,
-    );
-  }
+  factory Surah.fromJson(Map<String, dynamic> json) => _$SurahFromJson(json);
+  Map<String, dynamic> toJson() => _$SurahToJson(this);
 
   final int id;
   final String name;

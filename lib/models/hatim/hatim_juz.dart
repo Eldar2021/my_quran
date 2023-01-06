@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'hatim_juz.g.dart';
+
+@JsonSerializable()
 class HatimJus {
   const HatimJus({
     required this.id,
@@ -7,15 +12,8 @@ class HatimJus {
     required this.donePercent,
   });
 
-  factory HatimJus.fromJson(Map<String, dynamic> map) {
-    return HatimJus(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      emptyPersent: map['emptyPersent'] as num,
-      processPersent: map['processPersent'] as num,
-      donePercent: map['donePercent'] as num,
-    );
-  }
+  factory HatimJus.fromJson(Map<String, dynamic> json) => _$HatimJusFromJson(json);
+  Map<String, dynamic> toJson() => _$HatimJusToJson(this);
 
   final int id;
   final String name;

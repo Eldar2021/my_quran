@@ -1,5 +1,6 @@
-import 'package:hatim/models/models.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:hatim/models/models.dart';
 
 part 'quran_page.g.dart';
 

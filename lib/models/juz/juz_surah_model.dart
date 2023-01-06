@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'juz_surah_model.g.dart';
+
+@JsonSerializable()
 class JuzSurah {
   const JuzSurah({
     required this.name,
@@ -5,13 +10,8 @@ class JuzSurah {
     required this.pages,
   });
 
-  factory JuzSurah.fromMap(Map<String, dynamic> map) {
-    return JuzSurah(
-      name: map['name'] as String,
-      arName: map['arName'] as String,
-      pages: List<int>.from(map['pages'] as List<int>),
-    );
-  }
+  factory JuzSurah.fromJson(Map<String, dynamic> json) => _$JuzSurahFromJson(json);
+  Map<String, dynamic> toJson() => _$JuzSurahToJson(this);
 
   final String name;
   final String arName;

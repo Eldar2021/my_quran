@@ -7,7 +7,7 @@ class QuranCubit extends Cubit<int> {
 
   void change(int? val) => emit(val ?? 0);
 
-  final List<Juz> juzs = juzData.map(Juz.fromMap).toList();
+  final List<Juz> juzs = juzData.map(Juz.fromJson).toList();
 
-  final List<Surah> surahs = surahData.map(Surah.fromMap).toList();
+  final List<Surah> surahs = surahData.map(Surah.fromJson).toList();
 }
