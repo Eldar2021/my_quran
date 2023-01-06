@@ -10,6 +10,7 @@ class HatimJus {
     required this.emptyPersent,
     required this.processPersent,
     required this.donePercent,
+    this.test,
   });
 
   factory HatimJus.fromJson(Map<String, dynamic> json) => _$HatimJusFromJson(json);
@@ -20,6 +21,7 @@ class HatimJus {
   final num emptyPersent;
   final num processPersent;
   final num donePercent;
+  final int? test;
 }
 
 const hatimJuzMockData = [

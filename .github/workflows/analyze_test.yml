@@ -26,3 +26,9 @@ jobs:
 
       - name: "Run unit tests"
         run: flutter test
+
+      - name: "Run the build_runner and return an error if files are changed"
+        run: |
+          flutter pub run build_runner build --delete-conflicting-outputs
+          flutter format . --line-length 120
+          git diff --exit-code  
