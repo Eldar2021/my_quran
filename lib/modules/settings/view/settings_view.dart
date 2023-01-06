@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/app/app.dart';
+import 'package:hatim/core/core.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/user/user_model.dart';
 
@@ -62,11 +63,11 @@ class SettingsView extends StatelessWidget {
             key: const Key('settings-feedback-view'),
             title: Text(l10n.feedback),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(l10n.feedBackSms)),
-              );
-            },
+            onTap: () async => AppLaunch.sendEmail(
+              'eldiiaralmazbekov@gmail.com',
+              snackBarText: l10n.feedBackSms,
+              context: context,
+            ),
           ),
           ListTile(
             key: const Key('settings-developers-view'),

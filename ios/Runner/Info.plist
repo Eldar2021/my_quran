@@ -59,6 +59,13 @@
 			<string>tr</string>
 		</array>
 		<!-- Localizations -->
+		<!-- url launcher -->
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>sms</string>
+			<string>tel</string>
+		</array>
+		<!-- url launcher -->
 		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>
