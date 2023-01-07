@@ -1,30 +1,119 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+import 'package:http/http.dart';
 
 import 'package:hatim/core/core.dart';
 
 class RemoteClient {
-  const RemoteClient(this.dio);
+  RemoteClient(Client client) : _client = client;
 
-  final Dio dio;
+  final Client _client;
 
-  Future<Either<ServerExc, T>> getData<T>(
-    String path, {
-    Map<String, dynamic>? params,
-    required T Function(Map<String, dynamic>) fromJson,
-  }) async {
-    final response = await dio.get<Map<String, dynamic>>(path);
+  /// Get a token and return header
+  Map<String, String> getHeader(String? token) {
+    final headers = <String, String>{
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json',
+    };
+    if (token != null) headers['Authorization'] = 'Bearer $token';
+
+    return headers;
+  }
+
+  /// Working with the response
+  Future<Either<Exception, T>> responseType<T>(
+    Response response,
+    T Function(Map<String, dynamic>) fromJson,
+  ) async {
+    /// if the response is successful, return the data  fromJson
     if (response.statusCode == 200) {
       try {
-        final model = fromJson(response.data!);
+        final model = fromJson(jsonDecode(response.body) as Map<String, dynamic>);
         return Right(model);
       } catch (e) {
-        return Left(ServerExc('$e'));
+        return Left(ConvertExc(message: '$e'));
       }
+
+      /// if an Unauthorized  return Authentication Exception
     } else if (response.statusCode == 401) {
-      return const Left(ServerExc('token error'));
+      return const Left(AuthenticationException());
     } else {
-      return const Left(ServerExc('unknown error'));
+      /// if the response is not successful and unauthorized, it will return a server exception
+      return const Left(ServerExc('server exception'));
     }
+  }
+
+  /// Get Json data
+  Future<Either<Exception, T>> get<T>(
+    String path, {
+    String? token,
+    required T Function(Map<String, dynamic>) fromJson,
+  }) async {
+    try {
+      final header = getHeader(token);
+      final response = await _client.get(
+        Uri.parse(path),
+        headers: header,
+      );
+      return responseType<T>(response, fromJson);
+    } catch (e) {
+      log(e.toString());
+      return const Left(ServerExc(null));
+    }
+  }
+
+  /// Perform a query using the "POST" method and using the JSON content type
+  Future<Either<Exception, T>> post<T>(
+    String path, {
+    String? token,
+    Map<String, dynamic>? body,
+    required T Function(Map<String, dynamic>) fromJson,
+  }) async {
+    try {
+      final header = getHeader(token);
+      final response = await _client.post(
+        Uri.parse(path),
+        headers: header,
+        body: jsonEncode(body),
+      );
+      return responseType<T>(response, fromJson);
+    } catch (e) {
+      log(e.toString());
+      return const Left(ServerExc(null));
+    }
+  }
+
+  /// Perform a query using the "PATCH" method and using the JSON content type
+  Future<Either<Exception, T>> patch<T>(
+    String path, {
+    String? token,
+    Map<String, dynamic>? body,
+    required T Function(Map<String, dynamic>) fromJson,
+  }) async {
+    final header = getHeader(token);
+    final response = await _client.patch(
+      Uri.parse(path),
+      body: jsonEncode(body),
+      headers: header,
+    );
+    return responseType<T>(response, fromJson);
+  }
+
+  /// Perform a query using the "PUT" method and using the JSON content type
+  Future<Either<Exception, T>> put<T>(
+    String path, {
+    String? token,
+    Map<String, dynamic>? body,
+    required T Function(Map<String, dynamic>) fromJson,
+  }) async {
+    final header = getHeader(token);
+    final response = await _client.put(
+      Uri.parse(path),
+      body: jsonEncode(body),
+      headers: header,
+    );
+    return responseType<T>(response, fromJson);
   }
 }

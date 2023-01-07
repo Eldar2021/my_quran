@@ -1,11 +1,12 @@
+import 'package:hatim/constants/contants.dart';
 import 'package:hatim/core/core.dart';
-
 import 'package:hatim/models/models.dart';
 
 class AuthService {
-  const AuthService(this.storage);
+  const AuthService(this.storage, this.client);
 
   final AppCache<String> storage;
+  final RemoteClient client;
 
   static const String _token = 'token';
   static const String _gender = 'gender';
@@ -16,15 +17,33 @@ class AuthService {
     final userToken = storage.read(key: _token);
     final userGender = storage.read(key: _gender);
     if (userToken != null && userGender != null) {
-      return User(token: token, gender: userGender == Gender.male.name ? Gender.male : Gender.female);
+      return User(accessToken: token, gender: userGender == Gender.male.name ? Gender.male : Gender.female);
     } else {
       return null;
     }
   }
 
-  Future<void> login(User user) async {
-    await storage.save(key: _token, value: user.token);
-    await storage.save(key: _gender, value: user.gender.name);
+  String? getToken() => storage.read(key: _token);
+
+  Future<User?> login(String languageCode, Gender gender) async {
+    final user = await client.post<User>(
+      ApiConst.signUp,
+      fromJson: User.fromJson,
+      body: <String, dynamic>{
+        'gender': gender.name.toUpperCase(),
+        'languageCode': languageCode,
+      },
+    );
+
+    return user.fold(
+      (l) => null,
+      (r) async {
+        final user = r.copyWith(gender: gender);
+        await storage.save(key: _token, value: user.accessToken);
+        await storage.save(key: _gender, value: user.gender!.name);
+        return user;
+      },
+    );
   }
 
   Future<void> changeGender(Gender gender) async {

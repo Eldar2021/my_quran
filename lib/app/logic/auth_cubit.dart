@@ -11,9 +11,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthService service;
 
-  Future<void> login(User user) async {
-    await service.login(user);
+  Future<AuthState> login(String languageCode, Gender gender) async {
+    final user = await service.login(languageCode, gender);
     emit(state.copyWith(user: user));
+    return state;
   }
 
   Future<void> logout() async {

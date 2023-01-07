@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/app/app.dart';
 import 'package:hatim/components/components.dart';
 import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
+import 'package:hatim/utils/urils.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -70,14 +72,27 @@ class LoginBody extends StatelessWidget {
                 curve: Curves.easeInOut,
               );
             } else {
-              final user = User(gender: context.read<AppCubit>().state.gender);
-              await context.read<AuthCubit>().login(user).whenComplete(
-                    () => Navigator.pushAndRemoveUntil<void>(
-                      context,
-                      MaterialPageRoute<void>(builder: (context) => const MainView()),
-                      (route) => false,
-                    ),
+              unawaited(AppAlert.showLoading<void>(context));
+              await context
+                  .read<AuthCubit>()
+                  .login(
+                    context.read<AppCubit>().state.currentLocale.languageCode,
+                    context.read<AppCubit>().state.gender,
+                  )
+                  .then((value) async {
+                Navigator.pop(context);
+                if (value.user != null) {
+                  // ignore: use_build_context_synchronously
+                  await Navigator.pushAndRemoveUntil<void>(
+                    context,
+                    MaterialPageRoute<void>(builder: (context) => const MainView()),
+                    (route) => false,
                   );
+                } else {
+                  // ignore: use_build_context_synchronously
+                  AppSnackbar.showSnackbar(context, 'Bir kata boldu');
+                }
+              });
             }
           },
         ),

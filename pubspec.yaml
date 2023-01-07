@@ -21,7 +21,7 @@ dependencies:
   get_it: ^7.2.0
   dartz: ^0.10.1
   connectivity_plus: ^3.0.2
-  dio: ^4.0.6
+  http: ^0.13.5
   hive: ^2.2.3
   infinite_scroll_pagination: ^3.2.0
   path_provider: ^2.0.11
