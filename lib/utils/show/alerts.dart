@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/app/app.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:hatim/app/app.dart';
 
 import 'package:hatim/components/components.dart';
 import 'package:hatim/constants/contants.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/user/user_model.dart';
+// import 'package:hatim/modules/home/home.dart';
 
 class AppAlert {
   static Future<T?> showLoading<T>(BuildContext context) {
@@ -39,7 +40,7 @@ class AppAlert {
                 if (isHatim) {
                   //Navigator.popUntil(context, (route) => false);
                 }
-                await context.read<AuthCubit>().setTotalRead(totalPages);
+                // await context.read<HomeCubit>().setTotalRead(totalPages);
                 // ignore: use_build_context_synchronously
                 Navigator.popUntil(context, (route) => route.isFirst);
               },

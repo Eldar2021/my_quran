@@ -26,16 +26,4 @@ class AuthCubit extends Cubit<AuthState> {
     await service.changeGender(gender);
     emit(state.copyWith(user: state.user?.copyWith(gender: gender)));
   }
-
-  void getTotalHatimAndTotalRead() {
-    final totalHatim = service.getTotalHatim();
-    final totalRead = service.getTotalRead();
-    emit(state.copyWith(totalHatim: totalHatim, totalRead: totalRead));
-  }
-
-  Future<void> setTotalRead(int value) async {
-    final totalRead = value + (state.totalRead ?? 0);
-    await service.saveTotalRead(totalRead.toString());
-    emit(state.copyWith(totalRead: totalRead));
-  }
 }

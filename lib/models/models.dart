@@ -1,4 +1,5 @@
 export 'hatim/hatim_juz.dart';
+export 'home/home_model.dart';
 export 'hatim/hatim_page.dart';
 export 'juz/juz_data.dart';
 export 'juz/juz_model.dart';

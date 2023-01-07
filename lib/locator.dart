@@ -16,6 +16,7 @@ void setup(Box<String> boxData, Box<String> boxApp, Box<int> boxReadTheme) {
     ..registerLazySingleton<AuthService>(() => AuthService(sl<AppCache<String>>(), sl<RemoteClient>()))
     ..registerLazySingleton<AppService>(() => AppService(sl<AppCache<String>>()))
     ..registerLazySingleton<ThemeService>(() => ThemeService(sl<AppCache<String>>()))
+    ..registerLazySingleton<HomeService>(() => HomeService(sl<LocalClient<String>>(), sl<RemoteClient>()))
     ..registerLazySingleton<ReadThemeService>(() => ReadThemeService(sl<AppCache<int>>()))
     ..registerLazySingleton<Connectivity>(Connectivity.new)
     ..registerLazySingleton<RemoteClient>(() => RemoteClient(Client()))

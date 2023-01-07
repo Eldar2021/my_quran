@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final authCubit = context.watch<AuthCubit>();
+    final homeCubit = context.watch<HomeCubit>();
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -28,12 +28,12 @@ class HomeView extends StatelessWidget {
             HomeCard(
               titleText: l10n.homeAllHatim,
               descriptioText: l10n.homeAllHatimDesc,
-              valueText: '${authCubit.state.totalHatim ?? 0}',
+              valueText: '${homeCubit.state.homeModel?.allDoneHatims ?? 0}',
             ),
             HomeCard(
               titleText: l10n.homeUserReadAllPage,
               descriptioText: l10n.homeUserReadAllPageDesc,
-              valueText: '${authCubit.state.totalRead ?? 0}',
+              valueText: '${homeCubit.state.homeModel?.donePages ?? 0}',
               verticalSpace: 0,
             ),
             const TimeCard(),

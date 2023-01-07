@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:hatim/app/app.dart';
 import 'package:hatim/locator.dart';
+import 'package:hatim/modules/modules.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -58,6 +59,7 @@ Future<void> bootstrap() async {
         providers: [
           BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>())),
           BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
+          BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
         ],
         child: const MyApp(),
       ),
