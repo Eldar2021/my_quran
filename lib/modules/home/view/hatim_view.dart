@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
 
 import 'package:hatim/constants/contants.dart';
+import 'package:hatim/core/core.dart';
 import 'package:hatim/l10n/l10.dart';
+import 'package:hatim/locator.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
@@ -15,7 +17,12 @@ class HatimView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HatimJuzCubit()),
-        BlocProvider(create: (context) => HatimReadCubit()),
+        BlocProvider(
+          create: (context) => HatimReadCubit(sl<HatimReadService>())
+            ..getHatim(
+              context.read<AuthCubit>().state.user!.accessToken,
+            ),
+        ),
       ],
       child: const HatimUI(),
     );
@@ -39,7 +46,19 @@ class HatimUI extends StatelessWidget {
           const SizedBox(width: 30),
         ],
       ),
-      body: HatimJuzListBuilder(context.watch<HatimJuzCubit>().hatimJusData),
+      body: BlocBuilder<HatimReadCubit, HatimReadState>(
+        builder: (context, state) {
+          if (state.status == FetchStatus.loading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state.status == FetchStatus.success) {
+            return HatimJuzListBuilder(context.watch<HatimJuzCubit>().hatimJusData);
+          } else if (state.status == FetchStatus.error) {
+            return const Center(child: Text('error'));
+          } else {
+            return const Center(child: Text('bilbeim'));
+          }
+        },
+      ),
       floatingActionButton: context.select((HatimReadCubit cubit) {
         if (cubit.state.pages.isNotEmpty) {
           return FloatingActionButton.extended(

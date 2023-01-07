@@ -3,4 +3,5 @@ class ApiConst {
   static const domain = 'http://157.245.104.104:8080/api/v1';
   static const signUp = '$domain/auth/sign_up';
   static const home = '$domain/report/dashboard';
+  static const hatim = '$domain/hatim/join_to_hatim';
 }

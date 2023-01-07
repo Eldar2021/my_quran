@@ -7,3 +7,4 @@ export 'view/hatim_view.dart';
 export 'view/home_view.dart';
 export 'widgets/widgets.dart';
 export 'service/home_service.dart';
+export 'service/hatim_read_service.dart';

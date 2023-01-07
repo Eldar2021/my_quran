@@ -17,7 +17,7 @@ class AuthService {
     final userToken = storage.read(key: _token);
     final userGender = storage.read(key: _gender);
     if (userToken != null && userGender != null) {
-      return User(accessToken: token, gender: userGender == Gender.male.name ? Gender.male : Gender.female);
+      return User(accessToken: userToken, gender: userGender == Gender.male.name ? Gender.male : Gender.female);
     } else {
       return null;
     }

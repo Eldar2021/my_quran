@@ -21,5 +21,6 @@ void setup(Box<String> boxData, Box<String> boxApp, Box<int> boxReadTheme) {
     ..registerLazySingleton<Connectivity>(Connectivity.new)
     ..registerLazySingleton<RemoteClient>(() => RemoteClient(Client()))
     ..registerLazySingleton<LocalClient<String>>(() => LocalClient(boxData))
+    ..registerLazySingleton<HatimReadService>(() => HatimReadService(sl<RemoteClient>()))
     ..registerFactory<ReadService>(() => ReadService(sl<RemoteClient>(), sl<LocalClient<String>>()));
 }

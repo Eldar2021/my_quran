@@ -5,8 +5,8 @@ part 'user_model.g.dart';
 @JsonSerializable()
 class User {
   const User({
-    this.accessToken = 'token',
-    this.username = 'name',
+    required this.accessToken,
+    this.username,
     this.gender,
   });
 
@@ -14,7 +14,7 @@ class User {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   final String accessToken;
-  final String username;
+  final String? username;
   final Gender? gender;
 
   User copyWith({String? accessToken, String? username, Gender? gender}) {
