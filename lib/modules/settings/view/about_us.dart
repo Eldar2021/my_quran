@@ -19,9 +19,9 @@ class AboutUsVuew extends StatelessWidget {
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 20),
-          const Text(
-            '\t\t\t\t"Пайгамбарыбыз Мухаммед Мустафа (сав) бизге калтырган эң чон аманат бул Куран. Мусулмандар бир өрөөндө, Куран башка бир өрөөндө калган азыркы доордо бардык дин бир туугандарыбызды куттуу Курандын кереметтүү дүйнөсүнө чакырууну туура көрдүк.\t\t \n\n Улутуңуз, жашаган жериңиз, жынысыңыз, социалдык статусуңуз эмне болсо болсун, жалпы дүйнөлүк Куран хатимине катышып, жамааттагы берекелүү соопко сиз да ортоктош болуңуз”."Эй мусулмандар! \t\t \n\n Аллахтын китеби Куранды бары-жогуңар менен кармангыла! Эч качан бөлүнүп-жарылбагыла!" (Али Имран 103)',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          Text(
+            context.l10n.aboutUsDevsDesc,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
         ],
       ),
