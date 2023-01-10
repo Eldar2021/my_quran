@@ -15,8 +15,9 @@ class HatimSelectPageView extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
+        const SizedBox(height: 15),
         SizedBox(
-          height: 320,
+          height: MediaQuery.of(context).size.height * 0.44,
           width: 400,
           child: BlocBuilder<HatimPageCubit, HatimPageState>(
             builder: (context, state) {

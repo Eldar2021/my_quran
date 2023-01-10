@@ -100,9 +100,9 @@ class HatimJuzListBuilder extends StatelessWidget {
                     return BlocProvider(
                       create: (context) => HatimPageCubit(item.id)..getData(),
                       child: AlertDialog(
-                        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
-                        contentPadding: const EdgeInsets.all(15),
-                        actionsPadding: const EdgeInsets.all(15),
+                        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                        actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
                         iconPadding: EdgeInsets.zero,
                         title: Text(
                           context.l10n.hatimPleaseSelectPage,
