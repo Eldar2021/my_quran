@@ -14,11 +14,10 @@ class HatimReadCubit extends Cubit<HatimReadState> {
   Future<void> getHatim(String token) async {
     emit(state.copyWith(status: FetchStatus.loading));
     final hatim = await service.getHatim(token);
-    if (hatim != null) {
-      emit(state.copyWith(status: FetchStatus.success, hatim: hatim));
-    } else {
-      emit(state.copyWith(status: FetchStatus.error));
-    }
+    hatim.fold(
+      (l) => emit(state.copyWith(status: FetchStatus.error)),
+      (r) => emit(state.copyWith(status: FetchStatus.success, hatim: r)),
+    );
   }
 
   Future<void> setPage(int newPage) async {}

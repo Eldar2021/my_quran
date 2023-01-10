@@ -1,5 +1,5 @@
 class NetworkExc implements Exception {
-  const NetworkExc(this.massage);
+  const NetworkExc([this.massage]);
 
   final String? massage;
 

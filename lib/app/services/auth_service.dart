@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:hatim/constants/contants.dart';
 import 'package:hatim/core/core.dart';
 import 'package:hatim/models/models.dart';
@@ -25,7 +26,7 @@ class AuthService {
 
   String? getToken() => storage.read(key: _token);
 
-  Future<User?> login(String languageCode, Gender gender) async {
+  Future<Either<Exception, User>> login(String languageCode, Gender gender) async {
     final user = await client.post<User>(
       ApiConst.signUp,
       fromJson: User.fromJson,
@@ -36,12 +37,12 @@ class AuthService {
     );
 
     return user.fold(
-      (l) => null,
+      Left.new,
       (r) async {
         final user = r.copyWith(gender: gender);
         await storage.save(key: _token, value: user.accessToken);
         await storage.save(key: _gender, value: user.gender!.name);
-        return user;
+        return Right(user);
       },
     );
   }

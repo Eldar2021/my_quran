@@ -13,7 +13,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<AuthState> login(String languageCode, Gender gender) async {
     final user = await service.login(languageCode, gender);
-    emit(state.copyWith(user: user));
+    user.fold(
+      (l) => emit(state.copyWith(exception: l)),
+      (r) => emit(state.copyWith(user: r)),
+    );
     return state;
   }
 

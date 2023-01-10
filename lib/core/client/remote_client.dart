@@ -7,9 +7,10 @@ import 'package:http/http.dart';
 import 'package:hatim/core/core.dart';
 
 class RemoteClient {
-  RemoteClient(Client client) : _client = client;
+  const RemoteClient(Client client, {required this.networkClient}) : _client = client;
 
   final Client _client;
+  final NetworkClient networkClient;
 
   /// Get a token and return header
   Map<String, String> getHeader(String? token) {
@@ -53,11 +54,15 @@ class RemoteClient {
   }) async {
     try {
       final header = getHeader(token);
-      final response = await _client.get(
-        Uri.parse(path),
-        headers: header,
-      );
-      return responseType<T>(response, fromJson);
+      if (await networkClient.checkInternetConnection()) {
+        final response = await _client.get(
+          Uri.parse(path),
+          headers: header,
+        );
+        return responseType<T>(response, fromJson);
+      } else {
+        return const Left(NetworkExc());
+      }
     } catch (e) {
       log(e.toString());
       return const Left(ServerExc(null));
@@ -73,12 +78,16 @@ class RemoteClient {
   }) async {
     try {
       final header = getHeader(token);
-      final response = await _client.post(
-        Uri.parse(path),
-        headers: header,
-        body: jsonEncode(body),
-      );
-      return responseType<T>(response, fromJson);
+      if (await networkClient.checkInternetConnection()) {
+        final response = await _client.post(
+          Uri.parse(path),
+          headers: header,
+          body: jsonEncode(body),
+        );
+        return responseType<T>(response, fromJson);
+      } else {
+        return const Left(NetworkExc());
+      }
     } catch (e) {
       log(e.toString());
       return const Left(ServerExc(null));
@@ -93,12 +102,16 @@ class RemoteClient {
     required T Function(Map<String, dynamic>) fromJson,
   }) async {
     final header = getHeader(token);
-    final response = await _client.patch(
-      Uri.parse(path),
-      body: jsonEncode(body),
-      headers: header,
-    );
-    return responseType<T>(response, fromJson);
+    if (await networkClient.checkInternetConnection()) {
+      final response = await _client.patch(
+        Uri.parse(path),
+        body: jsonEncode(body),
+        headers: header,
+      );
+      return responseType<T>(response, fromJson);
+    } else {
+      return const Left(NetworkExc());
+    }
   }
 
   /// Perform a query using the "PUT" method and using the JSON content type
@@ -109,11 +122,15 @@ class RemoteClient {
     required T Function(Map<String, dynamic>) fromJson,
   }) async {
     final header = getHeader(token);
-    final response = await _client.put(
-      Uri.parse(path),
-      body: jsonEncode(body),
-      headers: header,
-    );
-    return responseType<T>(response, fromJson);
+    if (await networkClient.checkInternetConnection()) {
+      final response = await _client.put(
+        Uri.parse(path),
+        body: jsonEncode(body),
+        headers: header,
+      );
+      return responseType<T>(response, fromJson);
+    } else {
+      return const Left(NetworkExc());
+    }
   }
 }
