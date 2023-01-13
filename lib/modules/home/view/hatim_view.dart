@@ -46,18 +46,25 @@ class HatimUI extends StatelessWidget {
           const SizedBox(width: 30),
         ],
       ),
-      body: BlocBuilder<HatimReadCubit, HatimReadState>(
-        builder: (context, state) {
-          if (state.status == FetchStatus.loading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state.status == FetchStatus.success) {
-            return HatimJuzListBuilder(context.watch<HatimJuzCubit>().hatimJusData);
-          } else if (state.status == FetchStatus.error) {
-            return const Center(child: Text('error'));
-          } else {
-            return const Center(child: Text('bilbeim'));
+      body: RefreshIndicator(
+        onRefresh: () async {
+          if (context.read<AuthCubit>().state.user != null) {
+            await context.read<HatimReadCubit>().getHatim(context.read<AuthCubit>().state.user!.accessToken);
           }
         },
+        child: BlocBuilder<HatimReadCubit, HatimReadState>(
+          builder: (context, state) {
+            if (state.status == FetchStatus.loading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state.status == FetchStatus.success) {
+              return HatimJuzListBuilder(context.watch<HatimJuzCubit>().hatimJusData);
+            } else if (state.status == FetchStatus.error) {
+              return const Center(child: Text('error'));
+            } else {
+              return const Center(child: Text('bilbeim'));
+            }
+          },
+        ),
       ),
       floatingActionButton: context.select((HatimReadCubit cubit) {
         if (cubit.state.pages.isNotEmpty) {
