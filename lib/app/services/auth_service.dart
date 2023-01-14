@@ -11,14 +11,20 @@ class AuthService {
 
   static const String _token = 'token';
   static const String _gender = 'gender';
+  static const String _username = 'username';
   static const String _totalHatim = 'total_hatim';
   static const String _totalRead = 'total_read';
 
   User? init() {
     final userToken = storage.read(key: _token);
     final userGender = storage.read(key: _gender);
-    if (userToken != null && userGender != null) {
-      return User(accessToken: userToken, gender: userGender == Gender.male.name ? Gender.male : Gender.female);
+    final username = storage.read(key: _username);
+    if (userToken != null && userGender != null && username != null) {
+      return User(
+        accessToken: userToken,
+        username: username,
+        gender: userGender == Gender.male.name ? Gender.male : Gender.female,
+      );
     } else {
       return null;
     }
@@ -42,6 +48,7 @@ class AuthService {
         final user = r.copyWith(gender: gender);
         await storage.save(key: _token, value: user.accessToken);
         await storage.save(key: _gender, value: user.gender!.name);
+        await storage.save(key: _username, value: user.username);
         return Right(user);
       },
     );
@@ -75,4 +82,5 @@ class AuthService {
   String get gender => _gender;
   String get totalHatim => _totalHatim;
   String get totalRead => _totalRead;
+  String get username => _username;
 }

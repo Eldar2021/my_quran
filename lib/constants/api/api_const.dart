@@ -9,5 +9,9 @@ class ApiConst {
 
   static String juzSocket(String hatimId) => '/topic/$hatimId/list_of_juz';
 
+  static String userPages(String username) => '/topic/$username/user_active_pages';
+
+  static const setInProgress = '/app/in_progress';
+
   static Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
 }

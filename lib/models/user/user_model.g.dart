@@ -8,7 +8,7 @@ part of 'user_model.dart';
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
       accessToken: json['accessToken'] as String,
-      username: json['username'] as String?,
+      username: json['username'] as String,
       gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
     );
 

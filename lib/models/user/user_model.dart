@@ -6,7 +6,7 @@ part 'user_model.g.dart';
 class User {
   const User({
     required this.accessToken,
-    this.username,
+    required this.username,
     this.gender,
   });
 
@@ -14,7 +14,7 @@ class User {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   final String accessToken;
-  final String? username;
+  final String username;
   final Gender? gender;
 
   User copyWith({String? accessToken, String? username, Gender? gender}) {
