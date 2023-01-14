@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
 
 import 'package:hatim/constants/contants.dart';
-import 'package:hatim/core/core.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/locator.dart';
 import 'package:hatim/models/models.dart';
@@ -17,20 +16,35 @@ class HatimView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HatimJuzCubit()),
-        BlocProvider(
-          create: (context) => HatimReadCubit(sl<HatimReadService>())
-            ..getHatim(
-              context.read<AuthCubit>().state.user!.accessToken,
-            ),
-        ),
+        BlocProvider(create: (context) => HatimReadCubit(sl<HatimReadService>())),
       ],
       child: const HatimUI(),
     );
   }
 }
 
-class HatimUI extends StatelessWidget {
+class HatimUI extends StatefulWidget {
   const HatimUI({super.key});
+
+  @override
+  State<HatimUI> createState() => _HatimUIState();
+}
+
+class _HatimUIState extends State<HatimUI> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    final token = context.read<AuthCubit>().state.user!.accessToken;
+    await context.read<HatimReadCubit>().getHatim(token).then(
+      (value) {
+        if (value != null) context.read<HatimJuzCubit>().connect(value, token);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,19 +61,15 @@ class HatimUI extends StatelessWidget {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          if (context.read<AuthCubit>().state.user != null) {
-            await context.read<HatimReadCubit>().getHatim(context.read<AuthCubit>().state.user!.accessToken);
-          }
-        },
-        child: BlocBuilder<HatimReadCubit, HatimReadState>(
+        onRefresh: () async => getData(),
+        child: BlocBuilder<HatimJuzCubit, HatimJuzState>(
           builder: (context, state) {
-            if (state.status == FetchStatus.loading) {
+            if (state.erorText == null && state.hatimJuzs == null) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state.status == FetchStatus.success) {
-              return HatimJuzListBuilder(context.watch<HatimJuzCubit>().hatimJusData);
-            } else if (state.status == FetchStatus.error) {
-              return const Center(child: Text('error'));
+            } else if (state.hatimJuzs != null) {
+              return HatimJuzListBuilder(state.hatimJuzs!);
+            } else if (state.erorText != null) {
+              return Center(child: Text(state.erorText!));
             } else {
               return const Center(child: Text('bilbeim'));
             }
@@ -100,22 +110,15 @@ class HatimJuzListBuilder extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
               key: Key('quran-view-${item.id}-juz'),
-              leading: Text('${item.id}'),
               minLeadingWidth: 10,
-              title: Row(
-                children: [
-                  Text(item.name),
-                  const SizedBox(width: 10),
-                  Text('${item.id} - ${context.l10n.juz}'),
-                ],
-              ),
+              title: Text('   ${item.number}-${context.l10n.juz}'),
               trailing: const Icon(Icons.arrow_forward_ios),
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  VerticalText(context.l10n.hatimDoneRead, '${item.donePercent}%'),
-                  VerticalText(context.l10n.hatimProccessRead, '${item.processPersent}%'),
-                  VerticalText(context.l10n.hatimEmptyRead, '${item.emptyPersent}%'),
+                  VerticalText(context.l10n.hatimDoneRead, '${item.done}'),
+                  VerticalText(context.l10n.hatimProccessRead, '${item.inProgress}'),
+                  VerticalText(context.l10n.hatimEmptyRead, '${item.toDo}'),
                 ],
               ),
               onTap: () async {
@@ -124,7 +127,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                   barrierLabel: '',
                   builder: (ctx) {
                     return BlocProvider(
-                      create: (context) => HatimPageCubit(item.id)..getData(),
+                      create: (context) => HatimPageCubit(item.number)..getData(),
                       child: AlertDialog(
                         insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 15),
