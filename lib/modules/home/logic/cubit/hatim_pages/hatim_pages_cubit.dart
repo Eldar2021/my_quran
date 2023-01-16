@@ -2,30 +2,16 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/core/core.dart';
-import 'package:hatim/models/models.dart';
-import 'package:hatim/modules/modules.dart';
 import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
-part 'hatim_read_state.dart';
+import 'package:hatim/constants/contants.dart';
 
-class HatimReadCubit extends Cubit<HatimReadState> {
-  HatimReadCubit(this.service) : super(const HatimReadState(FetchStatus.loading));
+part 'hatim_pages_state.dart';
 
-  HatimReadService service;
-
-  Future<String?> getHatim(String token) async {
-    emit(state.copyWith(status: FetchStatus.loading));
-    final hatim = await service.getHatim(token);
-    hatim.fold(
-      (l) => emit(state.copyWith(status: FetchStatus.error)),
-      (r) => emit(state.copyWith(status: FetchStatus.success, hatim: r)),
-    );
-    return state.hatim?.id;
-  }
+class HatimPagesCubit extends Cubit<HatimPagesState> {
+  HatimPagesCubit() : super(const HatimPagesState());
 
   late StompClient client;
 
@@ -44,12 +30,12 @@ class HatimReadCubit extends Cubit<HatimReadState> {
 
   void onStompError(StompFrame e) {
     // print(e);
-    // if (!isClosed) emit(state.copyWith());
+    if (!isClosed) emit(state.copyWith(exception: Exception('Some Error $e')));
   }
 
   void onWebSocketError(dynamic e) {
     // print(e);
-    // if (!isClosed) emit(HatimJuzState(erorText: 'Hatim Error $e'));
+    if (!isClosed) emit(state.copyWith(exception: Exception('Some Error $e')));
   }
 
   void callback(StompFrame event) {
@@ -57,7 +43,7 @@ class HatimReadCubit extends Cubit<HatimReadState> {
       final data = jsonDecode(event.body!) as List<dynamic>;
       if (!isClosed) emit(state.copyWith(pages: data));
     } else {
-      // if (!isClosed) emit(const HatimJuzState(erorText: 'Some Error'));
+      if (!isClosed) emit(state.copyWith(exception: Exception('Some Error')));
     }
   }
 

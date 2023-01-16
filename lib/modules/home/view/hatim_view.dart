@@ -15,8 +15,9 @@ class HatimView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => HatimJuzCubit()),
+        BlocProvider(create: (context) => HatimJuzsCubit()),
         BlocProvider(create: (context) => HatimReadCubit(sl<HatimReadService>())),
+        BlocProvider(create: (context) => HatimPagesCubit()),
       ],
       child: const HatimUI(),
     );
@@ -43,8 +44,8 @@ class _HatimUIState extends State<HatimUI> {
     await context.read<HatimReadCubit>().getHatim(token).then(
       (value) {
         if (value != null) {
-          context.read<HatimJuzCubit>().connect(value, token);
-          context.read<HatimReadCubit>().connect(username, token);
+          context.read<HatimJuzsCubit>().connect(value, token);
+          context.read<HatimPagesCubit>().connect(username, token);
         }
       },
     );
@@ -58,7 +59,7 @@ class _HatimUIState extends State<HatimUI> {
         title: Text(context.l10n.hatim),
         actions: [
           Text(
-            '${context.watch<HatimReadCubit>().state.pages != null ? context.watch<HatimReadCubit>().state.pages!.length : '...'}',
+            '${context.watch<HatimPagesCubit>().state.pages != null ? context.watch<HatimPagesCubit>().state.pages!.length : '...'}',
             style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(width: 30),
@@ -66,7 +67,7 @@ class _HatimUIState extends State<HatimUI> {
       ),
       body: RefreshIndicator(
         onRefresh: () async => getData(),
-        child: BlocBuilder<HatimJuzCubit, HatimJuzState>(
+        child: BlocBuilder<HatimJuzsCubit, HatimJuzsState>(
           builder: (context, state) {
             if (state.erorText == null && state.hatimJuzs == null) {
               return const Center(child: CircularProgressIndicator());
@@ -80,13 +81,13 @@ class _HatimUIState extends State<HatimUI> {
           },
         ),
       ),
-      floatingActionButton: context.select((HatimReadCubit cubit) {
+      floatingActionButton: context.select((HatimPagesCubit cubit) {
         if (cubit.state.pages != null && cubit.state.pages!.isNotEmpty) {
           return FloatingActionButton.extended(
             onPressed: () async {
               final token = context.read<AuthCubit>().state.user!.accessToken;
               final username = context.read<AuthCubit>().state.user!.username;
-              context.read<HatimReadCubit>().sendPage(username, token);
+              context.read<HatimPagesCubit>().sendPage(username, token);
               // await Navigator.pushNamed(context, AppRouter.read, arguments: cubit.state.pages);
             },
             label: Text(context.l10n.read),
@@ -142,7 +143,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                   barrierLabel: '',
                   builder: (ctx) {
                     return BlocProvider(
-                      create: (context) => HatimPageCubit(item.number)..getData(),
+                      create: (context) => HatimJuzCubit(item.number)..getData(),
                       child: AlertDialog(
                         insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 15),

@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hatim/models/models.dart';
 
-part 'hatim_page_state.dart';
+part 'hatim_juz_state.dart';
 
-class HatimPageCubit extends Cubit<HatimPageState> {
-  HatimPageCubit(this.juzNumber) : super(const HatimPageState());
+class HatimJuzCubit extends Cubit<HatimJuzState> {
+  HatimJuzCubit(this.juzNumber) : super(const HatimJuzState());
 
   final int juzNumber;
 
   void getData() {
     final hatimPages = hatimPageMockDataList[juzNumber - 1].map(HatimPage.fromJson).toList();
-    emit(HatimPageState(pages: hatimPages));
+    emit(HatimJuzState(pages: hatimPages));
   }
 }

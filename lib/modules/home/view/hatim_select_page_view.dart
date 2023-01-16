@@ -19,7 +19,7 @@ class HatimSelectPageView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.4,
           width: 400,
-          child: BlocBuilder<HatimPageCubit, HatimPageState>(
+          child: BlocBuilder<HatimJuzCubit, HatimJuzState>(
             builder: (context, state) {
               if (state.pages != null) {
                 return HatimPageGridLisrBuilder(state.pages!);

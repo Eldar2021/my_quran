@@ -9,10 +9,10 @@ import 'package:hatim/constants/contants.dart';
 import 'package:hatim/models/hatim/hatim_juz.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
-part 'hatim_juz_state.dart';
+part 'hatim_juzs_state.dart';
 
-class HatimJuzCubit extends Cubit<HatimJuzState> {
-  HatimJuzCubit() : super(const HatimJuzState());
+class HatimJuzsCubit extends Cubit<HatimJuzsState> {
+  HatimJuzsCubit() : super(const HatimJuzsState());
 
   late StompClient client;
 
@@ -30,20 +30,20 @@ class HatimJuzCubit extends Cubit<HatimJuzState> {
   }
 
   void onStompError(StompFrame e) {
-    if (!isClosed) emit(HatimJuzState(erorText: 'Hatim Error $e'));
+    if (!isClosed) emit(HatimJuzsState(erorText: 'Hatim Error $e'));
   }
 
   void onWebSocketError(dynamic e) {
-    if (!isClosed) emit(HatimJuzState(erorText: 'Hatim Error $e'));
+    if (!isClosed) emit(HatimJuzsState(erorText: 'Hatim Error $e'));
   }
 
   void callback(StompFrame event) {
     if (event.body != null) {
       final data = jsonDecode(event.body!) as List<dynamic>;
       final items = data.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
-      if (!isClosed) emit(HatimJuzState(hatimJuzs: items));
+      if (!isClosed) emit(HatimJuzsState(hatimJuzs: items));
     } else {
-      if (!isClosed) emit(const HatimJuzState(erorText: 'Some Error'));
+      if (!isClosed) emit(const HatimJuzsState(erorText: 'Some Error'));
     }
   }
 
