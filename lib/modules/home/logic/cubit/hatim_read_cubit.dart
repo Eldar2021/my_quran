@@ -27,7 +27,7 @@ class HatimReadCubit extends Cubit<HatimReadState> {
     return state.hatim?.id;
   }
 
-  late final StompClient client;
+  late StompClient client;
 
   dynamic connect(String username, String token) {
     client = StompClient(
@@ -53,10 +53,8 @@ class HatimReadCubit extends Cubit<HatimReadState> {
   }
 
   void callback(StompFrame event) {
-    // print(event);
     if (event.body != null) {
       final data = jsonDecode(event.body!) as List<dynamic>;
-      // final items = data.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
       if (!isClosed) emit(state.copyWith(pages: data));
     } else {
       // if (!isClosed) emit(const HatimJuzState(erorText: 'Some Error'));
@@ -87,12 +85,6 @@ class HatimReadCubit extends Cubit<HatimReadState> {
       ),
     );
   }
-
-  /*
-  8dac960a-e3b4-4e22-900d-746e983cb099
-055ca101-f258-4aaa-a8c5-e38befb0a60b
-56ea7c60-5265-4479-bcb8-c0d5387eb6b9
-  */
 
   Future<void> setPage(int newPage) async {}
 

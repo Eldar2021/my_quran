@@ -14,7 +14,7 @@ part 'hatim_juz_state.dart';
 class HatimJuzCubit extends Cubit<HatimJuzState> {
   HatimJuzCubit() : super(const HatimJuzState());
 
-  late final StompClient client;
+  late StompClient client;
 
   dynamic connect(String hatimId, String token) {
     client = StompClient(

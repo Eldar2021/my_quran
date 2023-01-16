@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hatim/app/app.dart';
+import 'package:hatim/constants/contants.dart';
 
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/locator.dart';
@@ -56,13 +57,9 @@ class _HatimUIState extends State<HatimUI> {
         key: const Key('hatim-view'),
         title: Text(context.l10n.hatim),
         actions: [
-          BlocBuilder<HatimReadCubit, HatimReadState>(
-            builder: (context, state) {
-              return Text(
-                '${context.watch<HatimReadCubit>().state.pages != null ? context.watch<HatimReadCubit>().state.pages!.length : '...'}',
-                style: const TextStyle(fontSize: 20),
-              );
-            },
+          Text(
+            '${context.watch<HatimReadCubit>().state.pages != null ? context.watch<HatimReadCubit>().state.pages!.length : '...'}',
+            style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(width: 30),
         ],
@@ -83,27 +80,30 @@ class _HatimUIState extends State<HatimUI> {
           },
         ),
       ),
-      // floatingActionButton: context.select((HatimReadCubit cubit) {
-      //   if (cubit.state.pages != null && cubit.state.pages!.isNotEmpty) {
-      //     return FloatingActionButton.extended(
-      //       onPressed: () async {
-      //         await Navigator.pushNamed(context, AppRouter.read, arguments: cubit.state.pages);
-      //       },
-      //       label: Text(context.l10n.read),
-      //       icon: Assets.icons.openBook.svg(),
-      //     );
-      //   } else {
-      //     return null;
-      //   }
-      // }),
+      floatingActionButton: context.select((HatimReadCubit cubit) {
+        if (cubit.state.pages != null && cubit.state.pages!.isNotEmpty) {
+          return FloatingActionButton.extended(
+            onPressed: () async {
+              final token = context.read<AuthCubit>().state.user!.accessToken;
+              final username = context.read<AuthCubit>().state.user!.username;
+              context.read<HatimReadCubit>().sendPage(username, token);
+              // await Navigator.pushNamed(context, AppRouter.read, arguments: cubit.state.pages);
+            },
+            label: Text(context.l10n.read),
+            icon: Assets.icons.openBook.svg(),
+          );
+        } else {
+          return null;
+        }
+      }),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final token = context.read<AuthCubit>().state.user!.accessToken;
-          final username = context.read<AuthCubit>().state.user!.username;
-          context.read<HatimReadCubit>().sendPage(username, token);
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     final token = context.read<AuthCubit>().state.user!.accessToken;
+      //     final username = context.read<AuthCubit>().state.user!.username;
+      //     context.read<HatimReadCubit>().sendPage(username, token);
+      //   },
+      // ),
     );
   }
 }
