@@ -54,8 +54,8 @@ class _HatimUIState extends State<HatimUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('hatim-view'),
       appBar: AppBar(
-        key: const Key('hatim-view'),
         title: Text(context.l10n.hatim),
         actions: [
           Text(
@@ -125,7 +125,7 @@ class HatimJuzListBuilder extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
-              key: Key('quran-view-${item.id}-juz'),
+              key: Key('quran-view-$index-juz'),
               minLeadingWidth: 10,
               title: Text('   ${item.number}-${context.l10n.juz}'),
               trailing: const Icon(Icons.arrow_forward_ios),
