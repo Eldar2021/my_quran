@@ -20,7 +20,7 @@ jobs:
       - uses: futureware-tech/simulator-action@v2
         with:
           model: "iPhone 14"
-          os_version: "16.0"
+          os_version: "16.2"
       - run: flutter drive --target=test_driver/app.dart
       - uses: actions/upload-artifact@v3
         if: always()
