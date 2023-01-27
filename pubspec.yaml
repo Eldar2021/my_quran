@@ -6,8 +6,8 @@ publish_to: "none"
 version: 0.0.1-dev2
 
 environment:
-  sdk: ">=2.18.5 <3.0.0"
-  flutter: 3.3.10
+  sdk: ">=2.18.5 <4.0.0"
+  flutter: 3.7.0
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.5
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
   get_it: ^7.2.0
@@ -24,10 +24,10 @@ dependencies:
   dio: ^4.0.6
   hive: ^2.2.3
   infinite_scroll_pagination: ^3.2.0
-  path_provider: ^2.0.11
+  path_provider: ^2.0.12
   flutter_svg: ^1.1.6
-  url_launcher: ^6.1.7
-  json_annotation: ^4.7.0
+  url_launcher: ^6.1.8
+  json_annotation: ^4.8.0
   # flutter_native_splash: ^2.2.16
 
 dev_dependencies:
@@ -35,12 +35,12 @@ dev_dependencies:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  test: ^1.21.4
+  test: ^1.22.0
   very_good_analysis: ^3.1.0
   mocktail: ^0.3.0
-  build_runner:
+  build_runner: ^2.3.3
   flutter_gen_runner: ^5.1.0+1
-  json_serializable: ^6.5.4
+  json_serializable: ^6.6.0
   # flutter_launcher_icons: ^0.11.0
 
 flutter:
@@ -64,14 +64,14 @@ flutter:
   #         weight: 700
 
 flutter_gen:
-  output: lib/constants/assets/  # Optional (default: lib/gen/)
-  line_length: 80   # Optional (default: 80)
+  output: lib/constants/assets/ # Optional (default: lib/gen/)
+  line_length: 80 # Optional (default: 80)
 
   integrations:
     flutter_svg: true
     # flare_flutter: true
     # rive: true
-    # lottie: true  
+    # lottie: true
 
 flutter_icons:
   android: "launcher_icon"
