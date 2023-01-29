@@ -6,7 +6,7 @@ A Quran Hatim Aplication.
 
 ## Requirements
 - Dart sdk: ">=2.18.5 <3.0.0"
-- Flutter: "3.3.10"
+- Flutter: "3.7.0"
 - Android: minSdkVersion 17
 - iOS: --ios-language swift, Xcode version >= 14.0.0
 
@@ -38,7 +38,7 @@ length of the code to 120.
 * Autoformat on save: Settings > Languages and Frameworks > then tick: `Format code on save`, `Organize imports on save`.
 * Format the whole codebase with:
 ```
-flutter format . --line-length 120
+dart format . --line-length 120
 ```
 ## Generate
 * Re generate .g files run:
