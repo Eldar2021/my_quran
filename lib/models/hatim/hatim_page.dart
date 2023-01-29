@@ -3,22 +3,33 @@ import 'package:json_annotation/json_annotation.dart';
 part 'hatim_page.g.dart';
 
 @JsonSerializable()
-class HatimPage {
-  const HatimPage({
+class HatimPages {
+  const HatimPages({
     required this.id,
     required this.status,
-    required this.isMy,
+    required this.number,
+    required this.mine,
   });
 
-  factory HatimPage.fromJson(Map<String, dynamic> json) => _$HatimPageFromJson(json);
-  Map<String, dynamic> toJson() => _$HatimPageToJson(this);
+  factory HatimPages.fromJson(Map<String, dynamic> json) => _$HatimPagesFromJson(json);
+  Map<String, dynamic> toJson() => _$HatimPagesToJson(this);
 
-  final int id;
-  final PageStatus status;
-  final bool isMy;
+  final String id;
+  final int number;
+  final Status status;
+  final bool mine;
 }
 
-enum PageStatus { empty, process, done }
+enum Status {
+  @JsonValue('TODO')
+  todo,
+  @JsonValue('BOOKED')
+  booked,
+  @JsonValue('IN_PROGRESS')
+  inProgress,
+  @JsonValue('DONE')
+  done,
+}
 
 final hatimPageMockDataList = [
   hatimPageMockData1,

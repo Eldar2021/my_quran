@@ -29,12 +29,10 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
   }
 
   void onStompError(StompFrame e) {
-    // print(e);
     if (!isClosed) emit(state.copyWith(exception: Exception('Some Error $e')));
   }
 
   void onWebSocketError(dynamic e) {
-    // print(e);
     if (!isClosed) emit(state.copyWith(exception: Exception('Some Error $e')));
   }
 
@@ -56,20 +54,25 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
   }
 
   void sendPage(String username, String token) {
-    client.send(
-      destination: ApiConst.setInProgress,
-      headers: ApiConst.authMap(token),
-      body: jsonEncode(
-        {
-          'pageIds': [
-            '8dac960a-e3b4-4e22-900d-746e983cb099',
-            '055ca101-f258-4aaa-a8c5-e38befb0a60b',
-            '56ea7c60-5265-4479-bcb8-c0d5387eb6b9'
-          ],
-          'username': username,
-        },
-      ),
-    );
+    if (state.pages != null && state.pages!.isNotEmpty) {
+      final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]['id']);
+      client.send(
+        destination: ApiConst.setInProgress,
+        headers: ApiConst.authMap(token),
+        body: jsonEncode({'pageIds': pageIds, 'username': username}),
+      );
+    }
+  }
+
+  void donePage(String username, String token) {
+    if (state.pages != null && state.pages!.isNotEmpty) {
+      final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]['id']);
+      client.send(
+        destination: ApiConst.setDone,
+        headers: ApiConst.authMap(token),
+        body: jsonEncode({'pageIds': pageIds, 'username': username}),
+      );
+    }
   }
 
   Future<void> setPage(int newPage) async {}

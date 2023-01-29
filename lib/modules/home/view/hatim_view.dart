@@ -88,7 +88,18 @@ class _HatimUIState extends State<HatimUI> {
               final token = context.read<AuthCubit>().state.user!.accessToken;
               final username = context.read<AuthCubit>().state.user!.username;
               context.read<HatimPagesCubit>().sendPage(username, token);
-              // await Navigator.pushNamed(context, AppRouter.read, arguments: cubit.state.pages);
+              final pages =
+                  List<int>.generate(cubit.state.pages!.length, (index) => cubit.state.pages![index]['number'] as int)
+                    ..sort();
+              final value = await Navigator.pushNamed<bool>(
+                context,
+                AppRouter.read,
+                arguments: {'pages': pages, 'isHatim': true},
+              );
+
+              if (value != null && value && context.mounted) {
+                context.read<HatimPagesCubit>().donePage(username, token);
+              }
             },
             label: Text(context.l10n.read),
             icon: Assets.icons.openBook.svg(),
@@ -139,12 +150,14 @@ class HatimJuzListBuilder extends StatelessWidget {
                 ],
               ),
               onTap: () async {
+                final token = context.read<AuthCubit>().state.user!.accessToken;
+                final hatimId = item.id;
                 await showDialog<void>(
                   context: context,
                   barrierLabel: '',
                   builder: (ctx) {
                     return BlocProvider(
-                      create: (context) => HatimJuzCubit(item.number)..getData(),
+                      create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
                       child: AlertDialog(
                         insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 15),

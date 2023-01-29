@@ -1,10 +1,18 @@
 part of 'hatim_juz_cubit.dart';
 
 class HatimJuzState extends Equatable {
-  const HatimJuzState({this.pages});
+  const HatimJuzState({this.pages, this.status = FetchStatus.loading});
 
-  final List<HatimPage>? pages;
+  final List<HatimPages>? pages;
+  final FetchStatus status;
 
   @override
-  List<Object?> get props => [pages];
+  List<Object?> get props => [pages, status];
+
+  HatimJuzState copyWith({List<HatimPages>? pages, FetchStatus? status}) {
+    return HatimJuzState(
+      pages: pages ?? this.pages,
+      status: status ?? this.status,
+    );
+  }
 }

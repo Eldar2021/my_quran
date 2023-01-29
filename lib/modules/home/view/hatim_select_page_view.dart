@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hatim/app/app.dart';
 
 import 'package:hatim/components/components.dart';
+import 'package:hatim/core/core.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
@@ -21,10 +22,14 @@ class HatimSelectPageView extends StatelessWidget {
           width: 400,
           child: BlocBuilder<HatimJuzCubit, HatimJuzState>(
             builder: (context, state) {
-              if (state.pages != null) {
-                return HatimPageGridLisrBuilder(state.pages!);
+              if (state.status == FetchStatus.loading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.status == FetchStatus.success) {
+                return HatimPageGridLisrBuilder(state.pages ?? []);
+              } else if (state.status == FetchStatus.error) {
+                return const Center(child: Text('error'));
               } else {
-                return const Center(child: CupertinoAlertDialog());
+                return const Center(child: Text('some'));
               }
             },
           ),
@@ -60,7 +65,7 @@ class HatimSelectPageView extends StatelessWidget {
 class HatimPageGridLisrBuilder extends StatelessWidget {
   const HatimPageGridLisrBuilder(this.items, {super.key});
 
-  final List<HatimPage> items;
+  final List<HatimPages> items;
 
   @override
   Widget build(BuildContext context) {
@@ -85,26 +90,31 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
 class HatimPageStatusCard extends StatelessWidget {
   const HatimPageStatusCard({super.key, required this.hatimPage});
 
-  final HatimPage hatimPage;
+  final HatimPages hatimPage;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
-      onTap: hatimPage.status == PageStatus.empty ? () {} : null,
+      onTap: hatimPage.status == Status.todo
+          ? () {
+              final user = context.read<AuthCubit>().state.user!;
+              context.read<HatimJuzCubit>().selectPage(hatimPage.id, user.accessToken, user.username);
+            }
+          : null,
       child: MaterialCard(
-        color: hatimPage.status == PageStatus.done
+        color: hatimPage.status == Status.done
             ? colorScheme.primary
-            : hatimPage.status == PageStatus.process
+            : hatimPage.status == Status.booked || hatimPage.status == Status.inProgress
                 ? colorScheme.tertiary
                 : colorScheme.secondary,
-        text: '${hatimPage.id}',
-        textColor: hatimPage.status == PageStatus.done
+        text: '${hatimPage.number}',
+        textColor: hatimPage.status == Status.done
             ? colorScheme.onPrimary
-            : hatimPage.status == PageStatus.process
+            : hatimPage.status == Status.inProgress
                 ? colorScheme.onTertiary
                 : colorScheme.onSecondary,
-        check: hatimPage.isMy
+        check: hatimPage.mine
             ? Positioned(
                 right: 2,
                 top: 2,

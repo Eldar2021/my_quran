@@ -15,9 +15,10 @@ const bgReadThemeColor = [
 ];
 
 class ReadView extends StatelessWidget {
-  const ReadView(this.pages, {super.key});
+  const ReadView(this.pages, {super.key, required this.isHatim});
 
   final List<int> pages;
+  final bool isHatim;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +27,20 @@ class ReadView extends StatelessWidget {
         BlocProvider(create: (context) => ReadCubit(sl<ReadService>(), pages)),
         BlocProvider(create: (context) => ReadThemeCubit(sl<ReadThemeService>())),
       ],
-      child: ReadUI(pages: pages),
+      child: ReadUI(pages: pages, isHatim: isHatim),
     );
   }
 }
 
 class ReadUI extends StatelessWidget {
-  const ReadUI({super.key, required this.pages});
+  const ReadUI({
+    super.key,
+    required this.pages,
+    required this.isHatim,
+  });
 
   final List<int> pages;
+  final bool isHatim;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +93,7 @@ class ReadUI extends StatelessWidget {
               vertical: context.watch<ReadThemeCubit>().state.theme.verticalSpace.toDouble(),
               horizontal: context.watch<ReadThemeCubit>().state.theme.horizontalSpace.toDouble(),
             ),
-            sliver: PaginationView(pages),
+            sliver: PaginationView(pages, isHatim: isHatim),
           ),
         ],
       ),

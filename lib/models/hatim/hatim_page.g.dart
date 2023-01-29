@@ -6,20 +6,23 @@ part of 'hatim_page.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-HatimPage _$HatimPageFromJson(Map<String, dynamic> json) => HatimPage(
-      id: json['id'] as int,
-      status: $enumDecode(_$PageStatusEnumMap, json['status']),
-      isMy: json['isMy'] as bool,
+HatimPages _$HatimPagesFromJson(Map<String, dynamic> json) => HatimPages(
+      id: json['id'] as String,
+      status: $enumDecode(_$StatusEnumMap, json['status']),
+      number: json['number'] as int,
+      mine: json['mine'] as bool,
     );
 
-Map<String, dynamic> _$HatimPageToJson(HatimPage instance) => <String, dynamic>{
+Map<String, dynamic> _$HatimPagesToJson(HatimPages instance) => <String, dynamic>{
       'id': instance.id,
-      'status': _$PageStatusEnumMap[instance.status]!,
-      'isMy': instance.isMy,
+      'number': instance.number,
+      'status': _$StatusEnumMap[instance.status]!,
+      'mine': instance.mine,
     };
 
-const _$PageStatusEnumMap = {
-  PageStatus.empty: 'empty',
-  PageStatus.process: 'process',
-  PageStatus.done: 'done',
+const _$StatusEnumMap = {
+  Status.todo: 'TODO',
+  Status.booked: 'BOOKED',
+  Status.inProgress: 'IN_PROGRESS',
+  Status.done: 'DONE',
 };

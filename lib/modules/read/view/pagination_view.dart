@@ -10,8 +10,9 @@ import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
 class PaginationView extends StatefulWidget {
-  const PaginationView(this.pages, {super.key});
+  const PaginationView(this.pages, {super.key, required this.isHatim});
   final List<int> pages;
+  final bool isHatim;
 
   @override
   State<PaginationView> createState() => _PaginationViewState();
@@ -85,11 +86,15 @@ class _PaginationViewState extends State<PaginationView> {
                       foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                     ),
                     onPressed: () async {
-                      await AppAlert.showAmin<void>(
+                      final value = await AppAlert.showAmin<bool>(
                         context,
                         context.read<AuthCubit>().state.user?.gender ?? Gender.male,
                         totalPages: widget.pages.length,
+                        isHatim: widget.isHatim,
                       );
+                      if (value != null && value && context.mounted) {
+                        Navigator.of(context).pop(true);
+                      }
                     },
                     child: Text(context.l10n.amin),
                   ),
