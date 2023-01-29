@@ -9,7 +9,7 @@ import 'package:hatim/utils/urils.dart';
 
 const bgReadThemeColor = [
   Color(0xffFFFFFF),
-  Color(0xffE1D0A5),
+  Color(0xffFFEBD0),
   Color(0xff363636),
   Color(0xff000000),
 ];

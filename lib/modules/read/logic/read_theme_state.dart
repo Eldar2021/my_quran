@@ -14,7 +14,7 @@ class ReadTheme extends Equatable {
     this.verticalSpace = 0,
     this.horizontalSpace = 14,
     this.modeIndex = 2,
-    this.textSize = 18,
+    this.textSize = 22,
   });
 
   final int verticalSpace;
