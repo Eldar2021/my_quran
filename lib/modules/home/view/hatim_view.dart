@@ -116,6 +116,7 @@ class HatimJuzListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
       itemCount: items.length,
@@ -149,6 +150,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                         contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                         actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
                         iconPadding: EdgeInsets.zero,
+                        backgroundColor: colorScheme.onPrimary,
                         title: Text(
                           context.l10n.hatimPleaseSelectPage,
                           key: const Key('hatim-select-pages'),
@@ -165,9 +167,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                           const SizedBox(width: 12),
                           OutlinedButton(
                             key: const Key('ok-button'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
+                            onPressed: () => Navigator.pop(context),
                             child: Text(context.l10n.select),
                           )
                         ],
