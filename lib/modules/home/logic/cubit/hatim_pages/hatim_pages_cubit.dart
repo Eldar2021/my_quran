@@ -7,6 +7,7 @@ import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
 import 'package:hatim/constants/contants.dart';
+import 'package:hatim/models/models.dart';
 
 part 'hatim_pages_state.dart';
 
@@ -39,7 +40,12 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
   void callback(StompFrame event) {
     if (event.body != null) {
       final data = jsonDecode(event.body!) as List<dynamic>;
-      if (!isClosed) emit(state.copyWith(pages: data));
+      if (data.isNotEmpty) {
+        final items = data.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
+        if (!isClosed) emit(state.copyWith(pages: items));
+      } else {
+        if (!isClosed) emit(state.copyWith(pages: <HatimPages>[]));
+      }
     } else {
       if (!isClosed) emit(state.copyWith(exception: Exception('Some Error')));
     }
@@ -55,7 +61,7 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
 
   void sendPage(String username, String token) {
     if (state.pages != null && state.pages!.isNotEmpty) {
-      final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]['id']);
+      final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]!.id);
       client.send(
         destination: ApiConst.setInProgress,
         headers: ApiConst.authMap(token),
@@ -66,13 +72,19 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
 
   void donePage(String username, String token) {
     if (state.pages != null && state.pages!.isNotEmpty) {
-      final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]['id']);
+      final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]!.id);
       client.send(
         destination: ApiConst.setDone,
         headers: ApiConst.authMap(token),
         body: jsonEncode({'pageIds': pageIds, 'username': username}),
       );
     }
+  }
+
+  @override
+  Future<void> close() {
+    client.deactivate();
+    return super.close();
   }
 
   Future<void> setPage(int newPage) async {}

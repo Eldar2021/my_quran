@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:hatim/app/app.dart';
 import 'package:hatim/constants/contants.dart';
-
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/locator.dart';
 import 'package:hatim/models/models.dart';
@@ -88,15 +88,13 @@ class _HatimUIState extends State<HatimUI> {
               final token = context.read<AuthCubit>().state.user!.accessToken;
               final username = context.read<AuthCubit>().state.user!.username;
               context.read<HatimPagesCubit>().sendPage(username, token);
-              final pages =
-                  List<int>.generate(cubit.state.pages!.length, (index) => cubit.state.pages![index]['number'] as int)
-                    ..sort();
+              final pages = List<int>.generate(cubit.state.pages!.length, (index) => cubit.state.pages![index]!.number)
+                ..sort();
               final value = await Navigator.pushNamed<bool>(
                 context,
                 AppRouter.read,
                 arguments: {'pages': pages, 'isHatim': true},
               );
-
               if (value != null && value && context.mounted) {
                 context.read<HatimPagesCubit>().donePage(username, token);
               }
@@ -108,14 +106,6 @@ class _HatimUIState extends State<HatimUI> {
           return null;
         }
       }),
-
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     final token = context.read<AuthCubit>().state.user!.accessToken;
-      //     final username = context.read<AuthCubit>().state.user!.username;
-      //     context.read<HatimReadCubit>().sendPage(username, token);
-      //   },
-      // ),
     );
   }
 }
@@ -127,7 +117,6 @@ class HatimJuzListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
       itemCount: items.length,
@@ -158,33 +147,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                   builder: (ctx) {
                     return BlocProvider(
                       create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
-                      child: AlertDialog(
-                        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                        actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                        iconPadding: EdgeInsets.zero,
-                        backgroundColor: colorScheme.onPrimary,
-                        title: Text(
-                          context.l10n.hatimPleaseSelectPage,
-                          key: const Key('hatim-select-pages'),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                        ),
-                        content: const HatimSelectPageView(),
-                        actions: [
-                          OutlinedButton(
-                            key: const Key('cancel-button'),
-                            onPressed: () => Navigator.pop(context),
-                            child: Text(context.l10n.cancel),
-                          ),
-                          const SizedBox(width: 12),
-                          OutlinedButton(
-                            key: const Key('ok-button'),
-                            onPressed: () => Navigator.pop(context),
-                            child: Text(context.l10n.select),
-                          )
-                        ],
-                      ),
+                      child: const HatimJusAlert(),
                     );
                   },
                 );
@@ -193,6 +156,36 @@ class HatimJuzListBuilder extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class HatimJusAlert extends StatelessWidget {
+  const HatimJusAlert({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return AlertDialog(
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+      actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+      iconPadding: EdgeInsets.zero,
+      backgroundColor: colorScheme.onPrimary,
+      title: Text(
+        context.l10n.hatimPleaseSelectPage,
+        key: const Key('hatim-select-pages'),
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      ),
+      content: const HatimSelectPageView(),
+      actions: [
+        OutlinedButton(
+          key: const Key('ok-button'),
+          onPressed: () => Navigator.pop(context),
+          child: Text(context.l10n.select),
+        )
+      ],
     );
   }
 }

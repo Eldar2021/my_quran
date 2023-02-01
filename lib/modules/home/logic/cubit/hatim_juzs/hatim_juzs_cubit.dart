@@ -54,4 +54,10 @@ class HatimJuzsCubit extends Cubit<HatimJuzsState> {
       callback: callback,
     );
   }
+
+  @override
+  Future<void> close() {
+    client.deactivate();
+    return super.close();
+  }
 }

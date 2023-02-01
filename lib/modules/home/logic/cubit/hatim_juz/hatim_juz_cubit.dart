@@ -67,4 +67,10 @@ class HatimJuzCubit extends Cubit<HatimJuzState> {
       body: jsonEncode({'pageId': pageId, 'username': username}),
     );
   }
+
+  @override
+  Future<void> close() {
+    client.deactivate();
+    return super.close();
+  }
 }
