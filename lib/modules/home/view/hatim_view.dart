@@ -181,6 +181,12 @@ class HatimJusAlert extends StatelessWidget {
       content: const HatimSelectPageView(),
       actions: [
         OutlinedButton(
+          key: const Key('cancel-button'),
+          onPressed: () => Navigator.pop(context),
+          child: Text(context.l10n.cancel),
+        ),
+        const SizedBox(width: 12),
+        OutlinedButton(
           key: const Key('ok-button'),
           onPressed: () => Navigator.pop(context),
           child: Text(context.l10n.select),
