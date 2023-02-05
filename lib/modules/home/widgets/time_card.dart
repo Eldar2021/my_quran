@@ -36,7 +36,7 @@ class _TimeCardState extends State<TimeCard> {
     return HomeCard(
       titleText: DateFormat('dd/MM/yyy').format(dateTime),
       descriptioText: context.l10n.homeMotivationTime,
-      valueText: DateFormat('mm:ss').format(dateTime),
+      valueText: DateFormat('hh:mm:ss').format(dateTime),
     );
   }
 }

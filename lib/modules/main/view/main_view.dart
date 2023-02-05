@@ -15,7 +15,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   @override
   void initState() {
-    context.read<AuthCubit>().getTotalHatimAndTotalRead();
+    context.read<HomeCubit>().getData(context.read<AuthCubit>().state.user!.accessToken);
     super.initState();
   }
 

@@ -50,8 +50,11 @@ class AppRouter {
         );
       case read:
         final args = settings.arguments!;
-        return CupertinoPageRoute(
-          builder: (_) => ReadView(args as List<int>),
+        return CupertinoPageRoute<bool>(
+          builder: (_) => ReadView(
+            (args as Map<String, dynamic>)['pages'] as List<int>,
+            isHatim: args['isHatim'] as bool,
+          ),
           settings: settings,
         );
       case login:

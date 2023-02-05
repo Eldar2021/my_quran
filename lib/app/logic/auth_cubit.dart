@@ -11,9 +11,13 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthService service;
 
-  Future<void> login(User user) async {
-    await service.login(user);
-    emit(state.copyWith(user: user));
+  Future<AuthState> login(String languageCode, Gender gender) async {
+    final user = await service.login(languageCode, gender);
+    user.fold(
+      (l) => emit(state.copyWith(exception: l)),
+      (r) => emit(state.copyWith(user: r)),
+    );
+    return state;
   }
 
   Future<void> logout() async {
@@ -24,17 +28,5 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> setGender(Gender gender) async {
     await service.changeGender(gender);
     emit(state.copyWith(user: state.user?.copyWith(gender: gender)));
-  }
-
-  void getTotalHatimAndTotalRead() {
-    final totalHatim = service.getTotalHatim();
-    final totalRead = service.getTotalRead();
-    emit(state.copyWith(totalHatim: totalHatim, totalRead: totalRead));
-  }
-
-  Future<void> setTotalRead(int value) async {
-    final totalRead = value + (state.totalRead ?? 0);
-    await service.saveTotalRead(totalRead.toString());
-    emit(state.copyWith(totalRead: totalRead));
   }
 }

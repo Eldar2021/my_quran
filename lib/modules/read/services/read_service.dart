@@ -17,7 +17,7 @@ class ReadService {
       final data = jsonDecode(localvalue);
       return QuranPage.fromJson(data as Map<String, dynamic>);
     } else {
-      final remoteValue = await remoteClient.getData<QuranPage>(
+      final remoteValue = await remoteClient.get<QuranPage>(
         ApiConst.verse(page),
         fromJson: QuranPage.fromJson,
       );

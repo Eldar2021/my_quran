@@ -1,20 +1,18 @@
 part of 'auth_cubit.dart';
 
 class AuthState extends Equatable {
-  const AuthState({this.user, this.totalHatim, this.totalRead});
+  const AuthState({this.user, this.exception});
 
   final User? user;
-  final int? totalHatim;
-  final int? totalRead;
+  final Exception? exception;
 
   @override
-  List<Object?> get props => [user, totalRead];
+  List<Object?> get props => [user, exception];
 
-  AuthState copyWith({User? user, int? totalHatim, int? totalRead}) {
+  AuthState copyWith({User? user, Exception? exception}) {
     return AuthState(
       user: user ?? this.user,
-      totalHatim: totalHatim ?? this.totalHatim,
-      totalRead: totalRead ?? this.totalRead,
+      exception: exception ?? this.exception,
     );
   }
 }

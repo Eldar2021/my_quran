@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hatim/app/app.dart';
 
 import 'package:hatim/components/components.dart';
 import 'package:hatim/constants/contants.dart';
@@ -21,7 +19,7 @@ class AppAlert {
     );
   }
 
-  static Future<T?> showAmin<T>(BuildContext context, Gender gender, {bool isHatim = false, required int totalPages}) {
+  static Future<T?> showAmin<T>(BuildContext context, Gender gender, {required bool isHatim, required int totalPages}) {
     final colorScheme = Theme.of(context).colorScheme;
     return showDialog<T>(
       context: context,
@@ -35,13 +33,12 @@ class AppAlert {
           actions: [
             CustomButton(
               text: context.l10n.amin,
-              onPressed: () async {
+              onPressed: () {
                 if (isHatim) {
-                  //Navigator.popUntil(context, (route) => false);
+                  Navigator.of(context).pop(true);
+                } else {
+                  Navigator.of(context).pop(false);
                 }
-                await context.read<AuthCubit>().setTotalRead(totalPages);
-                // ignore: use_build_context_synchronously
-                Navigator.popUntil(context, (route) => route.isFirst);
               },
             )
           ],

@@ -1,18 +1,26 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user_model.g.dart';
+
+@JsonSerializable()
 class User {
   const User({
-    this.token = 'token',
-    this.name = 'name',
-    required this.gender,
+    required this.accessToken,
+    required this.username,
+    this.gender,
   });
 
-  final String token;
-  final String name;
-  final Gender gender;
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 
-  User copyWith({String? token, String? name, Gender? gender}) {
+  final String accessToken;
+  final String username;
+  final Gender? gender;
+
+  User copyWith({String? accessToken, String? username, Gender? gender}) {
     return User(
-      token: token ?? this.token,
-      name: name ?? this.name,
+      accessToken: accessToken ?? this.accessToken,
+      username: username ?? this.username,
       gender: gender ?? this.gender,
     );
   }

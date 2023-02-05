@@ -249,14 +249,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.8"
-  dio:
-    dependency: "direct main"
-    description:
-      name: dio
-      sha256: "7d328c4d898a61efc3cd93655a0955858e29a0aa647f0f9e02d59b3bb275e2e8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.6"
   equatable:
     dependency: "direct main"
     description:
@@ -399,6 +391,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.3"
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      sha256: "6aa2946395183537c8b880962d935877325d6a09a2867c3970c05c0fed6ac482"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.5"
   http_multi_server:
     dependency: transitive
     description:
@@ -772,6 +772,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  stomp_dart_client:
+    dependency: "direct main"
+    description:
+      name: stomp_dart_client
+      sha256: "8779d1383f0a6faa0623af27ab6d4b228ab76c75020d9a83ade5ee204eac5153"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.4"
   stream_channel:
     dependency: transitive
     description:
@@ -957,7 +965,7 @@ packages:
     source: hosted
     version: "1.0.2"
   web_socket_channel:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: web_socket_channel
       sha256: ca49c0bc209c687b887f30527fb6a9d80040b072cc2990f34b9bec3e7663101b

@@ -17,7 +17,7 @@ class ReadThemeService {
     final horizontallSace = storage.read(key: _horizontallSace);
     final modeIndex = storage.read(key: _modeIndex);
     return ReadTheme(
-      textSize: textSize ?? 18,
+      textSize: textSize ?? 22,
       verticalSpace: verticalSpace ?? 0,
       horizontalSpace: horizontallSace ?? 14,
       modeIndex: modeIndex ?? 1,

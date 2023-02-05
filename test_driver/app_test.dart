@@ -32,34 +32,10 @@ void main() async {
     await driver.waitFor(find.byValueKey('al-quran'));
 
     await takeScreenshot(driver, 'home-view');
-    await driver.scrollUntilVisible(
-      find.byValueKey('home-list-view'),
-      find.byValueKey('home-view-button'),
-      dyScroll: -100,
-    );
-
-    await driver.tap(find.byValueKey('home-view-button'));
-  });
-
-  test('hatim-view', () async {
-    await driver.waitFor(find.byValueKey('hatim-view'));
-
-    await takeScreenshot(driver, 'hatim-view');
-    await driver.tap(find.byValueKey('quran-view-1-juz'));
-  });
-
-  test('hatim-alert-view', () async {
-    await driver.waitFor(find.byValueKey('hatim-select-pages'));
-
-    await takeScreenshot(driver, 'hatim-alert-view');
-    await driver.tap(find.byValueKey('ok-button'));
-    await driver.tap(find.byValueKey('quran-view-1-juz'));
-    await driver.tap(find.byValueKey('cancel-button'));
-    await driver.tap(find.pageBack());
-    await driver.tap(find.byValueKey('quran'));
   });
 
   test('quran-view', () async {
+    await driver.tap(find.byValueKey('quran'));
     await driver.waitFor(find.byValueKey('quran-view'));
 
     await takeScreenshot(driver, 'juz_items');
@@ -138,6 +114,46 @@ void main() async {
     await driver.tap(find.pageBack());
     await driver.tap(find.byValueKey('home'));
   });
+
+  test(
+    'hatim-view-go',
+    () async {
+      await driver.waitFor(find.byValueKey('al-quran'));
+      await driver.scrollUntilVisible(
+        find.byValueKey('home-list-view'),
+        find.byValueKey('home-view-button'),
+        dyScroll: -100,
+      );
+      await driver.tap(find.byValueKey('home-view-button'));
+    },
+    timeout: const Timeout(Duration(seconds: 60)),
+  );
+
+  test(
+    'hatim-view',
+    () async {
+      await driver.waitFor(find.byValueKey('hatim-view'));
+      await addDelay(700);
+      await driver.waitFor(find.byValueKey('quran-view-1-juz'));
+      await takeScreenshot(driver, 'hatim-view');
+      await driver.tap(find.byValueKey('quran-view-1-juz'));
+    },
+    timeout: const Timeout(Duration(seconds: 60)),
+  );
+
+  test(
+    'hatim-alert-view',
+    () async {
+      await driver.waitFor(find.byValueKey('hatim-select-pages'));
+
+      await takeScreenshot(driver, 'hatim-alert-view');
+      await driver.tap(find.byValueKey('ok-button'));
+      await driver.tap(find.byValueKey('quran-view-2-juz'));
+      await driver.tap(find.byValueKey('cancel-button'));
+      await driver.tap(find.pageBack());
+    },
+    timeout: const Timeout(Duration(seconds: 60)),
+  );
 
   tearDownAll(() async {
     await driver.close();

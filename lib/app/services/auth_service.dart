@@ -1,30 +1,57 @@
+import 'package:dartz/dartz.dart';
+import 'package:hatim/constants/contants.dart';
 import 'package:hatim/core/core.dart';
-
 import 'package:hatim/models/models.dart';
 
 class AuthService {
-  const AuthService(this.storage);
+  const AuthService(this.storage, this.client);
 
   final AppCache<String> storage;
+  final RemoteClient client;
 
   static const String _token = 'token';
   static const String _gender = 'gender';
+  static const String _username = 'username';
   static const String _totalHatim = 'total_hatim';
   static const String _totalRead = 'total_read';
 
   User? init() {
     final userToken = storage.read(key: _token);
     final userGender = storage.read(key: _gender);
-    if (userToken != null && userGender != null) {
-      return User(token: token, gender: userGender == Gender.male.name ? Gender.male : Gender.female);
+    final username = storage.read(key: _username);
+    if (userToken != null && userGender != null && username != null) {
+      return User(
+        accessToken: userToken,
+        username: username,
+        gender: userGender == Gender.male.name ? Gender.male : Gender.female,
+      );
     } else {
       return null;
     }
   }
 
-  Future<void> login(User user) async {
-    await storage.save(key: _token, value: user.token);
-    await storage.save(key: _gender, value: user.gender.name);
+  String? getToken() => storage.read(key: _token);
+
+  Future<Either<Exception, User>> login(String languageCode, Gender gender) async {
+    final user = await client.post<User>(
+      ApiConst.signUp,
+      fromJson: User.fromJson,
+      body: <String, dynamic>{
+        'gender': gender.name.toUpperCase(),
+        'languageCode': languageCode,
+      },
+    );
+
+    return user.fold(
+      Left.new,
+      (r) async {
+        final user = r.copyWith(gender: gender);
+        await storage.save(key: _token, value: user.accessToken);
+        await storage.save(key: _gender, value: user.gender!.name);
+        await storage.save(key: _username, value: user.username);
+        return Right(user);
+      },
+    );
   }
 
   Future<void> changeGender(Gender gender) async {
@@ -55,4 +82,5 @@ class AuthService {
   String get gender => _gender;
   String get totalHatim => _totalHatim;
   String get totalRead => _totalRead;
+  String get username => _username;
 }

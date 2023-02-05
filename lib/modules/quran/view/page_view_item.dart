@@ -29,7 +29,11 @@ class PageViewItem<T> extends StatelessWidget {
                   pages.add(i);
                 }
                 pages.sort();
-                await Navigator.pushNamed(context, AppRouter.read, arguments: pages);
+                await Navigator.pushNamed(
+                  context,
+                  AppRouter.read,
+                  arguments: {'pages': pages, 'isHatim': false},
+                );
               },
             ),
           );
@@ -47,7 +51,11 @@ class PageViewItem<T> extends StatelessWidget {
                   pages.add(i);
                 }
                 pages.sort();
-                await Navigator.pushNamed(context, AppRouter.read, arguments: pages);
+                await Navigator.pushNamed(
+                  context,
+                  AppRouter.read,
+                  arguments: {'pages': pages, 'isHatim': false},
+                );
               },
             ),
           );
