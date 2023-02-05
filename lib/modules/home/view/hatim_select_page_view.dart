@@ -106,7 +106,7 @@ class HatimPageStatusCard extends StatelessWidget {
         color: hatimPage.status == Status.done
             ? colorScheme.primary
             : hatimPage.status == Status.booked || hatimPage.status == Status.inProgress
-                ? colorScheme.tertiary
+                ? colorScheme.inversePrimary
                 : colorScheme.secondary,
         text: '${hatimPage.number}',
         textColor: hatimPage.status == Status.done
