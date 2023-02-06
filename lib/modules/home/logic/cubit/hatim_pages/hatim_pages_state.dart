@@ -8,7 +8,7 @@ class HatimPagesState extends Equatable {
   final Exception? exception;
 
   @override
-  List<Object?> get props => [pages, lastPage, exception];
+  List<Object?> get props => [pages, lastPage, exception, pages?.length];
 
   HatimPagesState copyWith({List<HatimPages?>? pages, int? lastPage, Exception? exception}) {
     return HatimPagesState(

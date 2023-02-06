@@ -7,7 +7,7 @@ class HatimJuzState extends Equatable {
   final FetchStatus status;
 
   @override
-  List<Object?> get props => [pages, status];
+  List<Object?> get props => [pages, status, pages?.length];
 
   HatimJuzState copyWith({List<HatimPages>? pages, FetchStatus? status}) {
     return HatimJuzState(
