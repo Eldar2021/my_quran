@@ -38,7 +38,7 @@ class HomeView extends StatelessWidget {
               ),
               HomeCard(
                 titleText: l10n.allDonePages,
-                descriptioText: l10n.homeUserReadAllPageDesc,
+                descriptioText: l10n.allDonePagesDesc,
                 valueText: '${homeCubit.state.homeModel?.allDonePages ?? 0}',
                 verticalSpace: 0,
               ),
