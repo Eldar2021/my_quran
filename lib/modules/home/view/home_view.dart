@@ -50,6 +50,9 @@ class HomeView extends StatelessWidget {
                   text: l10n.homeGoHatim,
                   onPressed: () async {
                     await Navigator.pushNamed(context, AppRouter.hatim);
+                    if (context.mounted) {
+                      await context.read<HomeCubit>().getData(context.read<AuthCubit>().state.user!.accessToken);
+                    }
                   },
                 ),
               ),

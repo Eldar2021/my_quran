@@ -7,5 +7,5 @@ class HatimJuzsState extends Equatable {
   final String? erorText;
 
   @override
-  List<Object?> get props => [hatimJuzs, erorText];
+  List<Object?> get props => [hatimJuzs, erorText, hatimJuzs?.map((e) => e)];
 }
