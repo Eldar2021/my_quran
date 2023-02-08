@@ -96,7 +96,7 @@ class _PaginationViewState extends State<PaginationView> {
                         Navigator.of(context).pop(true);
                       }
                     },
-                    child: Text(context.l10n.amin),
+                    child: Text(context.l10n.readed),
                   ),
               ],
             ),
