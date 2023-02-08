@@ -122,26 +122,6 @@ class HatimPageStatusCard extends StatelessWidget {
               )
             : null,
       ),
-      // child: MaterialCard(
-      //   color: hatimPage.status == Status.done
-      //       ? colorScheme.primary
-      //       : hatimPage.status == Status.booked || hatimPage.status == Status.inProgress
-      //           ? colorScheme.inversePrimary
-      //           : colorScheme.secondary,
-      //   text: '${hatimPage.number}',
-      //   textColor: hatimPage.status == Status.done
-      //       ? colorScheme.onPrimary
-      //       : hatimPage.status == Status.inProgress
-      //           ? colorScheme.onTertiary
-      //           : colorScheme.onSecondary,
-      //   check: hatimPage.mine
-      //       ? Positioned(
-      //           right: 2,
-      //           top: 2,
-      //           child: Icon(Icons.check, size: 17, color: colorScheme.onPrimary),
-      //         )
-      //       : null,
-      // ),
     );
   }
 }
