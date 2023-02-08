@@ -52,5 +52,6 @@
     "profileChangeTheme": "Theme Installation",
     "feedBackSms": "This feature will be added in future versions.",
     "profileDevs": "For developers",
-    "profileDevsDesc": "If you've noticed any technical flaws in our app, or if you have interesting ideas for adding new features to the app, we're always happy to hear from you! Get in touch with us on GitHub. Please don't be shy! We are very interested in developing this app together."
+    "profileDevsDesc": "If you've noticed any technical flaws in our app, or if you have interesting ideas for adding new features to the app, we're always happy to hear from you! Get in touch with us on GitHub. Please don't be shy! We are very interested in developing this app together.",
+    "allDonePages": "Total number of Quran pages read from our app"
 }

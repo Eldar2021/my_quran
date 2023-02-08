@@ -52,5 +52,6 @@
     "profileChangeTheme": "Tema Kurulumu",
     "feedBackSms": "Bu özellik gelecek sürümlerde eklenecektir",
     "profileDevs": "Geliştiriciler için",
-    "profileDevsDesc": "Uygulamamızda herhangi bir teknik kusur fark ettiyseniz veya uygulamaya yeni özellikler eklemek için ilginç fikirleriniz varsa, sizden haber almaktan her zaman mutluluk duyarız! GitHub'da bizimle iletişime geçin. Lütfen utanma! Bu uygulamayı birlikte geliştirmekle çok ilgileniyoruz."
+    "profileDevsDesc": "Uygulamamızda herhangi bir teknik kusur fark ettiyseniz veya uygulamaya yeni özellikler eklemek için ilginç fikirleriniz varsa, sizden haber almaktan her zaman mutluluk duyarız! GitHub'da bizimle iletişime geçin. Lütfen utanma! Bu uygulamayı birlikte geliştirmekle çok ilgileniyoruz.",
+    "allDonePages": "Uygulamamızdan okunan toplam Kuran sayfa sayısı"
 }

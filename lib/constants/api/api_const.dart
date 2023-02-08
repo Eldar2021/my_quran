@@ -15,6 +15,7 @@ class ApiConst {
 
   static const setInProgress = '/app/in_progress';
   static const setBook = '/app/book';
+  static const setTodo = '/app/to_do';
   static const setDone = '/app/done';
 
   static Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
