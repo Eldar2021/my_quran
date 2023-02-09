@@ -77,6 +77,7 @@ class _PaginationViewState extends State<PaginationView> {
                     fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
                     color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                     height: 2,
+                    fontFamily: 'Hafs',
                   ),
                   textDirection: TextDirection.rtl,
                 ),
