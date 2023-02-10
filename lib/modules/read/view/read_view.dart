@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/locator.dart';
@@ -63,8 +64,7 @@ class ReadUI extends StatelessWidget {
                   'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ',
                   maxLines: 2,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    // fontFamily: 'Hafs',
+                  style: GoogleFonts.scheherazadeNew(
                     color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                   ),
                 ),
