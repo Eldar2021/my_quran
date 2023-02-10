@@ -64,6 +64,7 @@ class ReadUI extends StatelessWidget {
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: 'Hafs',
                     color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                   ),
                 ),
