@@ -64,6 +64,7 @@ class ReadUI extends StatelessWidget {
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    // fontFamily: 'Hafs',
                     color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                   ),
                 ),
@@ -191,8 +192,7 @@ class ChangeReadTheme extends StatelessWidget {
             OutlinedButton(
               onPressed: () async {
                 await context.read<ReadThemeCubit>().saveChanges();
-                // ignore: use_build_context_synchronously
-                Navigator.pop(context);
+                if (context.mounted) Navigator.pop(context);
               },
               child: Text(l10n.saveChanges),
             ),

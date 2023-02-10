@@ -41,7 +41,7 @@ class HatimSelectPageView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: colorScheme.tertiary,
+          color: colorScheme.inversePrimary,
           hintText: context.l10n.hatimProccessReadDesc,
         ),
         const SizedBox(height: 12),
