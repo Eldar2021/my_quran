@@ -68,6 +68,14 @@ class HatimJuzCubit extends Cubit<HatimJuzState> {
     );
   }
 
+  void unSelectPage(String pageId, String token, String username) {
+    client.send(
+      destination: ApiConst.setTodo,
+      headers: ApiConst.authMap(token),
+      body: jsonEncode({'pageId': pageId, 'username': username}),
+    );
+  }
+
   @override
   Future<void> close() {
     client.deactivate();

@@ -30,6 +30,7 @@ dependencies:
   flutter_svg: ^1.1.6
   url_launcher: ^6.1.8
   json_annotation: ^4.8.0
+  google_fonts: ^4.0.3
   # flutter_native_splash: ^2.2.16
 
 dev_dependencies:
@@ -53,17 +54,12 @@ flutter:
     - assets/images/
     - assets/icons/
 
-  fonts:
-    # - family: Al Qalam Quran
-    #   fonts:
-    #     - asset: assets/fonts/al_qalam_quran.ttf
-    #     # - asset: fonts/Schyler-Italic.ttf
-    #       # style: italic
-    - family: Hafs
-      fonts:
-        - asset: assets/fonts/hafs.ttf
-        # - asset: fonts/TrajanPro_Bold.ttf
-          # weight: 700
+  # fonts:
+  #   - family: Hafs
+  #     fonts:
+  #       - asset: assets/fonts/hafs.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
 
 flutter_gen:
   output: lib/constants/assets/ # Optional (default: lib/gen/)

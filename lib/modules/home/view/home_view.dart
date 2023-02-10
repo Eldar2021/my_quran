@@ -37,12 +37,16 @@ class HomeView extends StatelessWidget {
                 valueText: '${homeCubit.state.homeModel?.allDoneHatims ?? 0}',
               ),
               HomeCard(
+                titleText: l10n.allDonePages,
+                descriptioText: l10n.allDonePagesDesc,
+                valueText: '${homeCubit.state.homeModel?.allDonePages ?? 0}',
+                verticalSpace: 0,
+              ),
+              HomeCard(
                 titleText: l10n.homeUserReadAllPage,
                 descriptioText: l10n.homeUserReadAllPageDesc,
                 valueText: '${homeCubit.state.homeModel?.donePages ?? 0}',
-                verticalSpace: 0,
               ),
-              const TimeCard(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: CustomButton(

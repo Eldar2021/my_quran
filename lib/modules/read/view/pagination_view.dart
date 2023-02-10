@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:hatim/utils/urils.dart';
@@ -73,12 +74,16 @@ class _PaginationViewState extends State<PaginationView> {
                 Text(
                   item.samePage.toString(),
                   locale: const Locale('ar'),
-                  style: TextStyle(
+                  style: GoogleFonts.scheherazadeNew(
                     fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
                     color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-                    height: 2,
-                    fontFamily: 'Hafs',
+                    height: 2.5,
                   ),
+                  // style: GoogleFonts.amiriQuran(
+                  //   fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+                  //   color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                  //   height: 3,
+                  // ),
                   textDirection: TextDirection.rtl,
                 ),
                 if (widget.pages[index] == widget.pages.last)

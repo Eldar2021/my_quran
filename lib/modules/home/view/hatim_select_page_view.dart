@@ -96,10 +96,14 @@ class HatimPageStatusCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
-      onTap: hatimPage.status == Status.todo
+      onTap: hatimPage.status == Status.todo || hatimPage.status == Status.booked
           ? () {
               final user = context.read<AuthCubit>().state.user!;
-              context.read<HatimJuzCubit>().selectPage(hatimPage.id, user.accessToken, user.username);
+              if (hatimPage.status == Status.todo) {
+                context.read<HatimJuzCubit>().selectPage(hatimPage.id, user.accessToken, user.username);
+              } else {
+                context.read<HatimJuzCubit>().unSelectPage(hatimPage.id, user.accessToken, user.username);
+              }
             }
           : null,
       child: MaterialCard(
