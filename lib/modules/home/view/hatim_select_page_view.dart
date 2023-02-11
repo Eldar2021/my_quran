@@ -88,7 +88,7 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
 }
 
 class HatimPageStatusCard extends StatelessWidget {
-  const HatimPageStatusCard({super.key, required this.hatimPage});
+  const HatimPageStatusCard({required this.hatimPage, super.key});
 
   final HatimPages hatimPage;
 

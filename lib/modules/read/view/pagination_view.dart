@@ -11,7 +11,7 @@ import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
 
 class PaginationView extends StatefulWidget {
-  const PaginationView(this.pages, {super.key, required this.isHatim});
+  const PaginationView(this.pages, {required this.isHatim, super.key});
   final List<int> pages;
   final bool isHatim;
 

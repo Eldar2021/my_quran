@@ -16,7 +16,7 @@ const bgReadThemeColor = [
 ];
 
 class ReadView extends StatelessWidget {
-  const ReadView(this.pages, {super.key, required this.isHatim});
+  const ReadView(this.pages, {required this.isHatim, super.key});
 
   final List<int> pages;
   final bool isHatim;
@@ -35,9 +35,9 @@ class ReadView extends StatelessWidget {
 
 class ReadUI extends StatelessWidget {
   const ReadUI({
-    super.key,
     required this.pages,
     required this.isHatim,
+    super.key,
   });
 
   final List<int> pages;

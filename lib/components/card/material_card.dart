@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class MaterialCard extends StatelessWidget {
   const MaterialCard({
-    super.key,
     required this.color,
     required this.text,
     required this.textColor,
     this.check,
+    super.key,
   });
 
   final Color color;
@@ -21,9 +21,7 @@ class MaterialCard extends StatelessWidget {
       color: color,
       child: Stack(
         children: [
-          Center(
-            child: Text(text, style: TextStyle(color: textColor)),
-          ),
+          Center(child: Text(text, style: TextStyle(color: textColor))),
           if (check != null) check!,
         ],
       ),

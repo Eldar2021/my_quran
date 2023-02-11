@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ColorTextAppHint extends StatelessWidget {
   const ColorTextAppHint({
-    super.key,
     required this.color,
     required this.hintText,
+    super.key,
   });
 
   final Color color;

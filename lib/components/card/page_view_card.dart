@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class PageViewCard extends StatelessWidget {
-  const PageViewCard({super.key, required this.page});
+  const PageViewCard({required this.page, super.key});
 
   final String page;
 

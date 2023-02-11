@@ -14,6 +14,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final homeCubit = context.watch<HomeCubit>();
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
@@ -29,7 +30,7 @@ class HomeView extends StatelessWidget {
               Assets.icons.alQuran.svg(
                 key: const Key('al-quran'),
                 height: 100,
-                color: Theme.of(context).colorScheme.primary,
+                colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
               ),
               HomeCard(
                 titleText: l10n.homeAllHatim,
