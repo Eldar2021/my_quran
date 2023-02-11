@@ -22,9 +22,7 @@ class GenderCard extends StatelessWidget {
     return Card(
       child: ListTile(
         key: Key('login-${gender.name}'),
-        leading: gender == Gender.male
-            ? Assets.icons.male.svg(width: 35, color: colorScheme.onBackground)
-            : Assets.icons.female.svg(width: 35),
+        leading: gender == Gender.male ? Assets.icons.male.svg(width: 35) : Assets.icons.female.svg(width: 35),
         title: Text(gender == Gender.male ? context.l10n.male : context.l10n.female),
         onTap: onTap,
         trailing: isSelect

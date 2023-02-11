@@ -26,7 +26,10 @@ class AppAlert {
       builder: (context) {
         return AlertDialog(
           icon: gender == Gender.male
-              ? Assets.icons.duaMale.svg(height: 70, color: colorScheme.onBackground)
+              ? Assets.icons.duaMale.svg(
+                  height: 70,
+                  colorFilter: ColorFilter.mode(colorScheme.onBackground, BlendMode.srcIn),
+                )
               : Assets.icons.duaFemale.svg(height: 70),
           title: Text(context.l10n.amin),
           content: Text(context.l10n.aminDua, textAlign: TextAlign.center),
@@ -37,7 +40,7 @@ class AppAlert {
                 if (isHatim) {
                   Navigator.of(context).pop(true);
                 } else {
-                  Navigator.of(context).pop(false);
+                  Navigator.of(context).pop(true);
                 }
               },
             )

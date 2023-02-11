@@ -127,9 +127,7 @@ class HatimJuzListBuilder extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
               key: Key('quran-view-$index-juz'),
-              minLeadingWidth: 10,
-              title: Text('   ${item.number}-${context.l10n.juz}'),
-              trailing: const Icon(Icons.arrow_forward_ios),
+              title: Text('${item.number}-${context.l10n.juz}'),
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
