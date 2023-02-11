@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class DotsIndicator extends AnimatedWidget {
   const DotsIndicator({
-    super.key,
     required this.controller,
     required this.itemCount,
     required this.activeColor,
@@ -12,6 +11,7 @@ class DotsIndicator extends AnimatedWidget {
     this.dotSize = 5,
     this.space = 20,
     this.maxZoom = 1.5,
+    super.key,
   }) : super(listenable: controller);
 
   final PageController controller;
@@ -43,7 +43,6 @@ class DotsIndicator extends AnimatedWidget {
 
 class Dot extends StatelessWidget {
   const Dot({
-    super.key,
     required this.controller,
     required this.index,
     required this.activeColor,
@@ -51,6 +50,7 @@ class Dot extends StatelessWidget {
     required this.maxZoom,
     required this.space,
     required this.dotSize,
+    super.key,
   });
 
   final PageController controller;

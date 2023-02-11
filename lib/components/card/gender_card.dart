@@ -7,9 +7,9 @@ import 'package:hatim/models/models.dart';
 class GenderCard extends StatelessWidget {
   const GenderCard(
     this.gender, {
-    super.key,
     required this.isSelect,
     required this.onTap,
+    super.key,
   });
 
   final Gender gender;

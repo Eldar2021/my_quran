@@ -49,8 +49,8 @@ class RemoteClient {
   /// Get Json data
   Future<Either<Exception, T>> get<T>(
     String path, {
-    String? token,
     required T Function(Map<String, dynamic>) fromJson,
+    String? token,
   }) async {
     try {
       final header = getHeader(token);
@@ -72,9 +72,9 @@ class RemoteClient {
   /// Perform a query using the "POST" method and using the JSON content type
   Future<Either<Exception, T>> post<T>(
     String path, {
+    required T Function(Map<String, dynamic>) fromJson,
     String? token,
     Map<String, dynamic>? body,
-    required T Function(Map<String, dynamic>) fromJson,
   }) async {
     try {
       final header = getHeader(token);
@@ -97,9 +97,9 @@ class RemoteClient {
   /// Perform a query using the "PATCH" method and using the JSON content type
   Future<Either<Exception, T>> patch<T>(
     String path, {
+    required T Function(Map<String, dynamic>) fromJson,
     String? token,
     Map<String, dynamic>? body,
-    required T Function(Map<String, dynamic>) fromJson,
   }) async {
     final header = getHeader(token);
     if (await networkClient.checkInternetConnection()) {
@@ -117,9 +117,9 @@ class RemoteClient {
   /// Perform a query using the "PUT" method and using the JSON content type
   Future<Either<Exception, T>> put<T>(
     String path, {
+    required T Function(Map<String, dynamic>) fromJson,
     String? token,
     Map<String, dynamic>? body,
-    required T Function(Map<String, dynamic>) fromJson,
   }) async {
     final header = getHeader(token);
     if (await networkClient.checkInternetConnection()) {

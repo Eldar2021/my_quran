@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
-    super.key,
     required this.titleText,
     required this.descriptioText,
     required this.valueText,
     this.verticalSpace = 15,
     this.horizontalSpace = 15,
+    super.key,
   });
 
   final String titleText;

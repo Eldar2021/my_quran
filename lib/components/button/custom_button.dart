@@ -21,10 +21,10 @@ class CustomButton extends StatelessWidget {
 
 class CustomButtonWithIcon extends StatelessWidget {
   const CustomButtonWithIcon({
+    required this.icon,
     super.key,
     this.text = 'Button',
     this.onPressed,
-    required this.icon,
   });
 
   final String text;

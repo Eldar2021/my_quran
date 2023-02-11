@@ -6,8 +6,8 @@ publish_to: "none"
 version: 0.0.1-dev2
 
 environment:
-  sdk: ">=2.18.5 <4.0.0"
-  flutter: 3.7.0
+  sdk: ">=2.19.0 <4.0.0"
+  flutter: 3.7.3
 
 dependencies:
   flutter:
@@ -27,7 +27,7 @@ dependencies:
   hive: ^2.2.3
   infinite_scroll_pagination: ^3.2.0
   path_provider: ^2.0.12
-  flutter_svg: ^1.1.6
+  flutter_svg: ^2.0.0+1
   url_launcher: ^6.1.8
   json_annotation: ^4.8.0
   google_fonts: ^4.0.3
@@ -39,7 +39,7 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   test: ^1.22.0
-  very_good_analysis: ^3.1.0
+  very_good_analysis: ^4.0.0+1
   mocktail: ^0.3.0
   build_runner: ^2.3.3
   flutter_gen_runner: ^5.1.0+1
