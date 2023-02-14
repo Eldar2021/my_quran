@@ -18,7 +18,7 @@
     </queries>
   <!-- url launcher -->
    <application
-        android:label="hatim"
+        android:label="Hatim"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

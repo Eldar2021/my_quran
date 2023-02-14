@@ -118,7 +118,7 @@ class HatimJuzListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
+      padding: const EdgeInsets.fromLTRB(14, 20, 14, 80),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
@@ -163,13 +163,14 @@ class HatimJusAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final appCubit = context.watch<AppCubit>();
     return AlertDialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       contentPadding: const EdgeInsets.symmetric(horizontal: 15),
       actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
       iconPadding: EdgeInsets.zero,
-      backgroundColor: colorScheme.onPrimary,
+      backgroundColor:
+          appCubit.state.theme.brightness == Brightness.light ? Colors.white : const Color.fromARGB(255, 16, 16, 16),
       title: Text(
         context.l10n.hatimPleaseSelectPage,
         key: const Key('hatim-select-pages'),

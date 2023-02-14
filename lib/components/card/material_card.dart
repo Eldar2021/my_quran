@@ -4,7 +4,7 @@ class MaterialCard extends StatelessWidget {
   const MaterialCard({
     required this.color,
     required this.text,
-    required this.textColor,
+    this.textColor,
     this.check,
     super.key,
   });
@@ -12,7 +12,7 @@ class MaterialCard extends StatelessWidget {
   final Color color;
   final String text;
   final Widget? check;
-  final Color textColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {

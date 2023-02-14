@@ -13,7 +13,6 @@ class HatimSelectPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         const SizedBox(height: 15),
@@ -36,17 +35,17 @@ class HatimSelectPageView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: colorScheme.primary,
+          color: Colors.red,
           hintText: context.l10n.hatimDoneReadDesc,
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: colorScheme.inversePrimary,
+          color: Colors.yellow,
           hintText: context.l10n.hatimProccessReadDesc,
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: colorScheme.secondary,
+          color: Colors.green,
           hintText: context.l10n.hatimEmptyReadDesc,
         ),
         const Spacer(),
@@ -94,7 +93,6 @@ class HatimPageStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
       onTap: hatimPage.status == Status.todo || hatimPage.status == Status.booked
           ? () {
@@ -108,21 +106,27 @@ class HatimPageStatusCard extends StatelessWidget {
           : null,
       child: MaterialCard(
         color: hatimPage.status == Status.done
-            ? colorScheme.primary
+            ? Colors.red
             : hatimPage.status == Status.booked || hatimPage.status == Status.inProgress
-                ? colorScheme.inversePrimary
-                : colorScheme.secondary,
+                ? Colors.yellow
+                : Colors.green,
         text: '${hatimPage.number}',
         textColor: hatimPage.status == Status.done
-            ? colorScheme.onPrimary
+            ? Colors.white
             : hatimPage.status == Status.inProgress
-                ? colorScheme.onTertiary
-                : colorScheme.onSecondary,
+                ? Colors.black
+                : hatimPage.status == Status.todo
+                    ? Colors.white
+                    : Colors.black,
         check: hatimPage.mine
             ? Positioned(
                 right: 2,
                 top: 2,
-                child: Icon(Icons.check, size: 17, color: colorScheme.onPrimary),
+                child: Icon(
+                  Icons.check,
+                  size: 17,
+                  color: hatimPage.status == Status.done ? Colors.white : Colors.black,
+                ),
               )
             : null,
       ),

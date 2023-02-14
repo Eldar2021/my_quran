@@ -12,11 +12,11 @@ class AppService {
   static const _locales = <Locale>[
     Locale('en'),
     Locale('ky'),
-    Locale('tr'),
     Locale('kk'),
+    Locale('tr'),
+    Locale('ar'),
     Locale('ru'),
     Locale('id'),
-    Locale('ar'),
   ];
 
   Locale init() {
