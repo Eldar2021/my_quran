@@ -163,14 +163,13 @@ class HatimJusAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appCubit = context.watch<AppCubit>();
+    final theme = Theme.of(context);
     return AlertDialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       contentPadding: const EdgeInsets.symmetric(horizontal: 15),
       actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
       iconPadding: EdgeInsets.zero,
-      backgroundColor:
-          appCubit.state.theme.brightness == Brightness.light ? Colors.white : const Color.fromARGB(255, 16, 16, 16),
+      backgroundColor: theme.brightness == Brightness.dark ? Colors.white : const Color.fromARGB(255, 16, 16, 16),
       title: Text(
         context.l10n.hatimPleaseSelectPage,
         key: const Key('hatim-select-pages'),

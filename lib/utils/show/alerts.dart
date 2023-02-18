@@ -13,13 +13,8 @@ class AppAlert {
       builder: (context) {
         return AlertDialog(
           titlePadding: const EdgeInsets.fromLTRB(60, 30, 60, 30),
-          title: Column(
-            children: [
-              const SizedBox(width: 60, height: 60, child: CircularProgressIndicator()),
-              const SizedBox(height: 40),
-              Text(context.l10n.pleaseWait, style: const TextStyle(fontSize: 20), textAlign: TextAlign.center),
-            ],
-          ),
+          title: const Center(child: SizedBox(width: 60, height: 60, child: CircularProgressIndicator())),
+          content: Text(context.l10n.pleaseWait, style: const TextStyle(fontSize: 20), textAlign: TextAlign.center),
           elevation: 10,
         );
       },

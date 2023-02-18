@@ -7,6 +7,7 @@ import 'package:hatim/core/core.dart';
 import 'package:hatim/l10n/l10.dart';
 import 'package:hatim/models/models.dart';
 import 'package:hatim/modules/modules.dart';
+import 'package:hatim/theme/theme.dart';
 
 class HatimSelectPageView extends StatelessWidget {
   const HatimSelectPageView({super.key});
@@ -35,17 +36,17 @@ class HatimSelectPageView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: Colors.red,
+          color: HatimPageStatusCardColors.red,
           hintText: context.l10n.hatimDoneReadDesc,
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: Colors.yellow,
+          color: HatimPageStatusCardColors.yellow,
           hintText: context.l10n.hatimProccessReadDesc,
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: Colors.green,
+          color: HatimPageStatusCardColors.green,
           hintText: context.l10n.hatimEmptyReadDesc,
         ),
         const Spacer(),
@@ -106,18 +107,18 @@ class HatimPageStatusCard extends StatelessWidget {
           : null,
       child: MaterialCard(
         color: hatimPage.status == Status.done
-            ? Colors.red
+            ? HatimPageStatusCardColors.red
             : hatimPage.status == Status.booked || hatimPage.status == Status.inProgress
-                ? Colors.yellow
-                : Colors.green,
+                ? HatimPageStatusCardColors.yellow
+                : HatimPageStatusCardColors.green,
         text: '${hatimPage.number}',
         textColor: hatimPage.status == Status.done
-            ? Colors.white
+            ? HatimPageStatusCardColors.white
             : hatimPage.status == Status.inProgress
-                ? Colors.black
+                ? HatimPageStatusCardColors.black
                 : hatimPage.status == Status.todo
-                    ? Colors.white
-                    : Colors.black,
+                    ? HatimPageStatusCardColors.white
+                    : HatimPageStatusCardColors.black,
         check: hatimPage.mine
             ? Positioned(
                 right: 2,
@@ -125,7 +126,9 @@ class HatimPageStatusCard extends StatelessWidget {
                 child: Icon(
                   Icons.check,
                   size: 17,
-                  color: hatimPage.status == Status.done ? Colors.white : Colors.black,
+                  color: hatimPage.status == Status.done
+                      ? HatimPageStatusCardColors.white
+                      : HatimPageStatusCardColors.black,
                 ),
               )
             : null,

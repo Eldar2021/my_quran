@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hatim/components/components.dart';
 import 'package:hatim/constants/contants.dart';
+import 'package:hatim/core/core.dart';
 import 'package:hatim/l10n/l10.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DevelopersView extends StatelessWidget {
   const DevelopersView({super.key});
@@ -30,12 +30,7 @@ class DevelopersView extends StatelessWidget {
             ),
             const Spacer(),
             CustomButtonWithIcon(
-              onPressed: () async {
-                final uri = Uri.parse('https://github.com/Eldar2021/hatim');
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri);
-                }
-              },
+              onPressed: () => AppLaunch.launchURL('https://github.com/Eldar2021/hatim'),
               text: 'GitHub',
               icon: Assets.icons.github.svg(
                 height: 35,
