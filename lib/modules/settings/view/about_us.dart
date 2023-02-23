@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hatim/l10n/l10.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class AboutUsVuew extends StatelessWidget {
   const AboutUsVuew({super.key});

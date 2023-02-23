@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/locator.dart';
-import 'package:hatim/modules/modules.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/locator.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hatim/app/app.dart';
+import 'package:my_quran/app/app.dart';
 
 class SelectLangFromListViewBuilder extends StatelessWidget {
   const SelectLangFromListViewBuilder({super.key});

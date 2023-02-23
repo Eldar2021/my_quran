@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hatim">
+    package="com.example.my_quran">
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- url launcher -->
     <queries>
@@ -18,7 +18,7 @@
     </queries>
   <!-- url launcher -->
    <application
-        android:label="hatim"
+        android:label="MyQuran"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:hatim/core/cache/app_cache.dart';
-import 'package:hatim/theme/theme.dart';
+import 'package:my_quran/core/cache/app_cache.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class ThemeService {
   const ThemeService(this.storage);

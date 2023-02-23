@@ -1,5 +1,5 @@
-import 'package:hatim/core/cache/app_cache.dart';
-import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
+import 'package:my_quran/core/cache/app_cache.dart';
+import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
 
 class ReadThemeService {
   const ReadThemeService(this.storage);

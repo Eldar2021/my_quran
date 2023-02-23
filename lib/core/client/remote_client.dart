@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
 
-import 'package:hatim/core/core.dart';
+import 'package:my_quran/core/core.dart';
 
 class RemoteClient {
   const RemoteClient(Client client, {required this.networkClient}) : _client = client;

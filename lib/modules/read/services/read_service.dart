@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/core/core.dart';
-import 'package:hatim/models/models.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/models/models.dart';
 
 class ReadService {
   const ReadService(this.remoteClient, this.localClient);

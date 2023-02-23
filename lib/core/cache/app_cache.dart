@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import 'package:hatim/core/core.dart';
+import 'package:my_quran/core/core.dart';
 
 class AppCache<T> {
   const AppCache(this.box);

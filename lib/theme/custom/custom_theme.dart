@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hatim/theme/theme.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class CustomTheme with CompomnentTheme {
   const CustomTheme(this.brightness, this.targetColor);

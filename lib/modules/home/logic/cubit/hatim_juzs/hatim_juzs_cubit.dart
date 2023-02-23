@@ -4,10 +4,10 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
-
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/models/hatim/hatim_juz.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
+
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/models/hatim/hatim_juz.dart';
 
 part 'hatim_juzs_state.dart';
 

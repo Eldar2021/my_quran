@@ -3,9 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/core/core.dart';
-import 'package:hatim/modules/modules.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/modules/modules.dart';
 
 final sl = GetIt.I;
 

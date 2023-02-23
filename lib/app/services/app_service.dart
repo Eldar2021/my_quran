@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:hatim/core/core.dart';
+import 'package:my_quran/core/core.dart';
 
 class AppService {
   const AppService(this.storage);

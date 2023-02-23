@@ -2,9 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/models/user/user_model.dart';
-import 'package:hatim/theme/custom/custom_theme.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/models/user/user_model.dart';
+import 'package:my_quran/theme/custom/custom_theme.dart';
 
 part 'app_state.dart';
 

@@ -3,7 +3,7 @@ class ApiConst {
   static const domain = 'http://quran.isistant.io/api/v1';
   static const signUp = '$domain/auth/sign_up';
   static const home = '$domain/report/dashboard';
-  static const hatim = '$domain/hatim/join_to_hatim';
+  static const hatim = '$domain/my_quranjoin_to_hatim';
 
   static const socketBase = 'ws://quran.isistant.io/ws';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hatim/app/logic/app_cubit.dart';
-import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/theme/theme.dart';
+import 'package:my_quran/app/logic/app_cubit.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class ThemeSettingsView extends StatelessWidget {
   const ThemeSettingsView({super.key});
