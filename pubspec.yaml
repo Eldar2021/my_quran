@@ -1,4 +1,4 @@
-name: hatim
+name: my_quran
 description: A new Flutter project.
 
 publish_to: "none"
@@ -27,11 +27,11 @@ dependencies:
   hive: ^2.2.3
   infinite_scroll_pagination: ^3.2.0
   path_provider: ^2.0.12
-  flutter_svg: ^2.0.0+1
+  flutter_svg: ^2.0.2
   url_launcher: ^6.1.8
   json_annotation: ^4.8.0
   google_fonts: ^4.0.3
-  # flutter_native_splash: ^2.2.16
+  # flutter_native_splash: ^2.2.18
 
 dev_dependencies:
   flutter_test:

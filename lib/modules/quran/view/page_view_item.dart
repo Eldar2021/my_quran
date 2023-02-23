@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/models/models.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/models/models.dart';
 
 class PageViewItem<T> extends StatelessWidget {
   const PageViewItem(this.items, {super.key});

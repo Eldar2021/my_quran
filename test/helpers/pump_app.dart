@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hatim/app/app.dart';
-import 'package:hatim/modules/modules.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/modules/modules.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(

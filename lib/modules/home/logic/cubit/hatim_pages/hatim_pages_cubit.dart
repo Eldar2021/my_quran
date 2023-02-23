@@ -6,8 +6,8 @@ import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/models/models.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/models/models.dart';
 
 part 'hatim_pages_state.dart';
 

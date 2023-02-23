@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/l10n/l10.dart';
 
-import 'package:hatim/models/models.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/models/models.dart';
 
 class GenderCard extends StatelessWidget {
   const GenderCard(

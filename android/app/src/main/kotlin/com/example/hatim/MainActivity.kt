@@ -1,4 +1,4 @@
-package com.example.hatim
+package com.example.my_quran
 
 import io.flutter.embedding.android.FlutterActivity
 

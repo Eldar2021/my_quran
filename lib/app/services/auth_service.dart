@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/core/core.dart';
-import 'package:hatim/models/models.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/models/models.dart';
 
 class AuthService {
   const AuthService(this.storage, this.client);

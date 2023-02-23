@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/core/core.dart';
-import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/models/user/user_model.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/models/user/user_model.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:hatim/models/models.dart';
-import 'package:hatim/modules/modules.dart';
+import 'package:my_quran/models/models.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class AppRouter {
   const AppRouter();

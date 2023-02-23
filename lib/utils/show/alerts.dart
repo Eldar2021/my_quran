@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:hatim/components/components.dart';
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/models/user/user_model.dart';
+import 'package:my_quran/components/components.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/models/user/user_model.dart';
 
 class AppAlert {
   static Future<T?> showLoading<T>(BuildContext context) {

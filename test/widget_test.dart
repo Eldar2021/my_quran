@@ -2,9 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/core/core.dart';
-import 'package:hatim/modules/home/home.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/modules/home/home.dart';
 
 import 'helpers/helpers.dart';
 

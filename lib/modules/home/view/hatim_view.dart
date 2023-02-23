@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/constants/contants.dart';
-import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/locator.dart';
-import 'package:hatim/models/models.dart';
-import 'package:hatim/modules/modules.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/locator.dart';
+import 'package:my_quran/models/models.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class HatimView extends StatelessWidget {
   const HatimView({super.key});

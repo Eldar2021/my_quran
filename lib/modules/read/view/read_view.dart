@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:hatim/l10n/l10.dart';
-import 'package:hatim/locator.dart';
-import 'package:hatim/modules/modules.dart';
-import 'package:hatim/modules/read/logic/read_theme_cubit.dart';
-import 'package:hatim/utils/urils.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/locator.dart';
+import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
+import 'package:my_quran/utils/urils.dart';
 
 const bgReadThemeColor = [
   Color(0xffFFFFFF),

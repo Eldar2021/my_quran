@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hatim/app/app.dart';
-import 'package:hatim/models/models.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/models/models.dart';
 
 part 'auth_state.dart';
 

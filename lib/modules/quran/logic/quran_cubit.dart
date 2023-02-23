@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hatim/models/models.dart';
+import 'package:my_quran/models/models.dart';
 
 class QuranCubit extends Cubit<int> {
   QuranCubit() : super(0);
