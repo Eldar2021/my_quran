@@ -31,7 +31,7 @@ dependencies:
   url_launcher: ^6.1.8
   json_annotation: ^4.8.0
   google_fonts: ^4.0.3
-  # flutter_native_splash: ^2.2.16
+  # flutter_native_splash: ^2.2.18
 
 dev_dependencies:
   flutter_test:
