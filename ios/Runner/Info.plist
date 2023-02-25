@@ -68,7 +68,9 @@
 		<!-- url launcher -->
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<!-- impleller -->
 		<key>FLTEnableImpeller</key>
 		<true/>
+		<!-- impleller -->
 	</dict>
 </plist>
