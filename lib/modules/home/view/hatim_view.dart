@@ -7,6 +7,7 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/locator.dart';
 import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class HatimView extends StatelessWidget {
   const HatimView({super.key});
@@ -118,7 +119,7 @@ class HatimJuzListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
+      padding: const EdgeInsets.fromLTRB(14, 20, 14, 70),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
@@ -163,13 +164,13 @@ class HatimJusAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
     return AlertDialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       contentPadding: const EdgeInsets.symmetric(horizontal: 15),
       actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
       iconPadding: EdgeInsets.zero,
-      backgroundColor: colorScheme.onPrimary,
+      backgroundColor: theme.brightness == Brightness.light ? AppColors.white : AppColors.greyBlack,
       title: Text(
         context.l10n.hatimPleaseSelectPage,
         key: const Key('hatim-select-pages'),
