@@ -3,7 +3,6 @@ import 'package:my_quran/components/components.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/utils/urils.dart';
 
 class DevelopersView extends StatelessWidget {
   const DevelopersView({super.key});
