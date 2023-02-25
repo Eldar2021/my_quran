@@ -1,12 +1,25 @@
 # hatim
 
 A Quran Hatim Aplication.
+<!-- İlk satır -->
+<p align="center">
+  <img src="doc/images/home.png" width="32%" />
+  <img src="doc/images/surahs.png" width="32%" />
+  <img src="doc/images/hatim_juzas.png" width="32%" />
+</p>
+
+<!-- İkinci satır -->
+<p align="center">
+  <img src="doc/images/hatim_pages.png" width="32%" />
+  <img src="doc/images/read01.png" width="32%" />
+  <img src="doc/images/read02.png" width="32%" />
+</p>
 
 ### Getting Started
 
 ## Requirements
 - Dart sdk: ">=2.19.0 <4.0.0"
-- Flutter: "3.7.3"
+- Flutter: "3.7.5"
 - Android: minSdkVersion 17
 - iOS: --ios-language swift, Xcode version >= 14.0.0
 

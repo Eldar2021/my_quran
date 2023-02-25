@@ -36,9 +36,11 @@
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
+            <!-- impeller -->    
             <meta-data
                 android:name="io.flutter.embedding.android.EnableImpeller"
                 android:value="true" />
+            <!-- impeller -->     
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
