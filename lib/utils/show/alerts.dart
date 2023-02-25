@@ -11,9 +11,19 @@ class AppAlert {
     return showCupertinoDialog<T>(
       context: context,
       builder: (context) {
-        return CupertinoAlertDialog(
-          title: Text(context.l10n.localeName),
-          content: const Center(child: CupertinoActivityIndicator()),
+        return AlertDialog(
+          title: const Center(
+            child: SizedBox(
+              width: 80,
+              height: 80,
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          content: Text(
+            context.l10n.pleaseWait,
+            style: const TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
         );
       },
     );

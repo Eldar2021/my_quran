@@ -7,13 +7,13 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class HatimSelectPageView extends StatelessWidget {
   const HatimSelectPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         const SizedBox(height: 15),
@@ -36,17 +36,17 @@ class HatimSelectPageView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: colorScheme.primary,
+          color: AppColors.red,
           hintText: context.l10n.hatimDoneReadDesc,
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: colorScheme.inversePrimary,
+          color: AppColors.yellow,
           hintText: context.l10n.hatimProccessReadDesc,
         ),
         const SizedBox(height: 12),
         ColorTextAppHint(
-          color: colorScheme.secondary,
+          color: AppColors.green,
           hintText: context.l10n.hatimEmptyReadDesc,
         ),
         const Spacer(),
@@ -94,7 +94,6 @@ class HatimPageStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
       onTap: hatimPage.status == Status.todo || hatimPage.status == Status.booked
           ? () {
@@ -108,21 +107,27 @@ class HatimPageStatusCard extends StatelessWidget {
           : null,
       child: MaterialCard(
         color: hatimPage.status == Status.done
-            ? colorScheme.primary
+            ? AppColors.red
             : hatimPage.status == Status.booked || hatimPage.status == Status.inProgress
-                ? colorScheme.inversePrimary
-                : colorScheme.secondary,
+                ? AppColors.yellow
+                : AppColors.green,
         text: '${hatimPage.number}',
         textColor: hatimPage.status == Status.done
-            ? colorScheme.onPrimary
+            ? AppColors.white
             : hatimPage.status == Status.inProgress
-                ? colorScheme.onTertiary
-                : colorScheme.onSecondary,
+                ? AppColors.black
+                : hatimPage.status == Status.todo
+                    ? AppColors.white
+                    : AppColors.black,
         check: hatimPage.mine
             ? Positioned(
                 right: 2,
                 top: 2,
-                child: Icon(Icons.check, size: 17, color: colorScheme.onPrimary),
+                child: Icon(
+                  Icons.check,
+                  size: 17,
+                  color: hatimPage.status == Status.done ? null : AppColors.black,
+                ),
               )
             : null,
       ),

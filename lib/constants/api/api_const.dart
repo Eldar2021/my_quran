@@ -19,4 +19,6 @@ class ApiConst {
   static const setDone = '/app/done';
 
   static Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
+
+  static const urlGitHub = 'https://github.com/Eldar2021/my_quran';
 }

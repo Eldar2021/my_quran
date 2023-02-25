@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class DevelopersView extends StatelessWidget {
@@ -29,7 +30,7 @@ class DevelopersView extends StatelessWidget {
             ),
             const Spacer(),
             CustomButtonWithIcon(
-              onPressed: () {},
+              onPressed: () => AppLaunch.launchURL(ApiConst.urlGitHub),
               text: 'GitHub',
               icon: Assets.icons.github.svg(
                 height: 35,
