@@ -1,0 +1,58 @@
+
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+# We want to share it because it configures vscode to use the `.flutter` git submodule as the Flutter SDK.
+#.vscode
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Ignore all toolchain files from all sub-packages.
+**/.dart_tool/
+**/.packages
+**/build/
+# keep the .lock file from the workspace and the app.
+packages/**/pubspec.lock
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Exceptions to above rules.
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# webview lib
+**/dist
+**/node_modules/
+app/android/fastlane/metadata/android/en-US/images/phoneScreenshots/
+
+# source files
+/source
+
+# printscreens generated in tests
+/screenshots
