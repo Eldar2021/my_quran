@@ -35,6 +35,6 @@ jobs:
 
       - name: "Run the build_runner and return an error if files are changed"
         run: |
-          melos run-build-runner 
-          melos format 
+          melos run-build-runner-all 
+          melos format-all
           git diff --exit-code
