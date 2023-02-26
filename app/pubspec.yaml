@@ -39,7 +39,6 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   test: ^1.22.0
-  very_good_analysis: ^4.0.0+1
   mocktail: ^0.3.0
   build_runner: ^2.3.3
   flutter_gen_runner: ^5.2.0
