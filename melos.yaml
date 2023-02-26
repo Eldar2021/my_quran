@@ -1,4 +1,4 @@
-name: my_quran
+name: quran
 
 packages:
   - app
@@ -64,10 +64,3 @@ scripts:
   integration-test-app:
     run: cd app && flutter drive --target=test_driver/app.dart
     description: "Run integration tests for the my_quran"
-
-dev_dependencies:
-  very_good_analysis: ^4.0.0+1  
-
-environment:
-  sdk: ">=2.19.0 <4.0.0"
-  flutter: 3.7.5  

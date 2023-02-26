@@ -56,3 +56,5 @@ app/android/fastlane/metadata/android/en-US/images/phoneScreenshots/
 
 # printscreens generated in tests
 /screenshots
+
+pubspec_overrides.yaml
