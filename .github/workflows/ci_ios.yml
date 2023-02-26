@@ -16,12 +16,21 @@ jobs:
           flutter-version: "3.7.5"
           channel: stable
       - run: flutter doctor -v
-      - run: flutter pub get
+
+      - name: "Melos Install"
+        run: dart pub global activate melos
+
+      - name: "Melos bs"
+        run: melos bootstrap
+
       - uses: futureware-tech/simulator-action@v2
         with:
           model: "iPhone 14"
           os_version: "16.2"
-      - run: flutter drive --target=test_driver/app.dart
+
+      - name: Integration Test
+        run: melos integration-test-app
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:

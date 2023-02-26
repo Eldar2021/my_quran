@@ -17,6 +17,12 @@ jobs:
           channel: "stable"
           architecture: x64
       - run: flutter doctor
-      - run: flutter pub get
 
-      - run: flutter build ios --release --no-codesign
+      - name: "Melos Install"
+        run: dart pub global activate melos
+
+      - name: "Melos bs"
+        run: melos bootstrap
+
+      - name: "Build IOS"
+        run: melos build-ios

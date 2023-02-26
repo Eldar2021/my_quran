@@ -18,17 +18,20 @@ jobs:
           channel: "stable"
       - run: flutter doctor
 
+      - name: "Melos Install"
+        run: dart pub global activate melos
+
+      - name: "Melos bs"
+        run: melos bootstrap 
+
       - name: "Check fmt"
-        run: dart format . --line-length 120 --set-exit-if-changed
+        run: melos format-check
 
       - name: "Analyze Code"
-        run: flutter pub get && flutter analyze  --fatal-warnings
+        run: melos analyze-check
 
       - name: "Run unit tests"
-        run: flutter test
+        run: melos unit-test
 
       - name: "Run the build_runner and return an error if files are changed"
-        run: |
-          flutter pub run build_runner build --delete-conflicting-outputs
-          dart format . --line-length 120
-          git diff --exit-code  
+        run: melos run-build-runner 
