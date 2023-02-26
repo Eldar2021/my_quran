@@ -22,7 +22,7 @@ jobs:
         run: dart pub global activate melos
 
       - name: "Melos bs"
-        run: melos bootstrap 
+        run: melos bootstrap
 
       - name: "Check fmt"
         run: melos format-check
@@ -34,4 +34,7 @@ jobs:
         run: melos unit-test
 
       - name: "Run the build_runner and return an error if files are changed"
-        run: melos run-build-runner 
+        run: |
+          melos run-build-runner 
+          melos format 
+          git diff --exit-code
