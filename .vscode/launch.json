@@ -9,6 +9,7 @@
             "name": "hatim",
             "request": "launch",
             "type": "dart",
+            "program": "app/lib/main.dart",
         },
     ]
 }

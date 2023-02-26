@@ -9,7 +9,6 @@ linter:
 
 analyzer:
   exclude:
-    - lib/generated_plugin_registrant.dart
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "bin/cache/**"

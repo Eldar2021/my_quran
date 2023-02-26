@@ -1,14 +1,13 @@
 # hatim
 
-A Quran Hatim Aplication.
-<!-- İlk satır -->
+My Quran Hatim Aplication.
+
 <p align="center">
   <img src="doc/images/home.png" width="32%" />
   <img src="doc/images/surahs.png" width="32%" />
   <img src="doc/images/hatim_juzas.png" width="32%" />
 </p>
 
-<!-- İkinci satır -->
 <p align="center">
   <img src="doc/images/hatim_pages.png" width="32%" />
   <img src="doc/images/read01.png" width="32%" />
@@ -23,22 +22,35 @@ A Quran Hatim Aplication.
 - Android: minSdkVersion 17
 - iOS: --ios-language swift, Xcode version >= 14.0.0
 
+## Melos
+[Melos](https://melos.invertase.dev/) splitting up large code bases into separate independently versioned packages is extremely useful for code sharing. However, making changes across many repositories is messy and difficult to track, and testing across repositories gets complicated really fast.
+To solve these (and many other) problems, some projects will organize their code bases into multi-package repositories (sometimes called [monorepos](https://en.wikipedia.org/wiki/Monorepo)).
+
+* Install melos
+```shell
+dart pub global activate melos
+```
+Setup
+```shell
+melos bootstrap
+```
+
 ## Run App
 * If you have an AVD or real device attached, you can do
-```
-flutter run
+```shell
+melos run-app
 ```
 
 ## Run tests
 * run all tests from the command line:
-```
-flutter test
+```shell
+melos test
 ```
 
 ## Integration tests
 * run integration tests in `test_driver` directory:
-```
-flutter drive --target=test_driver/app.dart
+```shell
+melos integration-test-app
 ```
 
 ## Fmt
@@ -50,11 +62,11 @@ length of the code to 120.
 * Settings > Dart > Line length 120.
 * Autoformat on save: Settings > Languages and Frameworks > then tick: `Format code on save`, `Organize imports on save`.
 * Format the whole codebase with:
-```
-dart format . --line-length 120
+```shell
+melos format-all
 ```
 ## Generate
 * Re generate .g files run:
-```
-flutter pub run build_runner build --delete-conflicting-outputs
+```shell
+melos run-build-runner-all
 ```

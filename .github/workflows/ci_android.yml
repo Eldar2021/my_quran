@@ -21,13 +21,21 @@ jobs:
           distribution: "temurin"
           cache: gradle
       - run: flutter doctor -v
+
+      - name: "Melos Install"
+        run: dart pub global activate melos
+
+      - name: "Melos bs"
+        run: melos bootstrap
+
       - uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           arch: x86_64
-          script: flutter drive --target=test_driver/app.dart
+          script: melos integration-test-app
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-artifact
-          path: ./screenshots/*
+          path: ./app/screenshots/*

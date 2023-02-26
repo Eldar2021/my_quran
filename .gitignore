@@ -1,3 +1,5 @@
+
+
 # Miscellaneous
 *.class
 *.log
@@ -8,7 +10,6 @@
 .buildlog/
 .history
 .svn/
-migrate_working_dir/
 
 # IntelliJ related
 *.iml
@@ -19,12 +20,11 @@ migrate_working_dir/
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
-#.vscode/
-/screenshots/
+# We want to share it because it configures vscode to use the `.flutter` git submodule as the Flutter SDK.
+#.vscode
 
 # Flutter/Dart/Pub related
 **/doc/api/
-**/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
@@ -33,13 +33,34 @@ migrate_working_dir/
 .pub/
 /build/
 
-# Symbolication related
-app.*.symbols
+# Ignore all toolchain files from all sub-packages.
+**/.dart_tool/
+**/.packages
+**/build/
+# keep the .lock file from the workspace and the app.
+packages/**/pubspec.lock
 
-# Obfuscation related
-app.*.map.json
+# Web related
+lib/generated_plugin_registrant.dart
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# Exceptions to above rules.
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# webview lib
+**/dist
+**/node_modules/
+app/android/fastlane/metadata/android/en-US/images/phoneScreenshots/
+
+# source files
+/source
+
+# printscreens generated in tests
+/screenshots
+
+# sub-packages
+# Ignore all toolchain files from all sub-packages.
+**/.dart_tool/
+**/.packages
+**/build/
+# keep the .lock file from the workspace and the app.
+packages/**/pubspec.lock
