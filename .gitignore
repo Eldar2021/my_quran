@@ -57,4 +57,10 @@ app/android/fastlane/metadata/android/en-US/images/phoneScreenshots/
 # printscreens generated in tests
 /screenshots
 
-pubspec_overrides.yaml
+# sub-packages
+# Ignore all toolchain files from all sub-packages.
+**/.dart_tool/
+**/.packages
+**/build/
+# keep the .lock file from the workspace and the app.
+packages/**/pubspec.lock
