@@ -11,34 +11,34 @@ class ReadThemeState extends Equatable {
 
 class ReadTheme extends Equatable {
   const ReadTheme({
-    this.verticalSpace = 0,
-    this.horizontalSpace = 14,
+    this.verticalSpaceSize = 0,
+    this.horizontalSpaceSize = 14,
     this.modeIndex = 2,
     this.textSize = 22,
   });
 
-  final int verticalSpace;
-  final int horizontalSpace;
+  final int verticalSpaceSize;
+  final int horizontalSpaceSize;
   final int modeIndex;
   final int textSize;
 
   @override
   List<Object?> get props => [
-        verticalSpace,
-        horizontalSpace,
+        verticalSpaceSize,
+        horizontalSpaceSize,
         modeIndex,
         textSize,
       ];
 
   ReadTheme copyWith({
-    int? verticalSpace,
-    int? horizontalSpace,
+    int? verticalSpaceSize,
+    int? horizontalSpaceSize,
     int? modeIndex,
     int? textSize,
   }) {
     return ReadTheme(
-      verticalSpace: verticalSpace ?? this.verticalSpace,
-      horizontalSpace: horizontalSpace ?? this.horizontalSpace,
+      verticalSpaceSize: verticalSpaceSize ?? this.verticalSpaceSize,
+      horizontalSpaceSize: horizontalSpaceSize ?? this.horizontalSpaceSize,
       modeIndex: modeIndex ?? this.modeIndex,
       textSize: textSize ?? this.textSize,
     );

@@ -11,6 +11,10 @@ class AppConst {
   // static const String totalRead = 'total_read';
   static const modeKey = 'mode';
   static const colorKey = 'color';
+  static const textSizeKey = 'textSize';
+  static const verticalSpaceKey = 'verticalSpace';
+  static const horizontallSaceKey = 'horizontallSace';
+  static const modeIndexKey = 'modeIndex';
 
   static const locales = <Locale>[
     Locale('en'),

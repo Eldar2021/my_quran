@@ -1,4 +1,5 @@
 import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
 
 class ReadThemeService {
@@ -6,28 +7,23 @@ class ReadThemeService {
 
   final PreferencesStorage storage;
 
-  static const _textSize = 'textSize';
-  static const _verticalSpace = 'verticalSpace';
-  static const _horizontallSace = 'horizontallSace';
-  static const _modeIndex = 'modeIndex';
-
   ReadTheme init() {
-    final textSize = storage.readInt(key: _textSize);
-    final verticalSpace = storage.readInt(key: _verticalSpace);
-    final horizontallSace = storage.readInt(key: _horizontallSace);
-    final modeIndex = storage.readInt(key: _modeIndex);
+    final textSize = storage.readInt(key: AppConst.textSizeKey);
+    final verticalSpaceSize = storage.readInt(key: AppConst.verticalSpaceKey);
+    final horizontallSpaceSize = storage.readInt(key: AppConst.horizontallSaceKey);
+    final modeIndex = storage.readInt(key: AppConst.modeIndexKey);
     return ReadTheme(
       textSize: textSize ?? 22,
-      verticalSpace: verticalSpace ?? 0,
-      horizontalSpace: horizontallSace ?? 14,
+      verticalSpaceSize: verticalSpaceSize ?? 0,
+      horizontalSpaceSize: horizontallSpaceSize ?? 14,
       modeIndex: modeIndex ?? 1,
     );
   }
 
   Future<void> saveChanges(ReadTheme theme) async {
-    await storage.writeInt(key: _textSize, value: theme.textSize);
-    await storage.writeInt(key: _verticalSpace, value: theme.verticalSpace);
-    await storage.writeInt(key: _horizontallSace, value: theme.horizontalSpace);
-    await storage.writeInt(key: _modeIndex, value: theme.modeIndex);
+    await storage.writeInt(key: AppConst.textSizeKey, value: theme.textSize);
+    await storage.writeInt(key: AppConst.verticalSpaceKey, value: theme.verticalSpaceSize);
+    await storage.writeInt(key: AppConst.horizontallSaceKey, value: theme.horizontalSpaceSize);
+    await storage.writeInt(key: AppConst.modeIndexKey, value: theme.modeIndex);
   }
 }

@@ -91,8 +91,8 @@ class ReadUI extends StatelessWidget {
           ),
           SliverPadding(
             padding: EdgeInsets.symmetric(
-              vertical: context.watch<ReadThemeCubit>().state.theme.verticalSpace.toDouble(),
-              horizontal: context.watch<ReadThemeCubit>().state.theme.horizontalSpace.toDouble(),
+              vertical: context.watch<ReadThemeCubit>().state.theme.verticalSpaceSize.toDouble(),
+              horizontal: context.watch<ReadThemeCubit>().state.theme.horizontalSpaceSize.toDouble(),
             ),
             sliver: PaginationView(pages, isHatim: isHatim),
           ),
@@ -133,7 +133,7 @@ class ChangeReadTheme extends StatelessWidget {
         ),
         Slider(
           max: 140,
-          value: context.watch<ReadThemeCubit>().state.theme.verticalSpace.toDouble(),
+          value: context.watch<ReadThemeCubit>().state.theme.verticalSpaceSize.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeVerticalSpace(v.toInt()),
         ),
         Padding(
@@ -145,7 +145,7 @@ class ChangeReadTheme extends StatelessWidget {
         ),
         Slider(
           max: 140,
-          value: context.watch<ReadThemeCubit>().state.theme.horizontalSpace.toDouble(),
+          value: context.watch<ReadThemeCubit>().state.theme.horizontalSpaceSize.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeHorizontalSpace(v.toInt()),
         ),
         Padding(
