@@ -52,24 +52,4 @@ class AuthService {
   Future<void> changeGender(Gender gender) async {
     await storage.writeString(key: AppConst.genderKey, value: gender.name);
   }
-
-  // int? getTotalHatim() {
-  //   final value = storage.readString(key: _totalHatim);
-  //   return value != null ? int.parse(value) : null;
-  // }
-
-  // int? getTotalRead() {
-  //   final value = storage.readString(key: _totalRead);
-  //   return value != null ? int.parse(value) : null;
-  // }
-
-  // Future<void> saveTotalHatim(String value) async {
-  //   await storage.writeString(key: _totalHatim, value: value);
-  // }
-
-  // Future<void> saveTotalRead(String value) async {
-  //   await storage.writeString(key: _totalRead, value: value);
-  // }
-
-  // Future<void> logout() async => storage.clear();
 }

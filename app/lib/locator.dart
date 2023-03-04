@@ -1,6 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
-// import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:mq_storage/mq_storage.dart';
 

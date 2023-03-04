@@ -19,7 +19,6 @@ class AppRouter {
   static const String themeSettings = '/theme-settings';
   static const String aboutUs = '/about-us';
   static const String developers = '/developers';
-  static const String feedback = '/feedback';
 
   static Route<void> onGenerateRoute(RouteSettings settings, User? user) {
     switch (settings.name) {
@@ -75,11 +74,6 @@ class AppRouter {
       case developers:
         return CupertinoPageRoute(
           builder: (_) => const DevelopersView(),
-          settings: settings,
-        );
-      case feedback:
-        return CupertinoPageRoute(
-          builder: (_) => const FeedBackSenderView(),
           settings: settings,
         );
       case genderSettings:

@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 class AppConst {
   const AppConst._();
 
-  static const String localeKey = 'locale';
-  static const String tokenKey = 'token';
-  static const String genderKey = 'gender';
-  static const String usernameKey = 'username';
-  // static const String totalHatim = 'total_hatim';
-  // static const String totalRead = 'total_read';
+  static const localeKey = 'locale';
+  static const tokenKey = 'token';
+  static const genderKey = 'gender';
+  static const usernameKey = 'username';
   static const modeKey = 'mode';
   static const colorKey = 'color';
   static const textSizeKey = 'textSize';
