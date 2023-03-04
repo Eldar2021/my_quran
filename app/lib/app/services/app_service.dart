@@ -9,7 +9,7 @@ class AppService {
   final PreferencesStorage storage;
 
   Locale init() {
-    final code = storage.readString(key: AppConst.localStorageLocaleKey);
+    final code = storage.readString(key: AppConst.localeKey);
     if (code != null) {
       return Locale(code);
     } else {
@@ -23,7 +23,7 @@ class AppService {
   }
 
   Future<Locale> setLocale(String langKey) async {
-    await storage.writeString(key: AppConst.localStorageLocaleKey, value: langKey);
+    await storage.writeString(key: AppConst.localeKey, value: langKey);
     return Locale(langKey);
   }
 }

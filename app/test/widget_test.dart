@@ -27,7 +27,7 @@ void main() {
 
     when(() => storage.readString(key: AppConst.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: AppConst.genderKey)).thenReturn(null);
-    when(() => storage.readString(key: AppConst.localStorageLocaleKey)).thenReturn('en');
+    when(() => storage.readString(key: AppConst.localeKey)).thenReturn('en');
     when(() => storage.readString(key: AppConst.modeKey)).thenReturn(null);
     when(() => storage.readString(key: AppConst.colorKey)).thenReturn(null);
 

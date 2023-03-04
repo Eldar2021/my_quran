@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppConst {
   const AppConst._();
 
-  static const String localStorageLocaleKey = 'locale';
+  static const String localeKey = 'locale';
   static const String tokenKey = 'token';
   static const String genderKey = 'gender';
   static const String usernameKey = 'username';
