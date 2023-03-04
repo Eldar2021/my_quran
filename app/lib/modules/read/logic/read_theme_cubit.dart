@@ -18,11 +18,11 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
   }
 
   void changeVerticalSpace(int space) {
-    emit(ReadThemeState(state.theme.copyWith(verticalSpace: space)));
+    emit(ReadThemeState(state.theme.copyWith(verticalSpaceSize: space)));
   }
 
   void changeHorizontalSpace(int space) {
-    emit(ReadThemeState(state.theme.copyWith(horizontalSpace: space)));
+    emit(ReadThemeState(state.theme.copyWith(horizontalSpaceSize: space)));
   }
 
   Future<void> saveChanges() async {

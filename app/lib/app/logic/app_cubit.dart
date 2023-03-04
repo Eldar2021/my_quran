@@ -17,8 +17,8 @@ class AppCubit extends Cubit<AppState> {
   final AppService localService;
   final ThemeService themeService;
 
-  Future<void> changeLang(int index) async {
-    final local = await localService.setLocale(index);
+  Future<void> changeLang(String langKey) async {
+    final local = await localService.setLocale(langKey);
     emit(state.copyWith(currentLocale: local));
   }
 

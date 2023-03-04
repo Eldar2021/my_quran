@@ -16,16 +16,4 @@ class HomeCubit extends Cubit<HomeState> {
     final homeModel = await service.getData(token);
     emit(HomeState(FetchStatus.loading, homeModel: homeModel));
   }
-
-  //   void getTotalHatimAndTotalRead() {
-  //   final totalHatim = service.getTotalHatim();
-  //   final totalRead = service.getTotalRead();
-  //   emit(state.copyWith(totalHatim: totalHatim, totalRead: totalRead));
-  // }
-
-  // Future<void> setTotalRead(int value) async {
-  //   final totalRead = value + (state.totalRead ?? 0);
-  //   await service.saveTotalRead(totalRead.toString());
-  //   emit(state.copyWith(totalRead: totalRead));
-  // }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/constants/contants.dart';
 
 class SelectLangFromListViewBuilder extends StatelessWidget {
   const SelectLangFromListViewBuilder({super.key});
@@ -11,14 +12,14 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
     final appCubit = context.watch<AppCubit>();
     final colorScheme = Theme.of(context).colorScheme;
     return ListView.builder(
-      itemCount: appCubit.localService.locales.length,
+      itemCount: AppConst.locales.length,
       itemBuilder: (BuildContext context, int index) {
-        final locale = context.read<AppCubit>().localService.locales[index];
-        final langName = context.read<AppCubit>().localService.getName(locale.toLanguageTag());
+        final locale = AppConst.locales[index];
+        final langName = AppConst.getName(locale.toLanguageTag());
         return Card(
           child: ListTile(
             title: Text(langName, locale: locale),
-            onTap: () => context.read<AppCubit>().changeLang(index),
+            onTap: () => context.read<AppCubit>().changeLang(locale.languageCode),
             trailing: appCubit.state.currentLocale == locale
                 ? CircleAvatar(
                     radius: 15,
