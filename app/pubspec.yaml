@@ -24,13 +24,13 @@ dependencies:
   http: ^0.13.5
   web_socket_channel: ^2.3.0
   stomp_dart_client: ^0.4.4
-  hive: ^2.2.3
   infinite_scroll_pagination: ^3.2.0
-  path_provider: ^2.0.13
   flutter_svg: ^2.0.2
   url_launcher: ^6.1.10
   json_annotation: ^4.8.0
   google_fonts: ^4.0.3
+  mq_storage:
+    path: ../packages/mq_storage/
   # flutter_native_splash: ^2.2.18
 
 dev_dependencies:

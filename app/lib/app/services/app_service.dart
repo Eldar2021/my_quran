@@ -1,11 +1,12 @@
 import 'dart:ui';
 
-import 'package:my_quran/core/core.dart';
+import 'package:mq_storage/mq_storage.dart';
 
 class AppService {
   const AppService(this.storage);
 
-  final AppCache<String> storage;
+  // final AppCache<String> storage;
+  final PreferencesStorage storage;
 
   static const String _localStorageLocaleKey = 'locale';
 
@@ -20,7 +21,7 @@ class AppService {
   ];
 
   Locale init() {
-    final code = storage.read(key: localStorageLocaleKey);
+    final code = storage.readString(key: localStorageLocaleKey);
     if (code != null) {
       return Locale(code);
     } else {
@@ -34,7 +35,7 @@ class AppService {
   }
 
   Future<Locale> setLocale(int index) async {
-    await storage.save(key: localStorageLocaleKey, value: _locales[index].languageCode);
+    await storage.writeString(key: localStorageLocaleKey, value: _locales[index].languageCode);
     return _locales[index];
   }
 

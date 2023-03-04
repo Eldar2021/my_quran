@@ -1,10 +1,10 @@
-import 'package:my_quran/core/cache/app_cache.dart';
+import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
 
 class ReadThemeService {
   const ReadThemeService(this.storage);
 
-  final AppCache<int> storage;
+  final PreferencesStorage storage;
 
   static const _textSize = 'textSize';
   static const _verticalSpace = 'verticalSpace';
@@ -12,10 +12,10 @@ class ReadThemeService {
   static const _modeIndex = 'modeIndex';
 
   ReadTheme init() {
-    final textSize = storage.read(key: _textSize);
-    final verticalSpace = storage.read(key: _verticalSpace);
-    final horizontallSace = storage.read(key: _horizontallSace);
-    final modeIndex = storage.read(key: _modeIndex);
+    final textSize = storage.readInt(key: _textSize);
+    final verticalSpace = storage.readInt(key: _verticalSpace);
+    final horizontallSace = storage.readInt(key: _horizontallSace);
+    final modeIndex = storage.readInt(key: _modeIndex);
     return ReadTheme(
       textSize: textSize ?? 22,
       verticalSpace: verticalSpace ?? 0,
@@ -25,9 +25,9 @@ class ReadThemeService {
   }
 
   Future<void> saveChanges(ReadTheme theme) async {
-    await storage.save(key: _textSize, value: theme.textSize);
-    await storage.save(key: _verticalSpace, value: theme.verticalSpace);
-    await storage.save(key: _horizontallSace, value: theme.horizontalSpace);
-    await storage.save(key: _modeIndex, value: theme.modeIndex);
+    await storage.writeInt(key: _textSize, value: theme.textSize);
+    await storage.writeInt(key: _verticalSpace, value: theme.verticalSpace);
+    await storage.writeInt(key: _horizontallSace, value: theme.horizontalSpace);
+    await storage.writeInt(key: _modeIndex, value: theme.modeIndex);
   }
 }

@@ -1,18 +1,19 @@
 import 'dart:convert';
 
+import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/models/models.dart';
 
 class ReadService {
-  const ReadService(this.remoteClient, this.localClient);
+  const ReadService(this.remoteClient, this.storage);
 
   final RemoteClient remoteClient;
-  final LocalClient<String> localClient;
+  final PreferencesStorage storage;
 
   Future<QuranPage?> gerVerses(int page) async {
     final key = 'quran-$page';
-    final localvalue = localClient.read(key: key);
+    final localvalue = storage.readString(key: key);
     if (localvalue != null) {
       final data = jsonDecode(localvalue);
       return QuranPage.fromJson(data as Map<String, dynamic>);
@@ -25,7 +26,7 @@ class ReadService {
       return remoteValue.fold(
         (l) => null,
         (r) async {
-          await localClient.save(key: key, value: jsonEncode(r.toJson()));
+          await storage.writeString(key: key, value: jsonEncode(r.toJson()));
           return r;
         },
       );

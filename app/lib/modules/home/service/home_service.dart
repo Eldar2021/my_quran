@@ -1,13 +1,14 @@
 import 'dart:convert';
 
+import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/models/models.dart';
 
 class HomeService {
-  const HomeService(this.localClient, this.remoteClient);
+  const HomeService(this.storage, this.remoteClient);
 
-  final LocalClient<String> localClient;
+  final PreferencesStorage storage;
   final RemoteClient remoteClient;
 
   Future<HomeModel> getData(String token) async {
@@ -19,7 +20,7 @@ class HomeService {
     );
     return remoteValue.fold(
       (l) async {
-        final localvalue = localClient.read(key: key);
+        final localvalue = storage.readString(key: key);
         if (localvalue != null) {
           final data = jsonDecode(localvalue);
           return HomeModel.fromJson(data as Map<String, dynamic>);
@@ -28,7 +29,7 @@ class HomeService {
         }
       },
       (r) async {
-        await localClient.save(key: key, value: jsonEncode(r.toJson()));
+        await storage.writeString(key: key, value: jsonEncode(r.toJson()));
         return r;
       },
     );

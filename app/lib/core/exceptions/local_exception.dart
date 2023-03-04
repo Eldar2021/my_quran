@@ -1,8 +1,8 @@
-class LocalExc implements Exception {
-  const LocalExc(this.massage);
+// class LocalExc implements Exception {
+//   const LocalExc(this.massage);
 
-  final String? massage;
+//   final String? massage;
 
-  @override
-  String toString() => massage ?? 'Local Exception';
-}
+//   @override
+//   String toString() => massage ?? 'Local Exception';
+// }

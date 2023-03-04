@@ -3,8 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/locator.dart';
@@ -44,14 +43,10 @@ Future<void> bootstrap() async {
 
   Bloc.observer = AppBlocObserver();
 
-  final dr = await getApplicationDocumentsDirectory();
-  Hive.init(dr.path);
+  const secureStorage = SecureStorage();
+  final storage = await PreferencesStorage.getInstance();
 
-  final boxData = await Hive.openBox<String>('data');
-  final boxApp = await Hive.openBox<String>('app');
-  final boxReadTheme = await Hive.openBox<int>('read-theme');
-
-  setup(boxData, boxApp, boxReadTheme);
+  setup(secureStorage, storage);
 
   await runZonedGuarded(
     () async => runApp(
