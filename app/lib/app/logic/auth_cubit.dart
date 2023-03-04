@@ -20,11 +20,6 @@ class AuthCubit extends Cubit<AuthState> {
     return state;
   }
 
-  Future<void> logout() async {
-    await service.logout();
-    emit(const AuthState());
-  }
-
   Future<void> setGender(Gender gender) async {
     await service.changeGender(gender);
     emit(state.copyWith(user: state.user?.copyWith(gender: gender)));

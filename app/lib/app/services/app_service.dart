@@ -8,10 +8,8 @@ class AppService {
 
   final PreferencesStorage storage;
 
-  static const String localStorageLocaleKey = 'locale';
-
   Locale init() {
-    final code = storage.readString(key: localStorageLocaleKey);
+    final code = storage.readString(key: AppConst.localStorageLocaleKey);
     if (code != null) {
       return Locale(code);
     } else {
@@ -25,7 +23,7 @@ class AppService {
   }
 
   Future<Locale> setLocale(String langKey) async {
-    await storage.writeString(key: localStorageLocaleKey, value: langKey);
+    await storage.writeString(key: AppConst.localStorageLocaleKey, value: langKey);
     return Locale(langKey);
   }
 }

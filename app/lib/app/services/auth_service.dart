@@ -10,16 +10,10 @@ class AuthService {
   final PreferencesStorage storage;
   final RemoteClient client;
 
-  static const String _token = 'token';
-  static const String _gender = 'gender';
-  static const String _username = 'username';
-  static const String _totalHatim = 'total_hatim';
-  static const String _totalRead = 'total_read';
-
   User? init() {
-    final userToken = storage.readString(key: _token);
-    final userGender = storage.readString(key: _gender);
-    final username = storage.readString(key: _username);
+    final userToken = storage.readString(key: AppConst.tokenKey);
+    final userGender = storage.readString(key: AppConst.genderKey);
+    final username = storage.readString(key: AppConst.usernameKey);
     if (userToken != null && userGender != null && username != null) {
       return User(
         accessToken: userToken,
@@ -31,7 +25,7 @@ class AuthService {
     }
   }
 
-  String? getToken() => storage.readString(key: _token);
+  String? getToken() => storage.readString(key: AppConst.tokenKey);
 
   Future<Either<Exception, User>> login(String languageCode, Gender gender) async {
     final user = await client.post<User>(
@@ -47,41 +41,35 @@ class AuthService {
       Left.new,
       (r) async {
         final user = r.copyWith(gender: gender);
-        await storage.writeString(key: _token, value: user.accessToken);
-        await storage.writeString(key: _gender, value: user.gender!.name);
-        await storage.writeString(key: _username, value: user.username);
+        await storage.writeString(key: AppConst.tokenKey, value: user.accessToken);
+        await storage.writeString(key: AppConst.genderKey, value: user.gender!.name);
+        await storage.writeString(key: AppConst.usernameKey, value: user.username);
         return Right(user);
       },
     );
   }
 
   Future<void> changeGender(Gender gender) async {
-    await storage.writeString(key: _gender, value: gender.name);
+    await storage.writeString(key: AppConst.genderKey, value: gender.name);
   }
 
-  int? getTotalHatim() {
-    final value = storage.readString(key: _totalHatim);
-    return value != null ? int.parse(value) : null;
-  }
+  // int? getTotalHatim() {
+  //   final value = storage.readString(key: _totalHatim);
+  //   return value != null ? int.parse(value) : null;
+  // }
 
-  int? getTotalRead() {
-    final value = storage.readString(key: _totalRead);
-    return value != null ? int.parse(value) : null;
-  }
+  // int? getTotalRead() {
+  //   final value = storage.readString(key: _totalRead);
+  //   return value != null ? int.parse(value) : null;
+  // }
 
-  Future<void> saveTotalHatim(String value) async {
-    await storage.writeString(key: _totalHatim, value: value);
-  }
+  // Future<void> saveTotalHatim(String value) async {
+  //   await storage.writeString(key: _totalHatim, value: value);
+  // }
 
-  Future<void> saveTotalRead(String value) async {
-    await storage.writeString(key: _totalRead, value: value);
-  }
+  // Future<void> saveTotalRead(String value) async {
+  //   await storage.writeString(key: _totalRead, value: value);
+  // }
 
-  Future<void> logout() async => storage.clear();
-
-  String get token => _token;
-  String get gender => _gender;
-  String get totalHatim => _totalHatim;
-  String get totalRead => _totalRead;
-  String get username => _username;
+  // Future<void> logout() async => storage.clear();
 }
