@@ -8,7 +8,7 @@ class AppService {
 
   final PreferencesStorage storage;
 
-  static const String _localStorageLocaleKey = 'locale';
+  static const String localStorageLocaleKey = 'locale';
 
   Locale init() {
     final code = storage.readString(key: localStorageLocaleKey);
@@ -28,6 +28,4 @@ class AppService {
     await storage.writeString(key: localStorageLocaleKey, value: langKey);
     return Locale(langKey);
   }
-
-  String get localStorageLocaleKey => _localStorageLocaleKey;
 }
