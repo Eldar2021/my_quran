@@ -43,10 +43,9 @@ Future<void> bootstrap() async {
 
   Bloc.observer = AppBlocObserver();
 
-  const secureStorage = SecureStorage();
   final storage = await PreferencesStorage.getInstance();
 
-  setup(secureStorage, storage);
+  setup(storage);
 
   await runZonedGuarded(
     () async => runApp(

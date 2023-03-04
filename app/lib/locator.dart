@@ -9,7 +9,7 @@ import 'package:my_quran/modules/modules.dart';
 
 final sl = GetIt.I;
 
-void setup(SecureStorage secureStorage, PreferencesStorage preferencesStorage) {
+void setup(PreferencesStorage preferencesStorage) {
   sl
     ..registerLazySingleton<AuthService>(() => AuthService(preferencesStorage, sl<RemoteClient>()))
     ..registerLazySingleton<AppService>(() => AppService(preferencesStorage))
