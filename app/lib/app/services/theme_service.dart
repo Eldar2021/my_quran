@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/constants/contants.dart';
 
 import 'package:my_quran/theme/theme.dart';
 
@@ -8,35 +9,25 @@ class ThemeService {
 
   final PreferencesStorage storage;
 
-  static const _modeKey = 'mode';
-  static const _colorKey = 'color';
-
-  CustomTheme init({bool isMale = false}) {
-    final cacheTheme = storage.readString(key: _modeKey);
-    final cacheColor = storage.readString(key: _colorKey);
-    if (cacheTheme == 'dark') {
-      return CustomTheme(Brightness.dark, _getColor(cacheColor, isMale: isMale));
+  CustomTheme init() {
+    final isDark = storage.readBool(key: AppConst.modeKey);
+    final cachedColorIndex = storage.readInt(key: AppConst.colorKey);
+    if (isDark ?? false) {
+      return CustomTheme(Brightness.dark, _getColor(cachedColorIndex));
     } else {
-      return CustomTheme(Brightness.light, _getColor(cacheColor, isMale: isMale));
+      return CustomTheme(Brightness.light, _getColor(cachedColorIndex));
     }
   }
 
-  Color _getColor(String? cacheColor, {required bool isMale}) {
-    return cacheColor != null
-        ? targetColors[int.parse(cacheColor)]!
-        : isMale
-            ? Colors.blue
-            : Colors.red;
+  Color _getColor(int? cacheColor) {
+    return cacheColor != null ? targetColors[cacheColor]! : Colors.red;
   }
 
   Future<void> setColor(int index) async {
-    await storage.writeString(key: _colorKey, value: '$index');
+    await storage.writeInt(key: AppConst.colorKey, value: index);
   }
 
   Future<void> setMode({required bool isDark}) async {
-    await storage.writeString(key: _modeKey, value: isDark ? 'dark' : 'light');
+    await storage.writeBool(key: AppConst.modeKey, value: isDark);
   }
-
-  String get modeKey => _modeKey;
-  String get colorKey => _colorKey;
 }

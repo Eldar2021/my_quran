@@ -9,6 +9,8 @@ class AppConst {
   static const String usernameKey = 'username';
   // static const String totalHatim = 'total_hatim';
   // static const String totalRead = 'total_read';
+  static const modeKey = 'mode';
+  static const colorKey = 'color';
 
   static const locales = <Locale>[
     Locale('en'),
