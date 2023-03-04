@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/models/user/user_model.dart';
+import 'package:my_quran/models/models.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -40,7 +41,7 @@ class SettingsView extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(appCubit.localService.getName(appCubit.state.currentLocale.toLanguageTag())),
+                Text(AppConst.getName(appCubit.state.currentLocale.toLanguageTag())),
                 const SizedBox(width: 17),
                 const Icon(Icons.arrow_forward_ios),
               ],
