@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.my_quran">
+    package="com.alee.my_quran">
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- url launcher -->
     <queries>
