@@ -12,11 +12,14 @@ class AppAlert {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Center(
+          title: Center(
             child: SizedBox(
               width: 80,
               height: 80,
-              child: CircularProgressIndicator(),
+              child: CupertinoActivityIndicator(
+                color: Theme.of(context).colorScheme.primary,
+                radius: 16,
+              ),
             ),
           ),
           content: Text(
