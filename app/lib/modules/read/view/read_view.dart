@@ -57,6 +57,7 @@ class ReadUI extends StatelessWidget {
             titleTextStyle: TextStyle(
               color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
             ),
+            foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: FittedBox(
