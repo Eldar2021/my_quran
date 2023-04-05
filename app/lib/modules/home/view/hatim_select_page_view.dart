@@ -119,7 +119,10 @@ class HatimPageStatusCard extends StatelessWidget {
                 : hatimPage.status == Status.todo
                     ? AppColors.white
                     : AppColors.black,
-        check: hatimPage.mine
+        check: (context.watch<HatimPagesCubit>().state.pages ?? [])
+                .map((e) => e?.number)
+                .toList()
+                .contains(hatimPage.number)
             ? Positioned(
                 right: 2,
                 top: 2,

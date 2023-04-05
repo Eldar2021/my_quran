@@ -144,8 +144,15 @@ class HatimJuzListBuilder extends StatelessWidget {
                   context: context,
                   barrierLabel: '',
                   builder: (ctx) {
-                    return BlocProvider(
-                      create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
+                    return MultiBlocProvider(
+                      providers: [
+                        BlocProvider.value(
+                          value: context.read<HatimPagesCubit>(),
+                        ),
+                        BlocProvider(
+                          create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
+                        ),
+                      ],
                       child: const HatimJusAlert(),
                     );
                   },
