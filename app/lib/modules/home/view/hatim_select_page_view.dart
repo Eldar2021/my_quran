@@ -16,7 +16,7 @@ class HatimSelectPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 15),
+        const SizedBox(height: 10),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.4,
           width: 400,
@@ -34,17 +34,17 @@ class HatimSelectPageView extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
         ColorTextAppHint(
           color: AppColors.red,
           hintText: context.l10n.hatimDoneReadDesc,
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
         ColorTextAppHint(
           color: AppColors.yellow,
           hintText: context.l10n.hatimProccessReadDesc,
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
         ColorTextAppHint(
           color: AppColors.green,
           hintText: context.l10n.hatimEmptyReadDesc,
@@ -53,7 +53,6 @@ class HatimSelectPageView extends StatelessWidget {
         Expanded(
           child: Text(
             context.l10n.hatimUserHintSelectEmtyPage,
-            maxLines: 3,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
         ),
