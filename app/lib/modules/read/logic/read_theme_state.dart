@@ -5,7 +5,7 @@ class ReadThemeState extends Equatable {
     this.fontFamily = 'Scheherazade New',
     this.verticalSpaceSize = 0,
     this.horizontalSpaceSize = 14,
-    this.modeIndex = 2,
+    this.modeIndex = 1,
     this.textSize = 22,
   });
 

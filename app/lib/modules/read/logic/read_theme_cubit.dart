@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:my_quran/modules/modules.dart';
 
@@ -30,22 +32,22 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
     emit(state.copyWith(fontFamily: fontFamily));
   }
 
-  // TextStyle getTextStyle() {
-  //   switch (state.fontFamily) {
-  //     case 'Amiri':
-  //       return GoogleFonts.amiri(fontSize: state.textSize.toDouble(), color: state.color, height: height);
-  //     case 'Amiri Quran':
-  //       return GoogleFonts.amiriQuran(fontSize: fontSize, color: color, height: height);
-  //     case 'Katibeh':
-  //       return GoogleFonts.katibeh(fontSize: fontSize, color: color, height: height);
-  //     case 'Noto Sans Arabic':
-  //       return GoogleFonts.notoSansArabic(fontSize: fontSize, color: color, height: height);
-  //     case 'Scheherazade New':
-  //       return GoogleFonts.scheherazadeNew(fontSize: fontSize, color: color, height: height);
-  //     default:
-  //       return GoogleFonts.scheherazadeNew(fontSize: fontSize, color: color, height: height);
-  //   }
-  // }
+  TextStyle getTextStyle() {
+    switch (state.fontFamily) {
+      case 'Amiri':
+        return GoogleFonts.amiri();
+      case 'Amiri Quran':
+        return GoogleFonts.amiriQuran();
+      case 'Katibeh':
+        return GoogleFonts.katibeh();
+      case 'Noto Sans Arabic':
+        return GoogleFonts.notoSansArabic();
+      case 'Scheherazade New':
+        return GoogleFonts.scheherazadeNew();
+      default:
+        return GoogleFonts.scheherazadeNew();
+    }
+  }
 
   Future<void> saveChanges() async {
     await service.saveChanges(state);

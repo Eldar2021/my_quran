@@ -74,11 +74,11 @@ class _PaginationViewState extends State<PaginationView> {
                 Text(
                   item.samePage.toString(),
                   locale: const Locale('ar'),
-                  // style: context.read<ReadThemeCubit>().getTextStyle(
-                  //       fontSize: readThemeCubit.state.theme.textSize.toDouble(),
-                  //       color: frReadThemeColor[readThemeCubit.state.theme.modeIndex],
-                  //       height: 2.5,
-                  //     ),
+                  style: context.read<ReadThemeCubit>().getTextStyle().copyWith(
+                        fontSize: readThemeCubit.state.textSize,
+                        color: frReadThemeColor[readThemeCubit.state.modeIndex],
+                        height: 2.5,
+                      ),
                   textDirection: TextDirection.rtl,
                 ),
                 if (widget.pages[index] == widget.pages.last)
