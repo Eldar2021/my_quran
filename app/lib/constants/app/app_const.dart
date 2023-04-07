@@ -10,6 +10,7 @@ class AppConst {
   static const modeKey = 'mode';
   static const colorKey = 'color';
   static const textSizeKey = 'textSize';
+  static const textFontFamilyKey = 'fontFamily';
   static const verticalSpaceKey = 'verticalSpace';
   static const horizontallSaceKey = 'horizontallSace';
   static const modeIndexKey = 'modeIndex';

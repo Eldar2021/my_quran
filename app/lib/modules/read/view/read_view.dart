@@ -6,6 +6,7 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/locator.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
+import 'package:my_quran/theme/custom/typography/quran_font_family.dart';
 import 'package:my_quran/utils/urils.dart';
 
 const bgReadThemeColor = [
@@ -86,7 +87,7 @@ class ReadUI extends StatelessWidget {
                   Icons.settings,
                   color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
                 ),
-              )
+              ),
             ],
           ),
           SliverPadding(
@@ -123,6 +124,31 @@ class ChangeReadTheme extends StatelessWidget {
           max: 40,
           value: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
           onChanged: (v) => context.read<ReadThemeCubit>().changeTextSize(v.toInt()),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(22, 0, 22, 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Text fonts', style: TextStyle(fontSize: 18)),
+              SizedBox(
+                width: 200,
+                child: DropdownButton(
+                  value: context.watch<ReadThemeCubit>().state.theme.fontFamily,
+                  isExpanded: true,
+                  icon: const Icon(Icons.arrow_drop_down),
+                  elevation: 16,
+                  items: fontList.map((value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Text(value, style: const TextStyle(fontSize: 18)),
+                    );
+                  }).toList(),
+                  onChanged: (v) => context.read<ReadThemeCubit>().changeFontFamily(v!),
+                ),
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),

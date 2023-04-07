@@ -8,11 +8,13 @@ class ReadThemeService {
   final PreferencesStorage storage;
 
   ReadTheme init() {
+    final textFontFamily = storage.readString(key: AppConst.textFontFamilyKey);
     final textSize = storage.readInt(key: AppConst.textSizeKey);
     final verticalSpaceSize = storage.readInt(key: AppConst.verticalSpaceKey);
     final horizontallSpaceSize = storage.readInt(key: AppConst.horizontallSaceKey);
     final modeIndex = storage.readInt(key: AppConst.modeIndexKey);
     return ReadTheme(
+      fontFamily: textFontFamily ?? 'Scheherazade New',
       textSize: textSize ?? 22,
       verticalSpaceSize: verticalSpaceSize ?? 0,
       horizontalSpaceSize: horizontallSpaceSize ?? 14,
@@ -21,6 +23,7 @@ class ReadThemeService {
   }
 
   Future<void> saveChanges(ReadTheme theme) async {
+    await storage.writeString(key: AppConst.textFontFamilyKey, value: theme.fontFamily);
     await storage.writeInt(key: AppConst.textSizeKey, value: theme.textSize);
     await storage.writeInt(key: AppConst.verticalSpaceKey, value: theme.verticalSpaceSize);
     await storage.writeInt(key: AppConst.horizontallSaceKey, value: theme.horizontalSpaceSize);
