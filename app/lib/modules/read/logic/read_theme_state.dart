@@ -1,28 +1,29 @@
 part of 'read_theme_cubit.dart';
 
 class ReadThemeState extends Equatable {
-  const ReadThemeState(this.theme);
-
-  final ReadTheme theme;
-
-  @override
-  List<Object> get props => [theme];
-}
-
-class ReadTheme extends Equatable {
-  const ReadTheme({
-    required this.fontFamily,
+  const ReadThemeState({
+    this.fontFamily = 'Scheherazade New',
     this.verticalSpaceSize = 0,
     this.horizontalSpaceSize = 14,
     this.modeIndex = 2,
     this.textSize = 22,
   });
 
+  factory ReadThemeState.fromJson(Map<String, dynamic> map) {
+    return ReadThemeState(
+      fontFamily: map['fontFamily'] as String,
+      verticalSpaceSize: map['verticalSpaceSize'] as double,
+      horizontalSpaceSize: map['horizontalSpaceSize'] as double,
+      modeIndex: map['modeIndex'] as int,
+      textSize: map['textSize'] as double,
+    );
+  }
+
   final String fontFamily;
-  final int verticalSpaceSize;
-  final int horizontalSpaceSize;
+  final double verticalSpaceSize;
+  final double horizontalSpaceSize;
   final int modeIndex;
-  final int textSize;
+  final double textSize;
 
   @override
   List<Object?> get props => [
@@ -33,19 +34,29 @@ class ReadTheme extends Equatable {
         textSize,
       ];
 
-  ReadTheme copyWith({
+  ReadThemeState copyWith({
     String? fontFamily,
-    int? verticalSpaceSize,
-    int? horizontalSpaceSize,
+    double? verticalSpaceSize,
+    double? horizontalSpaceSize,
     int? modeIndex,
-    int? textSize,
+    double? textSize,
   }) {
-    return ReadTheme(
+    return ReadThemeState(
       fontFamily: fontFamily ?? this.fontFamily,
       verticalSpaceSize: verticalSpaceSize ?? this.verticalSpaceSize,
       horizontalSpaceSize: horizontalSpaceSize ?? this.horizontalSpaceSize,
       modeIndex: modeIndex ?? this.modeIndex,
       textSize: textSize ?? this.textSize,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'fontFamily': fontFamily,
+      'verticalSpaceSize': verticalSpaceSize,
+      'horizontalSpaceSize': horizontalSpaceSize,
+      'modeIndex': modeIndex,
+      'textSize': textSize,
+    };
   }
 }

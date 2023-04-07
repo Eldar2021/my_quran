@@ -49,6 +49,7 @@ class _PaginationViewState extends State<PaginationView> {
 
   @override
   Widget build(BuildContext context) {
+    final readThemeCubit = context.watch<ReadThemeCubit>();
     return PagedSliverList<int, QuranPage>.separated(
       key: const Key('read-pages-list'),
       pagingController: _pagingController,
@@ -56,8 +57,8 @@ class _PaginationViewState extends State<PaginationView> {
         child: Text(
           widget.pages[index].toString(),
           style: TextStyle(
-            fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-            color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+            fontSize: readThemeCubit.state.textSize,
+            color: frReadThemeColor[readThemeCubit.state.modeIndex],
           ),
         ),
       ),
@@ -73,17 +74,17 @@ class _PaginationViewState extends State<PaginationView> {
                 Text(
                   item.samePage.toString(),
                   locale: const Locale('ar'),
-                  style: context.read<ReadThemeCubit>().getTextStyle(
-                        fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-                        color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-                        height: 2.5,
-                      ),
+                  // style: context.read<ReadThemeCubit>().getTextStyle(
+                  //       fontSize: readThemeCubit.state.theme.textSize.toDouble(),
+                  //       color: frReadThemeColor[readThemeCubit.state.theme.modeIndex],
+                  //       height: 2.5,
+                  //     ),
                   textDirection: TextDirection.rtl,
                 ),
                 if (widget.pages[index] == widget.pages.last)
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                      foregroundColor: frReadThemeColor[readThemeCubit.state.modeIndex],
                     ),
                     onPressed: () async {
                       final value = await AppAlert.showAmin<bool>(
