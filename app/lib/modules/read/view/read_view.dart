@@ -58,6 +58,7 @@ class ReadUI extends StatelessWidget {
             titleTextStyle: TextStyle(
               color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
             ),
+            foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: FittedBox(
@@ -130,9 +131,9 @@ class ChangeReadTheme extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Text fonts', style: TextStyle(fontSize: 18)),
+              Text(l10n.readTextFonts, style: const TextStyle(fontSize: 18)),
               SizedBox(
-                width: 200,
+                width: 180,
                 child: DropdownButton(
                   value: context.watch<ReadThemeCubit>().state.theme.fontFamily,
                   isExpanded: true,
