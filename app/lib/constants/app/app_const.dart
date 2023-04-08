@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class AppConst {
   const AppConst._();
 
+  static const bismallah = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ';
+
   static const localeKey = 'locale';
   static const tokenKey = 'token';
   static const genderKey = 'gender';

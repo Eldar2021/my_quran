@@ -17,4 +17,5 @@ class Verse {
 
   int get juzNumber => int.parse(verseKey.split(':').first);
   int get ayatNumber => int.parse(verseKey.split(':').last);
+  bool get isFirst => ayatNumber == 1;
 }
