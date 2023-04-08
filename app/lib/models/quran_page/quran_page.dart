@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/models/models.dart';
 
 part 'quran_page.g.dart';
@@ -17,7 +18,10 @@ class QuranPage {
   StringBuffer get samePage {
     return StringBuffer()
       ..writeAll(
-        verses.map((e) => '${e.textUthmani} \uFD3F${e.ayatNumber.toArabicDigits()}\uFD3E'),
+        verses.map(
+          (e) =>
+              '${e.isFirst ? '\n\n${AppConst.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} \uFD3F${e.ayatNumber.toArabicDigits()}\uFD3E',
+        ),
         '  ',
       );
   }

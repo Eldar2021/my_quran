@@ -63,51 +63,55 @@ class _PaginationViewState extends State<PaginationView> {
         ),
       ),
       builderDelegate: PagedChildBuilderDelegate<QuranPage>(
-        itemBuilder: (context, item, index) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Localizations.override(
-            context: context,
-            locale: const Locale('ar'),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  item.samePage.toString(),
-                  locale: const Locale('ar'),
-                  style: GoogleFonts.scheherazadeNew(
-                    fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-                    color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-                    height: 2.5,
-                  ),
-                  // style: GoogleFonts.amiriQuran(
-                  //   fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-                  //   color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
-                  //   height: 3,
-                  // ),
-                  textDirection: TextDirection.rtl,
-                ),
-                if (widget.pages[index] == widget.pages.last)
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+        itemBuilder: (context, item, index) {
+          final strb = item.samePage.toString();
+          final text = strb.startsWith('\n\n') ? strb.replaceFirst('\n\n', '') : strb;
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Localizations.override(
+              context: context,
+              locale: const Locale('ar'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    text,
+                    locale: const Locale('ar'),
+                    style: GoogleFonts.scheherazadeNew(
+                      fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+                      color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                      height: 2.5,
                     ),
-                    onPressed: () async {
-                      final value = await AppAlert.showAmin<bool>(
-                        context,
-                        context.read<AuthCubit>().state.user?.gender ?? Gender.male,
-                        totalPages: widget.pages.length,
-                        isHatim: widget.isHatim,
-                      );
-                      if (value != null && value && context.mounted) {
-                        Navigator.of(context).pop(true);
-                      }
-                    },
-                    child: Text(context.l10n.readed),
+                    // style: GoogleFonts.amiriQuran(
+                    //   fontSize: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
+                    //   color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                    //   height: 3,
+                    // ),
+                    textDirection: TextDirection.rtl,
                   ),
-              ],
+                  if (widget.pages[index] == widget.pages.last)
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                      ),
+                      onPressed: () async {
+                        final value = await AppAlert.showAmin<bool>(
+                          context,
+                          context.read<AuthCubit>().state.user?.gender ?? Gender.male,
+                          totalPages: widget.pages.length,
+                          isHatim: widget.isHatim,
+                        );
+                        if (value != null && value && context.mounted) {
+                          Navigator.of(context).pop(true);
+                        }
+                      },
+                      child: Text(context.l10n.readed),
+                    ),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

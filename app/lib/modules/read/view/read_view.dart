@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/locator.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -61,7 +62,7 @@ class ReadUI extends StatelessWidget {
               centerTitle: true,
               title: FittedBox(
                 child: Text(
-                  'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ',
+                  AppConst.bismallah,
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.scheherazadeNew(
