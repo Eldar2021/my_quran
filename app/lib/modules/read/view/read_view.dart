@@ -7,6 +7,7 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/locator.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
+import 'package:my_quran/theme/custom/typography/quran_font_family.dart';
 import 'package:my_quran/utils/urils.dart';
 
 const bgReadThemeColor = [
@@ -46,18 +47,20 @@ class ReadUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final readThemeCubit = context.watch<ReadThemeCubit>();
     return Scaffold(
-      backgroundColor: bgReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+      backgroundColor: bgReadThemeColor[readThemeCubit.state.modeIndex],
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: true,
             stretch: true,
             centerTitle: true,
-            backgroundColor: bgReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+            backgroundColor: bgReadThemeColor[readThemeCubit.state.modeIndex],
             titleTextStyle: TextStyle(
-              color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+              color: frReadThemeColor[readThemeCubit.state.modeIndex],
             ),
+            foregroundColor: frReadThemeColor[readThemeCubit.state.modeIndex],
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: FittedBox(
@@ -66,7 +69,7 @@ class ReadUI extends StatelessWidget {
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.scheherazadeNew(
-                    color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                    color: frReadThemeColor[readThemeCubit.state.modeIndex],
                   ),
                 ),
               ),
@@ -77,23 +80,23 @@ class ReadUI extends StatelessWidget {
                 onPressed: () {
                   AppBottomSheet.showBottomSheet<void>(
                     context,
-                    (_) => BlocProvider.value(
+                    (_, s) => BlocProvider.value(
                       value: context.read<ReadThemeCubit>(),
-                      child: const ChangeReadTheme(),
+                      child: ChangeReadTheme(s),
                     ),
                   );
                 },
                 icon: Icon(
                   Icons.settings,
-                  color: frReadThemeColor[context.watch<ReadThemeCubit>().state.theme.modeIndex],
+                  color: frReadThemeColor[readThemeCubit.state.modeIndex],
                 ),
-              )
+              ),
             ],
           ),
           SliverPadding(
             padding: EdgeInsets.symmetric(
-              vertical: context.watch<ReadThemeCubit>().state.theme.verticalSpaceSize.toDouble(),
-              horizontal: context.watch<ReadThemeCubit>().state.theme.horizontalSpaceSize.toDouble(),
+              vertical: readThemeCubit.state.verticalSpaceSize,
+              horizontal: readThemeCubit.state.horizontalSpaceSize,
             ),
             sliver: PaginationView(pages, isHatim: isHatim),
           ),
@@ -104,12 +107,15 @@ class ReadUI extends StatelessWidget {
 }
 
 class ChangeReadTheme extends StatelessWidget {
-  const ChangeReadTheme({super.key});
+  const ChangeReadTheme(this.controller, {super.key});
+  final ScrollController controller;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final readThemeCubit = context.watch<ReadThemeCubit>();
     return ListView(
+      controller: controller,
       padding: const EdgeInsets.symmetric(vertical: 20),
       children: [
         Padding(
@@ -122,8 +128,33 @@ class ChangeReadTheme extends StatelessWidget {
         Slider(
           min: 8,
           max: 40,
-          value: context.watch<ReadThemeCubit>().state.theme.textSize.toDouble(),
-          onChanged: (v) => context.read<ReadThemeCubit>().changeTextSize(v.toInt()),
+          value: readThemeCubit.state.textSize,
+          onChanged: (v) => context.read<ReadThemeCubit>().changeTextSize(v),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(22, 0, 22, 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(l10n.readTextFonts, style: const TextStyle(fontSize: 18)),
+              SizedBox(
+                width: 180,
+                child: DropdownButton(
+                  value: readThemeCubit.state.fontFamily,
+                  isExpanded: true,
+                  icon: const Icon(Icons.arrow_drop_down),
+                  elevation: 16,
+                  items: fontList.map((value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Text(value, style: const TextStyle(fontSize: 18)),
+                    );
+                  }).toList(),
+                  onChanged: (v) => context.read<ReadThemeCubit>().changeFontFamily(v!),
+                ),
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -134,8 +165,8 @@ class ChangeReadTheme extends StatelessWidget {
         ),
         Slider(
           max: 140,
-          value: context.watch<ReadThemeCubit>().state.theme.verticalSpaceSize.toDouble(),
-          onChanged: (v) => context.read<ReadThemeCubit>().changeVerticalSpace(v.toInt()),
+          value: readThemeCubit.state.verticalSpaceSize,
+          onChanged: (v) => context.read<ReadThemeCubit>().changeVerticalSpace(v),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -146,8 +177,8 @@ class ChangeReadTheme extends StatelessWidget {
         ),
         Slider(
           max: 140,
-          value: context.watch<ReadThemeCubit>().state.theme.horizontalSpaceSize.toDouble(),
-          onChanged: (v) => context.read<ReadThemeCubit>().changeHorizontalSpace(v.toInt()),
+          value: readThemeCubit.state.horizontalSpaceSize,
+          onChanged: (v) => context.read<ReadThemeCubit>().changeHorizontalSpace(v),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),

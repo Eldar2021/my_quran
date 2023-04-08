@@ -10,11 +10,8 @@ class AppConst {
   static const genderKey = 'gender';
   static const usernameKey = 'username';
   static const modeKey = 'mode';
+  static const readThemeKey = 'readThemeKey';
   static const colorKey = 'color';
-  static const textSizeKey = 'textSize';
-  static const verticalSpaceKey = 'verticalSpace';
-  static const horizontallSaceKey = 'horizontallSace';
-  static const modeIndexKey = 'modeIndex';
 
   static const locales = <Locale>[
     Locale('en'),
