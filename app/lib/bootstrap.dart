@@ -46,7 +46,7 @@ Future<void> bootstrap() async {
   final storage = await PreferencesStorage.getInstance();
 
   setup(storage);
-  
+
   runApp(
     MultiBlocProvider(
       providers: [
