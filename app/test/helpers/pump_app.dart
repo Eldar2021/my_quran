@@ -13,7 +13,7 @@ extension PumpApp on WidgetTester {
     return pumpWidget(
       MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => AppCubit(localService, themeService)),
+          BlocProvider(create: (context) => AppCubit(localService, themeService, context)),
           BlocProvider(create: (context) => AuthCubit(authStorage)),
           BlocProvider(create: (context) => HomeCubit(homeService)),
         ],

@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/constants/contants.dart';
 
@@ -8,12 +7,12 @@ class AppService {
 
   final PreferencesStorage storage;
 
-  Locale init() {
+  Locale init(BuildContext context) {
     final code = storage.readString(key: AppConst.localeKey);
     if (code != null) {
       return Locale(code);
     } else {
-      final deviceLocal = window.locale.languageCode;
+      final deviceLocal = View.of(context).platformDispatcher.locale.languageCode;
       if (AppConst.isLocalSupport(deviceLocal)) {
         return Locale(deviceLocal);
       } else {

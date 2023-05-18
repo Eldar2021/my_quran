@@ -6,29 +6,29 @@ publish_to: "none"
 version: 0.0.2
 
 environment:
-  sdk: ">=2.19.0 <4.0.0"
-  flutter: 3.7.7
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: 3.10.1
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.0
   cupertino_icons: ^1.0.5
   flutter_bloc: ^8.1.2
   equatable: ^2.0.5
-  get_it: ^7.2.0
+  get_it: ^7.6.0
   dartz: ^0.10.1
-  connectivity_plus: ^3.0.3
-  http: ^0.13.5
-  web_socket_channel: ^2.3.0
+  connectivity_plus: ^4.0.0
+  http: ^0.13.6
+  web_socket_channel: ^2.4.0
   stomp_dart_client: ^0.4.4
   infinite_scroll_pagination: ^3.2.0
-  flutter_svg: ^2.0.2
-  url_launcher: ^6.1.10
-  json_annotation: ^4.8.0
-  google_fonts: ^4.0.3
+  flutter_svg: ^2.0.5
+  url_launcher: ^6.1.11
+  json_annotation: ^4.8.1
+  google_fonts: ^4.0.4
   mq_storage:
     path: ../packages/mq_storage/
   # flutter_native_splash: ^2.2.18
@@ -38,13 +38,13 @@ dev_dependencies:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  very_good_analysis: ^4.0.0+1
-  test: ^1.22.0
+  very_good_analysis: ^5.0.0
+  test: ^1.24.0
   mocktail: ^0.3.0
-  build_runner: ^2.3.3
-  flutter_gen_runner: ^5.2.0
-  json_serializable: ^6.6.1
-  # flutter_launcher_icons: ^0.11.0
+  build_runner: ^2.4.4
+  flutter_gen_runner: ^5.3.1
+  json_serializable: ^6.7.0
+  # flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true

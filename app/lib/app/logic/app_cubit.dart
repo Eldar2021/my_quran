@@ -12,10 +12,12 @@ class AppCubit extends Cubit<AppState> {
   AppCubit(
     this.localService,
     this.themeService,
-  ) : super(AppState(localService.init(), themeService.init()));
+    this.context,
+  ) : super(AppState(localService.init(context), themeService.init()));
 
   final AppService localService;
   final ThemeService themeService;
+  final BuildContext context;
 
   Future<void> changeLang(String langKey) async {
     final local = await localService.setLocale(langKey);
