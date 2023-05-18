@@ -7,14 +7,14 @@ class AppService {
 
   final PreferencesStorage storage;
 
-  Locale init(BuildContext context) {
+  Locale init() {
     final code = storage.readString(key: AppConst.localeKey);
     if (code != null) {
       return Locale(code);
     } else {
-      final deviceLocal = View.of(context).platformDispatcher.locale.languageCode;
+      const deviceLocal = 'en'; //View.of(context).platformDispatcher.locale.languageCode;
       if (AppConst.isLocalSupport(deviceLocal)) {
-        return Locale(deviceLocal);
+        return const Locale(deviceLocal);
       } else {
         return const Locale('en');
       }

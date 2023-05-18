@@ -51,7 +51,7 @@ Future<void> bootstrap() async {
     () async => runApp(
       MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>(), context)),
+          BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>())),
           BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
           BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
         ],
