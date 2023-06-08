@@ -47,17 +47,28 @@ Future<void> bootstrap() async {
 
   setup(storage);
 
-  await runZonedGuarded(
-    () async => runApp(
-      MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>())),
-          BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
-          BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
-        ],
-        child: const MyApp(),
-      ),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>())),
+        BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
+        BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
+      ],
+      child: const MyApp(),
     ),
-    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
+
+  // await runZonedGuarded(
+  //   () async => runApp(
+  //     MultiBlocProvider(
+  //       providers: [
+  //         BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>())),
+  //         BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
+  //         BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
+  //       ],
+  //       child: const MyApp(),
+  //     ),
+  //   ),
+  //   (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  // );
 }

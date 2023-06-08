@@ -12,7 +12,6 @@ Future<void> main() async {
       switch (command) {
         case 'getPlatformCommand':
           result = Platform.operatingSystem;
-          break;
       }
       return Future.value(result);
     },

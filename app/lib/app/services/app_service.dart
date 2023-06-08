@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/constants/contants.dart';
 
@@ -13,9 +12,9 @@ class AppService {
     if (code != null) {
       return Locale(code);
     } else {
-      final deviceLocal = window.locale.languageCode;
+      const deviceLocal = 'en'; //View.of(context).platformDispatcher.locale.languageCode;
       if (AppConst.isLocalSupport(deviceLocal)) {
-        return Locale(deviceLocal);
+        return const Locale(deviceLocal);
       } else {
         return const Locale('en');
       }
