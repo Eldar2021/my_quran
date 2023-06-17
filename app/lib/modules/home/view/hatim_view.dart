@@ -124,41 +124,44 @@ class HatimJuzListBuilder extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
         return Card(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: ListTile(
-              key: Key('quran-view-$index-juz'),
-              title: Text('${item.number}-${context.l10n.juz}'),
-              subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  VerticalText(context.l10n.hatimDoneRead, '${item.done}'),
-                  VerticalText(context.l10n.hatimProccessRead, '${item.inProgress}'),
-                  VerticalText(context.l10n.hatimEmptyRead, '${item.toDo}'),
-                ],
+          child: Column(
+            children: [
+              ListTile(
+                key: Key('quran-view-$index-juz'),
+                contentPadding: const EdgeInsets.all(8),
+                title: Text('${item.number}-${context.l10n.juz}'),
+                subtitle: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    VerticalText(context.l10n.hatimDoneRead, '${item.done}'),
+                    VerticalText(context.l10n.hatimProccessRead, '${item.inProgress}'),
+                    VerticalText(context.l10n.hatimEmptyRead, '${item.toDo}'),
+                  ],
+                ),
+                onTap: () async {
+                  final token = context.read<AuthCubit>().state.user!.accessToken;
+                  final hatimId = item.id;
+                  await showDialog<void>(
+                    context: context,
+                    barrierLabel: '',
+                    builder: (ctx) {
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider.value(
+                            value: context.read<HatimPagesCubit>(),
+                          ),
+                          BlocProvider(
+                            create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
+                          ),
+                        ],
+                        child: const HatimJusAlert(),
+                      );
+                    },
+                  );
+                },
               ),
-              onTap: () async {
-                final token = context.read<AuthCubit>().state.user!.accessToken;
-                final hatimId = item.id;
-                await showDialog<void>(
-                  context: context,
-                  barrierLabel: '',
-                  builder: (ctx) {
-                    return MultiBlocProvider(
-                      providers: [
-                        BlocProvider.value(
-                          value: context.read<HatimPagesCubit>(),
-                        ),
-                        BlocProvider(
-                          create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
-                        ),
-                      ],
-                      child: const HatimJusAlert(),
-                    );
-                  },
-                );
-              },
-            ),
+              JuzPersentWidget(item)
+            ],
           ),
         );
       },

@@ -22,4 +22,8 @@ class HatimJus {
   final int toDo;
   final int inProgress;
   final int done;
+
+  double get toDoPercent => (toDo * 100) / (toDo + inProgress + done);
+  double get inProgressPercent => (inProgress * 100) / (toDo + inProgress + done);
+  double get donePercent => (done * 100) / (toDo + inProgress + done);
 }
