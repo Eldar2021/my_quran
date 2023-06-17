@@ -29,6 +29,7 @@ dependencies:
   url_launcher: ^6.1.11
   json_annotation: ^4.8.1
   google_fonts: ^5.0.0
+  font_awesome_flutter: ^10.4.0
   mq_storage:
     path: ../packages/mq_storage/
   # flutter_native_splash: ^2.2.18

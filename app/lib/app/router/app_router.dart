@@ -18,6 +18,7 @@ class AppRouter {
   static const String genderSettings = '/gender-settings';
   static const String themeSettings = '/theme-settings';
   static const String aboutUs = '/about-us';
+  static const String contactUs = '/contect-us';
   static const String developers = '/developers';
 
   static Route<void> onGenerateRoute(RouteSettings settings, User? user) {
@@ -29,6 +30,7 @@ class AppRouter {
       login => CupertinoPageRoute(builder: (_) => const LoginView()),
       settingsPage => CupertinoPageRoute(builder: (_) => const SettingsView()),
       aboutUs => CupertinoPageRoute(builder: (_) => const AboutUsVuew()),
+      contactUs => CupertinoPageRoute(builder: (_) => const ContactUsView()),
       developers => CupertinoPageRoute(builder: (_) => const DevelopersView()),
       genderSettings => CupertinoPageRoute(builder: (_) => const GenderSettingView()),
       langSettings => CupertinoPageRoute(builder: (_) => const LangSettingsView()),
