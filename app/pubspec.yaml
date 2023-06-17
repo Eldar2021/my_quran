@@ -31,6 +31,7 @@ dependencies:
   google_fonts: ^5.0.0
   mq_storage:
     path: ../packages/mq_storage/
+  font_awesome_flutter: ^10.4.0
   # flutter_native_splash: ^2.2.18
 
 dev_dependencies:

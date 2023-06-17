@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/login/view/sign_in_view.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class MainView extends StatefulWidget {

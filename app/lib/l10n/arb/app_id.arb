@@ -56,5 +56,11 @@
     "profileDevs": "Untuk pengembangs",
     "profileDevsDesc": "Jika Anda melihat ada kekurangan teknis di aplikasi kami, atau jika Anda memiliki ide menarik untuk menambahkan fitur baru ke aplikasi, kami selalu senang mendengar dari Anda! Hubungi kami di GitHub. Tolong jangan malu! Kami sangat tertarik untuk mengembangkan aplikasi ini bersama.",
     "allDonePages": "Jumlah halaman Quran yang dibaca dari aplikasi kami",
-    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır."
+    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır.",
+    "welcome": "Selamat datang",
+    "google": "Google",
+    "orsigninwith": "---Atau masuk dengan---",
+    "apple": "Apple",
+    "signinwithoutanaccount": "Masuk tanpa akun",
+    "privacypolicy": " Kebijakan Privasi"
 }
