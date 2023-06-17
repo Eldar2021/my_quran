@@ -10,10 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   # flutter_secure_storage: ^8.0.0
-  shared_preferences: ^2.1.1  
+  shared_preferences: ^2.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^5.0.0
+  very_good_analysis: ^5.0.0+1
   mocktail: ^0.3.0
