@@ -25,7 +25,7 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
   }
 
   void changeHorizontalSpace(double space) {
-    emit(state..copyWith(horizontalSpaceSize: space));
+    emit(state.copyWith(horizontalSpaceSize: space));
   }
 
   void changeFontFamily(String fontFamily) {
