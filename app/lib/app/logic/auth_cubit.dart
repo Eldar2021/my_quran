@@ -7,7 +7,7 @@ import 'package:my_quran/models/models.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.service) : super(AuthState(user: service.init()));
+  AuthCubit(this.service) : super(AuthState(user: service.init));
 
   final AuthService service;
 

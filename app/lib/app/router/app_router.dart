@@ -21,78 +21,28 @@ class AppRouter {
   static const String developers = '/developers';
 
   static Route<void> onGenerateRoute(RouteSettings settings, User? user) {
-    switch (settings.name) {
-      case main:
-        return CupertinoPageRoute(
+    return switch (settings.name) {
+      main => CupertinoPageRoute(builder: (_) => user != null ? const MainView() : const LoginView()),
+      home => CupertinoPageRoute(builder: (_) => const HomeView()),
+      hatim => CupertinoPageRoute(builder: (_) => const HatimView()),
+      quran => CupertinoPageRoute(builder: (_) => const QuranView()),
+      login => CupertinoPageRoute(builder: (_) => const LoginView()),
+      settingsPage => CupertinoPageRoute(builder: (_) => const SettingsView()),
+      aboutUs => CupertinoPageRoute(builder: (_) => const AboutUsVuew()),
+      developers => CupertinoPageRoute(builder: (_) => const DevelopersView()),
+      genderSettings => CupertinoPageRoute(builder: (_) => const GenderSettingView()),
+      langSettings => CupertinoPageRoute(builder: (_) => const LangSettingsView()),
+      themeSettings => CupertinoPageRoute(builder: (_) => const ThemeSettingsView()),
+      read => CupertinoPageRoute<bool>(
           builder: (_) {
-            if (user != null) {
-              return const MainView();
-            } else {
-              return const LoginView();
-            }
+            final args = settings.arguments!;
+            return ReadView(
+              (args as Map<String, dynamic>)['pages'] as List<int>,
+              isHatim: args['isHatim'] as bool,
+            );
           },
-        );
-      case home:
-        return CupertinoPageRoute(
-          builder: (_) => const HomeView(),
-          settings: settings,
-        );
-      case hatim:
-        return CupertinoPageRoute(
-          builder: (_) => const HatimView(),
-          settings: settings,
-        );
-      case quran:
-        return CupertinoPageRoute(
-          builder: (_) => const QuranView(),
-          settings: settings,
-        );
-      case read:
-        final args = settings.arguments!;
-        return CupertinoPageRoute<bool>(
-          builder: (_) => ReadView(
-            (args as Map<String, dynamic>)['pages'] as List<int>,
-            isHatim: args['isHatim'] as bool,
-          ),
-          settings: settings,
-        );
-      case login:
-        return CupertinoPageRoute(
-          builder: (_) => const LoginView(),
-          settings: settings,
-        );
-      case settingsPage:
-        return CupertinoPageRoute(
-          builder: (_) => const SettingsView(),
-          settings: settings,
-        );
-      case aboutUs:
-        return CupertinoPageRoute(
-          builder: (_) => const AboutUsVuew(),
-          settings: settings,
-        );
-      case developers:
-        return CupertinoPageRoute(
-          builder: (_) => const DevelopersView(),
-          settings: settings,
-        );
-      case genderSettings:
-        return CupertinoPageRoute(
-          builder: (_) => const GenderSettingView(),
-          settings: settings,
-        );
-      case langSettings:
-        return CupertinoPageRoute(
-          builder: (_) => const LangSettingsView(),
-          settings: settings,
-        );
-      case themeSettings:
-        return CupertinoPageRoute(
-          builder: (_) => const ThemeSettingsView(),
-          settings: settings,
-        );
-      default:
-        throw Exception('no builder specified for route named: [${settings.name}]');
-    }
+        ),
+      _ => throw Exception('no builder specified for route named: [${settings.name}]'),
+    };
   }
 }

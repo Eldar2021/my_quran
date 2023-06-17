@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppBottomSheet {
+@immutable
+final class AppBottomSheet {
   static Future<T?> showBottomSheet<T>(BuildContext context, Widget Function(BuildContext, ScrollController) builder) {
     return showModalBottomSheet<T>(
       context: context,

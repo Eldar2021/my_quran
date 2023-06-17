@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Map<int, Color> targetColors = {
+const Map<int, Color> targetColors = {
   0: Colors.red,
   1: Colors.yellow,
   2: Colors.green,

@@ -1,28 +1,28 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/models/models.dart';
 
-class AuthService {
+@immutable
+final class AuthService {
   const AuthService(this.storage, this.client);
 
   final PreferencesStorage storage;
   final RemoteClient client;
 
-  User? init() {
+  User? get init {
     final userToken = storage.readString(key: AppConst.tokenKey);
     final userGender = storage.readString(key: AppConst.genderKey);
     final username = storage.readString(key: AppConst.usernameKey);
-    if (userToken != null && userGender != null && username != null) {
-      return User(
-        accessToken: userToken,
-        username: username,
-        gender: userGender == Gender.male.name ? Gender.male : Gender.female,
-      );
-    } else {
-      return null;
-    }
+    if (userToken == null && userGender == null && username == null) return null;
+    return User(
+      accessToken: userToken!,
+      username: username!,
+      gender: userGender == Gender.male.name ? Gender.male : Gender.female,
+    );
   }
 
   String? getToken() => storage.readString(key: AppConst.tokenKey);

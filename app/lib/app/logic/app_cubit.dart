@@ -12,7 +12,7 @@ class AppCubit extends Cubit<AppState> {
   AppCubit(
     this.localService,
     this.themeService,
-  ) : super(AppState(localService.init(), themeService.init()));
+  ) : super(AppState(localService.init, themeService.init));
 
   final AppService localService;
   final ThemeService themeService;

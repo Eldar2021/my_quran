@@ -6,7 +6,8 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/user/user_model.dart';
 
-class AppAlert {
+@immutable
+final class AppAlert {
   static Future<T?> showLoading<T>(BuildContext context) {
     return showCupertinoDialog<T>(
       context: context,

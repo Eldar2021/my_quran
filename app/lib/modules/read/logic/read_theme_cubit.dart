@@ -25,7 +25,7 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
   }
 
   void changeHorizontalSpace(double space) {
-    emit(state..copyWith(horizontalSpaceSize: space));
+    emit(state.copyWith(horizontalSpaceSize: space));
   }
 
   void changeFontFamily(String fontFamily) {
@@ -33,20 +33,14 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
   }
 
   TextStyle getTextStyle() {
-    switch (state.fontFamily) {
-      case 'Amiri':
-        return GoogleFonts.amiri();
-      case 'Amiri Quran':
-        return GoogleFonts.amiriQuran();
-      case 'Katibeh':
-        return GoogleFonts.katibeh();
-      case 'Noto Sans Arabic':
-        return GoogleFonts.notoSansArabic();
-      case 'Scheherazade New':
-        return GoogleFonts.scheherazadeNew();
-      default:
-        return GoogleFonts.scheherazadeNew();
-    }
+    return switch (state.fontFamily) {
+      'Amiri' => GoogleFonts.amiri(),
+      'Amiri Quran' => GoogleFonts.amiriQuran(),
+      'Katibeh' => GoogleFonts.katibeh(),
+      'Noto Sans Arabic' => GoogleFonts.notoSansArabic(),
+      'Scheherazade New' => GoogleFonts.scheherazadeNew(),
+      _ => GoogleFonts.scheherazadeNew(),
+    };
   }
 
   Future<void> saveChanges() async {
