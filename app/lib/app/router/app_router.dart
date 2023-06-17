@@ -12,6 +12,7 @@ class AppRouter {
   static const String quran = '/quran';
   static const String read = '/read';
   static const String login = '/login';
+  static const String signIn = '/sign-in';
 
   static const String settingsPage = '/settings';
   static const String langSettings = '/lang-settings';
@@ -27,6 +28,7 @@ class AppRouter {
       hatim => CupertinoPageRoute(builder: (_) => const HatimView()),
       quran => CupertinoPageRoute(builder: (_) => const QuranView()),
       login => CupertinoPageRoute(builder: (_) => const LoginView()),
+      signIn => CupertinoPageRoute(builder: (_) => const SignInView()),
       settingsPage => CupertinoPageRoute(builder: (_) => const SettingsView()),
       aboutUs => CupertinoPageRoute(builder: (_) => const AboutUsVuew()),
       developers => CupertinoPageRoute(builder: (_) => const DevelopersView()),

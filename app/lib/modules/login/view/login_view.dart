@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/modules/login/view/sign_in_view.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
@@ -24,6 +23,9 @@ class LoginView extends StatelessWidget {
             child: LoginBody(PageController()),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, AppRouter.signIn),
       ),
     );
   }
@@ -45,7 +47,6 @@ class LoginBody extends StatelessWidget {
             controller: controller,
             onPageChanged: context.read<LoginCubit>().change,
             children: const [
-              SignInView(),
               SelectLang(),
               SelectGender(),
             ],
