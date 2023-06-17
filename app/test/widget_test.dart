@@ -9,9 +9,9 @@ import 'package:my_quran/modules/home/home.dart';
 
 import 'helpers/helpers.dart';
 
-class MockPreferencesStorage extends Mock implements PreferencesStorage {}
+final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
-class MockRemoteClient extends Mock implements RemoteClient {}
+final class MockRemoteClient extends Mock implements RemoteClient {}
 
 // flutter test
 

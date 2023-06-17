@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'juz_surah_model.g.dart';
 
+@immutable
 @JsonSerializable()
-class JuzSurah {
+final class JuzSurah {
   const JuzSurah({
     required this.name,
     required this.arName,

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:my_quran/constants/contants.dart';
@@ -5,8 +6,9 @@ import 'package:my_quran/models/models.dart';
 
 part 'quran_page.g.dart';
 
+@immutable
 @JsonSerializable()
-class QuranPage {
+final class QuranPage {
   const QuranPage({required this.verses, required this.meta});
 
   factory QuranPage.fromJson(Map<String, dynamic> json) => _$QuranPageFromJson(json);
@@ -20,7 +22,7 @@ class QuranPage {
       ..writeAll(
         verses.map(
           (e) =>
-              '${e.isFirst ? '\n\n${AppConst.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} \uFD3F${e.ayatNumber.toArabicDigits()}\uFD3E',
+              '${e.isFirst ? '\n\n${AppConst.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E',
         ),
         '  ',
       );
@@ -41,7 +43,7 @@ extension NumberConverter on num {
     '9': '۹',
   };
 
-  String toArabicDigits() {
+  String get toArabicDigits {
     final number = toString();
     final sb = StringBuffer();
     for (var i = 0; i < number.length; i++) {

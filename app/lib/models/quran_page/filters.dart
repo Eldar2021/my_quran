@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'filters.g.dart';
 
+@immutable
 @JsonSerializable()
-class Filters {
+final class Filters {
   const Filters({required this.pageNumber});
 
   factory Filters.fromJson(Map<String, dynamic> json) => _$FiltersFromJson(json);

@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
 import 'package:my_quran/core/core.dart';
 
+@immutable
 class RemoteClient {
   const RemoteClient(Client client, {required this.networkClient}) : _client = client;
 

@@ -24,38 +24,22 @@ class AppConst {
   ];
 
   static String getName(String code) {
-    switch (code) {
-      case 'en':
-        return 'English';
-      case 'ky':
-        return 'Кыргызча';
-      case 'tr':
-        return 'Türkçe';
-      case 'kk':
-        return 'Қазақша';
-      case 'ru':
-        return 'Русский';
-      case 'id':
-        return 'Indonesia';
-      case 'ar':
-        return 'العربية';
-      default:
-        return 'English';
-    }
+    return switch (code) {
+      'en' => 'English',
+      'ky' => 'Кыргызча',
+      'tr' => 'Türkçe',
+      'kk' => 'Қазақша',
+      'ru' => 'Русский',
+      'id' => 'Indonesia',
+      'ar' => 'العربية',
+      _ => 'English',
+    };
   }
 
   static bool isLocalSupport(String deviceLocal) {
-    switch (deviceLocal) {
-      case 'en':
-      case 'ky':
-      case 'tr':
-      case 'kk':
-      case 'ru':
-      case 'id':
-      case 'ar':
-        return true;
-      default:
-        return false;
-    }
+    return switch (deviceLocal) {
+      'en' || 'ky' || 'tr' || 'kk' || 'ru' || 'id' || 'ar' => true,
+      _ => false,
+    };
   }
 }

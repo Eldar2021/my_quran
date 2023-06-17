@@ -9,14 +9,13 @@ class ThemeService {
 
   final PreferencesStorage storage;
 
-  CustomTheme init() {
+  CustomTheme get init {
     final isDark = storage.readBool(key: AppConst.modeKey);
     final cachedColorIndex = storage.readInt(key: AppConst.colorKey);
-    if (isDark ?? false) {
-      return CustomTheme(Brightness.dark, _getColor(cachedColorIndex));
-    } else {
-      return CustomTheme(Brightness.light, _getColor(cachedColorIndex));
-    }
+    return switch (isDark) {
+      true => CustomTheme(Brightness.dark, _getColor(cachedColorIndex)),
+      _ => CustomTheme(Brightness.light, _getColor(cachedColorIndex)),
+    };
   }
 
   Color _getColor(int? cacheColor) {

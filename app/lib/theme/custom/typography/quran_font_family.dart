@@ -1,4 +1,4 @@
-List<String> fontList = const [
+const List<String> fontList = [
   'Amiri',
   'Amiri Quran',
   'Katibeh',
