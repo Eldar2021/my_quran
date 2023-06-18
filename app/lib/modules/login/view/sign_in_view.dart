@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_quran/components/button/custom_button.dart';
-import 'package:my_quran/constants/assets/assets.gen.dart';
+
+import 'package:my_quran/components/components.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/theme/custom/typography/typography_theme.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
@@ -34,7 +36,7 @@ class _SignInViewState extends State<SignInView> {
           ),
           const SizedBox(height: 30),
           Text(
-            context.l10n.orsigninwith,
+            context.l10n.orSignInWith,
             textAlign: TextAlign.center,
             style: context.bodyLarge!.copyWith(color: context.colors.shadow, fontSize: 17),
           ),
@@ -45,12 +47,12 @@ class _SignInViewState extends State<SignInView> {
             text: context.l10n.apple,
           ),
           const SizedBox(height: 90),
-          CustomButton(onPressed: () {}, text: context.l10n.signinwithoutanaccount),
+          CustomButton(onPressed: () {}, text: context.l10n.signInWithoutAnAccount),
           const Spacer(),
           TextButton(
-            onPressed: () {},
+            onPressed: () => AppLaunch.launchURL(ApiConst.provicyPolicy),
             child: Text(
-              context.l10n.privacypolicy,
+              context.l10n.privacyPolicy,
               style: context.bodyLarge!.copyWith(
                 color: context.colors.primary,
                 decoration: TextDecoration.underline,

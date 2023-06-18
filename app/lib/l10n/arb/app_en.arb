@@ -59,8 +59,8 @@
     "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır.",
     "welcome": "Welcome",
     "google": "Google",
-    "orsigninwith": "---Or sign in with---",
+    "orSignInWith": "---Or sign in with---",
     "apple": "Apple",
-    "signinwithoutanaccount": "Sign in without an account",
-    "privacypolicy": "Privacy Policy"
+    "signInWithoutAnAccount": "Sign in without an account",
+    "privacyPolicy": "Privacy Policy"
 }

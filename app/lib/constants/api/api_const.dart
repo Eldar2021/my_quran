@@ -21,4 +21,5 @@ class ApiConst {
   static Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
 
   static const urlGitHub = 'https://github.com/Eldar2021/my_quran';
+  static const provicyPolicy = 'https://github.com/Eldar2021/my_quran';
 }

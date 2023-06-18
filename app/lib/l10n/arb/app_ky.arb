@@ -59,8 +59,8 @@
     "allDonePagesDesc": "Аллах бул Куран менен кээ бир коомдордун мартабасын көтөргөндөй эле, кээ бир коомдордун даражасын түшүрөт.",
     "welcome": "Кош келиңиз",
     "google": "Google",
-    "orsigninwith": "---Немесе кирүү менен---",
+    "orSignInWith": "---Немесе кирүү менен---",
     "apple": "Apple",
-    "signinwithoutanaccount": "Акаунту жок кирүү",
-    "privacypolicy": "Конфиденциальдик саясат"
+    "signInWithoutAnAccount": "Акаунту жок кирүү",
+    "privacyPolicy": "Конфиденциальдик саясат"
 }
