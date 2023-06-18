@@ -28,9 +28,6 @@ class LoginView extends StatelessWidget {
       /// This code assumes that the AppRouter class is defined
       /// elsewhere and contains a static member named signIn
       /// that represents the route to navigate to.git
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () => Navigator.pushNamed(context, AppRouter.signIn),
-      // ),
     );
   }
 }
