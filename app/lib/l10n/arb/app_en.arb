@@ -56,5 +56,11 @@
     "profileDevs": "For developers",
     "profileDevsDesc": "If you've noticed any technical flaws in our app, or if you have interesting ideas for adding new features to the app, we're always happy to hear from you! Get in touch with us on GitHub. Please don't be shy! We are very interested in developing this app together.",
     "allDonePages": "Total number of Quran pages read from our app",
-    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır."
+    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır.",
+    "welcome": "Welcome",
+    "google": "Google",
+    "orSignInWith": "---Or sign in with---",
+    "apple": "Apple",
+    "signInWithoutAnAccount": "Sign in without an account",
+    "privacyPolicy": "Privacy Policy"
 }

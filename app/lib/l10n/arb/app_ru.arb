@@ -56,5 +56,11 @@
     "profileDevs": "Для разработчиков",
     "profileDevsDesc": "Если вы заметили какие-либо технические недочеты в нашем приложении или у вас есть интересные идеи по добавлению новых функций в приложение, мы всегда рады вас услышать! Свяжитесь с нами по GitHub. Пожалуйста, не стесняйтесь! Мы очень заинтересованы в совместном развитии этого приложения.",
     "allDonePages": "Общее количество страниц Корана, прочитанных из нашего приложения",
-    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır."
+    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır.",
+    "welcome": "Добро пожаловать",
+    "google": "Google",
+    "orSignInWith": "---Или войти с помощью---",
+    "apple": "Apple",
+    "signInWithoutAnAccount": "Войдите без учетной записи",
+    "privacyPolicy": "Политика Конфиденциальности"
 }

@@ -21,4 +21,7 @@ class ApiConst {
   static Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
 
   static const urlGitHub = 'https://github.com/Eldar2021/my_quran';
+
+  // TODO(eldiiar): Replace the privacy policy URL with the actual [URL] of your privacy policy page.
+  static const provicyPolicy = 'https://github.com/Eldar2021/my_quran';
 }
