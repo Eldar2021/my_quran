@@ -56,5 +56,7 @@
     "profileDevs": "For developers",
     "profileDevsDesc": "If you've noticed any technical flaws in our app, or if you have interesting ideas for adding new features to the app, we're always happy to hear from you! Get in touch with us on GitHub. Please don't be shy! We are very interested in developing this app together.",
     "allDonePages": "Total number of Quran pages read from our app",
-    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır."
+    "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır.",
+    "contactUs": "Contact Us",
+    "contactUsText": "\t\t\t Assalamu Alaikum, dear user! If you have any questions about this application you are using or if you have any suggestions to improve this application, please feel free to write your opinion about one of the following contacts below. We greatly appreciate your valuable feedback! \n\nWith deep respect, My Quran team!"
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
+import 'package:my_quran/components/card/contact_us_card.dart';
 
 class ContactUsView extends StatelessWidget {
   const ContactUsView({super.key});
@@ -10,36 +13,41 @@ class ContactUsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.colors.primaryContainer,
-        title: const Text('ContactUsView'),
+        title: Text(
+          context.l10n.contactUs,
+          style: context.textTheme.headlineMedium!.copyWith(color: context.colors.onPrimaryContainer),
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(14, 20, 14, 50),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              '\t\t\tАссалоому алейкум, урматтуу колдонуучу! Сиз колдонуп жаткан бул колдонмо боюнча суроо пайда болсо, же бул колдонмону дагы да ыңгайлуу болуусу боюнча кандайдыр бир ой-пикириңиз болсо, анда төмөнкү даректердин бирине пикириңизди жазып калтырсаңыз абдан кубанычта болобуз! \nСизди терең урматтап My Quran жамааты!\n',
-              style: context.textTheme.headlineSmall,
-            ),
+            const ContactUsCard(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                   isSelected: true,
                   iconSize: 40,
-                  onPressed: () {},
+                  onPressed: () async => AppLaunch.sendWhatsApp(phoneNumber: '996703182859'),
                   icon: const Icon(FontAwesomeIcons.whatsapp),
                 ),
                 IconButton(
                   isSelected: true,
                   iconSize: 40,
-                  onPressed: () {},
+                  onPressed: () async => AppLaunch.sendTelegram(username: 'ak_bulak'),
                   icon: const Icon(FontAwesomeIcons.telegram),
                 ),
                 IconButton(
                   isSelected: true,
                   iconSize: 40,
-                  onPressed: () {},
+                  onPressed: () async => AppLaunch.sendEmail(
+                    'eldiiaralmazbekov@gmail.com',
+                    snackBarText: context.l10n.feedBackSms,
+                    context: context,
+                  ),
                   icon: const Icon(FontAwesomeIcons.envelopeOpen),
                 ),
               ],
