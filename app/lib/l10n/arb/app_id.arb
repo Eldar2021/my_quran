@@ -58,5 +58,11 @@
     "allDonePages": "Jumlah halaman Quran yang dibaca dari aplikasi kami",
     "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır.",
     "contactUs": "Hubungi Kami",
-    "contactUsText": "\t\t\t Assalamu'alaikum, pengguna yang terhormat! Jika Anda memiliki pertanyaan mengenai aplikasi ini yang sedang Anda gunakan atau jika Anda memiliki saran untuk meningkatkan aplikasi ini, silakan tuliskan pendapat Anda tentang salah satu kontak berikut di bawah ini. Kami sangat menghargai umpan balik berharga Anda! \n\nDengan rasa hormat, tim My Quran!"
+    "contactUsText": "\t\t\t Assalamu'alaikum, pengguna yang terhormat! Jika Anda memiliki pertanyaan mengenai aplikasi ini yang sedang Anda gunakan atau jika Anda memiliki saran untuk meningkatkan aplikasi ini, silakan tuliskan pendapat Anda tentang salah satu kontak berikut di bawah ini. Kami sangat menghargai umpan balik berharga Anda! \n\nDengan rasa hormat, tim My Quran!",
+    "welcome": "Selamat datang",
+    "google": "Google",
+    "orSignInWith": "---Atau masuk dengan---",
+    "apple": "Apple",
+    "signInWithoutAnAccount": "Masuk tanpa akun",
+    "privacyPolicy": " Kebijakan Privasi"
 }

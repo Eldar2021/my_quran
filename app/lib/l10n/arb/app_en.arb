@@ -58,5 +58,11 @@
     "allDonePages": "Total number of Quran pages read from our app",
     "allDonePagesDesc": "Allah şu Kur’an’la bazı kavimleri yükseltir, bazılarını da alçaltır.",
     "contactUs": "Contact Us",
-    "contactUsText": "\t\t\t Assalamu Alaikum, dear user! If you have any questions about this application you are using or if you have any suggestions to improve this application, please feel free to write your opinion about one of the following contacts below. We greatly appreciate your valuable feedback! \n\nWith deep respect, My Quran team!"
+    "contactUsText": "\t\t\t Assalamu Alaikum, dear user! If you have any questions about this application you are using or if you have any suggestions to improve this application, please feel free to write your opinion about one of the following contacts below. We greatly appreciate your valuable feedback! \n\nWith deep respect, My Quran team!",
+    "welcome": "Welcome",
+    "google": "Google",
+    "orSignInWith": "---Or sign in with---",
+    "apple": "Apple",
+    "signInWithoutAnAccount": "Sign in without an account",
+    "privacyPolicy": "Privacy Policy"
 }
