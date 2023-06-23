@@ -39,20 +39,17 @@ class $AssetsIconsGen {
   SvgGenImage get openBook => const SvgGenImage('assets/icons/open_book.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [alQuran, contactUs, duaFemale, duaMale, female, github, male, openBook];
+  List<SvgGenImage> get values => [alQuran, contactUs, duaFemale, duaMale, female, github, male, openBook];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/app_icon.png
-  AssetGenImage get appIcon =>
-      const AssetGenImage('assets/images/app_icon.png');
+  AssetGenImage get appIcon => const AssetGenImage('assets/images/app_icon.png');
 
   /// File path: assets/images/dua_female.jpg
-  AssetGenImage get duaFemale =>
-      const AssetGenImage('assets/images/dua_female.jpg');
+  AssetGenImage get duaFemale => const AssetGenImage('assets/images/dua_female.jpg');
 
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');

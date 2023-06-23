@@ -7,9 +7,7 @@ part of 'quran_page.dart';
 // **************************************************************************
 
 QuranPage _$QuranPageFromJson(Map<String, dynamic> json) => QuranPage(
-      verses: (json['verses'] as List<dynamic>)
-          .map((e) => Verse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      verses: (json['verses'] as List<dynamic>).map((e) => Verse.fromJson(e as Map<String, dynamic>)).toList(),
       meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
     );
 

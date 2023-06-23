@@ -10,9 +10,7 @@ Juz _$JuzFromJson(Map<String, dynamic> json) => Juz(
       id: json['id'] as int,
       name: json['name'] as String,
       pages: (json['pages'] as List<dynamic>).map((e) => e as int).toList(),
-      surahs: (json['surahs'] as List<dynamic>)
-          .map((e) => JuzSurah.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      surahs: (json['surahs'] as List<dynamic>).map((e) => JuzSurah.fromJson(e as Map<String, dynamic>)).toList(),
     );
 
 Map<String, dynamic> _$JuzToJson(Juz instance) => <String, dynamic>{
