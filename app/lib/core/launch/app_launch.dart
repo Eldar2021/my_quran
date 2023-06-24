@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,62 +16,31 @@ final class AppLaunch {
     }
   }
 
-  static Future<void> sendTelegram({required String username, String? message}) async {
-    Uri? url;
+  static Future<void> sendTelegram(String username, {String? snackBarText, BuildContext? context}) async {
     try {
-      if (message != null && message != '') {
-        url = Uri.parse('https://t.me/$username?text=${Uri.encodeFull(message)}');
-      } else {
-        url = Uri.parse('https://t.me/$username');
-      }
-      await launchUrl(
-        url,
-        mode: LaunchMode.externalNonBrowserApplication,
-        webOnlyWindowName: username,
-        webViewConfiguration: const WebViewConfiguration(
-          headers: <String, String>{
-            'User-Agent': 'Telegram',
-          },
-        ),
+      final isSuccess = await launchUrl(
+        Uri.parse('https://telegram.me/$username'),
+        mode: LaunchMode.externalApplication,
       );
-      if (kDebugMode) {
-        if (message != null && message != '') {
-          print(
-            '\x1B[32mSending message to $username...\nMessage: $message\x1B[0m\nURL: https://t.me/$username?text=${Uri.encodeFull(message)}',
-          );
-        } else {
-          print('\x1B[32mSending message to $username...\x1B[0m');
-        }
+      if (!isSuccess && snackBarText != null && context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
       }
-    } catch (e) {
-      if (kDebugMode) {
-        print('\x1B[31mSending failed!\nError: $e\x1B[0m');
-      }
+    } catch (e, s) {
+      log('launch Error: $e, \n launch StackTrace: $s');
     }
   }
 
-  static Future<void> sendWhatsApp({required String phoneNumber, String? message}) async {
-    Uri? url;
+  static Future<void> sendWhatsApp(String whatsapp, {String? snackBarText, BuildContext? context}) async {
     try {
-      if (message != null && message != '') {
-        url = Uri.parse('https://wa.me/$phoneNumber?text=${Uri.encodeFull(message)}');
-      } else {
-        url = Uri.parse('https://wa.me/$phoneNumber');
+      final isSuccess = await launchUrl(
+        Uri.parse('whatsapp://send?phone=$whatsapp'),
+        mode: LaunchMode.externalApplication,
+      );
+      if (!isSuccess && snackBarText != null && context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
       }
-      await launchUrl(url);
-      if (kDebugMode) {
-        if (message != null && message != '') {
-          print(
-            '\x1B[32mSending message to $phoneNumber via WhatsApp...\nMessage: $message\x1B[0m\nURL: https://wa.me/$phoneNumber?text=${Uri.encodeFull(message)}',
-          );
-        } else {
-          print('\x1B[32mSending message to $phoneNumber via WhatsApp...\x1B[0m');
-        }
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print('\x1B[31mSending failed via WhatsApp!\nError: $e\x1B[0m');
-      }
+    } catch (e, s) {
+      log('launch Error: $e, \n launch StackTrace: $s');
     }
   }
 

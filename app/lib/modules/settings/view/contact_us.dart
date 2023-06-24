@@ -31,13 +31,21 @@ class ContactUsView extends StatelessWidget {
                 IconButton(
                   isSelected: true,
                   iconSize: 40,
-                  onPressed: () async => AppLaunch.sendWhatsApp(phoneNumber: '996703182859'),
+                  onPressed: () async => AppLaunch.sendWhatsApp(
+                    '996990039301',
+                    snackBarText: context.l10n.feedBackSms,
+                    context: context,
+                  ),
                   icon: const Icon(FontAwesomeIcons.whatsapp),
                 ),
                 IconButton(
                   isSelected: true,
                   iconSize: 40,
-                  onPressed: () async => AppLaunch.sendTelegram(username: 'ak_bulak'),
+                  onPressed: () async => AppLaunch.sendTelegram(
+                    'ak_bulak',
+                    snackBarText: context.l10n.feedBackSms,
+                    context: context,
+                  ),
                   icon: const Icon(FontAwesomeIcons.telegram),
                 ),
                 IconButton(
