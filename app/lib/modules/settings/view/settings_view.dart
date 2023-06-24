@@ -61,7 +61,7 @@ class SettingsView extends StatelessWidget {
           ),
           ListTile(
             key: const Key('settings-feedback-view'),
-            title:  Text(l10n.contactUs),
+            title: Text(l10n.contactUs),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.contactUs),
           ),

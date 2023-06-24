@@ -32,7 +32,6 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   mq_storage:
     path: ../packages/mq_storage/
-  whatsapp_unilink: ^2.1.0
   # flutter_native_splash: ^2.2.18
 
 dev_dependencies:
