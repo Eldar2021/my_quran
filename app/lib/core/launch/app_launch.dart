@@ -16,6 +16,34 @@ final class AppLaunch {
     }
   }
 
+  static Future<void> sendTelegram(String username, {String? snackBarText, BuildContext? context}) async {
+    try {
+      final isSuccess = await launchUrl(
+        Uri.parse('https://telegram.me/$username'),
+        mode: LaunchMode.externalApplication,
+      );
+      if (!isSuccess && snackBarText != null && context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
+      }
+    } catch (e, s) {
+      log('launch Error: $e, \n launch StackTrace: $s');
+    }
+  }
+
+  static Future<void> sendWhatsApp(String whatsapp, {String? snackBarText, BuildContext? context}) async {
+    try {
+      final isSuccess = await launchUrl(
+        Uri.parse('whatsapp://send?phone=$whatsapp'),
+        mode: LaunchMode.externalApplication,
+      );
+      if (!isSuccess && snackBarText != null && context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
+      }
+    } catch (e, s) {
+      log('launch Error: $e, \n launch StackTrace: $s');
+    }
+  }
+
   static Future<void> launchURL(String url, {String? snackBarText, BuildContext? context}) async {
     try {
       final isSuccess = await launchUrl(Uri.parse(url));

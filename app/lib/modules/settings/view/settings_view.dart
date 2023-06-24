@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/models.dart';
 
@@ -62,13 +61,9 @@ class SettingsView extends StatelessWidget {
           ),
           ListTile(
             key: const Key('settings-feedback-view'),
-            title: Text(l10n.feedback),
+            title: Text(l10n.contactUs),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () async => AppLaunch.sendEmail(
-              'eldiiaralmazbekov@gmail.com',
-              snackBarText: l10n.feedBackSms,
-              context: context,
-            ),
+            onTap: () => Navigator.pushNamed(context, AppRouter.contactUs),
           ),
           ListTile(
             key: const Key('settings-developers-view'),
