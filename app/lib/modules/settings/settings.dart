@@ -5,3 +5,4 @@ export 'view/gender_settings.dart';
 export 'view/lang_settings.dart';
 export 'view/settings_view.dart';
 export 'view/theme_settings.dart';
+export 'widgets/widgets.dart';
