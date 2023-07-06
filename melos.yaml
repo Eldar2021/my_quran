@@ -67,9 +67,7 @@ scripts:
     description: "Run Flutter doctor"
 
   run-build-runner:
-    exec: flutter pub run build_runner build --delete-conflicting-outputs
-    select-package:
-      depends-on: build_runner
+    run: cd app && flutter pub run build_runner build --delete-conflicting-outputs
     description: "Run unit tests selected package"
 
   run-build-runner-all:
