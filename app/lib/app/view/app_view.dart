@@ -17,13 +17,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
         BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
       ],
-      child: const _QuranApp(),
+      child: const QuranApp(),
     );
   }
 }
 
-class _QuranApp extends StatelessWidget {
-  const _QuranApp();
+class QuranApp extends StatelessWidget {
+  const QuranApp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -16,20 +16,20 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: RepositoryProvider.of<AppConfig>(context).isIntegrationTest
-          ? const _HomeBody()
+          ? const HomeBody()
           : UpgradeAlert(
               upgrader: Upgrader(
                 shouldPopScope: () => true,
                 canDismissDialog: true,
               ),
-              child: const _HomeBody(),
+              child: const HomeBody(),
             ),
     );
   }
 }
 
-class _HomeBody extends StatelessWidget {
-  const _HomeBody();
+class HomeBody extends StatelessWidget {
+  const HomeBody({super.key});
 
   @override
   Widget build(BuildContext context) {
