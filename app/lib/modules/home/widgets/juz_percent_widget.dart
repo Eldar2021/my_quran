@@ -10,36 +10,34 @@ class JuzPersentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.only(left: 4, right: 4),
-      child: Row(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.green,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            height: 4,
-            width: (size.width * item.toDoPercent) / 112,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.green,
+            borderRadius: BorderRadius.circular(120),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.yellow,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            height: 4,
-            width: (size.width * item.inProgressPercent) / 112,
+          height: 4,
+          width: ((size.width - 44) * item.donePercent) / 100,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.yellow,
+            borderRadius: BorderRadius.circular(20),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.red,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            height: 4,
-            width: (size.width * item.donePercent) / 112,
+          height: 4,
+          width: ((size.width - 44) * item.inProgress) / 100,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.red,
+            borderRadius: BorderRadius.circular(20),
           ),
-        ],
-      ),
+          height: 4,
+          width: ((size.width - 44) * item.toDoPercent) / 100,
+        ),
+      ],
     );
   }
 }
