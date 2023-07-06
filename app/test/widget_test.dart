@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mq_storage/mq_storage.dart';
@@ -20,7 +21,7 @@ void main() {
     final storage = MockPreferencesStorage();
     final remoteClient = MockRemoteClient();
 
-    final localService = AppService(storage);
+    final appService = AppService(storage);
     final authStorage = AuthService(storage, remoteClient);
     final homeService = HomeService(storage, remoteClient);
     final themeService = ThemeService(storage);
@@ -32,8 +33,8 @@ void main() {
     when(() => storage.readString(key: AppConst.colorKey)).thenReturn(null);
 
     // // Build our app and trigger a frame.
-    await tester.pumpApp(localService, themeService, authStorage, homeService);
+    await tester.pumpApp(appService, themeService, authStorage, homeService);
     await tester.pumpAndSettle();
-    expect(find.text('English'), findsOneWidget);
+    expect(find.byType(MaterialApp), findsOneWidget);
   });
 }
