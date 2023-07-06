@@ -22,5 +22,7 @@ Tested on commit <enter-commit>
  
 ## Deploy Android 
 - [ ] Generate app bundle
-  - `flutter build appbundle`
+  - `melos flutter-clean`
+  - `melos pub-get`
+  - `cd app && flutter build appbundle`
 - [ ] Upload appbundle to Play Store 
