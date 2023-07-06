@@ -15,7 +15,7 @@ class JuzPersentWidget extends StatelessWidget {
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
-            color: AppColors.green,
+            color: AppColors.red,
             borderRadius: BorderRadius.circular(120),
           ),
           height: 4,
@@ -27,11 +27,11 @@ class JuzPersentWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           height: 4,
-          width: ((size.width - 44) * item.inProgress) / 100,
+          width: ((size.width - 44) * item.inProgressPercent) / 100,
         ),
         Container(
           decoration: BoxDecoration(
-            color: AppColors.red,
+            color: AppColors.green,
             borderRadius: BorderRadius.circular(20),
           ),
           height: 4,
