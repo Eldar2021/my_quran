@@ -38,3 +38,4 @@ Testing (Open Testing)
 - [ ] Enter `password` instead `keyPassword`, `storePassword` (android/app/build.gradle)
 - [ ] Comment signingConfigs (android/app/build.gradle)
 - [ ] Change `signingConfig signingConfigs.release` to `signingConfig signingConfigs.debug`
+- [ ] After review "OpenTesting" Create Production release
