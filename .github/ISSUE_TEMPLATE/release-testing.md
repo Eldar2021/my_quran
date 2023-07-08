@@ -39,3 +39,24 @@ Testing (Open Testing)
 - [ ] Comment signingConfigs (android/app/build.gradle)
 - [ ] Change `signingConfig signingConfigs.release` to `signingConfig signingConfigs.debug`
 - [ ] After review "OpenTesting" Create Production release
+  
+## Deploy IOS
+Open project ios folder in Xcode
+- [ ] Increment Version & Build (General)
+- [ ] Check Display name (General)
+- [ ] Ceck "Build identifier" & "Team id"
+- [ ] Create Archive
+  -  Click Prom top menu "Product/Destination/any IOS device (arm64)"
+  -  Click Prom top menu "Product/Archive"
+- [ ] Upload to Test flight
+  - Click "Distirbute App" button
+  - Check "App Store Connect" -> "Next"
+  - Check "Upload" -> "Next"
+  - Check "Strip Swift symbols & Upload your app's symbols & Manage Version app Build Number" -> "Next"
+  - Check app information and click "Upload"
+- [ ] Create new version form apple connect
+  - Choose `My Quran` app cleck `+ios app`
+  - Enter change description
+  - Check app information & screenshots
+  - Enter build version
+  - Send to review
