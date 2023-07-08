@@ -22,27 +22,34 @@ Tested on commit <enter-commit>
  
 ## Deploy Android 
 Testing (Open Testing)
-- [ ] Check `./keys/android_password.dart` && `./keys/android_upload_keystore`
-- [ ] Uncomment signingConfigs (android/app/build.gradle)
-- [ ] Enter password instead `keyPassword`, `storePassword`
-- [ ] Increment versionCode (android/app/build.gradle defaultConfig)
-- [ ] Cahnge versionName (android/app/build.gradle defaultConfig)
+- [ ] Check keys
+  - `./keys/android_password.dart`
+  - `./keys/android_upload_keystore`
+- [ ] To prepare new version appbundle
+  - Uncomment signingConfigs (android/app/build.gradle)
+  - Enter password instead `keyPassword`, `storePassword`
+  - Increment versionCode (android/app/build.gradle defaultConfig)
+  - Cahnge versionName (android/app/build.gradle defaultConfig)
 - [ ] Generate app bundle
   - `melos flutter-clean`
   - `melos pub-get`
   - `cd app && flutter build appbundle`
-- [ ] Upload appbundle to Play Store
-- [ ] Write release name
-- [ ] Write release notes 
-- [ ] Sen Review (After review we can publish to production)
-- [ ] Enter `password` instead `keyPassword`, `storePassword` (android/app/build.gradle)
-- [ ] Comment signingConfigs (android/app/build.gradle)
-- [ ] Change `signingConfig signingConfigs.release` to `signingConfig signingConfigs.debug`
+- [ ] Create new release Play Store
+  - Upload appbundle to Play Store
+  - Write release name
+  - Write release notes 
+  - Sen Review (After review we can publish to production)
+- [ ] Undo the changes 
+  - Enter `password` instead `keyPassword`, `storePassword` (android/app/build.gradle)
+  - Comment signingConfigs (android/app/build.gradle)
+  - Change `signingConfig signingConfigs.release` to `signingConfig signingConfigs.debug`
 - [ ] After review "OpenTesting" Create Production release
   
 ## Deploy IOS
 Open project ios folder in Xcode
 - [ ] Increment Version & Build (General)
+- [ ] Check certificates "ios_development & ios_distirbution & distirbution"
+- [ ] Check profiles "dev profiles & prod profiles"
 - [ ] Check Display name (General)
 - [ ] Ceck "Build identifier" & "Team id"
 - [ ] Create Archive
