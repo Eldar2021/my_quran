@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:my_quran/models/models.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class QuranAudioView extends StatefulWidget {
   const QuranAudioView({super.key});
@@ -29,7 +31,14 @@ class _QuranAudioViewState extends State<QuranAudioView> {
               leading: Text('${item.id}'),
               title: Text(item.arabic),
               subtitle: Text(item.name),
-              onTap: () async {},
+              onTap: () {
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const QuranAudioDetailView(),
+                  ),
+                );
+              },
             ),
           );
         },
