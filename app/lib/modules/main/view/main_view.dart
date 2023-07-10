@@ -25,6 +25,7 @@ class _MainViewState extends State<MainView> {
       create: (context) => MainCubit(),
       child: const MainScreen([
         QuranView(),
+        QuranAudioView(),
         HomeView(),
         SettingsView(),
       ]),
@@ -48,6 +49,11 @@ class MainScreen extends StatelessWidget {
           NavigationDestination(
             key: const Key('quran'),
             icon: const Icon(Icons.book_rounded),
+            label: context.l10n.bottomQuran,
+          ),
+          NavigationDestination(
+            key: const Key('quran-audio'),
+            icon: const Icon(Icons.headset_mic),
             label: context.l10n.bottomQuran,
           ),
           NavigationDestination(
