@@ -49,9 +49,18 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 19 // flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 3 // flutterVersionCode.toInteger()
+        versionName "1.0.3" // flutterVersionName
     }
+
+    // signingConfigs {
+    //     release {
+    //        keyAlias 'upload'
+    //        keyPassword 'password'
+    //        storeFile file('/Users/eldiiar/Desktop/my_project/my_quran/keys/android-upload-keystore')
+    //        storePassword 'password'
+    //     }
+    // }
 
     buildTypes {
         release {
