@@ -40,7 +40,6 @@ class QuranAudioDetailView extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 40),
           SeekBar(
             player: context.read<QuranAudioCubit>().player,
             onChangeEnd: context.read<QuranAudioCubit>().seek,
