@@ -1,5 +1,16 @@
 part of 'quran_audio_cubit.dart';
 
-abstract class QuranAudioState {}
+class QuranAudioState extends Equatable {
+  const QuranAudioState(this.surahIndex);
 
-class QuranAudioInitial extends QuranAudioState {}
+  final int surahIndex;
+
+  @override
+  List<Object?> get props => [surahIndex];
+
+  QuranAudioState copyWith({int? surahIndex}) {
+    return QuranAudioState(
+      surahIndex ?? this.surahIndex,
+    );
+  }
+}

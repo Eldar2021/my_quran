@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>())),
         BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
         BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
+        BlocProvider(create: (context) => QuranAudioCubit()),
       ],
       child: const QuranApp(),
     );
