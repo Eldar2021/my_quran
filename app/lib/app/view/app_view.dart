@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AppCubit(sl<AppService>(), sl<ThemeService>())),
         BlocProvider(create: (context) => AuthCubit(sl<AuthService>())),
         BlocProvider(create: (context) => HomeCubit(sl<HomeService>())),
-        BlocProvider(create: (context) => QuranAudioCubit()),
+        BlocProvider(create: (context) => QuranAudioCubit(AudioPlayer())),
       ],
       child: const QuranApp(),
     );
