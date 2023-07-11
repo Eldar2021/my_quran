@@ -12,7 +12,23 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
 
   final AudioPlayer player;
 
-  void changeSurah(Surah surah) => emit(state.copyWith(surah: surah));
+  final surahs = surahData.map(Surah.fromJson).toList();
+
+  void changeSurah(int index) => emit(state.copyWith(surah: surahs[index]));
+
+  Future<void> nextSurah() async {
+    final oldSurahIndex = (state.surah?.id ?? 1) - 1;
+    if (oldSurahIndex < 113) changeSurah(oldSurahIndex + 1);
+    await setUrl();
+    await play();
+  }
+
+  Future<void> previousSurah() async {
+    final oldSurahIndex = (state.surah?.id ?? 1) - 1;
+    if (oldSurahIndex > 0) changeSurah(oldSurahIndex - 1);
+    await setUrl();
+    await play();
+  }
 
   Future<void> setUrl() async {
     final duration = await player.setUrl(ApiConst.audio(state.surahPath));

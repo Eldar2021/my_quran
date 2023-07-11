@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class QuranAudioView extends StatefulWidget {
+class QuranAudioView extends StatelessWidget {
   const QuranAudioView({super.key});
-
-  @override
-  State<QuranAudioView> createState() => _QuranAudioViewState();
-}
-
-class _QuranAudioViewState extends State<QuranAudioView> {
-  final surahs = surahData.map(Surah.fromJson).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +14,9 @@ class _QuranAudioViewState extends State<QuranAudioView> {
       ),
       body: ListView.builder(
         padding: const EdgeInsets.fromLTRB(14, 20, 14, 30),
-        itemCount: surahs.length,
+        itemCount: context.read<QuranAudioCubit>().surahs.length,
         itemBuilder: (BuildContext context, int index) {
-          final item = surahs[index];
+          final item = context.read<QuranAudioCubit>().surahs[index];
           return Card(
             child: ListTile(
               key: Key('quran-audio-${item.id}-surah'),
@@ -33,7 +25,7 @@ class _QuranAudioViewState extends State<QuranAudioView> {
               title: Text(item.arabic),
               subtitle: Text(item.name),
               onTap: () {
-                context.read<QuranAudioCubit>().changeSurah(item);
+                context.read<QuranAudioCubit>().changeSurah(index);
                 Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(

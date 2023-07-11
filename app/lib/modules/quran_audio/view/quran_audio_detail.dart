@@ -37,7 +37,7 @@ class _QuranAudioDetailViewState extends State<QuranAudioDetailView> {
             children: [
               IconButton(
                 iconSize: 60,
-                onPressed: () {},
+                onPressed: context.read<QuranAudioCubit>().previousSurah,
                 icon: const Icon(Icons.skip_previous),
               ),
               AudioCenterButton(
@@ -48,7 +48,7 @@ class _QuranAudioDetailViewState extends State<QuranAudioDetailView> {
               ),
               IconButton(
                 iconSize: 60,
-                onPressed: () {},
+                onPressed: context.read<QuranAudioCubit>().nextSurah,
                 icon: const Icon(Icons.skip_next),
               ),
             ],
