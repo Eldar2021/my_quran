@@ -24,9 +24,9 @@ class _MainViewState extends State<MainView> {
     return BlocProvider(
       create: (context) => MainCubit(),
       child: const MainScreen([
+        HomeView(),
         QuranView(),
         QuranAudioView(),
-        HomeView(),
         SettingsView(),
       ]),
     );
@@ -47,6 +47,11 @@ class MainScreen extends StatelessWidget {
         selectedIndex: context.watch<MainCubit>().state,
         destinations: <Widget>[
           NavigationDestination(
+            key: const Key('home'),
+            icon: const Icon(Icons.home),
+            label: context.l10n.bottomHome,
+          ),
+          NavigationDestination(
             key: const Key('quran'),
             icon: const Icon(Icons.book_rounded),
             label: context.l10n.bottomQuran,
@@ -55,11 +60,6 @@ class MainScreen extends StatelessWidget {
             key: const Key('quran-audio'),
             icon: const Icon(Icons.headset_mic),
             label: context.l10n.bottomQuran,
-          ),
-          NavigationDestination(
-            key: const Key('home'),
-            icon: const Icon(Icons.home),
-            label: context.l10n.bottomHome,
           ),
           NavigationDestination(
             key: const Key('profile'),
