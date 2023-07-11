@@ -24,13 +24,16 @@ class AudioCenterButton extends StatelessWidget {
         final processingState = playerState?.processingState;
         final playing = playerState?.playing;
         if (processingState == ProcessingState.loading || processingState == ProcessingState.buffering) {
-          return const SizedBox(width: 70, height: 70, child: CircularProgressIndicator());
+          return const Padding(
+            padding: EdgeInsets.all(20),
+            child: SizedBox(width: 50, height: 50, child: CircularProgressIndicator()),
+          );
         } else if (playing != true) {
-          return IconButton(icon: const Icon(Icons.play_arrow), iconSize: 70, onPressed: onPlay);
+          return IconButton(icon: const Icon(Icons.play_arrow), iconSize: 75, onPressed: onPlay);
         } else if (processingState != ProcessingState.completed) {
-          return IconButton(icon: const Icon(Icons.pause), iconSize: 70, onPressed: onPause);
+          return IconButton(icon: const Icon(Icons.pause), iconSize: 75, onPressed: onPause);
         } else {
-          return IconButton(icon: const Icon(Icons.replay), iconSize: 70, onPressed: onReplay);
+          return IconButton(icon: const Icon(Icons.replay), iconSize: 75, onPressed: onReplay);
         }
       },
     );

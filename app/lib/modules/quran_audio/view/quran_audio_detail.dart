@@ -5,11 +5,23 @@ import 'package:my_quran/components/components.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/theme/theme.dart';
 
-class QuranAudioDetailView extends StatelessWidget {
+class QuranAudioDetailView extends StatefulWidget {
   const QuranAudioDetailView({super.key});
 
   @override
+  State<QuranAudioDetailView> createState() => _QuranAudioDetailViewState();
+}
+
+class _QuranAudioDetailViewState extends State<QuranAudioDetailView> {
+  @override
+  void initState() {
+    context.read<QuranAudioCubit>().setUrl();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final quranAudioCubit = context.watch<QuranAudioCubit>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Quran Audio Detail View'),
@@ -17,13 +29,14 @@ class QuranAudioDetailView extends StatelessWidget {
       body: Column(
         children: [
           const Spacer(),
-          Text('Fatiha', style: context.displayMedium),
+          Text(quranAudioCubit.state.surah?.name ?? '', style: context.displayMedium),
+          Text(quranAudioCubit.state.surah?.arabic ?? '', style: context.displaySmall),
           const Spacer(flex: 4),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                iconSize: 70,
+                iconSize: 60,
                 onPressed: () {},
                 icon: const Icon(Icons.skip_previous),
               ),
@@ -34,7 +47,7 @@ class QuranAudioDetailView extends StatelessWidget {
                 onReplay: () => context.read<QuranAudioCubit>().seek(0),
               ),
               IconButton(
-                iconSize: 70,
+                iconSize: 60,
                 onPressed: () {},
                 icon: const Icon(Icons.skip_next),
               ),

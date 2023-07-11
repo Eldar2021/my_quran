@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -32,6 +33,7 @@ class _QuranAudioViewState extends State<QuranAudioView> {
               title: Text(item.arabic),
               subtitle: Text(item.name),
               onTap: () {
+                context.read<QuranAudioCubit>().changeSurah(item);
                 Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
