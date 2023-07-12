@@ -28,7 +28,7 @@ mixin CompomnentTheme {
   }
 
   AppBarTheme appBarTheme(ColorScheme colors) {
-    return const AppBarTheme();
+    return AppBarTheme(backgroundColor: colors.surfaceVariant);
   }
 
   TabBarTheme tabBarTheme(ColorScheme colors) {

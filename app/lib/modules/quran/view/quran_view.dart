@@ -31,7 +31,6 @@ class QuranBody extends StatelessWidget {
       appBar: AppBar(
         key: const Key('quran-view'),
         title: Text(context.l10n.quran),
-        backgroundColor: colorScheme.surfaceVariant,
         bottom: TabBar(
           indicatorColor: colorScheme.primary,
           labelColor: colorScheme.onSurfaceVariant,

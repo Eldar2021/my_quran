@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/models/user/user_model.dart';
+import 'package:my_quran/models/models.dart';
 
 @immutable
 final class AppAlert {
@@ -58,6 +58,30 @@ final class AppAlert {
                 }
               },
             )
+          ],
+        );
+      },
+    );
+  }
+
+  static void showErrorDialog(
+    BuildContext context, {
+    required String errorText,
+    Widget? title,
+    void Function()? onPressed,
+    TextStyle? textStyle,
+  }) {
+    showCupertinoDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text(context.l10n.error),
+          content: Text(errorText, style: textStyle),
+          actions: <Widget>[
+            CupertinoButton(
+              onPressed: onPressed ?? () => Navigator.of(context).pop(),
+              child: Text(context.l10n.cancel, style: textStyle),
+            ),
           ],
         );
       },

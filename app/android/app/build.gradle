@@ -51,6 +51,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode 3 // flutterVersionCode.toInteger()
         versionName "1.0.3" // flutterVersionName
+        multiDexEnabled true
     }
 
     // signingConfigs {
