@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_quran/components/components.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
@@ -24,9 +25,7 @@ class _QuranAudioDetailViewState extends State<QuranAudioDetailView> {
   Widget build(BuildContext context) {
     final quranAudioCubit = context.watch<QuranAudioCubit>();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quran Audio Detail View'),
-      ),
+      appBar: AppBar(title: Text(context.l10n.audioQuran)),
       body: BlocListener<QuranAudioCubit, QuranAudioState>(
         listener: (context, state) {
           if (state.exception != null) {

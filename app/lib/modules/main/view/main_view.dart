@@ -59,7 +59,7 @@ class MainScreen extends StatelessWidget {
           NavigationDestination(
             key: const Key('quran-audio'),
             icon: const Icon(Icons.headset_mic),
-            label: context.l10n.bottomQuran,
+            label: context.l10n.audioQuran,
           ),
           NavigationDestination(
             key: const Key('profile'),
