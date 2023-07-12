@@ -31,8 +31,12 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   }
 
   Future<void> setUrl() async {
-    final duration = await player.setUrl(ApiConst.audio(state.surahPath));
-    emit(state.copyWith(duration: duration));
+    try {
+      final duration = await player.setUrl(ApiConst.audio(state.surahPath));
+      emit(state.copyWith(duration: duration));
+    } catch (e) {
+      emit(state.copyWith(exception: Exception(e)));
+    }
   }
 
   Future<void> setUrlPlay(int surahIndex) async {
