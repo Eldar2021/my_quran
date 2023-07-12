@@ -20,6 +20,7 @@ Future<void> main({AppConfig appConfig = const AppConfig()}) async {
     androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
     androidNotificationChannelName: 'Audio playback',
     androidNotificationOngoing: true,
+    androidNotificationIcon: 'mipmap/launcher_icon',
   );
 
   Bloc.observer = AppBlocObserver();
