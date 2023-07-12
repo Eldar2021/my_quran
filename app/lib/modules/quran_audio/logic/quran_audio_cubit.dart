@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/models/models.dart';
@@ -32,7 +33,16 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
 
   Future<void> setUrl() async {
     try {
-      final duration = await player.setUrl(ApiConst.audio(state.surahPath));
+      final duration = await player.setAudioSource(
+        AudioSource.uri(
+          Uri.parse(ApiConst.audio(state.surahPath)),
+          tag: MediaItem(
+            id: '${state.surah?.id}',
+            album: 'Quran',
+            title: '${state.surah?.name}',
+          ),
+        ),
+      );
       emit(state.copyWith(duration: duration));
     } catch (e) {
       emit(state.copyWith(exception: Exception(e)));
