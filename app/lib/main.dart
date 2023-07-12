@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -15,8 +16,13 @@ Future<void> main({AppConfig appConfig = const AppConfig()}) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  Bloc.observer = AppBlocObserver();
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
 
+  Bloc.observer = AppBlocObserver();
   final storage = await PreferencesStorage.getInstance();
 
   setup(storage);

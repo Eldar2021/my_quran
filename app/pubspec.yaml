@@ -31,6 +31,7 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   upgrader: ^7.1.0
   just_audio: ^0.9.34
+  just_audio_background: ^0.0.1-beta.10
   mq_storage:
     path: ../packages/mq_storage/
   # flutter_native_splash: ^2.2.18
