@@ -53,6 +53,7 @@ app/android/fastlane/metadata/android/en-US/images/phoneScreenshots/
 
 # source files
 /source
+/keys
 
 # printscreens generated in tests
 /screenshots
