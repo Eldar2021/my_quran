@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -24,8 +25,9 @@ class _MainViewState extends State<MainView> {
     return BlocProvider(
       create: (context) => MainCubit(),
       child: const MainScreen([
-        QuranView(),
         HomeView(),
+        QuranView(),
+        QuranAudioView(),
         SettingsView(),
       ]),
     );
@@ -46,18 +48,23 @@ class MainScreen extends StatelessWidget {
         selectedIndex: context.watch<MainCubit>().state,
         destinations: <Widget>[
           NavigationDestination(
-            key: const Key('quran'),
-            icon: const Icon(Icons.book_rounded),
-            label: context.l10n.bottomQuran,
-          ),
-          NavigationDestination(
             key: const Key('home'),
-            icon: const Icon(Icons.home),
+            icon: const Icon(FontAwesomeIcons.house),
             label: context.l10n.bottomHome,
           ),
           NavigationDestination(
+            key: const Key('quran'),
+            icon: const Icon(FontAwesomeIcons.bookQuran),
+            label: context.l10n.bottomQuran,
+          ),
+          NavigationDestination(
+            key: const Key('quran-audio'),
+            icon: const Icon(FontAwesomeIcons.headphonesSimple),
+            label: context.l10n.audioQuran,
+          ),
+          NavigationDestination(
             key: const Key('profile'),
-            icon: const Icon(Icons.person),
+            icon: const Icon(FontAwesomeIcons.userGear),
             label: context.l10n.bottomProfile,
           ),
         ],

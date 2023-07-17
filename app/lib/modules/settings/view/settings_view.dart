@@ -17,7 +17,7 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key('settings-view'),
-        title: Text(l10n.lang),
+        title: Text(l10n.profileSettings),
       ),
       body: ListView(
         children: [
