@@ -19,7 +19,7 @@ class ThemeService {
   }
 
   Color _getColor(int? cacheColor) {
-    return cacheColor != null ? targetColors[cacheColor]! : Colors.red;
+    return TargetColor.fromIndex(cacheColor?? 0).color;
   }
 
   Future<void> setColor(int index) async {

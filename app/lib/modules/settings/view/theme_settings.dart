@@ -30,17 +30,17 @@ class ThemeSettingsView extends StatelessWidget {
       ),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-        itemCount: targetColors.length,
+        itemCount: TargetColor.values.length,
         itemBuilder: (BuildContext context, int index) {
-          final targetColor = targetColors[index];
+          final targetColor = TargetColor.fromIndex(index);
           return Card(
             child: ListTile(
               leading: Icon(
                 Icons.color_lens_rounded,
-                color: targetColor,
+                color: targetColor.color,
               ),
-              title: Text(targetColor?.value.toString() ?? ''),
-              onTap: () => targetColor != null ? context.read<AppCubit>().changeColor(index, targetColor) : {},
+              title: Text(targetColor.displayName),
+              onTap: () => context.read<AppCubit>().changeColor(targetColor.caheIindex, targetColor.color),
             ),
           );
         },

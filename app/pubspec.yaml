@@ -57,12 +57,6 @@ flutter:
     - assets/images/
     - assets/icons/
 
-  # fonts:
-  #   - family: Hafs
-  #     fonts:
-  #       - asset: assets/fonts/hafs.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
 
 flutter_gen:
   output: lib/constants/assets/ # Optional (default: lib/gen/)
