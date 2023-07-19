@@ -14,7 +14,7 @@ final class Verse {
   final int id;
   @JsonKey(name: 'verse_key')
   final String verseKey;
-  @JsonKey(name: 'text_uthmani')
+  @JsonKey(name: 'text_imlaei')
   final String textUthmani;
 
   int get juzNumber => int.parse(verseKey.split(':').first);

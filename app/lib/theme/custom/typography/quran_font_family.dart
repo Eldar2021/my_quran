@@ -4,4 +4,5 @@ const List<String> fontList = [
   'Katibeh',
   'Noto Sans Arabic',
   'Scheherazade New',
+  'Uthmanic hafs'
 ];

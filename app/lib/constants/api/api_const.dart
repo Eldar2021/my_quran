@@ -24,7 +24,7 @@ class ApiConst {
   // TODO(eldiiar): Replace the privacy policy URL with the actual [URL] of your privacy policy page.
   static const provicyPolicy = 'https://github.com/Eldar2021/my_quran';
 
-  static String verse(int page) => 'https://api.quran.com/api/v4/quran/verses/uthmani?page_number=$page';
+  static String verse(int page) => 'https://api.quran.com/api/v4/quran/verses/imlaei?page_number=$page';
   static String audio(String surahIndex) =>
       'https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/$surahIndex.mp3';
 }

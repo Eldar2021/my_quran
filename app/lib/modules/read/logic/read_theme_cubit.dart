@@ -39,6 +39,7 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
       'Katibeh' => GoogleFonts.katibeh(),
       'Noto Sans Arabic' => GoogleFonts.notoSansArabic(),
       'Scheherazade New' => GoogleFonts.scheherazadeNew(),
+      'Uthmanic hafs' => const TextStyle(fontFamily: 'qpc_uthmanic_hafs'),
       _ => GoogleFonts.scheherazadeNew(),
     };
   }
