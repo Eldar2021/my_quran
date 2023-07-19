@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 enum TargetColor {
-  red(Colors.red, 0, 'Red'),
-  yellow(Colors.yellow, 1, 'yellow'),
-  green(Colors.green, 2, 'green'),
-  blue(Colors.blue, 3, 'blue'),
-  purple(Colors.purple, 4, 'purple'),
-  deepOrange(Colors.deepOrange, 5, 'deepOrange'),
-  brown(Colors.brown, 6, 'brown');
+  red(Colors.red, 0),
+  yellow(Colors.yellow, 1),
+  green(Colors.green, 2),
+  blue(Colors.blue, 3),
+  purple(Colors.purple, 4),
+  deepOrange(Colors.deepOrange, 5),
+  brown(Colors.brown, 6);
 
-  const TargetColor(this.color, this.caheIindex, this.displayName);
+  const TargetColor(this.color, this.caheIindex);
 
   factory TargetColor.fromIndex(int index) {
     return switch (index) {
@@ -24,7 +25,18 @@ enum TargetColor {
     };
   }
 
+  String displayName(BuildContext context) {
+    return switch (this) {
+      TargetColor.red => context.l10n.colorRed,
+      TargetColor.yellow => context.l10n.colorYellow,
+      TargetColor.green => context.l10n.colorGreen,
+      TargetColor.blue => context.l10n.colorBlue,
+      TargetColor.purple => context.l10n.colorPurple,
+      TargetColor.brown => context.l10n.colorBrown,
+      TargetColor.deepOrange => context.l10n.colorOrange,
+    };
+  }
+
   final Color color;
   final int caheIindex;
-  final String displayName;
 }

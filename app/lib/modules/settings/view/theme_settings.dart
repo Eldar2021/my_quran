@@ -39,7 +39,7 @@ class ThemeSettingsView extends StatelessWidget {
                 Icons.color_lens_rounded,
                 color: targetColor.color,
               ),
-              title: Text(targetColor.displayName),
+              title: Text(targetColor.displayName(context)),
               onTap: () => context.read<AppCubit>().changeColor(targetColor.caheIindex, targetColor.color),
             ),
           );
