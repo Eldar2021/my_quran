@@ -3,15 +3,24 @@
 My Quran Hatim Aplication.
 
 <p align="center">
-  <img src="doc/images/home.png" width="32%" />
-  <img src="doc/images/surahs.png" width="32%" />
-  <img src="doc/images/hatim_juzas.png" width="32%" />
+  <img src="doc/images/home.png" width="22%" />
+  <img src="doc/images/hatim_juzas.png" width="22%" />
+  <img src="doc/images/hatim_pages.png" width="22%" />
+  <img src="doc/images/about_us.png" width="22%" />
 </p>
 
 <p align="center">
-  <img src="doc/images/hatim_pages.png" width="32%" />
-  <img src="doc/images/read01.png" width="32%" />
-  <img src="doc/images/read02.png" width="32%" />
+  <img src="doc/images/quran_surahs.png" width="22%" />
+  <img src="doc/images/quran_read.png" width="22%" />
+  <img src="doc/images/quran_read_settings.png" width="22%" />
+  <img src="doc/images/select_lang_settings.png" width="22%" />
+</p>
+
+<p align="center">
+  <img src="doc/images/quran_audio_surahs.png" width="22%" />
+  <img src="doc/images/quran_audio.png" width="22%" />
+  <img src="doc/images/theme_settings.png" width="22%" />
+  <img src="doc/images/select_gen_settings.png" width="22%" />
 </p>
 
 ### Getting Started
