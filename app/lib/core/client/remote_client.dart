@@ -9,7 +9,7 @@ import 'package:my_quran/core/core.dart';
 
 @immutable
 class RemoteClient {
-  const RemoteClient(Client client, {required this.networkClient}) : _client = client;
+  const RemoteClient(Client client, this.networkClient) : _client = client;
 
   final Client _client;
   final NetworkClient networkClient;

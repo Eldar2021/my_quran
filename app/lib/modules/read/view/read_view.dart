@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/locator.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
@@ -24,8 +25,13 @@ class ReadView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ReadCubit(sl<ReadService>(), pages)),
-        BlocProvider(create: (context) => ReadThemeCubit(sl<ReadThemeService>())),
+        BlocProvider(
+          create: (context) => ReadCubit(
+            ReadService(context.read<RemoteClient>(), context.read<PreferencesStorage>()),
+            pages,
+          ),
+        ),
+        BlocProvider(create: (context) => ReadThemeCubit(ReadThemeService(context.read<PreferencesStorage>()))),
       ],
       child: ReadUI(pages: pages, isHatim: isHatim),
     );
