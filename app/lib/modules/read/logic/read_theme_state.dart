@@ -2,16 +2,14 @@ part of 'read_theme_cubit.dart';
 
 class ReadThemeState extends Equatable {
   const ReadThemeState({
-    this.fontFamily = 'Scheherazade New',
     this.verticalSpaceSize = 0,
     this.horizontalSpaceSize = 14,
     this.modeIndex = 1,
-    this.textSize = 22,
+    this.textSize = 28,
   });
 
   factory ReadThemeState.fromJson(Map<String, dynamic> map) {
     return ReadThemeState(
-      fontFamily: map['fontFamily'] as String,
       verticalSpaceSize: map['verticalSpaceSize'] as double,
       horizontalSpaceSize: map['horizontalSpaceSize'] as double,
       modeIndex: map['modeIndex'] as int,
@@ -19,7 +17,6 @@ class ReadThemeState extends Equatable {
     );
   }
 
-  final String fontFamily;
   final double verticalSpaceSize;
   final double horizontalSpaceSize;
   final int modeIndex;
@@ -27,7 +24,6 @@ class ReadThemeState extends Equatable {
 
   @override
   List<Object?> get props => [
-        fontFamily,
         verticalSpaceSize,
         horizontalSpaceSize,
         modeIndex,
@@ -35,14 +31,12 @@ class ReadThemeState extends Equatable {
       ];
 
   ReadThemeState copyWith({
-    String? fontFamily,
     double? verticalSpaceSize,
     double? horizontalSpaceSize,
     int? modeIndex,
     double? textSize,
   }) {
     return ReadThemeState(
-      fontFamily: fontFamily ?? this.fontFamily,
       verticalSpaceSize: verticalSpaceSize ?? this.verticalSpaceSize,
       horizontalSpaceSize: horizontalSpaceSize ?? this.horizontalSpaceSize,
       modeIndex: modeIndex ?? this.modeIndex,
@@ -52,7 +46,6 @@ class ReadThemeState extends Equatable {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'fontFamily': fontFamily,
       'verticalSpaceSize': verticalSpaceSize,
       'horizontalSpaceSize': horizontalSpaceSize,
       'modeIndex': modeIndex,

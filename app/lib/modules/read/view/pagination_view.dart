@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/utils/urils.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
 import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -55,7 +55,7 @@ class _PaginationViewState extends State<PaginationView> {
       pagingController: _pagingController,
       separatorBuilder: (context, index) => Center(
         child: Text(
-          widget.pages[index].toString(),
+          widget.pages[index].toArabicDigits,
           style: TextStyle(
             fontSize: readThemeCubit.state.textSize,
             color: frReadThemeColor[readThemeCubit.state.modeIndex],
@@ -77,11 +77,12 @@ class _PaginationViewState extends State<PaginationView> {
                   Text(
                     text,
                     locale: const Locale('ar'),
-                    style: context.read<ReadThemeCubit>().getTextStyle().copyWith(
-                          fontSize: readThemeCubit.state.textSize,
-                          color: frReadThemeColor[readThemeCubit.state.modeIndex],
-                          height: 2.5,
-                        ),
+                    style: TextStyle(
+                      fontFamily: FontFamily.qpcUthmanicHafs,
+                      fontSize: readThemeCubit.state.textSize,
+                      color: frReadThemeColor[readThemeCubit.state.modeIndex],
+                      height: 2.5,
+                    ),
                     textDirection: TextDirection.rtl,
                   ),
                   if (widget.pages[index] == widget.pages.last)

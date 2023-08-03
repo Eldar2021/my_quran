@@ -13,6 +13,6 @@ class ReadCubit extends Cubit<ReadState> {
   final List<int> pages;
 
   Future<QuranPage?> getPage(int page) async {
-    return repo.gerVerses(page);
+    return repo.gerVerses(page, state.fmt.name);
   }
 }

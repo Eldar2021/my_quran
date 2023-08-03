@@ -11,15 +11,15 @@ class ReadService {
   final RemoteClient remoteClient;
   final PreferencesStorage storage;
 
-  Future<QuranPage?> gerVerses(int page) async {
-    final key = 'quran-$page';
+  Future<QuranPage?> gerVerses(int page, String quranFmt) async {
+    final key = 'quran-$quranFmt-$page';
     final localvalue = storage.readString(key: key);
     if (localvalue != null) {
       final data = jsonDecode(localvalue);
       return QuranPage.fromJson(data as Map<String, dynamic>);
     } else {
       final remoteValue = await remoteClient.get<QuranPage>(
-        ApiConst.verse(page),
+        ApiConst.verse(page, quranFmt),
         fromJson: QuranPage.fromJson,
       );
 
