@@ -27,7 +27,6 @@ dependencies:
   flutter_svg: ^2.0.7
   url_launcher: ^6.1.12
   json_annotation: ^4.8.1
-  google_fonts: ^5.1.0
   font_awesome_flutter: ^10.5.0
   upgrader: ^8.1.0
   just_audio: ^0.9.34
@@ -57,12 +56,10 @@ flutter:
     - assets/images/
     - assets/icons/
 
-  # fonts:
-  #   - family: Hafs
-  #     fonts:
-  #       - asset: assets/fonts/hafs.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: qpc_uthmanic_hafs
+      fonts:
+        - asset: assets/fonts/qpc_uthmanic_hafs/qpc_uthmanic_hafs.otf
 
 flutter_gen:
   output: lib/constants/assets/ # Optional (default: lib/gen/)

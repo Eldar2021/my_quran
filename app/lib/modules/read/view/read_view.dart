@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/locator.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/modules/read/logic/read_theme_cubit.dart';
-import 'package:my_quran/theme/custom/typography/quran_font_family.dart';
 import 'package:my_quran/utils/urils.dart';
 
 const bgReadThemeColor = [
@@ -57,9 +54,6 @@ class ReadUI extends StatelessWidget {
             stretch: true,
             centerTitle: true,
             backgroundColor: bgReadThemeColor[readThemeCubit.state.modeIndex],
-            titleTextStyle: TextStyle(
-              color: frReadThemeColor[readThemeCubit.state.modeIndex],
-            ),
             foregroundColor: frReadThemeColor[readThemeCubit.state.modeIndex],
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
@@ -68,7 +62,9 @@ class ReadUI extends StatelessWidget {
                   AppConst.bismallah,
                   maxLines: 2,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.scheherazadeNew(
+                  style: TextStyle(
+                    fontFamily: FontFamily.qpcUthmanicHafs,
+                    fontSize: 26,
                     color: frReadThemeColor[readThemeCubit.state.modeIndex],
                   ),
                 ),
@@ -130,31 +126,6 @@ class ChangeReadTheme extends StatelessWidget {
           max: 40,
           value: readThemeCubit.state.textSize,
           onChanged: (v) => context.read<ReadThemeCubit>().changeTextSize(v),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(22, 0, 22, 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(l10n.readTextFonts, style: const TextStyle(fontSize: 18)),
-              SizedBox(
-                width: 180,
-                child: DropdownButton(
-                  value: readThemeCubit.state.fontFamily,
-                  isExpanded: true,
-                  icon: const Icon(Icons.arrow_drop_down),
-                  elevation: 16,
-                  items: fontList.map((value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value, style: const TextStyle(fontSize: 18)),
-                    );
-                  }).toList(),
-                  onChanged: (v) => context.read<ReadThemeCubit>().changeFontFamily(v!),
-                ),
-              ),
-            ],
-          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
