@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/models.dart';
 
 class PageViewItem<T> extends StatelessWidget {
@@ -22,7 +23,8 @@ class PageViewItem<T> extends StatelessWidget {
               key: Key('quran-view-${item.id}-juz'),
               minLeadingWidth: 10,
               leading: Text('${item.id}'),
-              title: Text(item.name),
+              title: Text('${item.id}-${context.l10n.juz}'),
+              subtitle: Text(item.name),
               onTap: () async {
                 final pages = <int>[];
                 for (var i = item.pages.first; i <= item.pages.last; i++) {
