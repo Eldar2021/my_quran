@@ -30,6 +30,7 @@ Testing (Open Testing)
   - Enter password instead `keyPassword`, `storePassword`
   - Increment versionCode (android/app/build.gradle defaultConfig)
   - Cahnge versionName (android/app/build.gradle defaultConfig)
+  - Cahnge `degug` -> `release` (android/app/build.gradle buildTypes)
 - [ ] Generate app bundle
   - `melos flutter-clean`
   - `melos pub-get`
