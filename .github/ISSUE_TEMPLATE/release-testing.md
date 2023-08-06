@@ -10,9 +10,9 @@ assignees: ''
 Tested on commit <enter-commit>
 
 # Release Testing v<enter-version>
-- [ ] Check Integration tes(CI)
-- [ ] Check unit test
-- [ ] Check code analyze
+- [ ] Check Integration tes(CI) `melos integration-test-app`
+- [ ] Check unit test `melos unit-test`
+- [ ] Check code analyze `melos analyze`
 - [ ] Testting manual
 - [ ] Change app version `pubspec.yaml`
 - [ ] Create a tag 

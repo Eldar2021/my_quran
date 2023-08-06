@@ -49,8 +49,8 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 19 // flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 4 // flutterVersionCode.toInteger()
-        versionName "1.1.0" // flutterVersionName
+        versionCode 5 // flutterVersionCode.toInteger()
+        versionName "1.1.1" // flutterVersionName
         multiDexEnabled true
     }
 
