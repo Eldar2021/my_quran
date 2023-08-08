@@ -9,14 +9,9 @@ class ReadThemeService {
 
   final PreferencesStorage storage;
 
-  ReadThemeState init() {
+  ReadThemeState get init {
     final value = storage.readString(key: AppConst.readThemeKey);
-    if (value != null) {
-      final data = json.decode(value) as Map<String, dynamic>;
-      return ReadThemeState.fromJson(data);
-    } else {
-      return const ReadThemeState();
-    }
+    return value != null ? ReadThemeState.fromJson(json.decode(value) as Map<String, dynamic>) : const ReadThemeState();
   }
 
   Future<void> saveChanges(ReadThemeState theme) async {
