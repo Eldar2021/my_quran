@@ -35,14 +35,11 @@ class $AssetsIconsGen {
   /// File path: assets/icons/male.svg
   SvgGenImage get male => const SvgGenImage('assets/icons/male.svg');
 
-  /// File path: assets/icons/male_2.svg
-  SvgGenImage get male2 => const SvgGenImage('assets/icons/male_2.svg');
-
   /// File path: assets/icons/open_book.svg
   SvgGenImage get openBook => const SvgGenImage('assets/icons/open_book.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [alQuran, contactUs, duaFemale, duaMale, female, github, male, male2, openBook];
+  List<SvgGenImage> get values => [alQuran, contactUs, duaFemale, duaMale, female, github, male, openBook];
 }
 
 class $AssetsImagesGen {
