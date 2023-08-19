@@ -7,14 +7,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Fatiha',
         'arName': 'الفاتحة',
-        'pages': [1]
+        'pages': [1],
       },
       {
         'name': 'Al Baqarah',
         'arName': 'البقرة',
-        'pages': [2, 21]
+        'pages': [2, 21],
       }
-    ]
+    ],
   },
   {
     'id': 2,
@@ -24,9 +24,9 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Baqarah',
         'arName': 'البقرة',
-        'pages': [22, 41]
+        'pages': [22, 41],
       }
-    ]
+    ],
   },
   {
     'id': 3,
@@ -36,14 +36,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Baqarah',
         'arName': 'البقرة',
-        'pages': [42, 49]
+        'pages': [42, 49],
       },
       {
         'name': 'Al Imran',
         'arName': 'آل عمران',
-        'pages': [50, 61]
+        'pages': [50, 61],
       }
-    ]
+    ],
   },
   {
     'id': 4,
@@ -53,14 +53,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Imran',
         'arName': 'آل عمران',
-        'pages': [62, 76]
+        'pages': [62, 76],
       },
       {
         'name': 'An Nisa',
         'arName': 'النساء',
-        'pages': [77, 81]
+        'pages': [77, 81],
       }
-    ]
+    ],
   },
   {
     'id': 5,
@@ -70,9 +70,9 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'An Nisa',
         'arName': 'النساء',
-        'pages': [82, 101]
+        'pages': [82, 101],
       }
-    ]
+    ],
   },
   {
     'id': 6,
@@ -82,14 +82,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'An Nisa',
         'arName': 'النساء',
-        'pages': [102, 106]
+        'pages': [102, 106],
       },
       {
         'name': "Al Ma'idah",
         'arName': 'المائدة',
-        'pages': [106, 121]
+        'pages': [106, 121],
       }
-    ]
+    ],
   },
   {
     'id': 7,
@@ -99,14 +99,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': "Al Ma'idah",
         'arName': 'المائدة',
-        'pages': [122, 127]
+        'pages': [122, 127],
       },
       {
         'name': "Al An'am",
         'arName': 'الأنعام',
-        'pages': [128, 141]
+        'pages': [128, 141],
       }
-    ]
+    ],
   },
   {
     'id': 8,
@@ -116,14 +116,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': "Al An'am",
         'arName': 'الأنعام',
-        'pages': [142, 150]
+        'pages': [142, 150],
       },
       {
         'name': "Al A'raf",
         'arName': 'الأعراف',
-        'pages': [150, 161]
+        'pages': [150, 161],
       }
-    ]
+    ],
   },
   {
     'id': 9,
@@ -133,14 +133,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': "Al A'raf",
         'arName': 'الأعراف',
-        'pages': [162, 176]
+        'pages': [162, 176],
       },
       {
         'name': 'Al Anfal',
         'arName': 'الأنفال',
-        'pages': [177, 181]
+        'pages': [177, 181],
       }
-    ]
+    ],
   },
   {
     'id': 10,
@@ -150,14 +150,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Anfal',
         'arName': 'الأنفال',
-        'pages': [182, 186]
+        'pages': [182, 186],
       },
       {
         'name': 'At Tawbah',
         'arName': 'التوبة',
-        'pages': [186, 201]
+        'pages': [186, 201],
       }
-    ]
+    ],
   },
   {
     'id': 11,
@@ -167,19 +167,19 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'At Tawbah',
         'arName': 'التوبة',
-        'pages': [202, 207]
+        'pages': [202, 207],
       },
       {
         'name': 'Al Yunus',
         'arName': 'يونس',
-        'pages': [208, 221]
+        'pages': [208, 221],
       },
       {
         'name': 'Hud',
         'arName': 'هود',
-        'pages': [221]
+        'pages': [221],
       }
-    ]
+    ],
   },
   {
     'id': 12,
@@ -189,14 +189,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Hud',
         'arName': 'هود',
-        'pages': [221, 235]
+        'pages': [221, 235],
       },
       {
         'name': 'Yusuf',
         'arName': 'يوسف',
-        'pages': [235, 241]
+        'pages': [235, 241],
       }
-    ]
+    ],
   },
   {
     'id': 13,
@@ -206,19 +206,19 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Yusuf',
         'arName': 'يوسف',
-        'pages': [242, 248]
+        'pages': [242, 248],
       },
       {
         'name': "Ar Ra'd",
         'arName': 'الرعد',
-        'pages': [249, 255]
+        'pages': [249, 255],
       },
       {
         'name': 'Ibrahim',
         'arName': 'ابراهيم',
-        'pages': [255, 261]
+        'pages': [255, 261],
       }
-    ]
+    ],
   },
   {
     'id': 14,
@@ -228,14 +228,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Hijr',
         'arName': 'الحجر',
-        'pages': [262, 267]
+        'pages': [262, 267],
       },
       {
         'name': 'An Nahl',
         'arName': 'النحل',
-        'pages': [267, 281]
+        'pages': [267, 281],
       }
-    ]
+    ],
   },
   {
     'id': 15,
@@ -245,14 +245,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Isra',
         'arName': 'الإسراء',
-        'pages': [282, 293]
+        'pages': [282, 293],
       },
       {
         'name': 'Al Kahf',
         'arName': 'الكهف',
-        'pages': [293, 301]
+        'pages': [293, 301],
       }
-    ]
+    ],
   },
   {
     'id': 16,
@@ -262,19 +262,19 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Kahf',
         'arName': 'الكهف',
-        'pages': [301, 304]
+        'pages': [301, 304],
       },
       {
         'name': 'Maryam',
         'arName': 'مريم',
-        'pages': [305, 312]
+        'pages': [305, 312],
       },
       {
         'name': 'Ta Ha',
         'arName': 'طه',
-        'pages': [312, 321]
+        'pages': [312, 321],
       }
-    ]
+    ],
   },
   {
     'id': 17,
@@ -284,14 +284,14 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Anbiya',
         'arName': 'الأنبياء',
-        'pages': [322, 331]
+        'pages': [322, 331],
       },
       {
         'name': 'Al Hajj',
         'arName': 'الحج',
-        'pages': [322, 341]
+        'pages': [322, 341],
       }
-    ]
+    ],
   },
   {
     'id': 18,
@@ -301,19 +301,19 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Mu minun',
         'arName': 'المؤمنون',
-        'pages': [342, 349]
+        'pages': [342, 349],
       },
       {
         'name': 'An Nur',
         'arName': 'النور',
-        'pages': [350, 359]
+        'pages': [350, 359],
       },
       {
         'name': 'Al Furqan',
         'arName': 'الفرقان',
-        'pages': [359, 361]
+        'pages': [359, 361],
       }
-    ]
+    ],
   },
   {
     'id': 19,
@@ -323,19 +323,19 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Furqan',
         'arName': 'الفرقان',
-        'pages': [362, 366]
+        'pages': [362, 366],
       },
       {
         'name': "As Su'ara",
         'arName': 'الشعراء',
-        'pages': [367, 376]
+        'pages': [367, 376],
       },
       {
         'name': 'An Naml',
         'arName': 'النمل',
-        'pages': [377, 381]
+        'pages': [377, 381],
       }
-    ]
+    ],
   },
   {
     'id': 20,
@@ -345,19 +345,19 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'An Naml',
         'arName': 'النمل',
-        'pages': [382, 385]
+        'pages': [382, 385],
       },
       {
         'name': 'Al Qasas',
         'arName': 'القصص',
-        'pages': [385, 396]
+        'pages': [385, 396],
       },
       {
         'name': 'Al Ankabut',
         'arName': 'العنكبوت',
-        'pages': [396, 401]
+        'pages': [396, 401],
       }
-    ]
+    ],
   },
   {
     'id': 21,
@@ -367,29 +367,29 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Ankabut',
         'arName': 'العنكبوت',
-        'pages': [402, 404]
+        'pages': [402, 404],
       },
       {
         'name': 'Ar Rum',
         'arName': 'الروم',
-        'pages': [404, 410]
+        'pages': [404, 410],
       },
       {
         'name': 'Luqman',
         'arName': 'لقمان',
-        'pages': [411, 414]
+        'pages': [411, 414],
       },
       {
         'name': 'As Sajdah',
         'arName': 'السجدة',
-        'pages': [414, 417]
+        'pages': [414, 417],
       },
       {
         'name': 'Al Ahzab',
         'arName': 'الأحزاب',
-        'pages': [417, 421]
+        'pages': [417, 421],
       }
-    ]
+    ],
   },
   {
     'id': 22,
@@ -399,24 +399,24 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Ahzab',
         'arName': 'الأحزاب',
-        'pages': [422, 427]
+        'pages': [422, 427],
       },
       {
         'name': 'Saba',
         'arName': 'سبإ',
-        'pages': [428, 434]
+        'pages': [428, 434],
       },
       {
         'name': 'Fatir',
         'arName': 'فاطر',
-        'pages': [434, 440]
+        'pages': [434, 440],
       },
       {
         'name': "Ya'sin",
         'arName': 'يس',
-        'pages': [440, 441]
+        'pages': [440, 441],
       }
-    ]
+    ],
   },
   {
     'id': 23,
@@ -426,24 +426,24 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': "Ya'sin",
         'arName': 'يس',
-        'pages': [442, 445]
+        'pages': [442, 445],
       },
       {
         'name': 'As Saffat',
         'arName': 'الصافات',
-        'pages': [446, 452]
+        'pages': [446, 452],
       },
       {
         'name': 'Saad',
         'arName': 'ص',
-        'pages': [453, 458]
+        'pages': [453, 458],
       },
       {
         'name': 'Az Zumar',
         'arName': 'الزمر',
-        'pages': [458, 461]
+        'pages': [458, 461],
       }
-    ]
+    ],
   },
   {
     'id': 24,
@@ -453,19 +453,19 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Az Zumar',
         'arName': 'الزمر',
-        'pages': [462, 467]
+        'pages': [462, 467],
       },
       {
         'name': 'Ghafir',
         'arName': 'غافر',
-        'pages': [467, 476]
+        'pages': [467, 476],
       },
       {
         'name': 'Fussilat',
         'arName': 'فصلت',
-        'pages': [477, 481]
+        'pages': [477, 481],
       }
-    ]
+    ],
   },
   {
     'id': 25,
@@ -475,29 +475,29 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Fussilat',
         'arName': 'فصلت',
-        'pages': [482]
+        'pages': [482],
       },
       {
         'name': 'As Sura',
         'arName': 'الشورى',
-        'pages': [483, 489]
+        'pages': [483, 489],
       },
       {
         'name': 'Az Zukhruf',
         'arName': 'الزخرف',
-        'pages': [489, 495]
+        'pages': [489, 495],
       },
       {
         'name': 'Ad Dukhan',
         'arName': 'الدخان',
-        'pages': [496, 498]
+        'pages': [496, 498],
       },
       {
         'name': 'Al Jaathiyah',
         'arName': 'الجاثية',
-        'pages': [499, 501]
+        'pages': [499, 501],
       }
-    ]
+    ],
   },
   {
     'id': 26,
@@ -507,39 +507,39 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Jaathiyah',
         'arName': 'الجاثية',
-        'pages': [502]
+        'pages': [502],
       },
       {
         'name': 'Al Ahqaf',
         'arName': 'الأحقاف',
-        'pages': [502, 506]
+        'pages': [502, 506],
       },
       {
         'name': 'Muhammad',
         'arName': 'محمد',
-        'pages': [507, 510]
+        'pages': [507, 510],
       },
       {
         'name': 'Al Fath',
         'arName': 'الفتح',
-        'pages': [511, 515]
+        'pages': [511, 515],
       },
       {
         'name': 'Al Hujurut',
         'arName': 'الحجرات',
-        'pages': [515, 517]
+        'pages': [515, 517],
       },
       {
         'name': 'Qaaf',
         'arName': 'ق',
-        'pages': [518, 520]
+        'pages': [518, 520],
       },
       {
         'name': 'Ad Dariyat',
         'arName': 'الذاريات',
-        'pages': [520, 521]
+        'pages': [520, 521],
       }
-    ]
+    ],
   },
   {
     'id': 27,
@@ -549,39 +549,39 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Ad Dariyat',
         'arName': 'الذاريات',
-        'pages': [522, 523]
+        'pages': [522, 523],
       },
       {
         'name': 'At Toor',
         'arName': 'الطور',
-        'pages': [523, 525]
+        'pages': [523, 525],
       },
       {
         'name': 'An Najm',
         'arName': 'النجم',
-        'pages': [526, 528]
+        'pages': [526, 528],
       },
       {
         'name': 'Al Qamar',
         'arName': 'القمر',
-        'pages': [528, 531]
+        'pages': [528, 531],
       },
       {
         'name': 'Ar Rahman',
         'arName': 'الرحمن',
-        'pages': [531, 534]
+        'pages': [531, 534],
       },
       {
         'name': 'Al Waqiah',
         'arName': 'الواقعة',
-        'pages': [534, 537]
+        'pages': [534, 537],
       },
       {
         'name': 'Al Hadeed',
         'arName': 'الحديد',
-        'pages': [537, 541]
+        'pages': [537, 541],
       }
-    ]
+    ],
   },
   {
     'id': 28,
@@ -591,49 +591,49 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Mujadil',
         'arName': 'المجادلة',
-        'pages': [542, 545]
+        'pages': [542, 545],
       },
       {
         'name': 'Al Hashr',
         'arName': 'الحشر',
-        'pages': [545, 548]
+        'pages': [545, 548],
       },
       {
         'name': 'Al Mumtahanah',
         'arName': 'الممتحنة',
-        'pages': [549, 551]
+        'pages': [549, 551],
       },
       {
         'name': 'As Saff',
         'arName': 'الصف',
-        'pages': [551, 552]
+        'pages': [551, 552],
       },
       {
         'name': "Al Jumu'ah",
         'arName': 'الجمعة',
-        'pages': [553, 554]
+        'pages': [553, 554],
       },
       {
         'name': 'Al Munafiqoon',
         'arName': 'المنافقون',
-        'pages': [554, 555]
+        'pages': [554, 555],
       },
       {
         'name': 'At Taghabun',
         'arName': 'التغابن',
-        'pages': [556, 557]
+        'pages': [556, 557],
       },
       {
         'name': 'At Talaq',
         'arName': 'الطلاق',
-        'pages': [558, 559]
+        'pages': [558, 559],
       },
       {
         'name': 'At Tahreem',
         'arName': 'التحريم',
-        'pages': [560, 561]
+        'pages': [560, 561],
       }
-    ]
+    ],
   },
   {
     'id': 29,
@@ -643,59 +643,59 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'Al Mulk',
         'arName': 'الملك',
-        'pages': [562, 564]
+        'pages': [562, 564],
       },
       {
         'name': 'Al Qalam',
         'arName': 'القلم',
-        'pages': [564, 566]
+        'pages': [564, 566],
       },
       {
         'name': 'Al Haaqqah',
         'arName': 'الحاقة',
-        'pages': [566, 568]
+        'pages': [566, 568],
       },
       {
         'name': "Al Ma'arij",
         'arName': 'المعارج',
-        'pages': [568, 570]
+        'pages': [568, 570],
       },
       {
         'name': 'Nooh',
         'arName': 'نوح',
-        'pages': [570, 571]
+        'pages': [570, 571],
       },
       {
         'name': 'Al Jinn',
         'arName': 'الجن',
-        'pages': [572, 573]
+        'pages': [572, 573],
       },
       {
         'name': 'Al Muzammil',
         'arName': 'المزمل',
-        'pages': [574, 575]
+        'pages': [574, 575],
       },
       {
         'name': 'Al Muddathir',
         'arName': 'المدثر',
-        'pages': [575, 577]
+        'pages': [575, 577],
       },
       {
         'name': 'Al Qiyamah',
         'arName': 'القيامة',
-        'pages': [577, 578]
+        'pages': [577, 578],
       },
       {
         'name': 'Al Insaan',
         'arName': 'الانسان',
-        'pages': [578, 580]
+        'pages': [578, 580],
       },
       {
         'name': 'Al Mursalat',
         'arName': 'المرسلات',
-        'pages': [580, 581]
+        'pages': [580, 581],
       }
-    ]
+    ],
   },
   {
     'id': 30,
@@ -705,188 +705,188 @@ const List<Map<String, dynamic>> juzData = [
       {
         'name': 'An Naba',
         'arName': 'النبإ',
-        'pages': [582, 583]
+        'pages': [582, 583],
       },
       {
         'name': 'An Naaziat',
         'arName': 'النازعات',
-        'pages': [583, 584]
+        'pages': [583, 584],
       },
       {
         'name': 'Abasa',
         'arName': 'عبس',
-        'pages': [585]
+        'pages': [585],
       },
       {
         'name': 'At Takweer',
         'arName': 'التكوير',
-        'pages': [586]
+        'pages': [586],
       },
       {
         'name': 'Al Infitar',
         'arName': 'الإنفطار',
-        'pages': [587]
+        'pages': [587],
       },
       {
         'name': 'Al Mutaffifin',
         'arName': 'المطففين',
-        'pages': [587, 589]
+        'pages': [587, 589],
       },
       {
         'name': 'Al Inshiqaaq',
         'arName': 'الإنشقاق',
-        'pages': [589]
+        'pages': [589],
       },
       {
         'name': 'Al Burooj',
         'arName': 'البروج',
-        'pages': [590]
+        'pages': [590],
       },
       {
         'name': 'At Taariq',
         'arName': 'الطارق',
-        'pages': [591]
+        'pages': [591],
       },
       {
         'name': "Al A'laa",
         'arName': 'الأعلى',
-        'pages': [591, 592]
+        'pages': [591, 592],
       },
       {
         'name': 'Al Ghaashiyah',
         'arName': 'الغاشية',
-        'pages': [592]
+        'pages': [592],
       },
       {
         'name': 'Al Fajr',
         'arName': 'الفجر',
-        'pages': [593, 594]
+        'pages': [593, 594],
       },
       {
         'name': 'Al Balad',
         'arName': 'البلد',
-        'pages': [594]
+        'pages': [594],
       },
       {
         'name': 'sh Shams',
         'arName': 'الشمس',
-        'pages': [595]
+        'pages': [595],
       },
       {
         'name': 'Al Layl',
         'arName': 'الليل',
-        'pages': [595, 596]
+        'pages': [595, 596],
       },
       {
         'name': 'Ad Dhuha',
         'arName': 'الضحى',
-        'pages': [596]
+        'pages': [596],
       },
       {
         'name': 'Ash Sharh',
         'arName': 'الشرح',
-        'pages': [596]
+        'pages': [596],
       },
       {
         'name': 'At Teen',
         'arName': 'التين',
-        'pages': [597]
+        'pages': [597],
       },
       {
         'name': 'Al Alaq',
         'arName': 'العلق',
-        'pages': [597]
+        'pages': [597],
       },
       {
         'name': 'Al Qadr',
         'arName': 'القدر',
-        'pages': [598]
+        'pages': [598],
       },
       {
         'name': 'Al Bayyinah',
         'arName': 'البينة',
-        'pages': [598, 599]
+        'pages': [598, 599],
       },
       {
         'name': 'Az Zalzalah',
         'arName': 'الزلزلة',
-        'pages': [599]
+        'pages': [599],
       },
       {
         'name': 'Al Aadiyaat',
         'arName': 'العاديات',
-        'pages': [599, 600]
+        'pages': [599, 600],
       },
       {
         'name': "Al Qaari'ah",
         'arName': 'القارعة',
-        'pages': [600]
+        'pages': [600],
       },
       {
         'name': 'At Takaathur',
         'arName': 'التكاثر',
-        'pages': [600]
+        'pages': [600],
       },
       {
         'name': 'Al Asr',
         'arName': 'العصر',
-        'pages': [601]
+        'pages': [601],
       },
       {
         'name': 'Al Humazah',
         'arName': 'الهمزة',
-        'pages': [601]
+        'pages': [601],
       },
       {
         'name': 'Al Feel',
         'arName': 'الفيل',
-        'pages': [601]
+        'pages': [601],
       },
       {
         'name': 'Quraysh',
         'arName': 'قريش',
-        'pages': [602]
+        'pages': [602],
       },
       {
         'name': "Al Maa'oon",
         'arName': 'الماعون',
-        'pages': [602]
+        'pages': [602],
       },
       {
         'name': 'Al Kawthar',
         'arName': 'الكوثر',
-        'pages': [602]
+        'pages': [602],
       },
       {
         'name': 'Al Kaafiroon',
         'arName': 'الكافرون',
-        'pages': [603]
+        'pages': [603],
       },
       {
         'name': 'An Nasr',
         'arName': 'النصر',
-        'pages': [603]
+        'pages': [603],
       },
       {
         'name': 'Al Masad',
         'arName': 'اللهب',
-        'pages': [603]
+        'pages': [603],
       },
       {
         'name': 'Al Ikhlaas',
         'arName': 'الإخلاص',
-        'pages': [604]
+        'pages': [604],
       },
       {
         'name': 'Al Falaq',
         'arName': 'الفلق',
-        'pages': [604]
+        'pages': [604],
       },
       {
         'name': 'An Naas',
         'arName': 'الناس',
-        'pages': [604]
+        'pages': [604],
       }
-    ]
+    ],
   }
 ];

@@ -160,7 +160,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                   );
                 },
               ),
-              JuzPersentWidget(item)
+              JuzPersentWidget(item),
             ],
           ),
         );
@@ -199,7 +199,7 @@ class HatimJusAlert extends StatelessWidget {
           key: const Key('ok-button'),
           onPressed: () => Navigator.pop(context),
           child: Text(context.l10n.select),
-        )
+        ),
       ],
     );
   }
