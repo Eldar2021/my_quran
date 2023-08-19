@@ -57,7 +57,7 @@ final class AppAlert {
                   Navigator.of(context).pop(true);
                 }
               },
-            )
+            ),
           ],
         );
       },
