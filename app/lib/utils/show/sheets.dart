@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 @immutable
 final class AppBottomSheet {
-  static Future<T?> showBottomSheet<T>(BuildContext context, Widget Function(BuildContext, ScrollController) builder) {
+  static Future<T?> showBottomSheet<T>(BuildContext context, Widget child) {
     return showModalBottomSheet<T>(
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
+          topLeft: Radius.circular(35),
+          topRight: Radius.circular(35),
         ),
       ),
       builder: (_) {
@@ -18,7 +18,21 @@ final class AppBottomSheet {
           maxChildSize: 0.9,
           minChildSize: 0.4,
           expand: false,
-          builder: builder,
+          builder: (c, s) {
+            return Column(
+              children: [
+                const SizedBox(height: 8),
+                const Icon(Icons.maximize_rounded, size: 50),
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    controller: s,
+                    child: child,
+                  ),
+                ),
+              ],
+            );
+          },
         );
       },
     );

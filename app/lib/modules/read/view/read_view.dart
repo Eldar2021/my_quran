@@ -82,9 +82,9 @@ class ReadUI extends StatelessWidget {
                 onPressed: () {
                   AppBottomSheet.showBottomSheet<void>(
                     context,
-                    (_, s) => BlocProvider.value(
+                    BlocProvider.value(
                       value: context.read<ReadThemeCubit>(),
-                      child: ChangeReadTheme(s),
+                      child: const ChangeReadTheme(),
                     ),
                   );
                 },
@@ -109,16 +109,14 @@ class ReadUI extends StatelessWidget {
 }
 
 class ChangeReadTheme extends StatelessWidget {
-  const ChangeReadTheme(this.controller, {super.key});
-  final ScrollController controller;
+  const ChangeReadTheme({super.key});
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final readThemeCubit = context.watch<ReadThemeCubit>();
-    return ListView(
-      controller: controller,
-      padding: const EdgeInsets.symmetric(vertical: 20),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
