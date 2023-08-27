@@ -10,6 +10,7 @@ class AudioButtomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final quranAudioCubit = context.watch<QuranAudioCubit>();
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colors.surfaceVariant,
@@ -19,38 +20,29 @@ class AudioButtomSheet extends StatelessWidget {
         ),
       ),
       child: SizedBox(
-        height: 135,
+        height: 112,
         child: Column(
           children: [
+            const SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Column(
-                  children: [
-                    Text(context.watch<QuranAudioCubit>().state.surah?.name ?? '', style: context.titleMedium),
-                    Text(context.watch<QuranAudioCubit>().state.surah?.arabic ?? '', style: context.titleMedium),
-                  ],
+                IconButton(
+                  iconSize: 30,
+                  onPressed: context.read<QuranAudioCubit>().previousSurah,
+                  icon: const Icon(Icons.skip_previous),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      iconSize: 40,
-                      onPressed: context.read<QuranAudioCubit>().previousSurah,
-                      icon: const Icon(Icons.skip_previous),
-                    ),
-                    AudioCenterButton(
-                      stream: context.watch<QuranAudioCubit>().player.playerStateStream,
-                      onPlay: context.read<QuranAudioCubit>().play,
-                      onPause: context.read<QuranAudioCubit>().pause,
-                      onReplay: () => context.read<QuranAudioCubit>().seek(0),
-                    ),
-                    IconButton(
-                      iconSize: 40,
-                      onPressed: context.read<QuranAudioCubit>().nextSurah,
-                      icon: const Icon(Icons.skip_next),
-                    ),
-                  ],
+                AudioCenterButton(
+                  stream: quranAudioCubit.player.playerStateStream,
+                  onPlay: context.read<QuranAudioCubit>().play,
+                  onPause: context.read<QuranAudioCubit>().pause,
+                  onReplay: () => context.read<QuranAudioCubit>().seek(0),
+                  iconSize: 40,
+                ),
+                IconButton(
+                  iconSize: 30,
+                  onPressed: context.read<QuranAudioCubit>().nextSurah,
+                  icon: const Icon(Icons.skip_next),
                 ),
               ],
             ),
@@ -59,6 +51,7 @@ class AudioButtomSheet extends StatelessWidget {
               player: context.read<QuranAudioCubit>().player,
               onChangeEnd: context.read<QuranAudioCubit>().seek,
             ),
+            const SizedBox(height: 4),
           ],
         ),
       ),

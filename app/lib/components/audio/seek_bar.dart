@@ -25,7 +25,7 @@ class SeekBar extends StatelessWidget {
     return StreamBuilder<Duration>(
       stream: player.positionStream,
       builder: (context, snapshot) {
-        return Column(
+        return Stack(
           children: [
             Slider(
               max: (player.duration ?? Duration.zero).inMilliseconds.toDouble(),
@@ -39,7 +39,7 @@ class SeekBar extends StatelessWidget {
               activeColor: sliderActiveColor,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

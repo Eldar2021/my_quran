@@ -7,6 +7,7 @@ class AudioCenterButton extends StatelessWidget {
     required this.onPlay,
     required this.onPause,
     required this.onReplay,
+    this.iconSize,
     super.key,
   });
 
@@ -14,6 +15,7 @@ class AudioCenterButton extends StatelessWidget {
   final VoidCallback onPlay;
   final VoidCallback onPause;
   final VoidCallback onReplay;
+  final double? iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +26,13 @@ class AudioCenterButton extends StatelessWidget {
         final processingState = playerState?.processingState;
         final playing = playerState?.playing;
         if (processingState == ProcessingState.loading || processingState == ProcessingState.buffering) {
-          return const Padding(
-            padding: EdgeInsets.all(20),
-            child: SizedBox(width: 30, height: 30, child: CircularProgressIndicator()),
-          );
+          return IconButton(icon: const CircularProgressIndicator.adaptive(), iconSize: iconSize, onPressed: null);
         } else if (playing != true) {
-          return IconButton(icon: const Icon(Icons.play_arrow), iconSize: 55, onPressed: onPlay);
+          return IconButton(icon: const Icon(Icons.play_arrow), iconSize: iconSize, onPressed: onPlay);
         } else if (processingState != ProcessingState.completed) {
-          return IconButton(icon: const Icon(Icons.pause), iconSize: 55, onPressed: onPause);
+          return IconButton(icon: const Icon(Icons.pause), iconSize: iconSize, onPressed: onPause);
         } else {
-          return IconButton(icon: const Icon(Icons.replay), iconSize: 55, onPressed: onReplay);
+          return IconButton(icon: const Icon(Icons.replay), iconSize: iconSize, onPressed: onReplay);
         }
       },
     );

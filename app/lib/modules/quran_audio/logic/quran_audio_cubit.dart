@@ -49,9 +49,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
     }
   }
 
-  Future<void> setUrlPlay(int surahIndex) async {
+  Future<void> setUrlPlay(int surahIndex, {bool autoPlay = true}) async {
+    changeSurah(surahIndex);
     await setUrl();
-    await play();
+    if (autoPlay) await play();
   }
 
   Future<void> play() async => player.play();
