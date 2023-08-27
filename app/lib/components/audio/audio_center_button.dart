@@ -26,14 +26,14 @@ class AudioCenterButton extends StatelessWidget {
         if (processingState == ProcessingState.loading || processingState == ProcessingState.buffering) {
           return const Padding(
             padding: EdgeInsets.all(20),
-            child: SizedBox(width: 50, height: 50, child: CircularProgressIndicator()),
+            child: SizedBox(width: 30, height: 30, child: CircularProgressIndicator()),
           );
         } else if (playing != true) {
-          return IconButton(icon: const Icon(Icons.play_arrow), iconSize: 75, onPressed: onPlay);
+          return IconButton(icon: const Icon(Icons.play_arrow), iconSize: 55, onPressed: onPlay);
         } else if (processingState != ProcessingState.completed) {
-          return IconButton(icon: const Icon(Icons.pause), iconSize: 75, onPressed: onPause);
+          return IconButton(icon: const Icon(Icons.pause), iconSize: 55, onPressed: onPause);
         } else {
-          return IconButton(icon: const Icon(Icons.replay), iconSize: 75, onPressed: onReplay);
+          return IconButton(icon: const Icon(Icons.replay), iconSize: 55, onPressed: onReplay);
         }
       },
     );

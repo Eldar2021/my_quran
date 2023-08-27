@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_quran/l10n/l10.dart';
-
 import 'package:my_quran/modules/modules.dart';
 
 class QuranAudioView extends StatelessWidget {
@@ -24,18 +23,15 @@ class QuranAudioView extends StatelessWidget {
               title: Text(item.arabic),
               subtitle: Text(item.name),
               onTap: () {
-                context.read<QuranAudioCubit>().changeSurah(index);
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const QuranAudioDetailView(),
-                  ),
-                );
+                context.read<QuranAudioCubit>()
+                  ..changeSurah(index)
+                  ..setUrl();
               },
             ),
           );
         },
       ),
+      bottomNavigationBar: const AudioButtomSheet(),
     );
   }
 }
