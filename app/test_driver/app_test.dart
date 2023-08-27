@@ -38,7 +38,29 @@ void main() async {
     });
 
     test('go-hatim', () async {
-      await homeInit(driver);
+      await goToHatimPageFromHome(driver);
+    });
+  });
+
+  group('Hatim', () {
+    test('check-hatim-juzs-page', () async {
+      await checkHatimJuzs(driver);
+    });
+
+    test('go-hatim-select-pages-view', () async {
+      await tapHatimJuz(driver);
+    });
+
+    test('check-hatim-select-pages-view', () async {
+      await checkHatimSelectPage(driver);
+    });
+
+    test('back-hatim-select-juzs-view', () async {
+      await backHatimJuzs(driver);
+    });
+
+    test('back-home-view', () async {
+      await backPage(driver);
     });
   });
 

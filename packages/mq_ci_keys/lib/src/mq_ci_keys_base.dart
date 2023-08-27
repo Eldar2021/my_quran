@@ -12,6 +12,14 @@ final class MqKeys {
   static const allReadedPageCount = 'all-readed-page-count';
   static const participantToHatim = 'participant-to-hatim';
 
+  // hatim
+  static const hatimPage = 'hatim-page';
+  static const hatimJuzsList = 'hatim-juzs-list';
+  static String hatimJuzIndex(int index) => 'hatim-juz-$index';
+  static const hatimSelectPage = 'hatim-select-page';
+  static const hatimSelectPageCancel = 'hatim-select-page-cancel';
+  static const hatimSelectPageOk = 'hatim-select-page-ok';
+
   // quran-read
   static const quaranRead = 'qaran-read';
   static const quaranReadInitPage = 'qaran-read-init-page';
