@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
+
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
@@ -12,6 +14,7 @@ class DevelopersView extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
+        key: const Key(MqKeys.settingsDevelopersPage),
         title: Text(context.l10n.profileForDevelopers),
       ),
       body: Padding(

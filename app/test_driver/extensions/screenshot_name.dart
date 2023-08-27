@@ -25,10 +25,13 @@ class Screenshots {
 
   /// 101-120
   static const settingsInit = '101-settings-init';
-  static const settingsGenderPage = '102-settings-gender-page';
-  static const settingsThemePage = '103-settings-theme-page';
-  static const settingsLanguagePage = '104-settings-language-page';
-  static const settingsAboutUsPage = '105-settings-about-us-page';
-  static const settingsContactUsPage = '106-settings-contect-us-page';
-  static const settingsDevelopersPage = '107-settings-privacy-page';
+  static const settingsGenderMale = '102-settings-gender-male';
+  static const settingsGenderFemale = '103-settings-gender-female';
+  static const settingsLanguagePageEn = '104-settings-language-page-en';
+  static const settingsLanguagePageKy = '105-settings-language-page-ky';
+  static const settingsAboutUsPage = '106-settings-about-us-page';
+  static const settingsContactUsPage = '107-settings-contact-us-page';
+  static const settingsDevelopersPage = '108-settings-developers-page';
+  // static const settingsThemePage = '104-settings-theme-page';
+  // static const settingsLanguagePage = '105-settings-language-page';
 }

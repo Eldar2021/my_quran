@@ -104,6 +104,36 @@ void main() async {
     });
   });
 
+  group('Settings', () {
+    test('go-settings', () async {
+      await goBottomSettings(driver);
+    });
+
+    test('check-settings-view', () async {
+      await checkSettingsView(driver);
+    });
+
+    test('check-settings-gender', () async {
+      await checkSettingsGender(driver);
+    });
+
+    test('check-settings-language', () async {
+      await checkSettingsLanguage(driver);
+    });
+
+    test('check-settings-about-us', () async {
+      await checkSettingsAboutUs(driver);
+    });
+
+    test('check-settings-contact-us', () async {
+      await checkSettingsContactUs(driver);
+    });
+
+    test('check-settings-developers', () async {
+      await checkSettingsDevelopers(driver);
+    });
+  });
+
   tearDownAll(() async {
     await driver.close();
   });
