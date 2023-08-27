@@ -16,6 +16,6 @@ extension ScreenshotExtension on FlutterDriver {
     final file = await File('$directoryPath$name.png').create(recursive: true);
     await file.writeAsBytes(pixels);
     // ignore: avoid_print
-    print('Screenshot $name created at ${file.path}');
+    print('Screenshot $name');
   }
 }

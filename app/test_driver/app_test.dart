@@ -14,7 +14,7 @@ void main() async {
     });
   });
 
-  group('login', () {
+  group('Login', () {
     test('check-login-select-language', () async {
       await selectLang(driver);
     });
@@ -29,6 +29,16 @@ void main() async {
 
     test('create-account', () async {
       await loginNext(driver);
+    });
+  });
+
+  group('Home', () {
+    test('check-home-view', () async {
+      await homeInit(driver);
+    });
+
+    test('go-hatim', () async {
+      await homeInit(driver);
     });
   });
 

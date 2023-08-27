@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:upgrader/upgrader.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -44,20 +45,22 @@ class HomeBody extends StatelessWidget {
       },
       child: SafeArea(
         child: ListView(
-          key: const Key('home-list-view'),
+          key: const Key(MqKeys.homeListView),
           children: [
             const SizedBox(height: 10),
             Assets.icons.alQuran.svg(
-              key: const Key('al-quran'),
+              key: const Key(MqKeys.alQuran),
               height: 100,
               colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
             ),
             HomeCard(
+              key: const Key(MqKeys.allHatimCount),
               titleText: l10n.homeAllHatim,
               descriptioText: l10n.homeAllHatimDesc,
               valueText: '${homeCubit.state.homeModel?.allDoneHatims ?? 0}',
             ),
             HomeCard(
+              key: const Key(MqKeys.allReadedPageCount),
               titleText: l10n.allDonePages,
               descriptioText: l10n.allDonePagesDesc,
               valueText: '${homeCubit.state.homeModel?.allDonePages ?? 0}',
@@ -71,7 +74,7 @@ class HomeBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: CustomButton(
-                key: const Key('home-view-button'),
+                key: const Key(MqKeys.participantToHatim),
                 text: l10n.homeGoHatim,
                 onPressed: () async {
                   await Navigator.pushNamed(context, AppRouter.hatim);

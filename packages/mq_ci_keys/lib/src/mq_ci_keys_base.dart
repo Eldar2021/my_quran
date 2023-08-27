@@ -6,6 +6,7 @@ final class MqKeys {
 
   // home
   static const home = 'home';
+  static const homeListView = 'home-list-view';
   static const alQuran = 'all-quran';
   static const allHatimCount = 'all-hatim-count';
   static const allReadedPageCount = 'all-readed-page-count';
