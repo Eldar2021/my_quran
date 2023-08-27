@@ -64,6 +64,32 @@ void main() async {
     });
   });
 
+  group('Quran-Read', () {
+    test('go-quran-read', () async {
+      await goBottomQuranRead(driver);
+    });
+
+    test('check-quran-read-juzs', () async {
+      await checkQuranReadJuzs(driver);
+    });
+
+    test('check-quran-read-surahs', () async {
+      await checkQuranReadSurahs(driver);
+    });
+
+    test('read-baqara-read-view', () async {
+      await readBaqara(driver);
+    });
+
+    test('check-quran-settings', () async {
+      await checkQuranSettings(driver);
+    });
+
+    test('back-quran-read', () async {
+      await backQuranReadInitPageFromQuranReadView(driver);
+    });
+  });
+
   tearDownAll(() async {
     await driver.close();
   });

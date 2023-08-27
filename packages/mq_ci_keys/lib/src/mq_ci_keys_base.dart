@@ -30,6 +30,7 @@ final class MqKeys {
   static const quranReadView = 'quran-read-view';
   static const quranReadSettings = 'quran-read-settings';
   static const quranReadSettingsBack = 'quran-read-settings-back';
+  static const quranReadSettingsSave = 'quran-read-settings-save';
 
   // quran-audio
   static const quranAudio = 'quran-audio';

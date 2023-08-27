@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/utils/urils.dart';
@@ -51,7 +52,7 @@ class _PaginationViewState extends State<PaginationView> {
   Widget build(BuildContext context) {
     final readThemeCubit = context.watch<ReadThemeCubit>();
     return PagedSliverList<int, QuranPage>.separated(
-      key: const Key('read-pages-list'),
+      key: const Key(MqKeys.quranReadView),
       pagingController: _pagingController,
       separatorBuilder: (context, index) => Center(
         child: Text(
