@@ -2,7 +2,6 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 import 'app/app.dart';
-import 'app/quran_audio/quran_audio_test.dart';
 
 void main() async {
   late FlutterDriver driver;
