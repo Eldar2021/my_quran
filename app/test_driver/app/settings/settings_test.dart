@@ -55,4 +55,18 @@ Future<void> checkSettingsDevelopers(FlutterDriver driver) async {
   await backPage(driver);
 }
 
-Future<void> checkSettingsTheme(FlutterDriver driver) async {}
+Future<void> checkSettingsTheme(FlutterDriver driver) async {
+  await driver.waitFor(find.byValueKey(MqKeys.settingsTheme));
+  await driver.tap(find.byValueKey(MqKeys.settingsTheme));
+  await driver.waitFor(find.byValueKey(MqKeys.settingsThemePage));
+  await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Green')));
+  await driver.takeScreenshot(Screenshots.settingsThemePageLightGreen);
+  await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Blue')));
+  await driver.takeScreenshot(Screenshots.settingsThemePageLightBlue);
+  await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Red')));
+  await driver.takeScreenshot(Screenshots.settingsThemePageLightRed);
+  await driver.tap(find.byValueKey(MqKeys.settingsThemeDark));
+  await driver.takeScreenshot(Screenshots.settingsThemePageDarkRed);
+  await driver.tap(find.byValueKey(MqKeys.settingsThemeLight));
+  await backPage(driver);
+}

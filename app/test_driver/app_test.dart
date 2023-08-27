@@ -2,6 +2,7 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 import 'app/app.dart';
+import 'helpers/helpers.dart';
 
 void main() async {
   late FlutterDriver driver;
@@ -132,9 +133,14 @@ void main() async {
     test('check-settings-developers', () async {
       await checkSettingsDevelopers(driver);
     });
+
+    test('check-settings-theme', () async {
+      await checkSettingsTheme(driver);
+    });
   });
 
   tearDownAll(() async {
+    await addDelay(300);
     await driver.close();
   });
 }

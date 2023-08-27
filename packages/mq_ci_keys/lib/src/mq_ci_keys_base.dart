@@ -50,6 +50,9 @@ final class MqKeys {
   static const settingsLanguagePage = 'settings-language-page';
   static const settingsTheme = 'settings-theme';
   static const settingsThemePage = 'settings-theme-page';
+  static const settingsThemeLight = 'settings-theme-light';
+  static const settingsThemeDark = 'settings-theme-dark';
+  static String settingsThemeColorName(String name) => 'settings-theme-$name';
   static const settingsAboutUs = 'settings-about-us';
   static const settingsAboutUsPage = 'settings-about-us-page';
   static const settingsContactUs = 'settings-contact-us';

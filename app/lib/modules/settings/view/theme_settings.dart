@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/logic/app_cubit.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -13,16 +14,21 @@ class ThemeSettingsView extends StatelessWidget {
     final appCubit = context.watch<AppCubit>();
     return Scaffold(
       appBar: AppBar(
+        key: const Key(MqKeys.settingsThemePage),
         title: Text(context.l10n.profileChangeTheme),
         actions: [
           IconButton(
-            key: const Key('settings-theme-theme-button'),
+            key: Key(
+              appCubit.state.theme.brightness == Brightness.light
+                  ? MqKeys.settingsThemeDark
+                  : MqKeys.settingsThemeLight,
+            ),
             onPressed: () {
               context.read<AppCubit>().changeMode(
                     isDark: context.read<AppCubit>().state.theme.brightness == Brightness.light,
                   );
             },
-            icon: appCubit.state.theme.brightness == Brightness.light
+            icon: appCubit.state.theme.brightness == Brightness.dark
                 ? const Icon(Icons.light_mode)
                 : const Icon(Icons.dark_mode),
           ),
@@ -35,6 +41,7 @@ class ThemeSettingsView extends StatelessWidget {
           final targetColor = TargetColor.fromIndex(index);
           return Card(
             child: ListTile(
+              key: Key(MqKeys.settingsThemeColorName(targetColor.displayName(context))),
               leading: Icon(
                 Icons.color_lens_rounded,
                 color: targetColor.color,

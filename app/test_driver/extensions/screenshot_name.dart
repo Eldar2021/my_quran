@@ -32,6 +32,8 @@ class Screenshots {
   static const settingsAboutUsPage = '106-settings-about-us-page';
   static const settingsContactUsPage = '107-settings-contact-us-page';
   static const settingsDevelopersPage = '108-settings-developers-page';
-  // static const settingsThemePage = '104-settings-theme-page';
-  // static const settingsLanguagePage = '105-settings-language-page';
+  static const settingsThemePageLightRed = '109-settings-theme-page-light-red';
+  static const settingsThemePageLightGreen = '110-settings-theme-page-light-green';
+  static const settingsThemePageLightBlue = '111-settings-theme-page-light-blue';
+  static const settingsThemePageDarkRed = '112-settings-theme-page-dark-red';
 }
