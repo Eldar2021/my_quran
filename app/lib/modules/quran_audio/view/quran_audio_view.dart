@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_quran/l10n/l10.dart';
-
 import 'package:my_quran/modules/modules.dart';
 
 class QuranAudioView extends StatelessWidget {
@@ -10,7 +8,15 @@ class QuranAudioView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.audioQuran)),
+      appBar: AppBar(
+        title: BlocBuilder<QuranAudioCubit, QuranAudioState>(
+          builder: (context, state) {
+            return Text(
+              '${state.surah?.name} (${state.surah?.arabic})',
+            );
+          },
+        ),
+      ),
       body: ListView.builder(
         padding: const EdgeInsets.fromLTRB(14, 20, 14, 30),
         itemCount: context.read<QuranAudioCubit>().surahs.length,
@@ -23,19 +29,12 @@ class QuranAudioView extends StatelessWidget {
               leading: Text('${item.id}'),
               title: Text(item.arabic),
               subtitle: Text(item.name),
-              onTap: () {
-                context.read<QuranAudioCubit>().changeSurah(index);
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const QuranAudioDetailView(),
-                  ),
-                );
-              },
+              onTap: () => context.read<QuranAudioCubit>().setUrlPlay(index),
             ),
           );
         },
       ),
+      bottomNavigationBar: const AudioButtomSheet(),
     );
   }
 }

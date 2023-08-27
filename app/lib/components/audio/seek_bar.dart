@@ -10,18 +10,22 @@ class SeekBar extends StatelessWidget {
     super.key,
     this.onChanged,
     this.onChangeEnd,
+    this.sliderInActiveColor,
+    this.sliderActiveColor,
   });
 
   final AudioPlayer player;
   final ValueChanged<double>? onChanged;
   final ValueChanged<double>? onChangeEnd;
+  final Color? sliderInActiveColor;
+  final Color? sliderActiveColor;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Duration>(
       stream: player.positionStream,
       builder: (context, snapshot) {
-        return Column(
+        return Stack(
           children: [
             Slider(
               max: (player.duration ?? Duration.zero).inMilliseconds.toDouble(),
@@ -31,9 +35,11 @@ class SeekBar extends StatelessWidget {
               ),
               onChanged: (value) => onChanged?.call(value),
               onChangeEnd: (value) => onChangeEnd?.call(value),
+              inactiveColor: sliderInActiveColor,
+              activeColor: sliderActiveColor,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
