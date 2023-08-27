@@ -49,8 +49,8 @@ class LoginBody extends StatelessWidget {
             controller: controller,
             onPageChanged: context.read<LoginCubit>().change,
             children: const [
-              SelectLang(),
-              SelectGender(),
+              SelectLang(key: Key(MqKeys.loginSelectLeng)),
+              SelectGender(key: Key(MqKeys.loginSelectGender)),
             ],
           ),
         ),

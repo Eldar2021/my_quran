@@ -1,7 +1,9 @@
 class Screenshots {
   /// 0-20 login-onboarding
-  static const loginLangPage = '001-login-language-page';
-  static const loginGenderPage = '002-login-gender-page';
+  static const loginLangEnPage = '001-login-language-page-en';
+  static const loginLangKyPage = '002-login-language-page-ky';
+  static const loginGenderMalePage = '003-login-gender-page-male';
+  static const loginGenderFemalePage = '004-login-gender-page-male';
 
   /// 21-40 home
   static const homeInit = '021-home-init';

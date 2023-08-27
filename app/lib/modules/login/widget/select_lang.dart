@@ -14,7 +14,6 @@ class SelectLang extends StatelessWidget {
         const SizedBox(height: 30),
         Text(
           context.l10n.loginPleaseSelectLang,
-          key: const Key('login-select-lang-text'),
           style: TextStyle(fontSize: 24, color: colorScheme.onBackground),
         ),
         const SizedBox(height: 30),

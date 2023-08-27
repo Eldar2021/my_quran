@@ -15,9 +15,9 @@ final class MqKeys {
   static const quaranRead = 'qaran-read';
   static const quaranReadInitPage = 'qaran-read-init-page';
   static const quaranReadJuzs = 'qaran-read-juzs';
-  String quranReadJus(int index) => 'qaran-read-jus-$index';
+  static String quranReadJus(int index) => 'qaran-read-jus-$index';
   static const quaranReadSurahs = 'qaran-read-surahs';
-  String quranReadSurah(int index) => 'qaran-read-surah-$index';
+  static String quranReadSurah(int index) => 'qaran-read-surah-$index';
   static const quranReadView = 'quran-read-view';
   static const quranReadSettings = 'quran-read-settings';
   static const quranReadSettingsBack = 'quran-read-settings-back';
@@ -46,14 +46,14 @@ final class MqKeys {
 
   // gender
   static const gender = 'gender';
-  String genderName(String name) => 'gender-$name';
+  static String genderName(String name) => 'gender-$name';
 
   // language
   static const language = 'language';
-  String languageCode(String localeCode) => 'language-$localeCode';
+  static String languageCode(String localeCode) => 'language-$localeCode';
 
   // theme
   static const theme = 'theme';
-  String themeMode(String mode) => 'theme-$mode-mode';
-  String themeIndex(int index) => 'theme-index-$index';
+  static String themeMode(String mode) => 'theme-$mode-mode';
+  static String themeIndex(int index) => 'theme-index-$index';
 }

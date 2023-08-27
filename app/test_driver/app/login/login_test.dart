@@ -1,15 +1,25 @@
 import 'package:flutter_driver/flutter_driver.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import '../../extensions/extensions.dart';
 
 Future<void> selectLang(FlutterDriver driver) async {
-  await driver.waitFor(find.byValueKey('login-select-lang-text'));
-  await driver.takeScreenshot(Screenshots.loginLangPage);
-  await driver.tap(find.byValueKey('login-button'));
+  await driver.waitFor(find.byValueKey(MqKeys.loginSelectLeng));
+  await driver.tap(find.byValueKey(MqKeys.languageCode('ky')));
+  await driver.takeScreenshot(Screenshots.loginLangKyPage);
+  await driver.tap(find.byValueKey(MqKeys.languageCode('en')));
+  await driver.takeScreenshot(Screenshots.loginLangEnPage);
 }
 
 Future<void> selectGender(FlutterDriver driver) async {
-  await driver.waitFor(find.byValueKey('login-select-gender'));
-  await driver.takeScreenshot(Screenshots.loginGenderPage);
-  await driver.tap(find.byValueKey('login-button'));
+  await driver.waitFor(find.byValueKey(MqKeys.loginSelectGender));
+  await driver.tap(find.byValueKey(MqKeys.genderName('female')));
+  await driver.takeScreenshot(Screenshots.loginGenderFemalePage);
+  await driver.tap(find.byValueKey(MqKeys.genderName('male')));
+  await driver.takeScreenshot(Screenshots.loginGenderMalePage);
+}
+
+Future<void> loginNext(FlutterDriver driver) async {
+  await driver.waitFor(find.byValueKey(MqKeys.loginNext));
+  await driver.tap(find.byValueKey(MqKeys.loginNext));
 }
