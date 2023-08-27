@@ -20,6 +20,8 @@ class Screenshots {
 
   /// 81-100 quaran-audio
   static const quranAudioInit = '081-quran-audio-init';
+  static const quranAudioPlayFatiha = '082-quran-audio-play-fatiha';
+  static const quranAudioPlayBaqara = '083-quran-audio-play-baqara';
 
   /// 101-120
   static const settingsInit = '101-settings-init';

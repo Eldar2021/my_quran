@@ -2,6 +2,7 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 import 'app/app.dart';
+import 'app/quran_audio/quran_audio_test.dart';
 
 void main() async {
   late FlutterDriver driver;
@@ -87,6 +88,20 @@ void main() async {
 
     test('back-quran-read', () async {
       await backQuranReadInitPageFromQuranReadView(driver);
+    });
+  });
+
+  group('Quran-Audio', () {
+    test('go-quran-audio', () async {
+      await goBottomQuranAudio(driver);
+    });
+
+    test('check-quran-audio-view', () async {
+      await checkQuranAudioView(driver);
+    });
+
+    test('play-fatiha-and-baqara', () async {
+      await playFatihaAndBaqara(driver);
     });
   });
 

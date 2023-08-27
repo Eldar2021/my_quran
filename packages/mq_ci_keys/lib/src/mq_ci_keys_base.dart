@@ -35,6 +35,7 @@ final class MqKeys {
   // quran-audio
   static const quranAudio = 'quran-audio';
   static const quranAudioView = 'quran-audio-view';
+  static String quranAudioSurahIndex(int index) => 'quran-audio-surah-$index';
   static const quranAudioBottomSheet = 'quran-audio-bottom-sheet';
   static const quranAudioPlayPause = 'quran-audio-play-pause';
 

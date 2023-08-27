@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
+
 import 'package:my_quran/modules/modules.dart';
 
 class QuranAudioView extends StatelessWidget {
@@ -18,13 +20,14 @@ class QuranAudioView extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
+        key: const Key(MqKeys.quranAudioView),
         padding: const EdgeInsets.fromLTRB(14, 20, 14, 30),
         itemCount: context.read<QuranAudioCubit>().surahs.length,
         itemBuilder: (BuildContext context, int index) {
           final item = context.read<QuranAudioCubit>().surahs[index];
           return Card(
             child: ListTile(
-              key: Key('quran-audio-${item.id}-surah'),
+              key: Key(MqKeys.quranAudioSurahIndex(index)),
               minLeadingWidth: 10,
               leading: Text('${item.id}'),
               title: Text(item.arabic),
@@ -34,7 +37,9 @@ class QuranAudioView extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: const AudioButtomSheet(),
+      bottomNavigationBar: const AudioButtomSheet(
+        key: Key(MqKeys.quranAudioBottomSheet),
+      ),
     );
   }
 }
