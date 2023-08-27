@@ -32,6 +32,8 @@ dependencies:
   just_audio_background: ^0.0.1-beta.10
   mq_storage:
     path: ../packages/mq_storage/
+  mq_ci_keys:
+    path: ../packages/mq_ci_keys/ 
   # flutter_native_splash: ^2.3.2
 
 dev_dependencies:
