@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/constants/contants.dart';
@@ -78,7 +79,7 @@ class ReadUI extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                key: const Key('read-settings-icon-view'),
+                key: const Key(MqKeys.quranReadSettings),
                 onPressed: () {
                   AppBottomSheet.showBottomSheet<void>(
                     context,
@@ -192,11 +193,13 @@ class ChangeReadTheme extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             OutlinedButton(
+              key: const Key(MqKeys.quranReadSettingsBack),
               onPressed: () => Navigator.pop(context),
               child: Text(l10n.cancel),
             ),
             const SizedBox(width: 10),
             OutlinedButton(
+              key: const Key(MqKeys.quranReadSettingsSave),
               onPressed: () async {
                 await context.read<ReadThemeCubit>().saveChanges();
                 if (context.mounted) Navigator.pop(context);

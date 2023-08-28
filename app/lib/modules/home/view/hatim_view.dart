@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
@@ -55,7 +56,7 @@ class _HatimUIState extends State<HatimUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: const Key('hatim-view'),
+      key: const Key(MqKeys.hatimPage),
       appBar: AppBar(
         title: Text(context.l10n.hatim),
         actions: [
@@ -119,6 +120,7 @@ class HatimJuzListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      key: const Key(MqKeys.hatimJuzsList),
       padding: const EdgeInsets.fromLTRB(14, 20, 14, 70),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
@@ -127,7 +129,7 @@ class HatimJuzListBuilder extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                key: Key('quran-view-$index-juz'),
+                key: Key(MqKeys.hatimJuzIndex(index)),
                 contentPadding: const EdgeInsets.all(8),
                 title: Text('${item.number}-${context.l10n.juz}'),
                 subtitle: Row(
@@ -183,20 +185,20 @@ class HatimJusAlert extends StatelessWidget {
       backgroundColor: theme.brightness == Brightness.light ? AppColors.white : AppColors.greyBlack,
       title: Text(
         context.l10n.hatimPleaseSelectPage,
-        key: const Key('hatim-select-pages'),
+        key: const Key(MqKeys.hatimSelectPage),
         textAlign: TextAlign.center,
         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
       content: const HatimSelectPageView(),
       actions: [
         OutlinedButton(
-          key: const Key('cancel-button'),
+          key: const Key(MqKeys.hatimSelectPageCancel),
           onPressed: () => Navigator.pop(context),
           child: Text(context.l10n.cancel),
         ),
         const SizedBox(width: 12),
         OutlinedButton(
-          key: const Key('ok-button'),
+          key: const Key(MqKeys.hatimSelectPageOk),
           onPressed: () => Navigator.pop(context),
           child: Text(context.l10n.select),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
+import 'app/app.dart';
 import 'helpers/helpers.dart';
 
 void main() async {
@@ -14,148 +15,132 @@ void main() async {
     });
   });
 
-  test('login-select-lang-view', () async {
-    await driver.waitFor(find.byValueKey('login-select-lang-text'));
+  group('Login', () {
+    test('check-login-select-language', () async {
+      await selectLang(driver);
+    });
 
-    await takeScreenshot(driver, 'select-lang');
-    await driver.tap(find.byValueKey('login-button'));
+    test('go-login-gender', () async {
+      await loginNext(driver);
+    });
+
+    test('check-login-select-gender', () async {
+      await selectGender(driver);
+    });
+
+    test('create-account', () async {
+      await loginNext(driver);
+    });
   });
 
-  test('login-select-gender-view', () async {
-    await driver.waitFor(find.byValueKey('login-select-gender'));
+  group('Home', () {
+    test('check-home-view', () async {
+      await homeInit(driver);
+    });
 
-    await takeScreenshot(driver, 'select-gender');
-    await driver.tap(find.byValueKey('login-button'));
+    test('go-hatim', () async {
+      await goToHatimPageFromHome(driver);
+    });
   });
 
-  test('home-view', () async {
-    await driver.waitFor(find.byValueKey('al-quran'));
+  group('Hatim', () {
+    test('check-hatim-juzs-page', () async {
+      await checkHatimJuzs(driver);
+    });
 
-    await takeScreenshot(driver, 'home-view');
+    test('go-hatim-select-pages-view', () async {
+      await tapHatimJuz(driver);
+    });
+
+    test('check-hatim-select-pages-view', () async {
+      await checkHatimSelectPage(driver);
+    });
+
+    test('back-hatim-select-juzs-view', () async {
+      await backHatimJuzs(driver);
+    });
+
+    test('back-home-view', () async {
+      await backPage(driver);
+    });
   });
 
-  test('quran-view', () async {
-    await driver.tap(find.byValueKey('quran'));
-    await driver.waitFor(find.byValueKey('quran-view'));
+  group('Quran-Read', () {
+    test('go-quran-read', () async {
+      await goBottomQuranRead(driver);
+    });
 
-    await takeScreenshot(driver, 'juz_items');
-    await driver.tap(find.byValueKey('quran-view-1-juz'));
+    test('check-quran-read-juzs', () async {
+      await checkQuranReadJuzs(driver);
+    });
+
+    test('check-quran-read-surahs', () async {
+      await checkQuranReadSurahs(driver);
+    });
+
+    test('read-baqara-read-view', () async {
+      await readBaqara(driver);
+    });
+
+    test('check-quran-settings', () async {
+      await checkQuranSettings(driver);
+    });
+
+    test('back-quran-read', () async {
+      await backQuranReadInitPageFromQuranReadView(driver);
+    });
   });
 
-  test('read-view-1-juz', () async {
-    await driver.waitFor(find.byValueKey('read-pages-list'));
-    await driver.tap(find.pageBack());
+  group('Quran-Audio', () {
+    test('go-quran-audio', () async {
+      await goBottomQuranAudio(driver);
+    });
+
+    test('check-quran-audio-view', () async {
+      await checkQuranAudioView(driver);
+    });
+
+    test('play-fatiha-and-baqara', () async {
+      await playFatihaAndBaqara(driver);
+    });
   });
 
-  test('quran-view', () async {
-    await driver.waitFor(find.byValueKey('quran-view'));
+  group('Settings', () {
+    test('go-settings', () async {
+      await goBottomSettings(driver);
+    });
 
-    await driver.tap(find.byValueKey('surah-items'));
-    await takeScreenshot(driver, 'surah_items');
-    await driver.tap(find.byValueKey('quran-view-2-surah'));
+    test('check-settings-view', () async {
+      await checkSettingsView(driver);
+    });
+
+    test('check-settings-gender', () async {
+      await checkSettingsGender(driver);
+    });
+
+    test('check-settings-language', () async {
+      await checkSettingsLanguage(driver);
+    });
+
+    test('check-settings-about-us', () async {
+      await checkSettingsAboutUs(driver);
+    });
+
+    test('check-settings-contact-us', () async {
+      await checkSettingsContactUs(driver);
+    });
+
+    test('check-settings-developers', () async {
+      await checkSettingsDevelopers(driver);
+    });
+
+    test('check-settings-theme', () async {
+      await checkSettingsTheme(driver);
+    });
   });
-
-  test('read-baqarah', () async {
-    await driver.waitFor(find.byValueKey('read-pages-list'));
-    await takeScreenshot(driver, 'baqarah');
-    await driver.tap(find.pageBack());
-  });
-
-  test('settings-view', () async {
-    await driver.waitFor(find.byValueKey('quran-view'));
-    await driver.tap(find.byValueKey('profile'));
-    await takeScreenshot(driver, 'settings-view');
-  });
-
-  test('settings-gender-view', () async {
-    await driver.waitFor(find.byValueKey('settings-view'));
-    await driver.tap(find.byValueKey('settings-gender-view'));
-    await takeScreenshot(driver, 'settings-gender-view');
-    await driver.tap(find.byValueKey('settings-gender-female-button'));
-    await driver.tap(find.byValueKey('settings-gender-male-button'));
-    await driver.tap(find.pageBack());
-  });
-
-  test('settings-language-view', () async {
-    await driver.waitFor(find.byValueKey('settings-view'));
-    await driver.tap(find.byValueKey('settings-language-view'));
-    await takeScreenshot(driver, 'settings-language-view');
-    await driver.tap(find.pageBack());
-  });
-
-  test('settings-theme-view', () async {
-    await driver.waitFor(find.byValueKey('settings-view'));
-    await driver.tap(find.byValueKey('settings-theme-view'));
-
-    await takeScreenshot(driver, 'settings-theme-view');
-    await driver.tap(find.byValueKey('settings-theme-theme-button'));
-    await takeScreenshot(driver, 'settings-theme-dark-view');
-    await driver.tap(find.pageBack());
-  });
-
-  test('settings-about-us-view', () async {
-    await driver.waitFor(find.byValueKey('settings-view'));
-    await driver.tap(find.byValueKey('settings-about-us-view'));
-
-    await takeScreenshot(driver, 'settings-about-us-view');
-    await driver.tap(find.pageBack());
-  });
-
-  test('settings-feedback-view', () async {
-    await driver.waitFor(find.byValueKey('settings-view'));
-    await driver.waitFor(find.byValueKey('settings-feedback-view'));
-  });
-
-  test('settings-developers-view', () async {
-    await driver.waitFor(find.byValueKey('settings-view'));
-    await driver.tap(find.byValueKey('settings-developers-view'));
-
-    await takeScreenshot(driver, 'settings-developers-view');
-    await driver.tap(find.pageBack());
-    await driver.tap(find.byValueKey('home'));
-  });
-
-  test(
-    'hatim-view-go',
-    () async {
-      await driver.waitFor(find.byValueKey('al-quran'));
-      await driver.scrollUntilVisible(
-        find.byValueKey('home-list-view'),
-        find.byValueKey('home-view-button'),
-        dyScroll: -100,
-      );
-      await driver.tap(find.byValueKey('home-view-button'));
-    },
-    timeout: const Timeout(Duration(seconds: 60)),
-  );
-
-  test(
-    'hatim-view',
-    () async {
-      await driver.waitFor(find.byValueKey('hatim-view'));
-      await addDelay(700);
-      await driver.waitFor(find.byValueKey('quran-view-1-juz'));
-      await takeScreenshot(driver, 'hatim-view');
-      await driver.tap(find.byValueKey('quran-view-1-juz'));
-    },
-    timeout: const Timeout(Duration(seconds: 60)),
-  );
-
-  test(
-    'hatim-alert-view',
-    () async {
-      await driver.waitFor(find.byValueKey('hatim-select-pages'));
-
-      await takeScreenshot(driver, 'hatim-alert-view');
-      await driver.tap(find.byValueKey('ok-button'));
-      await driver.tap(find.byValueKey('quran-view-2-juz'));
-      await driver.tap(find.byValueKey('cancel-button'));
-      await driver.tap(find.pageBack());
-    },
-    timeout: const Timeout(Duration(seconds: 60)),
-  );
 
   tearDownAll(() async {
+    await addDelay(300);
     await driver.close();
   });
 }

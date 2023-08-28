@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
@@ -48,8 +49,8 @@ class LoginBody extends StatelessWidget {
             controller: controller,
             onPageChanged: context.read<LoginCubit>().change,
             children: const [
-              SelectLang(),
-              SelectGender(),
+              SelectLang(key: Key(MqKeys.loginSelectLeng)),
+              SelectGender(key: Key(MqKeys.loginSelectGender)),
             ],
           ),
         ),
@@ -65,7 +66,7 @@ class LoginBody extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         CustomButton(
-          key: const Key('login-button'),
+          key: const Key(MqKeys.loginNext),
           text: loginCubit.state == 0 ? context.l10n.next : context.l10n.start,
           onPressed: () async {
             if (loginCubit.state == 0) {

@@ -1,2 +1,1 @@
-export 'functions/add_delay.dart';
-export 'functions/take_screenshot.dart';
+export 'add_delay.dart';

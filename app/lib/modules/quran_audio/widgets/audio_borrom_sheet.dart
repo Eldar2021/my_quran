@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -33,6 +34,7 @@ class AudioButtomSheet extends StatelessWidget {
                   icon: const Icon(Icons.skip_previous),
                 ),
                 AudioCenterButton(
+                  key: const Key(MqKeys.quranAudioPlayPause),
                   stream: quranAudioCubit.player.playerStateStream,
                   onPlay: context.read<QuranAudioCubit>().play,
                   onPause: context.read<QuranAudioCubit>().pause,

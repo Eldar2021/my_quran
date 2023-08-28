@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -13,6 +14,7 @@ class ContactUsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: const Key(MqKeys.settingsContactUsPage),
         backgroundColor: context.colors.primaryContainer,
         title: Text(context.l10n.contactUs),
       ),

@@ -607,6 +607,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  mq_ci_keys:
+    dependency: "direct main"
+    description:
+      path: "../packages/mq_ci_keys"
+      relative: true
+    source: path
+    version: "1.0.0"
   mq_storage:
     dependency: "direct main"
     description:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -13,14 +14,13 @@ class PageViewItem<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-      key: const Key('list-view-builder-juz-surah'),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
         if (item is Juz) {
           return Card(
             child: ListTile(
-              key: Key('quran-view-${item.id}-juz'),
+              key: Key(MqKeys.quranReadJus(index)),
               minLeadingWidth: 10,
               leading: Text('${item.id}'),
               title: Text('${item.id}-${context.l10n.juz}'),
@@ -42,7 +42,7 @@ class PageViewItem<T> extends StatelessWidget {
         } else if (item is Surah) {
           return Card(
             child: ListTile(
-              key: Key('quran-view-${item.id}-surah'),
+              key: Key(MqKeys.quranReadSurah(index)),
               minLeadingWidth: 10,
               leading: Text('${item.id}'),
               title: Text(item.arabic),
