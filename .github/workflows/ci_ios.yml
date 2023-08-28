@@ -16,7 +16,7 @@ jobs:
           - device: 'iPhone 11 Pro Max'
           - device: 'iPhone 8 Plus'
           - device: 'iPad Pro (6th gen 12.9")'
-          - device: 'iPad Pro (2nd gen 12.9")'
+          - device: 'iPad Pro (5nd gen 12.9")'
       fail-fast: true
     steps:
       - uses: actions/checkout@v3
