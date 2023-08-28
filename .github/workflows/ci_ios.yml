@@ -15,8 +15,8 @@ jobs:
           - device: 'iPhone 14 Pro Max'
           - device: 'iPhone 11 Pro Max'
           - device: 'iPhone 8 Plus'
-          - device: 'iPad Pro (6th gen 12.9")'
-          - device: 'iPad Pro (5nd gen 12.9")'
+          - device: 'iPad Pro (12.9-inch) (6th generation)'
+          - device: 'iPad Pro (12.9-inch) (5th generation)'
       fail-fast: true
     steps:
       - name: "Available Devices"
