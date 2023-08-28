@@ -19,6 +19,9 @@ jobs:
           - device: 'iPad Pro (5nd gen 12.9")'
       fail-fast: true
     steps:
+      - name: "Available Devices"
+        run: xcrun simctl list --json devices available
+
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
