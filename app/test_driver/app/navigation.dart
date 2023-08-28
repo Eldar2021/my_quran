@@ -20,7 +20,3 @@ Future<void> goBottomSettings(FlutterDriver driver) async {
 Future<void> backPage(FlutterDriver driver) async {
   await driver.tap(find.pageBack());
 }
-
-Future<void> goToHatimPageFromHome(FlutterDriver driver) async {
-  await driver.tap(find.byValueKey(MqKeys.participantToHatim));
-}
