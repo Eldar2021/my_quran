@@ -3,24 +3,24 @@
 My Quran Hatim Aplication.
 
 <p align="center">
-  <img src="doc/images/home.png" width="22%" />
-  <img src="doc/images/hatim_juzas.png" width="22%" />
-  <img src="doc/images/hatim_pages.png" width="22%" />
-  <img src="doc/images/about_us.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/001-login-language-page-en.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/021-home-init.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/041-hatim-juzs.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/042-hatim-pages.png" width="22%" />
 </p>
 
 <p align="center">
-  <img src="doc/images/quran_surahs.png" width="22%" />
-  <img src="doc/images/quran_read.png" width="22%" />
-  <img src="doc/images/quran_read_settings.png" width="22%" />
-  <img src="doc/images/select_lang_settings.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/062-read-quran-surahs.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/063-read-quran-baqarah.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/064-read-quran-settings.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/082-quran-audio-play-fatiha.png" width="22%" />
 </p>
 
 <p align="center">
-  <img src="doc/images/quran_audio_surahs.png" width="22%" />
-  <img src="doc/images/quran_audio.png" width="22%" />
-  <img src="doc/images/theme_settings.png" width="22%" />
-  <img src="doc/images/select_gen_settings.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/101-settings-init.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/102-settings-gender-male.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/104-settings-language-page-en.png" width="22%" />
+  <img src="doc/iPhone 14 Pro Max/109-settings-theme-page-light-red.png" width="22%" />
 </p>
 
 ### Getting Started
