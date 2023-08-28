@@ -9,7 +9,19 @@ on:
 jobs:
   integration_test_ios:
     runs-on: macos-12
+    strategy:
+      matrix:
+        include:
+          - device: 'iPhone 14 Pro Max'
+          - device: 'iPhone 11 Pro Max'
+          - device: 'iPhone 8 Plus'
+          - device: 'iPad Pro (12.9-inch) (6th generation)'
+          - device: 'iPad Pro (12.9-inch) (5th generation)'
+      fail-fast: true
     steps:
+      - name: "Available Devices"
+        run: xcrun simctl list --json devices available
+
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
@@ -25,7 +37,7 @@ jobs:
 
       - uses: futureware-tech/simulator-action@v2
         with:
-          model: "iPhone 14"
+          model: ${{ matrix.device }}
           os_version: "16.2"
 
       - name: Integration Test
@@ -34,5 +46,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: my-artifact
-          path: ./app/screenshots/*
+          name: ${{ matrix.device }}
+          path: ./screenshots/*
