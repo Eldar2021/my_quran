@@ -22,4 +22,10 @@ final class Surah {
   final int aya;
   final List<int> pages;
   final String arabic;
+
+  String get surahPath {
+    if (id < 10) return '00$id';
+    if (id < 100) return '0$id';
+    return '$id';
+  }
 }

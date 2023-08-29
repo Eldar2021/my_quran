@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeCubit(HomeService(context.read<PreferencesStorage>(), context.read<RemoteClient>())),
         ),
-        BlocProvider(create: (context) => QuranAudioCubit(AudioPlayer())..setUrlPlay(0, autoPlay: false)),
+        BlocProvider(create: (context) => QuranAudioCubit(AudioPlayer())..init()),
       ],
       child: const QuranApp(),
     );
