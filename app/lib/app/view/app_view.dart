@@ -22,12 +22,27 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => AuthCubit(AuthService(context.read<PreferencesStorage>(), context.read<RemoteClient>())),
+          create: (context) => AuthCubit(
+            AuthService(
+              context.read<PreferencesStorage>(),
+              context.read<RemoteClient>(),
+            ),
+          ),
         ),
         BlocProvider(
-          create: (context) => HomeCubit(HomeService(context.read<PreferencesStorage>(), context.read<RemoteClient>())),
+          create: (context) => HomeCubit(
+            HomeService(
+              context.read<PreferencesStorage>(),
+              context.read<RemoteClient>(),
+            ),
+          ),
         ),
-        BlocProvider(create: (context) => QuranAudioCubit(AudioPlayer())..init()),
+        BlocProvider(
+          create: (context) => QuranAudioCubit(
+            AudioPlayer(),
+            context.read<NetworkClient>(),
+          )..init(),
+        ),
       ],
       child: const QuranApp(),
     );
