@@ -4,6 +4,8 @@ class ApiConst {
   static const home = '$domain/report/dashboard';
   static const hatim = '$domain/hatim/join_to_hatim';
 
+  static const appLogoLink = 'https://github.com/Eldar2021/my_quran/blob/main/app/assets/images/app_icon.png?raw=true';
+
   static const socketBase = 'ws://quran.isistant.io/ws';
 
   static String juzSocket(String hatimId) => '/topic/$hatimId/list_of_juz';
