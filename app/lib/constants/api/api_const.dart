@@ -3,6 +3,9 @@ class ApiConst {
   static const signUp = '$domain/auth/sign_up';
   static const home = '$domain/report/dashboard';
   static const hatim = '$domain/hatim/join_to_hatim';
+  static Uri audioBgImage = Uri.parse(
+    'https://github.com/Eldar2021/my_quran/blob/main/app/assets/images/app_icon.png?raw=true',
+  );
 
   static const socketBase = 'ws://quran.isistant.io/ws';
 

@@ -28,7 +28,12 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
             .map(
               (s) => AudioSource.uri(
                 Uri.parse(ApiConst.audio(s.surahPath)),
-                tag: MediaItem(id: '${s.id}', album: 'Quran', title: s.name),
+                tag: MediaItem(
+                  id: '${s.id}',
+                  album: 'Quran',
+                  title: s.name,
+                  artUri: ApiConst.audioBgImage,
+                ),
               ),
             )
             .toList(),
