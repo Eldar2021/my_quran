@@ -32,7 +32,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
                   id: '${s.id}',
                   album: 'Quran',
                   title: s.name,
-                  artUri: ApiConst.audioBgImage,
+                  artUri: Uri.parse(ApiConst.appLogoLink),
                 ),
               ),
             )
