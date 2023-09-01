@@ -1,9 +1,18 @@
-include: package:lints/recommended.yaml
+include: package:very_good_analysis/analysis_options.yaml
 
-# linter:
-#   rules:
-#     - camel_case_types
+linter:
+  rules:
+    public_member_api_docs: false
+    sort_pub_dependencies: false
+    lines_longer_than_80_chars: false
+    # directives_ordering: false
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "bin/cache/**"
+
+  errors:
+   todo: false
+   fixme: false
