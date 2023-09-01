@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
@@ -26,7 +25,7 @@ class RemoteClient {
   }
 
   /// Working with the response
-  Future<Either<Exception, T>> responseType<T>(
+  Future<Either<T, Exception>> responseType<T>(
     Response response,
     T Function(Map<String, dynamic>) fromJson,
   ) async {
@@ -49,7 +48,7 @@ class RemoteClient {
   }
 
   /// Get Json data
-  Future<Either<Exception, T>> get<T>(
+  Future<Either<T, Exception>> get<T>(
     String path, {
     required T Function(Map<String, dynamic>) fromJson,
     String? token,
@@ -72,7 +71,7 @@ class RemoteClient {
   }
 
   /// Perform a query using the "POST" method and using the JSON content type
-  Future<Either<Exception, T>> post<T>(
+  Future<Either<T, Exception>> post<T>(
     String path, {
     required T Function(Map<String, dynamic>) fromJson,
     String? token,
@@ -97,7 +96,7 @@ class RemoteClient {
   }
 
   /// Perform a query using the "PATCH" method and using the JSON content type
-  Future<Either<Exception, T>> patch<T>(
+  Future<Either<T, Exception>> patch<T>(
     String path, {
     required T Function(Map<String, dynamic>) fromJson,
     String? token,
@@ -117,7 +116,7 @@ class RemoteClient {
   }
 
   /// Perform a query using the "PUT" method and using the JSON content type
-  Future<Either<Exception, T>> put<T>(
+  Future<Either<T, Exception>> put<T>(
     String path, {
     required T Function(Map<String, dynamic>) fromJson,
     String? token,

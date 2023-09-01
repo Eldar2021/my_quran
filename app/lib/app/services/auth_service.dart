@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:mq_storage/mq_storage.dart';
@@ -27,7 +26,7 @@ final class AuthService {
 
   String? getToken() => storage.readString(key: AppConst.tokenKey);
 
-  Future<Either<Exception, User>> login(String languageCode, Gender gender) async {
+  Future<Either<User, Exception>> login(String languageCode, Gender gender) async {
     final user = await client.post<User>(
       ApiConst.signUp,
       fromJson: User.fromJson,
