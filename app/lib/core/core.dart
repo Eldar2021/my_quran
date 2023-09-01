@@ -5,4 +5,5 @@ export 'exceptions/server_exception.dart';
 export 'exceptions/auth_exception.dart';
 export 'exceptions/convert_exception.dart';
 export 'launch/app_launch.dart';
+export 'interface/either.dart';
 export 'enums/fetch_status.dart';
