@@ -80,8 +80,9 @@ class ReadUI extends StatelessWidget {
             actions: [
               IconButton(
                 key: const Key(MqKeys.quranReadSettings),
-                onPressed: () {
-                  AppBottomSheet.showBottomSheet<void>(
+                onPressed: () async {
+                  const bottomSheet = AppBottomSheet(initialChildSize: 0.6);
+                  await bottomSheet.showBottomSheet<void>(
                     context,
                     BlocProvider.value(
                       value: context.read<ReadThemeCubit>(),
