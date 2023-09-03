@@ -140,7 +140,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                     VerticalText(context.l10n.hatimEmptyRead, '${item.toDo}'),
                   ],
                 ),
-                onTap: ()async {
+                onTap: () async {
                   final token = context.read<AuthCubit>().state.user!.accessToken;
                   final hatimId = item.id;
                   await AppBottomSheet.showBottomSheet<void>(
