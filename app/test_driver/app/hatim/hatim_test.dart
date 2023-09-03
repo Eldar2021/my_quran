@@ -20,6 +20,11 @@ Future<void> checkHatimSelectPage(FlutterDriver driver) async {
 }
 
 Future<void> backHatimJuzs(FlutterDriver driver) async {
+  await driver.scrollUntilVisible(
+    find.byValueKey(MqKeys.hatimSelectPage),
+    find.byValueKey(MqKeys.hatimJuzsList),
+    dyScroll: -50,
+  );
   await driver.tap(find.byValueKey(MqKeys.hatimSelectPageCancel));
   await driver.waitFor(find.byValueKey(MqKeys.hatimJuzsList));
 }
