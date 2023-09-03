@@ -19,6 +19,7 @@ final class MqKeys {
   static const hatimSelectPage = 'hatim-select-page';
   static const hatimSelectPageCancel = 'hatim-select-page-cancel';
   static const hatimSelectPageOk = 'hatim-select-page-ok';
+  static const hatimSelectPageScroll = 'hatim-select-page-scroll-key';
 
   // quran-read
   static const quaranRead = 'qaran-read';

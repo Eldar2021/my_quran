@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 @immutable
 final class AppBottomSheet {
-  const AppBottomSheet({required this.initialChildSize});
-  final double initialChildSize;
-  Future<T?> showBottomSheet<T>(BuildContext context, Widget child) {
+  static Future<T?> showBottomSheet<T>(
+    BuildContext context,
+    Widget child, {
+    double initialChildSize = 0.6,
+    Key? scrollKey,
+  }) {
     return showModalBottomSheet<T>(
       context: context,
       isScrollControlled: true,
@@ -30,6 +33,7 @@ final class AppBottomSheet {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
+                    key: scrollKey,
                     physics: const BouncingScrollPhysics(),
                     controller: s,
                     child: child,
