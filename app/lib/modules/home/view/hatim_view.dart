@@ -8,7 +8,7 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/theme/theme.dart';
+import 'package:my_quran/utils/urils.dart';
 
 class HatimView extends StatelessWidget {
   const HatimView({super.key});
@@ -143,22 +143,21 @@ class HatimJuzListBuilder extends StatelessWidget {
                 onTap: () async {
                   final token = context.read<AuthCubit>().state.user!.accessToken;
                   final hatimId = item.id;
-                  await showDialog<void>(
-                    context: context,
-                    barrierLabel: '',
-                    builder: (ctx) {
-                      return MultiBlocProvider(
-                        providers: [
-                          BlocProvider.value(
-                            value: context.read<HatimPagesCubit>(),
-                          ),
-                          BlocProvider(
-                            create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
-                          ),
-                        ],
-                        child: const HatimJusAlert(),
-                      );
-                    },
+                  await AppBottomSheet.showBottomSheet<void>(
+                    context,
+                    scrollKey: const Key(MqKeys.hatimSelectPageScroll),
+                    initialChildSize: 0.85,
+                    MultiBlocProvider(
+                      providers: [
+                        BlocProvider.value(
+                          value: context.read<HatimPagesCubit>(),
+                        ),
+                        BlocProvider(
+                          create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
+                        ),
+                      ],
+                      child: const HatimJusBottomSheet(),
+                    ),
                   );
                 },
               ),
@@ -167,42 +166,6 @@ class HatimJuzListBuilder extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class HatimJusAlert extends StatelessWidget {
-  const HatimJusAlert({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return AlertDialog(
-      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-      actionsPadding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-      iconPadding: EdgeInsets.zero,
-      backgroundColor: theme.brightness == Brightness.light ? AppColors.white : AppColors.greyBlack,
-      title: Text(
-        context.l10n.hatimPleaseSelectPage,
-        key: const Key(MqKeys.hatimSelectPage),
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-      ),
-      content: const HatimSelectPageView(),
-      actions: [
-        OutlinedButton(
-          key: const Key(MqKeys.hatimSelectPageCancel),
-          onPressed: () => Navigator.pop(context),
-          child: Text(context.l10n.cancel),
-        ),
-        const SizedBox(width: 12),
-        OutlinedButton(
-          key: const Key(MqKeys.hatimSelectPageOk),
-          onPressed: () => Navigator.pop(context),
-          child: Text(context.l10n.select),
-        ),
-      ],
     );
   }
 }
