@@ -140,20 +140,17 @@ class HatimJuzListBuilder extends StatelessWidget {
                     VerticalText(context.l10n.hatimEmptyRead, '${item.toDo}'),
                   ],
                 ),
-                onTap: () async {
+                onTap: () {
                   final token = context.read<AuthCubit>().state.user!.accessToken;
-                  final hatimId = item.id;
-                  await AppBottomSheet.showBottomSheet<void>(
+                  AppBottomSheet.showBottomSheet<void>(
                     context,
                     scrollKey: const Key(MqKeys.hatimSelectPageScroll),
                     initialChildSize: 0.85,
                     MultiBlocProvider(
                       providers: [
-                        BlocProvider.value(
-                          value: context.read<HatimPagesCubit>(),
-                        ),
+                        BlocProvider.value(value: context.read<HatimPagesCubit>()),
                         BlocProvider(
-                          create: (context) => HatimJuzCubit(item.number)..connect(hatimId, token),
+                          create: (context) => HatimJuzCubit(item.number)..connect(item.id, token),
                         ),
                       ],
                       child: const HatimJusBottomSheet(),

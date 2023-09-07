@@ -8,10 +8,6 @@ class HatimReadService {
   final RemoteClient client;
 
   Future<Either<HatimReadModel, Exception>> getHatim(String token) async {
-    return client.get(
-      ApiConst.hatim,
-      fromJson: HatimReadModel.fromJson,
-      token: token,
-    );
+    return client.get(ApiConst.hatim, fromJson: HatimReadModel.fromJson, token: token);
   }
 }

@@ -10,11 +10,7 @@ class HatimReadState extends Equatable {
   @override
   List<Object?> get props => [hatim, status, exception];
 
-  HatimReadState copyWith({
-    FetchStatus? status,
-    HatimReadModel? hatim,
-    Exception? exception,
-  }) {
+  HatimReadState copyWith({FetchStatus? status, HatimReadModel? hatim, Exception? exception}) {
     return HatimReadState(
       status ?? this.status,
       hatim: hatim ?? this.hatim,
