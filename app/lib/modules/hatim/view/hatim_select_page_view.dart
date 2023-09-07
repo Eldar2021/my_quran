@@ -93,62 +93,25 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
       spacing: 10,
       runSpacing: 10,
       alignment: WrapAlignment.center,
-      children: items.map((e) => HatimPageStatusCard(hatimPage: e)).toList(),
-    );
-  }
-}
-
-class HatimPageStatusCard extends StatelessWidget {
-  const HatimPageStatusCard({required this.hatimPage, super.key});
-
-  final HatimPages hatimPage;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 55,
-      width: 55,
-      child: InkWell(
-        onTap: hatimPage.status == Status.todo || hatimPage.status == Status.booked
-            ? () {
-                final user = context.read<AuthCubit>().state.user!;
-                if (hatimPage.status == Status.todo) {
-                  context.read<HatimJuzCubit>().selectPage(hatimPage.id, user.accessToken, user.username);
-                } else {
-                  context.read<HatimJuzCubit>().unSelectPage(hatimPage.id, user.accessToken, user.username);
-                }
-              }
-            : null,
-        child: MaterialCard(
-          color: hatimPage.status == Status.done
-              ? AppColors.red
-              : hatimPage.status == Status.booked || hatimPage.status == Status.inProgress
-                  ? AppColors.yellow
-                  : AppColors.green,
-          text: '${hatimPage.number}',
-          textColor: hatimPage.status == Status.done
-              ? AppColors.white
-              : hatimPage.status == Status.inProgress
-                  ? AppColors.black
-                  : hatimPage.status == Status.todo
-                      ? AppColors.white
-                      : AppColors.black,
-          check: (context.watch<HatimPagesCubit>().state.pages ?? [])
-                  .map((e) => e?.number)
-                  .toList()
-                  .contains(hatimPage.number)
-              ? Positioned(
-                  right: 2,
-                  top: 2,
-                  child: Icon(
-                    Icons.check,
-                    size: 17,
-                    color: hatimPage.status == Status.done ? null : AppColors.black,
-                  ),
-                )
-              : null,
-        ),
-      ),
+      children: items
+          .map(
+            (e) => HatimPageStatusCard(
+              status: e.status,
+              pageNumber: e.number,
+              pages: (context.watch<HatimPagesCubit>().state.pages ?? []).map((e) => e?.number).toList(),
+              onTap: e.status == Status.todo || e.status == Status.booked
+                  ? () {
+                      final user = context.read<AuthCubit>().state.user!;
+                      if (e.status == Status.todo) {
+                        context.read<HatimJuzCubit>().selectPage(e.id, user.accessToken, user.username);
+                      } else {
+                        context.read<HatimJuzCubit>().unSelectPage(e.id, user.accessToken, user.username);
+                      }
+                    }
+                  : null,
+            ),
+          )
+          .toList(),
     );
   }
 }

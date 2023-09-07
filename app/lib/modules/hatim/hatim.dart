@@ -6,3 +6,4 @@ export 'service/hatim_read_service.dart';
 export 'view/hatim_view.dart';
 export 'view/hatim_select_page_view.dart';
 export 'widgets/juz_percent_widget.dart';
+export 'widgets/hatim_page_status_card.dart';
