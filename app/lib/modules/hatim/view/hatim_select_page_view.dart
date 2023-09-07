@@ -28,15 +28,11 @@ class HatimJusBottomSheet extends StatelessWidget {
           const SizedBox(height: 20),
           BlocBuilder<HatimJuzCubit, HatimJuzState>(
             builder: (context, state) {
-              if (state.status == FetchStatus.loading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state.status == FetchStatus.success) {
-                return HatimPageGridLisrBuilder(state.pages ?? []);
-              } else if (state.status == FetchStatus.error) {
-                return const Center(child: Text('error'));
-              } else {
-                return const Center(child: Text('some'));
-              }
+              return switch (state.status) {
+                FetchStatus.loading => const Center(child: CircularProgressIndicator()),
+                FetchStatus.success => HatimPageGridLisrBuilder(state.pages ?? []),
+                FetchStatus.error => const Center(child: Text('error')),
+              };
             },
           ),
           const SizedBox(height: 20),
@@ -99,10 +95,10 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
               status: e.status,
               pageNumber: e.number,
               pages: (context.watch<HatimPagesCubit>().state.pages ?? []).map((e) => e?.number).toList(),
-              onTap: e.status == Status.todo || e.status == Status.booked
+              onTap: e.status.isActive
                   ? () {
                       final user = context.read<AuthCubit>().state.user!;
-                      if (e.status == Status.todo) {
+                      if (e.status == HatimPageStatus.todo) {
                         context.read<HatimJuzCubit>().selectPage(e.id, user.accessToken, user.username);
                       } else {
                         context.read<HatimJuzCubit>().unSelectPage(e.id, user.accessToken, user.username);

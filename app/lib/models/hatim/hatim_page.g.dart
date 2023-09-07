@@ -8,7 +8,7 @@ part of 'hatim_page.dart';
 
 HatimPages _$HatimPagesFromJson(Map<String, dynamic> json) => HatimPages(
       id: json['id'] as String,
-      status: $enumDecode(_$StatusEnumMap, json['status']),
+      status: $enumDecode(_$HatimPageStatusEnumMap, json['status']),
       number: json['number'] as int,
       mine: json['mine'] as bool,
     );
@@ -16,13 +16,13 @@ HatimPages _$HatimPagesFromJson(Map<String, dynamic> json) => HatimPages(
 Map<String, dynamic> _$HatimPagesToJson(HatimPages instance) => <String, dynamic>{
       'id': instance.id,
       'number': instance.number,
-      'status': _$StatusEnumMap[instance.status]!,
+      'status': _$HatimPageStatusEnumMap[instance.status]!,
       'mine': instance.mine,
     };
 
-const _$StatusEnumMap = {
-  Status.todo: 'TODO',
-  Status.booked: 'BOOKED',
-  Status.inProgress: 'IN_PROGRESS',
-  Status.done: 'DONE',
+const _$HatimPageStatusEnumMap = {
+  HatimPageStatus.todo: 'TODO',
+  HatimPageStatus.booked: 'BOOKED',
+  HatimPageStatus.inProgress: 'IN_PROGRESS',
+  HatimPageStatus.done: 'DONE',
 };

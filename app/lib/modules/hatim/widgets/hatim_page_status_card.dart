@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/models/models.dart';
-import 'package:my_quran/theme/theme.dart';
 
 class HatimPageStatusCard extends StatelessWidget {
   const HatimPageStatusCard({
@@ -14,7 +13,7 @@ class HatimPageStatusCard extends StatelessWidget {
   });
 
   final VoidCallback? onTap;
-  final Status status;
+  final HatimPageStatus status;
   final int pageNumber;
   final List<int?> pages;
 
@@ -26,28 +25,14 @@ class HatimPageStatusCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: MaterialCard(
-          color: status == Status.done
-              ? AppColors.red
-              : status == Status.booked || status == Status.inProgress
-                  ? AppColors.yellow
-                  : AppColors.green,
+          color: status.bgColor,
           text: '$pageNumber',
-          textColor: status == Status.done
-              ? AppColors.white
-              : status == Status.inProgress
-                  ? AppColors.black
-                  : status == Status.todo
-                      ? AppColors.white
-                      : AppColors.black,
+          textColor: status.frColor,
           check: pages.contains(pageNumber)
               ? Positioned(
                   right: 2,
                   top: 2,
-                  child: Icon(
-                    Icons.check,
-                    size: 17,
-                    color: status == Status.done ? null : AppColors.black,
-                  ),
+                  child: Icon(Icons.check, size: 17, color: status.iconColor),
                 )
               : null,
         ),
