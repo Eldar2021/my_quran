@@ -97,11 +97,12 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
               pages: (context.watch<HatimPagesCubit>().state.pages ?? []).map((e) => e?.number).toList(),
               onTap: e.status.isActive
                   ? () {
+                      final cubit = context.read<HatimJuzCubit>();
                       final user = context.read<AuthCubit>().state.user!;
                       if (e.status == HatimPageStatus.todo) {
-                        context.read<HatimJuzCubit>().selectPage(e.id, user.accessToken, user.username);
+                        cubit.selectPage(e.id, user.accessToken, user.username);
                       } else {
-                        context.read<HatimJuzCubit>().unSelectPage(e.id, user.accessToken, user.username);
+                        cubit.unSelectPage(e.id, user.accessToken, user.username);
                       }
                     }
                   : null,

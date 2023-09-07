@@ -25,10 +25,6 @@ class LoginView extends StatelessWidget {
           ),
         ),
       ),
-      // You can enable it to see the SignIn page
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () => Navigator.pushNamed(context, AppRouter.signIn),
-      // ),
     );
   }
 }

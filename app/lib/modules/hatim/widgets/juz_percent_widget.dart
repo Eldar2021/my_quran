@@ -9,35 +9,29 @@ class JuzPersentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.red,
-            borderRadius: BorderRadius.circular(120),
-          ),
-          height: 4,
-          width: ((size.width - 44) * item.donePercent) / 100,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.yellow,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          height: 4,
-          width: ((size.width - 44) * item.inProgressPercent) / 100,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.green,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          height: 4,
-          width: ((size.width - 44) * item.toDoPercent) / 100,
-        ),
+        JuzPercent(AppColors.red, percent: item.donePercent),
+        JuzPercent(AppColors.yellow, percent: item.inProgressPercent),
+        JuzPercent(AppColors.green, percent: item.toDoPercent),
       ],
+    );
+  }
+}
+
+class JuzPercent extends StatelessWidget {
+  const JuzPercent(this.color, {required this.percent, super.key});
+
+  final Color color;
+  final double percent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 4,
+      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
+      width: ((MediaQuery.of(context).size.width - 44) * percent) / 100,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
@@ -18,7 +19,6 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return Card(
       margin: EdgeInsets.symmetric(horizontal: horizontalSpace, vertical: verticalSpace),
       child: Padding(
@@ -26,10 +26,7 @@ class HomeCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              titleText,
-              style: const TextStyle(fontSize: 22),
-            ),
+            Text(titleText, style: const TextStyle(fontSize: 22)),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -39,7 +36,7 @@ class HomeCard extends StatelessWidget {
                   valueText,
                   style: TextStyle(
                     fontSize: 32,
-                    color: colorScheme.primary,
+                    color: context.colors.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
