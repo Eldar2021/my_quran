@@ -359,18 +359,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: e8637dd6a59860f89e5e71be0a27101ec32dad1a0ed7fd879fd23b6e91d5004d
+      sha256: "8b4ff1d45d125e576e26ea99d15e0419bb3c45b53696e022880866b78bb6b830"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.1"
+    version: "5.3.2"
   flutter_gen_runner:
     dependency: "direct dev"
     description:
       name: flutter_gen_runner
-      sha256: "7de1bf4fc0439be0fef3178b6423d5c7f1f9f3a38a7c6fafe75d7f70ff4856d7"
+      sha256: fd197f8c657e79313d53d3934de602ebe604ba722a84c88ae3a43cd90428c67a
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.1"
+    version: "5.3.2"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -975,10 +975,10 @@ packages:
     dependency: "direct main"
     description:
       name: stomp_dart_client
-      sha256: "8779d1383f0a6faa0623af27ab6d4b228ab76c75020d9a83ade5ee204eac5153"
+      sha256: "0972bc5b96e76b05ac5787f240f502aa8251d973326fc067a6173c88a8818b96"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.4"
+    version: "1.0.0"
   stream_channel:
     dependency: transitive
     description:
@@ -1293,4 +1293,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=3.13.2"
+  flutter: ">=3.13.6"
