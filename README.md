@@ -28,8 +28,8 @@ My Quran Hatim Aplication.
 ## Requirements
 - Dart sdk: ">=3.0.1 <4.0.0"
 - Flutter: "3.13.6"
-- Android: minSdkVersion 17
-- iOS: --ios-language swift, Xcode version >= 14.0.0
+- Android: minSdkVersion 19
+- iOS: --ios-language swift, Xcode version >= 15.0.0
 
 ## Melos
 [Melos](https://melos.invertase.dev/) splitting up large code bases into separate independently versioned packages is extremely useful for code sharing. However, making changes across many repositories is messy and difficult to track, and testing across repositories gets complicated really fast.
