@@ -9,6 +9,11 @@ assignees: ''
 
 Tested on commit <enter-commit>
 
+# Create branch
+- [ ] `rl/v<versioncode>`
+- [ ] Change version in `app/pubspec.yaml`
+- [ ] 
+ 
 # Release Testing v<enter-version>
 - [ ] Check Integration tes(CI) `melos integration-test-app`
 - [ ] Check unit test `melos unit-test`
