@@ -7,24 +7,21 @@ assignees: ''
 
 ---
 
-Tested on commit <enter-commit>
+Tested v<versioncode>
 
-# Create branch
+# Create branch & Check auto CI
 - [ ] `rl/v<versioncode>`
 - [ ] Change version in `app/pubspec.yaml`
 - [ ] Run `git add .`
 - [ ] Run `git commit -m "release v<versioncode>"`
 - [ ] Run `git push --set-upstream origin rl/v<versioncode>`
 - [ ] Create PR for auto testing CI
+
+# Monkey test
  
-# Release Testing v<enter-version>
-- [ ] Check Integration tes(CI) `melos integration-test-app`
-- [ ] Check unit test `melos unit-test`
-- [ ] Check code analyze `melos analyze`
-- [ ] Testting manual
-- [ ] Change app version `pubspec.yaml`
+# Create tag v<enter-version>
 - [ ] Create a tag 
-  - `git tag -a v<version> -m "description"`
+  - `git tag -a v<version> -m "release v<versioncode"`
   - `git push origin v<version>`
 - [ ] Write change information
  
@@ -55,7 +52,11 @@ Testing (Open Testing)
 - [ ] After review "OpenTesting" Create Production release
   
 ## Deploy IOS
-Open project ios folder in Xcode
+- [ ] Prerun on IOS (build on IOS)
+  - `melos flutter-clean`
+  - `melos pub-get`
+  - `melos run-app`
+- [ ] Open project ios folder in Xcode
 - [ ] Increment Version & Build (General)
 - [ ] Check certificates "ios_development & ios_distirbution & distirbution"
 - [ ] Check profiles "dev profiles & prod profiles"
