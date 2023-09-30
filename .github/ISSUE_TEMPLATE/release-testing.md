@@ -12,7 +12,10 @@ Tested on commit <enter-commit>
 # Create branch
 - [ ] `rl/v<versioncode>`
 - [ ] Change version in `app/pubspec.yaml`
-- [ ] 
+- [ ] Run `git add .`
+- [ ] Run `git commit -m "release v<versioncode>"`
+- [ ] Run `git push --set-upstream origin rl/v<versioncode>`
+- [ ] Create PR for auto testing CI
  
 # Release Testing v<enter-version>
 - [ ] Check Integration tes(CI) `melos integration-test-app`
