@@ -65,12 +65,11 @@ Testing (Open Testing)
 - [ ] Create Archive
   -  Click Prom top menu "Product/Destination/any IOS device (arm64)"
   -  Click Prom top menu "Product/Archive"
-- [ ] Upload to Test flight
-  - Click "Distirbute App" button
-  - Check "App Store Connect" -> "Next"
-  - Check "Upload" -> "Next"
-  - Check "Strip Swift symbols & Upload your app's symbols & Manage Version app Build Number" -> "Next"
-  - Check app information and click "Upload"
+- [ ] Distirbute App 
+  - Click `Distirbute App` button
+- [ ] Uploade 
+  - Select `TestFlight & App Store`
+  - tap `Distirbute`
 - [ ] Create new version form apple connect
   - Choose `My Quran` app cleck `+ios app`
   - Enter change description
