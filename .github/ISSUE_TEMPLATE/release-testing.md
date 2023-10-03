@@ -7,16 +7,21 @@ assignees: ''
 
 ---
 
-Tested on commit <enter-commit>
+Tested v<versioncode>
 
-# Release Testing v<enter-version>
-- [ ] Check Integration tes(CI) `melos integration-test-app`
-- [ ] Check unit test `melos unit-test`
-- [ ] Check code analyze `melos analyze`
-- [ ] Testting manual
-- [ ] Change app version `pubspec.yaml`
+# Create branch & Check auto CI
+- [ ] `rl/v<versioncode>`
+- [ ] Change version in `app/pubspec.yaml`
+- [ ] Run `git add .`
+- [ ] Run `git commit -m "release v<versioncode>"`
+- [ ] Run `git push --set-upstream origin rl/v<versioncode>`
+- [ ] Create PR for auto testing CI
+
+# Monkey test
+ 
+# Create tag v<enter-version>
 - [ ] Create a tag 
-  - `git tag -a v<version> -m "description"`
+  - `git tag -a v<version> -m "release v<versioncode"`
   - `git push origin v<version>`
 - [ ] Write change information
  
@@ -47,7 +52,11 @@ Testing (Open Testing)
 - [ ] After review "OpenTesting" Create Production release
   
 ## Deploy IOS
-Open project ios folder in Xcode
+- [ ] Prerun on IOS (build on IOS)
+  - `melos flutter-clean`
+  - `melos pub-get`
+  - `melos run-app`
+- [ ] Open project ios folder in Xcode
 - [ ] Increment Version & Build (General)
 - [ ] Check certificates "ios_development & ios_distirbution & distirbution"
 - [ ] Check profiles "dev profiles & prod profiles"
@@ -56,12 +65,11 @@ Open project ios folder in Xcode
 - [ ] Create Archive
   -  Click Prom top menu "Product/Destination/any IOS device (arm64)"
   -  Click Prom top menu "Product/Archive"
-- [ ] Upload to Test flight
-  - Click "Distirbute App" button
-  - Check "App Store Connect" -> "Next"
-  - Check "Upload" -> "Next"
-  - Check "Strip Swift symbols & Upload your app's symbols & Manage Version app Build Number" -> "Next"
-  - Check app information and click "Upload"
+- [ ] Distirbute App 
+  - Click `Distirbute App` button
+- [ ] Uploade 
+  - Select `TestFlight & App Store`
+  - tap `Distirbute`
 - [ ] Create new version form apple connect
   - Choose `My Quran` app cleck `+ios app`
   - Enter change description
