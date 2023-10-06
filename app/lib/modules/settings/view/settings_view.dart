@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/models.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -23,6 +25,9 @@ class SettingsView extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
+            leading: const IconSettings(
+              icon: FontAwesomeIcons.marsAndVenus,
+            ),
             key: const Key(MqKeys.settingsGender),
             title: Text(l10n.profileGender),
             trailing: Row(
@@ -36,6 +41,9 @@ class SettingsView extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, AppRouter.genderSettings),
           ),
           ListTile(
+            leading: const IconSettings(
+              icon: Icons.language,
+            ),
             key: const Key(MqKeys.settingsLanguage),
             title: Text(l10n.profileLang),
             trailing: Row(
@@ -49,24 +57,36 @@ class SettingsView extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, AppRouter.langSettings),
           ),
           ListTile(
+            leading: const IconSettings(
+              icon: FontAwesomeIcons.palette,
+            ),
             key: const Key(MqKeys.settingsTheme),
             title: Text(l10n.profileTheme),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.themeSettings),
           ),
           ListTile(
+            leading: const IconSettings(
+              icon: FontAwesomeIcons.peopleGroup,
+            ),
             key: const Key(MqKeys.settingsAboutUs),
             title: Text(l10n.aboutUs),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.aboutUs),
           ),
           ListTile(
+            leading: const IconSettings(
+              icon: FontAwesomeIcons.phone,
+            ),
             key: const Key(MqKeys.settingsContactUs),
             title: Text(l10n.contactUs),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.pushNamed(context, AppRouter.contactUs),
           ),
           ListTile(
+            leading: const IconSettings(
+              icon: FontAwesomeIcons.laptopCode,
+            ),
             key: const Key(MqKeys.settingsDevelopers),
             title: Text(l10n.profileForDevelopers),
             trailing: const Icon(Icons.arrow_forward_ios),

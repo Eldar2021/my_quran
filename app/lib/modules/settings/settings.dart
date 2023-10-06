@@ -6,3 +6,4 @@ export 'view/lang_settings.dart';
 export 'view/settings_view.dart';
 export 'view/theme_settings.dart';
 export 'widgets/widgets.dart';
+export 'widgets/icon_settings.dart';
