@@ -6,7 +6,7 @@ import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
-import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/models/hatim/hatim_juz.dart';
 
 part 'hatim_juzs_state.dart';
@@ -19,7 +19,7 @@ class HatimJuzsCubit extends Cubit<HatimJuzsState> {
   dynamic connect(String hatimId, String token) {
     client = StompClient(
       config: StompConfig(
-        url: ApiConst.socketBase,
+        url: apiConst.baseSocket,
         onStompError: onStompError,
         onWebSocketError: onWebSocketError,
         onConnect: (event) => onConnect(hatimId, token),
@@ -49,8 +49,8 @@ class HatimJuzsCubit extends Cubit<HatimJuzsState> {
 
   void onConnect(String hatimId, String token) {
     client.subscribe(
-      destination: ApiConst.juzSocket(hatimId),
-      headers: ApiConst.authMap(token),
+      destination: apiConst.juzSocket(hatimId),
+      headers: apiConst.authMap(token),
       callback: callback,
     );
   }

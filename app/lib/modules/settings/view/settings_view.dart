@@ -18,7 +18,10 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsView),
-        title: Text(l10n.profileSettings),
+        title: InkWell(
+          onLongPress: () => Navigator.pushNamed(context, AppRouter.devModeView),
+          child: Text(l10n.profileSettings),
+        ),
       ),
       body: ListView(
         children: [

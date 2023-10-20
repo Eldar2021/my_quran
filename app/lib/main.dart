@@ -12,7 +12,7 @@ import 'package:my_quran/app_observer.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 
-Future<void> main({AppConfig appConfig = const AppConfig()}) async {
+Future<void> main({AppConfig? appConfig}) async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -27,6 +27,10 @@ Future<void> main({AppConfig appConfig = const AppConfig()}) async {
 
   Bloc.observer = AppBlocObserver();
   final storage = await PreferencesStorage.getInstance();
+
+  appConfig ??= AppConfig(storage: storage);
+
+  appConfig.init();
 
   runApp(
     MultiRepositoryProvider(

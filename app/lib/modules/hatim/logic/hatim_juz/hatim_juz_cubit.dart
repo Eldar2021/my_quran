@@ -7,7 +7,7 @@ import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
-import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/models/models.dart';
 
@@ -23,7 +23,7 @@ class HatimJuzCubit extends Cubit<HatimJuzState> {
   dynamic connect(String hatimId, String token) {
     client = StompClient(
       config: StompConfig(
-        url: ApiConst.socketBase,
+        url: apiConst.baseSocket,
         onStompError: onStompError,
         onWebSocketError: onWebSocketError,
         onConnect: (event) => onConnect(hatimId, token),
@@ -54,24 +54,24 @@ class HatimJuzCubit extends Cubit<HatimJuzState> {
 
   void onConnect(String juzId, String token) {
     client.subscribe(
-      destination: ApiConst.getPagesByJuz(juzId),
-      headers: ApiConst.authMap(token),
+      destination: apiConst.getPagesByJuz(juzId),
+      headers: apiConst.authMap(token),
       callback: callback,
     );
   }
 
   void selectPage(String pageId, String token, String username) {
     client.send(
-      destination: ApiConst.setBook,
-      headers: ApiConst.authMap(token),
+      destination: apiConst.setBook,
+      headers: apiConst.authMap(token),
       body: jsonEncode({'pageId': pageId, 'username': username}),
     );
   }
 
   void unSelectPage(String pageId, String token, String username) {
     client.send(
-      destination: ApiConst.setTodo,
-      headers: ApiConst.authMap(token),
+      destination: apiConst.setTodo,
+      headers: apiConst.authMap(token),
       body: jsonEncode({'pageId': pageId, 'username': username}),
     );
   }

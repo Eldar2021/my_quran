@@ -51,14 +51,17 @@ class LoginBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        DotsIndicator(
-          controller: controller,
-          itemCount: 2,
-          maxZoom: 1.3,
-          dotSize: 4.1,
-          space: 15,
-          activeColor: colorScheme.primary,
-          disactiveColor: colorScheme.secondary,
+        InkWell(
+          onLongPress: () => Navigator.pushNamed(context, AppRouter.devModeView),
+          child: DotsIndicator(
+            controller: controller,
+            itemCount: 2,
+            maxZoom: 1.3,
+            dotSize: 4.1,
+            space: 15,
+            activeColor: colorScheme.primary,
+            disactiveColor: colorScheme.secondary,
+          ),
         ),
         const SizedBox(height: 20),
         CustomButton(

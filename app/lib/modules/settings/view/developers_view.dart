@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/components/components.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -33,7 +34,7 @@ class DevelopersView extends StatelessWidget {
             ),
             const Spacer(),
             CustomButtonWithIcon(
-              onPressed: () => AppLaunch.launchURL(ApiConst.urlGitHub),
+              onPressed: () => AppLaunch.launchURL(apiConst.urlGitHub),
               text: 'GitHub',
               icon: Assets.icons.github.svg(
                 height: 35,

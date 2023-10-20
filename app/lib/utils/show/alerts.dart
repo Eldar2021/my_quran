@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -81,6 +83,24 @@ final class AppAlert {
             CupertinoButton(
               onPressed: onPressed ?? () => Navigator.of(context).pop(),
               child: Text(context.l10n.cancel, style: textStyle),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static void showRestartDialog(BuildContext context) {
+    showCupertinoDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text('Yuo Need to restart App'),
+          content: const Text('Restart application for enabling/disabling dev-mode'),
+          actions: <Widget>[
+            CupertinoButton(
+              onPressed: () => exit(0),
+              child: const Text('Restart'),
             ),
           ],
         );

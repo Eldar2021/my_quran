@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
-import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/models/models.dart';
 
@@ -27,12 +27,12 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
         children: surahs
             .map(
               (s) => AudioSource.uri(
-                Uri.parse(ApiConst.audio(s.surahPath)),
+                Uri.parse(apiConst.audio(s.surahPath)),
                 tag: MediaItem(
                   id: '${s.id}',
                   album: 'Quran',
                   title: s.name,
-                  artUri: Uri.parse(ApiConst.appLogoLink),
+                  artUri: Uri.parse(apiConst.appLogoLink),
                 ),
               ),
             )

@@ -6,7 +6,7 @@ import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
-import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/models/models.dart';
 
 part 'hatim_pages_state.dart';
@@ -19,7 +19,7 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
   dynamic connect(String username, String token) {
     client = StompClient(
       config: StompConfig(
-        url: ApiConst.socketBase,
+        url: apiConst.baseSocket,
         onStompError: onStompError,
         onWebSocketError: onWebSocketError,
         onConnect: (event) => onConnect(username, token),
@@ -53,8 +53,8 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
 
   void onConnect(String username, String token) {
     client.subscribe(
-      destination: ApiConst.userPages(username),
-      headers: ApiConst.authMap(token),
+      destination: apiConst.userPages(username),
+      headers: apiConst.authMap(token),
       callback: callback,
     );
   }
@@ -63,8 +63,8 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
     if (state.pages != null && state.pages!.isNotEmpty) {
       final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]!.id);
       client.send(
-        destination: ApiConst.setInProgress,
-        headers: ApiConst.authMap(token),
+        destination: apiConst.setInProgress,
+        headers: apiConst.authMap(token),
         body: jsonEncode({'pageIds': pageIds, 'username': username}),
       );
     }
@@ -74,8 +74,8 @@ class HatimPagesCubit extends Cubit<HatimPagesState> {
     if (state.pages != null && state.pages!.isNotEmpty) {
       final pageIds = List.generate(state.pages!.length, (index) => state.pages![index]!.id);
       client.send(
-        destination: ApiConst.setDone,
-        headers: ApiConst.authMap(token),
+        destination: apiConst.setDone,
+        headers: apiConst.authMap(token),
         body: jsonEncode({'pageIds': pageIds, 'username': username}),
       );
     }

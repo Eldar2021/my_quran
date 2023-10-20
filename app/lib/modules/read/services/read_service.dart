@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/models/models.dart';
 
@@ -19,7 +19,7 @@ class ReadService {
       return QuranPage.fromJson(data as Map<String, dynamic>);
     } else {
       final remoteValue = await remoteClient.get<QuranPage>(
-        ApiConst.verse(page, quranFmt),
+        apiConst.verse(page, quranFmt),
         fromJson: QuranPage.fromJson,
       );
 
