@@ -1,33 +1,41 @@
 class ApiConst {
-  static const domain = 'http://quran.isistant.io/api/v1';
-  static const signUp = '$domain/auth/sign_up';
-  static const home = '$domain/report/dashboard';
-  static const hatim = '$domain/hatim/join_to_hatim';
+  const ApiConst({
+    required this.isDevmode,
+    this.devDomain,
+  });
 
-  static const appLogoLink = 'https://github.com/Eldar2021/my_quran/blob/main/app/assets/images/app_icon.png?raw=true';
+  final bool isDevmode;
+  final String? devDomain;
 
-  static const socketBase = 'ws://quran.isistant.io/ws';
+  static const domain = 'quran.isistant.io';
 
-  static String juzSocket(String hatimId) => '/topic/$hatimId/list_of_juz';
+  String get baseUrl => 'http://$_getDomain/api/v1';
+  String get signUp => '$baseUrl/auth/sign_up';
+  String get home => '$baseUrl/report/dashboard';
+  String get hatim => '$baseUrl/hatim/join_to_hatim';
 
-  static String userPages(String username) => '/topic/$username/user_pages';
+  String get baseSocket => 'ws://$_getDomain/ws';
+  String juzSocket(String hatimId) => '/topic/$hatimId/list_of_juz';
+  String userPages(String username) => '/topic/$username/user_pages';
+  String getPagesByJuz(String juzId) => '/topic/$juzId/list_of_page';
+  String get setInProgress => '/app/in_progress';
+  String get setBook => '/app/book';
+  String get setTodo => '/app/to_do';
+  String get setDone => '/app/done';
 
-  static String getPagesByJuz(String juzId) => '/topic/$juzId/list_of_page';
+  Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
 
-  static const setInProgress = '/app/in_progress';
-  static const setBook = '/app/book';
-  static const setTodo = '/app/to_do';
-  static const setDone = '/app/done';
+  String get _getDomain {
+    if (isDevmode && devDomain != null && devDomain!.isNotEmpty) return devDomain!;
+    return domain;
+  }
 
-  static Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
-
-  static const urlGitHub = 'https://github.com/Eldar2021/my_quran';
-
-  // TODO(eldiiar): Replace the privacy policy URL with the actual [URL] of your privacy policy page.
-  static const provicyPolicy = 'https://github.com/Eldar2021/my_quran';
-
-  static String verse(int page, String quranFmt) =>
-      'https://api.quran.com/api/v4/quran/verses/$quranFmt?page_number=$page';
-  static String audio(String surahIndex) =>
+  String verse(int page, String quranFmt) => 'https://api.quran.com/api/v4/quran/verses/$quranFmt?page_number=$page';
+  String audio(String surahIndex) =>
       'https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/$surahIndex.mp3';
+
+  String get urlGitHub => 'https://github.com/Eldar2021/my_quran';
+  // TODO(eldiiar): Replace the privacy policy URL with the actual [URL] of your privacy policy page.
+  String get provicyPolicy => 'https://github.com/Eldar2021/my_quran';
+  String get appLogoLink => 'https://github.com/Eldar2021/my_quran/blob/main/app/assets/images/app_icon.png?raw=true';
 }

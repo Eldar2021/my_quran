@@ -6,3 +6,4 @@ export 'quran/quran.dart';
 export 'read/read.dart';
 export 'settings/settings.dart';
 export 'quran_audio/quran_audio.dart';
+export 'dev_mode/dev_mode.dart';

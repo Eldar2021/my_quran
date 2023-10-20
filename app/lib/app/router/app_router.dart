@@ -21,6 +21,7 @@ class AppRouter {
   static const String aboutUs = '/about-us';
   static const String contactUs = '/contect-us';
   static const String developers = '/developers';
+  static const String devModeView = '/dev-mode-view';
 
   static Route<void> onGenerateRoute(RouteSettings settings, User? user) {
     return switch (settings.name) {
@@ -37,6 +38,7 @@ class AppRouter {
       genderSettings => CupertinoPageRoute(builder: (_) => const GenderSettingView()),
       langSettings => CupertinoPageRoute(builder: (_) => const LangSettingsView()),
       themeSettings => CupertinoPageRoute(builder: (_) => const ThemeSettingsView()),
+      devModeView => CupertinoPageRoute(builder: (_) => const DevModeView()),
       read => CupertinoPageRoute<bool>(
           builder: (_) {
             final args = settings.arguments!;

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/models/models.dart';
@@ -28,7 +29,7 @@ final class AuthService {
 
   Future<Either<User, Exception>> login(String languageCode, Gender gender) async {
     final user = await client.post<User>(
-      ApiConst.signUp,
+      apiConst.signUp,
       fromJson: User.fromJson,
       body: <String, dynamic>{
         'gender': gender.name.toUpperCase(),
