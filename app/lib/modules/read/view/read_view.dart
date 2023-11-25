@@ -87,6 +87,7 @@ class ReadUI extends StatelessWidget {
                       value: context.read<ReadThemeCubit>(),
                       child: const ChangeReadTheme(),
                     ),
+                    initialChildSize: 0.7,
                   );
                 },
                 icon: Icon(
