@@ -18,11 +18,10 @@ class ContactUsView extends StatelessWidget {
         backgroundColor: context.colors.primaryContainer,
         title: Text(context.l10n.contactUs),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: ListView(
         children: [
           const ContactUsCard(),
-          const Spacer(flex: 2),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -52,7 +51,7 @@ class ContactUsView extends StatelessWidget {
               ),
             ],
           ),
-          const Spacer(),
+          const SizedBox(height: 30),
         ],
       ),
     );
