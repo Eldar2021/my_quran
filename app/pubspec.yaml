@@ -51,6 +51,7 @@ dev_dependencies:
   build_runner: ^2.4.7
   flutter_gen_runner: ^5.3.2
   json_serializable: ^6.7.1
+  patrol: ^3.4.0
   # flutter_launcher_icons: ^0.13.1
 
 flutter:
@@ -81,3 +82,10 @@ flutter_icons:
   ios: true
   image_path: "assets/images/app_icon.png"
   # flutter pub run flutter_launcher_icons
+
+patrol:
+  app_name: MyQuran
+  android:
+    package_name: com.alee.my_quran.example
+  ios:
+    bundle_id: com.alee.hatimapp.example
