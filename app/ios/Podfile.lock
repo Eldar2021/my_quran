@@ -86,7 +86,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   connectivity_plus: bf0076dd84a130856aa636df1c71ccaff908fa1d
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
@@ -99,4 +99,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 212b87bf301f233087fb555b60d67094a7700765
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.14.3

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
@@ -19,10 +21,9 @@ class HomeView extends StatelessWidget {
       body: RepositoryProvider.of<AppConfig>(context).isIntegrationTest
           ? const HomeBody()
           : UpgradeAlert(
-              upgrader: Upgrader(
-                shouldPopScope: () => true,
-                canDismissDialog: true,
-              ),
+              dialogStyle: Platform.isIOS ? UpgradeDialogStyle.cupertino : UpgradeDialogStyle.material,
+              shouldPopScope: () => true,
+              canDismissDialog: true,
               child: const HomeBody(),
             ),
     );

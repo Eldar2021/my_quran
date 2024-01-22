@@ -22,7 +22,7 @@ final class QuranPage {
       ..writeAll(
         verses.map(
           (e) =>
-              '${e.isFirst ? '\n\n${AppConst.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} ${e.hasSajda ? AppConst.sajdaSymbol : ''} ${e.ayatNumber.toArabicDigits}',
+              '${e.isFirst ? '\n\n${AppConst.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} ${e.hasSajda ? AppConst.sajdaSymbol : ''} \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E',
         ),
         '  ',
       );
