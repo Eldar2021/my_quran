@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
+// patrol test -t integration_test/example_test.dart
+
 void main() {
   patrolTest(
     'counter state is the same after going to home and switching apps',
