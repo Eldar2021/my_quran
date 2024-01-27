@@ -32,7 +32,7 @@ jobs:
         with:
           api-level: 29
           arch: x86_64
-          script: melos integration-test-app
+          script: melos integration-test
 
       - uses: actions/upload-artifact@v3
         if: always()
