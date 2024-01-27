@@ -93,6 +93,6 @@ scripts:
     description: "Build an appbundle file"
 
   # Integration test My Quran
-  integration-test-app:
-    run: cd app && flutter drive --target=test_driver/app.dart
+  integration-test:
+    run: cd app && flutter drive --target=test_driver/app.dart --no-enable-impeller
     description: "Run integration tests for the my_quran"
