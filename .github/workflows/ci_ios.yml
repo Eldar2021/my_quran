@@ -41,7 +41,7 @@ jobs:
           os_version: "16.2"
 
       - name: Integration Test
-        run: melos integration-test-app
+        run: melos integration-test
 
       - uses: actions/upload-artifact@v3
         if: always()

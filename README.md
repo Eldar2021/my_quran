@@ -59,7 +59,7 @@ melos test
 ## Integration tests
 * run integration tests in `test_driver` directory:
 ```shell
-melos integration-test-app
+melos integration-test
 ```
 
 ## Fmt
