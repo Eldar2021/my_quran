@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -31,11 +32,7 @@ class PageViewItem<T> extends StatelessWidget {
                   pages.add(i);
                 }
                 pages.sort();
-                await Navigator.pushNamed(
-                  context,
-                  AppRouter.read,
-                  arguments: {'pages': pages, 'isHatim': false},
-                );
+                context.goNamed(AppRouter.read, extra: {'pages': pages, 'isHatim': false});
               },
             ),
           );
@@ -53,11 +50,7 @@ class PageViewItem<T> extends StatelessWidget {
                   pages.add(i);
                 }
                 pages.sort();
-                await Navigator.pushNamed(
-                  context,
-                  AppRouter.read,
-                  arguments: {'pages': pages, 'isHatim': false},
-                );
+                context.goNamed(AppRouter.read, extra: {'pages': pages, 'isHatim': false});
               },
             ),
           );

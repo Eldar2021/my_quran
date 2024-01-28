@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:upgrader/upgrader.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -12,8 +14,23 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    final homeCubit = context.read<HomeCubit>();
+    final authCubit = context.read<AuthCubit>();
+    if (homeCubit.state.status != FetchStatus.success && authCubit.state.user != null) {
+      homeCubit.getData(authCubit.state.user!.accessToken);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +94,7 @@ class HomeBody extends StatelessWidget {
               child: CustomButton(
                 key: const Key(MqKeys.participantToHatim),
                 text: l10n.homeGoHatim,
-                onPressed: () async {
-                  await Navigator.pushNamed(context, AppRouter.hatim);
-                  if (context.mounted) {
-                    await context.read<HomeCubit>().getData(context.read<AuthCubit>().state.user!.accessToken);
-                  }
-                },
+                onPressed: () => context.goNamed(AppRouter.hatim),
               ),
             ),
             const SizedBox(height: 20),

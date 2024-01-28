@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -52,7 +53,7 @@ class LoginBody extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         InkWell(
-          onLongPress: () => Navigator.pushNamed(context, AppRouter.devModeView),
+          onLongPress: () => context.pushNamed(AppRouter.devModeView),
           child: DotsIndicator(
             controller: controller,
             itemCount: 2,
@@ -84,16 +85,10 @@ class LoginBody extends StatelessWidget {
                     context.read<AppCubit>().state.gender,
                   )
                   .then((value) async {
-                Navigator.pop(context);
+                context.pop();
                 if (value.user != null) {
-                  // ignore: use_build_context_synchronously
-                  await Navigator.pushAndRemoveUntil<void>(
-                    context,
-                    MaterialPageRoute<void>(builder: (context) => const MainView()),
-                    (route) => false,
-                  );
+                  context.goNamed(AppRouter.home);
                 } else {
-                  // ignore: use_build_context_synchronously
                   AppSnackbar.showSnackbar(context, 'Bir kata boldu');
                 }
               });

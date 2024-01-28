@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
@@ -99,7 +100,7 @@ class _PaginationViewState extends State<PaginationView> {
                           isHatim: widget.isHatim,
                         );
                         if (value != null && value && context.mounted) {
-                          Navigator.of(context).pop(true);
+                          context.pop(true);
                         }
                       },
                       child: Text(context.l10n.readed),

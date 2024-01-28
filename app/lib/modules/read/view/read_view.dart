@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_storage/mq_storage.dart';
 
@@ -195,7 +196,7 @@ class ChangeReadTheme extends StatelessWidget {
           children: [
             OutlinedButton(
               key: const Key(MqKeys.quranReadSettingsBack),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => context.pop(),
               child: Text(l10n.cancel),
             ),
             const SizedBox(width: 10),
@@ -203,7 +204,7 @@ class ChangeReadTheme extends StatelessWidget {
               key: const Key(MqKeys.quranReadSettingsSave),
               onPressed: () async {
                 await context.read<ReadThemeCubit>().saveChanges();
-                if (context.mounted) Navigator.pop(context);
+                if (context.mounted) context.pop();
               },
               child: Text(l10n.saveChanges),
             ),

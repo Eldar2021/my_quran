@@ -1,52 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-
-import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/modules/modules.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class MainView extends StatelessWidget {
+  const MainView(this.navigationShell, {super.key});
 
-  @override
-  State<MainView> createState() => _MainViewState();
-}
-
-class _MainViewState extends State<MainView> {
-  @override
-  void initState() {
-    context.read<HomeCubit>().getData(context.read<AuthCubit>().state.user!.accessToken);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MainCubit(),
-      child: const MainScreen([
-        HomeView(),
-        QuranView(),
-        QuranAudioView(),
-        SettingsView(),
-      ]),
-    );
-  }
-}
-
-class MainScreen extends StatelessWidget {
-  const MainScreen(this.items, {super.key});
-
-  final List<Widget> items;
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: items[context.watch<MainCubit>().state],
+      body: navigationShell,
       bottomNavigationBar: NavigationBar(
-        onDestinationSelected: context.read<MainCubit>().change,
-        selectedIndex: context.watch<MainCubit>().state,
+        onDestinationSelected: _onTap,
+        selectedIndex: navigationShell.currentIndex,
         destinations: <Widget>[
           NavigationDestination(
             key: const Key(MqKeys.home),
@@ -70,6 +39,13 @@ class MainScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _onTap(int index) {
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex,
     );
   }
 }
