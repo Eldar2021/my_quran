@@ -1,16 +1,16 @@
-import 'package:universal_io/io.dart';
+import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:upgrader/upgrader.dart';
-
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/app_config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:upgrader/upgrader.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
       body: RepositoryProvider.of<AppConfig>(context).isIntegrationTest
           ? const HomeBody()
           : UpgradeAlert(
-              dialogStyle: Platform.isIOS ? UpgradeDialogStyle.cupertino : UpgradeDialogStyle.material,
+              dialogStyle: kIsWeb || Platform.isAndroid ? UpgradeDialogStyle.material : UpgradeDialogStyle.cupertino,
               shouldPopScope: () => true,
               canDismissDialog: true,
               child: const HomeBody(),
