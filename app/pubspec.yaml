@@ -38,6 +38,7 @@ dependencies:
     path: ../packages/mq_storage/
   mq_ci_keys:
     path: ../packages/mq_ci_keys/ 
+  universal_io: ^2.2.2
   # flutter_native_splash: ^2.3.9
 
 dev_dependencies:
