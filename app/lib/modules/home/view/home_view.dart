@@ -1,12 +1,13 @@
-import 'dart:io';
+import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:upgrader/upgrader.dart';
 
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/app_config.dart';
@@ -38,7 +39,7 @@ class _HomeViewState extends State<HomeView> {
       body: RepositoryProvider.of<AppConfig>(context).isIntegrationTest
           ? const HomeBody()
           : UpgradeAlert(
-              dialogStyle: Platform.isIOS ? UpgradeDialogStyle.cupertino : UpgradeDialogStyle.material,
+              dialogStyle: kIsWeb || Platform.isAndroid ? UpgradeDialogStyle.material : UpgradeDialogStyle.cupertino,
               shouldPopScope: () => true,
               canDismissDialog: true,
               child: const HomeBody(),
