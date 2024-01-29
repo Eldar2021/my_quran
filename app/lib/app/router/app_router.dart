@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_quran/app/app.dart';
 
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/modules/modules.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _sectionNavigatorKey = GlobalKey<NavigatorState>();
+final _sectionNavigatorKey1 = GlobalKey<NavigatorState>(debugLabel: 'home');
+final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
+final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
+final _sectionNavigatorKey4 = GlobalKey<NavigatorState>(debugLabel: 'settings');
 
 class AppRouter {
   const AppRouter._();
@@ -54,7 +57,7 @@ class AppRouter {
         builder: (context, state, navigationShell) => MainView(navigationShell),
         branches: [
           StatefulShellBranch(
-            navigatorKey: _sectionNavigatorKey,
+            navigatorKey: _sectionNavigatorKey1,
             routes: [
               GoRoute(
                 path: '/$home',
@@ -65,6 +68,7 @@ class AppRouter {
             ],
           ),
           StatefulShellBranch(
+            navigatorKey: _sectionNavigatorKey2,
             routes: [
               GoRoute(
                 path: '/$quran',
@@ -75,6 +79,7 @@ class AppRouter {
             ],
           ),
           StatefulShellBranch(
+            navigatorKey: _sectionNavigatorKey3,
             routes: [
               GoRoute(
                 path: '/$quranAudio',
@@ -84,6 +89,7 @@ class AppRouter {
             ],
           ),
           StatefulShellBranch(
+            navigatorKey: _sectionNavigatorKey4,
             routes: [
               GoRoute(
                 path: '/$settingsPage',
@@ -111,6 +117,7 @@ class AppRouter {
           GoRoute(
             path: hatimRead,
             name: hatimRead,
+            parentNavigatorKey: _rootNavigatorKey,
             builder: (context, state) {
               final args = state.extra! as Map<String, dynamic>;
               return ReadView(
@@ -129,6 +136,7 @@ class AppRouter {
       GoRoute(
         path: read,
         name: read,
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
           final args = state.extra! as Map<String, dynamic>;
           return ReadView(

@@ -32,7 +32,10 @@ class PageViewItem<T> extends StatelessWidget {
                   pages.add(i);
                 }
                 pages.sort();
-                context.goNamed(AppRouter.read, extra: {'pages': pages, 'isHatim': false});
+                await context.pushNamed(
+                  AppRouter.read,
+                  extra: {'pages': pages, 'isHatim': false},
+                );
               },
             ),
           );
@@ -50,7 +53,10 @@ class PageViewItem<T> extends StatelessWidget {
                   pages.add(i);
                 }
                 pages.sort();
-                context.goNamed(AppRouter.read, extra: {'pages': pages, 'isHatim': false});
+                await context.pushNamed(
+                  AppRouter.read,
+                  extra: {'pages': pages, 'isHatim': false},
+                );
               },
             ),
           );
