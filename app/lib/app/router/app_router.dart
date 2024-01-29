@@ -11,7 +11,8 @@ final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
 final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
 final _sectionNavigatorKey4 = GlobalKey<NavigatorState>(debugLabel: 'settings');
 
-class AppRouter {
+@immutable
+final class AppRouter {
   const AppRouter._();
 
   static const home = 'home';
