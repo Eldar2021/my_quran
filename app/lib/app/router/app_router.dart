@@ -116,15 +116,12 @@ final class AppRouter {
         builder: (context, state) => const HatimView(),
         routes: [
           GoRoute(
-            path: hatimRead,
+            path: '$hatimRead/:isHatim/:pages',
             name: hatimRead,
             parentNavigatorKey: _rootNavigatorKey,
             builder: (context, state) {
-              final args = state.extra! as Map<String, dynamic>;
-              return ReadView(
-                args['pages'] as List<int>,
-                isHatim: args['isHatim'] as bool,
-              );
+              final args = ParseParams.parseRead(state.pathParameters);
+              return ReadView(args.$1, isHatim: args.$2);
             },
           ),
         ],
@@ -135,15 +132,12 @@ final class AppRouter {
   static List<RouteBase> get quranSubRoutes {
     return [
       GoRoute(
-        path: read,
+        path: '$read/:isHatim/:pages',
         name: read,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) {
-          final args = state.extra! as Map<String, dynamic>;
-          return ReadView(
-            args['pages'] as List<int>,
-            isHatim: args['isHatim'] as bool,
-          );
+          final args = ParseParams.parseRead(state.pathParameters);
+          return ReadView(args.$1, isHatim: args.$2);
         },
       ),
     ];

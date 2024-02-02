@@ -94,8 +94,11 @@ class _HatimUIState extends State<HatimUI> {
               final pages = List<int>.generate(cubit.state.pages!.length, (index) => cubit.state.pages![index]!.number)
                 ..sort();
               final value = await context.pushNamed<bool>(
-                AppRouter.read,
-                extra: {'pages': pages, 'isHatim': true},
+                AppRouter.hatimRead,
+                pathParameters: {
+                  'pages': pages.toString(),
+                  'isHatim': true.toString(),
+                },
               );
               if (value != null && value && context.mounted) {
                 context.read<HatimPagesCubit>().donePage(username, token);
