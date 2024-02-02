@@ -54,17 +54,14 @@ class QuranApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'MyQuranKhatm',
       debugShowCheckedModeBanner: false,
       locale: context.watch<AppCubit>().state.currentLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: context.watch<AppCubit>().state.theme.themeData,
-      onGenerateRoute: (settings) => AppRouter.onGenerateRoute(
-        settings,
-        context.read<AuthCubit>().state.user,
-      ),
+      routerConfig: AppRouter.router,
     );
   }
 }

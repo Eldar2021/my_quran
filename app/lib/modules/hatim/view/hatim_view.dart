@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -92,10 +93,12 @@ class _HatimUIState extends State<HatimUI> {
               context.read<HatimPagesCubit>().sendPage(username, token);
               final pages = List<int>.generate(cubit.state.pages!.length, (index) => cubit.state.pages![index]!.number)
                 ..sort();
-              final value = await Navigator.pushNamed<bool>(
-                context,
-                AppRouter.read,
-                arguments: {'pages': pages, 'isHatim': true},
+              final value = await context.pushNamed<bool>(
+                AppRouter.hatimRead,
+                pathParameters: {
+                  'pages': pages.toString(),
+                  'isHatim': true.toString(),
+                },
               );
               if (value != null && value && context.mounted) {
                 context.read<HatimPagesCubit>().donePage(username, token);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -61,13 +62,13 @@ class HatimJusBottomSheet extends StatelessWidget {
             children: [
               OutlinedButton(
                 key: const Key(MqKeys.hatimSelectPageCancel),
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: Text(context.l10n.cancel),
               ),
               const SizedBox(width: 12),
               OutlinedButton(
                 key: const Key(MqKeys.hatimSelectPageOk),
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: Text(context.l10n.select),
               ),
             ],

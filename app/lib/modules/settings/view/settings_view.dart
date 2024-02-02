@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -19,7 +20,7 @@ class SettingsView extends StatelessWidget {
       appBar: AppBar(
         key: const Key(MqKeys.settingsView),
         title: InkWell(
-          onLongPress: () => Navigator.pushNamed(context, AppRouter.devModeView),
+          onLongPress: () => context.pushNamed(AppRouter.devModeView),
           child: Text(l10n.profileSettings),
         ),
       ),
@@ -36,7 +37,7 @@ class SettingsView extends StatelessWidget {
                 const Icon(Icons.arrow_forward_ios),
               ],
             ),
-            onTap: () => Navigator.pushNamed(context, AppRouter.genderSettings),
+            onTap: () => context.goNamed(AppRouter.genderSettings),
           ),
           ListTile(
             key: const Key(MqKeys.settingsLanguage),
@@ -49,31 +50,31 @@ class SettingsView extends StatelessWidget {
                 const Icon(Icons.arrow_forward_ios),
               ],
             ),
-            onTap: () => Navigator.pushNamed(context, AppRouter.langSettings),
+            onTap: () => context.goNamed(AppRouter.langSettings),
           ),
           ListTile(
             key: const Key(MqKeys.settingsTheme),
             title: Text(l10n.profileTheme),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => Navigator.pushNamed(context, AppRouter.themeSettings),
+            onTap: () => context.goNamed(AppRouter.themeSettings),
           ),
           ListTile(
             key: const Key(MqKeys.settingsAboutUs),
             title: Text(l10n.aboutUs),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => Navigator.pushNamed(context, AppRouter.aboutUs),
+            onTap: () => context.goNamed(AppRouter.aboutUs),
           ),
           ListTile(
             key: const Key(MqKeys.settingsContactUs),
             title: Text(l10n.contactUs),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => Navigator.pushNamed(context, AppRouter.contactUs),
+            onTap: () => context.goNamed(AppRouter.contactUs),
           ),
           ListTile(
             key: const Key(MqKeys.settingsDevelopers),
             title: Text(l10n.profileForDevelopers),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => Navigator.pushNamed(context, AppRouter.developers),
+            onTap: () => context.goNamed(AppRouter.developers),
           ),
         ],
       ),

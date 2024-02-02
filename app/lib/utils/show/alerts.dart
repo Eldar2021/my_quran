@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/constants/contants.dart';
@@ -52,13 +53,7 @@ final class AppAlert {
           actions: [
             CustomButton(
               text: context.l10n.amin,
-              onPressed: () {
-                if (isHatim) {
-                  Navigator.of(context).pop(true);
-                } else {
-                  Navigator.of(context).pop(true);
-                }
-              },
+              onPressed: () => context.pop(true),
             ),
           ],
         );
@@ -81,7 +76,7 @@ final class AppAlert {
           content: Text(errorText, style: textStyle),
           actions: <Widget>[
             CupertinoButton(
-              onPressed: onPressed ?? () => Navigator.of(context).pop(),
+              onPressed: onPressed ?? () => context.pop(),
               child: Text(context.l10n.cancel, style: textStyle),
             ),
           ],

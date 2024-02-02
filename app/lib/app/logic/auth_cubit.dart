@@ -24,4 +24,6 @@ class AuthCubit extends Cubit<AuthState> {
     await service.changeGender(gender);
     emit(state.copyWith(user: state.user?.copyWith(gender: gender)));
   }
+
+  bool get isAuthedticated => state.user != null;
 }
