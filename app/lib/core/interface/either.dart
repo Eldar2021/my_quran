@@ -1,5 +1,8 @@
 import 'package:meta/meta.dart';
 
+// TODO change directory name to either
+
+
 /// The Either class is an abstract class representing right and left values.
 /// ```dart
 /// void main() {

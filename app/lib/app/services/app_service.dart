@@ -14,6 +14,8 @@ final class AppService {
 
   Locale get init {
     final code = storage.readString(key: AppConst.localeKey);
+    // TODO check
+    // final code = storage.readString(StorageKeys.locale);
     if (code != null) return Locale(code);
     // ignore: deprecated_member_use
     final deviceLocal = window.locale.languageCode;

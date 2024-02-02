@@ -7,16 +7,14 @@ class CustomTheme with CompomnentTheme {
   final Brightness brightness;
   final Color targetColor;
 
-  ColorScheme colors() {
-    return ColorScheme.fromSeed(
+  @override
+  ColorScheme get scheme => ColorScheme.fromSeed(
       seedColor: targetColor,
       brightness: brightness,
     );
-  }
 
-  ThemeData light() {
-    final scheme = colors();
-    return ThemeData.light().copyWith(
+  ThemeData get _base {
+    return ThemeData(
       colorScheme: scheme,
       appBarTheme: appBarTheme(scheme),
       cardTheme: cardTheme(),
@@ -33,22 +31,19 @@ class CustomTheme with CompomnentTheme {
     );
   }
 
-  ThemeData dark() {
-    final scheme = colors();
-    return ThemeData.dark().copyWith(
-      colorScheme: scheme,
-      appBarTheme: appBarTheme(scheme),
-      cardTheme: cardTheme(),
-      listTileTheme: listTileTheme(scheme),
-      bottomAppBarTheme: bottomAppBarTheme(scheme),
-      bottomNavigationBarTheme: bottomNavigationBarTheme(scheme),
-      navigationRailTheme: navigationRailTheme(scheme),
-      tabBarTheme: tabBarTheme(scheme),
-      drawerTheme: drawerTheme(scheme),
+  ThemeData get light {
+    return _base.copyWith(
+      brightness: Brightness.light
     );
   }
 
-  ThemeData get themeData => brightness == Brightness.dark ? dark() : light();
+  ThemeData get dark {
+    return _base.copyWith(
+      brightness: Brightness.dart
+    );
+  }
+
+  ThemeData get themeData => brightness == Brightness.dark ? dark : light;
 
   CustomTheme copyWith({Brightness? brightness, Color? targetColor}) {
     return CustomTheme(brightness ?? this.brightness, targetColor ?? this.targetColor);

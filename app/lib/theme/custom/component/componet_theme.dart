@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 mixin CompomnentTheme {
   ShapeBorder get shapeMedium => const RoundedRectangleBorder();
 
-  CardTheme cardTheme() {
-    return const CardTheme();
-  }
+  ColorScheme get scheme;
 
-  ButtonThemeData buttonTheme(ColorScheme colors) {
-    return const ButtonThemeData();
-  }
+  CardTheme cardTheme => const CardTheme();
+
+  ButtonThemeData buttonTheme => const ButtonThemeData();
 
   ElevatedButtonThemeData elevatedButtonThemeData(ColorScheme colors) {
     return ElevatedButtonThemeData(
@@ -28,7 +26,7 @@ mixin CompomnentTheme {
   }
 
   AppBarTheme appBarTheme(ColorScheme colors) {
-    return AppBarTheme(backgroundColor: colors.surfaceVariant);
+    return AppBarTheme(backgroundColor: scheme.surfaceVariant);
   }
 
   TabBarTheme tabBarTheme(ColorScheme colors) {

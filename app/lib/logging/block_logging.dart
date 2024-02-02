@@ -2,11 +2,17 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AppBlocObserver extends BlocObserver {
+class BlocLogging extends BlocObserver {
+
+  BlocLogging({this.onLog});
+
+  final void Function(String log)? onLog;
+
   @override
   void onCreate(BlocBase<dynamic> bloc) {
     super.onCreate(bloc);
     log('onCreate(${bloc.state})');
+    onLog?.call('onCreate(${bloc.state})');
   }
 
   @override
