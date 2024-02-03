@@ -6,6 +6,9 @@ import 'package:my_quran/main.dart' as app;
 
 // flutter drive --target=test_driver/app.dart
 
+// flutter drive --target=test_driver/app.dart -d web-server --release --browser-name=chrome --web-port=8080
+// flutter drive --driver=test_driver/app.dart -d web-server --release --browser-name=safari --web-port=8080
+
 Future<void> main() async {
   enableFlutterDriverExtension(
     handler: (command) {

@@ -61,6 +61,13 @@ melos test
 ```shell
 melos integration-test
 ```
+### Integration test on web
+[Run driver test on the web](https://github.com/flutter/flutter/wiki/Running-Flutter-Driver-tests-with-Web)
+
+For Mac
+- [Install web-driver](https://chromedriver.storage.googleapis.com/index.html?path=114.0.5735.90/)
+
+- [Move driver bin to usr/local/bin](https://www.swtestacademy.com/install-chrome-driver-on-mac/)
 
 ## Fmt
 `dartfmt` lacks config file support, which implies that customizations need to be done by users individually. The default 
