@@ -1,4 +1,4 @@
-export 'logic/home_cubit.dart';
-export 'view/home_view.dart';
-export 'widgets/home_card.dart';
-export 'service/home_service.dart';
+export 'presentation/cubit/home_cubit.dart';
+export 'presentation/view/home_view.dart';
+export 'presentation/widgets/home_card.dart';
+export 'domain/service/home_service.dart';
