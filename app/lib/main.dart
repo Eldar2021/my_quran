@@ -6,11 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_storage/mq_storage.dart';
-
-import 'package:my_quran/app/app.dart';
 import 'package:my_quran/app_observer.dart';
-import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
+import 'package:my_quran/src/src.dart';
+
 
 Future<void> main({AppConfig? appConfig}) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +26,9 @@ Future<void> main({AppConfig? appConfig}) async {
   Bloc.observer = AppBlocObserver();
   final storage = await PreferencesStorage.getInstance();
 
+  final localStorage = HomeLocalDataSource(storage);
+  final remoteClient = RemoteClient(Client(), NetworkClient(Connectivity()));
+
   appConfig ??= AppConfig(storage: storage);
 
   appConfig.init();
@@ -37,6 +38,8 @@ Future<void> main({AppConfig? appConfig}) async {
       providers: [
         RepositoryProvider(create: (context) => appConfig),
         RepositoryProvider(create: (context) => storage),
+        RepositoryProvider(create: (context) => localStorage),
+        RepositoryProvider(create: (context) => HomeRemoteDataSource(remoteClient)),
         RepositoryProvider(create: (context) => NetworkClient(Connectivity())),
         RepositoryProvider(
           create: (context) => RemoteClient(Client(), context.read<NetworkClient>()),
