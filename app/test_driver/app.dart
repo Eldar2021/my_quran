@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_driver/driver_extension.dart';
-import 'package:my_quran/src/config/config.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/main.dart' as app;
 
 // flutter drive --target=test_driver/app.dart

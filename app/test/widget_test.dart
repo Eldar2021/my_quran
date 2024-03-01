@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/src/src.dart';
-
+import 'package:my_quran/app_imports.dart';
 
 import 'helpers/helpers.dart';
 
@@ -17,10 +16,12 @@ void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
     final storage = MockPreferencesStorage();
     final remoteClient = MockRemoteClient();
+    final localDataSource = HomeLocalDataSource(storage);
+    final remoteDataSource = HomeRemoteDataSource(remoteClient);
 
     final appService = AppService(storage);
     final authStorage = AuthService(storage, remoteClient);
-    final homeService = HomeRepositoryImpl(storage, remoteClient);
+    final homeService = HomeRepositoryImpl(localDataSource, remoteDataSource);
     final themeService = ThemeService(storage);
 
     when(() => storage.readString(key: AppConst.tokenKey)).thenReturn(null);

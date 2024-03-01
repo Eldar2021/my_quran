@@ -68,7 +68,7 @@ flutter:
         - asset: assets/fonts/qpc_uthmanic_hafs/qpc_uthmanic_hafs.otf
 
 flutter_gen:
-  output: lib/src/constants/assets/ # Optional (default: lib/gen/)
+  output: lib/constants/assets/ # Optional (default: lib/gen/)
   line_length: 80 # Optional (default: 80)
 
   integrations:

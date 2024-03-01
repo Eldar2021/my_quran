@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:my_quran/src/app/app.dart';
-import 'package:my_quran/src/config/app_config.dart';
-import 'package:my_quran/src/modules/modules.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/config/app_config.dart';
+import 'package:my_quran/modules/modules.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
@@ -19,7 +19,7 @@ extension PumpApp on WidgetTester {
           providers: [
             BlocProvider(create: (context) => AppCubit(appService, themeService)),
             BlocProvider(create: (context) => AuthCubit(authStorage)),
-            BlocProvider(create: (context) => HomeCubit(homeService)),
+            BlocProvider(create: (context) => HomeCubit(GetHomeDataUseCase(homeService))),
           ],
           child: const QuranApp(),
         ),

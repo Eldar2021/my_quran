@@ -6,8 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/app_observer.dart';
-import 'package:my_quran/src/src.dart';
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/modules/modules.dart';
 
 
 Future<void> main({AppConfig? appConfig}) async {
