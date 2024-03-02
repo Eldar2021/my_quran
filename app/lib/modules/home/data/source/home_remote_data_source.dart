@@ -4,18 +4,18 @@ import 'package:my_quran/modules/modules.dart';
 
 class HomeRemoteDataSource {
   const HomeRemoteDataSource(this.remoteClient);
+
   final RemoteClient remoteClient;
 
-  Future<HomeModel> getRemoteData(String token) async {
-    final remoteValue = await remoteClient.get<HomeModel>(
+  Future<HomeModelResponse> getRemoteData(String token) async {
+    final remoteValue = await remoteClient.get<HomeModelResponse>(
       apiConst.home,
-      fromJson: HomeModel.fromJson,
+      fromJson: HomeModelResponse.fromJson,
       token: token,
     );
+
     return remoteValue.fold(
-      (left) {
-        throw Exception('Failed to fetch remote data');
-      },
+      (left) => throw Exception('Failed to fetch remote data $left'),
       (right) => right,
     );
   }

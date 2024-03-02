@@ -3,32 +3,23 @@ import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class HomeLocalDataSource {
-  HomeLocalDataSource(this.storage);
+  const HomeLocalDataSource(this.storage);
 
   final PreferencesStorage storage;
-  HomeModel getLocalData() {
-    const key = 'home-model';
-    final localValue = storage.readString(key: key);
+
+  static const _homeDataCacheKey = 'home-model';
+
+  HomeModelResponse getLocalData() {
+    final localValue = storage.readString(key: _homeDataCacheKey);
     if (localValue != null) {
       final data = jsonDecode(localValue);
-      return HomeModel.fromJson(data as Map<String, dynamic>);
+      return HomeModelResponse.fromJson(data as Map<String, dynamic>);
     } else {
-      return const HomeModel(allDoneHatims: 0, allDonePages: 0, donePages: 0);
+      return const HomeModelResponse(allDoneHatims: 0, allDonePages: 0, donePages: 0);
     }
   }
-  // Future<HomeModel> getLocalData() async {
-  //   const key = 'home-model';
-  //   final localValue = storage.readString(key: key);
-  //   if (localValue != null) {
-  //     final data = jsonDecode(localValue);
-  //     return HomeModel.fromJson(data as Map<String, dynamic>);
-  //   } else {
-  //     return const HomeModel(allDoneHatims: 0, allDonePages: 0, donePages: 0);
-  //   }
-  // }
 
-  Future<void> saveLocalData(HomeModel data) async {
-    const key = 'home-model';
-    await storage.writeString(key: key, value: jsonEncode(data.toJson()));
+  Future<void> saveLocalData(HomeModelResponse data) async {
+    await storage.writeString(key: _homeDataCacheKey, value: jsonEncode(data.toJson()));
   }
 }

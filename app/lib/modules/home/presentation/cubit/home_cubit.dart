@@ -6,15 +6,16 @@ import 'package:my_quran/modules/modules.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this.getHomeDataUseCase) : super(const HomeState(FetchStatus.loading));
+  HomeCubit(this.getHomeDataUseCase) : super(const HomeState());
+
   final GetHomeDataUseCase getHomeDataUseCase;
 
   Future<void> getData(String token) async {
     try {
       final homeModel = await getHomeDataUseCase.execute(token);
-      emit(HomeState(FetchStatus.success, homeModel: homeModel));
+      emit(HomeState(status: FetchStatus.success, homeModel: homeModel));
     } catch (_) {
-      emit(const HomeState(FetchStatus.error));
+      emit(const HomeState(status: FetchStatus.error));
     }
   }
 }

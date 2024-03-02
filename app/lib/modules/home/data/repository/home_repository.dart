@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:my_quran/modules/modules.dart';
 
-class HomeRepositoryImpl {
+class HomeRepositoryImpl implements HomeRepository {
   const HomeRepositoryImpl(
     this.localDataSource,
     this.remoteDataSource,
@@ -11,14 +11,23 @@ class HomeRepositoryImpl {
   final HomeLocalDataSource localDataSource;
   final HomeRemoteDataSource remoteDataSource;
 
+  @override
   Future<HomeModel> getData(String token) async {
     try {
       final remoteData = await remoteDataSource.getRemoteData(token);
       await localDataSource.saveLocalData(remoteData);
-      return remoteData;
+      return _convertData(remoteData);
     } catch (e) {
       log('HomeRepositoryImpl, getData error: $e');
-      return localDataSource.getLocalData();
+      return _convertData(localDataSource.getLocalData());
     }
+  }
+
+  HomeModel _convertData(HomeModelResponse response) {
+    return HomeModel(
+      allDoneHatims: response.allDoneHatims,
+      allDonePages: response.allDonePages,
+      donePages: response.donePages,
+    );
   }
 }
