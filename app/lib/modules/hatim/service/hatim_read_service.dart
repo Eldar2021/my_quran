@@ -1,4 +1,7 @@
-import 'package:my_quran/app_imports.dart';
+
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class HatimReadService {
   const HatimReadService(this.client);

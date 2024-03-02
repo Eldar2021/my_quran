@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/models/models.dart';
 
 part 'quran_page.g.dart';
 

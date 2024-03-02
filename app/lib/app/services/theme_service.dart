@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/theme/theme.dart';
 class ThemeService {
   const ThemeService(this.storage);
 

@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:json_annotation/json_annotation.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/theme/theme.dart';
 part 'hatim_page.g.dart';
 
 @JsonSerializable()

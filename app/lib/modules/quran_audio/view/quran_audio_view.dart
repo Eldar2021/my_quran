@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/utils/urils.dart';
 
 class QuranAudioView extends StatelessWidget {
   const QuranAudioView({super.key});

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/modules/modules.dart';
 
 
 part 'auth_state.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/models/models.dart';
+import 'package:my_quran/theme/theme.dart';
 class JuzPersentWidget extends StatelessWidget {
   const JuzPersentWidget(this.item, {super.key});
 

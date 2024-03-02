@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/modules/modules.dart';
 import 'helpers/helpers.dart';
 
 final class MockPreferencesStorage extends Mock implements PreferencesStorage {}

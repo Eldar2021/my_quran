@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/components/components.dart';
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});

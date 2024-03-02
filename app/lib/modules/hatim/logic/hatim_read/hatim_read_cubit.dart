@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_quran/app_imports.dart';
-
-
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/modules/modules.dart';
 
 part 'hatim_read_state.dart';
 

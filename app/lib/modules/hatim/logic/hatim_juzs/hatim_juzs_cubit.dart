@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/models/models.dart';
 import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';

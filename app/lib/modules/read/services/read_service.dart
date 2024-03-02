@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/models/models.dart';
 class ReadService {
   const ReadService(this.remoteClient, this.storage);
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/components/components.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class LangSettingsView extends StatelessWidget {
   const LangSettingsView({super.key});

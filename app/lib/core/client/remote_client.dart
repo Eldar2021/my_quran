@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/core/core.dart';
 
 
 @immutable

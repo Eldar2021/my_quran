@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/components/components.dart';
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class DevelopersView extends StatelessWidget {
   const DevelopersView({super.key});

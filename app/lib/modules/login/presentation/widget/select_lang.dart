@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/components/components.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class SelectLang extends StatelessWidget {
   const SelectLang({super.key});

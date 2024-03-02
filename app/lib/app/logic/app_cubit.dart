@@ -1,7 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/theme/theme.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {

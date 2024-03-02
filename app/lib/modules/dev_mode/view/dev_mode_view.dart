@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/utils/urils.dart';
 
 
 class DevModeView extends StatefulWidget {

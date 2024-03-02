@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/app_imports.dart';
+import 'package:my_quran/app/app.dart';
+import 'package:my_quran/constants/contants.dart';
 
 
 class SelectLangFromListViewBuilder extends StatelessWidget {

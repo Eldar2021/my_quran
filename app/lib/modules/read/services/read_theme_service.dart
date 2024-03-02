@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/app_imports.dart';
-
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/modules/modules.dart';
 class ReadThemeService {
   const ReadThemeService(this.storage);
 
