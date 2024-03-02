@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_model.dart';
+part of 'home_model_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => HomeModel(
+HomeModelResponse _$HomeModelResponseFromJson(Map<String, dynamic> json) => HomeModelResponse(
       allDoneHatims: json['allDoneHatims'] as int,
       allDonePages: json['allDonePages'] as int,
       donePages: json['donePages'] as int,
     );
 
-Map<String, dynamic> _$HomeModelToJson(HomeModel instance) => <String, dynamic>{
+Map<String, dynamic> _$HomeModelResponseToJson(HomeModelResponse instance) => <String, dynamic>{
       'allDoneHatims': instance.allDoneHatims,
       'allDonePages': instance.allDonePages,
       'donePages': instance.donePages,

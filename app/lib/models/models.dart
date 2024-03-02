@@ -1,7 +1,6 @@
 export 'hatim/hatim_juz.dart';
-export 'home/home_model.dart';
-export 'home/hatim_read_model.dart';
 export 'hatim/hatim_page.dart';
+export 'hatim/hatim_read_model.dart';
 export 'juz/juz_data.dart';
 export 'juz/juz_model.dart';
 export 'juz/juz_surah_model.dart';

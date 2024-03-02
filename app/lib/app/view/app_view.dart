@@ -31,9 +31,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => HomeCubit(
-            HomeService(
-              context.read<PreferencesStorage>(),
-              context.read<RemoteClient>(),
+            GetHomeDataUseCase(
+              HomeRepositoryImpl(
+                HomeLocalDataSource(context.read<PreferencesStorage>()),
+                HomeRemoteDataSource(context.read<RemoteClient>()),
+              ),
             ),
           ),
         ),
