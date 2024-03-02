@@ -10,7 +10,7 @@ extension PumpApp on WidgetTester {
     AppService appService,
     ThemeService themeService,
     AuthService authStorage,
-    HomeRepositoryImpl homeService,
+    HomeRepository homeRepo,
   ) {
     return pumpWidget(
       RepositoryProvider(
@@ -19,7 +19,7 @@ extension PumpApp on WidgetTester {
           providers: [
             BlocProvider(create: (context) => AppCubit(appService, themeService)),
             BlocProvider(create: (context) => AuthCubit(authStorage)),
-            BlocProvider(create: (context) => HomeCubit(GetHomeDataUseCase(homeService))),
+            BlocProvider(create: (context) => HomeCubit(GetHomeDataUseCase(homeRepo))),
           ],
           child: const QuranApp(),
         ),
