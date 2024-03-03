@@ -7,5 +7,5 @@ class HomeState extends Equatable {
   final FetchStatus status;
 
   @override
-  List<Object?> get props => [homeModel];
+  List<Object?> get props => [homeModel, status];
 }

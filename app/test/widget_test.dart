@@ -6,7 +6,7 @@ import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
-import 'package:my_quran/modules/home/home.dart';
+import 'package:my_quran/modules/modules.dart';
 
 import 'helpers/helpers.dart';
 
@@ -20,10 +20,11 @@ void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
     final storage = MockPreferencesStorage();
     final remoteClient = MockRemoteClient();
-
+    final localDataSource = HomeLocalDataSource(storage);
+    final remoteDataSource = HomeRemoteDataSource(remoteClient);
     final appService = AppService(storage);
     final authStorage = AuthService(storage, remoteClient);
-    final homeService = HomeService(storage, remoteClient);
+    final homeService = HomeRepositoryImpl(localDataSource, remoteDataSource);
     final themeService = ThemeService(storage);
 
     when(() => storage.readString(key: AppConst.tokenKey)).thenReturn(null);
