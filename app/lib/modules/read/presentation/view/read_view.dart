@@ -29,11 +29,28 @@ class ReadView extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ReadCubit(
-            ReadService(context.read<RemoteClient>(), context.read<PreferencesStorage>()),
-            pages,
+            GetReadPageUseCase(
+              ReadRepositoryImpl(
+                ReadRemoteDataSource(context.read<RemoteClient>()),
+                ReadLocalDataSource(context.read<PreferencesStorage>()),
+              ),
+            ),
           ),
         ),
-        BlocProvider(create: (context) => ReadThemeCubit(ReadThemeService(context.read<PreferencesStorage>()))),
+        BlocProvider(
+          create: (context) => ReadThemeCubit(
+            getInitialThemeUseCase: GetInitialThemeUseCase(
+              ReadThemeRepositoryImpl(
+                localDataSource: LocalThemeDataSource(context.read<PreferencesStorage>()),
+              ),
+            ),
+            saveThemeChangesUseCase: SaveThemeChangesUseCase(
+              ReadThemeRepositoryImpl(
+                localDataSource: LocalThemeDataSource(context.read<PreferencesStorage>()),
+              ),
+            ),
+          ),
+        ),
       ],
       child: ReadUI(pages: pages, isHatim: isHatim),
     );

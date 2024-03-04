@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:my_quran/constants/contants.dart';
-import 'package:my_quran/models/models.dart';
-
+import 'package:my_quran/modules/modules.dart';
 part 'quran_page.g.dart';
 
 @immutable

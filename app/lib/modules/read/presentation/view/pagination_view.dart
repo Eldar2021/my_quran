@@ -36,7 +36,7 @@ class _PaginationViewState extends State<PaginationView> {
   Future<void> _fetchPage(int i) async {
     try {
       final page = widget.pages[_index];
-      final newItems = await context.read<ReadCubit>().getPage(page);
+      final newItems = await context.read<ReadCubit>().fetchQuranPage(page);
       _index++;
       if (page == widget.pages.last && newItems != null) {
         _pagingController.appendLastPage([newItems]);
