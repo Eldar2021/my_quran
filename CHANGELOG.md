@@ -12,6 +12,6 @@
 ## [Technical]
 
 - Changed home module architecture (data, domain, presentation)
-- Bump new Flutter version 3.16.9
+- Bump new Flutter version 3.19.3
 - Integrated `go_router` for navigation
 - Fixed crash screenshot CI on IOS 
