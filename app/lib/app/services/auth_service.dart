@@ -14,9 +14,9 @@ final class AuthService {
   final RemoteClient client;
 
   User? get init {
-    final userToken = storage.readString(key: AppConst.tokenKey);
-    final userGender = storage.readString(key: AppConst.genderKey);
-    final username = storage.readString(key: AppConst.usernameKey);
+    final userToken = storage.readString(key: StorageKeys.tokenKey);
+    final userGender = storage.readString(key: StorageKeys.genderKey);
+    final username = storage.readString(key: StorageKeys.usernameKey);
     if (userToken == null && userGender == null && username == null) return null;
     return User(
       accessToken: userToken!,
@@ -25,7 +25,7 @@ final class AuthService {
     );
   }
 
-  String? getToken() => storage.readString(key: AppConst.tokenKey);
+  String? getToken() => storage.readString(key: StorageKeys.tokenKey);
 
   Future<Either<User, Exception>> login(String languageCode, Gender gender) async {
     final user = await client.post<User>(
@@ -41,15 +41,18 @@ final class AuthService {
       Left.new,
       (r) async {
         final user = r.copyWith(gender: gender);
-        await storage.writeString(key: AppConst.tokenKey, value: user.accessToken);
-        await storage.writeString(key: AppConst.genderKey, value: user.gender!.name);
-        await storage.writeString(key: AppConst.usernameKey, value: user.username);
+        await Future.wait([
+          storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken),
+          storage.writeString(key: StorageKeys.genderKey, value: user.gender!.name),
+          storage.writeString(key: StorageKeys.usernameKey, value: user.username),
+        ]);
+
         return Right(user);
       },
     );
   }
 
   Future<void> changeGender(Gender gender) async {
-    await storage.writeString(key: AppConst.genderKey, value: gender.name);
+    await storage.writeString(key: StorageKeys.genderKey, value: gender.name);
   }
 }

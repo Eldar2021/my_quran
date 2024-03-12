@@ -5,7 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 @immutable
 final class AppLaunch {
-  static Future<void> sendEmail(String email, {String? snackBarText, BuildContext? context}) async {
+  const AppLaunch._();
+
+  static Future<void> sendEmail(
+    String email, {
+    String? snackBarText,
+    BuildContext? context,
+  }) async {
     try {
       final isSuccess = await launchUrl(Uri(scheme: 'mailto', path: email));
       if (!isSuccess && snackBarText != null && context != null && context.mounted) {
@@ -16,7 +22,11 @@ final class AppLaunch {
     }
   }
 
-  static Future<void> sendTelegram(String username, {String? snackBarText, BuildContext? context}) async {
+  static Future<void> sendTelegram(
+    String username, {
+    String? snackBarText,
+    BuildContext? context,
+  }) async {
     try {
       final isSuccess = await launchUrl(
         Uri.parse('https://telegram.me/$username'),
@@ -30,7 +40,11 @@ final class AppLaunch {
     }
   }
 
-  static Future<void> sendWhatsApp(String whatsapp, {String? snackBarText, BuildContext? context}) async {
+  static Future<void> sendWhatsApp(
+    String whatsapp, {
+    String? snackBarText,
+    BuildContext? context,
+  }) async {
     try {
       final isSuccess = await launchUrl(
         Uri.parse('whatsapp://send?phone=$whatsapp'),
@@ -44,7 +58,11 @@ final class AppLaunch {
     }
   }
 
-  static Future<void> launchURL(String url, {String? snackBarText, BuildContext? context}) async {
+  static Future<void> launchURL(
+    String url, {
+    String? snackBarText,
+    BuildContext? context,
+  }) async {
     try {
       final isSuccess = await launchUrl(Uri.parse(url));
       if (!isSuccess && snackBarText != null && context != null && context.mounted) {

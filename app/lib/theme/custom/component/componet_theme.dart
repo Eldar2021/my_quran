@@ -3,55 +3,57 @@ import 'package:flutter/material.dart';
 mixin CompomnentTheme {
   ShapeBorder get shapeMedium => const RoundedRectangleBorder();
 
-  CardTheme cardTheme() {
+  ColorScheme get scheme;
+
+  CardTheme get cardTheme {
     return const CardTheme();
   }
 
-  ButtonThemeData buttonTheme(ColorScheme colors) {
+  ButtonThemeData get buttonTheme {
     return const ButtonThemeData();
   }
 
-  ElevatedButtonThemeData elevatedButtonThemeData(ColorScheme colors) {
+  ElevatedButtonThemeData get elevatedButtonThemeData {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(),
     );
   }
 
-  InputDecorationTheme inputDecorationTheme(ColorScheme colors) {
+  InputDecorationTheme get inputDecorationTheme {
     return const InputDecorationTheme(
       border: OutlineInputBorder(),
     );
   }
 
-  ListTileThemeData listTileTheme(ColorScheme colors) {
+  ListTileThemeData get listTileTheme {
     return const ListTileThemeData();
   }
 
-  AppBarTheme appBarTheme(ColorScheme colors) {
-    return AppBarTheme(backgroundColor: colors.surfaceVariant);
+  AppBarTheme get appBarTheme {
+    return AppBarTheme(backgroundColor: scheme.surfaceVariant);
   }
 
-  TabBarTheme tabBarTheme(ColorScheme colors) {
+  TabBarTheme get tabBarTheme {
     return const TabBarTheme();
   }
 
-  BottomAppBarTheme bottomAppBarTheme(ColorScheme colors) {
+  BottomAppBarTheme get bottomAppBarTheme {
     return const BottomAppBarTheme();
   }
 
-  BottomNavigationBarThemeData bottomNavigationBarTheme(ColorScheme colors) {
+  BottomNavigationBarThemeData get bottomNavigationBarTheme {
     return const BottomNavigationBarThemeData();
   }
 
-  NavigationRailThemeData navigationRailTheme(ColorScheme colors) {
+  NavigationRailThemeData get navigationRailTheme {
     return const NavigationRailThemeData();
   }
 
-  DrawerThemeData drawerTheme(ColorScheme colors) {
+  DrawerThemeData get drawerTheme {
     return const DrawerThemeData();
   }
 
-  ScrollbarThemeData scrollbarThemeData(ColorScheme colors) {
+  ScrollbarThemeData get scrollbarThemeData {
     return const ScrollbarThemeData();
   }
 }

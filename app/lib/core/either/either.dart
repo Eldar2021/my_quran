@@ -49,7 +49,7 @@ abstract class Either<R, L> {
 /// }
 /// ```
 @immutable
-class Right<R, L> extends Either<R, L> {
+final class Right<R, L> extends Either<R, L> {
   const Right(this.r);
 
   /// A field is defined to hold the right value.
@@ -62,6 +62,7 @@ class Right<R, L> extends Either<R, L> {
   /// Equality check is defined for operator == and hashCode is computed for hashing.
   @override
   bool operator ==(Object other) => other is Right && other.r == r;
+
   @override
   int get hashCode => r.hashCode;
 }
@@ -81,7 +82,7 @@ class Right<R, L> extends Either<R, L> {
 /// }
 /// ```
 @immutable
-class Left<R, L> extends Either<R, L> {
+final class Left<R, L> extends Either<R, L> {
   const Left(this.l);
 
   /// A field is defined to hold the left value.
@@ -94,6 +95,7 @@ class Left<R, L> extends Either<R, L> {
   /// Equality check is defined for operator == and hashCode is computed for hashing.
   @override
   bool operator ==(Object other) => other is Left && other.l == l;
+
   @override
   int get hashCode => l.hashCode;
 }

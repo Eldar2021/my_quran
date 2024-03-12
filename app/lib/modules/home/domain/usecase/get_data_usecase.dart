@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class GetHomeDataUseCase {
+@immutable
+final class GetHomeDataUseCase {
   const GetHomeDataUseCase(this.repository);
 
   final HomeRepository repository;

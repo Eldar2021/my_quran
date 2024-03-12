@@ -25,7 +25,7 @@ Future<void> main({AppConfig? appConfig}) async {
     androidNotificationIcon: 'mipmap/launcher_icon',
   );
 
-  Bloc.observer = AppBlocObserver();
+  Bloc.observer = const AppBlocObserver(onLog: log);
   final storage = await PreferencesStorage.getInstance();
 
   appConfig ??= AppConfig(storage: storage);

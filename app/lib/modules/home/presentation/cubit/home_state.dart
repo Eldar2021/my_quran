@@ -1,6 +1,7 @@
 part of 'home_cubit.dart';
 
-class HomeState extends Equatable {
+@immutable
+final class HomeState extends Equatable {
   const HomeState({
     this.status = FetchStatus.loading,
     this.homeModel,

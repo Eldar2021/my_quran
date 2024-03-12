@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-
 import 'package:my_quran/app/app.dart';
-import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class SelectLangFromListViewBuilder extends StatelessWidget {
   const SelectLangFromListViewBuilder({super.key});
@@ -13,10 +12,10 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
     final appCubit = context.watch<AppCubit>();
     final colorScheme = Theme.of(context).colorScheme;
     return ListView.builder(
-      itemCount: AppConst.locales.length,
+      itemCount: AppLocalizationHelper.locales.length,
       itemBuilder: (BuildContext context, int index) {
-        final locale = AppConst.locales[index];
-        final langName = AppConst.getName(locale.toLanguageTag());
+        final locale = AppLocalizationHelper.locales[index];
+        final langName = AppLocalizationHelper.getName(locale.toLanguageTag());
         return Card(
           child: ListTile(
             key: Key(MqKeys.languageCode(locale.languageCode)),

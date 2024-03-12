@@ -17,7 +17,7 @@ final class QuranPageEntity {
       ..writeAll(
         verses.map(
           (e) =>
-              '${e.isFirst ? '\n\n${AppConst.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} ${e.hasSajda ? AppConst.sajdaSymbol : ''} \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E',
+              '${e.isFirst ? '\n\n${AppStatic.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} ${e.hasSajda ? AppStatic.sajdaSymbol : ''} \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E',
         ),
         '  ',
       );

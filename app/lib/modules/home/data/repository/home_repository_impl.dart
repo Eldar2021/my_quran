@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class HomeRepositoryImpl implements HomeRepository {
+@immutable
+final class HomeRepositoryImpl implements HomeRepository {
   const HomeRepositoryImpl(
     this.localDataSource,
     this.remoteDataSource,
