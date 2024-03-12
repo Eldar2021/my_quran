@@ -1,10 +1,13 @@
+import 'package:meta/meta.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class GetInitialThemeUseCase {
+@immutable
+final class GetInitialThemeUseCase {
   const GetInitialThemeUseCase(this.repository);
+
   final ReadThemeRepository repository;
 
-  Future<ReadThemeState> execute() {
-    return repository.getInitialThemeState();
+  ReadThemeState get execute {
+    return repository.getInitialThemeState;
   }
 }

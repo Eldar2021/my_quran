@@ -1,16 +1,19 @@
+import 'package:meta/meta.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class ReadThemeRepositoryImpl implements ReadThemeRepository {
-  const ReadThemeRepositoryImpl({required this.localDataSource});
-  final LocalThemeDataSource localDataSource;
+@immutable
+final class ReadThemeRepositoryImpl implements ReadThemeRepository {
+  const ReadThemeRepositoryImpl(this.localThemeDataSource);
+
+  final LocalThemeDataSource localThemeDataSource;
 
   @override
-  Future<ReadThemeState> getInitialThemeState() async {
-    return localDataSource.getInitialThemeState();
+  ReadThemeState get getInitialThemeState {
+    return localThemeDataSource.initialTheme;
   }
 
   @override
   Future<void> saveThemeState(ReadThemeState themeState) async {
-    return localDataSource.saveThemeState(themeState);
+    return localThemeDataSource.saveThemeState(themeState);
   }
 }

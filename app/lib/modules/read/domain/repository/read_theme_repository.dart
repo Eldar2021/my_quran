@@ -1,6 +1,7 @@
 import 'package:my_quran/modules/modules.dart';
 
 abstract class ReadThemeRepository {
-  Future<ReadThemeState> getInitialThemeState();
+  ReadThemeState get getInitialThemeState;
+
   Future<void> saveThemeState(ReadThemeState themeState);
 }

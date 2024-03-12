@@ -1,14 +1,16 @@
+import 'dart:convert';
+import 'package:meta/meta.dart';
+import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'dart:convert';
-import 'package:mq_storage/mq_storage.dart';
 
-class LocalThemeDataSource {
+@immutable
+final class LocalThemeDataSource {
   const LocalThemeDataSource(this.storage);
 
   final PreferencesStorage storage;
 
-  ReadThemeState getInitialThemeState() {
+  ReadThemeState get initialTheme {
     final value = storage.readString(key: AppConst.readThemeKey);
     return value != null ? ReadThemeState.fromJson(json.decode(value) as Map<String, dynamic>) : const ReadThemeState();
   }

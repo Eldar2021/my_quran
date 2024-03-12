@@ -12,7 +12,7 @@ class HomeRepositoryImpl implements HomeRepository {
   final HomeRemoteDataSource remoteDataSource;
 
   @override
-  Future<HomeModel> getData(String token) async {
+  Future<HomeEntity> getData(String token) async {
     try {
       final remoteData = await remoteDataSource.getRemoteData(token);
       await localDataSource.saveLocalData(remoteData);
@@ -23,8 +23,8 @@ class HomeRepositoryImpl implements HomeRepository {
     }
   }
 
-  HomeModel _convertData(HomeModelResponse response) {
-    return HomeModel(
+  HomeEntity _convertData(HomeModelResponse response) {
+    return HomeEntity(
       allDoneHatims: response.allDoneHatims,
       allDonePages: response.allDonePages,
       donePages: response.donePages,

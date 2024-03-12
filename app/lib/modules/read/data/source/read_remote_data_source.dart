@@ -1,16 +1,18 @@
+import 'package:meta/meta.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class ReadRemoteDataSource {
+@immutable
+final class ReadRemoteDataSource {
   const ReadRemoteDataSource(this.remoteClient);
 
   final RemoteClient remoteClient;
 
-  Future<QuranPage?> fetchPage(int page, String quranFmt) async {
-    final remoteValue = await remoteClient.get<QuranPage>(
+  Future<QuranPageResponse?> fetchPage(int page, String quranFmt) async {
+    final remoteValue = await remoteClient.get<QuranPageResponse>(
       apiConst.verse(page, quranFmt),
-      fromJson: QuranPage.fromJson,
+      fromJson: QuranPageResponse.fromJson,
     );
 
     return remoteValue.fold(

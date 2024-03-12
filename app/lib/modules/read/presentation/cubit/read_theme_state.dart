@@ -1,6 +1,7 @@
 part of 'read_theme_cubit.dart';
 
-class ReadThemeState extends Equatable {
+@immutable
+final class ReadThemeState extends Equatable {
   const ReadThemeState({
     this.verticalSpaceSize = 0,
     this.horizontalSpaceSize = 14,

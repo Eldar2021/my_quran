@@ -1,19 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meta/meta.dart';
 import 'package:my_quran/modules/modules.dart';
 
 part 'read_theme_state.dart';
 
 class ReadThemeCubit extends Cubit<ReadThemeState> {
-  ReadThemeCubit({required this.getInitialThemeUseCase, required this.saveThemeChangesUseCase})
-      : super(const ReadThemeState());
+  ReadThemeCubit({
+    required this.getInitialThemeUseCase,
+    required this.saveThemeChangesUseCase,
+  }) : super(const ReadThemeState());
 
   final GetInitialThemeUseCase getInitialThemeUseCase;
   final SaveThemeChangesUseCase saveThemeChangesUseCase;
 
-  Future<void> initializeTheme() async {
-    final themeState = await getInitialThemeUseCase.execute();
-    emit(themeState);
+  void initializeTheme() {
+    emit(getInitialThemeUseCase.execute);
   }
 
   void changeMode(int index) {

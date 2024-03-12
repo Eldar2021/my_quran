@@ -1,7 +1,10 @@
+import 'package:meta/meta.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class SaveThemeChangesUseCase {
+@immutable
+final class SaveThemeChangesUseCase {
   const SaveThemeChangesUseCase(this.repository);
+
   final ReadThemeRepository repository;
 
   Future<void> execute(ReadThemeState themeState) {

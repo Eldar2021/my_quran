@@ -16,8 +16,8 @@ final class MockRemoteClient extends Mock implements RemoteClient {}
 
 final class MockHomeRepositoryImpl implements HomeRepository {
   @override
-  Future<HomeModel> getData(String token) async {
-    return const HomeModel(allDoneHatims: 8, allDonePages: 5325, donePages: 634);
+  Future<HomeEntity> getData(String token) async {
+    return const HomeEntity(allDoneHatims: 8, allDonePages: 5325, donePages: 634);
   }
 }
 

@@ -1,20 +1,16 @@
-import 'package:flutter/foundation.dart';
-import 'package:json_annotation/json_annotation.dart';
-
+import 'package:meta/meta.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/modules/modules.dart';
-part 'quran_page.g.dart';
 
 @immutable
-@JsonSerializable()
-final class QuranPage {
-  const QuranPage({required this.verses, required this.meta});
+final class QuranPageEntity {
+  const QuranPageEntity({
+    required this.verses,
+    required this.meta,
+  });
 
-  factory QuranPage.fromJson(Map<String, dynamic> json) => _$QuranPageFromJson(json);
-  Map<String, dynamic> toJson() => _$QuranPageToJson(this);
-
-  final List<Verse> verses;
-  final Meta meta;
+  final List<VerseEnity> verses;
+  final MetaEntity meta;
 
   StringBuffer get samePage {
     return StringBuffer()
