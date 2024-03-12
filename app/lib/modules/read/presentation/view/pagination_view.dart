@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/utils/urils.dart';
 import 'package:my_quran/app/app.dart';
@@ -21,12 +20,12 @@ class PaginationView extends StatefulWidget {
 }
 
 class _PaginationViewState extends State<PaginationView> {
-  late final PagingController<int, QuranPage> _pagingController;
+  late final PagingController<int, QuranPageEntity> _pagingController;
   var _index = 0;
 
   @override
   void initState() {
-    _pagingController = PagingController<int, QuranPage>(
+    _pagingController = PagingController<int, QuranPageEntity>(
       firstPageKey: widget.pages.first,
     );
     _pagingController.addPageRequestListener(_fetchPage);
@@ -36,7 +35,7 @@ class _PaginationViewState extends State<PaginationView> {
   Future<void> _fetchPage(int i) async {
     try {
       final page = widget.pages[_index];
-      final newItems = await context.read<ReadCubit>().getPage(page);
+      final newItems = await context.read<ReadCubit>().fetchQuranPage(page);
       _index++;
       if (page == widget.pages.last && newItems != null) {
         _pagingController.appendLastPage([newItems]);
@@ -52,7 +51,7 @@ class _PaginationViewState extends State<PaginationView> {
   @override
   Widget build(BuildContext context) {
     final readThemeCubit = context.watch<ReadThemeCubit>();
-    return PagedSliverList<int, QuranPage>.separated(
+    return PagedSliverList<int, QuranPageEntity>.separated(
       key: const Key(MqKeys.quranReadView),
       pagingController: _pagingController,
       separatorBuilder: (context, index) => Center(
@@ -64,7 +63,7 @@ class _PaginationViewState extends State<PaginationView> {
           ),
         ),
       ),
-      builderDelegate: PagedChildBuilderDelegate<QuranPage>(
+      builderDelegate: PagedChildBuilderDelegate<QuranPageEntity>(
         itemBuilder: (context, item, index) {
           final strb = item.samePage.toString();
           final text = strb.startsWith('\n\n') ? strb.replaceFirst('\n\n', '') : strb;

@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'filters.dart';
+part of 'filters_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Filters _$FiltersFromJson(Map<String, dynamic> json) => Filters(
+FiltersResponse _$FiltersResponseFromJson(Map<String, dynamic> json) => FiltersResponse(
       pageNumber: json['page_number'] as String,
     );
 
-Map<String, dynamic> _$FiltersToJson(Filters instance) => <String, dynamic>{
+Map<String, dynamic> _$FiltersResponseToJson(FiltersResponse instance) => <String, dynamic>{
       'page_number': instance.pageNumber,
     };

@@ -1,5 +1,5 @@
-class HomeModel {
-  const HomeModel({
+class HomeEntity {
+  const HomeEntity({
     required this.allDoneHatims,
     required this.allDonePages,
     required this.donePages,

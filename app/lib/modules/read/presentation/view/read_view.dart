@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_storage/mq_storage.dart';
-
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -29,11 +28,29 @@ class ReadView extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ReadCubit(
-            ReadService(context.read<RemoteClient>(), context.read<PreferencesStorage>()),
-            pages,
+            GetReadPageUseCase(
+              ReadRepositoryImpl(
+                ReadRemoteDataSource(context.read<RemoteClient>()),
+                ReadLocalDataSource(context.read<PreferencesStorage>()),
+              ),
+            ),
           ),
         ),
-        BlocProvider(create: (context) => ReadThemeCubit(ReadThemeService(context.read<PreferencesStorage>()))),
+        RepositoryProvider<ReadThemeRepository>(
+          create: (context) => ReadThemeRepositoryImpl(
+            LocalThemeDataSource(context.read<PreferencesStorage>()),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => ReadThemeCubit(
+            getInitialThemeUseCase: GetInitialThemeUseCase(
+              context.read<ReadThemeRepository>(),
+            ),
+            saveThemeChangesUseCase: SaveThemeChangesUseCase(
+              context.read<ReadThemeRepository>(),
+            ),
+          ),
+        ),
       ],
       child: ReadUI(pages: pages, isHatim: isHatim),
     );

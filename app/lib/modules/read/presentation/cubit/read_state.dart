@@ -1,6 +1,7 @@
 part of 'read_cubit.dart';
 
-class ReadState extends Equatable {
+@immutable
+final class ReadState extends Equatable {
   const ReadState({this.fmt = QuranTextFmt.imlaei});
 
   final QuranTextFmt fmt;
