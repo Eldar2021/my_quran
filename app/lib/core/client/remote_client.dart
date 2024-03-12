@@ -40,7 +40,7 @@ class RemoteClient {
 
       /// if an Unauthorized  return Authentication Exception
     } else if (response.statusCode == 401) {
-      return const Left(AuthenticationException());
+      return const Left(AuthenticationExc());
     } else {
       /// if the response is not successful and unauthorized, it will return a server exception
       return const Left(ServerExc('server exception'));

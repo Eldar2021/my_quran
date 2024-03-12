@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mq_storage/mq_storage.dart';
-
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
@@ -32,11 +31,11 @@ void main() {
     final homeRepo = MockHomeRepositoryImpl();
     final themeService = ThemeService(storage);
 
-    when(() => storage.readString(key: AppConst.tokenKey)).thenReturn(null);
-    when(() => storage.readString(key: AppConst.genderKey)).thenReturn(null);
-    when(() => storage.readString(key: AppConst.localeKey)).thenReturn('en');
-    when(() => storage.readString(key: AppConst.modeKey)).thenReturn(null);
-    when(() => storage.readString(key: AppConst.colorKey)).thenReturn(null);
+    when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
+    when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
+    when(() => storage.readString(key: StorageKeys.localeKey)).thenReturn('en');
+    when(() => storage.readString(key: StorageKeys.modeKey)).thenReturn(null);
+    when(() => storage.readString(key: StorageKeys.colorKey)).thenReturn(null);
 
     await tester.pumpApp(appService, themeService, authStorage, homeRepo);
     await tester.pumpAndSettle();

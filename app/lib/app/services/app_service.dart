@@ -13,15 +13,15 @@ final class AppService {
   final PreferencesStorage storage;
 
   Locale get init {
-    final code = storage.readString(key: AppConst.localeKey);
+    final code = storage.readString(key: StorageKeys.localeKey);
     if (code != null) return Locale(code);
     // ignore: deprecated_member_use
     final deviceLocal = window.locale.languageCode;
-    return AppLocalizations.delegate.isSupported(Locale(deviceLocal)) ? Locale(deviceLocal) : const Locale('en');
+    return AppLocalizationHelper.getSupportedLocale(deviceLocal);
   }
 
   Future<Locale> setLocale(String langKey) async {
-    await storage.writeString(key: AppConst.localeKey, value: langKey);
+    await storage.writeString(key: StorageKeys.localeKey, value: langKey);
     return Locale(langKey);
   }
 }

@@ -1,6 +1,8 @@
-/// Auhtentication Exception
-class AuthenticationException implements Exception {
-  const AuthenticationException({this.message});
+import 'package:meta/meta.dart';
+
+@immutable
+final class AuthenticationExc implements Exception {
+  const AuthenticationExc({this.message});
 
   final String? message;
 

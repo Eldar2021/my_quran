@@ -84,7 +84,7 @@ class ReadUI extends StatelessWidget {
               centerTitle: true,
               title: FittedBox(
                 child: Text(
-                  AppConst.bismallah,
+                  AppStatic.bismallah,
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   style: TextStyle(

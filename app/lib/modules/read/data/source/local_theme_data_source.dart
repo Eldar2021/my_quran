@@ -11,12 +11,12 @@ final class LocalThemeDataSource {
   final PreferencesStorage storage;
 
   ReadThemeState get initialTheme {
-    final value = storage.readString(key: AppConst.readThemeKey);
+    final value = storage.readString(key: StorageKeys.readThemeKey);
     return value != null ? ReadThemeState.fromJson(json.decode(value) as Map<String, dynamic>) : const ReadThemeState();
   }
 
   Future<void> saveThemeState(ReadThemeState themeState) async {
     final value = json.encode(themeState.toJson());
-    await storage.writeString(key: AppConst.readThemeKey, value: value);
+    await storage.writeString(key: StorageKeys.readThemeKey, value: value);
   }
 }

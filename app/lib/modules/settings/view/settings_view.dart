@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
-import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/models.dart';
 
@@ -45,7 +44,11 @@ class SettingsView extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(AppConst.getName(appCubit.state.currentLocale.toLanguageTag())),
+                Text(
+                  AppLocalizationHelper.getName(
+                    appCubit.state.currentLocale.toLanguageTag(),
+                  ),
+                ),
                 const SizedBox(width: 17),
                 const Icon(Icons.arrow_forward_ios),
               ],
