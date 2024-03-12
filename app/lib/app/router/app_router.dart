@@ -34,7 +34,7 @@ final class AppRouter {
   static const devModeView = 'dev-mode-view';
 
   static final router = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/',
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
     routes: [
