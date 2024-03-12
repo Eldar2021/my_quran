@@ -1,4 +1,7 @@
-class HomeEntity {
+import 'package:flutter/material.dart';
+
+@immutable
+final class HomeEntity {
   const HomeEntity({
     required this.allDoneHatims,
     required this.allDonePages,

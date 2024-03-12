@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class HomeLocalDataSource {
+@immutable
+final class HomeLocalDataSource {
   const HomeLocalDataSource(this.storage);
 
   final PreferencesStorage storage;

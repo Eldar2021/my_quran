@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'home_model_response.g.dart';
 
 @JsonSerializable()
-class HomeModelResponse {
+@immutable
+final class HomeModelResponse {
   const HomeModelResponse({
     required this.allDoneHatims,
     required this.allDonePages,
