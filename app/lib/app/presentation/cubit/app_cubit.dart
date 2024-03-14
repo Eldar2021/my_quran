@@ -9,26 +9,32 @@ import 'package:my_quran/theme/custom/custom_theme.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
-  AppCubit(
-    this.localService,
-    this.themeService,
-  ) : super(AppState(localService.init, themeService.init));
+  AppCubit({
+    required this.getLocalLocaleUseCase,
+    required this.setLocaleUseCase,
+    required this.getInitialThemeUseCase,
+    required this.setModeUseCase,
+    required this.setColorUseCase,
+  }) : super(AppState(getLocalLocaleUseCase.getCurrentLocale, getInitialThemeUseCase.call));
 
-  final AppService localService;
-  final ThemeService themeService;
+  final GetCurrentLocaleUseCase getLocalLocaleUseCase;
+  final SetLocaleUseCase setLocaleUseCase;
+  final GetAppInitialThemeUseCase getInitialThemeUseCase;
+  final SetModeUseCase setModeUseCase;
+  final SetColorUseCase setColorUseCase;
 
   Future<void> changeLang(String langKey) async {
-    final local = await localService.setLocale(langKey);
+    final local = await setLocaleUseCase.setLocal(langKey);
     emit(state.copyWith(currentLocale: local));
   }
 
   Future<void> changeMode({required bool isDark}) async {
-    await themeService.setMode(isDark: isDark);
+    await setModeUseCase.setMode(isDark: isDark);
     emit(state.copyWith(theme: state.theme.copyWith(brightness: isDark ? Brightness.dark : Brightness.light)));
   }
 
   Future<void> changeColor(int index, Color color) async {
-    await themeService.setColor(index);
+    await setColorUseCase.setColor(index, color);
     emit(state.copyWith(theme: state.theme.copyWith(targetColor: color)));
   }
 

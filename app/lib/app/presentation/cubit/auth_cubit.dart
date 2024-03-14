@@ -7,12 +7,18 @@ import 'package:my_quran/models/models.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.service) : super(AuthState(user: service.init));
+  AuthCubit(
+    this.getInitialUserUseCase,
+    this.loginUseCase,
+    this.setGenderUseCase,
+  ) : super(AuthState(user: getInitialUserUseCase.init));
 
-  final AuthService service;
+  final GetInitialUserUseCase getInitialUserUseCase;
+  final LoginUseCase loginUseCase;
+  final SetGenderUseCase setGenderUseCase;
 
   Future<AuthState> login(String languageCode, Gender gender) async {
-    final user = await service.login(languageCode, gender);
+    final user = await loginUseCase.login(languageCode, gender);
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),
@@ -21,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> setGender(Gender gender) async {
-    await service.changeGender(gender);
+    await setGenderUseCase.saveGender(gender);
     emit(state.copyWith(user: state.user?.copyWith(gender: gender)));
   }
 

@@ -7,9 +7,14 @@ import 'package:my_quran/modules/modules.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
-    AppService appService,
-    ThemeService themeService,
-    AuthService authStorage,
+    GetCurrentLocaleUseCase getLocalLocaleUseCase,
+    SetLocaleUseCase setLocaleUseCase,
+    GetAppInitialThemeUseCase getInitialThemeUseCase,
+    SetModeUseCase setModeUseCase,
+    SetColorUseCase setColorUseCase,
+    GetInitialUserUseCase getInitialUserUseCase,
+    LoginUseCase loginUseCase,
+    SetGenderUseCase setGenderUseCase,
     HomeRepository homeRepo,
   ) {
     return pumpWidget(
@@ -17,8 +22,16 @@ extension PumpApp on WidgetTester {
         create: (context) => const AppConfig(isIntegrationTest: true),
         child: MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => AppCubit(appService, themeService)),
-            BlocProvider(create: (context) => AuthCubit(authStorage)),
+            BlocProvider(
+              create: (context) => AppCubit(
+                getLocalLocaleUseCase: getLocalLocaleUseCase,
+                setLocaleUseCase: setLocaleUseCase,
+                getInitialThemeUseCase: getInitialThemeUseCase,
+                setModeUseCase: setModeUseCase,
+                setColorUseCase: setColorUseCase,
+              ),
+            ),
+            BlocProvider(create: (context) => AuthCubit(getInitialUserUseCase, loginUseCase, setGenderUseCase)),
             BlocProvider(create: (context) => HomeCubit(GetHomeDataUseCase(homeRepo))),
           ],
           child: const QuranApp(),

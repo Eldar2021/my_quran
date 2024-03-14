@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
-import 'package:my_quran/app/logic/auth_cubit.dart';
+import 'package:my_quran/app/presentation/cubit/auth_cubit.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/models/models.dart';
