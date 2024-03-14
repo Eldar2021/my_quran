@@ -8,7 +8,7 @@ final class AppRepositoryImpl implements AppRepository {
   final AppLocalDataSource appLocalDataSource;
 
   @override
-  Locale get getLocale  {
+  Locale get getLocale {
     return appLocalDataSource.init;
   }
 
