@@ -23,17 +23,17 @@ class AppCubit extends Cubit<AppState> {
   final SetColorUseCase setColorUseCase;
 
   Future<void> changeLang(String langKey) async {
-    final local = await setLocaleUseCase.call(langKey);
+    final local = await setLocaleUseCase(langKey);
     emit(state.copyWith(currentLocale: local));
   }
 
   Future<void> changeMode({required bool isDark}) async {
-    await setModeUseCase.call(isDark: isDark);
+    await setModeUseCase(isDark: isDark);
     emit(state.copyWith(theme: state.theme.copyWith(brightness: isDark ? Brightness.dark : Brightness.light)));
   }
 
   Future<void> changeColor(int index, Color color) async {
-    await setColorUseCase.call(index, color);
+    await setColorUseCase(index, color);
     emit(state.copyWith(theme: state.theme.copyWith(targetColor: color)));
   }
 

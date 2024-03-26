@@ -17,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   final SetGenderUseCase setGenderUseCase;
 
   Future<AuthState> login(String languageCode, Gender gender) async {
-    final user = await loginUseCase.call(languageCode, gender);
+    final user = await loginUseCase(languageCode, gender);
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),
@@ -26,7 +26,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> setGender(Gender gender) async {
-    await setGenderUseCase.call(gender);
+    await setGenderUseCase(gender);
     emit(state.copyWith(user: state.user?.copyWith(gender: gender)));
   }
 
