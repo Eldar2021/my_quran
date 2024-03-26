@@ -6,13 +6,15 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
+UserModelResponse _$UserModelResponseFromJson(Map<String, dynamic> json) =>
+    UserModelResponse(
       accessToken: json['accessToken'] as String,
       username: json['username'] as String,
       gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$UserModelResponseToJson(UserModelResponse instance) =>
+    <String, dynamic>{
       'accessToken': instance.accessToken,
       'username': instance.username,
       'gender': _$GenderEnumMap[instance.gender],

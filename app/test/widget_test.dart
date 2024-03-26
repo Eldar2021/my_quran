@@ -26,10 +26,32 @@ void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
     final storage = MockPreferencesStorage();
     final remoteClient = MockRemoteClient();
-    final appService = AppService(storage);
-    final authStorage = AuthService(storage, remoteClient);
+
     final homeRepo = MockHomeRepositoryImpl();
-    final themeService = ThemeService(storage);
+    final getLocalLocaleUseCase = GetCurrentLocaleUseCase(AppRepositoryImpl(AppLocalDataSource(storage)));
+    final setLocaleUseCase = SetLocaleUseCase(AppRepositoryImpl(AppLocalDataSource(storage)));
+    final getInitialThemeUseCase = GetAppInitialThemeUseCase(ThemeRepositoryImpl(ThemeLocalDataSource(storage)));
+    final getInitialUserUseCase = GetInitialUserUseCase(
+      AuthRepositoryImpl(
+        localDataSource: AuthLocalDataSource(storage),
+        remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
+      ),
+    );
+
+    final loginUseCase = LoginUseCase(
+      AuthRepositoryImpl(
+        localDataSource: AuthLocalDataSource(storage),
+        remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
+      ),
+    );
+    final setGenderUseCase = SetGenderUseCase(
+      AuthRepositoryImpl(
+        localDataSource: AuthLocalDataSource(storage),
+        remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
+      ),
+    );
+    final setModeUseCase = SetModeUseCase(ThemeRepositoryImpl(ThemeLocalDataSource(storage)));
+    final setColorUseCase = SetColorUseCase(ThemeRepositoryImpl(ThemeLocalDataSource(storage)));
 
     when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
@@ -37,7 +59,17 @@ void main() {
     when(() => storage.readString(key: StorageKeys.modeKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.colorKey)).thenReturn(null);
 
-    await tester.pumpApp(appService, themeService, authStorage, homeRepo);
+    await tester.pumpApp(
+      getLocalLocaleUseCase,
+      setLocaleUseCase,
+      getInitialThemeUseCase,
+      setModeUseCase,
+      setColorUseCase,
+      getInitialUserUseCase,
+      loginUseCase,
+      setGenderUseCase,
+      homeRepo,
+    );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);
   });

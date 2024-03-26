@@ -5,7 +5,6 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/models/models.dart';
 
 class SelectGender extends StatelessWidget {
   const SelectGender({super.key});
