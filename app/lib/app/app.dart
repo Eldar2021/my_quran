@@ -1,8 +1,3 @@
-export 'logic/app_cubit.dart';
-export 'logic/auth_cubit.dart';
-export 'router/app_router.dart';
-export 'router/parse_parameters.dart';
-export 'services/app_service.dart';
-export 'services/auth_service.dart';
-export 'services/theme_service.dart';
-export 'view/app_view.dart';
+export 'domain/domain.dart';
+export 'data/data.dart';
+export 'presentation/presenation.dart';

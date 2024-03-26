@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
