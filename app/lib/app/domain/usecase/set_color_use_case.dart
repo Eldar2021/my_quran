@@ -7,7 +7,7 @@ final class SetColorUseCase {
 
   final ThemeRepository themeRepository;
 
-  Future<void> setColor(int index, Color color) async {
+  Future<void> call(int index, Color color) async {
     await themeRepository.saveThemePrimaryColor(index);
   }
 }

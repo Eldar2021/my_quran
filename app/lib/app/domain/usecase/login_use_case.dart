@@ -8,7 +8,7 @@ final class LoginUseCase {
 
   final AuthRepository repository;
 
-  Future<Either<UserEntity, Exception>> login(String languageCode, Gender gender) async {
+  Future<Either<UserEntity, Exception>> call(String languageCode, Gender gender) async {
     return repository.login(languageCode, gender);
   }
 }

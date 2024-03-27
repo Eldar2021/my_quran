@@ -7,7 +7,7 @@ final class SetModeUseCase {
 
   final ThemeRepository themeRepository;
 
-  Future<void> setMode({required bool isDark}) async {
+  Future<void> call({required bool isDark}) async {
     await themeRepository.saveThemeMode(isDark: isDark);
   }
 }

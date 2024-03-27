@@ -7,7 +7,7 @@ final class SetLocaleUseCase {
 
   final AppRepository appRepository;
 
-  Future<Locale?> setLocal(String langKey) async {
+  Future<Locale?> call(String langKey) async {
     await appRepository.setLocale(langKey);
     return Locale(langKey);
   }

@@ -10,14 +10,14 @@ class AuthCubit extends Cubit<AuthState> {
     this.getInitialUserUseCase,
     this.loginUseCase,
     this.setGenderUseCase,
-  ) : super(AuthState(user: getInitialUserUseCase.init));
+  ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
   final LoginUseCase loginUseCase;
   final SetGenderUseCase setGenderUseCase;
 
   Future<AuthState> login(String languageCode, Gender gender) async {
-    final user = await loginUseCase.login(languageCode, gender);
+    final user = await loginUseCase.call(languageCode, gender);
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),
@@ -26,7 +26,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> setGender(Gender gender) async {
-    await setGenderUseCase.saveGender(gender);
+    await setGenderUseCase.call(gender);
     emit(state.copyWith(user: state.user?.copyWith(gender: gender)));
   }
 

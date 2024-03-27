@@ -7,7 +7,7 @@ final class SetGenderUseCase {
 
   final AuthRepository repository;
 
-  Future<void> saveGender(Gender gender) async {
+  Future<void> call(Gender gender) async {
     return repository.saveGender(gender);
   }
 }

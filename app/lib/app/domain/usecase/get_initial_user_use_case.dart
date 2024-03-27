@@ -7,7 +7,7 @@ final class GetInitialUserUseCase {
 
   final AuthRepository repository;
 
-  UserEntity? get init {
+  UserEntity? get call {
     return repository.init;
   }
 }

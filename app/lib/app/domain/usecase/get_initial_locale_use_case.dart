@@ -7,7 +7,7 @@ final class GetCurrentLocaleUseCase {
 
   final AppRepository appRepository;
 
-  Locale get getCurrentLocale {
+  Locale get call {
     return appRepository.getLocale;
   }
 }
