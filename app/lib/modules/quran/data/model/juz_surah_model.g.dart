@@ -1,23 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'surah_model.dart';
+part of 'juz_surah_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Surah _$SurahFromJson(Map<String, dynamic> json) => Surah(
-      id: json['id'] as int,
+JuzSurahResponse _$JuzSurahResponseFromJson(Map<String, dynamic> json) => JuzSurahResponse(
       name: json['name'] as String,
-      aya: json['aya'] as int,
+      arName: json['arName'] as String,
       pages: (json['pages'] as List<dynamic>).map((e) => e as int).toList(),
-      arabic: json['arabic'] as String,
     );
 
-Map<String, dynamic> _$SurahToJson(Surah instance) => <String, dynamic>{
-      'id': instance.id,
+Map<String, dynamic> _$JuzSurahResponseToJson(JuzSurahResponse instance) => <String, dynamic>{
       'name': instance.name,
-      'aya': instance.aya,
+      'arName': instance.arName,
       'pages': instance.pages,
-      'arabic': instance.arabic,
     };

@@ -1,3 +1,3 @@
-export 'logic/quran_cubit.dart';
-export 'view/page_view_item.dart';
-export 'view/quran_view.dart';
+export 'presentation/presentation.dart';
+export 'domain/domain.dart';
+export 'data/data.dart';

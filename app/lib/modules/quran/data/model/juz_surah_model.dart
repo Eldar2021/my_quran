@@ -5,15 +5,15 @@ part 'juz_surah_model.g.dart';
 
 @immutable
 @JsonSerializable()
-final class JuzSurah {
-  const JuzSurah({
+final class JuzSurahResponse {
+  const JuzSurahResponse({
     required this.name,
     required this.arName,
     required this.pages,
   });
 
-  factory JuzSurah.fromJson(Map<String, dynamic> json) => _$JuzSurahFromJson(json);
-  Map<String, dynamic> toJson() => _$JuzSurahToJson(this);
+  factory JuzSurahResponse.fromJson(Map<String, dynamic> json) => _$JuzSurahResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$JuzSurahResponseToJson(this);
 
   final String name;
   final String arName;

@@ -4,7 +4,7 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/models/models.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class PageViewItem<T> extends StatelessWidget {
   const PageViewItem(this.items, {super.key});
@@ -18,7 +18,7 @@ class PageViewItem<T> extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
-        if (item is Juz) {
+        if (item is JuzEntity) {
           return Card(
             child: ListTile(
               key: Key(MqKeys.quranReadJus(index)),
@@ -42,7 +42,7 @@ class PageViewItem<T> extends StatelessWidget {
               },
             ),
           );
-        } else if (item is Surah) {
+        } else if (item is SurahEntity) {
           return Card(
             child: ListTile(
               key: Key(MqKeys.quranReadSurah(index)),
