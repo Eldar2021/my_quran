@@ -4,7 +4,6 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/theme/theme.dart';
 
@@ -43,8 +42,8 @@ class QuranBody extends StatelessWidget {
       ),
       body: TabBarView(
         children: [
-          PageViewItem<Juz>(context.read<QuranCubit>().juzs),
-          PageViewItem<Surah>(context.read<QuranCubit>().surahs),
+          PageViewItem<JuzEntity>(context.read<QuranCubit>().juzs),
+          PageViewItem<SurahEntity>(context.read<QuranCubit>().surahs),
         ],
       ),
     );

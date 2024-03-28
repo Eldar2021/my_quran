@@ -1,25 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:my_quran/models/models.dart';
+import 'package:my_quran/modules/modules.dart';
 
 part 'juz_model.g.dart';
 
 @immutable
 @JsonSerializable()
-final class Juz {
-  const Juz({
+final class JuzResponse {
+  const JuzResponse({
     required this.id,
     required this.name,
     required this.pages,
     required this.surahs,
   });
 
-  factory Juz.fromJson(Map<String, dynamic> json) => _$JuzFromJson(json);
-  Map<String, dynamic> toJson() => _$JuzToJson(this);
+  factory JuzResponse.fromJson(Map<String, dynamic> json) => _$JuzResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$JuzResponseToJson(this);
 
   final int id;
   final String name;
   final List<int> pages;
-  final List<JuzSurah> surahs;
+  final List<JuzSurahResponse> surahs;
 }
