@@ -6,12 +6,15 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'helpers/helpers.dart';
 
 final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
 final class MockRemoteClient extends Mock implements RemoteClient {}
+
+final class MockPackageInfo extends Mock implements PackageInfo {}
 
 final class MockHomeRepositoryImpl implements HomeRepository {
   @override
@@ -25,33 +28,28 @@ final class MockHomeRepositoryImpl implements HomeRepository {
 void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
     final storage = MockPreferencesStorage();
+    final packageInfo = MockPackageInfo();
     final remoteClient = MockRemoteClient();
 
     final homeRepo = MockHomeRepositoryImpl();
-    final getLocalLocaleUseCase = GetCurrentLocaleUseCase(AppRepositoryImpl(AppLocalDataSource(storage)));
-    final setLocaleUseCase = SetLocaleUseCase(AppRepositoryImpl(AppLocalDataSource(storage)));
-    final getInitialThemeUseCase = GetAppInitialThemeUseCase(ThemeRepositoryImpl(ThemeLocalDataSource(storage)));
-    final getInitialUserUseCase = GetInitialUserUseCase(
-      AuthRepositoryImpl(
-        localDataSource: AuthLocalDataSource(storage),
-        remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
-      ),
+    final appLocalDataSource = AppLocalDataSource(storage: storage, packageInfo: packageInfo);
+    final appRepository = AppRepositoryImpl(appLocalDataSource);
+    final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSource(storage));
+    final authRepository = AuthRepositoryImpl(
+      localDataSource: AuthLocalDataSource(storage),
+      remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
     );
 
-    final loginUseCase = LoginUseCase(
-      AuthRepositoryImpl(
-        localDataSource: AuthLocalDataSource(storage),
-        remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
-      ),
-    );
-    final setGenderUseCase = SetGenderUseCase(
-      AuthRepositoryImpl(
-        localDataSource: AuthLocalDataSource(storage),
-        remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
-      ),
-    );
-    final setModeUseCase = SetModeUseCase(ThemeRepositoryImpl(ThemeLocalDataSource(storage)));
-    final setColorUseCase = SetColorUseCase(ThemeRepositoryImpl(ThemeLocalDataSource(storage)));
+    final getLocalLocaleUseCase = GetCurrentLocaleUseCase(appRepository);
+    final setLocaleUseCase = SetLocaleUseCase(appRepository);
+    final getInitialThemeUseCase = GetAppInitialThemeUseCase(themeRepository);
+    final getInitialUserUseCase = GetInitialUserUseCase(authRepository);
+
+    final loginUseCase = LoginUseCase(authRepository);
+    final setGenderUseCase = SetGenderUseCase(authRepository);
+    final setModeUseCase = SetModeUseCase(themeRepository);
+    final setColorUseCase = SetColorUseCase(themeRepository);
+    final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
 
     when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
@@ -66,6 +64,7 @@ void main() {
       setModeUseCase,
       setColorUseCase,
       getInitialUserUseCase,
+      getAppVersionUseCase,
       loginUseCase,
       setGenderUseCase,
       homeRepo,

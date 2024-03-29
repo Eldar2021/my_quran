@@ -11,6 +11,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/app_observer.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 Future<void> main({AppConfig? appConfig}) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,7 @@ Future<void> main({AppConfig? appConfig}) async {
 
   Bloc.observer = const AppBlocObserver(onLog: log);
   final storage = await PreferencesStorage.getInstance();
+  final packageInfo = await PackageInfo.fromPlatform();
 
   appConfig ??= AppConfig(storage: storage);
 
@@ -35,10 +37,13 @@ Future<void> main({AppConfig? appConfig}) async {
   runApp(
     MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(create: (context) => appConfig),
-        RepositoryProvider(create: (context) => storage),
-        RepositoryProvider(create: (context) => NetworkClient(Connectivity())),
-        RepositoryProvider(
+        RepositoryProvider<AppConfig>(create: (context) => appConfig!),
+        RepositoryProvider<PreferencesStorage>(create: (context) => storage),
+        RepositoryProvider<PackageInfo>(create: (context) => packageInfo),
+        RepositoryProvider<NetworkClient>(
+          create: (context) => NetworkClient(Connectivity()),
+        ),
+        RepositoryProvider<RemoteClient>(
           create: (context) => RemoteClient(Client(), context.read<NetworkClient>()),
         ),
       ],

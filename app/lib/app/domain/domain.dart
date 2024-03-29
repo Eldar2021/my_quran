@@ -1,6 +1,7 @@
 export 'repository/app_repositoty.dart';
 export 'repository/theme_repository.dart';
 export 'repository/auth_repository.dart';
+export 'usecase/get_app_version_use_case.dart';
 export 'usecase/get_initial_locale_use_case.dart';
 export 'usecase/get_initial_theme_use_case.dart';
 export 'usecase/set_color_use_case.dart';

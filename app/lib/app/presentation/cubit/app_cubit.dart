@@ -14,13 +14,21 @@ class AppCubit extends Cubit<AppState> {
     required this.getInitialThemeUseCase,
     required this.setModeUseCase,
     required this.setColorUseCase,
-  }) : super(AppState(getLocalLocaleUseCase.call, getInitialThemeUseCase.call));
+    required this.getAppVersionUseCase,
+  }) : super(
+          AppState(
+            getLocalLocaleUseCase.call,
+            getInitialThemeUseCase.call,
+            getAppVersionUseCase.call,
+          ),
+        );
 
   final GetCurrentLocaleUseCase getLocalLocaleUseCase;
   final SetLocaleUseCase setLocaleUseCase;
   final GetAppInitialThemeUseCase getInitialThemeUseCase;
   final SetModeUseCase setModeUseCase;
   final SetColorUseCase setColorUseCase;
+  final GetAppVersionUseCase getAppVersionUseCase;
 
   Future<void> changeLang(String langKey) async {
     final local = await setLocaleUseCase(langKey);
@@ -29,7 +37,13 @@ class AppCubit extends Cubit<AppState> {
 
   Future<void> changeMode({required bool isDark}) async {
     await setModeUseCase(isDark: isDark);
-    emit(state.copyWith(theme: state.theme.copyWith(brightness: isDark ? Brightness.dark : Brightness.light)));
+    emit(
+      state.copyWith(
+        theme: state.theme.copyWith(
+          brightness: isDark ? Brightness.dark : Brightness.light,
+        ),
+      ),
+    );
   }
 
   Future<void> changeColor(int index, Color color) async {
