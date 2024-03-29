@@ -74,5 +74,6 @@
     "start": "Awal",
     "surah": "Surat",
     "surahs": "Surat",
-    "welcome": "Selamat datang"
+    "welcome": "Selamat datang",
+    "version": "Versi"
 }

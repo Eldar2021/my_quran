@@ -74,5 +74,6 @@
     "start": "Başla",
     "surah": "Sure",
     "surahs": "Sureler",
-    "welcome": "Hoş geldiniz"
+    "welcome": "Hoş geldiniz",
+    "version": "Sürüm"
 }

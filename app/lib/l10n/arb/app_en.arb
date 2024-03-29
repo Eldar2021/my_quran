@@ -74,5 +74,6 @@
     "start": "Start",
     "surah": "Surah",
     "surahs": "Surahs",
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "version": "Version"
 }

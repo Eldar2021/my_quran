@@ -79,6 +79,10 @@ class SettingsView extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => context.goNamed(AppRouter.developers),
           ),
+          ListTile(
+            title: Text(context.l10n.version),
+            trailing: Text(context.watch<AppCubit>().state.appVersion),
+          ),
         ],
       ),
     );
