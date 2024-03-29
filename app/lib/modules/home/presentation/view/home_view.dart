@@ -41,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
           : UpgradeAlert(
               dialogStyle: kIsWeb || Platform.isAndroid ? UpgradeDialogStyle.material : UpgradeDialogStyle.cupertino,
               shouldPopScope: () => true,
-              canDismissDialog: true,
+              barrierDismissible: true,
               child: const HomeBody(),
             ),
     );

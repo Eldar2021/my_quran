@@ -16,4 +16,7 @@ final class AppRepositoryImpl implements AppRepository {
   Future<void> setLocale(String langKey) async {
     await appLocalDataSource.setLocale(langKey);
   }
+
+  @override
+  String get appVersion => appLocalDataSource.appVersion;
 }
