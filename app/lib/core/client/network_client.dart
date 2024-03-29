@@ -9,9 +9,11 @@ final class NetworkClient {
 
   Future<bool> checkInternetConnection() async {
     final connectivityResult = await connectivity.checkConnectivity();
-    return switch (connectivityResult) {
-      ConnectivityResult.mobile || ConnectivityResult.ethernet || ConnectivityResult.wifi => true,
-      _ => false,
-    };
+    return connectivityResult.any(
+      (element) =>
+          element == ConnectivityResult.mobile ||
+          element == ConnectivityResult.ethernet ||
+          element == ConnectivityResult.wifi,
+    );
   }
 }
