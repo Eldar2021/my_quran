@@ -31,10 +31,6 @@ Testing (Open Testing)
   - `./keys/android_password.dart`
   - `./keys/android_upload_keystore`
 - [ ] To prepare new version appbundle
-  - Uncomment signingConfigs (android/app/build.gradle)
-  - Enter password instead `keyPassword`, `storePassword`
-  - Increment versionCode (android/app/build.gradle defaultConfig)
-  - Cahnge versionName (android/app/build.gradle defaultConfig)
   - Cahnge `degug` -> `release` (android/app/build.gradle buildTypes)
 - [ ] Generate app bundle
   - `melos flutter-clean`
@@ -46,8 +42,6 @@ Testing (Open Testing)
   - Write release notes 
   - Sen Review (After review we can publish to production)
 - [ ] Undo the changes 
-  - Enter `password` instead `keyPassword`, `storePassword` (android/app/build.gradle)
-  - Comment signingConfigs (android/app/build.gradle)
   - Change `signingConfig signingConfigs.release` to `signingConfig signingConfigs.debug`
 - [ ] After review "OpenTesting" Create Production release
   
