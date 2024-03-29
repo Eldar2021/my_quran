@@ -42,7 +42,7 @@ Testing (Open Testing)
   - Write release notes 
   - Sen Review (After review we can publish to production)
 - [ ] Undo the changes 
-  - Change `signingConfig signingConfigs.release` to `signingConfig signingConfigs.debug`
+  - Change `release` to `debug`
 - [ ] After review "OpenTesting" Create Production release
   
 ## Deploy IOS
@@ -51,7 +51,6 @@ Testing (Open Testing)
   - `melos pub-get`
   - `melos run-app`
 - [ ] Open project ios folder in Xcode
-- [ ] Increment Version & Build (General)
 - [ ] Check certificates "ios_development & ios_distirbution & distirbution"
 - [ ] Check profiles "dev profiles & prod profiles"
 - [ ] Check Display name (General)

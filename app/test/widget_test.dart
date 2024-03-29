@@ -14,7 +14,10 @@ final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
 final class MockRemoteClient extends Mock implements RemoteClient {}
 
-final class MockPackageInfo extends Mock implements PackageInfo {}
+final class MockPackageInfo extends Mock implements PackageInfo {
+  @override
+  String get version => '1.3.0';
+}
 
 final class MockHomeRepositoryImpl implements HomeRepository {
   @override
