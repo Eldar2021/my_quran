@@ -5,7 +5,6 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/modules/quran/data/repository/quran_repository_impl.dart';
 import 'package:my_quran/theme/theme.dart';
 
 class QuranView extends StatelessWidget {
@@ -15,21 +14,25 @@ class QuranView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: BlocProvider(
-        create: (context) => QuranCubit(
-          getJuzUseCase: GetJuzUseCase(
-            QuranRepositoryImpl(
+      child: MultiBlocProvider(
+        providers: [
+          RepositoryProvider<QuranRepository>(
+            create: (context) => QuranRepositoryImpl(
               JuzLocalDataSource(),
               SurahLocalDataSource(),
             ),
           ),
-          getSurahsUseCase: GetSurahsUseCase(
-            QuranRepositoryImpl(
-              JuzLocalDataSource(),
-              SurahLocalDataSource(),
+          BlocProvider(
+            create: (context) => QuranCubit(
+              getJuzUseCase: GetJuzUseCase(
+                context.read<QuranRepository>(),
+              ),
+              getSurahsUseCase: GetSurahsUseCase(
+                context.read<QuranRepository>(),
+              ),
             ),
           ),
-        ),
+        ],
         child: const QuranBody(),
       ),
     );
