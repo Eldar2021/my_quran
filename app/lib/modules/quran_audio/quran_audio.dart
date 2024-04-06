@@ -1,3 +1,3 @@
-export 'logic/quran_audio_cubit.dart';
-export 'view/quran_audio_view.dart';
-export 'widgets/audio_borrom_sheet.dart';
+export 'presentation/presentation.dart';
+export 'domain/domain.dart';
+export 'data/data.dart';
