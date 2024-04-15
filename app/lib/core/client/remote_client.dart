@@ -12,6 +12,7 @@ class RemoteClient {
 
   final Client _client;
   final NetworkClient networkClient;
+  static final Map<String, dynamic> _cache = {};
 
   /// Get a token and return header
   Map<String, String> getHeader(String? token) {
@@ -47,27 +48,60 @@ class RemoteClient {
     }
   }
 
-  /// Get Json data
-  Future<Either<T, Exception>> get<T>(
+  Future<Either<T, Exception>> fetchData<T>(
     String path, {
     required T Function(Map<String, dynamic>) fromJson,
+    required Future<Response> Function() requestMethod,
     String? token,
+    bool cache = true,
   }) async {
     try {
-      final header = getHeader(token);
       if (await networkClient.checkInternetConnection()) {
-        final response = await _client.get(
-          Uri.parse(path),
-          headers: header,
-        );
-        return responseType<T>(response, fromJson);
+        final response = await requestMethod();
+
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body) as Map<String, dynamic>;
+          if (cache) {
+            _cache[path] = data; // Cache fetched data
+          }
+          return responseType<T>(response, fromJson);
+        } else {
+          return const Left(ServerExc('Failed to fetch data'));
+        }
       } else {
-        return const Left(NetworkExc());
+        if (_cache.containsKey(path)) {
+          // If offline and data available in cache, return cached data
+          final data = _cache[path] as Map<String, dynamic>;
+          final model = fromJson(data);
+          return Right(model);
+        } else {
+          return const Left(NetworkExc());
+        }
       }
     } catch (e) {
       log(e.toString());
       return const Left(ServerExc(null));
     }
+  }
+
+  /// Get Json data
+
+  Future<Either<T, Exception>> get<T>(
+    String path, {
+    required T Function(Map<String, dynamic>) fromJson,
+    String? token,
+    bool cache = true,
+  }) async {
+    return fetchData<T>(
+      path,
+      fromJson: fromJson,
+      token: token,
+      cache: cache,
+      requestMethod: () => _client.get(
+        Uri.parse(path),
+        headers: getHeader(token),
+      ),
+    );
   }
 
   /// Perform a query using the "POST" method and using the JSON content type
@@ -76,23 +110,19 @@ class RemoteClient {
     required T Function(Map<String, dynamic>) fromJson,
     String? token,
     Map<String, dynamic>? body,
+    bool cache = true,
   }) async {
-    try {
-      final header = getHeader(token);
-      if (await networkClient.checkInternetConnection()) {
-        final response = await _client.post(
-          Uri.parse(path),
-          headers: header,
-          body: jsonEncode(body),
-        );
-        return responseType<T>(response, fromJson);
-      } else {
-        return const Left(NetworkExc());
-      }
-    } catch (e) {
-      log(e.toString());
-      return const Left(ServerExc(null));
-    }
+    return fetchData<T>(
+      path,
+      fromJson: fromJson,
+      token: token,
+      cache: cache,
+      requestMethod: () => _client.post(
+        Uri.parse(path),
+        headers: getHeader(token),
+        body: jsonEncode(body),
+      ),
+    );
   }
 
   /// Perform a query using the "PATCH" method and using the JSON content type
@@ -101,18 +131,19 @@ class RemoteClient {
     required T Function(Map<String, dynamic>) fromJson,
     String? token,
     Map<String, dynamic>? body,
+    bool cache = true,
   }) async {
-    final header = getHeader(token);
-    if (await networkClient.checkInternetConnection()) {
-      final response = await _client.patch(
+    return fetchData<T>(
+      path,
+      fromJson: fromJson,
+      token: token,
+      cache: cache,
+      requestMethod: () => _client.patch(
         Uri.parse(path),
+        headers: getHeader(token),
         body: jsonEncode(body),
-        headers: header,
-      );
-      return responseType<T>(response, fromJson);
-    } else {
-      return const Left(NetworkExc());
-    }
+      ),
+    );
   }
 
   /// Perform a query using the "PUT" method and using the JSON content type
@@ -121,17 +152,18 @@ class RemoteClient {
     required T Function(Map<String, dynamic>) fromJson,
     String? token,
     Map<String, dynamic>? body,
+    bool cache = true,
   }) async {
-    final header = getHeader(token);
-    if (await networkClient.checkInternetConnection()) {
-      final response = await _client.put(
+    return fetchData<T>(
+      path,
+      fromJson: fromJson,
+      token: token,
+      cache: cache,
+      requestMethod: () => _client.put(
         Uri.parse(path),
+        headers: getHeader(token),
         body: jsonEncode(body),
-        headers: header,
-      );
-      return responseType<T>(response, fromJson);
-    } else {
-      return const Left(NetworkExc());
-    }
+      ),
+    );
   }
 }

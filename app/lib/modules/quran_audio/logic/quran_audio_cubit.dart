@@ -36,7 +36,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
         shuffleOrder: DefaultShuffleOrder(),
         children: surahs
             .map(
-              (s) => AudioSource.uri(
+              (s) => LockCachingAudioSource(
                 Uri.parse(apiConst.audio(s.surahPath)),
                 tag: MediaItem(
                   id: '${s.id}',
