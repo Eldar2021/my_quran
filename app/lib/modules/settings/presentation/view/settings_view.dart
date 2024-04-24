@@ -80,6 +80,12 @@ class SettingsView extends StatelessWidget {
             onTap: () => context.goNamed(AppRouter.developers),
           ),
           ListTile(
+            key: const Key(MqKeys.settingsPrivacyPolicy),
+            title: Text(l10n.privacyPolicy),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () => context.goNamed(AppRouter.privacyPolicy),
+          ),
+          ListTile(
             title: Text(context.l10n.version),
             trailing: Text(context.watch<AppCubit>().state.appVersion),
           ),

@@ -33,6 +33,7 @@ final class AppRouter {
   static const contactUs = 'contect-us';
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
+  static const privacyPolicy = 'privacy-policy';
 
   static final router = GoRouter(
     initialLocation: '/home',
@@ -170,6 +171,11 @@ final class AppRouter {
         path: contactUs,
         name: contactUs,
         builder: (context, state) => const ContactUsView(),
+      ),
+      GoRoute(
+        path: privacyPolicy,
+        name: privacyPolicy,
+        builder: (context, state) => const PrivacyPolicyView(),
       ),
       GoRoute(
         path: developers,

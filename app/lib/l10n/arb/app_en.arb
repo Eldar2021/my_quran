@@ -75,5 +75,9 @@
     "surah": "Surah",
     "surahs": "Surahs",
     "welcome": "Welcome",
-    "version": "Version"
+    "version": "Version",
+    "privacyPolicy": "Privacy Policy",
+    "privacyPolicyDesc": "Protecting your privacy is paramount to us. To learn more about how we handle your data and safeguard your information, please review our app's privacy policy. Click the button below to access detailed information on how we collect, use, and protect your personal data. Your trust is important to us, and we are committed to transparency in our practices.",
+    "agreePrivacyPolicy": "I have read and agree to the",
+    "agreePrivacyPolicyError": "Oops! Looks like you forgot to check the Privacy Policy."
 }

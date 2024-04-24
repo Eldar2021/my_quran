@@ -35,6 +35,8 @@ class ApiConst {
       'https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/$surahIndex.mp3';
 
   String get urlGitHub => 'https://github.com/Eldar2021/my_quran';
+  String get urlPrivacyPolicy => 'https://drive.google.com/drive/folders/1XJUFmBUUdLAty7Ipjq1Kkbxyf6jsNLW1';
+
   // TODO(eldiiar): Replace the privacy policy URL with the actual [URL] of your privacy policy page.
   String get provicyPolicy => 'https://github.com/Eldar2021/my_quran';
   String get appLogoLink => 'https://github.com/Eldar2021/my_quran/blob/main/app/assets/images/app_icon.png?raw=true';

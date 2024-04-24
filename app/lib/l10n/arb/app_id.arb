@@ -75,5 +75,10 @@
     "surah": "Surat",
     "surahs": "Surat",
     "welcome": "Selamat datang",
-    "version": "Versi"
+    "version": "Versi",
+    "privacyPolicy": "Kebijakan Privasi",
+    "privacyPolicyDesc": "Melindungi privasi Anda adalah prioritas utama bagi kami. Untuk mengetahui lebih lanjut tentang bagaimana kami mengelola data Anda dan melindungi informasi Anda, silakan tinjau kebijakan privasi aplikasi kami. Klik tombol di bawah ini untuk mengakses informasi terperinci tentang bagaimana kami mengumpulkan, menggunakan, dan melindungi data pribadi Anda. Kepercayaan Anda penting bagi kami, dan kami berkomitmen untuk transparansi dalam praktik kami.",
+    "agreePrivacyPolicy": "Saya telah membaca dan menyetujuinya",
+    "agreePrivacyPolicyError": "Ups! Sepertinya Anda lupa untuk memeriksa Kebijakan Privasi."
+  
 }

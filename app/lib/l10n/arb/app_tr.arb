@@ -75,5 +75,10 @@
     "surah": "Sure",
     "surahs": "Sureler",
     "welcome": "Hoş geldiniz",
-    "version": "Sürüm"
+    "version": "Sürüm",
+    "privacyPolicy": "Gizlilik Politikası",
+    "privacyPolicyDesc": "Gizliliğinizi korumak bizim için son derece önemlidir. Verilerinizi nasıl işlediğimiz ve bilgilerinizi nasıl koruduğumuz hakkında daha fazla bilgi edinmek için lütfen uygulamamızın gizlilik politikasını inceleyin. Kişisel verilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu ayrıntılı olarak öğrenmek için aşağıdaki düğmeye tıklayın. Güveniniz bizim için önemlidir ve uygulamalarımızda şeffaflık ilkesine bağlıyız.",
+    "agreePrivacyPolicy": "Okudum ve onaylıyorum",
+    "agreePrivacyPolicyError": "Ups! Gizlilik Politikasını kontrol etmeyi unuttuğunuzu gözden kaçırmış gibisiniz."
+
 }

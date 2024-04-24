@@ -59,6 +59,8 @@ final class MqKeys {
   static const settingsContactUs = 'settings-contact-us';
   static const settingsContactUsPage = 'settings-contact-us-page';
   static const settingsDevelopers = 'settings-developers';
+  static const settingsPrivacyPolicy = 'settings-privacy-policy';
+  static const settingsPrivacyPolicyPage = 'settings-privacy-policy-page';
   static const settingsDevelopersPage = 'settings-developers-page';
 
   // gender

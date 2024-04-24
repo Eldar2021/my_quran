@@ -9,6 +9,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/login/login.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
@@ -48,7 +49,7 @@ class LoginBody extends StatelessWidget {
             onPageChanged: context.read<LoginCubit>().change,
             children: const [
               SelectLang(key: Key(MqKeys.loginSelectLeng)),
-              SelectGender(key: Key(MqKeys.loginSelectGender)),
+              SelectGenderPrivacyPolicy(key: Key(MqKeys.loginSelectGender)),
             ],
           ),
         ),
@@ -68,9 +69,9 @@ class LoginBody extends StatelessWidget {
         const SizedBox(height: 20),
         CustomButton(
           key: const Key(MqKeys.loginNext),
-          text: loginCubit.state == 0 ? context.l10n.next : context.l10n.start,
+          text: loginCubit.state.value == 0 ? context.l10n.next : context.l10n.start,
           onPressed: () async {
-            if (loginCubit.state == 0) {
+            if (loginCubit.state.value == 0) {
               context.read<LoginCubit>().change(1);
               await controller.animateToPage(
                 1,
@@ -78,21 +79,27 @@ class LoginBody extends StatelessWidget {
                 curve: Curves.easeInOut,
               );
             } else {
-              unawaited(AppAlert.showLoading<void>(context));
-              await context
-                  .read<AuthCubit>()
-                  .login(
-                    context.read<AppCubit>().state.currentLocale.languageCode,
-                    context.read<AppCubit>().state.gender,
-                  )
-                  .then((value) async {
-                context.pop();
-                if (value.user != null) {
-                  context.goNamed(AppRouter.home);
-                } else {
-                  AppSnackbar.showSnackbar(context, 'Bir kata boldu');
-                }
-              });
+              if (loginCubit.state.isPrivacyPolicyChecked) {
+                unawaited(AppAlert.showLoading<void>(context));
+                await context
+                    .read<AuthCubit>()
+                    .login(
+                      context.read<AppCubit>().state.currentLocale.languageCode,
+                      context.read<AppCubit>().state.gender,
+                    )
+                    .then(
+                  (value) async {
+                    context.pop();
+                    if (value.user != null) {
+                      context.goNamed(AppRouter.home);
+                    } else {
+                      AppSnackbar.showSnackbar(context, 'Bir kata boldu');
+                    }
+                  },
+                );
+              } else {
+                AppSnackbar.showSnackbar(context, context.l10n.agreePrivacyPolicyError);
+              }
             }
           },
         ),
