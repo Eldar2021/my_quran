@@ -1,0 +1,31 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "my-quran-01",
+                    "appId": "1:417182149715:android:2c58ee52327c82a876eaa6",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "my-quran-01",
+                    "appId": "1:417182149715:ios:f6d207c487b6110e76eaa6",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "my-quran-01",
+                    "configurations": {
+                        "android": "1:417182149715:android:2c58ee52327c82a876eaa6",
+                        "ios": "1:417182149715:ios:f6d207c487b6110e76eaa6",
+                        "web": "1:417182149715:web:380586e450ea8ced76eaa6"
+                    }
+                }
+            }
+        }
+    }
+}
