@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "417182149715",
+    "project_id": "my-quran-01",
+    "storage_bucket": "my-quran-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417182149715:android:2c58ee52327c82a876eaa6",
+        "android_client_info": {
+          "package_name": "com.alee.my_quran"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNPxXv07T5RwEKyo_ND893L7Cksfyly_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

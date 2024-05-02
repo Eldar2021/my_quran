@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
@@ -11,10 +12,16 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/app_observer.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
+import 'package:my_quran/firebase_options.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 Future<void> main({AppConfig? appConfig}) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
