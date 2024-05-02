@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_quran/app/app.dart';
 
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
@@ -17,17 +19,22 @@ class SignInView extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 10),
+          const SizedBox(height: 70),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Assets.images.splash.image(),
           ),
           const SizedBox(height: 12),
-          Text(context.l10n.welcome, style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 50)),
+          Text(
+            context.l10n.welcome,
+            style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 50),
+          ),
           const SizedBox(height: 30),
           CustomButtonWithIcon(
             icon: const Icon(FontAwesomeIcons.google),
-            onPressed: () {},
+            onPressed: () {
+              context.read<AuthCubit>().signInWithGoogle('en ', Gender.male);
+            },
             text: context.l10n.google,
           ),
           const SizedBox(height: 30),
@@ -42,8 +49,6 @@ class SignInView extends StatelessWidget {
             onPressed: () {},
             text: context.l10n.apple,
           ),
-          const SizedBox(height: 90),
-          CustomButton(onPressed: () {}, text: context.l10n.signInWithoutAnAccount),
           const Spacer(),
           TextButton(
             onPressed: () => AppLaunch.launchURL(apiConst.provicyPolicy),

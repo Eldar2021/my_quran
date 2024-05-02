@@ -14,7 +14,7 @@ extension PumpApp on WidgetTester {
     SetColorUseCase setColorUseCase,
     GetInitialUserUseCase getInitialUserUseCase,
     GetAppVersionUseCase getAppVersionUseCase,
-    LoginUseCase loginUseCase,
+    GoogleSignInUseCase loginUseCase,
     SetGenderUseCase setGenderUseCase,
     HomeRepository homeRepo,
   ) {

@@ -8,6 +8,6 @@ export 'usecase/set_color_use_case.dart';
 export 'usecase/set_locale_use_case.dart';
 export 'usecase/set_mode_use_case.dart';
 export 'usecase/get_initial_user_use_case.dart';
-export 'usecase/login_use_case.dart';
+export 'usecase/google_sign_in_use_case.dart';
 export 'usecase/set_gender_use_case.dart';
 export 'entity/user_entity.dart';

@@ -14,6 +14,8 @@ final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
 final class MockRemoteClient extends Mock implements RemoteClient {}
 
+final class MockSccialAuth extends Mock implements SoccialAuth {}
+
 final class MockPackageInfo extends Mock implements PackageInfo {
   @override
   String get version => '1.3.0';
@@ -41,6 +43,7 @@ void main() {
     final authRepository = AuthRepositoryImpl(
       localDataSource: AuthLocalDataSource(storage),
       remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
+      soccialAuth: MockSccialAuth(),
     );
 
     final getLocalLocaleUseCase = GetCurrentLocaleUseCase(appRepository);
@@ -48,7 +51,7 @@ void main() {
     final getInitialThemeUseCase = GetAppInitialThemeUseCase(themeRepository);
     final getInitialUserUseCase = GetInitialUserUseCase(authRepository);
 
-    final loginUseCase = LoginUseCase(authRepository);
+    final loginUseCase = GoogleSignInUseCase(authRepository);
     final setGenderUseCase = SetGenderUseCase(authRepository);
     final setModeUseCase = SetModeUseCase(themeRepository);
     final setColorUseCase = SetColorUseCase(themeRepository);

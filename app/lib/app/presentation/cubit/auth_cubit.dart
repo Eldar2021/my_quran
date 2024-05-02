@@ -8,16 +8,16 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(
     this.getInitialUserUseCase,
-    this.loginUseCase,
+    this.googleSignIn,
     this.setGenderUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
-  final LoginUseCase loginUseCase;
+  final GoogleSignInUseCase googleSignIn;
   final SetGenderUseCase setGenderUseCase;
 
-  Future<AuthState> login(String languageCode, Gender gender) async {
-    final user = await loginUseCase(languageCode, gender);
+  Future<AuthState> signInWithGoogle(String languageCode, Gender gender) async {
+    final user = await googleSignIn();
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),

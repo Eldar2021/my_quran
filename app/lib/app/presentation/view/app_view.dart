@@ -49,12 +49,13 @@ class MyApp extends StatelessWidget {
               client: context.read<RemoteClient>(),
               storage: context.read<PreferencesStorage>(),
             ),
+            soccialAuth: context.read<SoccialAuth>(),
           ),
         ),
         BlocProvider(
           create: (context) => AuthCubit(
             GetInitialUserUseCase(context.read<AuthRepository>()),
-            LoginUseCase(context.read<AuthRepository>()),
+            GoogleSignInUseCase(context.read<AuthRepository>()),
             SetGenderUseCase(context.read<AuthRepository>()),
           ),
         ),
