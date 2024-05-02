@@ -9,15 +9,26 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(
     this.getInitialUserUseCase,
     this.googleSignIn,
+    this.appleSignIn,
     this.setGenderUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
   final GoogleSignInUseCase googleSignIn;
+  final AppleSignInUseCase appleSignIn;
   final SetGenderUseCase setGenderUseCase;
 
   Future<AuthState> signInWithGoogle(String languageCode, Gender gender) async {
     final user = await googleSignIn();
+    user.fold(
+      (l) => emit(state.copyWith(exception: l)),
+      (r) => emit(state.copyWith(user: r)),
+    );
+    return state;
+  }
+
+  Future<AuthState> signInWithApple(String languageCode, Gender gender) async {
+    final user = await appleSignIn();
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),

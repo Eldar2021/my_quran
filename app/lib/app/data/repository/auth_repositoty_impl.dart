@@ -42,4 +42,21 @@ final class AuthRepositoryImpl implements AuthRepository {
       return Left(AuthenticationExc(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<UserEntity, Exception>> signWithApple() async {
+    try {
+      final appleAuth = await soccialAuth.signInWithApple();
+      log('${appleAuth.credential}');
+      return Right(
+        UserEntity(
+          accessToken: appleAuth.user?.email ?? 'null',
+          username: appleAuth.user?.displayName ?? 'null',
+        ),
+      );
+    } catch (e, s) {
+      log('signWithGoogle: error: $e\n$s');
+      return Left(AuthenticationExc(message: e.toString()));
+    }
+  }
 }

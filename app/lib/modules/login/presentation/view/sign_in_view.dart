@@ -57,7 +57,9 @@ class SignInView extends StatelessWidget {
             const SizedBox(height: 33),
             CustomButtonWithIcon(
               icon: const Icon(FontAwesomeIcons.apple),
-              onPressed: () {},
+              onPressed: () {
+                context.read<AuthCubit>().signInWithApple('en ', Gender.male);
+              },
               text: context.l10n.apple,
             ),
             const Spacer(),

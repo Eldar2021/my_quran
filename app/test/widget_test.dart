@@ -51,7 +51,8 @@ void main() {
     final getInitialThemeUseCase = GetAppInitialThemeUseCase(themeRepository);
     final getInitialUserUseCase = GetInitialUserUseCase(authRepository);
 
-    final loginUseCase = GoogleSignInUseCase(authRepository);
+    final googleSignInUseCase = GoogleSignInUseCase(authRepository);
+    final appleSignInUseCase = AppleSignInUseCase(authRepository);
     final setGenderUseCase = SetGenderUseCase(authRepository);
     final setModeUseCase = SetModeUseCase(themeRepository);
     final setColorUseCase = SetColorUseCase(themeRepository);
@@ -71,7 +72,8 @@ void main() {
       setColorUseCase,
       getInitialUserUseCase,
       getAppVersionUseCase,
-      loginUseCase,
+      googleSignInUseCase,
+      appleSignInUseCase,
       setGenderUseCase,
       homeRepo,
     );

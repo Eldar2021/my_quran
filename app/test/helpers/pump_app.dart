@@ -14,7 +14,8 @@ extension PumpApp on WidgetTester {
     SetColorUseCase setColorUseCase,
     GetInitialUserUseCase getInitialUserUseCase,
     GetAppVersionUseCase getAppVersionUseCase,
-    GoogleSignInUseCase loginUseCase,
+    GoogleSignInUseCase googleSignInUseCase,
+    AppleSignInUseCase appleSignInUseCase,
     SetGenderUseCase setGenderUseCase,
     HomeRepository homeRepo,
   ) {
@@ -36,7 +37,8 @@ extension PumpApp on WidgetTester {
             BlocProvider(
               create: (context) => AuthCubit(
                 getInitialUserUseCase,
-                loginUseCase,
+                googleSignInUseCase,
+                appleSignInUseCase,
                 setGenderUseCase,
               ),
             ),

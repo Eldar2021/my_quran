@@ -19,4 +19,15 @@ class SoccialAuth {
 
     return FirebaseAuth.instance.signInWithCredential(credential);
   }
+
+  Future<UserCredential> signInWithApple() async {
+    final appleProvider = AppleAuthProvider()
+      ..addScope('email')
+      ..addScope('name');
+    if (kIsWeb) {
+      return FirebaseAuth.instance.signInWithPopup(appleProvider);
+    } else {
+      return FirebaseAuth.instance.signInWithProvider(appleProvider);
+    }
+  }
 }
