@@ -26,21 +26,17 @@ final class AuthRepositoryImpl implements AuthRepository {
     await localDataSource.saveGender(gender);
   }
 
-  // UserEntity _convertData(UserModelResponse response) {
-  //   return UserEntity(
-  //     accessToken: response.accessToken,
-  //     username: response.username,
-  //     gender: response.gender,
-  //   );
-  // }
-
   @override
   Future<Either<UserEntity, Exception>> signWithGoogle() async {
     try {
       final googleAuth = await soccialAuth.signInWithGoogle();
       log('${googleAuth.credential}');
-      // sent to backend
-      return const Right(UserEntity(accessToken: ' ', username: ''));
+      return Right(
+        UserEntity(
+          accessToken: googleAuth.user?.email ?? 'null',
+          username: googleAuth.user?.displayName ?? 'null',
+        ),
+      );
     } catch (e, s) {
       log('signWithGoogle: error: $e\n$s');
       return Left(AuthenticationExc(message: e.toString()));
