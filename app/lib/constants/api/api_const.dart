@@ -38,4 +38,8 @@ class ApiConst {
   // TODO(eldiiar): Replace the privacy policy URL with the actual [URL] of your privacy policy page.
   String get provicyPolicy => 'https://github.com/Eldar2021/my_quran';
   String get appLogoLink => 'https://github.com/Eldar2021/my_quran/blob/main/app/assets/images/app_icon.png?raw=true';
+
+  // ---------------------------------------------------
+  static const newBase = 'https://myquran.life';
+  String get loginWithGoogle => '$newBase/api/v1/accounts/google/';
 }

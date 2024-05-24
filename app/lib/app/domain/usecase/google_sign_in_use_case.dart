@@ -8,7 +8,10 @@ final class GoogleSignInUseCase {
 
   final AuthRepository repository;
 
-  Future<Either<UserEntity, Exception>> call() {
-    return repository.signWithGoogle();
+  Future<Either<UserEntity, Exception>> call(
+    String languageCode,
+    Gender gender,
+  ) {
+    return repository.signWithGoogle(languageCode, gender);
   }
 }

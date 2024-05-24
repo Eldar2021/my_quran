@@ -42,8 +42,11 @@ void main() {
     final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSource(storage));
     final authRepository = AuthRepositoryImpl(
       localDataSource: AuthLocalDataSource(storage),
-      remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
-      soccialAuth: MockSccialAuth(),
+      remoteDataSource: AuthRemoteDataSource(
+        client: remoteClient,
+        storage: storage,
+        soccialAuth: MockSccialAuth(),
+      ),
     );
 
     final getLocalLocaleUseCase = GetCurrentLocaleUseCase(appRepository);

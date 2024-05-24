@@ -8,7 +8,10 @@ final class AppleSignInUseCase {
 
   final AuthRepository repository;
 
-  Future<Either<UserEntity, Exception>> call() {
-    return repository.signWithApple();
+  Future<Either<UserEntity, Exception>> call(
+    String languageCode,
+    Gender gender,
+  ) {
+    return repository.signWithApple(languageCode, gender);
   }
 }

@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
             remoteDataSource: AuthRemoteDataSource(
               client: context.read<RemoteClient>(),
               storage: context.read<PreferencesStorage>(),
+              soccialAuth: context.read<SoccialAuth>(),
             ),
-            soccialAuth: context.read<SoccialAuth>(),
           ),
         ),
         BlocProvider(

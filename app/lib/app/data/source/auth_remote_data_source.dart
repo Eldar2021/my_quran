@@ -10,33 +10,39 @@ final class AuthRemoteDataSource {
   const AuthRemoteDataSource({
     required this.client,
     required this.storage,
+    required this.soccialAuth,
   });
 
   final RemoteClient client;
   final PreferencesStorage storage;
+  final SoccialAuth soccialAuth;
 
-  Future<Either<UserModelResponse, Exception>> login(String languageCode, Gender gender) async {
-    final user = await client.post<UserModelResponse>(
-      apiConst.signUp,
-      fromJson: UserModelResponse.fromJson,
-      body: <String, dynamic>{
-        'gender': gender.name.toUpperCase(),
-        'languageCode': languageCode,
-      },
+  Future<Either<UserModelResponse, Exception>> signInWithGoogle(
+    String languageCode,
+    Gender gender,
+  ) async {
+    final googleAuth = await soccialAuth.signInWithGoogle();
+
+    final token = await client.post(
+      apiConst.loginWithGoogle,
+      fromJson: TokenResponse.fromJson,
+      body: {'access_token': googleAuth.credential?.accessToken},
     );
 
-    return user.fold(
-      Left.new,
-      (r) async {
-        final user = r.copyWith(gender: gender);
-        await Future.wait([
-          storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken),
-          storage.writeString(key: StorageKeys.genderKey, value: user.gender!.name),
-          storage.writeString(key: StorageKeys.usernameKey, value: user.username),
-        ]);
+    return token.fold(Left.new, (r) async {
+      final user = UserModelResponse(
+        accessToken: r.key,
+        username: googleAuth.user?.displayName ?? '',
+        gender: gender,
+      );
 
-        return Right(user);
-      },
-    );
+      await Future.wait([
+        storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken),
+        storage.writeString(key: StorageKeys.genderKey, value: user.gender!.name),
+        storage.writeString(key: StorageKeys.usernameKey, value: user.username),
+      ]);
+
+      return Right(user);
+    });
   }
 }

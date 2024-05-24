@@ -19,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
   final SetGenderUseCase setGenderUseCase;
 
   Future<AuthState> signInWithGoogle(String languageCode, Gender gender) async {
-    final user = await googleSignIn();
+    final user = await googleSignIn(languageCode, gender);
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),
@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<AuthState> signInWithApple(String languageCode, Gender gender) async {
-    final user = await appleSignIn();
+    final user = await appleSignIn(languageCode, gender);
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),

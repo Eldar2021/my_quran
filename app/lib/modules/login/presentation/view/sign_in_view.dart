@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_quran/app/app.dart';
 
 import 'package:my_quran/components/components.dart';
@@ -9,7 +10,7 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
-import 'package:my_quran/utils/show/snackbars.dart';
+import 'package:my_quran/utils/urils.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
@@ -20,11 +21,9 @@ class SignInView extends StatelessWidget {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
-            AppSnackbar.showSnackbar(
-              context,
-              'Authenticated: email: ${state.user?.accessToken}\n${state.user?.username}',
-              duration: const Duration(minutes: 1),
-            );
+            context.goNamed(AppRouter.home);
+          } else if (state.exception != null) {
+            AppAlert.showErrorDialog(context, errorText: state.exception.toString());
           }
         },
         child: Column(

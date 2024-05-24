@@ -9,12 +9,10 @@ final class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl({
     required this.localDataSource,
     required this.remoteDataSource,
-    required this.soccialAuth,
   });
 
   final AuthLocalDataSource localDataSource;
   final AuthRemoteDataSource remoteDataSource;
-  final SoccialAuth soccialAuth;
 
   @override
   UserEntity? get init {
@@ -27,14 +25,20 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signWithGoogle() async {
+  Future<Either<UserEntity, Exception>> signWithGoogle(
+    String languageCode,
+    Gender gender,
+  ) async {
     try {
-      final googleAuth = await soccialAuth.signInWithGoogle();
-      log('${googleAuth.credential}');
-      return Right(
-        UserEntity(
-          accessToken: googleAuth.user?.email ?? 'null',
-          username: googleAuth.user?.displayName ?? 'null',
+      final res = await remoteDataSource.signInWithGoogle(languageCode, gender);
+      return res.fold(
+        Left.new,
+        (r) => Right(
+          UserEntity(
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+          ),
         ),
       );
     } catch (e, s) {
@@ -44,14 +48,15 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signWithApple() async {
+  Future<Either<UserEntity, Exception>> signWithApple(
+    String languageCode,
+    Gender gender,
+  ) async {
     try {
-      final appleAuth = await soccialAuth.signInWithApple();
-      log('${appleAuth.credential}');
-      return Right(
+      return const Right(
         UserEntity(
-          accessToken: appleAuth.user?.email ?? 'null',
-          username: appleAuth.user?.displayName ?? 'null',
+          accessToken: '',
+          username: '',
         ),
       );
     } catch (e, s) {
