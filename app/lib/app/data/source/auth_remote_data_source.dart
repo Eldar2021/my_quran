@@ -48,9 +48,34 @@ final class AuthRemoteDataSource {
       apiConst.putProfile(userEntity.accessToken),
       fromJson: UserDataResponse.fromJson,
       body: {
-        'gender': userEntity.gender.name,
-        'language': userEntity.localeCode,
+        'gender': userEntity.gender.name.toUpperCase(),
+        'language': userEntity.localeCode.toUpperCase(),
       },
+      token: userEntity.accessToken,
+    );
+  }
+
+  Future<Either<UserDataResponse, Exception>> pathGender({
+    required String userId,
+    required Gender gender,
+  }) {
+    return client.patch(
+      apiConst.putProfile(userId),
+      fromJson: UserDataResponse.fromJson,
+      body: {'gender': gender.name.toUpperCase()},
+      token: userId,
+    );
+  }
+
+  Future<Either<UserDataResponse, Exception>> pathLocaleCode({
+    required String userId,
+    required String localeCode,
+  }) {
+    return client.patch(
+      apiConst.putProfile(userId),
+      fromJson: UserDataResponse.fromJson,
+      body: {'language': localeCode.toUpperCase()},
+      token: userId,
     );
   }
 }

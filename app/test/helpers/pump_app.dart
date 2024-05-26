@@ -16,6 +16,8 @@ extension PumpApp on WidgetTester {
     AppleSignInUseCase appleSignInUseCase,
     SerUserDataUseCase setUserDataUseCase,
     HomeRepository homeRepo,
+    PatchGenderUseCase patchGenderUseCase,
+    PatchLocaleCodeUseCase patchLocaleCodeUseCase,
   ) {
     return pumpWidget(
       RepositoryProvider(
@@ -36,6 +38,8 @@ extension PumpApp on WidgetTester {
                 googleSignInUseCase,
                 appleSignInUseCase,
                 setUserDataUseCase,
+                patchGenderUseCase,
+                patchLocaleCodeUseCase,
               ),
             ),
             BlocProvider(

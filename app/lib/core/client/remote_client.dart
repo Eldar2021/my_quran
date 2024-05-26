@@ -18,8 +18,9 @@ class RemoteClient {
     final headers = <String, String>{
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json',
+      'X-CSRFTOKEN': '9KDITf4aeXMyyQffH5TMtuuUtSfOSLtnZIeF2JZBXJziDfbP0wLo7xrWsUVeL2wO',
     };
-    if (token != null) headers['Authorization'] = 'Bearer $token';
+    if (token != null) headers['Authorization'] = 'Token $token';
 
     return headers;
   }

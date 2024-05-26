@@ -72,4 +72,30 @@ final class AuthRepositoryImpl implements AuthRepository {
       return Left(AuthenticationExc(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<UserDataEntity, Exception>> patchGender({
+    required String userId,
+    required Gender gender,
+  }) async {
+    final res = await remoteDataSource.pathGender(userId: userId, gender: gender);
+    return res.fold(Left.new, (r) async {
+      final entity = UserDataEntity(gender: r.gender, language: r.language);
+      await localDataSource.saveGender(gender);
+      return Right(entity);
+    });
+  }
+
+  @override
+  Future<Either<UserDataEntity, Exception>> patchLocaleCode({
+    required String userId,
+    required String localeCode,
+  }) async {
+    final res = await remoteDataSource.pathLocaleCode(userId: userId, localeCode: localeCode);
+    return res.fold(Left.new, (r) async {
+      final entity = UserDataEntity(gender: r.gender, language: r.language);
+      await localDataSource.saveLocaleCode(localeCode);
+      return Right(entity);
+    });
+  }
 }

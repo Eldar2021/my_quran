@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -55,6 +56,8 @@ class MyApp extends StatelessWidget {
             GoogleSignInUseCase(context.read<AuthRepository>()),
             AppleSignInUseCase(context.read<AuthRepository>()),
             SerUserDataUseCase(context.read<AuthRepository>()),
+            PatchGenderUseCase(context.read<AuthRepository>()),
+            PatchLocaleCodeUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(
@@ -84,14 +87,16 @@ class QuranApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'MyQuranKhatm',
-      debugShowCheckedModeBanner: false,
-      locale: context.watch<AuthCubit>().state.currentLocale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: context.watch<AppCubit>().state.theme.themeData,
-      routerConfig: AppRouter.router,
+    return GlobalLoaderOverlay(
+      child: MaterialApp.router(
+        title: 'MyQuranKhatm',
+        debugShowCheckedModeBanner: false,
+        locale: context.watch<AuthCubit>().state.currentLocale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: context.watch<AppCubit>().state.theme.themeData,
+        routerConfig: AppRouter.router,
+      ),
     );
   }
 }

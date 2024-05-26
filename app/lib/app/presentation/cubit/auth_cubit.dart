@@ -14,12 +14,16 @@ class AuthCubit extends Cubit<AuthState> {
     this.googleSignIn,
     this.appleSignIn,
     this.serUserDataUseCase,
+    this.patchGenderUseCase,
+    this.patchLocaleCodeUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
   final GoogleSignInUseCase googleSignIn;
   final AppleSignInUseCase appleSignIn;
   final SerUserDataUseCase serUserDataUseCase;
+  final PatchGenderUseCase patchGenderUseCase;
+  final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
 
   Future<AuthState> signInWithGoogle() async {
     final user = await googleSignIn(
@@ -51,7 +55,18 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> saveLocale(String localeCode) async {
     if (state.isAuthedticated) {
-      ///
+      final res = await patchLocaleCodeUseCase(
+        userId: state.user!.accessToken,
+        localeCode: localeCode,
+      );
+
+      res.fold(
+        (l) => emit(state.copyWith(exception: l)),
+        (r) {
+          final newUser = state.user!.copyWith(localeCode: r.localeValue);
+          emit(state.copyWith(user: newUser));
+        },
+      );
     } else {
       emit(state.copyWith(localeForNow: localeCode));
     }
@@ -59,7 +74,18 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> saveGender(Gender gender) async {
     if (state.isAuthedticated) {
-      ///
+      final res = await patchGenderUseCase(
+        userId: state.user!.accessToken,
+        gender: gender,
+      );
+
+      res.fold(
+        (l) => emit(state.copyWith(exception: l)),
+        (r) {
+          final newUser = state.user!.copyWith(gender: r.genderValue);
+          emit(state.copyWith(user: newUser));
+        },
+      );
     } else {
       emit(state.copyWith(genderForNow: gender));
     }

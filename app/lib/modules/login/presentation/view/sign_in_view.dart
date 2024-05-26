@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_quran/app/app.dart';
 
 import 'package:my_quran/components/components.dart';
@@ -65,9 +66,9 @@ class SignInView extends StatelessWidget {
             CustomButtonWithIcon(
               icon: const Icon(FontAwesomeIcons.apple),
               onPressed: () async {
-                unawaited(AppAlert.showLoading(context));
+                context.loaderOverlay.show();
                 await context.read<AuthCubit>().signInWithApple();
-                if (context.mounted) Navigator.pop(context);
+                if (context.mounted) context.loaderOverlay.hide();
               },
               text: context.l10n.apple,
             ),

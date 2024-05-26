@@ -42,5 +42,5 @@ class ApiConst {
   // ---------------------------------------------------
   static const newBase = 'https://myquran.life';
   String get loginWithGoogle => '$newBase/api/v1/accounts/google/';
-  String putProfile(String userId) => '$newBase/api/v1/accounts/profile/$userId';
+  String putProfile(String userId) => '$newBase/api/v1/accounts/profile/$userId/';
 }

@@ -55,6 +55,8 @@ void main() {
     final googleSignInUseCase = GoogleSignInUseCase(authRepository);
     final appleSignInUseCase = AppleSignInUseCase(authRepository);
     final setUserDataUseCase = SerUserDataUseCase(authRepository);
+    final patchLocaleCodeUseCase = PatchLocaleCodeUseCase(authRepository);
+    final pathGenderUseCase = PatchGenderUseCase(authRepository);
     final setModeUseCase = SetModeUseCase(themeRepository);
     final setColorUseCase = SetColorUseCase(themeRepository);
     final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
@@ -75,6 +77,8 @@ void main() {
       appleSignInUseCase,
       setUserDataUseCase,
       homeRepo,
+      pathGenderUseCase,
+      patchLocaleCodeUseCase,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

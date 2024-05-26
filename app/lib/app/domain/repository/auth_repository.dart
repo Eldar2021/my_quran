@@ -15,4 +15,14 @@ abstract class AuthRepository {
   );
 
   Future<void> setUserData(UserEntity userEntity);
+
+  Future<Either<UserDataEntity, Exception>> patchGender({
+    required String userId,
+    required Gender gender,
+  });
+
+  Future<Either<UserDataEntity, Exception>> patchLocaleCode({
+    required String userId,
+    required String localeCode,
+  });
 }

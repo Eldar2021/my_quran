@@ -32,4 +32,18 @@ final class AuthLocalDataSource {
       storage.writeString(key: StorageKeys.usernameKey, value: userEntity.username),
     ]);
   }
+
+  Future<void> saveGender(Gender gender) {
+    return storage.writeString(
+      key: StorageKeys.genderKey,
+      value: gender.name,
+    );
+  }
+
+  Future<void> saveLocaleCode(String localeCode) {
+    return storage.writeString(
+      key: StorageKeys.localeKey,
+      value: localeCode,
+    );
+  }
 }
