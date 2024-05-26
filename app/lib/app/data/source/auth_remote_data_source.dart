@@ -34,15 +34,23 @@ final class AuthRemoteDataSource {
         accessToken: r.key,
         username: googleAuth.user?.displayName ?? '',
         gender: gender,
+        localeCode: languageCode,
       );
 
-      await Future.wait([
-        storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken),
-        storage.writeString(key: StorageKeys.genderKey, value: user.gender!.name),
-        storage.writeString(key: StorageKeys.usernameKey, value: user.username),
-      ]);
+      await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
 
       return Right(user);
     });
+  }
+
+  Future<Either<UserDataResponse, Exception>> saveUserData(UserEntity userEntity) {
+    return client.put(
+      apiConst.putProfile(userEntity.accessToken),
+      fromJson: UserDataResponse.fromJson,
+      body: {
+        'gender': userEntity.gender.name,
+        'language': userEntity.localeCode,
+      },
+    );
   }
 }

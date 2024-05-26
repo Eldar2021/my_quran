@@ -14,5 +14,5 @@ abstract class AuthRepository {
     Gender gender,
   );
 
-  Future<void> saveGender(Gender gender);
+  Future<void> setUserData(UserEntity userEntity);
 }

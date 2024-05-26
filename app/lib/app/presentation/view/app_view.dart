@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
           create: (context) => AppRepositoryImpl(
             AppLocalDataSource(
               packageInfo: context.read<PackageInfo>(),
-              storage: context.read<PreferencesStorage>(),
             ),
           ),
         ),
@@ -32,8 +31,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AppCubit(
-            getLocalLocaleUseCase: GetCurrentLocaleUseCase(context.read<AppRepository>()),
-            setLocaleUseCase: SetLocaleUseCase(context.read<AppRepository>()),
             getInitialThemeUseCase: GetAppInitialThemeUseCase(context.read<ThemeRepository>()),
             setModeUseCase: SetModeUseCase(context.read<ThemeRepository>()),
             setColorUseCase: SetColorUseCase(context.read<ThemeRepository>()),
@@ -57,7 +54,7 @@ class MyApp extends StatelessWidget {
             GetInitialUserUseCase(context.read<AuthRepository>()),
             GoogleSignInUseCase(context.read<AuthRepository>()),
             AppleSignInUseCase(context.read<AuthRepository>()),
-            SetGenderUseCase(context.read<AuthRepository>()),
+            SerUserDataUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(
@@ -90,7 +87,7 @@ class QuranApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'MyQuranKhatm',
       debugShowCheckedModeBanner: false,
-      locale: context.watch<AppCubit>().state.currentLocale,
+      locale: context.watch<AuthCubit>().state.currentLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: context.watch<AppCubit>().state.theme.themeData,

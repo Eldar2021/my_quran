@@ -20,8 +20,13 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> saveGender(Gender gender) async {
-    await localDataSource.saveGender(gender);
+  Future<void> setUserData(UserEntity userEntity) async {
+    try {
+      await remoteDataSource.saveUserData(userEntity);
+      await localDataSource.saveUserData(userEntity);
+    } catch (e, s) {
+      log('setUserData error $e,\n$s');
+    }
   }
 
   @override
@@ -38,6 +43,7 @@ final class AuthRepositoryImpl implements AuthRepository {
             accessToken: r.accessToken,
             username: r.username,
             gender: r.gender,
+            localeCode: r.localeCode,
           ),
         ),
       );
@@ -53,10 +59,12 @@ final class AuthRepositoryImpl implements AuthRepository {
     Gender gender,
   ) async {
     try {
-      return const Right(
+      return Right(
         UserEntity(
           accessToken: '',
           username: '',
+          gender: gender,
+          localeCode: '',
         ),
       );
     } catch (e, s) {

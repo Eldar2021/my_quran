@@ -9,7 +9,7 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appCubit = context.watch<AppCubit>();
+    final authCubit = context.watch<AuthCubit>();
     final colorScheme = Theme.of(context).colorScheme;
     return ListView.builder(
       itemCount: AppLocalizationHelper.locales.length,
@@ -20,8 +20,8 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
           child: ListTile(
             key: Key(MqKeys.languageCode(locale.languageCode)),
             title: Text(langName, locale: locale),
-            onTap: () => context.read<AppCubit>().changeLang(locale.languageCode),
-            trailing: appCubit.state.currentLocale == locale
+            onTap: () => context.read<AuthCubit>().saveLocale(locale.languageCode),
+            trailing: authCubit.state.currentLocale == locale
                 ? CircleAvatar(
                     radius: 15,
                     backgroundColor: colorScheme.background,

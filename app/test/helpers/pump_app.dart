@@ -7,8 +7,6 @@ import 'package:my_quran/modules/modules.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
-    GetCurrentLocaleUseCase getLocalLocaleUseCase,
-    SetLocaleUseCase setLocaleUseCase,
     GetAppInitialThemeUseCase getInitialThemeUseCase,
     SetModeUseCase setModeUseCase,
     SetColorUseCase setColorUseCase,
@@ -16,7 +14,7 @@ extension PumpApp on WidgetTester {
     GetAppVersionUseCase getAppVersionUseCase,
     GoogleSignInUseCase googleSignInUseCase,
     AppleSignInUseCase appleSignInUseCase,
-    SetGenderUseCase setGenderUseCase,
+    SerUserDataUseCase setUserDataUseCase,
     HomeRepository homeRepo,
   ) {
     return pumpWidget(
@@ -26,8 +24,6 @@ extension PumpApp on WidgetTester {
           providers: [
             BlocProvider(
               create: (context) => AppCubit(
-                getLocalLocaleUseCase: getLocalLocaleUseCase,
-                setLocaleUseCase: setLocaleUseCase,
                 getInitialThemeUseCase: getInitialThemeUseCase,
                 setModeUseCase: setModeUseCase,
                 setColorUseCase: setColorUseCase,
@@ -39,7 +35,7 @@ extension PumpApp on WidgetTester {
                 getInitialUserUseCase,
                 googleSignInUseCase,
                 appleSignInUseCase,
-                setGenderUseCase,
+                setUserDataUseCase,
               ),
             ),
             BlocProvider(

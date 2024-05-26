@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,9 +23,13 @@ class SignInView extends StatelessWidget {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
+            context.read<AuthCubit>().setUserData(state.user!);
             context.goNamed(AppRouter.home);
           } else if (state.exception != null) {
-            AppAlert.showErrorDialog(context, errorText: state.exception.toString());
+            AppAlert.showErrorDialog(
+              context,
+              errorText: state.exception.toString(),
+            );
           }
         },
         child: Column(
@@ -42,8 +48,10 @@ class SignInView extends StatelessWidget {
             const SizedBox(height: 30),
             CustomButtonWithIcon(
               icon: const Icon(FontAwesomeIcons.google),
-              onPressed: () {
-                context.read<AuthCubit>().signInWithGoogle('en ', Gender.male);
+              onPressed: () async {
+                unawaited(AppAlert.showLoading(context));
+                await context.read<AuthCubit>().signInWithGoogle();
+                if (context.mounted) Navigator.pop(context);
               },
               text: context.l10n.google,
             ),
@@ -56,8 +64,10 @@ class SignInView extends StatelessWidget {
             const SizedBox(height: 33),
             CustomButtonWithIcon(
               icon: const Icon(FontAwesomeIcons.apple),
-              onPressed: () {
-                context.read<AuthCubit>().signInWithApple('en ', Gender.male);
+              onPressed: () async {
+                unawaited(AppAlert.showLoading(context));
+                await context.read<AuthCubit>().signInWithApple();
+                if (context.mounted) Navigator.pop(context);
               },
               text: context.l10n.apple,
             ),

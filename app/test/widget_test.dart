@@ -37,7 +37,7 @@ void main() {
     final remoteClient = MockRemoteClient();
 
     final homeRepo = MockHomeRepositoryImpl();
-    final appLocalDataSource = AppLocalDataSource(storage: storage, packageInfo: packageInfo);
+    final appLocalDataSource = AppLocalDataSource(packageInfo: packageInfo);
     final appRepository = AppRepositoryImpl(appLocalDataSource);
     final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSource(storage));
     final authRepository = AuthRepositoryImpl(
@@ -49,14 +49,12 @@ void main() {
       ),
     );
 
-    final getLocalLocaleUseCase = GetCurrentLocaleUseCase(appRepository);
-    final setLocaleUseCase = SetLocaleUseCase(appRepository);
     final getInitialThemeUseCase = GetAppInitialThemeUseCase(themeRepository);
     final getInitialUserUseCase = GetInitialUserUseCase(authRepository);
 
     final googleSignInUseCase = GoogleSignInUseCase(authRepository);
     final appleSignInUseCase = AppleSignInUseCase(authRepository);
-    final setGenderUseCase = SetGenderUseCase(authRepository);
+    final setUserDataUseCase = SerUserDataUseCase(authRepository);
     final setModeUseCase = SetModeUseCase(themeRepository);
     final setColorUseCase = SetColorUseCase(themeRepository);
     final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
@@ -68,8 +66,6 @@ void main() {
     when(() => storage.readString(key: StorageKeys.colorKey)).thenReturn(null);
 
     await tester.pumpApp(
-      getLocalLocaleUseCase,
-      setLocaleUseCase,
       getInitialThemeUseCase,
       setModeUseCase,
       setColorUseCase,
@@ -77,7 +73,7 @@ void main() {
       getAppVersionUseCase,
       googleSignInUseCase,
       appleSignInUseCase,
-      setGenderUseCase,
+      setUserDataUseCase,
       homeRepo,
     );
     await tester.pumpAndSettle();

@@ -14,7 +14,6 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final authCubit = context.watch<AuthCubit>();
-    final appCubit = context.watch<AppCubit>();
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsView),
@@ -46,7 +45,7 @@ class SettingsView extends StatelessWidget {
               children: [
                 Text(
                   AppLocalizationHelper.getName(
-                    appCubit.state.currentLocale.toLanguageTag(),
+                    authCubit.state.currentLocale.toLanguageTag(),
                   ),
                 ),
                 const SizedBox(width: 17),
