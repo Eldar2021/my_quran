@@ -7,9 +7,9 @@ class HatimReadService {
 
   final RemoteClient client;
 
-  Future<Either<HatimReadModel, Exception>> getHatim(String token) async {
-    return client.get(
-      apiConst.hatim,
+  Future<Either<HatimReadModel, Exception>> getHatim(String token) {
+    return client.post(
+      apiConst.joinToHatim,
       fromJson: HatimReadModel.fromJson,
       token: token,
     );

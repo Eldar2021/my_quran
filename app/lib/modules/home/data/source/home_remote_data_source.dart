@@ -11,7 +11,7 @@ final class HomeRemoteDataSource {
 
   Future<HomeModelResponse> getRemoteData(String token) async {
     final remoteValue = await remoteClient.get<HomeModelResponse>(
-      apiConst.home,
+      apiConst.hatimDashBoard,
       fromJson: HomeModelResponse.fromJson,
       token: token,
     );

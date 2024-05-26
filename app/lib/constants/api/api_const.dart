@@ -11,8 +11,8 @@ class ApiConst {
 
   String get baseUrl => 'http://$_getDomain/api/v1';
   String get signUp => '$baseUrl/auth/sign_up';
-  String get home => '$baseUrl/report/dashboard';
-  String get hatim => '$baseUrl/hatim/join_to_hatim';
+  // String get home => '$baseUrl/report/dashboard';
+  // String get hatim => '$baseUrl/hatim/join_to_hatim';
 
   String get baseSocket => 'ws://$_getDomain/ws';
   String juzSocket(String hatimId) => '/topic/$hatimId/list_of_juz';
@@ -43,4 +43,6 @@ class ApiConst {
   static const newBase = 'https://myquran.life';
   String get loginWithGoogle => '$newBase/api/v1/accounts/google/';
   String putProfile(String userId) => '$newBase/api/v1/accounts/profile/$userId/';
+  String get hatimDashBoard => '$newBase/api/v1/hatim/dashboard';
+  String get joinToHatim => '$newBase/api/v1/hatim/join_to_hatim';
 }
