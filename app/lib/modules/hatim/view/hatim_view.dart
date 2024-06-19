@@ -44,12 +44,12 @@ class _HatimUIState extends State<HatimUI> {
 
   Future<void> getData() async {
     final token = context.read<AuthCubit>().state.user!.accessToken;
-    final username = context.read<AuthCubit>().state.user!.username;
+    // final username = context.read<AuthCubit>().state.user!.username;
     await context.read<HatimReadCubit>().getHatim(token).then(
       (value) {
         if (value != null) {
-          context.read<HatimJuzsCubit>().connect(value, token);
-          context.read<HatimPagesCubit>().connect(username, token);
+          context.read<HatimJuzsCubit>().connect(token);
+          // context.read<HatimPagesCubit>().connect(username, token);
         }
       },
     );

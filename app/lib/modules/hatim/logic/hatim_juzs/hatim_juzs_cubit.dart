@@ -1,63 +1,78 @@
-import 'dart:convert';
+// import 'dart:convert';
+import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stomp_dart_client/stomp.dart';
-import 'package:stomp_dart_client/stomp_config.dart';
-import 'package:stomp_dart_client/stomp_frame.dart';
+// import 'package:stomp_dart_client/stomp.dart';
+// import 'package:stomp_dart_client/stomp_config.dart';
+// import 'package:stomp_dart_client/stomp_frame.dart';
 
-import 'package:my_quran/config/config.dart';
+// import 'package:my_quran/config/config.dart';
 import 'package:my_quran/models/hatim/hatim_juz.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 part 'hatim_juzs_state.dart';
 
 class HatimJuzsCubit extends Cubit<HatimJuzsState> {
   HatimJuzsCubit() : super(const HatimJuzsState());
 
-  late StompClient client;
+  late final WebSocketChannel channel;
 
-  dynamic connect(String hatimId, String token) {
-    client = StompClient(
-      config: StompConfig(
-        url: apiConst.baseSocket,
-        onStompError: onStompError,
-        onWebSocketError: onWebSocketError,
-        onConnect: (event) => onConnect(hatimId, token),
-      ),
+  void connect(String token) {
+    channel = WebSocketChannel.connect(
+      Uri.parse('wss://myquran.life/ws/?token=$token'),
     );
 
-    client.activate();
+    channel.stream.listen((event) {
+      print(event);
+      // log(event.toString());
+    });
   }
 
-  void onStompError(StompFrame e) {
-    if (!isClosed) emit(HatimJuzsState(erorText: 'Hatim Error $e'));
-  }
+  // late StompClient client;
 
-  void onWebSocketError(dynamic e) {
-    if (!isClosed) emit(HatimJuzsState(erorText: 'Hatim Error $e'));
-  }
+  // dynamic connect(String hatimId, String token) {
+  //   client = StompClient(
+  //     config: StompConfig(
+  //       url: apiConst.baseSocket,
+  //       onStompError: onStompError,
+  //       onWebSocketError: onWebSocketError,
+  //       onConnect: (event) => onConnect(hatimId, token),
+  //     ),
+  //   );
 
-  void callback(StompFrame event) {
-    if (event.body != null) {
-      final data = jsonDecode(event.body!) as List<dynamic>;
-      final items = data.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
-      if (!isClosed) emit(HatimJuzsState(hatimJuzs: items));
-    } else {
-      if (!isClosed) emit(const HatimJuzsState(erorText: 'Some Error'));
-    }
-  }
+  //   client.activate();
+  // }
 
-  void onConnect(String hatimId, String token) {
-    client.subscribe(
-      destination: apiConst.juzSocket(hatimId),
-      headers: apiConst.authMap(token),
-      callback: callback,
-    );
-  }
+  // void onStompError(StompFrame e) {
+  //   if (!isClosed) emit(HatimJuzsState(erorText: 'Hatim Error $e'));
+  // }
+
+  // void onWebSocketError(dynamic e) {
+  //   if (!isClosed) emit(HatimJuzsState(erorText: 'Hatim Error $e'));
+  // }
+
+  // void callback(StompFrame event) {
+  //   if (event.body != null) {
+  //     final data = jsonDecode(event.body!) as List<dynamic>;
+  //     final items = data.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
+  //     if (!isClosed) emit(HatimJuzsState(hatimJuzs: items));
+  //   } else {
+  //     if (!isClosed) emit(const HatimJuzsState(erorText: 'Some Error'));
+  //   }
+  // }
+
+  // void onConnect(String hatimId, String token) {
+  //   client.subscribe(
+  //     destination: apiConst.juzSocket(hatimId),
+  //     headers: apiConst.authMap(token),
+  //     callback: callback,
+  //   );
+  // }
 
   @override
   Future<void> close() {
-    client.deactivate();
+    // client.deactivate();
     return super.close();
   }
 }

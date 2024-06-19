@@ -36,6 +36,7 @@ dependencies:
   meta: ^1.11.0 # 1.12.0
   go_router: ^13.2.2
   loader_overlay: ^4.0.0
+  web_socket_channel: ^2.4.5
   mq_storage:
     path: ../packages/mq_storage/
   mq_ci_keys:
