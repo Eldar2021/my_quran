@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_quran/core/core.dart';
@@ -15,8 +17,13 @@ class HatimReadCubit extends Cubit<HatimReadState> {
     emit(state.copyWith(status: FetchStatus.loading));
     final hatim = await service.getHatim(token);
     hatim.fold(
-      (l) => emit(state.copyWith(status: FetchStatus.error)),
-      (r) => emit(state.copyWith(status: FetchStatus.success, hatim: r)),
+      (left) {
+        emit(state.copyWith(status: FetchStatus.error));
+        log('Error retrieving Hatim: $left');
+      },
+      (right) {
+        emit(state.copyWith(status: FetchStatus.success, hatim: right));
+      },
     );
     return state.hatim?.id;
   }

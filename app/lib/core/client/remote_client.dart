@@ -61,6 +61,9 @@ class RemoteClient {
           Uri.parse(path),
           headers: header,
         );
+        log('Request URL: ${Uri.parse(path)}');
+        log('Request Headers: $header');
+        log('Response Status Code: ${response.statusCode}');
         return responseType<T>(response, fromJson);
       } else {
         return const Left(NetworkExc());

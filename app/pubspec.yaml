@@ -17,14 +17,15 @@ dependencies:
   firebase_core: ^2.30.1
   firebase_auth: ^4.19.4
   google_sign_in: ^6.2.1
-  intl: ^0.18.1 # 0.19.0
+  # intl: ^0.18.1 # 0.19.0
+  intl: ^0.19.0
   cupertino_icons: ^1.0.6
   flutter_bloc: ^8.1.5
   equatable: ^2.0.5
   connectivity_plus: ^6.0.1
   package_info_plus: ^6.0.0
   http: ^1.2.1
-  stomp_dart_client: ^1.0.3
+  # stomp_dart_client: ^1.0.3
   infinite_scroll_pagination: ^4.0.0
   flutter_svg: ^2.0.10+1
   url_launcher: ^6.2.5
