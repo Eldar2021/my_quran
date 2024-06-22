@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_quran/models/hatim/hatim_juz.dart';
+import 'package:my_quran/modules/hatim/data/model/hatim_juz.dart';
 import 'package:my_quran/theme/theme.dart';
 
 class JuzPersentWidget extends StatelessWidget {

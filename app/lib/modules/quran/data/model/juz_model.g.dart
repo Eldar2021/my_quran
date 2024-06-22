@@ -10,11 +10,13 @@ JuzResponse _$JuzResponseFromJson(Map<String, dynamic> json) => JuzResponse(
       id: json['id'] as int,
       name: json['name'] as String,
       pages: (json['pages'] as List<dynamic>).map((e) => e as int).toList(),
-      surahs:
-          (json['surahs'] as List<dynamic>).map((e) => JuzSurahResponse.fromJson(e as Map<String, dynamic>)).toList(),
+      surahs: (json['surahs'] as List<dynamic>)
+          .map((e) => JuzSurahResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$JuzResponseToJson(JuzResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$JuzResponseToJson(JuzResponse instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'pages': instance.pages,

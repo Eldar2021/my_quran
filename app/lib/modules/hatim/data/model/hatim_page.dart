@@ -11,7 +11,7 @@ class HatimPages {
     required this.id,
     required this.status,
     required this.number,
-    required this.mine,
+    this.mine,
   });
 
   factory HatimPages.fromJson(Map<String, dynamic> json) => _$HatimPagesFromJson(json);
@@ -20,7 +20,7 @@ class HatimPages {
   final String id;
   final int number;
   final HatimPageStatus status;
-  final bool mine;
+  final bool? mine;
 }
 
 enum HatimPageStatus {

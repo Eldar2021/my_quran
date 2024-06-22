@@ -42,6 +42,7 @@ class ApiConst {
   // ---------------------------------------------------
   static const newBase = 'https://myquran.life';
   String get loginWithGoogle => '$newBase/api/v1/accounts/google/';
+  String get loginWithApple => '$newBase/api/v1/accounts/apple/';
   String putProfile(String userId) => '$newBase/api/v1/accounts/profile/$userId/';
   String get hatimDashBoard => '$newBase/api/v1/hatim/dashboard';
   String get joinToHatim => '$newBase/api/v1/hatim/join_to_hatim';

@@ -10,10 +10,11 @@ HatimPages _$HatimPagesFromJson(Map<String, dynamic> json) => HatimPages(
       id: json['id'] as String,
       status: $enumDecode(_$HatimPageStatusEnumMap, json['status']),
       number: json['number'] as int,
-      mine: json['mine'] as bool,
+      mine: json['mine']!= null? json['mine'] as bool: null,
     );
 
-Map<String, dynamic> _$HatimPagesToJson(HatimPages instance) => <String, dynamic>{
+Map<String, dynamic> _$HatimPagesToJson(HatimPages instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'number': instance.number,
       'status': _$HatimPageStatusEnumMap[instance.status]!,

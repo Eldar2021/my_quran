@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_quran/components/components.dart';
-import 'package:my_quran/models/models.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class HatimPageStatusCard extends StatelessWidget {
   const HatimPageStatusCard({

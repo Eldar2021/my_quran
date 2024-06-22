@@ -12,7 +12,36 @@
           "package_name": "com.alee.my_quran"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "417182149715-4fdbf0naurtnenclm83lrsnkur9nmd7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alee.my_quran",
+            "certificate_hash": "c7900f3d9f7367ae2f5ccd094393557e8e6afdbf"
+          }
+        },
+        {
+          "client_id": "417182149715-ftk7ffddk0il049n6sh4j4qnsqr1dgb8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alee.my_quran",
+            "certificate_hash": "7a7b4083b379fe3e33964832d7492ed26ad04689"
+          }
+        },
+        {
+          "client_id": "417182149715-pvd0gvthpovfbc8p5d8ktmkevd69u624.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alee.my_quran",
+            "certificate_hash": "5fbe85f2bda28ecb5699206a236e389b5392537c"
+          }
+        },
+        {
+          "client_id": "417182149715-hc78qb363oghr9009n4nrojeou137rf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCNPxXv07T5RwEKyo_ND893L7Cksfyly_Q"
@@ -20,7 +49,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417182149715-hc78qb363oghr9009n4nrojeou137rf5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "417182149715-jknocdcmfmmahvr2fup4slmkltqdq9l4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example"
+              }
+            }
+          ]
         }
       }
     }

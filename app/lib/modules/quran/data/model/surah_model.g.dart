@@ -6,7 +6,8 @@ part of 'surah_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SurahResponse _$SurahResponseFromJson(Map<String, dynamic> json) => SurahResponse(
+SurahResponse _$SurahResponseFromJson(Map<String, dynamic> json) =>
+    SurahResponse(
       id: json['id'] as int,
       name: json['name'] as String,
       aya: json['aya'] as int,
@@ -14,7 +15,8 @@ SurahResponse _$SurahResponseFromJson(Map<String, dynamic> json) => SurahRespons
       arabic: json['arabic'] as String,
     );
 
-Map<String, dynamic> _$SurahResponseToJson(SurahResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$SurahResponseToJson(SurahResponse instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'aya': instance.aya,

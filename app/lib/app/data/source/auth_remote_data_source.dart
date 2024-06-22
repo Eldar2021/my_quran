@@ -22,13 +22,11 @@ final class AuthRemoteDataSource {
     Gender gender,
   ) async {
     final googleAuth = await soccialAuth.signInWithGoogle();
-
     final token = await client.post(
       apiConst.loginWithGoogle,
       fromJson: TokenResponse.fromJson,
       body: {'access_token': googleAuth.credential?.accessToken},
     );
-
     return token.fold(Left.new, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
@@ -37,6 +35,30 @@ final class AuthRemoteDataSource {
         localeCode: languageCode,
       );
 
+      await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+
+      return Right(user);
+    });
+  }
+
+  Future<Either<UserModelResponse, Exception>> signInWithApple(
+    String languageCode,
+    Gender gender,
+  ) async {
+    final appleAuth = await soccialAuth.signInWithApple();
+    final token = await client.post(
+      apiConst.loginWithApple,
+      fromJson: TokenResponse.fromJson,
+      body: {'identity_token': appleAuth.credential?.accessToken},
+    );
+
+    return token.fold(Left.new, (r) async {
+      final user = UserModelResponse(
+        accessToken: r.key,
+        username: appleAuth.user?.displayName ?? '',
+        gender: gender,
+        localeCode: languageCode,
+      );
       await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
 
       return Right(user);

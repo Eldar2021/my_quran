@@ -8,7 +8,6 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
@@ -20,7 +19,13 @@ class HatimView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HatimJuzsCubit()),
-        BlocProvider(create: (context) => HatimReadCubit(HatimReadService(context.read<RemoteClient>()))),
+        BlocProvider(
+          create: (context) => HatimReadCubit(
+            GetHatimUseCase(
+              HatimReadRepositoryImpl(remoteDataSource: HatimRemoteDataSource(context.read<RemoteClient>())),
+            ),
+          ),
+        ),
         BlocProvider(create: (context) => HatimPagesCubit()),
       ],
       child: const HatimUI(),
@@ -44,12 +49,10 @@ class _HatimUIState extends State<HatimUI> {
 
   Future<void> getData() async {
     final token = context.read<AuthCubit>().state.user!.accessToken;
-    // final username = context.read<AuthCubit>().state.user!.username;
     await context.read<HatimReadCubit>().getHatim(token).then(
       (value) {
         if (value != null) {
-          context.read<HatimJuzsCubit>().connect(token);
-          // context.read<HatimPagesCubit>().connect(username, token);
+          context.read<HatimJuzsCubit>().connect(token, value);
         }
       },
     );

@@ -7,7 +7,6 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/models/models.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/theme/theme.dart';
 
@@ -32,7 +31,7 @@ class HatimJusBottomSheet extends StatelessWidget {
               return switch (state.status) {
                 FetchStatus.loading => const Center(child: CircularProgressIndicator()),
                 FetchStatus.success => HatimPageGridLisrBuilder(state.pages ?? []),
-                FetchStatus.error => const Center(child: Text('error')),
+                FetchStatus.error => const Center(child: Text('Error')),
               };
             },
           ),

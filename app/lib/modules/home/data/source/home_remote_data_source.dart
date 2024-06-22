@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
@@ -16,6 +17,7 @@ final class HomeRemoteDataSource {
       token: token,
     );
 
+    
     return remoteValue.fold(
       (left) => throw Exception('Failed to fetch remote data $left'),
       (right) => right,

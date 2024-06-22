@@ -59,12 +59,16 @@ final class AuthRepositoryImpl implements AuthRepository {
     Gender gender,
   ) async {
     try {
-      return Right(
-        UserEntity(
-          accessToken: '',
-          username: '',
-          gender: gender,
-          localeCode: '',
+      final res = await remoteDataSource.signInWithApple(languageCode, gender);
+      return res.fold(
+        Left.new,
+        (r) => Right(
+          UserEntity(
+            accessToken: '',
+            username: '',
+            gender: gender,
+            localeCode: '',
+          ),
         ),
       );
     } catch (e, s) {

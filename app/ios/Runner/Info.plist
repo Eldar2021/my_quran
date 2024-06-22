@@ -4,7 +4,7 @@
 <dict>
 	<!-- Google Sign-in Section -->
 	<key>GIDClientID</key>
-    <string>417182149715-jknocdcmfmmahvr2fup4slmkltqdq9l4.apps.googleusercontent.com</string>
+    <string>417182149715-qokpr06kebev3u3a0lci4227kd6a6mdi.apps.googleusercontent.com</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -12,7 +12,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.417182149715-jknocdcmfmmahvr2fup4slmkltqdq9l4</string>
+				<string>com.googleusercontent.apps.417182149715-qokpr06kebev3u3a0lci4227kd6a6mdi</string>
 			</array>
 		</dict>
 	</array>
