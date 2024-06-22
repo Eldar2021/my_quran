@@ -38,7 +38,7 @@ final class AppRouter {
   static final router = GoRouter(
     initialLocation: '/home',
     navigatorKey: _rootNavigatorKey,
-    debugLogDiagnostics: true,
+    // debugLogDiagnostics: false,
     routes: [
       GoRoute(
         path: '/',

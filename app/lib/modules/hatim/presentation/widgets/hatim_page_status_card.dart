@@ -7,7 +7,7 @@ class HatimPageStatusCard extends StatelessWidget {
   const HatimPageStatusCard({
     required this.status,
     required this.pageNumber,
-    required this.pages,
+    required this.isMine,
     this.onTap,
     super.key,
   });
@@ -15,7 +15,7 @@ class HatimPageStatusCard extends StatelessWidget {
   final VoidCallback? onTap;
   final HatimPageStatus status;
   final int pageNumber;
-  final List<int?> pages;
+  final bool isMine;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class HatimPageStatusCard extends StatelessWidget {
           color: status.bgColor,
           text: '$pageNumber',
           textColor: status.frColor,
-          check: pages.contains(pageNumber)
+          check: isMine
               ? Positioned(
                   right: 2,
                   top: 2,

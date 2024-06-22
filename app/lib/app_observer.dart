@@ -6,6 +6,12 @@ class AppBlocObserver extends BlocObserver {
   final void Function(String log)? onLog;
 
   @override
+  void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
+    onLog?.call('onEvent bloc: $bloc - event: $event');
+    super.onEvent(bloc, event);
+  }
+
+  @override
   void onCreate(BlocBase<dynamic> bloc) {
     super.onCreate(bloc);
     // onLog?.call('onCreate(${bloc.state})');
