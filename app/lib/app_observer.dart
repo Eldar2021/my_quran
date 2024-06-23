@@ -7,7 +7,7 @@ class AppBlocObserver extends BlocObserver {
 
   @override
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
-    onLog?.call('onEvent bloc: $bloc - event: $event');
+    // onLog?.call('onEvent bloc: $bloc - event: $event');
     super.onEvent(bloc, event);
   }
 
