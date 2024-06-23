@@ -29,21 +29,4 @@ class HatimRemoteDataSource {
       Uri.parse('wss://myquran.life/ws/?token=$token'),
     );
   }
-
-  // Stream<Map<String, dynamic>> listen(
-  //   void Function(dynamic)? onData, {
-  //   Function? onError,
-  //   void Function()? onDone,
-  //   bool? cancelOnError,
-  // }) {
-  //   channel.stream.listen(
-  //     (event) {
-  //       final data = jsonDecode(event as String) as Map<String, dynamic>;
-
-  //     },
-  //     onError: onError,
-  //     onDone: onDone,
-  //     cancelOnError: cancelOnError,
-  //   );
-  // }
 }
