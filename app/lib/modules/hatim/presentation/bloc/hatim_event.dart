@@ -52,6 +52,7 @@ final class ReceidevBaseDataEvent extends HatimEvent {
   final (HatimResponseType, List<HatimBaseEntity>) data;
 }
 
+@immutable
 final class ResetJuzPagesEvent extends HatimEvent {
   const ResetJuzPagesEvent();
 }
