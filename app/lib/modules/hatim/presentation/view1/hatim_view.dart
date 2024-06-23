@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +11,6 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/hatim/hatim.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 class HatimView extends StatelessWidget {
   const HatimView({super.key});
@@ -42,30 +39,6 @@ class _HatimUIState extends State<HatimUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: const Key(MqKeys.hatimPage),
-      bottomNavigationBar: TextButton(
-        onPressed: () {
-          // final bloc = context.read<HatimBloc>();
-          // // ignore: cascade_invocations
-          // bloc.add(const GetHatimJuzsEvent('22e7e04a-de71-4568-a136-afcb18e88523'));
-          WebSocketChannel? channel;
-
-          channel = WebSocketChannel.connect(
-            Uri.parse('wss://myquran.life/ws/?token=3d2cda9094f4753c375c49aa5e8e2fbedede2bbe'),
-          );
-
-          channel.stream.listen((e) {
-            print('Test Connect: $e');
-          });
-
-          channel.sink.add(
-            jsonEncode({
-              'type': 'list_of_juz',
-              'hatim_id': '22e7e04a-de71-4568-a136-afcb18e88523',
-            }),
-          );
-        },
-        child: const Text('send'),
-      ),
       appBar: AppBar(
         title: Text(context.l10n.hatim),
         actions: [
@@ -96,8 +69,9 @@ class _HatimUIState extends State<HatimUI> {
               bloc.add(ConnectToHatimdEvent(dashBoadrState.data.id));
             }
             if (eventState is HatimStateSuccess && juzsState is HatimJuzsInitial) {
-              bloc.add(GetHatimJuzsEvent(eventState.hatimId));
-              // ..add(const GetHatimUserPagesEvent());
+              bloc
+                ..add(GetHatimJuzsEvent(eventState.hatimId))
+                ..add(const GetHatimUserPagesEvent());
             }
           },
           builder: (context, state) {

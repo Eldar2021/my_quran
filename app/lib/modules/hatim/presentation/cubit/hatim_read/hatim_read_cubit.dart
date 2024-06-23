@@ -11,7 +11,6 @@
 // class HatimReadCubit extends Cubit<HatimReadState> {
 //   HatimReadCubit(this.hatimUseCase) : super(const HatimReadState(FetchStatus.loading));
 
-
 //   final GetHatimUseCase hatimUseCase;
 
 //   Future<String?> getHatim(String token) async {

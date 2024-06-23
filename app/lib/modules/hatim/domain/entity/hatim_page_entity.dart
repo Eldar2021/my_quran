@@ -1,4 +1,3 @@
-
 import 'package:my_quran/modules/modules.dart';
 
 class HatimPagesEntity {
