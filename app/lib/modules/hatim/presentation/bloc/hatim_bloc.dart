@@ -18,10 +18,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     required this.repo,
     required this.token,
   }) : super(const HatimState()) {
-    on<GetHatimDashBoardEvent>(_onGetHatimDashBoardEvent);
-    on<ConnectToHatimdEvent>(_onConnectToHatimdEvent);
-    on<GetHatimJuzsEvent>(_onGetHatimJuzsEvent);
-    on<GetHatimUserPagesEvent>(_onGetHatimUserPagesEvent);
+    on<GetInitailDataEvent>(_onGetInitailDataEvent);
     on<GetHatimJuzPagesEvent>(_onGetHatimJuzPagesEvent);
     on<SelectPageEvent>(_onSelectPageEvent);
     on<UnSelectPageEvent>(_onUnSelectPageEvent);
@@ -33,9 +30,10 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
 
   final HatimRepository repo;
   final String token;
+  bool islistened = false;
 
-  FutureOr<void> _onGetHatimDashBoardEvent(
-    GetHatimDashBoardEvent event,
+  FutureOr<void> _onGetInitailDataEvent(
+    GetInitailDataEvent event,
     Emitter<HatimState> emit,
   ) async {
     try {
@@ -43,48 +41,25 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
       emit(state.copyWith(dashBoardState: const HatimDashBoardLoading()));
       final data = await repo.getHatim(token);
       emit(state.copyWith(dashBoardState: HatimDashBoardFetched(data)));
+
+      emit(state.copyWith(eventState: const HatimStateLoading()));
+      repo.connectToSocket(token);
+      if (!islistened) {
+        repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
+        islistened = true;
+      }
+
+      emit(state.copyWith(eventState: HatimStateSuccess(data.id)));
+
+      emit(state.copyWith(juzsState: const HatimJuzsLoading()));
+      repo.sinkHatimJuzs(data.id);
+
+      emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
+      repo.sinkHatimUserPages();
     } catch (e, s) {
       log('_onGetHatimDashBoardEvent: $e\n$s');
       emit(state.copyWith(dashBoardState: HatimDashBoardFailed(Exception(e))));
     }
-  }
-
-  FutureOr<void> _onConnectToHatimdEvent(
-    ConnectToHatimdEvent event,
-    Emitter<HatimState> emit,
-  ) async {
-    if (state.eventState is HatimStateLoading) return;
-    try {
-      if (state.eventState is HatimStateInitial) {
-        emit(state.copyWith(eventState: const HatimStateLoading()));
-
-        repo.connectToSocket(token);
-        repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
-
-        emit(state.copyWith(eventState: HatimStateSuccess(event.hatimId)));
-      }
-    } catch (e, s) {
-      log('_onConnectToHatimdEvent: $e\n$s');
-      emit(state.copyWith(eventState: HatimStateFailed(Exception(e))));
-    }
-  }
-
-  FutureOr<void> _onGetHatimJuzsEvent(
-    GetHatimJuzsEvent event,
-    Emitter<HatimState> emit,
-  ) async {
-    if (state.juzsState is HatimJuzsLoading) return;
-    emit(state.copyWith(juzsState: const HatimJuzsLoading()));
-    repo.sinkHatimJuzs(event.hatimId);
-  }
-
-  FutureOr<void> _onGetHatimUserPagesEvent(
-    GetHatimUserPagesEvent event,
-    Emitter<HatimState> emit,
-  ) async {
-    if (state.userPagesState is HatimUserPagesLoading) return;
-    emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
-    repo.sinkHatimUserPages();
   }
 
   FutureOr<void> _onGetHatimJuzPagesEvent(

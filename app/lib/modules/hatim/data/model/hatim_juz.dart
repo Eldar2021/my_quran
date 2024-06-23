@@ -34,8 +34,4 @@ class HatimJus {
       done: done,
     );
   }
-
-  double get toDoPercent => (toDo * 100) / (toDo + inProgress + done);
-  double get inProgressPercent => (inProgress * 100) / (toDo + inProgress + done);
-  double get donePercent => (done * 100) / (toDo + inProgress + done);
 }

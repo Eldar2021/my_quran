@@ -6,26 +6,8 @@ sealed class HatimEvent {
 }
 
 @immutable
-final class GetHatimDashBoardEvent extends HatimEvent {
-  const GetHatimDashBoardEvent();
-}
-
-@immutable
-final class ConnectToHatimdEvent extends HatimEvent {
-  const ConnectToHatimdEvent(this.hatimId);
-  final String hatimId;
-}
-
-@immutable
-final class GetHatimJuzsEvent extends HatimEvent {
-  const GetHatimJuzsEvent(this.hatimId);
-
-  final String hatimId;
-}
-
-@immutable
-final class GetHatimUserPagesEvent extends HatimEvent {
-  const GetHatimUserPagesEvent();
+final class GetInitailDataEvent extends HatimEvent {
+  const GetInitailDataEvent();
 }
 
 @immutable

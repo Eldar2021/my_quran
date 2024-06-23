@@ -1,6 +1,8 @@
+import 'package:meta/meta.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class HatimReadEntity implements HatimBaseEntity {
+@immutable
+final class HatimReadEntity implements HatimBaseEntity {
   const HatimReadEntity({
     required this.id,
     required this.status,

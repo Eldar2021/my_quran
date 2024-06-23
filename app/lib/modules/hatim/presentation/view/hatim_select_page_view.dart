@@ -95,7 +95,7 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
             (e) => HatimPageStatusCard(
               status: e.status,
               pageNumber: e.number,
-              isMine: e.mine,
+              isMine: isMine(context, e),
               onTap: e.status.isActive
                   ? () {
                       final bloc = context.read<HatimBloc>();
@@ -110,5 +110,15 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
           )
           .toList(),
     );
+  }
+
+  bool isMine(BuildContext context, HatimPagesEntity entity) {
+    final userPageState = context.read<HatimBloc>().state.userPagesState;
+    final pages = switch (userPageState) {
+      HatimUserPagesFetched() => userPageState.data.map((e) => e.id),
+      _ => <String>[],
+    };
+
+    return pages.contains(entity.id);
   }
 }

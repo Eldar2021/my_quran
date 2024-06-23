@@ -25,7 +25,7 @@ class HatimView extends StatelessWidget {
           ),
         ),
         token: context.read<AuthCubit>().state.user!.accessToken,
-      )..add(const GetHatimDashBoardEvent()),
+      )..add(const GetInitailDataEvent()),
       child: const HatimUI(),
     );
   }
@@ -61,23 +61,9 @@ class _HatimUIState extends State<HatimUI> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          context.read<HatimBloc>().add(const GetHatimDashBoardEvent());
+          context.read<HatimBloc>().add(const GetInitailDataEvent());
         },
-        child: BlocConsumer<HatimBloc, HatimState>(
-          listener: (BuildContext context, HatimState state) {
-            final dashBoadrState = state.dashBoardState;
-            final eventState = state.eventState;
-            final juzsState = state.juzsState;
-            final bloc = context.read<HatimBloc>();
-            if (dashBoadrState is HatimDashBoardFetched && eventState is HatimStateInitial) {
-              bloc.add(ConnectToHatimdEvent(dashBoadrState.data.id));
-            }
-            if (eventState is HatimStateSuccess && juzsState is HatimJuzsInitial) {
-              bloc
-                ..add(GetHatimJuzsEvent(eventState.hatimId))
-                ..add(const GetHatimUserPagesEvent());
-            }
-          },
+        child: BlocBuilder<HatimBloc, HatimState>(
           builder: (context, state) {
             final juzsState = state.juzsState;
             return switch (juzsState) {

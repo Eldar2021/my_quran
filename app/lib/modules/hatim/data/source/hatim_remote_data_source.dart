@@ -14,6 +14,7 @@ class HatimRemoteDataSource {
   final RemoteClient remoteClient;
 
   late final WebSocketChannel channel;
+  bool isInitilized = false;
 
   Future<HatimReadModel> getHatim(String token) async {
     try {
@@ -30,9 +31,12 @@ class HatimRemoteDataSource {
   }
 
   void connectToSocket(String token) {
-    channel = WebSocketChannel.connect(
-      Uri.parse('wss://myquran.life/ws/?token=$token'),
-    );
+    if (!isInitilized) {
+      channel = WebSocketChannel.connect(
+        Uri.parse('wss://myquran.life/ws/?token=$token'),
+      );
+      isInitilized = true;
+    }
   }
 
   void sinkHatimJuzs(String hatimId) {
