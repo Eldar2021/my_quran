@@ -1,16 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
-import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/utils/urils.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -68,31 +64,18 @@ class LoginBody extends StatelessWidget {
         const SizedBox(height: 20),
         CustomButton(
           key: const Key(MqKeys.loginNext),
-          text: loginCubit.state == 0 ? context.l10n.next : context.l10n.start,
+          text: loginCubit.state < 1 ? context.l10n.next : context.l10n.start,
           onPressed: () async {
-            if (loginCubit.state == 0) {
-              context.read<LoginCubit>().change(1);
+            if (loginCubit.state < 1) {
+              final index = loginCubit.state + 1;
+              context.read<LoginCubit>().change(index);
               await controller.animateToPage(
-                1,
+                index,
                 duration: const Duration(milliseconds: 400),
                 curve: Curves.easeInOut,
               );
             } else {
-              unawaited(AppAlert.showLoading<void>(context));
-              await context
-                  .read<AuthCubit>()
-                  .login(
-                    context.read<AppCubit>().state.currentLocale.languageCode,
-                    context.read<AppCubit>().state.gender,
-                  )
-                  .then((value) async {
-                context.pop();
-                if (value.user != null) {
-                  context.goNamed(AppRouter.home);
-                } else {
-                  AppSnackbar.showSnackbar(context, 'Bir kata boldu');
-                }
-              });
+              context.goNamed(AppRouter.loginWihtSoccial);
             }
           },
         ),

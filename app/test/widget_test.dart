@@ -14,6 +14,8 @@ final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
 final class MockRemoteClient extends Mock implements RemoteClient {}
 
+final class MockSccialAuth extends Mock implements SoccialAuth {}
+
 final class MockPackageInfo extends Mock implements PackageInfo {
   @override
   String get version => '1.3.0';
@@ -35,21 +37,26 @@ void main() {
     final remoteClient = MockRemoteClient();
 
     final homeRepo = MockHomeRepositoryImpl();
-    final appLocalDataSource = AppLocalDataSource(storage: storage, packageInfo: packageInfo);
+    final appLocalDataSource = AppLocalDataSource(packageInfo: packageInfo);
     final appRepository = AppRepositoryImpl(appLocalDataSource);
     final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSource(storage));
     final authRepository = AuthRepositoryImpl(
       localDataSource: AuthLocalDataSource(storage),
-      remoteDataSource: AuthRemoteDataSource(client: remoteClient, storage: storage),
+      remoteDataSource: AuthRemoteDataSource(
+        client: remoteClient,
+        storage: storage,
+        soccialAuth: MockSccialAuth(),
+      ),
     );
 
-    final getLocalLocaleUseCase = GetCurrentLocaleUseCase(appRepository);
-    final setLocaleUseCase = SetLocaleUseCase(appRepository);
     final getInitialThemeUseCase = GetAppInitialThemeUseCase(themeRepository);
     final getInitialUserUseCase = GetInitialUserUseCase(authRepository);
 
-    final loginUseCase = LoginUseCase(authRepository);
-    final setGenderUseCase = SetGenderUseCase(authRepository);
+    final googleSignInUseCase = GoogleSignInUseCase(authRepository);
+    final appleSignInUseCase = AppleSignInUseCase(authRepository);
+    final setUserDataUseCase = SerUserDataUseCase(authRepository);
+    final patchLocaleCodeUseCase = PatchLocaleCodeUseCase(authRepository);
+    final pathGenderUseCase = PatchGenderUseCase(authRepository);
     final setModeUseCase = SetModeUseCase(themeRepository);
     final setColorUseCase = SetColorUseCase(themeRepository);
     final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
@@ -61,16 +68,17 @@ void main() {
     when(() => storage.readString(key: StorageKeys.colorKey)).thenReturn(null);
 
     await tester.pumpApp(
-      getLocalLocaleUseCase,
-      setLocaleUseCase,
       getInitialThemeUseCase,
       setModeUseCase,
       setColorUseCase,
       getInitialUserUseCase,
       getAppVersionUseCase,
-      loginUseCase,
-      setGenderUseCase,
+      googleSignInUseCase,
+      appleSignInUseCase,
+      setUserDataUseCase,
       homeRepo,
+      pathGenderUseCase,
+      patchLocaleCodeUseCase,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

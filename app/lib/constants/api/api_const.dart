@@ -7,23 +7,15 @@ class ApiConst {
   final bool isDevmode;
   final String? devDomain;
 
-  static const domain = 'quran.isistant.io';
+  static const domain = 'https://myquran.life';
 
-  String get baseUrl => 'http://$_getDomain/api/v1';
-  String get signUp => '$baseUrl/auth/sign_up';
-  String get home => '$baseUrl/report/dashboard';
-  String get hatim => '$baseUrl/hatim/join_to_hatim';
-
-  String get baseSocket => 'ws://$_getDomain/ws';
-  String juzSocket(String hatimId) => '/topic/$hatimId/list_of_juz';
-  String userPages(String username) => '/topic/$username/user_pages';
-  String getPagesByJuz(String juzId) => '/topic/$juzId/list_of_page';
-  String get setInProgress => '/app/in_progress';
-  String get setBook => '/app/book';
-  String get setTodo => '/app/to_do';
-  String get setDone => '/app/done';
-
-  Map<String, String> authMap(String token) => {'Authorization': 'Bearer $token'};
+  String get socketBase => 'wss://$_getDomain/ws';
+  String get loginWithGoogle => '$_getDomain/api/v1/accounts/google/';
+  String get loginWithApple => '$_getDomain/api/v1/accounts/apple/';
+  String putProfile(String userId) => '$_getDomain/api/v1/accounts/profile/$userId/';
+  String get hatimDashBoard => '$_getDomain/api/v1/hatim/dashboard';
+  String get joinToHatim => '$_getDomain/api/v1/hatim/join_to_hatim';
+  String getSocket(String token) => '$socketBase/?token=$token';
 
   String get _getDomain {
     if (isDevmode && devDomain != null && devDomain!.isNotEmpty) return devDomain!;

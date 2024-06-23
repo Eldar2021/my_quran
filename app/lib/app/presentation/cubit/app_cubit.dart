@@ -9,31 +9,21 @@ part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit({
-    required this.getLocalLocaleUseCase,
-    required this.setLocaleUseCase,
     required this.getInitialThemeUseCase,
     required this.setModeUseCase,
     required this.setColorUseCase,
     required this.getAppVersionUseCase,
   }) : super(
           AppState(
-            getLocalLocaleUseCase.call,
             getInitialThemeUseCase.call,
             getAppVersionUseCase.call,
           ),
         );
 
-  final GetCurrentLocaleUseCase getLocalLocaleUseCase;
-  final SetLocaleUseCase setLocaleUseCase;
   final GetAppInitialThemeUseCase getInitialThemeUseCase;
   final SetModeUseCase setModeUseCase;
   final SetColorUseCase setColorUseCase;
   final GetAppVersionUseCase getAppVersionUseCase;
-
-  Future<void> changeLang(String langKey) async {
-    final local = await setLocaleUseCase(langKey);
-    emit(state.copyWith(currentLocale: local));
-  }
 
   Future<void> changeMode({required bool isDark}) async {
     await setModeUseCase(isDark: isDark);
@@ -49,9 +39,5 @@ class AppCubit extends Cubit<AppState> {
   Future<void> changeColor(int index, Color color) async {
     await setColorUseCase(index, color);
     emit(state.copyWith(theme: state.theme.copyWith(targetColor: color)));
-  }
-
-  Future<void> changeGender(Gender gender) async {
-    emit(state.copyWith(gender: gender));
   }
 }

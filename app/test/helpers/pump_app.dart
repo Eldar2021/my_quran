@@ -7,16 +7,17 @@ import 'package:my_quran/modules/modules.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
-    GetCurrentLocaleUseCase getLocalLocaleUseCase,
-    SetLocaleUseCase setLocaleUseCase,
     GetAppInitialThemeUseCase getInitialThemeUseCase,
     SetModeUseCase setModeUseCase,
     SetColorUseCase setColorUseCase,
     GetInitialUserUseCase getInitialUserUseCase,
     GetAppVersionUseCase getAppVersionUseCase,
-    LoginUseCase loginUseCase,
-    SetGenderUseCase setGenderUseCase,
+    GoogleSignInUseCase googleSignInUseCase,
+    AppleSignInUseCase appleSignInUseCase,
+    SerUserDataUseCase setUserDataUseCase,
     HomeRepository homeRepo,
+    PatchGenderUseCase patchGenderUseCase,
+    PatchLocaleCodeUseCase patchLocaleCodeUseCase,
   ) {
     return pumpWidget(
       RepositoryProvider(
@@ -25,8 +26,6 @@ extension PumpApp on WidgetTester {
           providers: [
             BlocProvider(
               create: (context) => AppCubit(
-                getLocalLocaleUseCase: getLocalLocaleUseCase,
-                setLocaleUseCase: setLocaleUseCase,
                 getInitialThemeUseCase: getInitialThemeUseCase,
                 setModeUseCase: setModeUseCase,
                 setColorUseCase: setColorUseCase,
@@ -36,8 +35,11 @@ extension PumpApp on WidgetTester {
             BlocProvider(
               create: (context) => AuthCubit(
                 getInitialUserUseCase,
-                loginUseCase,
-                setGenderUseCase,
+                googleSignInUseCase,
+                appleSignInUseCase,
+                setUserDataUseCase,
+                patchGenderUseCase,
+                patchLocaleCodeUseCase,
               ),
             ),
             BlocProvider(

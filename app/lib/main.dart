@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_storage/mq_storage.dart';
@@ -52,6 +53,9 @@ Future<void> main({AppConfig? appConfig}) async {
         ),
         RepositoryProvider<RemoteClient>(
           create: (context) => RemoteClient(Client(), context.read<NetworkClient>()),
+        ),
+        RepositoryProvider<SoccialAuth>(
+          create: (context) => SoccialAuth(GoogleSignIn()),
         ),
       ],
       child: const MyApp(),

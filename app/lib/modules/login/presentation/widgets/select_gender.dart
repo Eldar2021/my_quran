@@ -12,7 +12,7 @@ class SelectGender extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final appCubit = context.watch<AppCubit>();
+    final authCubit = context.watch<AuthCubit>();
     return Column(
       children: [
         const SizedBox(height: 30),
@@ -25,14 +25,14 @@ class SelectGender extends StatelessWidget {
         GenderCard(
           Gender.male,
           key: Key(MqKeys.genderName('male')),
-          isSelect: appCubit.state.gender == Gender.male,
-          onTap: () => context.read<AppCubit>().changeGender(Gender.male),
+          isSelect: authCubit.state.gender == Gender.male,
+          onTap: () => context.read<AuthCubit>().saveGender(Gender.male),
         ),
         GenderCard(
           Gender.female,
           key: Key(MqKeys.genderName('female')),
-          isSelect: appCubit.state.gender == Gender.female,
-          onTap: () => context.read<AppCubit>().changeGender(Gender.female),
+          isSelect: authCubit.state.gender == Gender.female,
+          onTap: () => context.read<AuthCubit>().saveGender(Gender.female),
         ),
       ],
     );

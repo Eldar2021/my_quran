@@ -2,7 +2,8 @@
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    // if you run mac m1 and gave error with pod run: sudo arch -x86_64 gem install ffi / arch -x86_64 pod install
+    // sudo arch -x86_64 gem install ffi / arch -x86_64 pod install
+    // sudo gem uninstall ffi && sudo gem install ffi -- --enable-libffi-alloc
     "version": "0.2.0",
     "configurations": [
         {

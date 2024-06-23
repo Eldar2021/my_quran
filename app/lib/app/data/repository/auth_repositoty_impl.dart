@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:meta/meta.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/core/core.dart';
@@ -18,30 +20,86 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> login(String languageCode, Gender gender) async {
+  Future<void> setUserData(UserEntity userEntity) async {
     try {
-      final result = await remoteDataSource.login(languageCode, gender);
-      return result.fold(
-        Left.new,
-        (r) async {
-          return Right(_convertData(r));
-        },
-      );
-    } catch (e) {
-      return Left(e as Exception);
+      await remoteDataSource.saveUserData(userEntity);
+      await localDataSource.saveUserData(userEntity);
+    } catch (e, s) {
+      log('setUserData error $e,\n$s');
     }
   }
 
   @override
-  Future<void> saveGender(Gender gender) async {
-    await localDataSource.saveGender(gender);
+  Future<Either<UserEntity, Exception>> signWithGoogle(
+    String languageCode,
+    Gender gender,
+  ) async {
+    try {
+      final res = await remoteDataSource.signInWithGoogle(languageCode, gender);
+      return res.fold(
+        Left.new,
+        (r) => Right(
+          UserEntity(
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+            localeCode: r.localeCode,
+          ),
+        ),
+      );
+    } catch (e, s) {
+      log('signWithGoogle: error: $e\n$s');
+      return Left(AuthenticationExc(message: e.toString()));
+    }
   }
 
-  UserEntity _convertData(UserModelResponse response) {
-    return UserEntity(
-      accessToken: response.accessToken,
-      username: response.username,
-      gender: response.gender,
-    );
+  @override
+  Future<Either<UserEntity, Exception>> signWithApple(
+    String languageCode,
+    Gender gender,
+  ) async {
+    try {
+      final res = await remoteDataSource.signInWithApple(languageCode, gender);
+      return res.fold(
+        Left.new,
+        (r) => Right(
+          UserEntity(
+            accessToken: '',
+            username: '',
+            gender: gender,
+            localeCode: '',
+          ),
+        ),
+      );
+    } catch (e, s) {
+      log('signWithGoogle: error: $e\n$s');
+      return Left(AuthenticationExc(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<UserDataEntity, Exception>> patchGender({
+    required String userId,
+    required Gender gender,
+  }) async {
+    final res = await remoteDataSource.pathGender(userId: userId, gender: gender);
+    return res.fold(Left.new, (r) async {
+      final entity = UserDataEntity(gender: r.gender, language: r.language);
+      await localDataSource.saveGender(gender);
+      return Right(entity);
+    });
+  }
+
+  @override
+  Future<Either<UserDataEntity, Exception>> patchLocaleCode({
+    required String userId,
+    required String localeCode,
+  }) async {
+    final res = await remoteDataSource.pathLocaleCode(userId: userId, localeCode: localeCode);
+    return res.fold(Left.new, (r) async {
+      final entity = UserDataEntity(gender: r.gender, language: r.language);
+      await localDataSource.saveLocaleCode(localeCode);
+      return Right(entity);
+    });
   }
 }

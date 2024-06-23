@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -21,7 +22,6 @@ class MyApp extends StatelessWidget {
           create: (context) => AppRepositoryImpl(
             AppLocalDataSource(
               packageInfo: context.read<PackageInfo>(),
-              storage: context.read<PreferencesStorage>(),
             ),
           ),
         ),
@@ -32,8 +32,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AppCubit(
-            getLocalLocaleUseCase: GetCurrentLocaleUseCase(context.read<AppRepository>()),
-            setLocaleUseCase: SetLocaleUseCase(context.read<AppRepository>()),
             getInitialThemeUseCase: GetAppInitialThemeUseCase(context.read<ThemeRepository>()),
             setModeUseCase: SetModeUseCase(context.read<ThemeRepository>()),
             setColorUseCase: SetColorUseCase(context.read<ThemeRepository>()),
@@ -48,14 +46,18 @@ class MyApp extends StatelessWidget {
             remoteDataSource: AuthRemoteDataSource(
               client: context.read<RemoteClient>(),
               storage: context.read<PreferencesStorage>(),
+              soccialAuth: context.read<SoccialAuth>(),
             ),
           ),
         ),
         BlocProvider(
           create: (context) => AuthCubit(
             GetInitialUserUseCase(context.read<AuthRepository>()),
-            LoginUseCase(context.read<AuthRepository>()),
-            SetGenderUseCase(context.read<AuthRepository>()),
+            GoogleSignInUseCase(context.read<AuthRepository>()),
+            AppleSignInUseCase(context.read<AuthRepository>()),
+            SerUserDataUseCase(context.read<AuthRepository>()),
+            PatchGenderUseCase(context.read<AuthRepository>()),
+            PatchLocaleCodeUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(
@@ -85,14 +87,16 @@ class QuranApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'MyQuranKhatm',
-      debugShowCheckedModeBanner: false,
-      locale: context.watch<AppCubit>().state.currentLocale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: context.watch<AppCubit>().state.theme.themeData,
-      routerConfig: AppRouter.router,
+    return GlobalLoaderOverlay(
+      child: MaterialApp.router(
+        title: 'MyQuranKhatm',
+        debugShowCheckedModeBanner: false,
+        locale: context.watch<AuthCubit>().state.currentLocale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: context.watch<AppCubit>().state.theme.themeData,
+        routerConfig: AppRouter.router,
+      ),
     );
   }
 }
