@@ -1,9 +1,9 @@
 import 'package:my_quran/modules/modules.dart';
 
-abstract class HatimReadRepository {
+abstract class HatimRepository {
   Future<HatimReadEntity> getHatim(String token);
 
-  void connectToSocket();
+  void connectToSocket(String token);
 
   void sinkHatimJuzs(String hatimId);
 
@@ -19,7 +19,7 @@ abstract class HatimReadRepository {
 
   void sinkDonePages(List<String> pageIds);
 
-  Stream<(HatimResponseType, List<HatimBaseEntity>)> listen();
+  Stream<(HatimResponseType, List<HatimBaseEntity>)> get stream;
 
   Future<void> close();
 }

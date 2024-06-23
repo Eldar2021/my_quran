@@ -19,7 +19,11 @@ class HatimView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HatimBloc(
-        remoteClient: context.read<RemoteClient>(),
+        repo: HatimReadRepositoryImpl(
+          dataSource: HatimRemoteDataSource(
+            remoteClient: context.read<RemoteClient>(),
+          ),
+        ),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetHatimDashBoardEvent()),
       child: const HatimUI(),
@@ -122,7 +126,7 @@ class _HatimUIState extends State<HatimUI> {
 class HatimJuzListBuilder extends StatelessWidget {
   const HatimJuzListBuilder(this.items, {super.key});
 
-  final List<HatimJus> items;
+  final List<HatimJusEntity> items;
 
   @override
   Widget build(BuildContext context) {

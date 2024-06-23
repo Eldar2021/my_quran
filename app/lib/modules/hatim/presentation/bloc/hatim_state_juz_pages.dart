@@ -19,7 +19,7 @@ final class HatimJuzPagesLoading extends HatimJuzPagesState {
 final class HatimJuzPagesFetched extends HatimJuzPagesState {
   const HatimJuzPagesFetched(this.data);
 
-  final List<HatimPages> data;
+  final List<HatimPagesEntity> data;
 }
 
 @immutable

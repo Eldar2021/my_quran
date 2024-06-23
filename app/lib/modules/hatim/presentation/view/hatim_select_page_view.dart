@@ -82,7 +82,7 @@ class HatimJusBottomSheet extends StatelessWidget {
 class HatimPageGridLisrBuilder extends StatelessWidget {
   const HatimPageGridLisrBuilder(this.items, {super.key});
 
-  final List<HatimPages> items;
+  final List<HatimPagesEntity> items;
 
   @override
   Widget build(BuildContext context) {

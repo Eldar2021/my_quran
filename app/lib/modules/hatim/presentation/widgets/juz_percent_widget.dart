@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_quran/modules/hatim/data/model/hatim_juz.dart';
+import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/theme/theme.dart';
 
 class JuzPersentWidget extends StatelessWidget {
   const JuzPersentWidget(this.item, {super.key});
 
-  final HatimJus item;
+  final HatimJusEntity item;
 
   @override
   Widget build(BuildContext context) {

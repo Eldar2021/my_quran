@@ -67,28 +67,7 @@ final class SetDonePagesEvent extends HatimEvent {
 final class ReceidevBaseDataEvent extends HatimEvent {
   const ReceidevBaseDataEvent(this.data);
 
-  final HatimBaseResponse data;
-}
-
-@immutable
-final class ReceidevJuzsDataEvent extends HatimEvent {
-  const ReceidevJuzsDataEvent(this.data);
-
-  final List<dynamic> data;
-}
-
-@immutable
-final class ReceidevUserPagesEvent extends HatimEvent {
-  const ReceidevUserPagesEvent(this.data);
-
-  final List<dynamic> data;
-}
-
-@immutable
-final class ReceidevJuzPagesEvent extends HatimEvent {
-  const ReceidevJuzPagesEvent(this.data);
-
-  final List<dynamic> data;
+  final (HatimResponseType, List<HatimBaseEntity>) data;
 }
 
 final class ResetJuzPagesEvent extends HatimEvent {

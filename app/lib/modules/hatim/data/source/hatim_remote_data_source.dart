@@ -8,12 +8,10 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 class HatimRemoteDataSource {
   HatimRemoteDataSource({
-    required this.token,
     required this.remoteClient,
   });
 
   final RemoteClient remoteClient;
-  final String token;
 
   late final WebSocketChannel channel;
 
@@ -31,7 +29,7 @@ class HatimRemoteDataSource {
     }
   }
 
-  void connectToSocket() {
+  void connectToSocket(String token) {
     channel = WebSocketChannel.connect(
       Uri.parse('wss://myquran.life/ws/?token=$token'),
     );

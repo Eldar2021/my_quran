@@ -1,14 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/hatim/hatim.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 part 'hatim_event.dart';
 part 'hatim_state.dart';
@@ -19,7 +15,7 @@ part 'hatim_state_user_pages.dart';
 
 class HatimBloc extends Bloc<HatimEvent, HatimState> {
   HatimBloc({
-    required this.remoteClient,
+    required this.repo,
     required this.token,
   }) : super(const HatimState()) {
     on<GetHatimDashBoardEvent>(_onGetHatimDashBoardEvent);
@@ -31,41 +27,22 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     on<UnSelectPageEvent>(_onUnSelectPageEvent);
     on<SetInProgressPagesEvent>(_onSetInProgressPagesEvent);
     on<SetDonePagesEvent>(_onSetDonePagesEvent);
-    on<ReceidevBaseDataEvent>(_onReceidevBaseDataEvent);
-    on<ReceidevJuzsDataEvent>(_onReceidevJuzsDataEvent);
-    on<ReceidevUserPagesEvent>(_onReceidevUserPagesEvent);
-    on<ReceidevJuzPagesEvent>(_onReceidevJuzPagesEvent);
     on<ResetJuzPagesEvent>(_onResetJuzPagesEvent);
+    on<ReceidevBaseDataEvent>(_onReceidevBaseDataEvent);
   }
 
-  final RemoteClient remoteClient;
+  final HatimRepository repo;
   final String token;
-
-  late WebSocketChannel channel;
 
   FutureOr<void> _onGetHatimDashBoardEvent(
     GetHatimDashBoardEvent event,
     Emitter<HatimState> emit,
   ) async {
-    final dashBoardState = state.dashBoardState;
-    if (dashBoardState is HatimDashBoardLoading) return;
-    emit(state.copyWith(dashBoardState: const HatimDashBoardLoading()));
     try {
-      final data = await remoteClient.post(
-        apiConst.joinToHatim,
-        fromJson: HatimReadModel.fromJson,
-        token: token,
-      );
-
-      data.fold(
-        (l) {
-          log('_onGetHatimDashBoardEvent: $l');
-          emit(state.copyWith(dashBoardState: HatimDashBoardFailed(l)));
-        },
-        (r) {
-          emit(state.copyWith(dashBoardState: HatimDashBoardFetched(r)));
-        },
-      );
+      if (state.dashBoardState is HatimDashBoardLoading) return;
+      emit(state.copyWith(dashBoardState: const HatimDashBoardLoading()));
+      final data = await repo.getHatim(token);
+      emit(state.copyWith(dashBoardState: HatimDashBoardFetched(data)));
     } catch (e, s) {
       log('_onGetHatimDashBoardEvent: $e\n$s');
       emit(state.copyWith(dashBoardState: HatimDashBoardFailed(Exception(e))));
@@ -76,87 +53,19 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     ConnectToHatimdEvent event,
     Emitter<HatimState> emit,
   ) async {
-    final eventState = state.eventState;
-    if (eventState is HatimStateLoading) return;
+    if (state.eventState is HatimStateLoading) return;
     try {
-      if (eventState is HatimStateInitial) {
-        channel = WebSocketChannel.connect(
-          Uri.parse('wss://myquran.life/ws/?token=$token'),
-        );
+      if (state.eventState is HatimStateInitial) {
+        emit(state.copyWith(eventState: const HatimStateLoading()));
+
+        repo.connectToSocket(token);
+        repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
 
         emit(state.copyWith(eventState: HatimStateSuccess(event.hatimId)));
-
-        channel.stream.listen(
-          (event) async {
-            // log(event.toString());
-            final src = HatimBaseResponse.fromJson(
-              jsonDecode(event as String) as Map<String, dynamic>,
-            );
-            add(ReceidevBaseDataEvent(src));
-          },
-          onError: (Object e) async {
-            log('_onConnectToHatimdEvent listen onError $e');
-          },
-          onDone: () async {
-            log('_onConnectToHatimdEvent listen onDone');
-          },
-          cancelOnError: true,
-        );
       }
     } catch (e, s) {
       log('_onConnectToHatimdEvent: $e\n$s');
       emit(state.copyWith(eventState: HatimStateFailed(Exception(e))));
-    }
-  }
-
-  FutureOr<void> _onReceidevBaseDataEvent(
-    ReceidevBaseDataEvent event,
-    Emitter<HatimState> emit,
-  ) async {
-    final data = event.data.data as List<dynamic>;
-    return switch (event.data.type) {
-      HatimResponseType.listOfJuz => add(ReceidevJuzsDataEvent(data)),
-      HatimResponseType.listOfPage => add(ReceidevJuzPagesEvent(data)),
-      HatimResponseType.userPages => add(ReceidevUserPagesEvent(data)),
-    };
-  }
-
-  FutureOr<void> _onReceidevUserPagesEvent(
-    ReceidevUserPagesEvent event,
-    Emitter<HatimState> emit,
-  ) async {
-    try {
-      final data = event.data.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-      emit(state.copyWith(userPagesState: HatimUserPagesFetched(data)));
-    } catch (e, s) {
-      log('_receivedUserPages: $e\n$s');
-      emit(state.copyWith(userPagesState: HatimUserPagesFailed(Exception(e))));
-    }
-  }
-
-  Future<void> _onReceidevJuzPagesEvent(
-    ReceidevJuzPagesEvent event,
-    Emitter<HatimState> emit,
-  ) async {
-    try {
-      final data = event.data.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-      emit(state.copyWith(juzPagesState: HatimJuzPagesFetched(data)));
-    } catch (e, s) {
-      log('_receivedJuzPages: $e\n$s');
-      emit(state.copyWith(juzPagesState: HatimJuzPagesFailed(Exception(e))));
-    }
-  }
-
-  FutureOr<void> _onReceidevJuzsDataEvent(
-    ReceidevJuzsDataEvent event,
-    Emitter<HatimState> emit,
-  ) async {
-    try {
-      final data = event.data.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
-      emit(state.copyWith(juzsState: HatimJuzsFetched(data)));
-    } catch (e, s) {
-      log('_receivedJuzsData: $e\n$s');
-      emit(state.copyWith(juzsState: HatimJuzsFailed(Exception(e))));
     }
   }
 
@@ -165,17 +74,8 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     Emitter<HatimState> emit,
   ) async {
     if (state.juzsState is HatimJuzsLoading) return;
-    try {
-      emit(state.copyWith(juzsState: const HatimJuzsLoading()));
-      final data = {
-        'type': 'list_of_juz',
-        'hatim_id': event.hatimId,
-      };
-      channel.sink.add(json.encode(data));
-    } catch (e, s) {
-      log('_onGetHatimJuzsEvent: $e\n$s');
-      emit(state.copyWith(juzsState: HatimJuzsFailed(Exception(e))));
-    }
+    emit(state.copyWith(juzsState: const HatimJuzsLoading()));
+    repo.sinkHatimJuzs(event.hatimId);
   }
 
   FutureOr<void> _onGetHatimUserPagesEvent(
@@ -183,16 +83,8 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     Emitter<HatimState> emit,
   ) async {
     if (state.userPagesState is HatimUserPagesLoading) return;
-    try {
-      emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
-      final data = {
-        'type': 'user_pages',
-      };
-      channel.sink.add(jsonEncode(data));
-    } catch (e, s) {
-      log('_onGetHatimUserPagesEvent: $e\n$s');
-      emit(state.copyWith(userPagesState: HatimUserPagesFailed(Exception(e))));
-    }
+    emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
+    repo.sinkHatimUserPages();
   }
 
   FutureOr<void> _onGetHatimJuzPagesEvent(
@@ -200,81 +92,36 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     Emitter<HatimState> emit,
   ) async {
     if (state.juzPagesState is HatimJuzPagesLoading) return;
-    try {
-      emit(state.copyWith(juzPagesState: const HatimJuzPagesLoading()));
-      final data = {
-        'type': 'list_of_page',
-        'juz_id': event.juzId,
-      };
-      channel.sink.add(jsonEncode(data));
-    } catch (e, s) {
-      log('_onGetHatimJuzPagesEvent: $e\n$s');
-      emit(state.copyWith(juzPagesState: HatimJuzPagesFailed(Exception(e))));
-    }
+    emit(state.copyWith(juzPagesState: const HatimJuzPagesLoading()));
+    repo.sinkHatimJuzPages(event.juzId);
   }
 
   FutureOr<void> _onSelectPageEvent(
     SelectPageEvent event,
     Emitter<HatimState> emit,
   ) async {
-    try {
-      final data = {
-        'type': 'book',
-        'pageId': event.pageId,
-      };
-      channel.sink.add(jsonEncode(data));
-    } catch (e, s) {
-      log('_onSelectPageEvent: $e\n$s');
-      emit(state.copyWith(userPagesState: HatimUserPagesFailed(Exception(e))));
-    }
+    repo.sinkSelectPage(event.pageId);
   }
 
   FutureOr<void> _onUnSelectPageEvent(
     UnSelectPageEvent event,
     Emitter<HatimState> emit,
   ) async {
-    try {
-      final data = {
-        'type': 'to_do',
-        'pageId': event.pageId,
-      };
-      channel.sink.add(jsonEncode(data));
-    } catch (e, s) {
-      log('_onUnSelectPageEvent: $e\n$s');
-      emit(state.copyWith(userPagesState: HatimUserPagesFailed(Exception(e))));
-    }
+    repo.sinkUnSelectPage(event.pageId);
   }
 
   FutureOr<void> _onSetInProgressPagesEvent(
     SetInProgressPagesEvent event,
     Emitter<HatimState> emit,
   ) async {
-    try {
-      final data = {
-        'type': 'in_progress',
-        'pageIds': event.pageIds,
-      };
-      channel.sink.add(jsonEncode(data));
-    } catch (e, s) {
-      log('_onSetInProgressPagesEvent: $e\n$s');
-      emit(state.copyWith(userPagesState: HatimUserPagesFailed(Exception(e))));
-    }
+    repo.sinkInProgressPages(event.pageIds);
   }
 
   FutureOr<void> _onSetDonePagesEvent(
     SetDonePagesEvent event,
     Emitter<HatimState> emit,
   ) async {
-    try {
-      final data = {
-        'type': 'done',
-        'pageIds': event.pageIds,
-      };
-      channel.sink.add(jsonEncode(data));
-    } catch (e, s) {
-      log('_onSetDonePagesEvent: $e\n$s');
-      emit(state.copyWith(userPagesState: HatimUserPagesFailed(Exception(e))));
-    }
+    repo.sinkDonePages(event.pageIds);
   }
 
   FutureOr<void> _onResetJuzPagesEvent(
@@ -282,5 +129,27 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     Emitter<HatimState> emit,
   ) {
     emit(state.copyWith(juzPagesState: const HatimJuzPagesInitial()));
+  }
+
+  FutureOr<void> _onReceidevBaseDataEvent(
+    ReceidevBaseDataEvent event,
+    Emitter<HatimState> emit,
+  ) {
+    final src = event.data;
+    final newState = switch (src.$1) {
+      HatimResponseType.listOfJuz => state.copyWith(juzsState: HatimJuzsFetched(src.$2 as List<HatimJusEntity>)),
+      HatimResponseType.listOfPage =>
+        state.copyWith(juzPagesState: HatimJuzPagesFetched(src.$2 as List<HatimPagesEntity>)),
+      HatimResponseType.userPages =>
+        state.copyWith(userPagesState: HatimUserPagesFetched(src.$2 as List<HatimPagesEntity>)),
+    };
+
+    emit(newState);
+  }
+
+  @override
+  Future<void> close() {
+    repo.close();
+    return super.close();
   }
 }

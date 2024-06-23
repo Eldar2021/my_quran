@@ -19,7 +19,7 @@ final class HatimDashBoardLoading extends HatimDashBoardState {
 final class HatimDashBoardFetched extends HatimDashBoardState {
   const HatimDashBoardFetched(this.data);
 
-  final HatimReadModel data;
+  final HatimReadEntity data;
 }
 
 @immutable

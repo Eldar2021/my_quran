@@ -19,7 +19,7 @@ final class HatimUserPagesLoading extends HatimUserPagesState {
 final class HatimUserPagesFetched extends HatimUserPagesState {
   const HatimUserPagesFetched(this.data);
 
-  final List<HatimPages> data;
+  final List<HatimPagesEntity> data;
 }
 
 @immutable

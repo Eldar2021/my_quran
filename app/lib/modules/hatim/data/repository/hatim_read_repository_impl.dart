@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:my_quran/modules/modules.dart';
 
 @immutable
-final class HatimReadRepositoryImpl implements HatimReadRepository {
+final class HatimReadRepositoryImpl implements HatimRepository {
   const HatimReadRepositoryImpl({required this.dataSource});
 
   final HatimRemoteDataSource dataSource;
@@ -17,12 +17,12 @@ final class HatimReadRepositoryImpl implements HatimReadRepository {
   }
 
   @override
-  void connectToSocket() {
-    dataSource.connectToSocket();
+  void connectToSocket(String token) {
+    dataSource.connectToSocket(token);
   }
 
   @override
-  Stream<(HatimResponseType, List<HatimBaseEntity>)> listen() {
+  Stream<(HatimResponseType, List<HatimBaseEntity>)> get stream {
     return dataSource.stream.map((data) {
       final src = HatimBaseResponse.fromJson(
         jsonDecode(data as String) as Map<String, dynamic>,
