@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/theme/theme.dart';
 
 part 'hatim_page.g.dart';
@@ -11,7 +12,7 @@ class HatimPages {
     required this.id,
     required this.status,
     required this.number,
-    this.mine,
+    required this.mine,
   });
 
   factory HatimPages.fromJson(Map<String, dynamic> json) => _$HatimPagesFromJson(json);
@@ -20,7 +21,16 @@ class HatimPages {
   final String id;
   final int number;
   final HatimPageStatus status;
-  final bool? mine;
+  final bool mine;
+
+  HatimPagesEntity get entity {
+    return HatimPagesEntity(
+      id: id,
+      status: status,
+      number: number,
+      mine: mine,
+    );
+  }
 }
 
 enum HatimPageStatus {

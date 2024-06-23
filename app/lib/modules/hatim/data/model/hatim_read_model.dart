@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_quran/modules/hatim/hatim.dart';
 
 part 'hatim_read_model.g.dart';
 
@@ -16,4 +17,12 @@ class HatimReadModel {
   final String id;
   final String status;
   final String type;
+
+  HatimReadEntity get toEntity {
+    return HatimReadEntity(
+      id: id,
+      status: status,
+      type: type,
+    );
+  }
 }

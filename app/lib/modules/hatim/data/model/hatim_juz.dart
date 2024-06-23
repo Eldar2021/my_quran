@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_quran/modules/modules.dart';
 
 part 'hatim_juz.g.dart';
 
@@ -22,6 +23,17 @@ class HatimJus {
   final int toDo;
   final int inProgress;
   final int done;
+
+  HatimJusEntity get entity {
+    return HatimJusEntity(
+      id: id,
+      status: status,
+      number: number,
+      toDo: toDo,
+      inProgress: inProgress,
+      done: done,
+    );
+  }
 
   double get toDoPercent => (toDo * 100) / (toDo + inProgress + done);
   double get inProgressPercent => (inProgress * 100) / (toDo + inProgress + done);

@@ -1,6 +1,6 @@
 import 'package:my_quran/modules/modules.dart';
 
-class HatimPagesEntity {
+class HatimPagesEntity implements HatimBaseEntity {
   const HatimPagesEntity({
     required this.id,
     required this.status,

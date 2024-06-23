@@ -95,7 +95,7 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
             (e) => HatimPageStatusCard(
               status: e.status,
               pageNumber: e.number,
-              isMine: e.mine ?? false,
+              isMine: e.mine,
               onTap: e.status.isActive
                   ? () {
                       final bloc = context.read<HatimBloc>();
