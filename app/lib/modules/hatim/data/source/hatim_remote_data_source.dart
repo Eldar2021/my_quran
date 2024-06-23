@@ -33,7 +33,7 @@ class HatimRemoteDataSource {
   void connectToSocket(String token) {
     if (!isInitilized) {
       channel = WebSocketChannel.connect(
-        Uri.parse('wss://myquran.life/ws/?token=$token'),
+        Uri.parse(apiConst.getSocket(token)),
       );
       isInitilized = true;
     }
