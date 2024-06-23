@@ -9,27 +9,22 @@ import 'package:my_quran/modules/modules.dart';
 part 'quran_audio_state.dart';
 
 class QuranAudioCubit extends Cubit<QuranAudioState> {
-  QuranAudioCubit(this.player, this.networkClient) : super(QuranAudioState());
+  QuranAudioCubit(
+    this.player,
+    this.networkClient,
+    this.getSurahsUseCase,
+  ) : super(QuranAudioState());
 
   final AudioPlayer player;
   final NetworkClient networkClient;
   late final Stream<SequenceState?> sequenceStateStream;
   late final Stream<PlayerState> playerStateStream;
+  final GetAudioSurahsUseCase getSurahsUseCase;
   late final List<SurahEntity> surahs;
-
-  SurahEntity _convertData(SurahResponse response) {
-    return SurahEntity(
-      id: response.id,
-      name: response.name,
-      aya: response.aya,
-      pages: response.pages,
-      arabic: response.arabic,
-    );
-  }
 
   Future<void> init() async {
     try {
-      surahs = surahData.map((surahResponse) => _convertData(SurahResponse.fromJson(surahResponse))).toList();
+      surahs = getSurahsUseCase();
       sequenceStateStream = player.sequenceStateStream;
       playerStateStream = player.playerStateStream;
       final playList = ConcatenatingAudioSource(

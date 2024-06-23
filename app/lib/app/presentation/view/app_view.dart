@@ -72,6 +72,11 @@ class MyApp extends StatelessWidget {
           create: (context) => QuranAudioCubit(
             AudioPlayer(),
             context.read<NetworkClient>(),
+            GetAudioSurahsUseCase(
+              QuranAudioRepositoryImpl(
+                QuranAudioDataSource(),
+              ),
+            ),
           )..init(),
         ),
       ],
