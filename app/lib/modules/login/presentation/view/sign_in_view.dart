@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,6 +21,7 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isIntegrationTest = const AppConfig().isIntegrationTest;
     return Scaffold(
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
@@ -51,8 +53,19 @@ class SignInView extends StatelessWidget {
               icon: const Icon(FontAwesomeIcons.google),
               onPressed: () async {
                 unawaited(AppAlert.showLoading(context));
-                await context.read<AuthCubit>().signInWithGoogle();
-                if (context.mounted) Navigator.pop(context);
+                if (isIntegrationTest) {
+                  try {
+                    await FirebaseAuth.instance.signInWithCustomToken('932f9a2fc49147fdcd571521d49852e7233f0046');
+                    // ignore: use_build_context_synchronously
+                    context.goNamed(AppRouter.home);
+                  } catch (e) {
+                    // ignore: use_build_context_synchronously
+                    AppAlert.showErrorDialog(context, errorText: e.toString());
+                  }
+                } else {
+                  await context.read<AuthCubit>().signInWithGoogle();
+                  if (context.mounted) context.loaderOverlay.hide();
+                }
               },
               text: context.l10n.google,
             ),
@@ -66,9 +79,20 @@ class SignInView extends StatelessWidget {
             CustomButtonWithIcon(
               icon: const Icon(FontAwesomeIcons.apple),
               onPressed: () async {
-                context.loaderOverlay.show();
-                await context.read<AuthCubit>().signInWithApple();
-                if (context.mounted) context.loaderOverlay.hide();
+                unawaited(AppAlert.showLoading(context));
+                if (isIntegrationTest) {
+                  try {
+                    await FirebaseAuth.instance.signInWithCustomToken('932f9a2fc49147fdcd571521d49852e7233f0046');
+                    // ignore: use_build_context_synchronously
+                    context.goNamed(AppRouter.home);
+                  } catch (e) {
+                    // ignore: use_build_context_synchronously
+                    AppAlert.showErrorDialog(context, errorText: e.toString());
+                  }
+                } else {
+                  await context.read<AuthCubit>().signInWithApple();
+                  if (context.mounted) context.loaderOverlay.hide();
+                }
               },
               text: context.l10n.apple,
             ),
