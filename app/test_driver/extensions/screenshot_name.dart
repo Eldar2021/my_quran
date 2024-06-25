@@ -4,6 +4,9 @@ class Screenshots {
   static const loginLangKyPage = '002-login-language-page-ky';
   static const loginGenderMalePage = '003-login-gender-page-male';
   static const loginGenderFemalePage = '004-login-gender-page-male';
+  static const loginGooglePage = '005-login-google-page';
+  static const loginApplePage = '006-login-apple-page';
+
 
   /// 21-40 home
   static const homeInit = '021-home-init';

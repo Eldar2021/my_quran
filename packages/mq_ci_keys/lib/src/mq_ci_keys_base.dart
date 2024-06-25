@@ -3,6 +3,7 @@ final class MqKeys {
   static const loginSelectLeng = 'login-select-lang';
   static const loginNext = 'login-next';
   static const loginSelectGender = 'login-select-gender';
+  static const loginGoogleApple = 'login-google-apple';
 
   // home
   static const home = 'home';
@@ -64,6 +65,10 @@ final class MqKeys {
   // gender
   static const gender = 'gender';
   static String genderName(String name) => 'gender-$name';
+
+  // login type
+  static const loginType = 'login';
+  static String loginTypeName(String name) => 'loginType-$name';
 
   // language
   static const language = 'language';

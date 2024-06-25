@@ -49,7 +49,7 @@ final class AuthRemoteDataSource {
     final token = await client.post(
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
-      body: {'identity_token': appleAuth.credential?.accessToken},
+      body: {'access_token': appleAuth.credential?.accessToken},
     );
 
     return token.fold(Left.new, (r) async {

@@ -64,10 +64,10 @@ final class AuthRepositoryImpl implements AuthRepository {
         Left.new,
         (r) => Right(
           UserEntity(
-            accessToken: '',
-            username: '',
-            gender: gender,
-            localeCode: '',
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+            localeCode: r.localeCode,
           ),
         ),
       );

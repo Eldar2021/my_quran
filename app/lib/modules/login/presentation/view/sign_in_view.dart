@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 
 import 'package:my_quran/components/components.dart';
@@ -21,7 +21,6 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isIntegrationTest = const AppConfig().isIntegrationTest;
     return Scaffold(
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
@@ -50,17 +49,21 @@ class SignInView extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             CustomButtonWithIcon(
+              key: Key(MqKeys.loginTypeName('google')),
               icon: const Icon(FontAwesomeIcons.google),
               onPressed: () async {
                 unawaited(AppAlert.showLoading(context));
-                if (isIntegrationTest) {
-                  try {
-                    await FirebaseAuth.instance.signInWithCustomToken('932f9a2fc49147fdcd571521d49852e7233f0046');
+                if (RepositoryProvider.of<AppConfig>(context).isIntegrationTest) {
+                  {
                     // ignore: use_build_context_synchronously
-                    context.goNamed(AppRouter.home);
-                  } catch (e) {
-                    // ignore: use_build_context_synchronously
-                    AppAlert.showErrorDialog(context, errorText: e.toString());
+                    context.read<AuthCubit>().state.copyWith(
+                          user: const UserEntity(
+                            accessToken: '932f9a2fc49147fdcd571521d49852e7233f0046',
+                            username: 'quran@gmail.com',
+                            gender: Gender.male,
+                            localeCode: 'en',
+                          ),
+                        );
                   }
                 } else {
                   await context.read<AuthCubit>().signInWithGoogle();
@@ -77,17 +80,20 @@ class SignInView extends StatelessWidget {
             ),
             const SizedBox(height: 33),
             CustomButtonWithIcon(
+              key: Key(MqKeys.loginTypeName('apple')),
               icon: const Icon(FontAwesomeIcons.apple),
               onPressed: () async {
                 unawaited(AppAlert.showLoading(context));
-                if (isIntegrationTest) {
-                  try {
-                    await FirebaseAuth.instance.signInWithCustomToken('932f9a2fc49147fdcd571521d49852e7233f0046');
-                    // ignore: use_build_context_synchronously
-                    context.goNamed(AppRouter.home);
-                  } catch (e) {
-                    // ignore: use_build_context_synchronously
-                    AppAlert.showErrorDialog(context, errorText: e.toString());
+                if (RepositoryProvider.of<AppConfig>(context).isIntegrationTest) {
+                  {
+                     context.read<AuthCubit>().state.copyWith(
+                          user: const UserEntity(
+                            accessToken: '932f9a2fc49147fdcd571521d49852e7233f0046',
+                            username: 'quran@gmail.com',
+                            gender: Gender.male,
+                            localeCode: 'en',
+                          ),
+                        );
                   }
                 } else {
                   await context.read<AuthCubit>().signInWithApple();
