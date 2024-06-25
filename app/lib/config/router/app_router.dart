@@ -56,7 +56,9 @@ final class AppRouter {
       GoRoute(
         path: '/$loginWihtSoccial',
         name: loginWihtSoccial,
-        builder: (context, state) => const SignInView(key: Key(MqKeys.loginGoogleApple),),
+        builder: (context, state) => const SignInView(
+          key: Key(MqKeys.loginGoogleApple),
+        ),
       ),
       GoRoute(
         path: '/$devModeView',

@@ -86,7 +86,7 @@ class SignInView extends StatelessWidget {
                 unawaited(AppAlert.showLoading(context));
                 if (RepositoryProvider.of<AppConfig>(context).isIntegrationTest) {
                   {
-                     context.read<AuthCubit>().state.copyWith(
+                    context.read<AuthCubit>().state.copyWith(
                           user: const UserEntity(
                             accessToken: '932f9a2fc49147fdcd571521d49852e7233f0046',
                             username: 'quran@gmail.com',

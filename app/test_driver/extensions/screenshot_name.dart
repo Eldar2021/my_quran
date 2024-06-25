@@ -7,7 +7,6 @@ class Screenshots {
   static const loginGooglePage = '005-login-google-page';
   static const loginApplePage = '006-login-apple-page';
 
-
   /// 21-40 home
   static const homeInit = '021-home-init';
 
