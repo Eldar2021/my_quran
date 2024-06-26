@@ -8,13 +8,21 @@ on:
 
 jobs:
   integration_test_android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.19.5"
           channel: stable
+
       - uses: actions/setup-java@v3
         with:
           java-version: "17"
