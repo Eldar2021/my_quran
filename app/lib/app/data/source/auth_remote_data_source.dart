@@ -21,16 +21,27 @@ final class AuthRemoteDataSource {
     String languageCode,
     Gender gender,
   ) async {
-    final googleAuth = await soccialAuth.signInWithGoogle();
-    final token = await client.post(
+    Either<TokenResponse, Exception> token;
+    String username;
+    String accessToken;
+
+    if (const AppConfig().isIntegrationTest) {
+      accessToken = 'test@gmail.com';
+      username = 'Test User';
+    } else {
+      final googleAuth = await soccialAuth.signInWithGoogle();
+      accessToken = googleAuth.credential?.accessToken ?? '';
+      username = googleAuth.user?.displayName ?? '';
+    }
+    token = await client.post(
       apiConst.loginWithGoogle,
       fromJson: TokenResponse.fromJson,
-      body: {'access_token': googleAuth.credential?.accessToken},
+      body: {'access_token': accessToken},
     );
     return token.fold(Left.new, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
-        username: googleAuth.user?.displayName ?? '',
+        username: username,
         gender: gender,
         localeCode: languageCode,
       );
@@ -45,20 +56,33 @@ final class AuthRemoteDataSource {
     String languageCode,
     Gender gender,
   ) async {
-    final appleAuth = await soccialAuth.signInWithApple();
-    final token = await client.post(
+    Either<TokenResponse, Exception> token;
+    String username;
+    String accessToken;
+
+    if (const AppConfig().isIntegrationTest) {
+      accessToken = 'test@gmail.com';
+      username = 'Test User';
+    } else {
+      final appleAuth = await soccialAuth.signInWithApple();
+      accessToken = appleAuth.credential?.accessToken ?? '';
+      username = appleAuth.user?.displayName ?? '';
+    }
+
+    token = await client.post(
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
-      body: {'access_token': appleAuth.credential?.accessToken},
+      body: {'access_token': accessToken},
     );
 
     return token.fold(Left.new, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
-        username: appleAuth.user?.displayName ?? '',
+        username: username,
         gender: gender,
         localeCode: languageCode,
       );
+
       await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
 
       return Right(user);

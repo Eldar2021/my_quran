@@ -39,36 +39,22 @@ class SignInView extends StatelessWidget {
           children: [
             const SizedBox(height: 70),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
               child: Assets.images.splash.image(),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 32),
             Text(
-              context.l10n.welcome,
-              style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 50),
+              '${context.l10n.welcome} !',
+              style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             CustomButtonWithIcon(
               key: Key(MqKeys.loginTypeName('google')),
               icon: const Icon(FontAwesomeIcons.google),
               onPressed: () async {
                 unawaited(AppAlert.showLoading(context));
-                if (RepositoryProvider.of<AppConfig>(context).isIntegrationTest) {
-                  {
-                    // ignore: use_build_context_synchronously
-                    context.read<AuthCubit>().state.copyWith(
-                          user: const UserEntity(
-                            accessToken: '932f9a2fc49147fdcd571521d49852e7233f0046',
-                            username: 'quran@gmail.com',
-                            gender: Gender.male,
-                            localeCode: 'en',
-                          ),
-                        );
-                  }
-                } else {
-                  await context.read<AuthCubit>().signInWithGoogle();
-                  if (context.mounted) context.loaderOverlay.hide();
-                }
+                await context.read<AuthCubit>().signInWithGoogle();
+                if (context.mounted) context.loaderOverlay.hide();
               },
               text: context.l10n.google,
             ),
@@ -84,21 +70,8 @@ class SignInView extends StatelessWidget {
               icon: const Icon(FontAwesomeIcons.apple),
               onPressed: () async {
                 unawaited(AppAlert.showLoading(context));
-                if (RepositoryProvider.of<AppConfig>(context).isIntegrationTest) {
-                  {
-                    context.read<AuthCubit>().state.copyWith(
-                          user: const UserEntity(
-                            accessToken: '932f9a2fc49147fdcd571521d49852e7233f0046',
-                            username: 'quran@gmail.com',
-                            gender: Gender.male,
-                            localeCode: 'en',
-                          ),
-                        );
-                  }
-                } else {
-                  await context.read<AuthCubit>().signInWithApple();
-                  if (context.mounted) context.loaderOverlay.hide();
-                }
+                await context.read<AuthCubit>().signInWithApple();
+                if (context.mounted) context.loaderOverlay.hide();
               },
               text: context.l10n.apple,
             ),
