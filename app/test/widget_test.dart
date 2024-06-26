@@ -46,6 +46,7 @@ void main() {
         client: remoteClient,
         storage: storage,
         soccialAuth: MockSccialAuth(),
+        isIntegrationTest: true,
       ),
     );
 

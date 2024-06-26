@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
@@ -56,9 +55,7 @@ final class AppRouter {
       GoRoute(
         path: '/$loginWihtSoccial',
         name: loginWihtSoccial,
-        builder: (context, state) => const SignInView(
-          key: Key(MqKeys.loginGoogleApple),
-        ),
+        builder: (context, state) => const SignInView(),
       ),
       GoRoute(
         path: '/$devModeView',

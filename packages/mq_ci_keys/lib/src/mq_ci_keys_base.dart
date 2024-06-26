@@ -3,7 +3,7 @@ final class MqKeys {
   static const loginSelectLeng = 'login-select-lang';
   static const loginNext = 'login-next';
   static const loginSelectGender = 'login-select-gender';
-  static const loginGoogleApple = 'login-google-apple';
+  static const signInView = 'sign-in-view';
 
   // home
   static const home = 'home';

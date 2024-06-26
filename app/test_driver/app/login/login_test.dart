@@ -20,11 +20,10 @@ Future<void> selectGender(FlutterDriver driver) async {
 }
 
 Future<void> loginWithGoogleApple(FlutterDriver driver) async {
-  await driver.waitFor(find.byValueKey(MqKeys.loginGoogleApple));
+  await driver.waitFor(find.byValueKey(MqKeys.signInView));
   await driver.tap(find.byValueKey(MqKeys.loginTypeName('google')));
   await driver.takeScreenshot(Screenshots.loginApplePage);
-  await driver.tap(find.byValueKey(MqKeys.loginTypeName('apple')));
-  await driver.takeScreenshot(Screenshots.loginGooglePage);
+  await Future<void>.delayed(const Duration(seconds: 1));
 }
 
 Future<void> loginNext(FlutterDriver driver) async {

@@ -11,37 +11,30 @@ final class AuthRemoteDataSource {
     required this.client,
     required this.storage,
     required this.soccialAuth,
+    required this.isIntegrationTest,
   });
 
   final RemoteClient client;
   final PreferencesStorage storage;
   final SoccialAuth soccialAuth;
+  final bool isIntegrationTest;
 
   Future<Either<UserModelResponse, Exception>> signInWithGoogle(
     String languageCode,
     Gender gender,
   ) async {
-    Either<TokenResponse, Exception> token;
-    String username;
-    String accessToken;
+    final googleAuth = await _getGoogleAuth();
 
-    if (const AppConfig().isIntegrationTest) {
-      accessToken = 'test@gmail.com';
-      username = 'Test User';
-    } else {
-      final googleAuth = await soccialAuth.signInWithGoogle();
-      accessToken = googleAuth.credential?.accessToken ?? '';
-      username = googleAuth.user?.displayName ?? '';
-    }
-    token = await client.post(
+    final token = await client.post(
       apiConst.loginWithGoogle,
       fromJson: TokenResponse.fromJson,
-      body: {'access_token': accessToken},
+      body: {'access_token': googleAuth.accessToken},
     );
+
     return token.fold(Left.new, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
-        username: username,
+        username: googleAuth.name,
         gender: gender,
         localeCode: languageCode,
       );
@@ -52,33 +45,39 @@ final class AuthRemoteDataSource {
     });
   }
 
+  Future<_UserReqParam> _getGoogleAuth() async {
+    if (isIntegrationTest) {
+      return const _UserReqParam(
+        name: 'Test User',
+        accessToken: r'myquran_te$t_t0ken',
+      );
+    } else {
+      final googleAuth = await soccialAuth.signInWithGoogle();
+      final accessToken = googleAuth.credential?.accessToken ?? '';
+      final username = googleAuth.user?.displayName ?? '';
+      return _UserReqParam(
+        name: username,
+        accessToken: accessToken,
+      );
+    }
+  }
+
   Future<Either<UserModelResponse, Exception>> signInWithApple(
     String languageCode,
     Gender gender,
   ) async {
-    Either<TokenResponse, Exception> token;
-    String username;
-    String accessToken;
+    final appleAuth = await _getAppleAuth();
 
-    if (const AppConfig().isIntegrationTest) {
-      accessToken = 'test@gmail.com';
-      username = 'Test User';
-    } else {
-      final appleAuth = await soccialAuth.signInWithApple();
-      accessToken = appleAuth.credential?.accessToken ?? '';
-      username = appleAuth.user?.displayName ?? '';
-    }
-
-    token = await client.post(
+    final token = await client.post(
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
-      body: {'access_token': accessToken},
+      body: {'access_token': appleAuth.accessToken},
     );
 
     return token.fold(Left.new, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
-        username: username,
+        username: appleAuth.name,
         gender: gender,
         localeCode: languageCode,
       );
@@ -87,6 +86,23 @@ final class AuthRemoteDataSource {
 
       return Right(user);
     });
+  }
+
+  Future<_UserReqParam> _getAppleAuth() async {
+    if (isIntegrationTest) {
+      return const _UserReqParam(
+        name: 'Test User',
+        accessToken: r'myquran_te$t_t0ken',
+      );
+    } else {
+      final appleAuth = await soccialAuth.signInWithApple();
+      final accessToken = appleAuth.credential?.accessToken ?? '';
+      final username = appleAuth.user?.displayName ?? '';
+      return _UserReqParam(
+        name: username,
+        accessToken: accessToken,
+      );
+    }
   }
 
   Future<Either<UserDataResponse, Exception>> saveUserData(UserEntity userEntity) {
@@ -124,4 +140,15 @@ final class AuthRemoteDataSource {
       token: userId,
     );
   }
+}
+
+@immutable
+final class _UserReqParam {
+  const _UserReqParam({
+    required this.name,
+    required this.accessToken,
+  });
+
+  final String name;
+  final String accessToken;
 }
