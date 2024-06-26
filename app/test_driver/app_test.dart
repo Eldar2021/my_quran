@@ -31,6 +31,10 @@ void main() async {
     test('create-account', () async {
       await loginNext(driver);
     });
+
+    test('sign-in-with-google-account', () async {
+      await loginWithGoogleApple(driver);
+    });
   });
 
   group('Home', () {

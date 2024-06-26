@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
 class SoccialAuth {
@@ -25,13 +26,21 @@ class SoccialAuth {
   }
 
   Future<UserCredential> signInWithApple() async {
-    final appleProvider = AppleAuthProvider()
-      ..addScope('email')
-      ..addScope('name');
-    if (kIsWeb) {
-      return FirebaseAuth.instance.signInWithPopup(appleProvider);
-    } else {
-      return FirebaseAuth.instance.signInWithProvider(appleProvider);
+    try {
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+      final oauthCredential = OAuthProvider('apple.com').credential(
+        idToken: appleCredential.identityToken,
+        accessToken: appleCredential.authorizationCode,
+      );
+      final userCredential = FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      return userCredential;
+    } catch (e) {
+      rethrow;
     }
   }
 }

@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
               client: context.read<RemoteClient>(),
               storage: context.read<PreferencesStorage>(),
               soccialAuth: context.read<SoccialAuth>(),
+              isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
             ),
           ),
         ),

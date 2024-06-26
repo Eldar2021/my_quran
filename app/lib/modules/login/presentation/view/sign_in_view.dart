@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 
 import 'package:my_quran/components/components.dart';
@@ -21,6 +22,7 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key(MqKeys.signInView),
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
@@ -38,21 +40,22 @@ class SignInView extends StatelessWidget {
           children: [
             const SizedBox(height: 70),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
               child: Assets.images.splash.image(),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 32),
             Text(
-              context.l10n.welcome,
-              style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 50),
+              '${context.l10n.welcome} !',
+              style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             CustomButtonWithIcon(
+              key: Key(MqKeys.loginTypeName('google')),
               icon: const Icon(FontAwesomeIcons.google),
               onPressed: () async {
                 unawaited(AppAlert.showLoading(context));
                 await context.read<AuthCubit>().signInWithGoogle();
-                if (context.mounted) Navigator.pop(context);
+                if (context.mounted) context.loaderOverlay.hide();
               },
               text: context.l10n.google,
             ),
@@ -64,9 +67,10 @@ class SignInView extends StatelessWidget {
             ),
             const SizedBox(height: 33),
             CustomButtonWithIcon(
+              key: Key(MqKeys.loginTypeName('apple')),
               icon: const Icon(FontAwesomeIcons.apple),
               onPressed: () async {
-                context.loaderOverlay.show();
+                unawaited(AppAlert.showLoading(context));
                 await context.read<AuthCubit>().signInWithApple();
                 if (context.mounted) context.loaderOverlay.hide();
               },
