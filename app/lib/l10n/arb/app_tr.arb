@@ -75,5 +75,10 @@
     "surah": "Sure",
     "surahs": "Sureler",
     "welcome": "Hoş geldiniz",
-    "version": "Sürüm"
+    "version": "Sürüm",
+    "salam": "Selamun aleyküm",
+    "signOut": "Çıkış yap",
+    "signOutContext": "Çıkış yapmak istediğinizden emin misiniz?",
+    "yes": "Evet",
+    "no": "Hayır"
 }

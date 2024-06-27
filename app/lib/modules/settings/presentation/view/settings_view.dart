@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
-
+  const SettingsView({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -17,10 +21,39 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsView),
-        title: InkWell(
-          onLongPress: () => context.pushNamed(AppRouter.devModeView),
-          child: Text(l10n.profileSettings),
+        title: Text(
+          '${l10n.salam} ${authCubit.state.user?.username}!',
+          style: context.titleSmall,
         ),
+        actions: [
+          BlocListener<AuthCubit, AuthState>(
+            listener: (context, state) {
+              if (!state.isAuthedticated) {
+                context.go('/login');
+              }
+            },
+            child: IconButton(
+              key: const Key(MqKeys.logoutButton),
+              onPressed: () {
+                // ignore: inference_failure_on_function_invocation
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ConfirmationWidget(
+                      key: const Key(MqKeys.confirmLogoutButton),
+                      onPressed: authCubit.logout,
+                    );
+                  },
+                );
+              },
+              icon: const Icon(
+                FontAwesomeIcons.arrowRightFromBracket,
+                size: 18,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView(
         children: [
@@ -80,7 +113,10 @@ class SettingsView extends StatelessWidget {
           ),
           ListTile(
             title: Text(context.l10n.version),
-            trailing: Text(context.watch<AppCubit>().state.appVersion),
+            trailing: InkWell(
+              onLongPress: () => context.pushNamed(AppRouter.devModeView),
+              child: Text(context.watch<AppCubit>().state.appVersion),
+            ),
           ),
         ],
       ),

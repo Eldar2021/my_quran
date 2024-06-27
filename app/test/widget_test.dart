@@ -80,6 +80,7 @@ void main() {
       homeRepo,
       pathGenderUseCase,
       patchLocaleCodeUseCase,
+      storage,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

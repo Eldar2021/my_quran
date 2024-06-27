@@ -75,5 +75,10 @@
     "surah": "Surat",
     "surahs": "Surat",
     "welcome": "Selamat datang",
-    "version": "Versi"
+    "version": "Versi",
+    "salam": "Assalamu alaikum",
+    "signOut": "Keluar",
+    "signOutContext": "Apakah Anda yakin ingin keluar?",
+    "yes": "Ya",
+    "no": "Tidak"
 }

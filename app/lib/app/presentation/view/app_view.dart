@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
             SerUserDataUseCase(context.read<AuthRepository>()),
             PatchGenderUseCase(context.read<AuthRepository>()),
             PatchLocaleCodeUseCase(context.read<AuthRepository>()),
+            context.read<PreferencesStorage>(),
           ),
         ),
         BlocProvider(

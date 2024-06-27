@@ -70,3 +70,12 @@ Future<void> checkSettingsTheme(FlutterDriver driver) async {
   await driver.tap(find.byValueKey(MqKeys.settingsThemeLight));
   await backPage(driver);
 }
+
+Future<void> checkLogout(FlutterDriver driver) async {
+  await driver.waitFor(find.byValueKey(MqKeys.settingsView));
+  await driver.tap(find.byValueKey(MqKeys.logoutButton));
+  await driver.waitFor(find.byValueKey(MqKeys.confirmLogoutButton));
+  await driver.tap(find.byValueKey(MqKeys.confirmLogoutButtonYes));
+  await driver.waitFor(find.byValueKey(MqKeys.loginSelectLeng));
+  await driver.takeScreenshot(Screenshots.logout);
+}
