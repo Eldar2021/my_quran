@@ -22,7 +22,7 @@ class ConfirmationWidget extends StatelessWidget {
           child: Text(context.l10n.no),
         ),
         TextButton(
-               key: const Key(MqKeys.confirmLogoutButtonYes),
+          key: const Key(MqKeys.confirmLogoutButtonYes),
           onPressed: onPressed,
           child: Text(context.l10n.yes),
         ),

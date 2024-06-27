@@ -65,7 +65,6 @@ final class MqKeys {
   static const String confirmLogoutButton = 'confirm-logout-button';
   static const String confirmLogoutButtonYes = 'confirm-logout-button-yes';
 
-
   // gender
   static const gender = 'gender';
   static String genderName(String name) => 'gender-$name';
