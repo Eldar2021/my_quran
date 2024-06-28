@@ -15,6 +15,7 @@ class SelectLang extends StatelessWidget {
         Text(
           context.l10n.loginPleaseSelectLang,
           style: TextStyle(fontSize: 24, color: colorScheme.onBackground),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 30),
         const Expanded(child: SelectLangFromListViewBuilder()),

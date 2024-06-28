@@ -75,5 +75,11 @@
     "surah": "Суры",
     "surahs": "Суры",
     "welcome": "Добро пожаловать",
-    "version": "Версия"
+    "version": "Версия",
+    "salam": "Ассаламу алейкум",
+    "logout": "Выйти",
+    "signOutContext": "Вы уверены, что хотите выйти?",
+    "yes": "Да",
+    "no": "Нет",
+    "appleSignInNotAvailable": "Вход с Apple недоступен на устройствах Android."
 }

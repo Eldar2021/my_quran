@@ -38,4 +38,5 @@ class Screenshots {
   static const settingsThemePageLightGreen = '110-settings-theme-page-light-green';
   static const settingsThemePageLightBlue = '111-settings-theme-page-light-blue';
   static const settingsThemePageDarkRed = '112-settings-theme-page-dark-red';
+  static const logout = '113-logout';
 }

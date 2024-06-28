@@ -75,5 +75,11 @@
     "surah": "Surah",
     "surahs": "Surahs",
     "welcome": "Welcome",
-    "version": "Version"
+    "version": "Version",
+    "salam": "Assalamu alaykum",
+    "logout": "Logout",
+    "signOutContext": "Are you sure you want to logout?",
+    "yes": "Yes",
+    "no": "No",
+    "appleSignInNotAvailable": "Apple Sign-In is not available on Android devices."
 }

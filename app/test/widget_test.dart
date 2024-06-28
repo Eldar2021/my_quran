@@ -61,6 +61,7 @@ void main() {
     final setModeUseCase = SetModeUseCase(themeRepository);
     final setColorUseCase = SetColorUseCase(themeRepository);
     final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
+    final logoutUseCase = LogoutUseCase(authRepository);
 
     when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
@@ -80,6 +81,7 @@ void main() {
       homeRepo,
       pathGenderUseCase,
       patchLocaleCodeUseCase,
+      logoutUseCase,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

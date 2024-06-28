@@ -75,5 +75,11 @@
     "surah": "Surat",
     "surahs": "Surat",
     "welcome": "Selamat datang",
-    "version": "Versi"
+    "version": "Versi",
+    "salam": "Assalamu alaikum",
+    "logout": "Keluar",
+    "signOutContext": "Apakah Anda yakin ingin keluar?",
+    "yes": "Ya",
+    "no": "Tidak",
+    "appleSignInNotAvailable": "Masuk dengan Apple tidak tersedia di perangkat Android."
 }

@@ -141,6 +141,10 @@ void main() async {
     test('check-settings-theme', () async {
       await checkSettingsTheme(driver);
     });
+
+    test('check-logout', () async {
+      await checkLogout(driver);
+    });
   });
 
   tearDownAll(() async {

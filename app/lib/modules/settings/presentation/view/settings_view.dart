@@ -4,8 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/theme/theme.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -14,13 +16,12 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final authCubit = context.watch<AuthCubit>();
+    final user = authCubit.state.user;
+    final username = user?.username ?? '';
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsView),
-        title: InkWell(
-          onLongPress: () => context.pushNamed(AppRouter.devModeView),
-          child: Text(l10n.profileSettings),
-        ),
+        title: Text(username, style: context.titleMedium),
       ),
       body: ListView(
         children: [
@@ -79,8 +80,34 @@ class SettingsView extends StatelessWidget {
             onTap: () => context.goNamed(AppRouter.developers),
           ),
           ListTile(
+            key: const Key(MqKeys.logoutButton),
+            title: Text(context.l10n.logout),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return BlocListener<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (!state.isAuthedticated) {
+                        context.go('/login');
+                      }
+                    },
+                    child: ConfirmationWidget(
+                      key: const Key(MqKeys.confirmLogoutButton),
+                      onPressed: authCubit.logout,
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          ListTile(
             title: Text(context.l10n.version),
-            trailing: Text(context.watch<AppCubit>().state.appVersion),
+            trailing: InkWell(
+              onLongPress: () => context.pushNamed(AppRouter.devModeView),
+              child: Text(context.watch<AppCubit>().state.appVersion),
+            ),
           ),
         ],
       ),

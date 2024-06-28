@@ -16,6 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
     this.serUserDataUseCase,
     this.patchGenderUseCase,
     this.patchLocaleCodeUseCase,
+    this.logoutUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
@@ -24,6 +25,7 @@ class AuthCubit extends Cubit<AuthState> {
   final SerUserDataUseCase serUserDataUseCase;
   final PatchGenderUseCase patchGenderUseCase;
   final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
+  final LogoutUseCase logoutUseCase;
 
   Future<AuthState> signInWithGoogle() async {
     final user = await googleSignIn(
@@ -42,10 +44,12 @@ class AuthCubit extends Cubit<AuthState> {
       state.currentLocale.languageCode,
       state.gender,
     );
+
     user.fold(
       (l) => emit(state.copyWith(exception: l)),
       (r) => emit(state.copyWith(user: r)),
     );
+
     return state;
   }
 
@@ -88,6 +92,15 @@ class AuthCubit extends Cubit<AuthState> {
       );
     } else {
       emit(state.copyWith(genderForNow: gender));
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await logoutUseCase.call();
+      emit(const AuthState());
+    } catch (e) {
+      emit(state.copyWith(exception: Exception(e)));
     }
   }
 

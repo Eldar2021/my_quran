@@ -75,5 +75,11 @@
     "surah": "سورة",
     "surahs": "السور",
     "welcome": " أهلاً وسهلاً ",
-    "version": "إصدار"
+    "version": "إصدار",
+    "salam": "السلام عليكم",
+    "logout": "تسجيل الخروج",
+    "signOutContext": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "yes": "نعم",
+    "no": "لا",
+    "appleSignInNotAvailable": "تسجيل الدخول عبر Apple غير متاح على أجهزة Android."
 }

@@ -25,4 +25,6 @@ abstract class AuthRepository {
     required String userId,
     required String localeCode,
   });
+
+  Future<void> logout() async {}
 }

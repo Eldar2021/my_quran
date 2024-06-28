@@ -2,19 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 
-import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
@@ -45,19 +44,36 @@ class SignInView extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             Text(
-              '${context.l10n.welcome} !',
+              '${context.l10n.welcome}!',
               style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
             ),
             const SizedBox(height: 50),
-            CustomButtonWithIcon(
-              key: Key(MqKeys.loginTypeName('google')),
-              icon: const Icon(FontAwesomeIcons.google),
-              onPressed: () async {
-                unawaited(AppAlert.showLoading(context));
-                await context.read<AuthCubit>().signInWithGoogle();
-                if (context.mounted) context.loaderOverlay.hide();
-              },
-              text: context.l10n.google,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: ElevatedButton(
+                key: Key(MqKeys.loginTypeName('google')),
+                onPressed: () async {
+                  unawaited(AppAlert.showLoading(context));
+                  await context.read<AuthCubit>().signInWithGoogle();
+                  if (context.mounted) context.loaderOverlay.hide();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Assets.icons.googleIcon.svg(height: 25),
+                    const SizedBox(width: 10),
+                    Text(context.l10n.google, style: context.bodyMedium),
+                  ],
+                ),
+              ),
             ),
             const SizedBox(height: 30),
             Text(
@@ -66,15 +82,21 @@ class SignInView extends StatelessWidget {
               style: context.bodyLarge!.copyWith(color: context.colors.shadow, fontSize: 17),
             ),
             const SizedBox(height: 33),
-            CustomButtonWithIcon(
-              key: Key(MqKeys.loginTypeName('apple')),
-              icon: const Icon(FontAwesomeIcons.apple),
-              onPressed: () async {
-                unawaited(AppAlert.showLoading(context));
-                await context.read<AuthCubit>().signInWithApple();
-                if (context.mounted) context.loaderOverlay.hide();
-              },
-              text: context.l10n.apple,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: SignInWithAppleButton(
+                key: Key(MqKeys.loginTypeName('apple')),
+                onPressed: () async {
+                  if (Theme.of(context).platform == TargetPlatform.android) {
+                    AppSnackbar.showSnackbar(context, context.l10n.appleSignInNotAvailable);
+                  } else {
+                    unawaited(AppAlert.showLoading(context));
+                    await context.read<AuthCubit>().signInWithApple();
+                    if (context.mounted) context.loaderOverlay.hide();
+                  }
+                },
+                text: context.l10n.apple,
+              ),
             ),
             const Spacer(),
             TextButton(

@@ -7,3 +7,4 @@ export 'hints/color_text_app_hint.dart';
 export 'indicators/dot_indicator.dart';
 export 'audio/seek_bar.dart';
 export 'audio/audio_center_button.dart';
+export 'alert/confirmation_dialog.dart';

@@ -75,5 +75,11 @@
     "surah": "Сүрөө",
     "surahs": "Сүрөөлөр",
     "welcome": "Кош келиңиз",
-    "version": "Версия"
+    "version": "Версия",
+    "salam": "Ассаламу алейкум",
+    "logout": "Чыгуу",
+    "signOutContext": "Чын эле чыгып кеткиңиз келеби?",
+    "yes": "Ооба",
+    "no": "Жок",
+    "appleSignInNotAvailable": "Apple аркылуу кирүү Android системаларында жеткиликтүү эмес."
 }
