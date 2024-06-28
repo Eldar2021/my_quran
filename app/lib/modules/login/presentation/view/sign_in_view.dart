@@ -44,7 +44,7 @@ class SignInView extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             Text(
-              '${context.l10n.welcome} !',
+              '${context.l10n.welcome}!',
               style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
             ),
             const SizedBox(height: 50),
@@ -92,9 +92,17 @@ class SignInView extends StatelessWidget {
               child: SignInWithAppleButton(
                 key: Key(MqKeys.loginTypeName('apple')),
                 onPressed: () async {
-                  unawaited(AppAlert.showLoading(context));
-                  await context.read<AuthCubit>().signInWithApple();
-                  if (context.mounted) context.loaderOverlay.hide();
+                  if (Theme.of(context).platform == TargetPlatform.android) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(context.l10n.appleSignInNotAvailable),
+                      ),
+                    );
+                  } else {
+                    unawaited(AppAlert.showLoading(context));
+                    await context.read<AuthCubit>().signInWithApple();
+                    if (context.mounted) context.loaderOverlay.hide();
+                  }
                 },
                 text: context.l10n.apple,
               ),

@@ -77,8 +77,9 @@
     "welcome": "Добро пожаловать",
     "version": "Версия",
     "salam": "Ассаламу алейкум",
-    "signOut": "Выход",
+    "logout": "Выйти",
     "signOutContext": "Вы уверены, что хотите выйти?",
     "yes": "Да",
-    "no": "Нет"
+    "no": "Нет",
+    "appleSignInNotAvailable": "Вход с Apple недоступен на устройствах Android."
 }

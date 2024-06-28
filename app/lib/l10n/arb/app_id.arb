@@ -77,8 +77,9 @@
     "welcome": "Selamat datang",
     "version": "Versi",
     "salam": "Assalamu alaikum",
-    "signOut": "Keluar",
+    "logout": "Keluar",
     "signOutContext": "Apakah Anda yakin ingin keluar?",
     "yes": "Ya",
-    "no": "Tidak"
+    "no": "Tidak",
+    "appleSignInNotAvailable": "Masuk dengan Apple tidak tersedia di perangkat Android."
 }

@@ -12,7 +12,7 @@ class ConfirmationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Center(child: Text(context.l10n.signOut)),
+      title: Center(child: Text(context.l10n.logout)),
       content: Text(context.l10n.signOutContext),
       actions: <Widget>[
         TextButton(

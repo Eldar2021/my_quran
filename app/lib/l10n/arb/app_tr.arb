@@ -77,8 +77,9 @@
     "welcome": "Hoş geldiniz",
     "version": "Sürüm",
     "salam": "Selamun aleyküm",
-    "signOut": "Çıkış yap",
+    "logout": "Çıkış yap",
     "signOutContext": "Çıkış yapmak istediğinizden emin misiniz?",
     "yes": "Evet",
-    "no": "Hayır"
+    "no": "Hayır",
+    "appleSignInNotAvailable": "Apple ile giriş Android cihazlarda mevcut değil."
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
@@ -18,42 +17,15 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final authCubit = context.watch<AuthCubit>();
+    final user = authCubit.state.user;
+    final username = user?.username ?? '';
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsView),
         title: Text(
-          '${l10n.salam} ${authCubit.state.user?.username}!',
-          style: context.titleSmall,
+          username,
+          style: context.titleMedium,
         ),
-        actions: [
-          BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {
-              if (!state.isAuthedticated) {
-                context.go('/login');
-              }
-            },
-            child: IconButton(
-              key: const Key(MqKeys.logoutButton),
-              onPressed: () {
-                // ignore: inference_failure_on_function_invocation
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return ConfirmationWidget(
-                      key: const Key(MqKeys.confirmLogoutButton),
-                      onPressed: authCubit.logout,
-                    );
-                  },
-                );
-              },
-              icon: const Icon(
-                FontAwesomeIcons.arrowRightFromBracket,
-                size: 18,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ],
       ),
       body: ListView(
         children: [
@@ -110,6 +82,30 @@ class SettingsView extends StatelessWidget {
             title: Text(l10n.profileForDevelopers),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () => context.goNamed(AppRouter.developers),
+          ),
+          ListTile(
+            key: const Key(MqKeys.logoutButton),
+            title: Text(context.l10n.logout),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // ignore: inference_failure_on_function_invocation
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return BlocListener<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (!state.isAuthedticated) {
+                        context.go('/login');
+                      }
+                    },
+                    child: ConfirmationWidget(
+                      key: const Key(MqKeys.confirmLogoutButton),
+                      onPressed: authCubit.logout,
+                    ),
+                  );
+                },
+              );
+            },
           ),
           ListTile(
             title: Text(context.l10n.version),

@@ -77,8 +77,9 @@
     "welcome": " أهلاً وسهلاً ",
     "version": "إصدار",
     "salam": "السلام عليكم",
-    "signOut": "تسجيل الخروج",
+    "logout": "تسجيل الخروج",
     "signOutContext": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     "yes": "نعم",
-    "no": "لا"
+    "no": "لا",
+    "appleSignInNotAvailable": "تسجيل الدخول عبر Apple غير متاح على أجهزة Android."
 }

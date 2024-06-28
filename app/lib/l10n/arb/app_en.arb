@@ -77,8 +77,9 @@
     "welcome": "Welcome",
     "version": "Version",
     "salam": "Assalamu alaykum",
-    "signOut": "Sign out",
-    "signOutContext": "Are you sure you want to sign out?",
+    "logout": "Logout",
+    "signOutContext": "Are you sure you want to logout?",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "appleSignInNotAvailable": "Apple Sign-In is not available on Android devices."
 }

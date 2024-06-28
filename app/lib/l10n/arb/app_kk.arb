@@ -77,8 +77,9 @@
     "welcome": "Қош келдіңіз",
     "version": "Нұсқа",
     "salam": "Ассаламу алейкум",
-    "signOut": "Шығу",
+    "logout": "Шығу",
     "signOutContext": "Шығыңыз келетініне сенімдісіз бе?",
     "yes": "Иә",
-    "no": "Жоқ"
+    "no": "Жоқ",
+    "appleSignInNotAvailable": "Apple жүйесіне кіру Android құрылғыларында қол жетімді емес."
 }
