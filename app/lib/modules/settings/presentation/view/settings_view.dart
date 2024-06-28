@@ -84,8 +84,7 @@ class SettingsView extends StatelessWidget {
             title: Text(context.l10n.logout),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              // ignore: inference_failure_on_function_invocation
-              showDialog(
+              showDialog<void>(
                 context: context,
                 builder: (BuildContext context) {
                   return BlocListener<AuthCubit, AuthState>(
