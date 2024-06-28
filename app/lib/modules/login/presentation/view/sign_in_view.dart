@@ -69,13 +69,8 @@ class SignInView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Assets.icons.googleIcon.svg(height: 25),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      context.l10n.google,
-                      style: context.bodyMedium,
-                    ),
+                    const SizedBox(width: 10),
+                    Text(context.l10n.google, style: context.bodyMedium),
                   ],
                 ),
               ),
@@ -93,11 +88,7 @@ class SignInView extends StatelessWidget {
                 key: Key(MqKeys.loginTypeName('apple')),
                 onPressed: () async {
                   if (Theme.of(context).platform == TargetPlatform.android) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.appleSignInNotAvailable),
-                      ),
-                    );
+                    AppSnackbar.showSnackbar(context, context.l10n.appleSignInNotAvailable);
                   } else {
                     unawaited(AppAlert.showLoading(context));
                     await context.read<AuthCubit>().signInWithApple();

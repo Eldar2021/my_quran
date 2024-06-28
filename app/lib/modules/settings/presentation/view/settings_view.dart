@@ -10,9 +10,8 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({
-    super.key,
-  });
+  const SettingsView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -22,10 +21,7 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsView),
-        title: Text(
-          username,
-          style: context.titleMedium,
-        ),
+        title: Text(username, style: context.titleMedium),
       ),
       body: ListView(
         children: [

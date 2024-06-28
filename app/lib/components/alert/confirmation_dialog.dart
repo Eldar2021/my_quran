@@ -7,6 +7,7 @@ class ConfirmationWidget extends StatelessWidget {
     required this.onPressed,
     super.key,
   });
+
   final void Function()? onPressed;
 
   @override
@@ -16,9 +17,7 @@ class ConfirmationWidget extends StatelessWidget {
       content: Text(context.l10n.signOutContext),
       actions: <Widget>[
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
           child: Text(context.l10n.no),
         ),
         TextButton(
