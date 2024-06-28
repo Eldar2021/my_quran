@@ -102,4 +102,14 @@ final class AuthRepositoryImpl implements AuthRepository {
       return Right(entity);
     });
   }
+
+  @override
+  Future<void> logout() async {
+    try {
+      await localDataSource.logoutLocal();
+      await remoteDataSource.logoutRemote();
+    } catch (e, s) {
+      log('logout error: $e\n$s');
+    }
+  }
 }

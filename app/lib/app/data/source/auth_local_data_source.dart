@@ -46,4 +46,8 @@ final class AuthLocalDataSource {
       value: localeCode,
     );
   }
+
+  Future<void> logoutLocal() async {
+    await storage.clear();
+  }
 }

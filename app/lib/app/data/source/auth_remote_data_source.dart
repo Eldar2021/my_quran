@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
@@ -139,6 +140,10 @@ final class AuthRemoteDataSource {
       body: {'language': localeCode.toUpperCase()},
       token: userId,
     );
+  }
+
+  Future<void> logoutRemote() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
 

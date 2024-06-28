@@ -11,5 +11,6 @@ export 'usecase/apple_sign_in_use_case.dart';
 export 'usecase/ser_user_data_user_case.dart';
 export 'usecase/patch_gender_user_case.dart';
 export 'usecase/patch_locale_code_use_case.dart';
+export 'usecase/logout_use_case.dart';
 export 'entity/user_entity.dart';
 export 'entity/user_data_entity.dart';
