@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/app_config.dart';
@@ -19,7 +18,7 @@ extension PumpApp on WidgetTester {
     HomeRepository homeRepo,
     PatchGenderUseCase patchGenderUseCase,
     PatchLocaleCodeUseCase patchLocaleCodeUseCase,
-    PreferencesStorage storage,
+    LogoutUseCase logoutUseCase,
   ) {
     return pumpWidget(
       RepositoryProvider(
@@ -42,7 +41,7 @@ extension PumpApp on WidgetTester {
                 setUserDataUseCase,
                 patchGenderUseCase,
                 patchLocaleCodeUseCase,
-                storage,
+                logoutUseCase,
               ),
             ),
             BlocProvider(

@@ -1,9 +1,7 @@
 import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -18,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
     this.serUserDataUseCase,
     this.patchGenderUseCase,
     this.patchLocaleCodeUseCase,
-    this.storage,
+    this.logoutUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
@@ -27,7 +25,8 @@ class AuthCubit extends Cubit<AuthState> {
   final SerUserDataUseCase serUserDataUseCase;
   final PatchGenderUseCase patchGenderUseCase;
   final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
-  final PreferencesStorage storage;
+
+  final LogoutUseCase logoutUseCase;
 
   Future<AuthState> signInWithGoogle() async {
     final user = await googleSignIn(
@@ -97,8 +96,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> logout() async {
     try {
-      await FirebaseAuth.instance.signOut();
-      await storage.clear();
+      await logoutUseCase.call();
       // ignore: avoid_redundant_argument_values
       emit(const AuthState(user: null));
     } catch (e) {
