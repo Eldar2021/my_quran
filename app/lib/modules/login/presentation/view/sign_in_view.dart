@@ -13,7 +13,6 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
@@ -47,7 +46,13 @@ class SignInView extends StatelessWidget {
               '${context.l10n.welcome}!',
               style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 33),
+            const Spacer(),
+            Text(
+              context.l10n.orSignInWith,
+              textAlign: TextAlign.center,
+              style: context.bodyLarge!.copyWith(color: context.colors.shadow, fontSize: 17),
+            ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: ElevatedButton(
@@ -75,30 +80,25 @@ class SignInView extends StatelessWidget {
                 ),
               ),
             ),
+            // const SizedBox(height: 30),
+            // Padding(
+            //   padding: const EdgeInsets.all(16),
+            //   child: SignInWithAppleButton(
+            //     key: Key(MqKeys.loginTypeName('apple')),
+            //     onPressed: () async {
+            //       if (Theme.of(context).platform == TargetPlatform.android) {
+            //         AppSnackbar.showSnackbar(context, context.l10n.appleSignInNotAvailable);
+            //       } else {
+            //         unawaited(AppAlert.showLoading(context));
+            //         await context.read<AuthCubit>().signInWithApple();
+            //         if (context.mounted) context.loaderOverlay.hide();
+            //       }
+            //     },
+            //     text: context.l10n.apple,
+            //   ),
+            // ),
+            // const Spacer(),
             const SizedBox(height: 30),
-            Text(
-              context.l10n.orSignInWith,
-              textAlign: TextAlign.center,
-              style: context.bodyLarge!.copyWith(color: context.colors.shadow, fontSize: 17),
-            ),
-            const SizedBox(height: 33),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: SignInWithAppleButton(
-                key: Key(MqKeys.loginTypeName('apple')),
-                onPressed: () async {
-                  if (Theme.of(context).platform == TargetPlatform.android) {
-                    AppSnackbar.showSnackbar(context, context.l10n.appleSignInNotAvailable);
-                  } else {
-                    unawaited(AppAlert.showLoading(context));
-                    await context.read<AuthCubit>().signInWithApple();
-                    if (context.mounted) context.loaderOverlay.hide();
-                  }
-                },
-                text: context.l10n.apple,
-              ),
-            ),
-            const Spacer(),
             TextButton(
               onPressed: () => AppLaunch.launchURL(apiConst.provicyPolicy),
               child: Text(

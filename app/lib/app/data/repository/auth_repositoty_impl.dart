@@ -106,8 +106,8 @@ final class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> logout() async {
     try {
-      await localDataSource.logoutLocal();
       await remoteDataSource.logoutRemote();
+      await localDataSource.logoutLocal();
     } catch (e, s) {
       log('logout error: $e\n$s');
     }

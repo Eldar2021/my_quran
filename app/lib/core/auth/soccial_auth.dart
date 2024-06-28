@@ -37,9 +37,18 @@ class SoccialAuth {
         idToken: appleCredential.identityToken,
         accessToken: appleCredential.authorizationCode,
       );
-      final userCredential = FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
       return userCredential;
     } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> logOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      await _googleSignIn.signOut();
+    } catch (error) {
       rethrow;
     }
   }
