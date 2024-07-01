@@ -69,6 +69,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '417182149715',
     projectId: 'my-quran-01',
     storageBucket: 'my-quran-01.appspot.com',
+    androidClientId: '417182149715-4fdbf0naurtnenclm83lrsnkur9nmd7u.apps.googleusercontent.com',
+    iosClientId: '417182149715-icusnhceqetnqlinprnn9o8tamct4g7q.apps.googleusercontent.com',
     iosBundleId: 'com.alee.hatimapp',
   );
 }

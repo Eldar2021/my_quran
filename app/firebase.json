@@ -12,7 +12,7 @@
                 "default": {
                     "projectId": "my-quran-01",
                     "appId": "1:417182149715:ios:f6d207c487b6110e76eaa6",
-                    "uploadDebugSymbols": false,
+                    "uploadDebugSymbols": true,
                     "fileOutput": "ios/Runner/GoogleService-Info.plist"
                 }
             },
