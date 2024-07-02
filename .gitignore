@@ -67,3 +67,6 @@ packages/**/pubspec.lock
 
 # FVM Version Cache
 .fvm/
+
+#vscode
+.vscode/settings.json
