@@ -26,6 +26,8 @@ jobs:
           channel: stable
       - run: flutter doctor -v
 
+      - run: dart pub global activate flutterfire_cli
+
       - name: "Melos Install"
         run: dart pub global activate melos
 
