@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
@@ -20,7 +21,8 @@ class SoccialAuth {
 
       final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
       return userCredential;
-    } catch (error) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       rethrow;
     }
   }
@@ -39,7 +41,8 @@ class SoccialAuth {
       );
       final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
       return userCredential;
-    } catch (e) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       rethrow;
     }
   }
@@ -48,7 +51,8 @@ class SoccialAuth {
     try {
       await FirebaseAuth.instance.signOut();
       await _googleSignIn.signOut();
-    } catch (error) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       rethrow;
     }
   }

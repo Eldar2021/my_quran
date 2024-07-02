@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 @immutable
@@ -18,6 +19,7 @@ final class AppLaunch {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
       }
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('launch Error: $e, \n launch StackTrace: $s');
     }
   }
@@ -36,6 +38,7 @@ final class AppLaunch {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
       }
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('launch Error: $e, \n launch StackTrace: $s');
     }
   }
@@ -54,6 +57,7 @@ final class AppLaunch {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
       }
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('launch Error: $e, \n launch StackTrace: $s');
     }
   }
@@ -69,6 +73,7 @@ final class AppLaunch {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(snackBarText)));
       }
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('launch Error: $e, \n launch StackTrace: $s');
     }
   }

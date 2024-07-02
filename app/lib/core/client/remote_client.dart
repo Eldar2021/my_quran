@@ -35,7 +35,8 @@ class RemoteClient {
       try {
         final model = fromJson(jsonDecode(response.body) as Map<String, dynamic>);
         return Right(model);
-      } catch (e) {
+      } catch (e, s) {
+        MqCrashlytics.report(e, s);
         return Left(ConvertExc(message: '$e'));
       }
 
@@ -65,7 +66,8 @@ class RemoteClient {
       } else {
         return const Left(NetworkExc());
       }
-    } catch (e) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log(e.toString());
       return const Left(ServerExc(null));
     }
@@ -90,7 +92,8 @@ class RemoteClient {
       } else {
         return const Left(NetworkExc());
       }
-    } catch (e) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log(e.toString());
       return const Left(ServerExc(null));
     }

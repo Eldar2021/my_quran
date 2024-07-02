@@ -49,7 +49,8 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
             .toList(),
       );
       await player.setAudioSource(playList, initialIndex: 0, preload: false);
-    } catch (e) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       emit(QuranAudioState(exception: e.toString()));
     }
   }

@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,12 +24,12 @@ Future<void> main({AppConfig? appConfig}) async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  FlutterError.onError = (errorDetails) {
-    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  };
+  await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: kDebugMode);
+
+  FlutterError.onError = MqCrashlytics.recordFlutterError;
 
   PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    MqCrashlytics.report(error, stack, fatal: true);
     return true;
   };
 

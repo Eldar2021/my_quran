@@ -28,6 +28,9 @@ class _HomeViewState extends State<HomeView> {
     final homeCubit = context.read<HomeCubit>();
     final authCubit = context.read<AuthCubit>();
     if (homeCubit.state.status != FetchStatus.success && authCubit.state.user != null) {
+      MqCrashlytics.setUserIdentifier(
+        authCubit.state.user?.username ?? authCubit.state.user!.accessToken,
+      );
       homeCubit.getData(authCubit.state.user!.accessToken);
     }
     super.initState();

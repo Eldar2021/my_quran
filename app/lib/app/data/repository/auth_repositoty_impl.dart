@@ -25,6 +25,7 @@ final class AuthRepositoryImpl implements AuthRepository {
       await remoteDataSource.saveUserData(userEntity);
       await localDataSource.saveUserData(userEntity);
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('setUserData error $e,\n$s');
     }
   }
@@ -49,6 +50,7 @@ final class AuthRepositoryImpl implements AuthRepository {
       );
     } catch (e, s) {
       log('signWithGoogle: error: $e\n$s');
+      MqCrashlytics.report(e, s);
       return Left(AuthenticationExc(message: e.toString()));
     }
   }
@@ -72,6 +74,7 @@ final class AuthRepositoryImpl implements AuthRepository {
         ),
       );
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('signWithGoogle: error: $e\n$s');
       return Left(AuthenticationExc(message: e.toString()));
     }
@@ -109,6 +112,7 @@ final class AuthRepositoryImpl implements AuthRepository {
       await remoteDataSource.logoutRemote();
       await localDataSource.logoutLocal();
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('logout error: $e\n$s');
     }
   }

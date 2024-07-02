@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/utils/urils.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -42,8 +43,9 @@ class _PaginationViewState extends State<PaginationView> {
         final nextPageKey = page;
         _pagingController.appendPage([newItems!], nextPageKey);
       }
-    } catch (error) {
-      _pagingController.error = error;
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      _pagingController.error = e;
     }
   }
 

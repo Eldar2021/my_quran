@@ -15,7 +15,8 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final homeModel = await getHomeDataUseCase.execute(token);
       emit(HomeState(status: FetchStatus.success, homeModel: homeModel));
-    } catch (_) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       emit(const HomeState(status: FetchStatus.error));
     }
   }
