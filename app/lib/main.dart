@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -22,6 +23,15 @@ Future<void> main({AppConfig? appConfig}) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: kDebugMode);
+
+  FlutterError.onError = MqCrashlytics.recordFlutterError;
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    MqCrashlytics.report(error, stack, fatal: true);
+    return true;
+  };
 
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);

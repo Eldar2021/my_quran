@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/hatim/hatim.dart';
 
 part 'hatim_event.dart';
@@ -57,6 +58,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
       emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
       repo.sinkHatimUserPages();
     } catch (e, s) {
+      MqCrashlytics.report(e, s);
       log('_onGetHatimDashBoardEvent: $e\n$s');
       emit(state.copyWith(dashBoardState: HatimDashBoardFailed(Exception(e))));
     }

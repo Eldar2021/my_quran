@@ -1,5 +1,4 @@
 
-
 # Miscellaneous
 *.class
 *.log
@@ -65,3 +64,5 @@ app/android/fastlane/metadata/android/en-US/images/phoneScreenshots/
 **/build/
 # keep the .lock file from the workspace and the app.
 packages/**/pubspec.lock
+# FVM Version Cache
+.fvm/

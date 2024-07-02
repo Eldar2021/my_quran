@@ -25,7 +25,8 @@ class HatimRemoteDataSource {
       );
 
       return res.fold((l) => throw l, (r) => r);
-    } catch (e) {
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
       throw Exception(e);
     }
   }

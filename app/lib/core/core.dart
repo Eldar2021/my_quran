@@ -1,6 +1,7 @@
 export 'auth/soccial_auth.dart';
 export 'client/network_client.dart';
 export 'client/remote_client.dart';
+export 'crashlytics/mq_crashlytics.dart';
 export 'either/either.dart';
 export 'exceptions/network_exception.dart';
 export 'exceptions/server_exception.dart';
