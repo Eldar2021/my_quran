@@ -1,5 +1,6 @@
 {
-    "dart.lineLength": 120,
-    "git.ignoreLimitWarning": true,
-    "explorer.autoReveal": false,
+  "dart.lineLength": 120,
+  "git.ignoreLimitWarning": true,
+  "explorer.autoReveal": false,
+  "dart.flutterSdkPath": ".fvm/versions/3.19.5"
 }
