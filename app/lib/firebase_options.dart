@@ -73,5 +73,4 @@ class DefaultFirebaseOptions {
     iosClientId: '417182149715-icusnhceqetnqlinprnn9o8tamct4g7q.apps.googleusercontent.com',
     iosBundleId: 'com.alee.hatimapp',
   );
-
 }
