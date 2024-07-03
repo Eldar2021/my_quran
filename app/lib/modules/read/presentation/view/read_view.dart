@@ -99,6 +99,7 @@ class ReadUI extends StatelessWidget {
               IconButton(
                 key: const Key(MqKeys.quranReadSettings),
                 onPressed: () {
+                  context.read<MqAnalytic>().track(AnalyticKey.quranReadSettings);
                   AppBottomSheet.showBottomSheet<void>(
                     context,
                     BlocProvider.value(

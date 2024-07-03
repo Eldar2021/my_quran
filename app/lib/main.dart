@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +64,9 @@ Future<void> main({AppConfig? appConfig}) async {
         ),
         RepositoryProvider<RemoteClient>(
           create: (context) => RemoteClient(Client(), context.read<NetworkClient>()),
+        ),
+        RepositoryProvider<MqAnalytic>(
+          create: (context) => MqAnalytic(FirebaseAnalytics.instance),
         ),
         RepositoryProvider<SoccialAuth>(
           create: (context) => SoccialAuth(GoogleSignIn()),

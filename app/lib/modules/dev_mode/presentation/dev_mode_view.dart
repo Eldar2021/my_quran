@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_quran/config/app_config.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/utils/show/alerts.dart';
 
 class DevModeView extends StatefulWidget {
@@ -47,6 +48,7 @@ class _DevModeViewState extends State<DevModeView> {
           const SizedBox(height: 40),
           ElevatedButton(
             onPressed: () async {
+              context.read<MqAnalytic>().track(AnalyticKey.setDevMode);
               final appConfig = context.read<AppConfig>();
               await appConfig.setDevMode(
                 devDomain: _controller.text,

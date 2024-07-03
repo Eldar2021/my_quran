@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class SelectLangFromListViewBuilder extends StatelessWidget {
@@ -22,6 +23,7 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
             key: Key(MqKeys.languageCode(locale.languageCode)),
             title: Text(langName, locale: locale),
             onTap: () async {
+              context.read<MqAnalytic>().track(AnalyticKey.loginSelectLanguage);
               context.loaderOverlay.show();
               await context.read<AuthCubit>().saveLocale(locale.languageCode);
               if (context.mounted) context.loaderOverlay.hide();

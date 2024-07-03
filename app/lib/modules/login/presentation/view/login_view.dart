@@ -5,6 +5,7 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -50,7 +51,10 @@ class LoginBody extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         InkWell(
-          onLongPress: () => context.pushNamed(AppRouter.devModeView),
+          onLongPress: () {
+            context.read<MqAnalytic>().track(AnalyticKey.goDevMode);
+            context.pushNamed(AppRouter.devModeView);
+          },
           child: DotsIndicator(
             controller: controller,
             itemCount: 2,

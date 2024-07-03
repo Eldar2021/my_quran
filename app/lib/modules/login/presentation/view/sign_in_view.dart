@@ -58,6 +58,7 @@ class SignInView extends StatelessWidget {
               child: ElevatedButton(
                 key: Key(MqKeys.loginTypeName('google')),
                 onPressed: () async {
+                  context.read<MqAnalytic>().track(AnalyticKey.loginGoogle);
                   unawaited(AppAlert.showLoading(context));
                   await context.read<AuthCubit>().signInWithGoogle();
                   if (context.mounted) context.loaderOverlay.hide();
@@ -100,7 +101,10 @@ class SignInView extends StatelessWidget {
             // const Spacer(),
             const SizedBox(height: 30),
             TextButton(
-              onPressed: () => AppLaunch.launchURL(apiConst.provicyPolicy),
+              onPressed: () {
+                context.read<MqAnalytic>().track(AnalyticKey.launchPrivacyPolicy);
+                AppLaunch.launchURL(apiConst.provicyPolicy);
+              },
               child: Text(
                 context.l10n.privacyPolicy,
                 style: context.bodyLarge!.copyWith(

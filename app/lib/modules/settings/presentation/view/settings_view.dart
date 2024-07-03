@@ -6,6 +6,7 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 
@@ -36,7 +37,10 @@ class SettingsView extends StatelessWidget {
                 const Icon(Icons.arrow_forward_ios),
               ],
             ),
-            onTap: () => context.goNamed(AppRouter.genderSettings),
+            onTap: () {
+              context.read<MqAnalytic>().track(AnalyticKey.settingsGender);
+              context.goNamed(AppRouter.genderSettings);
+            },
           ),
           ListTile(
             key: const Key(MqKeys.settingsLanguage),
@@ -53,31 +57,46 @@ class SettingsView extends StatelessWidget {
                 const Icon(Icons.arrow_forward_ios),
               ],
             ),
-            onTap: () => context.goNamed(AppRouter.langSettings),
+            onTap: () {
+              context.read<MqAnalytic>().track(AnalyticKey.settingsLanguage);
+              context.goNamed(AppRouter.langSettings);
+            },
           ),
           ListTile(
             key: const Key(MqKeys.settingsTheme),
             title: Text(l10n.profileTheme),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => context.goNamed(AppRouter.themeSettings),
+            onTap: () {
+              context.read<MqAnalytic>().track(AnalyticKey.settingsTheme);
+              context.goNamed(AppRouter.themeSettings);
+            },
           ),
           ListTile(
             key: const Key(MqKeys.settingsAboutUs),
             title: Text(l10n.aboutUs),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => context.goNamed(AppRouter.aboutUs),
+            onTap: () {
+              context.read<MqAnalytic>().track(AnalyticKey.settingsAboutUs);
+              context.goNamed(AppRouter.aboutUs);
+            },
           ),
           ListTile(
             key: const Key(MqKeys.settingsContactUs),
             title: Text(l10n.contactUs),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => context.goNamed(AppRouter.contactUs),
+            onTap: () {
+              context.read<MqAnalytic>().track(AnalyticKey.settingsContactUs);
+              context.goNamed(AppRouter.contactUs);
+            },
           ),
           ListTile(
             key: const Key(MqKeys.settingsDevelopers),
             title: Text(l10n.profileForDevelopers),
             trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () => context.goNamed(AppRouter.developers),
+            onTap: () {
+              context.read<MqAnalytic>().track(AnalyticKey.settingsDevelopers);
+              context.goNamed(AppRouter.developers);
+            },
           ),
           ListTile(
             key: const Key(MqKeys.logoutButton),
@@ -95,7 +114,10 @@ class SettingsView extends StatelessWidget {
                     },
                     child: ConfirmationWidget(
                       key: const Key(MqKeys.confirmLogoutButton),
-                      onPressed: authCubit.logout,
+                      onPressed: () {
+                        context.read<MqAnalytic>().track(AnalyticKey.logout);
+                        authCubit.logout();
+                      },
                     ),
                   );
                 },
@@ -105,7 +127,10 @@ class SettingsView extends StatelessWidget {
           ListTile(
             title: Text(context.l10n.version),
             trailing: InkWell(
-              onLongPress: () => context.pushNamed(AppRouter.devModeView),
+              onLongPress: () {
+                context.read<MqAnalytic>().track(AnalyticKey.goDevMode);
+                context.pushNamed(AppRouter.devModeView);
+              },
               child: Text(context.watch<AppCubit>().state.appVersion),
             ),
           ),

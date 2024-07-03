@@ -4,6 +4,7 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class SelectGender extends StatelessWidget {
@@ -26,13 +27,19 @@ class SelectGender extends StatelessWidget {
           Gender.male,
           key: Key(MqKeys.genderName('male')),
           isSelect: authCubit.state.gender == Gender.male,
-          onTap: () => context.read<AuthCubit>().saveGender(Gender.male),
+          onTap: () {
+            context.read<MqAnalytic>().track(AnalyticKey.loginSelectGenderMale);
+            context.read<AuthCubit>().saveGender(Gender.male);
+          },
         ),
         GenderCard(
           Gender.female,
           key: Key(MqKeys.genderName('female')),
           isSelect: authCubit.state.gender == Gender.female,
-          onTap: () => context.read<AuthCubit>().saveGender(Gender.female),
+          onTap: () {
+            context.read<MqAnalytic>().track(AnalyticKey.loginSelectGenderFemale);
+            context.read<AuthCubit>().saveGender(Gender.female);
+          },
         ),
       ],
     );

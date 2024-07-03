@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 
@@ -23,6 +24,7 @@ class ThemeSettingsView extends StatelessWidget {
                   : MqKeys.settingsThemeLight,
             ),
             onPressed: () {
+              context.read<MqAnalytic>().track(AnalyticKey.changeThemeMode);
               context.read<AppCubit>().changeMode(
                     isDark: context.read<AppCubit>().state.theme.brightness == Brightness.light,
                   );
@@ -46,7 +48,10 @@ class ThemeSettingsView extends StatelessWidget {
                 color: targetColor.color,
               ),
               title: Text(targetColor.displayName(context)),
-              onTap: () => context.read<AppCubit>().changeColor(targetColor.caheIindex, targetColor.color),
+              onTap: () {
+                context.read<MqAnalytic>().track(AnalyticKey.changeThemeColor);
+                context.read<AppCubit>().changeColor(targetColor.caheIindex, targetColor.color);
+              },
             ),
           );
         },
