@@ -48,7 +48,13 @@ class _DevModeViewState extends State<DevModeView> {
           const SizedBox(height: 40),
           ElevatedButton(
             onPressed: () async {
-              context.read<MqAnalytic>().track(AnalyticKey.setDevMode);
+              MqAnalytic.track(
+                AnalyticKey.selectDevMode,
+                params: {
+                  'devDomain': _controller.text,
+                  'isDevMode': isDevMode,
+                },
+              );
               final appConfig = context.read<AppConfig>();
               await appConfig.setDevMode(
                 devDomain: _controller.text,

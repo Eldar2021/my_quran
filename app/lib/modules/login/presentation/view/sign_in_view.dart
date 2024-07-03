@@ -47,7 +47,6 @@ class SignInView extends StatelessWidget {
               style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
             ),
             const SizedBox(height: 33),
-            // const Spacer(),
             Text(
               context.l10n.signInWith,
               textAlign: TextAlign.center,
@@ -58,7 +57,10 @@ class SignInView extends StatelessWidget {
               child: ElevatedButton(
                 key: Key(MqKeys.loginTypeName('google')),
                 onPressed: () async {
-                  context.read<MqAnalytic>().track(AnalyticKey.loginGoogle);
+                  MqAnalytic.track(
+                    AnalyticKey.tapLoginWithSoccial,
+                    params: {'soccial': 'google'},
+                  );
                   unawaited(AppAlert.showLoading(context));
                   await context.read<AuthCubit>().signInWithGoogle();
                   if (context.mounted) context.loaderOverlay.hide();
@@ -102,7 +104,7 @@ class SignInView extends StatelessWidget {
             const SizedBox(height: 30),
             TextButton(
               onPressed: () {
-                context.read<MqAnalytic>().track(AnalyticKey.launchPrivacyPolicy);
+                MqAnalytic.track(AnalyticKey.tapPrivacyPolicy);
                 AppLaunch.launchURL(apiConst.provicyPolicy);
               },
               child: Text(

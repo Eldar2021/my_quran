@@ -35,8 +35,8 @@ class HatimJuzListBuilder extends StatelessWidget {
                   ],
                 ),
                 onTap: () async {
-                  context.read<MqAnalytic>().track(
-                    AnalyticKey.hatimSelectJuz,
+                  MqAnalytic.track(
+                    AnalyticKey.selectHatimJuz,
                     params: {'juzId': item.id},
                   );
                   final bloc = context.read<HatimBloc>();

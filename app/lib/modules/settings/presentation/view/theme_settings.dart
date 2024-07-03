@@ -24,8 +24,8 @@ class ThemeSettingsView extends StatelessWidget {
                   : MqKeys.settingsThemeLight,
             ),
             onPressed: () {
-              context.read<MqAnalytic>().track(
-                AnalyticKey.changeThemeMode,
+              MqAnalytic.track(
+                AnalyticKey.selectThemeMode,
                 params: {
                   'mode': appCubit.state.theme.brightness == Brightness.light
                       ? Brightness.light.name
@@ -56,9 +56,9 @@ class ThemeSettingsView extends StatelessWidget {
               ),
               title: Text(targetColor.displayName(context)),
               onTap: () {
-                context.read<MqAnalytic>().track(
-                  AnalyticKey.changeThemeColor,
-                  params: {'color': targetColor.caheIindex},
+                MqAnalytic.track(
+                  AnalyticKey.selectThemeColor,
+                  params: {'color': targetColor.color},
                 );
                 context.read<AppCubit>().changeColor(targetColor.caheIindex, targetColor.color);
               },

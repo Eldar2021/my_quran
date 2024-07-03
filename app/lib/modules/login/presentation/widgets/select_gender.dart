@@ -28,7 +28,7 @@ class SelectGender extends StatelessWidget {
           key: Key(MqKeys.genderName('male')),
           isSelect: authCubit.state.gender == Gender.male,
           onTap: () {
-            context.read<MqAnalytic>().track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
+            MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
             context.read<AuthCubit>().saveGender(Gender.male);
           },
         ),
@@ -37,7 +37,7 @@ class SelectGender extends StatelessWidget {
           key: Key(MqKeys.genderName('female')),
           isSelect: authCubit.state.gender == Gender.female,
           onTap: () {
-            context.read<MqAnalytic>().track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
+            MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
             context.read<AuthCubit>().saveGender(Gender.female);
           },
         ),

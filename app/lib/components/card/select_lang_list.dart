@@ -23,8 +23,8 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
             key: Key(MqKeys.languageCode(locale.languageCode)),
             title: Text(langName, locale: locale),
             onTap: () async {
-              context.read<MqAnalytic>().track(
-                AnalyticKey.loginSelectLanguage,
+              MqAnalytic.track(
+                AnalyticKey.selectLanguage,
                 params: {'language': locale.languageCode},
               );
               context.loaderOverlay.show();

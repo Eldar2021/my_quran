@@ -66,9 +66,6 @@ Future<void> main({AppConfig? appConfig}) async {
         RepositoryProvider<RemoteClient>(
           create: (context) => RemoteClient(Client(), context.read<NetworkClient>()),
         ),
-        RepositoryProvider<MqAnalytic>(
-          create: (context) => MqAnalytic(FirebaseAnalytics.instance),
-        ),
         RepositoryProvider<SoccialAuth>(
           create: (context) => SoccialAuth(GoogleSignIn()),
         ),

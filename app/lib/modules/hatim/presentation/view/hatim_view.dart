@@ -85,8 +85,8 @@ class _HatimUIState extends State<HatimUI> {
                   final pageIds = pages.map((e) => e.id).toList();
                   final pageNumbers = pages.map((e) => e.number).toList();
                   context.read<HatimBloc>().add(SetInProgressPagesEvent(pageIds));
-                  context.read<MqAnalytic>().track(
-                    AnalyticKey.readSelectedPages,
+                  MqAnalytic.track(
+                    AnalyticKey.goHatimReadPage,
                     params: {'pages': pageIds},
                   );
                   final value = await context.pushNamed<bool>(

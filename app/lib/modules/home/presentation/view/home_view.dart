@@ -33,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
       MqCrashlytics.setUserIdentifier(
         validName ?? user!.accessToken,
       );
-      context.read<MqAnalytic>().setUserProperty(validName ?? user!.accessToken);
+      MqAnalytic.setUserProperty(validName ?? user!.accessToken);
       homeCubit.getData(user!.accessToken);
     }
     super.initState();
@@ -64,7 +64,7 @@ class HomeBody extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<MqAnalytic>().track(AnalyticKey.refreshHomePage);
+        MqAnalytic.track(AnalyticKey.refreshHomePage);
         if (context.read<AuthCubit>().state.user != null) {
           await context.read<HomeCubit>().getData(context.read<AuthCubit>().state.user!.accessToken);
         }
@@ -103,7 +103,7 @@ class HomeBody extends StatelessWidget {
                 key: const Key(MqKeys.participantToHatim),
                 text: l10n.homeGoHatim,
                 onPressed: () {
-                  context.read<MqAnalytic>().track(AnalyticKey.goHatim);
+                  MqAnalytic.track(AnalyticKey.goHatim);
                   context.goNamed(AppRouter.hatim);
                 },
               ),

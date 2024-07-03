@@ -38,7 +38,7 @@ class SettingsView extends StatelessWidget {
               ],
             ),
             onTap: () {
-              context.read<MqAnalytic>().track(AnalyticKey.settingsGender);
+              MqAnalytic.track(AnalyticKey.goGenderPage);
               context.goNamed(AppRouter.genderSettings);
             },
           ),
@@ -58,7 +58,7 @@ class SettingsView extends StatelessWidget {
               ],
             ),
             onTap: () {
-              context.read<MqAnalytic>().track(AnalyticKey.settingsLanguage);
+              MqAnalytic.track(AnalyticKey.selectLanguage);
               context.goNamed(AppRouter.langSettings);
             },
           ),
@@ -67,7 +67,7 @@ class SettingsView extends StatelessWidget {
             title: Text(l10n.profileTheme),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              context.read<MqAnalytic>().track(AnalyticKey.settingsTheme);
+              MqAnalytic.track(AnalyticKey.goThemePage);
               context.goNamed(AppRouter.themeSettings);
             },
           ),
@@ -76,7 +76,7 @@ class SettingsView extends StatelessWidget {
             title: Text(l10n.aboutUs),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              context.read<MqAnalytic>().track(AnalyticKey.settingsAboutUs);
+              MqAnalytic.track(AnalyticKey.goAboutUsPage);
               context.goNamed(AppRouter.aboutUs);
             },
           ),
@@ -85,7 +85,7 @@ class SettingsView extends StatelessWidget {
             title: Text(l10n.contactUs),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              context.read<MqAnalytic>().track(AnalyticKey.settingsContactUs);
+              MqAnalytic.track(AnalyticKey.goContactUsPage);
               context.goNamed(AppRouter.contactUs);
             },
           ),
@@ -94,7 +94,7 @@ class SettingsView extends StatelessWidget {
             title: Text(l10n.profileForDevelopers),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              context.read<MqAnalytic>().track(AnalyticKey.settingsDevelopers);
+              MqAnalytic.track(AnalyticKey.goDevelopersPage);
               context.goNamed(AppRouter.developers);
             },
           ),
@@ -115,7 +115,7 @@ class SettingsView extends StatelessWidget {
                     child: ConfirmationWidget(
                       key: const Key(MqKeys.confirmLogoutButton),
                       onPressed: () {
-                        context.read<MqAnalytic>().track(AnalyticKey.logout);
+                        MqAnalytic.track(AnalyticKey.tapLogout);
                         authCubit.logout();
                       },
                     ),
@@ -128,7 +128,7 @@ class SettingsView extends StatelessWidget {
             title: Text(context.l10n.version),
             trailing: InkWell(
               onLongPress: () {
-                context.read<MqAnalytic>().track(AnalyticKey.goDevMode);
+                MqAnalytic.track(AnalyticKey.goDevMode);
                 context.pushNamed(AppRouter.devModeView);
               },
               child: Text(context.watch<AppCubit>().state.appVersion),

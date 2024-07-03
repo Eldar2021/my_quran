@@ -52,7 +52,7 @@ class LoginBody extends StatelessWidget {
         const SizedBox(height: 20),
         InkWell(
           onLongPress: () {
-            context.read<MqAnalytic>().track(AnalyticKey.goDevMode);
+            MqAnalytic.track(AnalyticKey.goDevMode);
             context.pushNamed(AppRouter.devModeView);
           },
           child: DotsIndicator(

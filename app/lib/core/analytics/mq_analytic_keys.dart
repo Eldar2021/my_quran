@@ -4,39 +4,36 @@ part of 'mq_analytic.dart';
 final class AnalyticKey {
   const AnalyticKey._();
 
-  // login
-  static const loginSelectLanguage = 'login-select-language';
-  static const selectGender = 'select-gender';
-  static const loginGoogle = 'login-with-google';
-  static const launchPrivacyPolicy = 'launch-privacy-policy';
-
-  // home
-  static const refreshHomePage = 'go-home';
+  // go - back
+  static const goGenderPage = 'go-gender-page';
+  static const goThemePage = 'go-theme-page';
+  static const goAboutUsPage = 'go-about-us-page';
+  static const goContactUsPage = 'go-contact-us-page';
+  static const goDevelopersPage = 'go-developers-page';
+  static const goDevMode = 'go-dev-mode';
   static const goHatim = 'go-hatim';
+  static const goHatimReadPage = 'go-hatim-read-page';
+  static const goQuranReadByJuz = 'go-quran-read-by-juz';
+  static const goQuranReadBySurah = 'go-quran-read-by-surah';
 
-  // hatim
-  static const readSelectedPages = 'read-selected-pages';
+  // select - unselect
+  static const selectLanguage = 'select-language';
+  static const selectGender = 'select-gender';
+  static const selectThemeMode = 'select-theme-mode';
+  static const selectThemeColor = 'select-theme-color';
+  static const selectDevMode = 'select-dev-mode';
   static const selectPage = 'select-page';
   static const unselectPage = 'unselect-page';
-  static const hatimSelectJuz = 'hatim-select-page-scroll';
+  static const selectHatimJuz = 'select-hatim-juz';
+  static const selectQuranAudioBySurah = 'select-quran-audio-by-surah';
 
-  // quran
-  static const quranReadJus = 'quran-read-jus';
-  static const quranReadSurah = 'quran-read-surah';
-  static const quranReadSettings = 'quran-read-settings';
-  static const quranAudioSurah = 'quran-audio-surah';
+  // action
+  static const tapLogout = 'tap-logout';
+  static const tapLoginWithSoccial = 'tap-login-with-soccial';
+  static const tapPrivacyPolicy = 'tap-privacy-policy';
+  static const tapQuranReadSettings = 'tap-quran-read-settings';
   static const showAmin = 'show-amin';
 
-  // Settings
-  static const settingsGender = 'settings-gender';
-  static const settingsLanguage = 'settings-language';
-  static const settingsTheme = 'settings-theme';
-  static const settingsAboutUs = 'settings-about-us';
-  static const settingsContactUs = 'settings-contact-us';
-  static const settingsDevelopers = 'settings-developers';
-  static const changeThemeMode = 'change-theme-mode';
-  static const changeThemeColor = 'change-theme-color';
-  static const logout = 'logout';
-  static const goDevMode = 'go-dev-mode';
-  static const setDevMode = 'set-dev-mode';
+  // refresh
+  static const refreshHomePage = 'refresh-home';
 }

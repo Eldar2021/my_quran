@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
@@ -29,7 +28,7 @@ class PageViewItem<T> extends StatelessWidget {
               title: Text('${item.id}-${context.l10n.juz}'),
               subtitle: Text(item.name),
               onTap: () async {
-                context.read<MqAnalytic>().track(AnalyticKey.quranReadJus, params: {'juzId': item.id});
+                MqAnalytic.track(AnalyticKey.goQuranReadByJuz, params: {'juzId': item.id});
                 final pages = <int>[];
                 for (var i = item.pages.first; i <= item.pages.last; i++) {
                   pages.add(i);
@@ -54,7 +53,10 @@ class PageViewItem<T> extends StatelessWidget {
               title: Text(item.arabic),
               subtitle: Text(item.name),
               onTap: () async {
-                context.read<MqAnalytic>().track(AnalyticKey.quranReadSurah, params: {'surahId': item.id});
+                MqAnalytic.track(
+                  AnalyticKey.goQuranReadBySurah,
+                  params: {'surahId': item.id, 'surahName': item.name},
+                );
                 final pages = <int>[];
                 for (var i = item.pages.first; i <= item.pages.last; i++) {
                   pages.add(i);

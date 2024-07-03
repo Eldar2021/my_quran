@@ -37,7 +37,7 @@ class GenderSettingView extends StatelessWidget {
               Gender.male,
               isSelect: authCubit.state.user?.gender == Gender.male,
               onTap: () async {
-                context.read<MqAnalytic>().track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
+                MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
                 context.loaderOverlay.show();
                 await context.read<AuthCubit>().saveGender(Gender.male);
                 if (context.mounted) context.loaderOverlay.hide();
@@ -48,7 +48,7 @@ class GenderSettingView extends StatelessWidget {
               Gender.female,
               isSelect: authCubit.state.user?.gender == Gender.female,
               onTap: () async {
-                context.read<MqAnalytic>().track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
+                MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
                 context.loaderOverlay.show();
                 await context.read<AuthCubit>().saveGender(Gender.female);
                 if (context.mounted) context.loaderOverlay.hide();
