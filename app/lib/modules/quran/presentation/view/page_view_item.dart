@@ -29,7 +29,7 @@ class PageViewItem<T> extends StatelessWidget {
               title: Text('${item.id}-${context.l10n.juz}'),
               subtitle: Text(item.name),
               onTap: () async {
-                context.read<MqAnalytic>().track(AnalyticKey.quranReadJus);
+                context.read<MqAnalytic>().track(AnalyticKey.quranReadJus, params: {'juzId': item.id});
                 final pages = <int>[];
                 for (var i = item.pages.first; i <= item.pages.last; i++) {
                   pages.add(i);
@@ -54,7 +54,7 @@ class PageViewItem<T> extends StatelessWidget {
               title: Text(item.arabic),
               subtitle: Text(item.name),
               onTap: () async {
-                context.read<MqAnalytic>().track(AnalyticKey.quranReadSurah);
+                context.read<MqAnalytic>().track(AnalyticKey.quranReadSurah, params: {'surahId': item.id});
                 final pages = <int>[];
                 for (var i = item.pages.first; i <= item.pages.last; i++) {
                   pages.add(i);

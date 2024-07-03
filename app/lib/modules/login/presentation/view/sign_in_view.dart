@@ -47,9 +47,9 @@ class SignInView extends StatelessWidget {
               style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
             ),
             const SizedBox(height: 33),
-            const Spacer(),
+            // const Spacer(),
             Text(
-              context.l10n.orSignInWith,
+              context.l10n.signInWith,
               textAlign: TextAlign.center,
               style: context.bodyLarge!.copyWith(color: context.colors.shadow, fontSize: 17),
             ),

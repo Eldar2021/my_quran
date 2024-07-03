@@ -82,10 +82,13 @@ class _HatimUIState extends State<HatimUI> {
             if (pages.isNotEmpty) {
               return FloatingActionButton.extended(
                 onPressed: () async {
-                  context.read<MqAnalytic>().track(AnalyticKey.readSelectedPages);
                   final pageIds = pages.map((e) => e.id).toList();
                   final pageNumbers = pages.map((e) => e.number).toList();
                   context.read<HatimBloc>().add(SetInProgressPagesEvent(pageIds));
+                  context.read<MqAnalytic>().track(
+                    AnalyticKey.readSelectedPages,
+                    params: {'pages': pageIds},
+                  );
                   final value = await context.pushNamed<bool>(
                     AppRouter.hatimRead,
                     pathParameters: {

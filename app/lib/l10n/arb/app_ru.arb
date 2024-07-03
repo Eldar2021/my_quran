@@ -49,7 +49,7 @@
     "loginPleaseSelectLang": "Пожалуйста, выберите язык",
     "male": "Мужчина",
     "next": "Следующий",
-    "orSignInWith": "---Или войти с помощью---",
+    "signInWith": "---Войти с помощью---",
     "pleaseWait": "Пожалуйста, подождите",
     "privacyPolicy": "Политика Конфиденциальности",
     "profileChangeTheme": "Установка темы",

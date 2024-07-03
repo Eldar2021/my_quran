@@ -28,11 +28,12 @@ class _HomeViewState extends State<HomeView> {
     final homeCubit = context.read<HomeCubit>();
     final authCubit = context.read<AuthCubit>();
     final user = authCubit.state.user;
+    final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
     if (homeCubit.state.status != FetchStatus.success && authCubit.state.user != null) {
       MqCrashlytics.setUserIdentifier(
-        user?.username ?? user!.accessToken,
+        validName ?? user!.accessToken,
       );
-      context.read<MqAnalytic>().setUserProperty(user?.username ?? user!.accessToken);
+      context.read<MqAnalytic>().setUserProperty(validName ?? user!.accessToken);
       homeCubit.getData(user!.accessToken);
     }
     super.initState();
@@ -63,7 +64,7 @@ class HomeBody extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<MqAnalytic>().track(AnalyticKey.goHome);
+        context.read<MqAnalytic>().track(AnalyticKey.refreshHomePage);
         if (context.read<AuthCubit>().state.user != null) {
           await context.read<HomeCubit>().getData(context.read<AuthCubit>().state.user!.accessToken);
         }

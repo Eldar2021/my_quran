@@ -44,7 +44,10 @@ class QuranAudioView extends StatelessWidget {
                 title: Text(item.arabic),
                 subtitle: Text(item.name),
                 onTap: () {
-                  context.read<MqAnalytic>().track(AnalyticKey.quranAudioSurah);
+                  context.read<MqAnalytic>().track(
+                    AnalyticKey.quranAudioSurah,
+                    params: {'surahName': item.name},
+                  );
                   context.read<QuranAudioCubit>().changeSurah(index);
                 },
               ),

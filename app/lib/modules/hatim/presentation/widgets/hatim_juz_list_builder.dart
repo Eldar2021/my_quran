@@ -35,7 +35,10 @@ class HatimJuzListBuilder extends StatelessWidget {
                   ],
                 ),
                 onTap: () async {
-                  context.read<MqAnalytic>().track(AnalyticKey.hatimSelectPageScroll);
+                  context.read<MqAnalytic>().track(
+                    AnalyticKey.hatimSelectJuz,
+                    params: {'juzId': item.id},
+                  );
                   final bloc = context.read<HatimBloc>();
                   await AppBottomSheet.showBottomSheet<void>(
                     context,

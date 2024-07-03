@@ -101,10 +101,16 @@ class HatimPageGridListBuilder extends StatelessWidget {
                 ? () {
                     final bloc = context.read<HatimBloc>();
                     if (e.status == HatimPageStatus.todo) {
-                      context.read<MqAnalytic>().track(AnalyticKey.selectPage);
+                      context.read<MqAnalytic>().track(
+                        AnalyticKey.selectPage,
+                        params: {'page': e.id},
+                      );
                       bloc.add(SelectPageEvent(e.id));
                     } else if (e.mine) {
-                      context.read<MqAnalytic>().track(AnalyticKey.unselectPage);
+                      context.read<MqAnalytic>().track(
+                        AnalyticKey.unselectPage,
+                        params: {'page': e.id},
+                      );
                       bloc.add(UnSelectPageEvent(e.id));
                     }
                   }
