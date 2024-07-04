@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -27,6 +28,7 @@ class PageViewItem<T> extends StatelessWidget {
               title: Text('${item.id}-${context.l10n.juz}'),
               subtitle: Text(item.name),
               onTap: () async {
+                MqAnalytic.track(AnalyticKey.goQuranReadByJuz, params: {'juzId': item.id});
                 final pages = <int>[];
                 for (var i = item.pages.first; i <= item.pages.last; i++) {
                   pages.add(i);
@@ -51,6 +53,10 @@ class PageViewItem<T> extends StatelessWidget {
               title: Text(item.arabic),
               subtitle: Text(item.name),
               onTap: () async {
+                MqAnalytic.track(
+                  AnalyticKey.goQuranReadBySurah,
+                  params: {'surahId': item.id, 'surahName': item.name},
+                );
                 final pages = <int>[];
                 for (var i = item.pages.first; i <= item.pages.last; i++) {
                   pages.add(i);

@@ -49,7 +49,7 @@
     "loginPleaseSelectLang": "Please select a language.",
     "male": "Male",
     "next": "Next",
-    "orSignInWith": "---Or sign in with---",
+    "signInWith": "---Sign in with---",
     "pleaseWait": "Please waiting",
     "privacyPolicy": "Privacy Policy",
     "profileChangeTheme": "Theme Installation",

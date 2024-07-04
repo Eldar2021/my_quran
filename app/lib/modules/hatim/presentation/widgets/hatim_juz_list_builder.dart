@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
@@ -34,6 +35,10 @@ class HatimJuzListBuilder extends StatelessWidget {
                   ],
                 ),
                 onTap: () async {
+                  MqAnalytic.track(
+                    AnalyticKey.selectHatimJuz,
+                    params: {'juzId': item.id},
+                  );
                   final bloc = context.read<HatimBloc>();
                   await AppBottomSheet.showBottomSheet<void>(
                     context,

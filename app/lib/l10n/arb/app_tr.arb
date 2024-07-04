@@ -49,7 +49,7 @@
     "loginPleaseSelectLang": "Lütfen bir dil seçin.",
     "male": "Erkek",
     "next": "Sonraki",
-    "orSignInWith": "---Veya ile giriş yap---",
+    "signInWith": "---Şununla giriş yap---",
     "pleaseWait": "Lütfen bekleyin",
     "privacyPolicy": "Gizlilik Politikası",
     "profileChangeTheme": "Tema Kurulumu",

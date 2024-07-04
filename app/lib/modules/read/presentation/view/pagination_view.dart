@@ -93,6 +93,7 @@ class _PaginationViewState extends State<PaginationView> {
                         foregroundColor: frReadThemeColor[readThemeCubit.state.modeIndex],
                       ),
                       onPressed: () async {
+                        MqAnalytic.track(AnalyticKey.showAmin);
                         final value = await AppAlert.showAmin<bool>(
                           context,
                           context.read<AuthCubit>().state.user?.gender ?? Gender.male,

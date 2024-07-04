@@ -1,5 +1,5 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
 final class MqCrashlytics {
@@ -13,6 +13,7 @@ final class MqCrashlytics {
     bool? printDetails,
     bool fatal = false,
   }) {
+    if (kDebugMode) return;
     crashlytics.recordError(
       exception,
       stack,
@@ -27,14 +28,17 @@ final class MqCrashlytics {
     FlutterErrorDetails flutterErrorDetails, {
     bool fatal = false,
   }) {
+    if (kDebugMode) return;
     crashlytics.recordFlutterError(flutterErrorDetails, fatal: fatal);
   }
 
-  static Future<void> setUserIdentifier(String identifier) {
+  static Future<void> setUserIdentifier(String identifier) async {
+    if (kDebugMode) return;
     return crashlytics.setUserIdentifier(identifier);
   }
 
-  static Future<void> setCrashlyticsCollectionEnabled({required bool enabled}) {
+  static Future<void> setCrashlyticsCollectionEnabled({required bool enabled}) async {
+    if (kDebugMode) return;
     return crashlytics.setCrashlyticsCollectionEnabled(enabled);
   }
 

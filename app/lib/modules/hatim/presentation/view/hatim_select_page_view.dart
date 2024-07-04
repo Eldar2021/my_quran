@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/components/components.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/hatim/hatim.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -31,7 +32,7 @@ class HatimJusBottomSheet extends StatelessWidget {
               return switch (juzPagesState) {
                 HatimJuzPagesInitial() => const Center(child: CircularProgressIndicator()),
                 HatimJuzPagesLoading() => const Center(child: CircularProgressIndicator()),
-                HatimJuzPagesFetched() => HatimPageGridLisrBuilder(juzPagesState.data),
+                HatimJuzPagesFetched() => HatimPageGridListBuilder(juzPagesState.data),
                 HatimJuzPagesFailed() => Center(child: Text('${juzPagesState.exception}')),
               };
             },
@@ -79,8 +80,8 @@ class HatimJusBottomSheet extends StatelessWidget {
   }
 }
 
-class HatimPageGridLisrBuilder extends StatelessWidget {
-  const HatimPageGridLisrBuilder(this.items, {super.key});
+class HatimPageGridListBuilder extends StatelessWidget {
+  const HatimPageGridListBuilder(this.items, {super.key});
 
   final List<HatimPagesEntity> items;
 
@@ -100,8 +101,16 @@ class HatimPageGridLisrBuilder extends StatelessWidget {
                 ? () {
                     final bloc = context.read<HatimBloc>();
                     if (e.status == HatimPageStatus.todo) {
+                      MqAnalytic.track(
+                        AnalyticKey.selectPage,
+                        params: {'page': e.id},
+                      );
                       bloc.add(SelectPageEvent(e.id));
                     } else if (e.mine) {
+                      MqAnalytic.track(
+                        AnalyticKey.unselectPage,
+                        params: {'page': e.id},
+                      );
                       bloc.add(UnSelectPageEvent(e.id));
                     }
                   }

@@ -27,11 +27,14 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     final homeCubit = context.read<HomeCubit>();
     final authCubit = context.read<AuthCubit>();
+    final user = authCubit.state.user;
+    final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
     if (homeCubit.state.status != FetchStatus.success && authCubit.state.user != null) {
       MqCrashlytics.setUserIdentifier(
-        authCubit.state.user?.username ?? authCubit.state.user!.accessToken,
+        validName ?? user!.accessToken,
       );
-      homeCubit.getData(authCubit.state.user!.accessToken);
+      MqAnalytic.setUserProperty(validName ?? user!.accessToken);
+      homeCubit.getData(user!.accessToken);
     }
     super.initState();
   }
@@ -61,6 +64,7 @@ class HomeBody extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return RefreshIndicator(
       onRefresh: () async {
+        MqAnalytic.track(AnalyticKey.refreshHomePage);
         if (context.read<AuthCubit>().state.user != null) {
           await context.read<HomeCubit>().getData(context.read<AuthCubit>().state.user!.accessToken);
         }
@@ -98,7 +102,10 @@ class HomeBody extends StatelessWidget {
               child: CustomButton(
                 key: const Key(MqKeys.participantToHatim),
                 text: l10n.homeGoHatim,
-                onPressed: () => context.goNamed(AppRouter.hatim),
+                onPressed: () {
+                  MqAnalytic.track(AnalyticKey.goHatim);
+                  context.goNamed(AppRouter.hatim);
+                },
               ),
             ),
             const SizedBox(height: 20),

@@ -5,6 +5,7 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 
 import 'package:my_quran/components/components.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/urils.dart';
 
@@ -36,6 +37,7 @@ class GenderSettingView extends StatelessWidget {
               Gender.male,
               isSelect: authCubit.state.user?.gender == Gender.male,
               onTap: () async {
+                MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
                 context.loaderOverlay.show();
                 await context.read<AuthCubit>().saveGender(Gender.male);
                 if (context.mounted) context.loaderOverlay.hide();
@@ -46,6 +48,7 @@ class GenderSettingView extends StatelessWidget {
               Gender.female,
               isSelect: authCubit.state.user?.gender == Gender.female,
               onTap: () async {
+                MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
                 context.loaderOverlay.show();
                 await context.read<AuthCubit>().saveGender(Gender.female);
                 if (context.mounted) context.loaderOverlay.hide();
