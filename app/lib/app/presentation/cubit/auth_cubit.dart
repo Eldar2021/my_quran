@@ -13,19 +13,58 @@ class AuthCubit extends Cubit<AuthState> {
     this.getInitialUserUseCase,
     this.googleSignIn,
     this.appleSignIn,
+    this.emailSignIn,
+    this.emailSignUp,
     this.serUserDataUseCase,
     this.patchGenderUseCase,
     this.patchLocaleCodeUseCase,
     this.logoutUseCase,
+    this.forgotPasswordUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
   final GoogleSignInUseCase googleSignIn;
   final AppleSignInUseCase appleSignIn;
+  final EmailSignInUseCase emailSignIn;
+  final EmailSignUpUseCase emailSignUp;
+  final ForgotPasswordUseCase forgotPasswordUseCase;
   final SerUserDataUseCase serUserDataUseCase;
   final PatchGenderUseCase patchGenderUseCase;
   final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
   final LogoutUseCase logoutUseCase;
+  bool passwordVisible = false;
+
+  Future<AuthState> signUpWithEmail(String email, String password) async {
+    final user = await emailSignUp(
+      email,
+      password,
+      state.currentLocale.languageCode,
+      state.gender,
+    );
+
+    user.fold(
+      (l) => emit(state.copyWith(exception: l)),
+      (r) => emit(state.copyWith(user: r)),
+    );
+
+    return state;
+  }
+
+  Future<AuthState> signInWithEmail(String email, String password) async {
+    final user = await emailSignIn(
+      email,
+      password,
+      state.currentLocale.languageCode,
+      state.gender,
+    );
+
+    user.fold(
+      (l) => emit(state.copyWith(exception: l)),
+      (r) => emit(state.copyWith(user: r)),
+    );
+
+    return state;
+  }
 
   Future<AuthState> signInWithGoogle() async {
     final user = await googleSignIn(
@@ -95,6 +134,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> forgotPassword(String email) async {
+    try {
+      await forgotPasswordUseCase(email);
+    } catch (e) {
+      emit(state.copyWith(exception: Exception(e)));
+    }
+  }
+
   Future<void> logout() async {
     try {
       await logoutUseCase.call();
@@ -102,6 +149,11 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(state.copyWith(exception: Exception(e)));
     }
+  }
+
+  void togglePasswordVisibility() {
+    passwordVisible = !passwordVisible;
+    emit(state);
   }
 
   bool get isAuthedticated => state.user != null;

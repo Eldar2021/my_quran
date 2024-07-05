@@ -10,6 +10,32 @@ class SoccialAuth {
 
   final GoogleSignIn _googleSignIn;
 
+  Future<UserCredential> signInWithEmail(String email, String password) async {
+    try {
+      final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      rethrow;
+    }
+  }
+
+  Future<UserCredential> signUpWithEmail(String email, String password) async {
+    try {
+      final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      rethrow;
+    }
+  }
+
   Future<UserCredential> signInWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
@@ -41,6 +67,15 @@ class SoccialAuth {
       );
       final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
       return userCredential;
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      rethrow;
+    }
+  }
+
+  Future<void> forgotPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } catch (e, s) {
       MqCrashlytics.report(e, s);
       rethrow;

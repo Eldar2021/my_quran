@@ -11,6 +11,8 @@ class ApiConst {
 
   String get socketBase => 'wss://myquran.life/ws';
   String get loginWithGoogle => '$_getDomain/api/v1/accounts/google/';
+  String get loginWithEmail => '$_getDomain/api/v1/accounts/loginEmail/';
+  String get registerWithEmail => '$_getDomain/api/v1/accounts/registerEmail/';
   String get loginWithApple => '$_getDomain/api/v1/accounts/apple/';
   String putProfile(String userId) => '$_getDomain/api/v1/accounts/profile/$userId/';
   String get hatimDashBoard => '$_getDomain/api/v1/hatim/dashboard';

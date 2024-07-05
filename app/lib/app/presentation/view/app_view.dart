@@ -56,10 +56,13 @@ class MyApp extends StatelessWidget {
             GetInitialUserUseCase(context.read<AuthRepository>()),
             GoogleSignInUseCase(context.read<AuthRepository>()),
             AppleSignInUseCase(context.read<AuthRepository>()),
+            EmailSignInUseCase(context.read<AuthRepository>()),
+            EmailSignUpUseCase(context.read<AuthRepository>()),
             SerUserDataUseCase(context.read<AuthRepository>()),
             PatchGenderUseCase(context.read<AuthRepository>()),
             PatchLocaleCodeUseCase(context.read<AuthRepository>()),
             LogoutUseCase(context.read<AuthRepository>()),
+            ForgotPasswordUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(

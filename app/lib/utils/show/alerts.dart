@@ -102,4 +102,26 @@ final class AppAlert {
       },
     );
   }
+
+  static void showInfoDialog(
+    BuildContext context, {
+    required String title,
+    required String content,
+  }) {
+    showCupertinoDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            CupertinoButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

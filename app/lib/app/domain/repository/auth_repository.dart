@@ -4,6 +4,20 @@ import 'package:my_quran/core/core.dart';
 abstract class AuthRepository {
   UserEntity? get init;
 
+  Future<Either<UserEntity, Exception>> signUpWithEmail(
+    String email,
+    String password,
+    String languageCode,
+    Gender gender,
+  );
+
+  Future<Either<UserEntity, Exception>> signInWithEmail(
+    String email,
+    String password,
+    String languageCode,
+    Gender gender,
+  );
+
   Future<Either<UserEntity, Exception>> signWithGoogle(
     String languageCode,
     Gender gender,
@@ -25,6 +39,8 @@ abstract class AuthRepository {
     required String userId,
     required String localeCode,
   });
+
+  Future<void> forgotPassword(String email);
 
   Future<void> logout() async {}
 }

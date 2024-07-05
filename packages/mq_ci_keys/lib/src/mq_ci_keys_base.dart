@@ -4,6 +4,7 @@ final class MqKeys {
   static const loginNext = 'login-next';
   static const loginSelectGender = 'login-select-gender';
   static const signInView = 'sign-in-view';
+  static const registerView = 'register-view';
 
   // home
   static const home = 'home';
@@ -72,6 +73,10 @@ final class MqKeys {
   // login type
   static const loginType = 'login';
   static String loginTypeName(String name) => 'loginType-$name';
+
+  // register type
+  static const registerType = 'register';
+  static String registerTypeName(String name) => 'registerType-$name';
 
   // language
   static const language = 'language';

@@ -14,11 +14,14 @@ extension PumpApp on WidgetTester {
     GetAppVersionUseCase getAppVersionUseCase,
     GoogleSignInUseCase googleSignInUseCase,
     AppleSignInUseCase appleSignInUseCase,
+    EmailSignInUseCase emailSignIn,
+    EmailSignUpUseCase emailSignUp,
     SerUserDataUseCase setUserDataUseCase,
     HomeRepository homeRepo,
     PatchGenderUseCase patchGenderUseCase,
     PatchLocaleCodeUseCase patchLocaleCodeUseCase,
     LogoutUseCase logoutUseCase,
+    ForgotPasswordUseCase forgotPasswordUseCase,
   ) {
     return pumpWidget(
       RepositoryProvider(
@@ -38,10 +41,13 @@ extension PumpApp on WidgetTester {
                 getInitialUserUseCase,
                 googleSignInUseCase,
                 appleSignInUseCase,
+                emailSignIn,
+                emailSignUp,
                 setUserDataUseCase,
                 patchGenderUseCase,
                 patchLocaleCodeUseCase,
                 logoutUseCase,
+                forgotPasswordUseCase,
               ),
             ),
             BlocProvider(

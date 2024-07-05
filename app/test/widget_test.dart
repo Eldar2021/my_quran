@@ -55,6 +55,8 @@ void main() {
 
     final googleSignInUseCase = GoogleSignInUseCase(authRepository);
     final appleSignInUseCase = AppleSignInUseCase(authRepository);
+    final emailSignIn = EmailSignInUseCase(authRepository);
+    final emailSignUp = EmailSignUpUseCase(authRepository);
     final setUserDataUseCase = SerUserDataUseCase(authRepository);
     final patchLocaleCodeUseCase = PatchLocaleCodeUseCase(authRepository);
     final pathGenderUseCase = PatchGenderUseCase(authRepository);
@@ -62,6 +64,7 @@ void main() {
     final setColorUseCase = SetColorUseCase(themeRepository);
     final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
     final logoutUseCase = LogoutUseCase(authRepository);
+    final forgotPasswordUseCase = ForgotPasswordUseCase(authRepository);
 
     when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
@@ -77,11 +80,14 @@ void main() {
       getAppVersionUseCase,
       googleSignInUseCase,
       appleSignInUseCase,
+      emailSignIn,
+      emailSignUp,
       setUserDataUseCase,
       homeRepo,
       pathGenderUseCase,
       patchLocaleCodeUseCase,
       logoutUseCase,
+      forgotPasswordUseCase,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

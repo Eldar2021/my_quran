@@ -31,6 +31,60 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<UserEntity, Exception>> signUpWithEmail(
+    String email,
+    String password,
+    String languageCode,
+    Gender gender,
+  ) async {
+    try {
+      final res = await remoteDataSource.signUpWithEmail(email, password, languageCode, gender);
+      return res.fold(
+        (l) => Left(AuthenticationExc(message: l.toString())),
+        (r) => Right(
+          UserEntity(
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+            localeCode: r.localeCode,
+          ),
+        ),
+      );
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('signUpWithEmail: error: $e\n$s');
+      return Left(AuthenticationExc(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<UserEntity, Exception>> signInWithEmail(
+    String email,
+    String password,
+    String languageCode,
+    Gender gender,
+  ) async {
+    try {
+      final res = await remoteDataSource.signInWithEmail(email, password, languageCode, gender);
+      return res.fold(
+        Left.new,
+        (r) => Right(
+          UserEntity(
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+            localeCode: r.localeCode,
+          ),
+        ),
+      );
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('signWithEmail: error: $e\n$s');
+      return Left(AuthenticationExc(message: e.toString()));
+    }
+  }
+
+  @override
   Future<Either<UserEntity, Exception>> signWithGoogle(
     String languageCode,
     Gender gender,
@@ -104,6 +158,16 @@ final class AuthRepositoryImpl implements AuthRepository {
       await localDataSource.saveLocaleCode(localeCode);
       return Right(entity);
     });
+  }
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    try {
+      await remoteDataSource.forgotPasswordRemote(email);
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('Forgot Password error: $e\n$s');
+    }
   }
 
   @override
