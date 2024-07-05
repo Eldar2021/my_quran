@@ -43,6 +43,7 @@ dependencies:
     path: ../packages/mq_ci_keys/ 
   firebase_crashlytics: ^3.5.7
   firebase_analytics: ^10.10.7
+  firebase_remote_config: ^4.4.7
   # flutter_native_splash: ^2.4.0
 
 dev_dependencies:
