@@ -151,10 +151,5 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void togglePasswordVisibility() {
-    passwordVisible = !passwordVisible;
-    emit(state);
-  }
-
   bool get isAuthedticated => state.user != null;
 }

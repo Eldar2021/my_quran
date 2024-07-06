@@ -92,5 +92,10 @@
     "passwordMismatchError": "Passwords do not match",
     "forgotPassword":"Forgot password?",
     "passwordReset": "Password Reset",
-    "passwordResetInstructions":"Please check your email for instructions on how to reset your password."
+    "passwordResetInstructions":"Please check your email for instructions on how to reset your password.",
+    "emailRequired": "Email is required.",
+    "invalidEmail": "Please enter a valid email address.",
+    "passwordRequired": "Password is required.",
+    "passwordInvalid": "Password should be at least 8 characters long, must contain at least one letter and one number",
+    "resetPassword": "Reset your password"
 }

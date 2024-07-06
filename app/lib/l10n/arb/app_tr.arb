@@ -92,5 +92,10 @@
     "passwordMismatchError": "Şifreler eşleşmiyor",
     "forgotPassword": "Şifremi unuttum?",
     "passwordReset": "Şifre Sıfırlama",
-    "passwordResetInstructions":"Şifrenizi sıfırlama talimatları için e-postanızı kontrol edin."
+    "passwordResetInstructions":"Şifrenizi sıfırlama talimatları için e-postanızı kontrol edin.",
+    "emailRequired": "E-posta gereklidir.",
+    "invalidEmail": "Lütfen geçerli bir e-posta adresi girin.",
+    "passwordRequired": "Şifre gereklidir.",
+    "passwordInvalid": "Parola en az 8 karakter uzunluğunda olmalı, en az bir harf ve bir rakam içermelidir.",
+    "resetPassword": "Şifrenizi sıfırlayın"
 }

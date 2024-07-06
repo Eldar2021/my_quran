@@ -92,5 +92,10 @@
     "passwordMismatchError": "Kata sandi tidak cocok",
     "forgotPassword": "Lupa kata sandi?",
     "passwordReset": "Atur Ulang Kata Sandi",
-    "passwordResetInstructions":"Silakan periksa email Anda untuk petunjuk tentang cara mengatur ulang kata sandi Anda."
+    "passwordResetInstructions":"Silakan periksa email Anda untuk petunjuk tentang cara mengatur ulang kata sandi Anda.",
+    "emailRequired": "Email diperlukan.",
+    "invalidEmail": "Silakan masukkan alamat email yang valid.",
+    "passwordRequired": "Kata sandi diperlukan.",
+    "passwordInvalid": "Password harus setidaknya 8 karakter, harus mengandung setidaknya satu huruf dan satu angka.",
+    "resetPassword": "Atur ulang kata sandi Anda"
 }
