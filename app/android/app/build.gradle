@@ -54,7 +54,7 @@ android {
 
     defaultConfig {
         applicationId "com.alee.my_quran"
-        minSdkVersion flutter.minSdkVersion // flutter.minSdkVersion
+        minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
