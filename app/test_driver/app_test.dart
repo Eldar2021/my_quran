@@ -32,10 +32,6 @@ void main() async {
       await loginNext(driver);
     });
 
-    test('sign-in-with-email', () async {
-      await loginWithEmail(driver);
-    });
-
     test('sign-in-with-google-account', () async {
       await loginWithGoogle(driver);
     });

@@ -9,16 +9,13 @@ import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class ForgotPasswordForm extends StatelessWidget {
-  const ForgotPasswordForm({
-    required this.forgotPasswordEmailController,
-    super.key,
-  });
-  final TextEditingController forgotPasswordEmailController;
+  ForgotPasswordForm({required this.controller, super.key});
+
+  final TextEditingController controller;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
     return Container(
       padding: const EdgeInsets.all(16),
       child: Form(
@@ -35,7 +32,7 @@ class ForgotPasswordForm extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             CustomTextFormField(
-              controller: forgotPasswordEmailController,
+              controller: controller,
               labelText: context.l10n.email,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -52,7 +49,7 @@ class ForgotPasswordForm extends StatelessWidget {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   MqAnalytic.track(AnalyticKey.tapForgotPassword);
-                  context.read<AuthCubit>().forgotPassword(forgotPasswordEmailController.text);
+                  context.read<AuthCubit>().forgotPassword(controller.text);
                   Navigator.pop(context);
                 }
               },

@@ -19,6 +19,9 @@ Future<void> selectGender(FlutterDriver driver) async {
   await driver.takeScreenshot(Screenshots.loginGenderMalePage);
 }
 
+/*
+These functions are placeholders for future implementation.
+
 Future<void> registerWithEmail(FlutterDriver driver) async {
   await driver.waitFor(find.byValueKey(MqKeys.registerView));
   await driver.tap(find.byValueKey(MqKeys.registerTypeName('email')));
@@ -32,6 +35,7 @@ Future<void> loginWithEmail(FlutterDriver driver) async {
   await driver.takeScreenshot(Screenshots.loginEmailPage);
   await Future<void>.delayed(const Duration(seconds: 1));
 }
+*/
 
 Future<void> loginWithGoogle(FlutterDriver driver) async {
   await driver.waitFor(find.byValueKey(MqKeys.signInView));

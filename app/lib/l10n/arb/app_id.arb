@@ -97,5 +97,7 @@
     "invalidEmail": "Silakan masukkan alamat email yang valid.",
     "passwordRequired": "Kata sandi diperlukan.",
     "passwordInvalid": "Password harus setidaknya 8 karakter, harus mengandung setidaknya satu huruf dan satu angka.",
-    "resetPassword": "Atur ulang kata sandi Anda"
+    "resetPassword": "Atur ulang kata sandi Anda",
+    "username": "Nama Pengguna",
+     "usernameRequired": "Nama Pengguna diperlukan"
 }

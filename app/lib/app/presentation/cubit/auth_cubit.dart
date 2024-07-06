@@ -34,12 +34,17 @@ class AuthCubit extends Cubit<AuthState> {
   final LogoutUseCase logoutUseCase;
   bool passwordVisible = false;
 
-  Future<AuthState> signUpWithEmail(String email, String password) async {
+  Future<AuthState> signUpWithEmail({
+    required String email,
+    required String password,
+    required String username,
+  }) async {
     final user = await emailSignUp(
-      email,
-      password,
-      state.currentLocale.languageCode,
-      state.gender,
+      email: email,
+      password: password,
+      username: username,
+      languageCode: state.currentLocale.languageCode,
+      gender: state.gender,
     );
 
     user.fold(
@@ -52,10 +57,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<AuthState> signInWithEmail(String email, String password) async {
     final user = await emailSignIn(
-      email,
-      password,
-      state.currentLocale.languageCode,
-      state.gender,
+      email: email,
+      password: password,
+      languageCode: state.currentLocale.languageCode,
+      gender: state.gender,
     );
 
     user.fold(

@@ -97,5 +97,7 @@
     "invalidEmail": "Lütfen geçerli bir e-posta adresi girin.",
     "passwordRequired": "Şifre gereklidir.",
     "passwordInvalid": "Parola en az 8 karakter uzunluğunda olmalı, en az bir harf ve bir rakam içermelidir.",
-    "resetPassword": "Şifrenizi sıfırlayın"
+    "resetPassword": "Şifrenizi sıfırlayın",
+    "username": "Kullanıcı adı",
+    "usernameRequired": "Kullanıcı adı zorunlu"
 }

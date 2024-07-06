@@ -8,12 +8,19 @@ final class EmailSignUpUseCase {
 
   final AuthRepository repository;
 
-  Future<Either<UserEntity, Exception>> call(
-    String email,
-    String password,
-    String languageCode,
-    Gender gender,
-  ) {
-    return repository.signUpWithEmail(email, password, languageCode, gender);
+  Future<Either<UserEntity, Exception>> call({
+    required String email,
+    required String password,
+    required String username,
+    required String languageCode,
+    required Gender gender,
+  }) {
+    return repository.signUpWithEmail(
+      email: email,
+      password: password,
+      username: username,
+      languageCode: languageCode,
+      gender: gender,
+    );
   }
 }

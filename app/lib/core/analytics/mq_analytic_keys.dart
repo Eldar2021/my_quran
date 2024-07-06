@@ -30,7 +30,7 @@ final class AnalyticKey {
 
   // action
   static const tapLogout = 'tap_logout';
-  static const tapLoginWithSoccial = 'tap_login_with_soccial';
+  static const tapLogin = 'tap_login';
   static const tapSignUp = 'tap_signup';
   static const tapForgotPassword = 'tap_forgot_password';
   static const tapPrivacyPolicy = 'tap_privacy_policy';

@@ -97,5 +97,7 @@
     "invalidEmail": "Please enter a valid email address.",
     "passwordRequired": "Password is required.",
     "passwordInvalid": "Password should be at least 8 characters long, must contain at least one letter and one number",
-    "resetPassword": "Reset your password"
+    "resetPassword": "Reset your password",
+    "username": "Username",
+    "usernameRequired": "Username is required"
 }

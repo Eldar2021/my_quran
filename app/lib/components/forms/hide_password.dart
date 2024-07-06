@@ -3,26 +3,26 @@ import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/urils.dart';
 
-class HidePasswordForm extends StatefulWidget {
-  const HidePasswordForm({
-    required this.passwordController,
+class PasswordFormFiled extends StatefulWidget {
+  const PasswordFormFiled({
+    this.controller,
     this.validator,
     super.key,
   });
-  final TextEditingController passwordController;
+  final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
 
   @override
-  State<HidePasswordForm> createState() => _HidePasswordFormState();
+  State<PasswordFormFiled> createState() => _PasswordFormFiledState();
 }
 
-class _HidePasswordFormState extends State<HidePasswordForm> {
+class _PasswordFormFiledState extends State<PasswordFormFiled> {
   bool isPasswordHidden = true;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      controller: widget.passwordController,
+      controller: widget.controller,
       labelText: context.l10n.password,
       obscureText: isPasswordHidden,
       suffixIcon: IconButton(

@@ -108,7 +108,7 @@ final class AppAlert {
     required String title,
     required String content,
   }) {
-    showCupertinoDialog<void>(
+    showAdaptiveDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(

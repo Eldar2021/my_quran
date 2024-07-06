@@ -56,12 +56,12 @@ final class AppRouter {
       GoRoute(
         path: '/$register',
         name: register,
-        builder: (context, state) => const SignUpView(),
+        builder: (context, state) => SignUpView(),
       ),
       GoRoute(
         path: '/$loginWihtSoccial',
         name: loginWihtSoccial,
-        builder: (context, state) => const SignInView(),
+        builder: (context, state) => SignInView(),
       ),
       GoRoute(
         path: '/$devModeView',

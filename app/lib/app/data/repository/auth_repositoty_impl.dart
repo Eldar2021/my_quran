@@ -31,14 +31,21 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signUpWithEmail(
-    String email,
-    String password,
-    String languageCode,
-    Gender gender,
-  ) async {
+  Future<Either<UserEntity, Exception>> signUpWithEmail({
+    required String email,
+    required String password,
+    required String username,
+    required String languageCode,
+    required Gender gender,
+  }) async {
     try {
-      final res = await remoteDataSource.signUpWithEmail(email, password, languageCode, gender);
+      final res = await remoteDataSource.signUpWithEmail(
+        email: email,
+        password: password,
+        username: username,
+        languageCode: languageCode,
+        gender: gender,
+      );
       return res.fold(
         (l) => Left(AuthenticationExc(message: l.toString())),
         (r) => Right(
@@ -58,14 +65,19 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signInWithEmail(
-    String email,
-    String password,
-    String languageCode,
-    Gender gender,
-  ) async {
+  Future<Either<UserEntity, Exception>> signInWithEmail({
+    required String email,
+    required String password,
+    required String languageCode,
+    required Gender gender,
+  }) async {
     try {
-      final res = await remoteDataSource.signInWithEmail(email, password, languageCode, gender);
+      final res = await remoteDataSource.signInWithEmail(
+        email: email,
+        password: password,
+        languageCode: languageCode,
+        gender: gender,
+      );
       return res.fold(
         Left.new,
         (r) => Right(

@@ -19,19 +19,21 @@ final class AuthRemoteDataSource {
   final SoccialAuth soccialAuth;
   final bool isIntegrationTest;
 
-  Future<Either<UserModelResponse, Exception>> signUpWithEmail(
-    String email,
-    String password,
-    String languageCode,
-    Gender gender,
-  ) async {
-    final signUpAuth = await _getSignUpAuth(email, password);
-
+  Future<Either<UserModelResponse, Exception>> signUpWithEmail({
+    required String email,
+    required String password,
+    required String username,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    final signUpAuth = await soccialAuth.signUpWithEmail(email, password);
+    final accessToken = signUpAuth.credential?.accessToken ?? '';
     final token = await client.post(
       apiConst.registerWithEmail,
       fromJson: TokenResponse.fromJson,
       body: {
-        'access_token': signUpAuth.accessToken,
+        'access_token': accessToken,
+        'username': username,
       },
     );
 
@@ -40,7 +42,7 @@ final class AuthRemoteDataSource {
       (r) async {
         final user = UserModelResponse(
           accessToken: r.key,
-          username: signUpAuth.name,
+          username: username,
           gender: gender,
           localeCode: languageCode,
         );
@@ -52,43 +54,27 @@ final class AuthRemoteDataSource {
     );
   }
 
-  Future<_UserReqParam> _getSignUpAuth(String email, String password) async {
-    if (isIntegrationTest) {
-      return const _UserReqParam(
-        name: 'Test User',
-        accessToken: r'myquran_te$t_t0ken',
-      );
-    } else {
-      final signUpAuth = await soccialAuth.signUpWithEmail(email, password);
-      final accessToken = signUpAuth.credential?.accessToken ?? '';
-      final username = signUpAuth.user?.displayName ?? '';
-      return _UserReqParam(
-        name: username,
-        accessToken: accessToken,
-      );
-    }
-  }
-
-  Future<Either<UserModelResponse, Exception>> signInWithEmail(
-    String email,
-    String password,
-    String languageCode,
-    Gender gender,
-  ) async {
-    final signInAuth = await _getSignInAuth(email, password);
+  Future<Either<UserModelResponse, Exception>> signInWithEmail({
+    required String email,
+    required String password,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    final signInAuth = await soccialAuth.signInWithEmail(email, password);
+    final accessToken = signInAuth.credential?.accessToken ?? '';
 
     final token = await client.post(
       apiConst.loginWithEmail,
       fromJson: TokenResponse.fromJson,
       body: {
-        'access_token': signInAuth.accessToken,
+        'access_token': accessToken,
       },
     );
 
     return token.fold(Left.new, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
-        username: signInAuth.name,
+        username: 'token.username',
         gender: gender,
         localeCode: languageCode,
       );
@@ -97,23 +83,6 @@ final class AuthRemoteDataSource {
 
       return Right(user);
     });
-  }
-
-  Future<_UserReqParam> _getSignInAuth(String email, String password) async {
-    if (isIntegrationTest) {
-      return const _UserReqParam(
-        name: 'Test User',
-        accessToken: r'myquran_te$t_t0ken',
-      );
-    } else {
-      final signInAuth = await soccialAuth.signInWithEmail(email, password);
-      final accessToken = signInAuth.credential?.accessToken ?? '';
-      final username = signInAuth.user?.displayName ?? '';
-      return _UserReqParam(
-        name: username,
-        accessToken: accessToken,
-      );
-    }
   }
 
   Future<Either<UserModelResponse, Exception>> signInWithGoogle(
