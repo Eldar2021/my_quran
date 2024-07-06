@@ -28,7 +28,7 @@ My Quran Hatim Aplication.
 ## Requirements
 
 - Dart sdk: ">=3.3.0 <4.0.0"
-- Flutter: "3.19.5"
+- Flutter: "3.22.2"
 - Android: minSdkVersion 19
 - iOS: --ios-language swift, Xcode version >= 15.0.0
 
