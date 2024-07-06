@@ -20,7 +20,7 @@ class SelectGender extends StatelessWidget {
         Text(
           context.l10n.loginPleaseSelectGender,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 24, color: colorScheme.onBackground),
+          style: TextStyle(fontSize: 24, color: colorScheme.onSurface),
         ),
         const SizedBox(height: 30),
         GenderCard(

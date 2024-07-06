@@ -45,7 +45,7 @@ final class AppAlert {
           icon: gender == Gender.male
               ? Assets.icons.duaMale.svg(
                   height: 70,
-                  colorFilter: ColorFilter.mode(colorScheme.onBackground, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
                 )
               : Assets.icons.duaFemale.svg(height: 70),
           title: Text(context.l10n.amin),
