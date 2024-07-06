@@ -7,10 +7,10 @@ part of 'surah_model.dart';
 // **************************************************************************
 
 SurahResponse _$SurahResponseFromJson(Map<String, dynamic> json) => SurahResponse(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      aya: json['aya'] as int,
-      pages: (json['pages'] as List<dynamic>).map((e) => e as int).toList(),
+      aya: (json['aya'] as num).toInt(),
+      pages: (json['pages'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
       arabic: json['arabic'] as String,
     );
 
