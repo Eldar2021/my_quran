@@ -81,5 +81,10 @@
     "signOutContext": "Çıkış yapmak istediğinizden emin misiniz?",
     "yes": "Evet",
     "no": "Hayır",
-    "appleSignInNotAvailable": "Apple ile giriş Android cihazlarda mevcut değil."
+    "appleSignInNotAvailable": "Apple ile giriş Android cihazlarda mevcut değil.",
+    "appUpdateAvailable": "Uygulama güncellemesi mevcut",
+    "requiredVersionDescription": "Uygulamanın yeni bir sürümü mevcut. Devam etmek için güncellemelisiniz.",
+    "recommendedVersionDescription": "Uygulamanın yeni bir sürümü mevcut.",
+    "remindMeLater": "Daha sonra hatırlat",
+    "updateNow": "Şimdi güncelle"
 }

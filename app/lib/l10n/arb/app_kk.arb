@@ -81,5 +81,11 @@
     "signOutContext": "Шығыңыз келетініне сенімдісіз бе?",
     "yes": "Иә",
     "no": "Жоқ",
-    "appleSignInNotAvailable": "Apple жүйесіне кіру Android құрылғыларында қол жетімді емес."
+    "appleSignInNotAvailable": "Apple жүйесіне кіру Android құрылғыларында қол жетімді емес.",
+    "appUpdateAvailable": "Қолданба жаңарту қолданысқа қойылатын",
+    "requiredVersionDescription": "Қолданбаның жаңа нұсқасы қолайлы. Жалғастыру үшін оны жаңартуыңыз керек.",
+    "recommendedVersionDescription": "Қолданбаның жаңа нұсқасы қолайлы.",
+    "remindMeLater": "Кейін еске салу",
+    "updateNow": "Қазір жаңарту"
+
 }

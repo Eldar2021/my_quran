@@ -1,39 +1,62 @@
-import 'dart:developer';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
-import 'package:my_quran/core/core.dart';
 
 @immutable
 final class MqRemoteConfig {
-  const MqRemoteConfig._();
+  const MqRemoteConfig({
+    required this.remoteConfig,
+    required this.buildNumber,
+  });
 
-  static Future<void> initialize() async {
-    final remoteConfig = FirebaseRemoteConfig.instance;
+  final FirebaseRemoteConfig remoteConfig;
+  final String buildNumber;
 
-    try {
-      await remoteConfig.setDefaults(<String, dynamic>{
-        'version': '1.3.1',
-        'build_number': 10,
-        'update_required': false,
-      });
-      await remoteConfig.fetchAndActivate();
+  Future<void> initialise() async {
+    await remoteConfig.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(minutes: 1),
+        minimumFetchInterval: const Duration(hours: 1),
+      ),
+    );
 
-      _listenForUpdates(remoteConfig);
-    } catch (error, stackTrace) {
-      MqCrashlytics.report(error, stackTrace);
-      log('MqRemoteConfig initialize error: $error, stackTrace: $stackTrace');
-    }
+    await remoteConfig.setDefaults(_defaultParams(currentBuildNumber));
+    await remoteConfig.fetchAndActivate();
   }
 
-  static String get latestVersion => FirebaseRemoteConfig.instance.getString('version');
-  static int get buildNumber => FirebaseRemoteConfig.instance.getInt('build_number');
-  static bool get updateRequired => FirebaseRemoteConfig.instance.getBool('update_required');
+  int get currentBuildNumber => int.tryParse(buildNumber) ?? 100;
+  int get requiredBuildNumber => version.$1;
+  int get recommendedBuildNumber => version.$2;
 
-  static void _listenForUpdates(FirebaseRemoteConfig remoteConfig) {
-    remoteConfig.onConfigUpdated.listen((event) async {
-      await remoteConfig.activate();
-      log('MqRemoteConfig: Config updated and activated');
-    });
+  (int, int) get version {
+    final data = jsonDecode(remoteConfig.getString(_appVersion)) as Map<String, dynamic>;
+    final platformName = Platform.isIOS ? 'ios' : 'android';
+    final versionData = data[platformName] as Map<String, dynamic>;
+    return (versionData['requiredBuildNumber'], versionData['recommendedBuildNumber']);
+  }
+
+  static const _enableHatim = 'enableHatim';
+  static const _appVersion = 'appVersion';
+
+  static Map<String, dynamic> _defaultAppVersionValue(int currentBuildNumber) {
+    return {
+      'android': {
+        'requiredBuildNumber': currentBuildNumber,
+        'recommendedBuildNumber': currentBuildNumber,
+      },
+      'ios': {
+        'requiredBuildNumber': currentBuildNumber,
+        'recommendedBuildNumber': currentBuildNumber,
+      },
+    };
+  }
+
+  static Map<String, dynamic> _defaultParams(int currentBuildNumber) {
+    return {
+      _enableHatim: true,
+      _appVersion: jsonEncode(_defaultAppVersionValue(currentBuildNumber)),
+    };
   }
 }

@@ -81,5 +81,10 @@
     "signOutContext": "Вы уверены, что хотите выйти?",
     "yes": "Да",
     "no": "Нет",
-    "appleSignInNotAvailable": "Вход с Apple недоступен на устройствах Android."
+    "appleSignInNotAvailable": "Вход с Apple недоступен на устройствах Android.",
+    "appUpdateAvailable": "Доступно обновление приложения",
+    "requiredVersionDescription": "Доступна новая версия приложения. Вам необходимо обновить его, чтобы продолжить использование.",
+    "recommendedVersionDescription": "Доступна новая версия приложения.",
+    "remindMeLater": "Напомнить позже",
+    "updateNow": "Обновить сейчас"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -84,21 +85,51 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class QuranApp extends StatelessWidget {
+class QuranApp extends StatefulWidget {
   const QuranApp({super.key});
+
+  @override
+  State<QuranApp> createState() => _QuranAppState();
+}
+
+class _QuranAppState extends State<QuranApp> {
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future<void>.delayed(const Duration(seconds: 2));
+      _listenRemoteConfig();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GlobalLoaderOverlay(
-      child: MaterialApp.router(
-        title: 'MyQuranKhatm',
-        debugShowCheckedModeBanner: false,
-        locale: context.watch<AuthCubit>().state.currentLocale,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: context.watch<AppCubit>().state.theme.themeData,
-        routerConfig: AppRouter.router,
+      child: AppListener(
+        navigationKey: rootNavigatorKey,
+        child: MaterialApp.router(
+          title: 'MyQuranKhatm',
+          debugShowCheckedModeBanner: false,
+          locale: context.watch<AuthCubit>().state.currentLocale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: context.watch<AppCubit>().state.theme.themeData,
+          routerConfig: AppRouter.router,
+        ),
       ),
     );
+  }
+
+  void _listenRemoteConfig() {
+    final remoteConfig = context.read<MqRemoteConfig>();
+    context.read<AppCubit>().setAppVersionStatus(
+          requiredBuildNumber: remoteConfig.requiredBuildNumber,
+          recommendedBuildNumber: remoteConfig.recommendedBuildNumber,
+          currentBuildNumber: remoteConfig.currentBuildNumber,
+        );
+    remoteConfig.remoteConfig.onConfigUpdated.listen((event) async {
+      await remoteConfig.remoteConfig.activate();
+      setState(() {});
+    });
   }
 }

@@ -15,8 +15,9 @@ class AppCubit extends Cubit<AppState> {
     required this.getAppVersionUseCase,
   }) : super(
           AppState(
-            getInitialThemeUseCase.call,
-            getAppVersionUseCase.call,
+            theme: getInitialThemeUseCase.call,
+            appVersionStatus: const NoNewVersion(),
+            appVersion: getAppVersionUseCase.call,
           ),
         );
 
@@ -39,5 +40,19 @@ class AppCubit extends Cubit<AppState> {
   Future<void> changeColor(int index, Color color) async {
     await setColorUseCase(index, color);
     emit(state.copyWith(theme: state.theme.copyWith(targetColor: color)));
+  }
+
+  Future<void> setAppVersionStatus({
+    required int requiredBuildNumber,
+    required int recommendedBuildNumber,
+    required int currentBuildNumber,
+  }) async {
+    if (currentBuildNumber < requiredBuildNumber) {
+      emit(state.copyWith(appVersionStatus: YesRequiredVersion(requiredBuildNumber)));
+    } else if (currentBuildNumber < recommendedBuildNumber) {
+      emit(state.copyWith(appVersionStatus: YesRecommendedVersion(recommendedBuildNumber)));
+    } else {
+      emit(state.copyWith(appVersionStatus: const NoNewVersion()));
+    }
   }
 }
