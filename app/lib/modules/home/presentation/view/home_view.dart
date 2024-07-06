@@ -103,8 +103,16 @@ class HomeBody extends StatelessWidget {
                 key: const Key(MqKeys.participantToHatim),
                 text: l10n.homeGoHatim,
                 onPressed: () {
+                  // if (const MqRemoteConfig().isHatimEnabled) {
                   MqAnalytic.track(AnalyticKey.goHatim);
                   context.goNamed(AppRouter.hatim);
+                  // } else {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(
+                  //       content: Text('Hatim is not available.'),
+                  //     ),
+                  //   );
+                  // }
                 },
               ),
             ),

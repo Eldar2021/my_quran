@@ -59,4 +59,6 @@ final class MqRemoteConfig {
       _appVersion: jsonEncode(_defaultAppVersionValue(currentBuildNumber)),
     };
   }
+
+  bool get isHatimEnabled => remoteConfig.getBool(_enableHatim);
 }
