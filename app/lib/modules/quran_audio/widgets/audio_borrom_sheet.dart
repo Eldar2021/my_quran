@@ -14,7 +14,7 @@ class AudioButtomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: context.colors.surfaceVariant,
+        color: context.colors.surfaceContainerHighest,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(35),
           topRight: Radius.circular(35),
@@ -63,7 +63,7 @@ class AudioButtomSheet extends StatelessWidget {
               ],
             ),
             SeekBar(
-              sliderInActiveColor: context.colors.background,
+              sliderInActiveColor: context.colors.surface,
               player: context.read<QuranAudioCubit>().player,
               onChangeEnd: context.read<QuranAudioCubit>().seek,
             ),

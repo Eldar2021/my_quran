@@ -9,7 +9,7 @@ part of 'hatim_page.dart';
 HatimPages _$HatimPagesFromJson(Map<String, dynamic> json) => HatimPages(
       id: json['id'] as String,
       status: $enumDecode(_$HatimPageStatusEnumMap, json['status']),
-      number: json['number'] as int,
+      number: (json['number'] as num).toInt(),
       mine: json['mine'] as bool,
     );
 

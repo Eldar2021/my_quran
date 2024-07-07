@@ -34,7 +34,7 @@ class SelectLangFromListViewBuilder extends StatelessWidget {
             trailing: authCubit.state.currentLocale == locale
                 ? CircleAvatar(
                     radius: 15,
-                    backgroundColor: colorScheme.background,
+                    backgroundColor: colorScheme.surface,
                     child: Icon(Icons.check, color: colorScheme.primary),
                   )
                 : null,

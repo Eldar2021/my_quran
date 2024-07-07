@@ -38,7 +38,7 @@ class DevelopersView extends StatelessWidget {
               text: 'GitHub',
               icon: Assets.icons.github.svg(
                 height: 35,
-                colorFilter: ColorFilter.mode(colorScheme.onBackground, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
               ),
             ),
             const SizedBox(height: 20),

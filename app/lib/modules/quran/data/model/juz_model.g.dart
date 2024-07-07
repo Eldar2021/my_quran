@@ -7,9 +7,9 @@ part of 'juz_model.dart';
 // **************************************************************************
 
 JuzResponse _$JuzResponseFromJson(Map<String, dynamic> json) => JuzResponse(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      pages: (json['pages'] as List<dynamic>).map((e) => e as int).toList(),
+      pages: (json['pages'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
       surahs:
           (json['surahs'] as List<dynamic>).map((e) => JuzSurahResponse.fromJson(e as Map<String, dynamic>)).toList(),
     );
