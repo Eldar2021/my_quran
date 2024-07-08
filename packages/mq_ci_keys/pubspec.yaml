@@ -3,8 +3,8 @@ description: A starting point for Dart libraries or applications.
 version: 1.0.0
 
 environment:
-  sdk: ">=3.3.0 <4.0.0"
+  sdk: ">=3.4.0 <4.0.0"
 
 dev_dependencies:
-  very_good_analysis: ^5.1.0
-  test: ^1.25.2
+  very_good_analysis: ^6.0.0
+  test: ^1.25.8

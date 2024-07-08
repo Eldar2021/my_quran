@@ -9,10 +9,10 @@ part of 'hatim_juz.dart';
 HatimJus _$HatimJusFromJson(Map<String, dynamic> json) => HatimJus(
       id: json['id'] as String,
       status: json['status'] as String,
-      number: json['number'] as int,
-      toDo: json['toDo'] as int,
-      inProgress: json['inProgress'] as int,
-      done: json['done'] as int,
+      number: (json['number'] as num).toInt(),
+      toDo: (json['toDo'] as num).toInt(),
+      inProgress: (json['inProgress'] as num).toInt(),
+      done: (json['done'] as num).toInt(),
     );
 
 Map<String, dynamic> _$HatimJusToJson(HatimJus instance) => <String, dynamic>{

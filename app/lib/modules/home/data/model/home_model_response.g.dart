@@ -7,9 +7,9 @@ part of 'home_model_response.dart';
 // **************************************************************************
 
 HomeModelResponse _$HomeModelResponseFromJson(Map<String, dynamic> json) => HomeModelResponse(
-      allDoneHatims: json['allDoneHatims'] as int,
-      allDonePages: json['allDonePages'] as int,
-      donePages: json['donePages'] as int,
+      allDoneHatims: (json['allDoneHatims'] as num).toInt(),
+      allDonePages: (json['allDonePages'] as num).toInt(),
+      donePages: (json['donePages'] as num).toInt(),
     );
 
 Map<String, dynamic> _$HomeModelResponseToJson(HomeModelResponse instance) => <String, dynamic>{

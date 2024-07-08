@@ -6,44 +6,48 @@ publish_to: "none"
 version: 1.3.1+10
 
 environment:
-  sdk: ">=3.3.0 <4.0.0"
-  flutter: 3.19.5
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: 3.22.2
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  cupertino_icons: ^1.0.6
-  firebase_core: ^2.30.1
-  firebase_auth: ^4.19.4
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.1.1
+  firebase_auth: ^5.1.1
+  firebase_crashlytics: ^4.0.2
+  firebase_analytics: ^11.1.0
   google_sign_in: ^6.2.1
-  web_socket_channel: ^2.4.5
+  web_socket_channel: ^2.4.5 # 3.0.0
   sign_in_with_apple: ^6.1.1
-  go_router: ^13.2.2
-  intl: ^0.18.1 # 0.19.0
-  flutter_bloc: ^8.1.5
+  go_router: ^14.2.0
+  intl: ^0.19.0
+  flutter_bloc: ^8.1.6
   equatable: ^2.0.5
-  connectivity_plus: ^6.0.1
-  package_info_plus: ^6.0.0
+  connectivity_plus: ^6.0.3
+  package_info_plus: ^8.0.0
   http: ^1.2.1
   infinite_scroll_pagination: ^4.0.0
   flutter_svg: ^2.0.10+1
-  url_launcher: ^6.2.5
-  json_annotation: ^4.8.1
+  url_launcher: ^6.3.0
+  json_annotation: ^4.9.0
   font_awesome_flutter: ^10.7.0
-  upgrader: ^10.0.1
-  just_audio: ^0.9.37
-  just_audio_background: ^0.0.1-beta.11
-  meta: ^1.11.0 # 1.12.0
+  upgrader: ^10.3.0
+  just_audio: ^0.9.38
+  just_audio_background: ^0.0.1-beta.12
+  meta: ^1.12.0 # 1.15.0
   loader_overlay: ^4.0.0
   mq_storage:
     path: ../packages/mq_storage/
   mq_ci_keys:
     path: ../packages/mq_ci_keys/ 
+
   firebase_crashlytics: ^3.5.7
   firebase_analytics: ^10.10.7
   firebase_remote_config: ^4.4.7
+
   # flutter_native_splash: ^2.4.0
 
 dev_dependencies:
@@ -51,12 +55,12 @@ dev_dependencies:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  very_good_analysis: ^5.1.0
-  test: ^1.24.9 # 1.25.2
-  mocktail: ^1.0.3
-  build_runner: ^2.4.9
-  flutter_gen_runner: ^5.4.0
-  json_serializable: ^6.7.1
+  very_good_analysis: ^6.0.0
+  test: ^1.24.9 # 1.25.8
+  mocktail: ^1.0.4
+  build_runner: ^2.4.11
+  flutter_gen_runner: ^5.6.0
+  json_serializable: ^6.8.0
   # flutter_launcher_icons: ^0.13.1
 
 flutter:
@@ -73,8 +77,8 @@ flutter:
         - asset: assets/fonts/qpc_uthmanic_hafs/qpc_uthmanic_hafs.otf
 
 flutter_gen:
-  output: lib/constants/assets/ # Optional (default: lib/gen/)
-  line_length: 80 # Optional (default: 80)
+  output: lib/constants/assets/
+  line_length: 120
 
   integrations:
     flutter_svg: true

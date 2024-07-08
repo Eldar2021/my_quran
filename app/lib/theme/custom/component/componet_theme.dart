@@ -30,7 +30,7 @@ mixin CompomnentTheme {
   }
 
   AppBarTheme get appBarTheme {
-    return AppBarTheme(backgroundColor: scheme.surfaceVariant);
+    return AppBarTheme(backgroundColor: scheme.surfaceContainerHighest);
   }
 
   TabBarTheme get tabBarTheme {
