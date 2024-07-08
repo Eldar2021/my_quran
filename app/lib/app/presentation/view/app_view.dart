@@ -124,6 +124,7 @@ class _QuranAppState extends State<QuranApp> {
 
   void _listenRemoteConfig() {
     final remoteConfig = context.read<MqRemoteConfig>();
+
     context.read<RemoteConfigCubit>().setAppVersionStatus(
           requiredBuildNumber: remoteConfig.requiredBuildNumber,
           recommendedBuildNumber: remoteConfig.recommendedBuildNumber,
