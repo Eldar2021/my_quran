@@ -105,9 +105,7 @@ class HomeBody extends StatelessWidget {
                 onPressed: () {
                   if (context.read<MqRemoteConfig>().isHatimDisabled) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.hatimNotAvailable),
-                      ),
+                      SnackBar(content: Text(context.l10n.hatimNotAvailable)),
                     );
                   } else {
                     MqAnalytic.track(AnalyticKey.goHatim);
