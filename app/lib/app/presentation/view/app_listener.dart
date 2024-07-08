@@ -18,7 +18,7 @@ class AppListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AppCubit, AppState>(
+    return BlocListener<RemoteConfigCubit, RemoteConfigState>(
       listenWhen: (p, c) => p.appVersionStatus != c.appVersionStatus,
       listener: (context, state) {
         if (state.appVersionStatus is YesRecommendedVersion) {

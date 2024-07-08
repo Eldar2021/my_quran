@@ -86,5 +86,6 @@
     "requiredVersionDescription": "Uygulamanın yeni bir sürümü mevcut. Devam etmek için güncellemelisiniz.",
     "recommendedVersionDescription": "Uygulamanın yeni bir sürümü mevcut.",
     "remindMeLater": "Daha sonra hatırlat",
-    "updateNow": "Şimdi güncelle"
+    "updateNow": "Şimdi güncelle",
+    "hatimNotAvailable": "Hatim mevcut değil."
 }

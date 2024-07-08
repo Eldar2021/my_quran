@@ -5,7 +5,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable
-final class MqRemoteConfig {
+class MqRemoteConfig {
   const MqRemoteConfig({
     required this.remoteConfig,
     required this.buildNumber,
@@ -37,7 +37,7 @@ final class MqRemoteConfig {
     return (versionData['requiredBuildNumber'], versionData['recommendedBuildNumber']);
   }
 
-  static const _enableHatim = 'enableHatim';
+  static const _disableHatim = 'isHatimDisabled';
   static const _appVersion = 'appVersion';
 
   static Map<String, dynamic> _defaultAppVersionValue(int currentBuildNumber) {
@@ -55,10 +55,10 @@ final class MqRemoteConfig {
 
   static Map<String, dynamic> _defaultParams(int currentBuildNumber) {
     return {
-      _enableHatim: true,
+      _disableHatim: true,
       _appVersion: jsonEncode(_defaultAppVersionValue(currentBuildNumber)),
     };
   }
 
-  bool get isHatimEnabled => remoteConfig.getBool(_enableHatim);
+  bool get isHatimDisabled => remoteConfig.getBool(_disableHatim);
 }

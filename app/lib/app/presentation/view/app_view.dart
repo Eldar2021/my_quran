@@ -79,6 +79,9 @@ class MyApp extends StatelessWidget {
             context.read<NetworkClient>(),
           )..init(),
         ),
+        BlocProvider(
+          create: (context) => RemoteConfigCubit(),
+        ),
       ],
       child: const QuranApp(),
     );
@@ -96,8 +99,7 @@ class _QuranAppState extends State<QuranApp> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future<void>.delayed(const Duration(seconds: 2));
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       _listenRemoteConfig();
     });
   }
@@ -122,11 +124,12 @@ class _QuranAppState extends State<QuranApp> {
 
   void _listenRemoteConfig() {
     final remoteConfig = context.read<MqRemoteConfig>();
-    context.read<AppCubit>().setAppVersionStatus(
+    context.read<RemoteConfigCubit>().setAppVersionStatus(
           requiredBuildNumber: remoteConfig.requiredBuildNumber,
           recommendedBuildNumber: remoteConfig.recommendedBuildNumber,
           currentBuildNumber: remoteConfig.currentBuildNumber,
         );
+
     remoteConfig.remoteConfig.onConfigUpdated.listen((event) async {
       await remoteConfig.remoteConfig.activate();
       setState(() {});

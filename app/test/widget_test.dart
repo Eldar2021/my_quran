@@ -1,3 +1,4 @@
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -28,6 +29,39 @@ final class MockHomeRepositoryImpl implements HomeRepository {
   }
 }
 
+final class MockFirebaseRemoteConfig extends Mock implements FirebaseRemoteConfig {
+  @override
+  Stream<RemoteConfigUpdate> get onConfigUpdated {
+    return const Stream.empty();
+  }
+}
+
+class MockMqRemoteConfig implements MqRemoteConfig {
+  @override
+  String get buildNumber => '1.3.0';
+
+  @override
+  int get currentBuildNumber => 10;
+
+  @override
+  Future<void> initialise() async {}
+
+  @override
+  bool get isHatimDisabled => false;
+
+  @override
+  int get recommendedBuildNumber => 10;
+
+  @override
+  int get requiredBuildNumber => 10;
+
+  @override
+  (int, int) get version => (10, 10);
+
+  @override
+  FirebaseRemoteConfig get remoteConfig => MockFirebaseRemoteConfig();
+}
+
 // flutter test
 
 void main() {
@@ -35,6 +69,7 @@ void main() {
     final storage = MockPreferencesStorage();
     final packageInfo = MockPackageInfo();
     final remoteClient = MockRemoteClient();
+    final remoteConfig = MockMqRemoteConfig();
 
     final homeRepo = MockHomeRepositoryImpl();
     final appLocalDataSource = AppLocalDataSource(packageInfo: packageInfo);
@@ -82,6 +117,7 @@ void main() {
       pathGenderUseCase,
       patchLocaleCodeUseCase,
       logoutUseCase,
+      remoteConfig,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

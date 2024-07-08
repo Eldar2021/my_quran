@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/app_config.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 
 extension PumpApp on WidgetTester {
@@ -19,6 +20,7 @@ extension PumpApp on WidgetTester {
     PatchGenderUseCase patchGenderUseCase,
     PatchLocaleCodeUseCase patchLocaleCodeUseCase,
     LogoutUseCase logoutUseCase,
+    MqRemoteConfig remoteConfig,
   ) {
     return pumpWidget(
       RepositoryProvider(
@@ -47,6 +49,10 @@ extension PumpApp on WidgetTester {
             BlocProvider(
               create: (context) => HomeCubit(GetHomeDataUseCase(homeRepo)),
             ),
+            BlocProvider(
+              create: (context) => RemoteConfigCubit(),
+            ),
+            RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
           ],
           child: const QuranApp(),
         ),

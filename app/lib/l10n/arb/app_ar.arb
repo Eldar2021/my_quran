@@ -86,5 +86,6 @@
     "requiredVersionDescription": "نسخة جديدة من التطبيق متاحة. يجب عليك تحديثه للمتابعة.",
     "recommendedVersionDescription": "نسخة جديدة من التطبيق متاحة.",
     "remindMeLater": "ذكرني لاحقاً",
-    "updateNow": "تحديث الآن"
+    "updateNow": "تحديث الآن",
+    "hatimNotAvailable": "خاتم غير متاح"
 }
