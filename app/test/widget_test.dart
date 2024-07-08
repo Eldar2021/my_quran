@@ -20,6 +20,9 @@ final class MockSccialAuth extends Mock implements SoccialAuth {}
 final class MockPackageInfo extends Mock implements PackageInfo {
   @override
   String get version => '1.3.0';
+
+  @override
+  String get buildNumber => '10';
 }
 
 final class MockHomeRepositoryImpl implements HomeRepository {
@@ -47,7 +50,7 @@ class MockMqRemoteConfig implements MqRemoteConfig {
   Future<void> initialise() async {}
 
   @override
-  bool get isHatimDisabled => false;
+  bool get hatimIsEnable => false;
 
   @override
   int get recommendedBuildNumber => 10;
@@ -118,6 +121,7 @@ void main() {
       patchLocaleCodeUseCase,
       logoutUseCase,
       remoteConfig,
+      packageInfo,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

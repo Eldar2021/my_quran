@@ -99,18 +99,24 @@ class HomeBody extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: CustomButton(
-                key: const Key(MqKeys.participantToHatim),
-                text: l10n.homeGoHatim,
-                onPressed: () {
-                  if (context.read<MqRemoteConfig>().isHatimDisabled) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(context.l10n.hatimNotAvailable)),
-                    );
-                  } else {
-                    MqAnalytic.track(AnalyticKey.goHatim);
-                    context.goNamed(AppRouter.hatim);
-                  }
+              child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+                builder: (context, state) {
+                  return CustomButton(
+                    key: const Key(MqKeys.participantToHatim),
+                    text: l10n.homeGoHatim,
+                    onPressed: () {
+                      if (state.isHatimEnable) {
+                        MqAnalytic.track(AnalyticKey.goHatim);
+                        context.goNamed(AppRouter.hatim);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(context.l10n.hatimNotAvailable),
+                          ),
+                        );
+                      }
+                    },
+                  );
                 },
               ),
             ),

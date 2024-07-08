@@ -37,7 +37,7 @@ class MqRemoteConfig {
     return (versionData['requiredBuildNumber'], versionData['recommendedBuildNumber']);
   }
 
-  static const _disableHatim = 'isHatimDisabled';
+  static const _hatimIsEnable = 'hatimIsEnable';
   static const _appVersion = 'appVersion';
 
   static Map<String, dynamic> _defaultAppVersionValue(int currentBuildNumber) {
@@ -55,10 +55,10 @@ class MqRemoteConfig {
 
   static Map<String, dynamic> _defaultParams(int currentBuildNumber) {
     return {
-      _disableHatim: true,
+      _hatimIsEnable: true,
       _appVersion: jsonEncode(_defaultAppVersionValue(currentBuildNumber)),
     };
   }
 
-  bool get isHatimDisabled => remoteConfig.getBool(_disableHatim);
+  bool get hatimIsEnable => remoteConfig.getBool(_hatimIsEnable);
 }

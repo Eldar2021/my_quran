@@ -5,6 +5,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/app_config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
@@ -21,10 +22,14 @@ extension PumpApp on WidgetTester {
     PatchLocaleCodeUseCase patchLocaleCodeUseCase,
     LogoutUseCase logoutUseCase,
     MqRemoteConfig remoteConfig,
+    PackageInfo packageIngo,
   ) {
     return pumpWidget(
-      RepositoryProvider(
-        create: (context) => const AppConfig(isIntegrationTest: true),
+      MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(create: (context) => const AppConfig(isIntegrationTest: true)),
+          RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
+        ],
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -50,9 +55,8 @@ extension PumpApp on WidgetTester {
               create: (context) => HomeCubit(GetHomeDataUseCase(homeRepo)),
             ),
             BlocProvider(
-              create: (context) => RemoteConfigCubit(),
+              create: (context) => RemoteConfigCubit(packageIngo, remoteConfig),
             ),
-            RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
           ],
           child: const QuranApp(),
         ),
