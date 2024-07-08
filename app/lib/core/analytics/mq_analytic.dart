@@ -20,7 +20,7 @@ final class MqAnalytic {
     }
   }
 
-  static void track(String event, {Map<String, dynamic>? params}) {
+  static void track(String event, {Map<String, Object>? params}) {
     try {
       if (kDebugMode) return;
       _analytics.logEvent(name: event, parameters: params);

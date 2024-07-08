@@ -9,7 +9,7 @@ part of 'juz_surah_model.dart';
 JuzSurahResponse _$JuzSurahResponseFromJson(Map<String, dynamic> json) => JuzSurahResponse(
       name: json['name'] as String,
       arName: json['arName'] as String,
-      pages: (json['pages'] as List<dynamic>).map((e) => e as int).toList(),
+      pages: (json['pages'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
     );
 
 Map<String, dynamic> _$JuzSurahResponseToJson(JuzSurahResponse instance) => <String, dynamic>{

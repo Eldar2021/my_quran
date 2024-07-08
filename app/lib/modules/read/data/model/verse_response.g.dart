@@ -7,7 +7,7 @@ part of 'verse_response.dart';
 // **************************************************************************
 
 VerseResponse _$VerseResponseFromJson(Map<String, dynamic> json) => VerseResponse(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       verseKey: json['verse_key'] as String,
       textUthmani: json['text_imlaei'] as String,
     );
