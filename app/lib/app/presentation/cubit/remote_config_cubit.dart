@@ -19,11 +19,10 @@ class RemoteConfigCubit extends Cubit<RemoteConfigState> {
       requiredBuildNumber: remoteConfig.requiredBuildNumber,
       recommendedBuildNumber: remoteConfig.recommendedBuildNumber,
     );
-
-    emit(state.copyWith(isHatimEnable: remoteConfig.hatimIsEnable));
-
+    _checkHatimIsEnable();
     remoteConfig.remoteConfig.onConfigUpdated.listen((event) async {
       await remoteConfig.remoteConfig.activate();
+      _checkHatimIsEnable();
     });
   }
 
@@ -39,6 +38,13 @@ class RemoteConfigCubit extends Cubit<RemoteConfigState> {
       emit(state.copyWith(appVersionStatus: YesRecommendedVersion(recommendedBuildNumber)));
     } else {
       emit(state.copyWith(appVersionStatus: const NoNewVersion()));
+    }
+  }
+
+  void _checkHatimIsEnable() {
+    final currentHatimIsEnable = remoteConfig.hatimIsEnable;
+    if (state.isHatimEnable != currentHatimIsEnable) {
+      emit(state.copyWith(isHatimEnable: currentHatimIsEnable));
     }
   }
 }
