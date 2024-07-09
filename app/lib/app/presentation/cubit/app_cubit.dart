@@ -14,10 +14,7 @@ class AppCubit extends Cubit<AppState> {
     required this.setColorUseCase,
     required this.getAppVersionUseCase,
   }) : super(
-          AppState(
-            getInitialThemeUseCase.call,
-            getAppVersionUseCase.call,
-          ),
+          AppState(getInitialThemeUseCase.call, getAppVersionUseCase.call),
         );
 
   final GetAppInitialThemeUseCase getInitialThemeUseCase;

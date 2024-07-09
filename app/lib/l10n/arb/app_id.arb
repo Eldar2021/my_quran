@@ -81,5 +81,11 @@
     "signOutContext": "Apakah Anda yakin ingin keluar?",
     "yes": "Ya",
     "no": "Tidak",
-    "appleSignInNotAvailable": "Masuk dengan Apple tidak tersedia di perangkat Android."
+    "appleSignInNotAvailable": "Masuk dengan Apple tidak tersedia di perangkat Android.",
+    "appUpdateAvailable": "Pembaruan aplikasi tersedia",
+    "requiredVersionDescription": "Versi baru dari aplikasi tersedia. Anda perlu memperbarui untuk melanjutkan.",
+    "recommendedVersionDescription": "Versi baru dari aplikasi tersedia.",
+    "remindMeLater": "Ingatkan saya nanti",
+    "updateNow": "Perbarui sekarang",
+    "hatimNotAvailable": "Hatim tidak tersedia."
 }

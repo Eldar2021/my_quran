@@ -1,32 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
-import 'package:my_quran/core/core.dart';
-import 'package:my_quran/modules/modules.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import 'helpers/helpers.dart';
-
-final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
-
-final class MockRemoteClient extends Mock implements RemoteClient {}
-
-final class MockSccialAuth extends Mock implements SoccialAuth {}
-
-final class MockPackageInfo extends Mock implements PackageInfo {
-  @override
-  String get version => '1.3.0';
-}
-
-final class MockHomeRepositoryImpl implements HomeRepository {
-  @override
-  Future<HomeEntity> getData(String token) async {
-    return const HomeEntity(allDoneHatims: 8, allDonePages: 5325, donePages: 634);
-  }
-}
+import 'mocks/app_mocks.dart';
 
 // flutter test
 
@@ -35,6 +14,7 @@ void main() {
     final storage = MockPreferencesStorage();
     final packageInfo = MockPackageInfo();
     final remoteClient = MockRemoteClient();
+    final remoteConfig = MockMqRemoteConfig();
 
     final homeRepo = MockHomeRepositoryImpl();
     final appLocalDataSource = AppLocalDataSource(packageInfo: packageInfo);
@@ -82,6 +62,8 @@ void main() {
       pathGenderUseCase,
       patchLocaleCodeUseCase,
       logoutUseCase,
+      remoteConfig,
+      packageInfo,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

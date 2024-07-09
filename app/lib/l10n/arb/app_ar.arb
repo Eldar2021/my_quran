@@ -81,5 +81,11 @@
     "signOutContext": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     "yes": "نعم",
     "no": "لا",
-    "appleSignInNotAvailable": "تسجيل الدخول عبر Apple غير متاح على أجهزة Android."
+    "appleSignInNotAvailable": "تسجيل الدخول عبر Apple غير متاح على أجهزة Android.",
+    "appUpdateAvailable": "تحديث التطبيق متاح",
+    "requiredVersionDescription": "نسخة جديدة من التطبيق متاحة. يجب عليك تحديثه للمتابعة.",
+    "recommendedVersionDescription": "نسخة جديدة من التطبيق متاحة.",
+    "remindMeLater": "ذكرني لاحقاً",
+    "updateNow": "تحديث الآن",
+    "hatimNotAvailable": "خاتم غير متاح"
 }

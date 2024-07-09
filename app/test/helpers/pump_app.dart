@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/app_config.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
@@ -19,10 +21,15 @@ extension PumpApp on WidgetTester {
     PatchGenderUseCase patchGenderUseCase,
     PatchLocaleCodeUseCase patchLocaleCodeUseCase,
     LogoutUseCase logoutUseCase,
+    MqRemoteConfig remoteConfig,
+    PackageInfo packageInfo,
   ) {
     return pumpWidget(
-      RepositoryProvider(
-        create: (context) => const AppConfig(isIntegrationTest: true),
+      MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(create: (context) => const AppConfig(isIntegrationTest: true)),
+          RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
+        ],
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -46,6 +53,12 @@ extension PumpApp on WidgetTester {
             ),
             BlocProvider(
               create: (context) => HomeCubit(GetHomeDataUseCase(homeRepo)),
+            ),
+            BlocProvider(
+              create: (context) => RemoteConfigCubit(
+                packageInfo: packageInfo,
+                remoteConfig: remoteConfig,
+              ),
             ),
           ],
           child: const QuranApp(),

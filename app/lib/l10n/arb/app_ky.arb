@@ -81,5 +81,11 @@
     "signOutContext": "Чын эле чыгып кеткиңиз келеби?",
     "yes": "Ооба",
     "no": "Жок",
-    "appleSignInNotAvailable": "Apple аркылуу кирүү Android системаларында жеткиликтүү эмес."
-}
+    "appleSignInNotAvailable": "Apple аркылуу кирүү Android системаларында жеткиликтүү эмес.",
+    "appUpdateAvailable": "Колдонмону жаңыртуу жеткиликтүү",
+    "requiredVersionDescription": "Колдонмонун жаңы версиясы жеткиликтүү. Улантуу үчүн аны жаңыртышыңыз керек.",
+    "recommendedVersionDescription": "Колдонмонун жаңы версиясы жеткиликтүү",
+    "remindMeLater": "Кийинчерээк эстетип коюу",
+    "updateNow": "Азыр жаңыртуу",
+    "hatimNotAvailable": "Хатымга катышуу азырынча жеткиликтүү эмес."
+    }

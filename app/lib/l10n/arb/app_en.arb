@@ -81,5 +81,11 @@
     "signOutContext": "Are you sure you want to logout?",
     "yes": "Yes",
     "no": "No",
-    "appleSignInNotAvailable": "Apple Sign-In is not available on Android devices."
+    "appleSignInNotAvailable": "Apple Sign-In is not available on Android devices.",
+    "appUpdateAvailable":"App update available",
+    "requiredVersionDescription": "A new version of the app is available. You need to update it to continue.",
+    "recommendedVersionDescription": "A new version of the app is available.",
+    "remindMeLater": "Remind me later",
+    "updateNow": "Update now",
+    "hatimNotAvailable": "Hatim is not available."
 }

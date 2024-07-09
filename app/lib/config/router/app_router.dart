@@ -7,7 +7,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final rootNavigatorKey = GlobalKey<NavigatorState>();
 final _sectionNavigatorKey1 = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
 final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
@@ -38,7 +38,7 @@ final class AppRouter {
 
   static final router = GoRouter(
     initialLocation: '/home',
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: rootNavigatorKey,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(
@@ -132,7 +132,7 @@ final class AppRouter {
           GoRoute(
             path: '$hatimRead/:isHatim/:pages',
             name: hatimRead,
-            parentNavigatorKey: _rootNavigatorKey,
+            parentNavigatorKey: rootNavigatorKey,
             builder: (context, state) {
               final args = ParseParams.parseRead(state.pathParameters);
               return ReadView(args.$1, isHatim: args.$2);
@@ -148,7 +148,7 @@ final class AppRouter {
       GoRoute(
         path: '$read/:isHatim/:pages',
         name: read,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseRead(state.pathParameters);
           return ReadView(args.$1, isHatim: args.$2);

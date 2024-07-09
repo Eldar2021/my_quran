@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,8 +49,15 @@ Future<void> main({AppConfig? appConfig}) async {
 
   Bloc.observer = const AppBlocObserver(onLog: log);
   final storage = await PreferencesStorage.getInstance();
+
   final packageInfo = await PackageInfo.fromPlatform();
 
+  final remoteConfig = MqRemoteConfig(
+    remoteConfig: FirebaseRemoteConfig.instance,
+    buildNumber: packageInfo.buildNumber,
+  );
+
+  await remoteConfig.initialise();
   appConfig ??= AppConfig(storage: storage);
 
   appConfig.init();
@@ -63,6 +71,7 @@ Future<void> main({AppConfig? appConfig}) async {
         RepositoryProvider<NetworkClient>(
           create: (context) => NetworkClient(Connectivity()),
         ),
+        RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
         RepositoryProvider<RemoteClient>(
           create: (context) => RemoteClient(Client(), context.read<NetworkClient>()),
         ),
