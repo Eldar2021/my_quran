@@ -2,8 +2,8 @@ part of 'remote_config_cubit.dart';
 
 class RemoteConfigState extends Equatable {
   const RemoteConfigState({
-    required this.appVersionStatus,
-    required this.isHatimEnable,
+    this.appVersionStatus = const NoNewVersion(),
+    this.isHatimEnable = true,
     this.deviceId,
   });
 
@@ -12,9 +12,17 @@ class RemoteConfigState extends Equatable {
   final bool isHatimEnable;
 
   @override
-  List<Object?> get props => [appVersionStatus, deviceId, isHatimEnable];
+  List<Object?> get props => [
+        appVersionStatus,
+        deviceId,
+        isHatimEnable,
+      ];
 
-  RemoteConfigState copyWith({AppVersionStatus? appVersionStatus, String? deviceId, bool? isHatimEnable}) {
+  RemoteConfigState copyWith({
+    AppVersionStatus? appVersionStatus,
+    String? deviceId,
+    bool? isHatimEnable,
+  }) {
     return RemoteConfigState(
       appVersionStatus: appVersionStatus ?? this.appVersionStatus,
       isHatimEnable: isHatimEnable ?? this.isHatimEnable,

@@ -8,43 +8,42 @@ import 'package:package_info_plus/package_info_plus.dart';
 part 'remote_config_state.dart';
 
 class RemoteConfigCubit extends Cubit<RemoteConfigState> {
-  RemoteConfigCubit(this.packageInfo, this.remoteConfig)
-      : super(const RemoteConfigState(appVersionStatus: NoNewVersion(), isHatimEnable: true));
+  RemoteConfigCubit({
+    required this.packageInfo,
+    required this.remoteConfig,
+  }) : super(const RemoteConfigState());
 
   final PackageInfo packageInfo;
   final MqRemoteConfig remoteConfig;
 
   Future<void> init() async {
-    await setAppVersionStatus(
-      requiredBuildNumber: remoteConfig.requiredBuildNumber,
-      recommendedBuildNumber: remoteConfig.recommendedBuildNumber,
-    );
-    _checkHatimIsEnable();
+    _emitNewState();
     remoteConfig.remoteConfig.onConfigUpdated.listen((event) async {
       await remoteConfig.remoteConfig.activate();
-      _checkHatimIsEnable();
+      _emitNewState();
     });
   }
 
-  Future<void> setAppVersionStatus({
-    required int requiredBuildNumber,
-    required int recommendedBuildNumber,
-  }) async {
-    final currentBuildNumber = int.parse(packageInfo.buildNumber);
-
-    if (currentBuildNumber < requiredBuildNumber) {
-      emit(state.copyWith(appVersionStatus: YesRequiredVersion(requiredBuildNumber)));
-    } else if (currentBuildNumber < recommendedBuildNumber) {
-      emit(state.copyWith(appVersionStatus: YesRecommendedVersion(recommendedBuildNumber)));
-    } else {
-      emit(state.copyWith(appVersionStatus: const NoNewVersion()));
-    }
+  void _emitNewState() {
+    final newState = state.copyWith(
+      appVersionStatus: _getAppVersionStatus,
+      isHatimEnable: _hatimIsEnable,
+    );
+    emit(newState);
   }
 
-  void _checkHatimIsEnable() {
-    final currentHatimIsEnable = remoteConfig.hatimIsEnable;
-    if (state.isHatimEnable != currentHatimIsEnable) {
-      emit(state.copyWith(isHatimEnable: currentHatimIsEnable));
+  bool get _hatimIsEnable => remoteConfig.hatimIsEnable;
+
+  AppVersionStatus get _getAppVersionStatus {
+    final currentBuildNumber = int.parse(packageInfo.buildNumber);
+    final requiredBuildNumber = remoteConfig.requiredBuildNumber;
+    final recommendedBuildNumber = remoteConfig.recommendedBuildNumber;
+    if (currentBuildNumber < requiredBuildNumber) {
+      return YesRequiredVersion(requiredBuildNumber);
+    } else if (currentBuildNumber < recommendedBuildNumber) {
+      return YesRecommendedVersion(recommendedBuildNumber);
+    } else {
+      return const NoNewVersion();
     }
   }
 }

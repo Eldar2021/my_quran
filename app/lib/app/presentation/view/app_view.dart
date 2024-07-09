@@ -81,8 +81,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => RemoteConfigCubit(
-            context.read<PackageInfo>(),
-            context.read<MqRemoteConfig>(),
+            packageInfo: context.read<PackageInfo>(),
+            remoteConfig: context.read<MqRemoteConfig>(),
           ),
         ),
       ],

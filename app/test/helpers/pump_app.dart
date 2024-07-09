@@ -22,7 +22,7 @@ extension PumpApp on WidgetTester {
     PatchLocaleCodeUseCase patchLocaleCodeUseCase,
     LogoutUseCase logoutUseCase,
     MqRemoteConfig remoteConfig,
-    PackageInfo packageIngo,
+    PackageInfo packageInfo,
   ) {
     return pumpWidget(
       MultiRepositoryProvider(
@@ -55,7 +55,10 @@ extension PumpApp on WidgetTester {
               create: (context) => HomeCubit(GetHomeDataUseCase(homeRepo)),
             ),
             BlocProvider(
-              create: (context) => RemoteConfigCubit(packageIngo, remoteConfig),
+              create: (context) => RemoteConfigCubit(
+                packageInfo: packageInfo,
+                remoteConfig: remoteConfig,
+              ),
             ),
           ],
           child: const QuranApp(),
