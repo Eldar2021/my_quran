@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-
 jobs:   
   build: 
     runs-on: ubuntu-latest  
@@ -22,13 +21,28 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Build release
-        run: flutter build apk --debug
-      - run: ls build/app/outputs/flutter-apk
+      - run: flutter doctor
+
+      - run: dart pub global activate flutterfire_cli
+
+      - name: "Melos Install"
+        run: dart pub global activate melos
+
+      - name: "Melos bs"
+        run: melos bootstrap
+
+      - name: "Build apk"
+        run: melos build-apk
+
+      - name: "Build appbundle"
+        run: melos build-appbundle
+
+      - run: ls app/build/app/outputs/flutter-apk
+
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{secrets.APP_ID}}
           serviceCredentialsFileContent: ${{secrets.CREDENTIAL_FILE_CONTENT}}
           groups: my_quran_testers
-          file: build/app/outputs/flutter-apk/app-debug.apk  
+          file: app/build/app/outputs/flutter-apk/app-debug.apk  
