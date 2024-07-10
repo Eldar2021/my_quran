@@ -45,4 +45,4 @@ jobs:
           appId: ${{secrets.APP_ID}}
           serviceCredentialsFileContent: ${{secrets.CREDENTIAL_FILE_CONTENT}}
           groups: my_quran_testers
-          file: app/build/app/outputs/flutter-apk/app-debug.apk  
+          file: app/build/app/outputs/flutter-apk/app-release.apk  
