@@ -31,6 +31,72 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<UserEntity, Exception>> signUpWithEmail({
+    required String email,
+    required String password,
+    required String username,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    try {
+      final res = await remoteDataSource.signUpWithEmail(
+        email: email,
+        password: password,
+        username: username,
+        languageCode: languageCode,
+        gender: gender,
+      );
+      return res.fold(
+        (l) => Left(AuthenticationExc(message: l.toString())),
+        (r) => Right(
+          UserEntity(
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+            localeCode: r.localeCode,
+          ),
+        ),
+      );
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('signUpWithEmail: error: $e\n$s');
+      return Left(AuthenticationExc(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<UserEntity, Exception>> signInWithEmail({
+    required String email,
+    required String password,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    try {
+      final res = await remoteDataSource.signInWithEmail(
+        email: email,
+        password: password,
+        languageCode: languageCode,
+        gender: gender,
+      );
+      return res.fold(
+        Left.new,
+        (r) => Right(
+          UserEntity(
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+            localeCode: r.localeCode,
+          ),
+        ),
+      );
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('signWithEmail: error: $e\n$s');
+      return Left(AuthenticationExc(message: e.toString()));
+    }
+  }
+
+  @override
   Future<Either<UserEntity, Exception>> signWithGoogle(
     String languageCode,
     Gender gender,

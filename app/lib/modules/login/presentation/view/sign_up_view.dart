@@ -7,7 +7,6 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
-
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
@@ -16,18 +15,19 @@ import 'package:my_quran/modules/login/presentation/view/verification_code_view.
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
 
-class SignInView extends StatelessWidget {
-  SignInView({super.key});
+class SignUpView extends StatelessWidget {
+  SignUpView({super.key});
 
+  final usernameController = TextEditingController();
   final emailController = TextEditingController();
-  final forgotPasswordEmailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: const Key(MqKeys.signInView),
+      key: const Key(MqKeys.registerView),
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
@@ -49,16 +49,33 @@ class SignInView extends StatelessWidget {
               const SizedBox(height: 100),
               Align(
                 child: Text(
-                  '${context.l10n.welcome}!',
+                  context.l10n.signUp,
+                  textAlign: TextAlign.center,
                   style: context.titleLarge!.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
+              Text(
+                context.l10n.username,
+                style: context.bodyMedium!.copyWith(color: context.colors.secondary),
+              ),
+              const SizedBox(height: 8),
+              CustomTextFormField(
+                controller: usernameController,
+                labelText: context.l10n.username,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return context.l10n.usernameRequired;
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 25),
               Text(
                 context.l10n.email,
                 style: context.bodyMedium!.copyWith(color: context.colors.secondary),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 80),
               CustomTextFormField(
                 controller: emailController,
                 labelText: context.l10n.email,
@@ -72,28 +89,23 @@ class SignInView extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               CustomButton(
-                key: Key(MqKeys.loginTypeName('email')),
-                text: context.l10n.signIn,
+                key: Key(MqKeys.registerTypeName('email')),
+                text: context.l10n.signUp,
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     MqAnalytic.track(
-                      AnalyticKey.tapLogin,
-                      params: {'soccial': 'email'},
+                      AnalyticKey.tapSignUp,
+                      params: {'method': 'email'},
                     );
-                    await Navigator.push<void>(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => VerificationCodeView(),
-                      ),
-                    );
-                    // unawaited(AppAlert.showLoading(context));
-                    // await context.read<AuthCubit>().signInWithEmail(
-                    //       emailController.text,
-                    //       passwordController.text,
-                    //     );
-                    // if (context.mounted) context.loaderOverlay.hide();
+                    unawaited(AppAlert.showLoading(context));
+                    await context.read<AuthCubit>().signUpWithEmail(
+                          email: emailController.text,
+                          password: passwordController.text,
+                          username: usernameController.text,
+                        );
+                    if (context.mounted) context.loaderOverlay.hide();
                   }
                 },
               ),
@@ -140,30 +152,22 @@ class SignInView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(context.l10n.dontHaveAccount),
+                  Text(context.l10n.alreadyHaveAccount),
                   TextButton(
                     onPressed: () {
-                      MqAnalytic.track(AnalyticKey.goRegister);
-                      context.goNamed(AppRouter.register);
+                      Navigator.push<void>(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => VerificationCodeView(),
+                        ),
+                      );
+                      // context.goNamed(AppRouter.loginWihtSoccial);
                     },
-                    child: Text(context.l10n.signUp),
+                    child: Text(context.l10n.signIn),
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
-              TextButton(
-                onPressed: () {
-                  MqAnalytic.track(AnalyticKey.tapPrivacyPolicy);
-                  AppLaunch.launchURL(apiConst.provicyPolicy);
-                },
-                child: Text(
-                  context.l10n.privacyPolicy,
-                  style: context.bodyLarge!.copyWith(
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
             ],
           ),
         ),

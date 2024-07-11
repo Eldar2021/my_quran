@@ -18,6 +18,69 @@ final class AuthRemoteDataSource {
   final PreferencesStorage storage;
   final SoccialAuth soccialAuth;
   final bool isIntegrationTest;
+  Future<Either<UserModelResponse, Exception>> signUpWithEmail({
+    required String email,
+    required String password,
+    required String username,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    final token = await client.post(
+      'apiConst.registerWithEmail',
+      fromJson: TokenResponse.fromJson,
+      body: {
+        'access_token': 's',
+        'username': username,
+      },
+    );
+
+    return token.fold(
+      (l) => Left(Exception('Failed to sign up with email')),
+      (r) async {
+        final user = UserModelResponse(
+          accessToken: r.key,
+          username: username,
+          gender: gender,
+          localeCode: languageCode,
+        );
+
+        await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+
+        return Right(user);
+      },
+    );
+  }
+
+  Future<Either<UserModelResponse, Exception>> signInWithEmail({
+    required String email,
+    required String password,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    // final signInAuth = await soccialAuth.signInWithEmail(email, password);
+    // final accessToken = signInAuth.credential?.accessToken ?? '';
+
+    final token = await client.post(
+      '',
+      fromJson: TokenResponse.fromJson,
+      body: {
+        'access_token': 'accessToken',
+      },
+    );
+
+    return token.fold(Left.new, (r) async {
+      final user = UserModelResponse(
+        accessToken: r.key,
+        username: 'token.username',
+        gender: gender,
+        localeCode: languageCode,
+      );
+
+      await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+
+      return Right(user);
+    });
+  }
 
   Future<Either<UserModelResponse, Exception>> signInWithGoogle(
     String languageCode,

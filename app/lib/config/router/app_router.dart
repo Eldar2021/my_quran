@@ -25,6 +25,7 @@ final class AppRouter {
   static const read = 'read';
   static const hatimRead = 'hatim-read';
   static const login = 'login';
+  static const register = 'register';
   static const loginWihtSoccial = 'login-with-soccial';
 
   static const settingsPage = 'settings';
@@ -53,9 +54,14 @@ final class AppRouter {
         builder: (context, state) => const LoginView(),
       ),
       GoRoute(
+        path: '/$register',
+        name: register,
+        builder: (context, state) => SignUpView(),
+      ),
+      GoRoute(
         path: '/$loginWihtSoccial',
         name: loginWihtSoccial,
-        builder: (context, state) => const SignInView(),
+        builder: (context, state) => SignInView(),
       ),
       GoRoute(
         path: '/$devModeView',
@@ -114,7 +120,7 @@ final class AppRouter {
     redirect: (context, state) {
       final path = state.matchedLocation;
       if (!context.read<AuthCubit>().isAuthedticated) {
-        if (!path.contains(devModeView) && !path.contains(loginWihtSoccial)) {
+        if (!path.contains(devModeView) && !path.contains(loginWihtSoccial) && !path.contains(register)) {
           return '/$login';
         }
       }
