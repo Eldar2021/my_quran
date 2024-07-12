@@ -8,7 +8,7 @@ import 'package:my_quran/modules/modules.dart';
 
 final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
-final class MockRemoteClient extends Mock implements RemoteClient {}
+final class MockRemoteClient extends Mock implements MqDio {}
 
 final class MockSccialAuth extends Mock implements SoccialAuth {}
 

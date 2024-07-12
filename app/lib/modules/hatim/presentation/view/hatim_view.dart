@@ -20,7 +20,7 @@ class HatimView extends StatelessWidget {
       create: (context) => HatimBloc(
         repo: HatimReadRepositoryImpl(
           dataSource: HatimRemoteDataSource(
-            remoteClient: context.read<RemoteClient>(),
+            remoteClient: context.read<MqDio>(),
           ),
         ),
         token: context.read<AuthCubit>().state.user!.accessToken,

@@ -13,28 +13,37 @@ final class MqCrashlytics {
     bool? printDetails,
     bool fatal = false,
   }) {
-    if (kDebugMode) return;
-    crashlytics.recordError(
-      exception,
-      stack,
-      reason: reason,
-      information: information,
-      printDetails: printDetails,
-      fatal: fatal,
-    );
+    if (kDebugMode) {
+      debugPrint('exception: $exception\nstack: $stack');
+    } else {
+      crashlytics.recordError(
+        exception,
+        stack,
+        reason: reason,
+        information: information,
+        printDetails: printDetails,
+        fatal: fatal,
+      );
+    }
   }
 
   static void recordFlutterError(
     FlutterErrorDetails flutterErrorDetails, {
     bool fatal = false,
   }) {
-    if (kDebugMode) return;
-    crashlytics.recordFlutterError(flutterErrorDetails, fatal: fatal);
+    if (kDebugMode) {
+      debugPrint('exception: $flutterErrorDetails');
+    } else {
+      crashlytics.recordFlutterError(flutterErrorDetails, fatal: fatal);
+    }
   }
 
   static Future<void> setUserIdentifier(String identifier) async {
-    if (kDebugMode) return;
-    return crashlytics.setUserIdentifier(identifier);
+    if (kDebugMode) {
+      debugPrint('identifier: $identifier');
+    } else {
+      return crashlytics.setUserIdentifier(identifier);
+    }
   }
 
   static Future<void> setCrashlyticsCollectionEnabled({required bool enabled}) async {

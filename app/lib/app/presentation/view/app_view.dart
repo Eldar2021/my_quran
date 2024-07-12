@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
               context.read<PreferencesStorage>(),
             ),
             remoteDataSource: AuthRemoteDataSource(
-              client: context.read<RemoteClient>(),
+              client: context.read<MqDio>(),
               storage: context.read<PreferencesStorage>(),
               soccialAuth: context.read<SoccialAuth>(),
               isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
             GetHomeDataUseCase(
               HomeRepositoryImpl(
                 HomeLocalDataSource(context.read<PreferencesStorage>()),
-                HomeRemoteDataSource(context.read<RemoteClient>()),
+                HomeRemoteDataSource(context.read<MqDio>()),
               ),
             ),
           ),

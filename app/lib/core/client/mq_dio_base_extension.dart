@@ -85,7 +85,7 @@ extension MqDioBaseMehtods on MqDio {
     try {
       return jsonData.fold(
         Left.new,
-        (e) => Right(fromJson(jsonData as Map<String, dynamic>)),
+        (e) => Right(fromJson(e)),
       );
     } catch (e, s) {
       MqCrashlytics.report(e, s);

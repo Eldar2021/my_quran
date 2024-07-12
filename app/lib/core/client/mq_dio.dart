@@ -8,7 +8,7 @@ typedef FromJson<T> = T Function(Map<String, dynamic>);
 typedef ResolveValue = String? Function();
 
 @immutable
-final class MqDio {
+class MqDio {
   const MqDio({
     required this.dio,
     required this.network,
@@ -28,10 +28,12 @@ final class MqDio {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers = {
-            'content-type': 'application/json; charset=utf-8',
-            if (language != null) 'Accept-Language': language,
-            if (token != null) 'authorization': 'Bearer $token',
-            if (oldToken != null) 'old-token': oldToken,
+            'Content-Type': 'application/json; charset=utf-8',
+            'Accept': 'application/json',
+            'X-CSRFTOKEN': '9KDITf4aeXMyyQffH5TMtuuUtSfOSLtnZIeF2JZBXJziDfbP0wLo7xrWsUVeL2wO',
+            if (token != null) 'Authorization': 'Token ${token!.call()}',
+            if (language != null) 'Accept-Language': language!.call(),
+            if (oldToken != null) 'old-token': 'Old Token ${oldToken!.call()}',
           };
           return handler.next(options);
         },
