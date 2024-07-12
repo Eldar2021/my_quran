@@ -16,7 +16,7 @@ class HatimRemoteDataSource {
   late final WebSocketChannel channel;
   bool isInitilized = false;
 
-  Future<HatimReadModel> getHatim(String token) async {
+  Future<HatimReadModel> getHatim() async {
     try {
       final res = await remoteClient.postType(
         apiConst.joinToHatim,

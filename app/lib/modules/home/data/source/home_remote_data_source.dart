@@ -9,7 +9,7 @@ final class HomeRemoteDataSource {
 
   final MqDio remoteClient;
 
-  Future<HomeModelResponse> getRemoteData(String token) async {
+  Future<HomeModelResponse> getRemoteData() async {
     final remoteValue = await remoteClient.getType<HomeModelResponse>(
       apiConst.hatimDashBoard,
       fromJson: HomeModelResponse.fromJson,

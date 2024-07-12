@@ -15,9 +15,9 @@ final class HomeRepositoryImpl implements HomeRepository {
   final HomeRemoteDataSource remoteDataSource;
 
   @override
-  Future<HomeEntity> getData(String token) async {
+  Future<HomeEntity> getData() async {
     try {
-      final remoteData = await remoteDataSource.getRemoteData(token);
+      final remoteData = await remoteDataSource.getRemoteData();
       await localDataSource.saveLocalData(remoteData);
       return _convertData(remoteData);
     } catch (e, s) {

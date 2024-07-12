@@ -1,7 +1,7 @@
 import 'package:my_quran/modules/modules.dart';
 
 abstract class HatimRepository {
-  Future<HatimReadEntity> getHatim(String token);
+  Future<HatimReadEntity> getHatim();
 
   void connectToSocket(String token);
 

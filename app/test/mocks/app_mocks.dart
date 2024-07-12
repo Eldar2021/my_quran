@@ -22,7 +22,7 @@ final class MockPackageInfo extends Mock implements PackageInfo {
 
 final class MockHomeRepositoryImpl implements HomeRepository {
   @override
-  Future<HomeEntity> getData(String token) async {
+  Future<HomeEntity> getData() async {
     return const HomeEntity(allDoneHatims: 8, allDonePages: 5325, donePages: 634);
   }
 }

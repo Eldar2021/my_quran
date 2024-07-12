@@ -40,7 +40,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     try {
       if (state.dashBoardState is HatimDashBoardLoading) return;
       emit(state.copyWith(dashBoardState: const HatimDashBoardLoading()));
-      final data = await repo.getHatim(token);
+      final data = await repo.getHatim();
       emit(state.copyWith(dashBoardState: HatimDashBoardFetched(data)));
 
       emit(state.copyWith(eventState: const HatimStateLoading()));

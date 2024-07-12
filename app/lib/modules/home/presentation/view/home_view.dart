@@ -28,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
     if (homeCubit.state.status != FetchStatus.success && user != null) {
       MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
-      homeCubit.getData(user.accessToken);
+      homeCubit.getData();
     }
     super.initState();
   }
@@ -42,10 +42,7 @@ class _HomeViewState extends State<HomeView> {
       body: RefreshIndicator(
         onRefresh: () async {
           MqAnalytic.track(AnalyticKey.refreshHomePage);
-          final user = context.read<AuthCubit>().state.user;
-          if (user != null) {
-            await context.read<HomeCubit>().getData(user.accessToken);
-          }
+          await context.read<HomeCubit>().getData();
         },
         child: SafeArea(
           child: ListView(
