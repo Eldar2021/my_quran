@@ -27,13 +27,16 @@ class MqDio {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
+          final tokenValue = token?.call();
+          final languageValue = language?.call();
+          final oldTokenValue = oldToken?.call();
           options.headers = {
             'Content-Type': 'application/json; charset=utf-8',
             'Accept': 'application/json',
             'X-CSRFTOKEN': '9KDITf4aeXMyyQffH5TMtuuUtSfOSLtnZIeF2JZBXJziDfbP0wLo7xrWsUVeL2wO',
-            if (token != null) 'Authorization': 'Token ${token!.call()}',
-            if (language != null) 'Accept-Language': language!.call(),
-            if (oldToken != null) 'old-token': 'Old Token ${oldToken!.call()}',
+            if (tokenValue != null) 'Authorization': 'Token $tokenValue',
+            if (languageValue != null) 'Accept-Language': languageValue,
+            if (oldTokenValue != null) 'old-token': 'Old Token $oldTokenValue',
           };
           return handler.next(options);
         },
