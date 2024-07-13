@@ -7,10 +7,10 @@ import 'package:my_quran/modules/modules.dart';
 final class ReadRemoteDataSource {
   const ReadRemoteDataSource(this.remoteClient);
 
-  final RemoteClient remoteClient;
+  final MqDio remoteClient;
 
   Future<QuranPageResponse?> fetchPage(int page, String quranFmt) async {
-    final remoteValue = await remoteClient.get<QuranPageResponse>(
+    final remoteValue = await remoteClient.getType<QuranPageResponse>(
       apiConst.verse(page, quranFmt),
       fromJson: QuranPageResponse.fromJson,
     );

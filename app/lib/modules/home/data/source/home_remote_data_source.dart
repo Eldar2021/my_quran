@@ -7,13 +7,12 @@ import 'package:my_quran/modules/modules.dart';
 final class HomeRemoteDataSource {
   const HomeRemoteDataSource(this.remoteClient);
 
-  final RemoteClient remoteClient;
+  final MqDio remoteClient;
 
-  Future<HomeModelResponse> getRemoteData(String token) async {
-    final remoteValue = await remoteClient.get<HomeModelResponse>(
+  Future<HomeModelResponse> getRemoteData() async {
+    final remoteValue = await remoteClient.getType<HomeModelResponse>(
       apiConst.hatimDashBoard,
       fromJson: HomeModelResponse.fromJson,
-      token: token,
     );
 
     return remoteValue.fold(

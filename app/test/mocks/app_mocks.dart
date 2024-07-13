@@ -8,7 +8,7 @@ import 'package:my_quran/modules/modules.dart';
 
 final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
-final class MockRemoteClient extends Mock implements RemoteClient {}
+final class MockRemoteClient extends Mock implements MqDio {}
 
 final class MockSccialAuth extends Mock implements SoccialAuth {}
 
@@ -22,7 +22,7 @@ final class MockPackageInfo extends Mock implements PackageInfo {
 
 final class MockHomeRepositoryImpl implements HomeRepository {
   @override
-  Future<HomeEntity> getData(String token) async {
+  Future<HomeEntity> getData() async {
     return const HomeEntity(allDoneHatims: 8, allDonePages: 5325, donePages: 634);
   }
 }

@@ -7,7 +7,7 @@ final class GetHomeDataUseCase {
 
   final HomeRepository repository;
 
-  Future<HomeEntity> execute(String token) {
-    return repository.getData(token);
+  Future<HomeEntity> execute() {
+    return repository.getData();
   }
 }

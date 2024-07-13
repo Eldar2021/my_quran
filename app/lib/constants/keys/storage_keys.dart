@@ -7,6 +7,7 @@ final class StorageKeys {
 
   static String get localeKey => apiConst.isDevmode ? _localeKeyDev : _localeKey;
   static String get tokenKey => apiConst.isDevmode ? _tokenKeyDev : _tokenKey;
+  static String get oldTokenKey => apiConst.isDevmode ? _oldTokenKeyDev : _oldTokenKey;
   static String get genderKey => apiConst.isDevmode ? _genderKeyDev : _genderKey;
   static String get usernameKey => apiConst.isDevmode ? _usernameKeyDev : _usernameKey;
   static String get modeKey => apiConst.isDevmode ? _modeKeyDev : _modeKey;
@@ -14,7 +15,8 @@ final class StorageKeys {
   static String get colorKey => apiConst.isDevmode ? _colorKeyDev : _colorKey;
 
   static const _localeKey = 'locale';
-  static const _tokenKey = 'token';
+  static const _tokenKey = 'token-new';
+  static const _oldTokenKey = 'token';
   static const _genderKey = 'gender';
   static const _usernameKey = 'username';
   static const _modeKey = 'mode';
@@ -22,7 +24,8 @@ final class StorageKeys {
   static const _colorKey = 'color';
 
   static const _localeKeyDev = 'locale-dev';
-  static const _tokenKeyDev = 'token-dev';
+  static const _tokenKeyDev = 'token-dev-new';
+  static const _oldTokenKeyDev = 'token-dev';
   static const _genderKeyDev = 'gender-dev';
   static const _usernameKeyDev = 'username-dev';
   static const _modeKeyDev = 'mode-dev';
