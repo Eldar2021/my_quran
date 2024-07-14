@@ -11,17 +11,16 @@ class HatimRemoteDataSource {
     required this.remoteClient,
   });
 
-  final RemoteClient remoteClient;
+  final MqDio remoteClient;
 
   late final WebSocketChannel channel;
   bool isInitilized = false;
 
-  Future<HatimReadModel> getHatim(String token) async {
+  Future<HatimReadModel> getHatim() async {
     try {
-      final res = await remoteClient.post(
+      final res = await remoteClient.postType(
         apiConst.joinToHatim,
         fromJson: HatimReadModel.fromJson,
-        token: token,
       );
 
       return res.fold((l) => throw l, (r) => r);

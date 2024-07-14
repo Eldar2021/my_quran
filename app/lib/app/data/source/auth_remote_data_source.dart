@@ -16,7 +16,7 @@ final class AuthRemoteDataSource {
     required this.isIntegrationTest,
   });
 
-  final RemoteClient client;
+  final MqDio client;
   final PreferencesStorage storage;
   final SoccialAuth soccialAuth;
   final bool isIntegrationTest;
@@ -74,7 +74,7 @@ final class AuthRemoteDataSource {
   ) async {
     final googleAuth = await _getGoogleAuth();
 
-    final token = await client.post(
+    final token = await client.postType(
       apiConst.loginWithGoogle,
       fromJson: TokenResponse.fromJson,
       body: {'access_token': googleAuth.accessToken},
@@ -117,7 +117,7 @@ final class AuthRemoteDataSource {
   ) async {
     final appleAuth = await _getAppleAuth();
 
-    final token = await client.post(
+    final token = await client.postType(
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
       body: {'access_token': appleAuth.accessToken},
@@ -155,14 +155,13 @@ final class AuthRemoteDataSource {
   }
 
   Future<Either<UserDataResponse, Exception>> saveUserData(UserEntity userEntity) {
-    return client.put(
+    return client.putType(
       apiConst.putProfile(userEntity.accessToken),
       fromJson: UserDataResponse.fromJson,
       body: {
         'gender': userEntity.gender.name.toUpperCase(),
         'language': userEntity.localeCode.toUpperCase(),
       },
-      token: userEntity.accessToken,
     );
   }
 
@@ -170,12 +169,13 @@ final class AuthRemoteDataSource {
     required String userId,
     required Gender gender,
   }) {
-    log(apiConst.putProfile(userId));
-    return client.patch(
+
+
+    return client.patchType(
+
       apiConst.putProfile(userId),
       fromJson: UserDataResponse.fromJson,
       body: {'gender': gender.name.toUpperCase()},
-      token: userId,
     );
   }
 
@@ -183,11 +183,10 @@ final class AuthRemoteDataSource {
     required String userId,
     required String localeCode,
   }) {
-    return client.patch(
+    return client.patchType(
       apiConst.putProfile(userId),
       fromJson: UserDataResponse.fromJson,
       body: {'language': localeCode.toUpperCase()},
-      token: userId,
     );
   }
 

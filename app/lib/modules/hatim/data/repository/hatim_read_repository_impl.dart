@@ -11,8 +11,8 @@ final class HatimReadRepositoryImpl implements HatimRepository {
   final HatimRemoteDataSource dataSource;
 
   @override
-  Future<HatimReadEntity> getHatim(String token) async {
-    final res = await dataSource.getHatim(token);
+  Future<HatimReadEntity> getHatim() async {
+    final res = await dataSource.getHatim();
     return res.toEntity;
   }
 

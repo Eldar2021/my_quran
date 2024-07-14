@@ -11,9 +11,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   final GetHomeDataUseCase getHomeDataUseCase;
 
-  Future<void> getData(String token) async {
+  Future<void> getData() async {
     try {
-      final homeModel = await getHomeDataUseCase.execute(token);
+      final homeModel = await getHomeDataUseCase.execute();
       emit(HomeState(status: FetchStatus.success, homeModel: homeModel));
     } catch (e, s) {
       MqCrashlytics.report(e, s);

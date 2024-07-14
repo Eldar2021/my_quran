@@ -30,7 +30,7 @@ class ReadView extends StatelessWidget {
           create: (context) => ReadCubit(
             GetReadPageUseCase(
               ReadRepositoryImpl(
-                ReadRemoteDataSource(context.read<RemoteClient>()),
+                ReadRemoteDataSource(context.read<MqDio>()),
                 ReadLocalDataSource(context.read<PreferencesStorage>()),
               ),
             ),
