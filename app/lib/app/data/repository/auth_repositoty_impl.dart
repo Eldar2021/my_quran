@@ -31,53 +31,23 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signUpWithEmail({
-    required String email,
-    required String password,
-    required String username,
-    required String languageCode,
-    required Gender gender,
-  }) async {
+  Future<void> loginWithEmail(String email) async {
     try {
-      final res = await remoteDataSource.signUpWithEmail(
-        email: email,
-        password: password,
-        username: username,
-        languageCode: languageCode,
-        gender: gender,
-      );
-      return res.fold(
-        (l) => Left(AuthenticationExc(message: l.toString())),
-        (r) => Right(
-          UserEntity(
-            accessToken: r.accessToken,
-            username: r.username,
-            gender: r.gender,
-            localeCode: r.localeCode,
-          ),
-        ),
-      );
+      await remoteDataSource.loginWithEmail(email);
     } catch (e, s) {
       MqCrashlytics.report(e, s);
-      log('signUpWithEmail: error: $e\n$s');
-      return Left(AuthenticationExc(message: e.toString()));
+      log('signWithEmail: error: $e\n$s');
     }
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signInWithEmail({
-    required String email,
-    required String password,
+  Future<Either<UserEntity, Exception>> fetchSmsCode({
+    required String code,
     required String languageCode,
     required Gender gender,
   }) async {
     try {
-      final res = await remoteDataSource.signInWithEmail(
-        email: email,
-        password: password,
-        languageCode: languageCode,
-        gender: gender,
-      );
+      final res = await remoteDataSource.fetchSmsCode(code: code, languageCode: languageCode, gender: gender);
       return res.fold(
         Left.new,
         (r) => Right(
@@ -90,8 +60,8 @@ final class AuthRepositoryImpl implements AuthRepository {
         ),
       );
     } catch (e, s) {
+      log('signWithemail: error: $e\n$s');
       MqCrashlytics.report(e, s);
-      log('signWithEmail: error: $e\n$s');
       return Left(AuthenticationExc(message: e.toString()));
     }
   }

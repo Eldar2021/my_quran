@@ -105,5 +105,6 @@
     "recommendedVersionDescription": "Uygulamanın yeni bir sürümü mevcut.",
     "remindMeLater": "Daha sonra hatırlat",
     "updateNow": "Şimdi güncelle",
-    "hatimNotAvailable": "Hatim mevcut değil."
+    "hatimNotAvailable": "Hatim mevcut değil.",
+    "enterEmailToLogin": "Uygulamamıza giriş yapmak için lütfen e-posta adresinizi girin."
 }

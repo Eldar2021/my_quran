@@ -35,8 +35,9 @@ void main() {
 
     final googleSignInUseCase = GoogleSignInUseCase(authRepository);
     final appleSignInUseCase = AppleSignInUseCase(authRepository);
-    final emailSignIn = EmailSignInUseCase(authRepository);
-    final emailSignUp = EmailSignUpUseCase(authRepository);
+    final emailSignIn = EmailLoginUseCase(authRepository);
+    final fetchSmsCode = FetchSmsCodeUseCase(authRepository);
+
     final setUserDataUseCase = SerUserDataUseCase(authRepository);
     final patchLocaleCodeUseCase = PatchLocaleCodeUseCase(authRepository);
     final pathGenderUseCase = PatchGenderUseCase(authRepository);
@@ -60,7 +61,7 @@ void main() {
       googleSignInUseCase,
       appleSignInUseCase,
       emailSignIn,
-      emailSignUp,
+      fetchSmsCode,
       setUserDataUseCase,
       homeRepo,
       pathGenderUseCase,

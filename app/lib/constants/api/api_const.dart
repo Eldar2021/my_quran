@@ -8,10 +8,12 @@ class ApiConst {
   final String? devDomain;
 
   static const domain = 'https://myquran.life';
-
   String get socketBase => 'wss://myquran.life/ws';
   String get loginWithGoogle => '$_getDomain/api/v1/accounts/google/';
   String get loginWithApple => '$_getDomain/api/v1/accounts/apple/';
+  String get loginWithEmail => '$_getDomain/api/v1/accounts/email/';
+  String get fetchSmsCode => '$_getDomain/api/v1/accounts/code/';
+
   String putProfile(String userId) => '$_getDomain/api/v1/accounts/profile/$userId/';
   String get hatimDashBoard => '$_getDomain/api/v1/hatim/dashboard';
   String get joinToHatim => '$_getDomain/api/v1/hatim/join_to_hatim';

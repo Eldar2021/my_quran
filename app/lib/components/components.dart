@@ -9,5 +9,3 @@ export 'audio/seek_bar.dart';
 export 'audio/audio_center_button.dart';
 export 'alert/confirmation_dialog.dart';
 export 'forms/custom_text_field.dart';
-export 'forms/forgot_password_form.dart';
-export 'forms/hide_password.dart';

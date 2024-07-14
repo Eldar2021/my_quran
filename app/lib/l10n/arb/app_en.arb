@@ -80,7 +80,7 @@
     "yes": "Yes",
     "no": "No",
     "appleSignInNotAvailable": "Apple Sign-In is not available on Android devices.",
-    "welcome": "Welcome Back",
+    "welcome": "Welcome",
     "signIn": "Sign in",
     "signUp": "Sign up",
     "dontHaveAccount": "Don't have an account",
@@ -105,5 +105,5 @@
     "recommendedVersionDescription": "A new version of the app is available.",
     "remindMeLater": "Remind me later",
     "updateNow": "Update now",
-    "hatimNotAvailable": "Hatim is not available."
+    "enterEmailToLogin": "Please enter your email to log in to our application."
 }

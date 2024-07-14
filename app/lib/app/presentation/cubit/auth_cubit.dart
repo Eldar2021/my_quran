@@ -13,8 +13,8 @@ class AuthCubit extends Cubit<AuthState> {
     this.getInitialUserUseCase,
     this.googleSignIn,
     this.appleSignIn,
-    this.emailSignIn,
-    this.emailSignUp,
+    this.loginUsecase,
+    this.fetchSmsCodeUseCase,
     this.serUserDataUseCase,
     this.patchGenderUseCase,
     this.patchLocaleCodeUseCase,
@@ -24,48 +24,31 @@ class AuthCubit extends Cubit<AuthState> {
   final GetInitialUserUseCase getInitialUserUseCase;
   final GoogleSignInUseCase googleSignIn;
   final AppleSignInUseCase appleSignIn;
-  final EmailSignInUseCase emailSignIn;
-  final EmailSignUpUseCase emailSignUp;
+  final EmailLoginUseCase loginUsecase;
+  final FetchSmsCodeUseCase fetchSmsCodeUseCase;
   final SerUserDataUseCase serUserDataUseCase;
   final PatchGenderUseCase patchGenderUseCase;
   final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
   final LogoutUseCase logoutUseCase;
 
-  Future<AuthState> signUpWithEmail({
-    required String email,
-    required String password,
-    required String username,
-  }) async {
-    final user = await emailSignUp(
-      email: email,
-      password: password,
-      username: username,
-      languageCode: state.currentLocale.languageCode,
-      gender: state.gender,
-    );
-
-    user.fold(
-      (l) => emit(state.copyWith(exception: l)),
-      (r) => emit(state.copyWith(user: r)),
-    );
-
-    return state;
+  Future<void> login(String email) async {
+    try {
+      await loginUsecase(email);
+    } catch (e) {
+      emit(state.copyWith(exception: Exception(e)));
+    }
   }
 
-  Future<AuthState> signInWithEmail(String email, String password) async {
-    final user = await emailSignIn(
-      email: email,
-      password: password,
-      languageCode: state.currentLocale.languageCode,
-      gender: state.gender,
-    );
-
-    user.fold(
-      (l) => emit(state.copyWith(exception: l)),
-      (r) => emit(state.copyWith(user: r)),
-    );
-
-    return state;
+  Future<void> fetchSmsCode(String code) async {
+    try {
+      await fetchSmsCodeUseCase(
+        code: code,
+        languageCode: state.currentLocale.languageCode,
+        gender: state.gender,
+      );
+    } catch (e) {
+      emit(state.copyWith(exception: Exception(e)));
+    }
   }
 
   Future<AuthState> signInWithGoogle() async {
@@ -123,7 +106,6 @@ class AuthCubit extends Cubit<AuthState> {
         userId: state.user!.accessToken,
         gender: gender,
       );
-
       res.fold(
         (l) => emit(state.copyWith(exception: l)),
         (r) {
@@ -133,14 +115,6 @@ class AuthCubit extends Cubit<AuthState> {
       );
     } else {
       emit(state.copyWith(genderForNow: gender));
-    }
-  }
-
-  Future<void> forgotPassword(String email) async {
-    try {
-      // await forgotPasswordUseCase(email);
-    } catch (e) {
-      emit(state.copyWith(exception: Exception(e)));
     }
   }
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_quran/app/presentation/presenation.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/theme/custom/typography/typography_theme.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -57,7 +59,9 @@ class VerificationCodeView extends StatelessWidget {
               const SizedBox(height: 30),
               CustomButton(
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    context.read<AuthCubit>().fetchSmsCode(verificationCodeController.text);
+                  }
                 },
                 text: 'Verify',
               ),

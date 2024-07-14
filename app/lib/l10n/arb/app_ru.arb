@@ -105,5 +105,6 @@
     "recommendedVersionDescription": "Доступна новая версия приложения.",
     "remindMeLater": "Напомнить позже",
     "updateNow": "Обновить сейчас",
-    "hatimNotAvailable": "Хатим недоступен."
+    "hatimNotAvailable": "Хатим недоступен.",
+    "enterEmailToLogin": "Введите ваш email для входа в приложение."
 }

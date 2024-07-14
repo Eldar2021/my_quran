@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,6 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/modules/login/presentation/view/verification_code_view.dart';
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
 
@@ -53,7 +53,11 @@ class SignInView extends StatelessWidget {
                   style: context.titleLarge!.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
+              Align(
+                child: Text(context.l10n.enterEmailToLogin),
+              ),
+              const SizedBox(height: 40),
               Text(
                 context.l10n.email,
                 style: context.bodyMedium!.copyWith(color: context.colors.secondary),
@@ -76,24 +80,18 @@ class SignInView extends StatelessWidget {
               CustomButton(
                 key: Key(MqKeys.loginTypeName('email')),
                 text: context.l10n.signIn,
-                onPressed: () async {
+                onPressed: () {
                   if (formKey.currentState!.validate()) {
                     MqAnalytic.track(
                       AnalyticKey.tapLogin,
                       params: {'soccial': 'email'},
                     );
-                    await Navigator.push<void>(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => VerificationCodeView(),
-                      ),
-                    );
-                    // unawaited(AppAlert.showLoading(context));
-                    // await context.read<AuthCubit>().signInWithEmail(
-                    //       emailController.text,
-                    //       passwordController.text,
-                    //     );
-                    // if (context.mounted) context.loaderOverlay.hide();
+                    try {
+                      // context.read<AuthCubit>().login(emailController.text);
+                      context.goNamed(AppRouter.verificationCode);
+                    } catch (e) {
+                      log(e.toString());
+                    }
                   }
                 },
               ),
@@ -135,20 +133,6 @@ class SignInView extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(context.l10n.dontHaveAccount),
-                  TextButton(
-                    onPressed: () {
-                      MqAnalytic.track(AnalyticKey.goRegister);
-                      context.goNamed(AppRouter.register);
-                    },
-                    child: Text(context.l10n.signUp),
-                  ),
-                ],
               ),
               const SizedBox(height: 40),
               TextButton(
