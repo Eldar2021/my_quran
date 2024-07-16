@@ -87,5 +87,12 @@
     "recommendedVersionDescription": "Uygulamanın yeni bir sürümü mevcut.",
     "remindMeLater": "Daha sonra hatırlat",
     "updateNow": "Şimdi güncelle",
-    "hatimNotAvailable": "Hatim mevcut değil."
+    "hatimNotAvailable": "Hatim mevcut değil.",
+    "enterEmailToLogin": "Uygulamamıza giriş yapmak için lütfen e-posta adresinizi girin.",
+    "email": "E-posta",
+    "emailRequired": "E-posta gereklidir.",
+    "invalidEmail": "Lütfen geçerli bir e-posta adresi girin.",
+    "signIn": "Giriş Yap",
+    "orContinueWith": "Veya ile devam et"
+
 }

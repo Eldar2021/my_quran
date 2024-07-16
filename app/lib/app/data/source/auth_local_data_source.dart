@@ -14,6 +14,7 @@ final class AuthLocalDataSource {
     final userGender = storage.readString(key: StorageKeys.genderKey);
     final username = storage.readString(key: StorageKeys.usernameKey);
     final localeCode = storage.readString(key: StorageKeys.localeKey);
+
     if (userToken == null && userGender == null && username == null) return null;
     return UserEntity(
       accessToken: userToken!,

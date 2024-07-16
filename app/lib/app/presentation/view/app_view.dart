@@ -40,23 +40,29 @@ class MyApp extends StatelessWidget {
           ),
         ),
         RepositoryProvider<AuthRepository>(
-          create: (context) => AuthRepositoryImpl(
-            localDataSource: AuthLocalDataSource(
-              context.read<PreferencesStorage>(),
-            ),
-            remoteDataSource: AuthRemoteDataSource(
-              client: context.read<MqDio>(),
-              storage: context.read<PreferencesStorage>(),
-              soccialAuth: context.read<SoccialAuth>(),
-              isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
-            ),
-          ),
+          create: (context) {
+            final isMockData = context.read<AppConfig>().isMockData;
+            final remoteDataSource = isMockData
+                ? AuthMockDataSource(context.read<PreferencesStorage>())
+                : AuthRemoteDataSource(
+                    client: context.read<MqDio>(),
+                    storage: context.read<PreferencesStorage>(),
+                    soccialAuth: context.read<SoccialAuth>(),
+                    isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
+                  );
+            return AuthRepositoryImpl(
+              localDataSource: AuthLocalDataSource(context.read<PreferencesStorage>()),
+              remoteDataSource: remoteDataSource,
+            );
+          },
         ),
         BlocProvider(
           create: (context) => AuthCubit(
             GetInitialUserUseCase(context.read<AuthRepository>()),
             GoogleSignInUseCase(context.read<AuthRepository>()),
             AppleSignInUseCase(context.read<AuthRepository>()),
+            EmailLoginUseCase(context.read<AuthRepository>()),
+            FetchSmsCodeUseCase(context.read<AuthRepository>()),
             SerUserDataUseCase(context.read<AuthRepository>()),
             PatchGenderUseCase(context.read<AuthRepository>()),
             PatchLocaleCodeUseCase(context.read<AuthRepository>()),

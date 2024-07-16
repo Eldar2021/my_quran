@@ -6,7 +6,7 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 
 @immutable
-final class AuthRemoteDataSource {
+final class AuthRemoteDataSource implements AuthDataSource {
   const AuthRemoteDataSource({
     required this.client,
     required this.storage,
@@ -19,6 +19,54 @@ final class AuthRemoteDataSource {
   final SoccialAuth soccialAuth;
   final bool isIntegrationTest;
 
+  @override
+  Future<void> loginWithEmail(String email) async {
+    try {
+      await client.post(
+        apiConst.loginWithEmail,
+        fromJson: TokenResponse.fromJson,
+        body: {'email': email},
+      );
+    } catch (e) {
+      throw Exception('Error during login: $e');
+    }
+  }
+
+  @override
+  Future<Either<UserModelResponse, Exception>> fetchSmsCode({
+    required String code,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    try {
+      final token = await client.post(
+        apiConst.fetchSmsCode,
+        fromJson: TokenResponse.fromJson,
+        body: {'code': code},
+      );
+      return token.fold(
+        (error) {
+          return Left(error);
+        },
+        (r) async {
+          final user = UserModelResponse(
+            accessToken: r.key,
+            username: '',
+            gender: gender,
+            localeCode: languageCode,
+          );
+
+          await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+
+          return Right(user);
+        },
+      );
+    } catch (e) {
+      return Left(Exception('Error fetching SMS code: $e'));
+    }
+  }
+
+  @override
   Future<Either<UserModelResponse, Exception>> signInWithGoogle(
     String languageCode,
     Gender gender,
@@ -62,6 +110,7 @@ final class AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<Either<UserModelResponse, Exception>> signInWithApple(
     String languageCode,
     Gender gender,
@@ -105,6 +154,7 @@ final class AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<Either<UserDataResponse, Exception>> saveUserData(UserEntity userEntity) {
     return client.putType(
       apiConst.putProfile(userEntity.accessToken),
@@ -116,6 +166,7 @@ final class AuthRemoteDataSource {
     );
   }
 
+  @override
   Future<Either<UserDataResponse, Exception>> pathGender({
     required String userId,
     required Gender gender,
@@ -127,6 +178,7 @@ final class AuthRemoteDataSource {
     );
   }
 
+  @override
   Future<Either<UserDataResponse, Exception>> pathLocaleCode({
     required String userId,
     required String localeCode,
@@ -138,6 +190,7 @@ final class AuthRemoteDataSource {
     );
   }
 
+  @override
   Future<void> logoutRemote() async {
     await soccialAuth.logOut();
   }

@@ -4,6 +4,13 @@ import 'package:my_quran/core/core.dart';
 abstract class AuthRepository {
   UserEntity? get init;
 
+  Future<void> loginWithEmail(String email);
+
+  Future<Either<UserEntity, Exception>> fetchSmsCode({
+    required String code,
+    required String languageCode,
+    required Gender gender,
+  });
   Future<Either<UserEntity, Exception>> signWithGoogle(
     String languageCode,
     Gender gender,

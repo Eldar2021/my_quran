@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
 
 @immutable
@@ -7,11 +8,16 @@ final class AppConfig {
   const AppConfig({
     this.storage,
     this.isIntegrationTest = false,
+    this.isMockData = true,
+    this.authRemoteDataSource,
   });
 
   final bool isIntegrationTest;
+  final bool isMockData;
 
   final PreferencesStorage? storage;
+
+  final AuthDataSource? authRemoteDataSource;
 
   Future<void> setDevMode({required String devDomain, required bool isDevmode}) async {
     await storage?.writeString(key: 'dev-domain', value: devDomain);
