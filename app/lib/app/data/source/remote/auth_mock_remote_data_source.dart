@@ -6,8 +6,8 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 
 @immutable
-final class AuthMockDataSource implements AuthDataSource {
-  const AuthMockDataSource(this.storage);
+final class AuthMockRemoteDataSource implements AuthRemoteDataSource {
+  const AuthMockRemoteDataSource(this.storage);
   final PreferencesStorage storage;
 
   @override

@@ -4,11 +4,12 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 
 @immutable
-final class ReadRemoteDataSource {
-  const ReadRemoteDataSource(this.remoteClient);
+final class ReadRemoteDataSourceImpl implements ReadRemoteDataSource {
+  const ReadRemoteDataSourceImpl(this.remoteClient);
 
   final MqDio remoteClient;
 
+  @override
   Future<QuranPageResponse?> fetchPage(int page, String quranFmt) async {
     final remoteValue = await remoteClient.getType<QuranPageResponse>(
       apiConst.verse(page, quranFmt),

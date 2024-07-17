@@ -1,7 +1,7 @@
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/core/core.dart';
 
-abstract class AuthDataSource {
+abstract class AuthRemoteDataSource {
   Future<void> loginWithEmail(String email);
 
   Future<Either<UserModelResponse, Exception>> fetchSmsCode({

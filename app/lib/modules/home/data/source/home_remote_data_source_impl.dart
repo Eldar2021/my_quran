@@ -4,11 +4,11 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 
 @immutable
-final class HomeRemoteDataSource {
-  const HomeRemoteDataSource(this.remoteClient);
+final class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
+  HomeRemoteDataSourceImpl(this.remoteClient);
 
   final MqDio remoteClient;
-
+  @override
   Future<HomeModelResponse> getRemoteData() async {
     final remoteValue = await remoteClient.getType<HomeModelResponse>(
       apiConst.hatimDashBoard,

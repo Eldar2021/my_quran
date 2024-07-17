@@ -6,8 +6,8 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 
 @immutable
-final class AuthRemoteDataSource implements AuthDataSource {
-  const AuthRemoteDataSource({
+final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+  const AuthRemoteDataSourceImpl({
     required this.client,
     required this.storage,
     required this.soccialAuth,

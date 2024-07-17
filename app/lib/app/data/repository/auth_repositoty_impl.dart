@@ -12,7 +12,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   });
 
   final AuthLocalDataSource localDataSource;
-  final AuthDataSource remoteDataSource;
+  final AuthRemoteDataSource remoteDataSource;
 
   @override
   UserEntity? get init {

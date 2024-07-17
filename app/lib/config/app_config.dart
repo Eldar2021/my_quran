@@ -8,7 +8,7 @@ final class AppConfig {
   const AppConfig({
     this.storage,
     this.isIntegrationTest = false,
-    this.isMockData = true,
+    this.isMockData = false,
     this.authRemoteDataSource,
   });
 
@@ -17,7 +17,7 @@ final class AppConfig {
 
   final PreferencesStorage? storage;
 
-  final AuthDataSource? authRemoteDataSource;
+  final AuthRemoteDataSource? authRemoteDataSource;
 
   Future<void> setDevMode({required String devDomain, required bool isDevmode}) async {
     await storage?.writeString(key: 'dev-domain', value: devDomain);

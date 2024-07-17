@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMockData = context.read<AppConfig>().isMockData;
+
     return MultiBlocProvider(
       providers: [
         RepositoryProvider<AppRepository>(
@@ -41,10 +43,9 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider<AuthRepository>(
           create: (context) {
-            final isMockData = context.read<AppConfig>().isMockData;
             final remoteDataSource = isMockData
-                ? AuthMockDataSource(context.read<PreferencesStorage>())
-                : AuthRemoteDataSource(
+                ? AuthMockRemoteDataSource(context.read<PreferencesStorage>())
+                : AuthRemoteDataSourceImpl(
                     client: context.read<MqDio>(),
                     storage: context.read<PreferencesStorage>(),
                     soccialAuth: context.read<SoccialAuth>(),
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
             GetHomeDataUseCase(
               HomeRepositoryImpl(
                 HomeLocalDataSource(context.read<PreferencesStorage>()),
-                HomeRemoteDataSource(context.read<MqDio>()),
+                isMockData ? MockHomeRemoteDataSource() : HomeRemoteDataSourceImpl(context.read<MqDio>()),
               ),
             ),
           ),

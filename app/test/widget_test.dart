@@ -22,7 +22,7 @@ void main() {
     final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSource(storage));
     final authRepository = AuthRepositoryImpl(
       localDataSource: AuthLocalDataSource(storage),
-      remoteDataSource: AuthRemoteDataSource(
+      remoteDataSource: AuthRemoteDataSourceImpl(
         client: remoteClient,
         storage: storage,
         soccialAuth: MockSccialAuth(),
