@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMockData = context.read<AppConfig>().isMockData;
     return MultiBlocProvider(
       providers: [
         RepositoryProvider<AppRepository>(
@@ -28,7 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider<ThemeRepository>(
           create: (context) => ThemeRepositoryImpl(
-            ThemeLocalDataSource(context.read<PreferencesStorage>()),
+            isMockData
+                ? const ThemeLocalDataSourceMock()
+                : ThemeLocalDataSourceImpl(context.read<PreferencesStorage>()),
           ),
         ),
         BlocProvider(
@@ -40,17 +43,21 @@ class MyApp extends StatelessWidget {
           ),
         ),
         RepositoryProvider<AuthRepository>(
-          create: (context) => AuthRepositoryImpl(
-            localDataSource: AuthLocalDataSource(
-              context.read<PreferencesStorage>(),
-            ),
-            remoteDataSource: AuthRemoteDataSource(
-              client: context.read<MqDio>(),
-              storage: context.read<PreferencesStorage>(),
-              soccialAuth: context.read<SoccialAuth>(),
-              isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
-            ),
-          ),
+          create: (context) {
+            return AuthRepositoryImpl(
+              localDataSource: isMockData
+                  ? const AuthLocalDataSourceMock()
+                  : AuthLocalDataSourceImpl(context.read<PreferencesStorage>()),
+              remoteDataSource: isMockData
+                  ? const AuthRemoteDataSourceMock()
+                  : AuthRemoteDataSourceImpl(
+                      client: context.read<MqDio>(),
+                      storage: context.read<PreferencesStorage>(),
+                      soccialAuth: context.read<SoccialAuth>(),
+                      isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
+                    ),
+            );
+          },
         ),
         BlocProvider(
           create: (context) => AuthCubit(
