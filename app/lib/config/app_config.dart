@@ -7,7 +7,7 @@ final class AppConfig {
   const AppConfig({
     this.storage,
     this.isIntegrationTest = false,
-    this.isMockData = false,
+    this.isMockData = true,
   });
 
   final bool isIntegrationTest;

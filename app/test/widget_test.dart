@@ -42,6 +42,8 @@ void main() {
     final setColorUseCase = SetColorUseCase(themeRepository);
     final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
     final logoutUseCase = LogoutUseCase(authRepository);
+    final emailSignIn = EmailLoginUseCase(authRepository);
+    final fetchSmsCode = FetchSmsCodeUseCase(authRepository);
 
     when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
@@ -56,6 +58,8 @@ void main() {
       getInitialUserUseCase,
       getAppVersionUseCase,
       googleSignInUseCase,
+      emailSignIn,
+      fetchSmsCode,
       appleSignInUseCase,
       setUserDataUseCase,
       homeRepo,

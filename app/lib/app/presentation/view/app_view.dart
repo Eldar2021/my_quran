@@ -63,6 +63,8 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(
             GetInitialUserUseCase(context.read<AuthRepository>()),
             GoogleSignInUseCase(context.read<AuthRepository>()),
+            EmailLoginUseCase(context.read<AuthRepository>()),
+            FetchSmsCodeUseCase(context.read<AuthRepository>()),
             AppleSignInUseCase(context.read<AuthRepository>()),
             SerUserDataUseCase(context.read<AuthRepository>()),
             PatchGenderUseCase(context.read<AuthRepository>()),

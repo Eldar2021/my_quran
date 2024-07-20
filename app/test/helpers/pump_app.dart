@@ -15,6 +15,8 @@ extension PumpApp on WidgetTester {
     GetInitialUserUseCase getInitialUserUseCase,
     GetAppVersionUseCase getAppVersionUseCase,
     GoogleSignInUseCase googleSignInUseCase,
+    EmailLoginUseCase emailSignIn,
+    FetchSmsCodeUseCase fetchSmsCode,
     AppleSignInUseCase appleSignInUseCase,
     SerUserDataUseCase setUserDataUseCase,
     HomeRepository homeRepo,
@@ -44,6 +46,8 @@ extension PumpApp on WidgetTester {
               create: (context) => AuthCubit(
                 getInitialUserUseCase,
                 googleSignInUseCase,
+                emailSignIn,
+                fetchSmsCode,
                 appleSignInUseCase,
                 setUserDataUseCase,
                 patchGenderUseCase,

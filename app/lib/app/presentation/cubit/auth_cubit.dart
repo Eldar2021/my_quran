@@ -12,6 +12,8 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(
     this.getInitialUserUseCase,
     this.googleSignIn,
+    this.loginUsecase,
+    this.fetchSmsCodeUseCase,
     this.appleSignIn,
     this.serUserDataUseCase,
     this.patchGenderUseCase,
@@ -21,11 +23,34 @@ class AuthCubit extends Cubit<AuthState> {
 
   final GetInitialUserUseCase getInitialUserUseCase;
   final GoogleSignInUseCase googleSignIn;
+  final EmailLoginUseCase loginUsecase;
+  final FetchSmsCodeUseCase fetchSmsCodeUseCase;
   final AppleSignInUseCase appleSignIn;
   final SerUserDataUseCase serUserDataUseCase;
   final PatchGenderUseCase patchGenderUseCase;
   final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
   final LogoutUseCase logoutUseCase;
+
+  Future<void> login(String email) async {
+    try {
+      await loginUsecase(email);
+    } catch (e) {
+      emit(state.copyWith(exception: Exception(e)));
+    }
+  }
+
+  Future<AuthState> fetchSmsCode(String code) async {
+    final user = await fetchSmsCodeUseCase(
+      code: code,
+      languageCode: state.currentLocale.languageCode,
+      gender: state.gender,
+    );
+    user.fold(
+      (l) => emit(state.copyWith(exception: l)),
+      (r) => emit(state.copyWith(user: r)),
+    );
+    return state;
+  }
 
   Future<AuthState> signInWithGoogle() async {
     final user = await googleSignIn(

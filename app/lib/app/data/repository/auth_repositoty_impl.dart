@@ -20,6 +20,44 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<void> loginWithEmail(String email) async {
+    try {
+      await remoteDataSource.loginWithEmail(email);
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('signWithEmail: error: $e\n$s');
+    }
+  }
+
+  @override
+  Future<Either<UserEntity, Exception>> fetchSmsCode({
+    required String code,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    try {
+      final res = await remoteDataSource.fetchSmsCode(code: code, languageCode: languageCode, gender: gender);
+
+      return res.fold(
+        Left.new,
+        (r) {
+          final userEntity = UserEntity(
+            accessToken: r.accessToken,
+            username: r.username,
+            gender: r.gender,
+            localeCode: r.localeCode,
+          );
+          return Right(userEntity);
+        },
+      );
+    } catch (e, s) {
+      log('signWithemail: error: $e\n$s');
+      MqCrashlytics.report(e, s);
+      return Left(AuthenticationExc(message: e.toString()));
+    }
+  }
+
+  @override
   Future<void> setUserData(UserEntity userEntity) async {
     try {
       await remoteDataSource.saveUserData(userEntity);
