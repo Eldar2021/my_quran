@@ -15,9 +15,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   @override
-  UserEntity? get init {
-    return localDataSource.init;
-  }
+  UserEntity? get init => localDataSource.init;
 
   @override
   Future<void> setUserData(UserEntity userEntity) async {
@@ -35,24 +33,18 @@ final class AuthRepositoryImpl implements AuthRepository {
     String languageCode,
     Gender gender,
   ) async {
-    try {
-      final res = await remoteDataSource.signInWithGoogle(languageCode, gender);
-      return res.fold(
-        Left.new,
-        (r) => Right(
-          UserEntity(
-            accessToken: r.accessToken,
-            username: r.username,
-            gender: r.gender,
-            localeCode: r.localeCode,
-          ),
+    final res = await remoteDataSource.signInWithGoogle(languageCode, gender);
+    return res.fold(
+      Left.new,
+      (r) => Right(
+        UserEntity(
+          accessToken: r.accessToken,
+          username: r.username,
+          gender: r.gender,
+          localeCode: r.localeCode,
         ),
-      );
-    } catch (e, s) {
-      log('signWithGoogle: error: $e\n$s');
-      MqCrashlytics.report(e, s);
-      return Left(AuthenticationExc(message: e.toString()));
-    }
+      ),
+    );
   }
 
   @override
@@ -60,24 +52,18 @@ final class AuthRepositoryImpl implements AuthRepository {
     String languageCode,
     Gender gender,
   ) async {
-    try {
-      final res = await remoteDataSource.signInWithApple(languageCode, gender);
-      return res.fold(
-        Left.new,
-        (r) => Right(
-          UserEntity(
-            accessToken: r.accessToken,
-            username: r.username,
-            gender: r.gender,
-            localeCode: r.localeCode,
-          ),
+    final res = await remoteDataSource.signInWithApple(languageCode, gender);
+    return res.fold(
+      Left.new,
+      (r) => Right(
+        UserEntity(
+          accessToken: r.accessToken,
+          username: r.username,
+          gender: r.gender,
+          localeCode: r.localeCode,
         ),
-      );
-    } catch (e, s) {
-      MqCrashlytics.report(e, s);
-      log('signWithGoogle: error: $e\n$s');
-      return Left(AuthenticationExc(message: e.toString()));
-    }
+      ),
+    );
   }
 
   @override

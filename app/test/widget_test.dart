@@ -17,12 +17,12 @@ void main() {
     final remoteConfig = MockMqRemoteConfig();
 
     final homeRepo = MockHomeRepositoryImpl();
-    final appLocalDataSource = AppLocalDataSource(packageInfo: packageInfo);
+    final appLocalDataSource = AppLocalDataSourceImpl(packageInfo: packageInfo);
     final appRepository = AppRepositoryImpl(appLocalDataSource);
-    final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSource(storage));
+    final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSourceImpl(storage));
     final authRepository = AuthRepositoryImpl(
-      localDataSource: AuthLocalDataSource(storage),
-      remoteDataSource: AuthRemoteDataSource(
+      localDataSource: AuthLocalDataSourceImpl(storage),
+      remoteDataSource: AuthRemoteDataSourceImpl(
         client: remoteClient,
         storage: storage,
         soccialAuth: MockSccialAuth(),

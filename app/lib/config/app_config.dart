@@ -7,9 +7,11 @@ final class AppConfig {
   const AppConfig({
     this.storage,
     this.isIntegrationTest = false,
+    this.isMockData = false,
   });
 
   final bool isIntegrationTest;
+  final bool isMockData;
 
   final PreferencesStorage? storage;
 
