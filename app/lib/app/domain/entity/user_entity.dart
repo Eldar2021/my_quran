@@ -29,4 +29,15 @@ final class UserEntity {
   }
 }
 
-enum Gender { male, female }
+enum Gender {
+  male,
+  female;
+
+  factory Gender.fromData(String? src) {
+    return switch (src) {
+      'male' => Gender.male,
+      'female' => Gender.female,
+      _ => Gender.male,
+    };
+  }
+}

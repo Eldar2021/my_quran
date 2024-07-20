@@ -9,9 +9,7 @@ final class ThemeRepositoryImpl implements ThemeRepository {
   final ThemeLocalDataSource themeLocalDataSource;
 
   @override
-  CustomTheme get getInitialThemeState {
-    return themeLocalDataSource.initialTheme;
-  }
+  CustomTheme get getInitialThemeState => themeLocalDataSource.initialTheme;
 
   @override
   Future<void> saveThemePrimaryColor(int index) async {

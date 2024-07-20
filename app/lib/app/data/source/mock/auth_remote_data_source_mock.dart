@@ -8,9 +8,7 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   const AuthRemoteDataSourceMock();
 
   @override
-  Future<void> loginWithEmail(String email) async {
-    return;
-  }
+  Future<void> loginWithEmail(String email) async {}
 
   @override
   Future<Either<UserModelResponse, Exception>> fetchSmsCode({
@@ -90,7 +88,5 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<void> logoutRemote() async {
-    return;
-  }
+  Future<void> logoutRemote() async {}
 }

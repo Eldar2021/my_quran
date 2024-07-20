@@ -7,9 +7,7 @@ final class ThemeLocalDataSourceMock implements ThemeLocalDataSource {
   const ThemeLocalDataSourceMock();
 
   @override
-  CustomTheme get initialTheme {
-    return const CustomTheme(Brightness.light, Colors.red);
-  }
+  CustomTheme get initialTheme => const CustomTheme(Brightness.light, AppColors.red);
 
   @override
   Future<void> saveThemePrimaryColor(int index) async {}

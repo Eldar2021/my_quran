@@ -13,7 +13,7 @@ final class ThemeLocalDataSourceImpl implements ThemeLocalDataSource {
   CustomTheme get initialTheme {
     final isDark = storage.readBool(key: StorageKeys.modeKey);
     final cachedColorIndex = storage.readInt(key: StorageKeys.colorKey);
-    final brightness = isDark != null ? (isDark ? Brightness.dark : Brightness.light) : Brightness.light;
+    final brightness = (isDark ?? false) ? Brightness.dark : Brightness.light;
     final targetColor = _getColor(cachedColorIndex);
     return CustomTheme(brightness, targetColor);
   }

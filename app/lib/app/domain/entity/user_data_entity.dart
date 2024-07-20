@@ -11,9 +11,7 @@ final class UserDataEntity {
   final String gender;
   final String language;
 
-  Gender get genderValue {
-    return gender.toLowerCase() == 'male' ? Gender.male : Gender.female;
-  }
+  Gender get genderValue => Gender.fromData(gender.toLowerCase());
 
   String get localeValue => language.toLowerCase();
 }

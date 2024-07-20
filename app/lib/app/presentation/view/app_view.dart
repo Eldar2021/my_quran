@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider<AppRepository>(
           create: (context) => AppRepositoryImpl(
-            AppLocalDataSource(
-              packageInfo: context.read<PackageInfo>(),
-            ),
+            isMockData
+                ? const AppLocalDataSourceMock()
+                : AppLocalDataSourceImpl(packageInfo: context.read<PackageInfo>()),
           ),
         ),
         RepositoryProvider<ThemeRepository>(
