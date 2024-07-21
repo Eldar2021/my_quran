@@ -9,7 +9,7 @@ final class ReadRepositoryImpl implements ReadRepository {
   );
 
   final ReadRemoteDataSource remoteDataSource;
-  final ReadLocalDataSource localDataSource;
+  final ReadLocalDataSourceImpl localDataSource;
 
   @override
   Future<QuranPageEntity?> getPage(int page, String quranFmt) async {

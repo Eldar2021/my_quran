@@ -19,9 +19,9 @@ class HatimView extends StatelessWidget {
     return BlocProvider(
       create: (context) => HatimBloc(
         repo: HatimReadRepositoryImpl(
-          dataSource: HatimRemoteDataSource(
-            remoteClient: context.read<MqDio>(),
-          ),
+          dataSource: context.read<AppConfig>().isMockData
+              ? HatimRemoteDataSourceMock()
+              : HatimRemoteDataSourceImpl(remoteClient: context.read<MqDio>()),
         ),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetInitailDataEvent()),
