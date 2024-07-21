@@ -5,7 +5,7 @@ import 'package:my_quran/modules/modules.dart';
 final class ReadThemeRepositoryImpl implements ReadThemeRepository {
   const ReadThemeRepositoryImpl(this.localThemeDataSource);
 
-  final LocalThemeDataSource localThemeDataSource;
+  final LocalThemeDataSourceImpl localThemeDataSource;
 
   @override
   ReadThemeState get getInitialThemeState {

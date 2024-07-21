@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -30,15 +31,17 @@ class ReadView extends StatelessWidget {
           create: (context) => ReadCubit(
             GetReadPageUseCase(
               ReadRepositoryImpl(
-                ReadRemoteDataSource(context.read<MqDio>()),
-                ReadLocalDataSource(context.read<PreferencesStorage>()),
+                context.read<AppConfig>().isMockData
+                    ? ReadRemoteDataSourceMock()
+                    : ReadRemoteDataSourceImpl(context.read<MqDio>()),
+                ReadLocalDataSourceImpl(context.read<PreferencesStorage>()),
               ),
             ),
           ),
         ),
         RepositoryProvider<ReadThemeRepository>(
           create: (context) => ReadThemeRepositoryImpl(
-            LocalThemeDataSource(context.read<PreferencesStorage>()),
+            LocalThemeDataSourceImpl(context.read<PreferencesStorage>()),
           ),
         ),
         BlocProvider(
