@@ -74,8 +74,10 @@ class MyApp extends StatelessWidget {
           create: (context) => HomeCubit(
             GetHomeDataUseCase(
               HomeRepositoryImpl(
-                HomeLocalDataSource(context.read<PreferencesStorage>()),
-                HomeRemoteDataSource(context.read<MqDio>()),
+                isMockData
+                    ? const HomeLocalDataSourceMock()
+                    : HomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
+                isMockData ? const HomeRemoteDataSourceMock() : HomeRemoteDataSourceImpl(context.read<MqDio>()),
               ),
             ),
           ),
