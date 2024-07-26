@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v1
@@ -39,26 +39,39 @@ jobs:
           cd ios
           pod install
 
-      - name: "Build iOS App"
-        run: melos run build-ios
-
-      - name: "Create .xcarchive"
+      - name: Selecting Xcode Version
+        run: sudo xcode-select -switch /Applications/Xcode_14.2.app
+        
+      - name: Running Xcode version
+        run: /usr/bin/xcodebuild -version
+   
+      - name: Build Cleanup
         run: |
-          cd ios
-          xcodebuild -workspace Runner.xcworkspace \
-            -scheme Runner \
-            -sdk iphoneos \
-            -configuration Release \
-            -archivePath ../build/ios/archive/Runner.xcarchive \
-            clean archive
-
-      - name: "Export .ipa file"
+          xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction | xcpretty
+          
+      - name: Build Test
         run: |
-          cd ios
-          xcodebuild -exportArchive \
-            -archivePath ../build/ios/archive/Runner.xcarchive \
-            -exportPath ../build/ios/ipa \
-            -exportOptionsPlist Runner/ExportOptions.plist
+          xcodebuild test -project GitHubAction.xcodeproj -scheme GitHubAction -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty -s
+          
+      - name: Build Archive
+        uses: yukiarrr/ios-build-action@v1.5.0  
+        with:
+          project-path: GitHubAction.xcodeproj
+          workspace-path: GitHubAction.xcworkspace # optional
+          scheme: GitHubAction
+          configuration: Release
+          export-method: app-store
+          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
+          p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
+          mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+          code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }}
+          team-id: ${{ secrets.TEAM_ID }}
+    
+      - name: Saving IPA File
+        uses: actions/upload-artifact@v2   
+        with:
+          name: ipa
+          path: build/ios/ipa/*.ipa
 
       - name: "Upload artifact to Firebase App Distribution"
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -66,4 +79,4 @@ jobs:
           appId: ${{ secrets.APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: my_quran_testers
-          file: build/ios/ipa/Runner.ipa
+          file: build/ios/ipa/*.ipa
