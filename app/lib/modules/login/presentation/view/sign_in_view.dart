@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/components/components.dart';
 
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
@@ -15,63 +17,98 @@ import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class SignInView extends StatelessWidget {
-  const SignInView({super.key});
+  SignInView({super.key});
+
+  final emailController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: const Key(MqKeys.signInView),
-      body: BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state.user != null) {
-            context.read<AuthCubit>().setUserData(state.user!);
-            context.goNamed(AppRouter.home);
-          } else if (state.exception != null) {
-            AppAlert.showErrorDialog(
-              context,
-              errorText: state.exception.toString(),
-            );
-          }
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Form(
+        key: formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
           children: [
-            const SizedBox(height: 70),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
-              child: Assets.images.splash.image(),
+            const SizedBox(height: 100),
+            Align(
+              child: Text(
+                '${context.l10n.welcome}!',
+                style: context.titleLarge!.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
+            Align(
+              child: Text(context.l10n.enterEmailToLogin),
+            ),
+            const SizedBox(height: 40),
             Text(
-              '${context.l10n.welcome}!',
-              style: context.titleLarge!.copyWith(color: context.colors.primary, fontSize: 30),
+              context.l10n.email,
+              style: context.bodyMedium!.copyWith(color: context.colors.secondary),
             ),
-            const SizedBox(height: 33),
-            Text(
-              context.l10n.signInWith,
-              textAlign: TextAlign.center,
-              style: context.bodyLarge!.copyWith(color: context.colors.shadow, fontSize: 17),
+            const SizedBox(height: 8),
+            CustomTextFormField(
+              controller: emailController,
+              labelText: context.l10n.email,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return context.l10n.emailRequired;
+                }
+                if (!AppRegExp.email.hasMatch(value)) {
+                  return context.l10n.invalidEmail;
+                }
+                return null;
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: ElevatedButton(
-                key: Key(MqKeys.loginTypeName('google')),
-                onPressed: () async {
+            const SizedBox(height: 30),
+            CustomButton(
+              key: Key(MqKeys.loginTypeName('email')),
+              text: context.l10n.signIn,
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
                   MqAnalytic.track(
-                    AnalyticKey.tapLoginWithSoccial,
-                    params: {'soccial': 'google'},
+                    AnalyticKey.tapLogin,
+                    params: {'soccial': 'email'},
                   );
-                  unawaited(AppAlert.showLoading(context));
-                  await context.read<AuthCubit>().signInWithGoogle();
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  try {
+                    context.read<AuthCubit>().login(emailController.text);
+                    context.goNamed(AppRouter.verificationCode);
+                  } catch (e) {
+                    log(e.toString());
+                  }
+                }
+              },
+            ),
+            const SizedBox(height: 30),
+            Row(
+              children: [
+                const Expanded(child: Divider()),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(context.l10n.orContinueWith),
+                ),
+                const Expanded(child: Divider()),
+              ],
+            ),
+            const SizedBox(height: 16),
+            GestureDetector(
+              key: Key(MqKeys.loginTypeName('google')),
+              onTap: () async {
+                MqAnalytic.track(
+                  AnalyticKey.tapLogin,
+                  params: {'soccial': 'google'},
+                );
+                unawaited(AppAlert.showLoading(context));
+                await context.read<AuthCubit>().signInWithGoogle();
+                if (context.mounted) context.loaderOverlay.hide();
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.black26),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -83,25 +120,7 @@ class SignInView extends StatelessWidget {
                 ),
               ),
             ),
-            // const SizedBox(height: 30),
-            // Padding(
-            //   padding: const EdgeInsets.all(16),
-            //   child: SignInWithAppleButton(
-            //     key: Key(MqKeys.loginTypeName('apple')),
-            //     onPressed: () async {
-            //       if (Theme.of(context).platform == TargetPlatform.android) {
-            //         AppSnackbar.showSnackbar(context, context.l10n.appleSignInNotAvailable);
-            //       } else {
-            //         unawaited(AppAlert.showLoading(context));
-            //         await context.read<AuthCubit>().signInWithApple();
-            //         if (context.mounted) context.loaderOverlay.hide();
-            //       }
-            //     },
-            //     text: context.l10n.apple,
-            //   ),
-            // ),
-            // const Spacer(),
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
             TextButton(
               onPressed: () {
                 MqAnalytic.track(AnalyticKey.tapPrivacyPolicy);
@@ -110,12 +129,11 @@ class SignInView extends StatelessWidget {
               child: Text(
                 context.l10n.privacyPolicy,
                 style: context.bodyLarge!.copyWith(
-                  color: context.colors.primary,
                   decoration: TextDecoration.underline,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
           ],
         ),
       ),

@@ -29,7 +29,7 @@ final class AnalyticKey {
 
   // action
   static const tapLogout = 'tap_logout';
-  static const tapLoginWithSoccial = 'tap_login_with_soccial';
+  static const tapLogin = 'tap_login';
   static const tapPrivacyPolicy = 'tap_privacy_policy';
   static const tapQuranReadSettings = 'tap_quran_read_settings';
   static const showAmin = 'show_amin';
