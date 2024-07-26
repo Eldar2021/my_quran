@@ -1,4 +1,4 @@
-name: Build & upload to Firebase App Distribution
+name: Build & upload to Firebase IOS App Distribution
 
 on:
   push:
@@ -34,8 +34,10 @@ jobs:
       - name: "Melos bs"
         run: melos bootstrap
 
-      - name: "Install CocoaPods"
-        run: pod install --project-directory=ios
+      - name: "Navigate to iOS directory and install CocoaPods"
+        run: |
+          cd app/ios
+          pod install
 
       - name: "Build iOS App"
         run: melos build-ios
