@@ -44,19 +44,21 @@ jobs:
 
       - name: "Create .xcarchive"
         run: |
-          xcodebuild -workspace ios/Runner.xcworkspace \
+          cd app/ios
+          xcodebuild -workspace Runner.xcworkspace \
             -scheme Runner \
             -sdk iphoneos \
             -configuration Release \
-            -archivePath $PWD/build/ios/archive/Runner.xcarchive \
+            -archivePath ls app/build/ios/archive/Runner.xcarchive \
             clean archive
 
       - name: "Export .ipa file"
         run: |
+          cd app/ios
           xcodebuild -exportArchive \
-            -archivePath $PWD/build/ios/archive/Runner.xcarchive \
-            -exportPath $PWD/build/ios/ipa \
-            -exportOptionsPlist ios/Runner/ExportOptions.plist
+            -archivePath ls app/build/ios/archive/Runner.xcarchive \
+            -exportPath ls app/build/ios/ipa \
+            -exportOptionsPlist app/ios/Runner/ExportOptions.plist
 
       - name: "Upload artifact to Firebase App Distribution"
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -64,4 +66,4 @@ jobs:
           appId: ${{ secrets.APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: my_quran_testers
-          file: build/ios/ipa/Runner.ipa
+          file: app/build/ios/ipa/Runner.ipa
