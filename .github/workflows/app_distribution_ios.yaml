@@ -36,29 +36,29 @@ jobs:
 
       - name: "Navigate to iOS directory and install CocoaPods"
         run: |
-          cd app/ios
+          cd ios
           pod install
 
       - name: "Build iOS App"
-        run: melos build-ios
+        run: melos run build-ios
 
       - name: "Create .xcarchive"
         run: |
-          cd app/ios
+          cd ios
           xcodebuild -workspace Runner.xcworkspace \
             -scheme Runner \
             -sdk iphoneos \
             -configuration Release \
-            -archivePath ls app/build/ios/archive/Runner.xcarchive \
+            -archivePath ../build/ios/archive/Runner.xcarchive \
             clean archive
 
       - name: "Export .ipa file"
         run: |
-          cd app/ios
+          cd ios
           xcodebuild -exportArchive \
-            -archivePath ls app/build/ios/archive/Runner.xcarchive \
-            -exportPath ls app/build/ios/ipa \
-            -exportOptionsPlist app/ios/Runner/ExportOptions.plist
+            -archivePath ../build/ios/archive/Runner.xcarchive \
+            -exportPath ../build/ios/ipa \
+            -exportOptionsPlist Runner/ExportOptions.plist
 
       - name: "Upload artifact to Firebase App Distribution"
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -66,4 +66,4 @@ jobs:
           appId: ${{ secrets.APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: my_quran_testers
-          file: app/build/ios/ipa/Runner.ipa
+          file: build/ios/ipa/Runner.ipa
