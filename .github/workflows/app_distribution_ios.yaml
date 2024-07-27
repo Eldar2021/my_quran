@@ -57,7 +57,7 @@ jobs:
         with:
           project-path: app/ios/Runner.xcodeproj
           workspace-path: app/ios/Runner.xcworkspace
-          scheme: release
+          scheme: Release
           configuration: Release
           export-method: app-store
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
