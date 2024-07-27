@@ -2,9 +2,9 @@ name: Analyze code and Unit test
 
 on:
   push:
-    branches: [main]
+    branches: [main-1]
   pull_request:
-    branches: [main]
+    branches: [main-1]
 
 jobs:
   flutter_test:
