@@ -1,10 +1,13 @@
-name: mq_remote_client
-description: MyQuran Remote Client
+name: mq_either
+description: MyQuran Dart Either
 version: 0.1.0+1
 publish_to: none
 
 environment:
   sdk: ^3.4.0
+
+dependencies:  
+  meta: ^1.15.0  
 
 dev_dependencies:
   mocktail: ^1.0.4
