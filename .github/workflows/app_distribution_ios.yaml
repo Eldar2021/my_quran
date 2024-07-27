@@ -50,12 +50,7 @@ jobs:
           xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction | xcpretty
 
       - name: Update settings
-        run: fastlane run update_code_signing_settings(
-          use_automatic_signing: true,
-          path: "app/ios/GitHubAction.xcodeproj",  
-          team_id: ${{ secrets.TEAM_ID }},
-          code_sign_identity: "iPhone Distribution: Turat Alybaev(L8HXY9BDGG)"
-        )
+        run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios"
           
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.5.0  
