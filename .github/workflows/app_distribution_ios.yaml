@@ -50,7 +50,7 @@ jobs:
           xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction | xcpretty
 
       - name: Update settings
-        run: fastlane run update_code_signing_settings use_automatic_signing:"false" path:"app/ios/GitHubAction.xcodeproj"
+        run: fastlane run update_code_signing_settings
           
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.5.0  
