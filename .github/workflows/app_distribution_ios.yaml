@@ -56,7 +56,7 @@ jobs:
         uses: yukiarrr/ios-build-action@v1.5.0  
         with:
           project-path: app/ios/Runner.xcodeproj
-          workspace-path: app/
+          workspace-path: app/ios/Runner.xcworkspace
           scheme: release
           configuration: Release
           export-method: app-store
