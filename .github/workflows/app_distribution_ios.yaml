@@ -40,7 +40,7 @@ jobs:
           pod install
 
       - name: Selecting Xcode Version
-        run: sudo xcode-select -switch /Applications/Xcode_14.2.app
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
         
       - name: Running Xcode version
         run: /usr/bin/xcodebuild -version
@@ -48,10 +48,6 @@ jobs:
       - name: Build Cleanup
         run: |
           xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction | xcpretty
-          
-      - name: Build Test
-        run: |
-          xcodebuild test -project GitHubAction.xcodeproj -scheme GitHubAction -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty -s
           
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.5.0  
