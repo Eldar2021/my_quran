@@ -65,6 +65,7 @@ jobs:
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
           code-signing-identity: Apple Development
           team-id: ${{ secrets.TEAM_ID }}
+          output-path: myquran.ipa
           
 
       - name: Saving IPA File
