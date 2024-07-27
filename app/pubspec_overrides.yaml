@@ -1,6 +1,8 @@
-# melos_managed_dependency_overrides: mq_ci_keys,mq_storage
+# melos_managed_dependency_overrides: mq_ci_keys,mq_storage,mq_either
 dependency_overrides:
   mq_ci_keys:
     path: ../packages/mq_ci_keys
+  mq_either:
+    path: ../packages/mq_either
   mq_storage:
     path: ../packages/mq_storage
