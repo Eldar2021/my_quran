@@ -38,7 +38,7 @@ jobs:
           keychain-password: ${{ secrets.IOS_GITHUB_KEYCHAIN_PASSWORD }}
         env:
           FLUTTER_TARGET: lib/main.dart
-        working-directory: app
+        # working-directory: app
 
       - name: Archive IPA
         uses: actions/upload-artifact@v2
