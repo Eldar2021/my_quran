@@ -89,7 +89,7 @@ scripts:
     description: "Build an IOS file"
 
   build-ipa:
-    run: cd app && flutter build ipa --release --flavor dev --export-options-plist=app/ios/GithubActionsExportOptions.plist
+    run: cd app && flutter build ipa --release --flavor dev --export-options-plist=ios/GithubActionsExportOptions.plist
     description: "Build an IPA"
 
   build-appbundle:
