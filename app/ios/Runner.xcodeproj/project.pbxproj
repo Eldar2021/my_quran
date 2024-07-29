@@ -372,8 +372,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Turat Alybaev (L8HXY9BDGG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Turat Alybaev (L8HXY9BDGG)";
+				CODE_SIGN_IDENTITY = "Apple Development: Turat Alybaev (98T99A2RVX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Turat Alybaev (98T99A2RVX)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -452,8 +452,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Turat Alybaev (L8HXY9BDGG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Turat Alybaev (L8HXY9BDGG)";
+				CODE_SIGN_IDENTITY = "Apple Development: Turat Alybaev (98T99A2RVX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Turat Alybaev (98T99A2RVX)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -508,8 +508,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Turat Alybaev (L8HXY9BDGG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Turat Alybaev (L8HXY9BDGG)";
+				CODE_SIGN_IDENTITY = "Apple Development: Turat Alybaev (98T99A2RVX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Turat Alybaev (98T99A2RVX)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
