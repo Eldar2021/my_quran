@@ -1,4 +1,4 @@
-name: Build & upload to Firebase IOS App Distribution 
+name: Build & upload to Firebase IOS App Distribution
 
 on:
   push:
@@ -10,7 +10,8 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v1
@@ -20,10 +21,20 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Install CocoaPods dependencies
+        run: |
+          cd ios
+          pod install
+
+      - name: List provisioning profiles
+        run: |
+          cd ~/Library/MobileDevice/Provisioning\ Profiles
+          ls
+
       - name: Build iOS IPA
         uses: cedvdb/action-flutter-build-ios@v1
         with:
-          build-cmd: flutter build ipa --release --flavor dev --export-options-plist=app/ios/GithubActionsExportOptions.plist
+          build-cmd: flutter build ipa --release --flavor dev --export-options-plist=ios/GithubActionsExportOptions.plist
           certificate-base64: ${{ secrets.IOS_BUILD_CERTIFICATE_BASE64 }}
           certificate-password: ${{ secrets.IOS_BUILD_CERTIFICATE_PASSWORD }}
           provisioning-profile-base64: ${{ secrets.IOS_MOBILE_PROVISIONING_PROFILE_BASE64 }}
@@ -38,11 +49,10 @@ jobs:
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{secrets.APP_ID}}
-          serviceCredentialsFileContent: ${{secrets.CREDENTIAL_FILE_CONTENT}}
+          appId: ${{ secrets.APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: my_quran_testers
           file: build/ios/ipa/*.ipa
-
 
     # steps:
     #   - uses: actions/checkout@v2
