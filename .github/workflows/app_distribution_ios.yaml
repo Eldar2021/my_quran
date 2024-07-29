@@ -12,14 +12,33 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Navigate to iOS directory and install CocoaPods"
-        run: |
-          cd app/ios
-
-      - uses: cedvdb/action-flutter-build-ios@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          # always use --export-options-plist=ios/GithubActionsExportOptions.plist
-          build-cmd: flutter build ipa --release --flavor dev --export-options-plist=app/ios/GithubActionsExportOptions.plist
+          flutter-version: '3.10.0' # Adjust to your Flutter version
+
+      - name: Flutter doctor
+        run: flutter doctor
+
+      - name: Activate flutterfire_cli
+        run: dart pub global activate flutterfire_cli
+
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Melos bootstrap
+        run: melos bootstrap
+
+      - name: Navigate to iOS directory and install CocoaPods
+        run: |
+          cd ios
+          pod install
+        working-directory: app
+
+      - name: Build iOS IPA
+        uses: cedvdb/action-flutter-build-ios@v1
+        with:
+          build-cmd: flutter build ipa --release --flavor dev --export-options-plist=ios/GithubActionsExportOptions.plist
           certificate-base64: ${{ secrets.IOS_BUILD_CERTIFICATE_BASE64 }}
           certificate-password: ${{ secrets.IOS_BUILD_CERTIFICATE_PASSWORD }}
           provisioning-profile-base64: ${{ secrets.IOS_MOBILE_PROVISIONING_PROFILE_BASE64 }}
@@ -30,6 +49,15 @@ jobs:
         with:
           name: release-ipa
           path: app/build/ios/ipa/App-dev.ipa
+
+      - name: Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: testers
+          file: app/build/ios/ipa/App-dev.ipa
+
     # steps:
     #   - uses: actions/checkout@v2
 
