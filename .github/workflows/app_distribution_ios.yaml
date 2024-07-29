@@ -62,7 +62,7 @@ jobs:
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
           p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-          code-signing-identity: iPhone Distribution
+          code-signing-identity: Apple Development: Turat Alybaev (L8HXY9BDGG)
           team-id: ${{ secrets.TEAM_ID }}
           output-path: myquran.ipa
           
