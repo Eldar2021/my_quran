@@ -13,9 +13,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v1
         with:
-          flutter-version: '3.10.0' # Adjust to your Flutter version
+          channel: 'stable'
 
       - name: Flutter doctor
         run: flutter doctor
@@ -50,13 +50,13 @@ jobs:
           name: release-ipa
           path: app/build/ios/ipa/App-dev.ipa
 
-      - name: Upload to Firebase App Distribution
+      - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{ secrets.FIREBASE_APP_ID }}
-          token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: testers
-          file: app/build/ios/ipa/App-dev.ipa
+          appId: ${{secrets.APP_ID}}
+          serviceCredentialsFileContent: ${{secrets.CREDENTIAL_FILE_CONTENT}}
+          groups: my_quran_testers
+          file: app/build/ios/ipa/App-dev.ipa  
 
     # steps:
     #   - uses: actions/checkout@v2
