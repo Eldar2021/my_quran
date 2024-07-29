@@ -28,11 +28,6 @@ jobs:
           pod install
         working-directory: app
 
-      - name: List provisioning profiles
-        run: |
-          cd ~/Library/MobileDevice/Provisioning\ Profiles
-          ls
-
       - name: Build iOS IPA
         uses: cedvdb/action-flutter-build-ios@v1
         with:
