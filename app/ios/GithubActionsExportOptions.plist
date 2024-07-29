@@ -2,6 +2,6 @@
 <string>manual</string>
 <key>provisioningProfiles</key>
 <dict>
-  <key>com.myapp.app.dev</key>
-  <string>{{ YOUR PROFIL NAME }}</string>
+  <key>com.alee.hatimapp</key>
+  <string>My Quran</string>
 </dict>
