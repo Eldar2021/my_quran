@@ -17,22 +17,21 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Flutter doctor
-        run: flutter doctor
+      # - name: Flutter doctor
+      #   run: flutter doctor
 
-      - name: Activate flutterfire_cli
-        run: dart pub global activate flutterfire_cli
+      # - name: Activate flutterfire_cli
+      #   run: dart pub global activate flutterfire_cli
 
-      - name: Install Melos
-        run: dart pub global activate melos
+      # - name: Install Melos
+      #   run: dart pub global activate melos
 
-      - name: Melos bootstrap
-        run: melos bootstrap
+      # - name: Melos bootstrap
+      #   run: melos bootstrap
 
       - name: Navigate to iOS directory and install CocoaPods
         run: |
-          cd ios
-          pod install
+          cd app
         working-directory: app
 
       - name: Build iOS IPA
