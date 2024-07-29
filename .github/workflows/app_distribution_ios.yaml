@@ -37,7 +37,8 @@ jobs:
           provisioning-profile-base64: ${{ secrets.IOS_MOBILE_PROVISIONING_PROFILE_BASE64 }}
           keychain-password: ${{ secrets.IOS_GITHUB_KEYCHAIN_PASSWORD }}
         env:
-          FLUTTER_TARGET: app/lib/main.dart
+          FLUTTER_TARGET: lib/main.dart
+        working-directory: app
 
       - name: Archive IPA
         uses: actions/upload-artifact@v2
