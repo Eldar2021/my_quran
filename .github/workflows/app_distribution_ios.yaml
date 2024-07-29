@@ -17,22 +17,8 @@ jobs:
         with:
           channel: 'stable'
 
-      # - name: Flutter doctor
-      #   run: flutter doctor
-
-      # - name: Activate flutterfire_cli
-      #   run: dart pub global activate flutterfire_cli
-
-      # - name: Install Melos
-      #   run: dart pub global activate melos
-
-      # - name: Melos bootstrap
-      #   run: melos bootstrap
-
-      - name: Navigate to iOS directory and install CocoaPods
-        run: |
-          cd app
-        working-directory: app
+      - name: Install dependencies
+        run: flutter pub get
 
       - name: Build iOS IPA
         uses: cedvdb/action-flutter-build-ios@v1
@@ -47,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: release-ipa
-          path: app/build/ios/ipa/App-dev.ipa
+          path: build/ios/ipa/*.ipa
 
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -55,7 +41,8 @@ jobs:
           appId: ${{secrets.APP_ID}}
           serviceCredentialsFileContent: ${{secrets.CREDENTIAL_FILE_CONTENT}}
           groups: my_quran_testers
-          file: app/build/ios/ipa/App-dev.ipa  
+          file: build/ios/ipa/*.ipa
+
 
     # steps:
     #   - uses: actions/checkout@v2
