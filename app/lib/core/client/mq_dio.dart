@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mq_either/mq_either.dart';
 import 'package:my_quran/core/core.dart';
 
 part 'mq_dio_base_extension.dart';
