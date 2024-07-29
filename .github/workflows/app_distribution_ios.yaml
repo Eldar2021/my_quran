@@ -12,6 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: "Navigate to iOS directory and install CocoaPods"
+        run: |
+          cd app/ios
+
       - uses: cedvdb/action-flutter-build-ios@v1
         with:
           # always use --export-options-plist=ios/GithubActionsExportOptions.plist
