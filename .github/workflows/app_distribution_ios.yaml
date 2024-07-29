@@ -1,4 +1,4 @@
-name: Build & upload to Firebase IOApp DistributionS  
+name: Build & upload to Firebase IOS App Distribution 
 
 on:
   push:
@@ -25,7 +25,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: release-ipa
-          # Try running the build locally with the build command to be sure of this path
           path: app/build/ios/ipa/App-dev.ipa
     # steps:
     #   - uses: actions/checkout@v2
