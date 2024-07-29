@@ -10,8 +10,13 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v1
@@ -28,96 +33,43 @@ jobs:
       - name: "Melos bs"
         run: melos bootstrap
 
-      # - name: "Build iOS IPA"
-      #   run: melos build-ipa
+      - name: "Navigate to iOS directory and install CocoaPods"
+        run: |
+          cd app/ios
+          pod install
 
-      - name: Build iOS IPA
-        uses: cedvdb/action-flutter-build-ios@v1
-        with:
-          build-cmd: melos build-ipa
-          certificate-base64: ${{ secrets.IOS_BUILD_CERTIFICATE_BASE64 }}
-          certificate-password: ${{ secrets.IOS_BUILD_CERTIFICATE_PASSWORD }}
-          provisioning-profile-base64: ${{ secrets.IOS_MOBILE_PROVISIONING_PROFILE_BASE64 }}
-          keychain-password: ${{ secrets.IOS_GITHUB_KEYCHAIN_PASSWORD }}
-        env:
-          FLUTTER_TARGET: lib/main.dart
-        # working-directory: app
-
-      - name: Archive IPA
-        uses: actions/upload-artifact@v2
-        with:
-          name: release-ipa
-          path: app/build/ios/ipa/*.ipa
-
-      - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{ secrets.APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          groups: my_quran_testers
-          file: app/build/ios/ipa/*.ipa
-
-    # steps:
-    #   - uses: actions/checkout@v2
-
-    #   - name: Set up JDK 11
-    #     uses: actions/setup-java@v3
-    #     with:
-    #       distribution: 'temurin'
-    #       java-version: '11'
-
-    #   - name: Set up Flutter
-    #     uses: subosito/flutter-action@v1
-    #     with:
-    #       channel: 'stable'
-
-    #   - run: flutter doctor
-
-    #   - run: dart pub global activate flutterfire_cli
-
-    #   - name: "Melos Install"
-    #     run: dart pub global activate melos
-
-    #   - name: "Melos bs"
-    #     run: melos bootstrap
-
-    #   - name: "Navigate to iOS directory and install CocoaPods"
-    #     run: |
-    #       cd app/ios
-    #       pod install
-
-    #   - name: Selecting Xcode Version
-    #     run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+      - name: Selecting Xcode Version
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
         
-    #   - name: Running Xcode version
-    #     run: /usr/bin/xcodebuild -version
+      - name: Running Xcode version
+        run: /usr/bin/xcodebuild -version
    
-    #   - name: Build Cleanup
-    #     run: |
-    #       xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction | xcpretty
+      - name: Build Cleanup
+        run: |
+          xcodebuild clean -project GitHubAction.xcodeproj -scheme GitHubAction | xcpretty
 
-    #   - name: Update settings
-    #     run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
+      - name: Update settings
+        run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
           
-    #   - name: Build Archive
-    #     uses: yukiarrr/ios-build-action@v1.5.0  
-    #     with:
-    #       project-path: app/ios/Runner.xcodeproj
-    #       workspace-path: app/ios/Runner.xcworkspace
-    #       scheme: Runner
-    #       configuration: Release
-    #       export-method: app-store
-    #       p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
-    #       p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
-    #       mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-    #       code-signing-identity: Apple Development
-    #       team-id: ${{ secrets.TEAM_ID }}
-    #       output-path: myquran.ipa
+      - name: Build Archive
+        uses: yukiarrr/ios-build-action@v1.5.0  
+        with:
+          project-path: app/ios/Runner.xcodeproj
+          workspace-path: app/ios/Runner.xcworkspace
+          scheme: Runner
+          configuration: Release
+          export-method: app-store
+          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
+          p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
+          mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+          code-signing-identity: Apple Development
+          team-id: ${{ secrets.TEAM_ID }}
+          output-path: myquran.ipa
           
 
-    #   - name: Saving IPA File
-    #     uses: actions/upload-artifact@v2   
-    #     with:
-    #       name: ipa
-    #       path: build/ios/ipa/*.ipa
+      - name: Saving IPA File
+        uses: actions/upload-artifact@v2   
+        with:
+          name: ipa
+          path: build/ios/ipa/*.ipa
 

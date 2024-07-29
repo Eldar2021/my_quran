@@ -88,10 +88,6 @@ scripts:
     run: cd app && flutter build ios --release --no-codesign
     description: "Build an IOS file"
 
-  build-ipa:
-    run: cd app && flutter build ipa --release  --export-options-plist=ios/GithubActionsExportOptions.plist
-    description: "Build an IPA"
-
   build-appbundle:
     run: cd app && flutter build appbundle
     description: "Build an appbundle file"
