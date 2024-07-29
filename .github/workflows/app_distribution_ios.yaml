@@ -59,8 +59,8 @@ jobs:
           scheme: Runner
           configuration: Release
           export-method: app-store
-          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
-          p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
+          p12-key-base64: ${{ secrets.P12_KEY }}
+          p12-cer-base64: ${{ secrets.CER }}
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
           code-signing-identity: ${{ secrets.CODE_SIGNING_NEWIDENTITY }}  
           team-id: ${{ secrets.TEAM_ID }}
