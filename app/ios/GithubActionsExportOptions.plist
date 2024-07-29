@@ -1,7 +1,24 @@
-<key>signingStyle</key>
-<string>manual</string>
-<key>provisioningProfiles</key>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
-  <key>com.alee.hatimapp</key>
-  <string>My Quran</string>
+  <key>destination</key>
+  <string>export</string>
+  <key>generateAppStoreInformation</key>
+  <false/>
+  <key>manageAppVersionAndBuildNumber</key>
+  <true/>
+  <key>method</key>
+  <string>app-store-connect</string>
+  <key>signingStyle</key>
+  <string>automatic</string>
+  <key>stripSwiftSymbols</key>
+  <true/>
+  <key>teamID</key>
+  <string>L8HXY9BDGG</string>
+  <key>testFlightInternalTestingOnly</key>
+  <false/>
+  <key>uploadSymbols</key>
+  <true/>
 </dict>
+</plist>
