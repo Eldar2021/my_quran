@@ -18,20 +18,23 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Install dependencies
-        run: flutter pub get
-        working-directory: app
+      - run: flutter doctor
 
-      - name: Install CocoaPods dependencies
-        run: |
-          cd ios
-          pod install
-        working-directory: app
+      - run: dart pub global activate flutterfire_cli
+
+      - name: "Melos Install"
+        run: dart pub global activate melos
+
+      - name: "Melos bs"
+        run: melos bootstrap
+
+      # - name: "Build iOS IPA"
+      #   run: melos build-ipa
 
       - name: Build iOS IPA
         uses: cedvdb/action-flutter-build-ios@v1
         with:
-          build-cmd: flutter build ipa --release --flavor dev --export-options-plist=app/ios/GithubActionsExportOptions.plist
+          build-cmd: melos build-ipa
           certificate-base64: ${{ secrets.IOS_BUILD_CERTIFICATE_BASE64 }}
           certificate-password: ${{ secrets.IOS_BUILD_CERTIFICATE_PASSWORD }}
           provisioning-profile-base64: ${{ secrets.IOS_MOBILE_PROVISIONING_PROFILE_BASE64 }}
