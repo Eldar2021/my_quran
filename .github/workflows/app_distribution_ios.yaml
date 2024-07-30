@@ -1,6 +1,3 @@
-
-
-
 name: Build & upload to Firebase IOS App Distributio
 
 on:
@@ -40,16 +37,15 @@ jobs:
         run: |
           cd app/ios
           pod install
-
       - name: Selecting Xcode Version
         run: sudo xcode-select -switch /Applications/Xcode.app
-        
+
       - name: Running Xcode version
         run: /usr/bin/xcodebuild -version
 
       - name: Update settings
         run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
-          
+
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.12.0  
         with:
@@ -62,11 +58,10 @@ jobs:
           code-signing-identity: Apple Development  
           team-id: ${{ secrets.TEAM_ID }}
           output-path: myquran.ipa
-          
+
 
       - name: Saving IPA File
         uses: actions/upload-artifact@v2   
         with:
           name: ipa
           path: build/ios/ipa/*.ipa
-
