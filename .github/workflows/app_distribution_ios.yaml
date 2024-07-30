@@ -58,11 +58,10 @@ jobs:
           workspace-path: app/ios/Runner.xcworkspace
           scheme: Runner
           configuration: Release
-          export-method: app-store
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
           p12-cer-base64: ${{ secrets.P12_KEY_BASE64 }}
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-          code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }}  
+          code-signing-identity: Apple Development  
           team-id: ${{ secrets.TEAM_ID }}
           output-path: myquran.ipa
           
