@@ -1,4 +1,4 @@
-name: Build & upload to Firebase IOS App Distributio
+name: Build & upload to Firebase IOS App Distribution
 
 on:
   push:
@@ -37,6 +37,7 @@ jobs:
         run: |
           cd app/ios
           pod install
+          
       - name: Selecting Xcode Version
         run: sudo xcode-select -switch /Applications/Xcode.app
 
