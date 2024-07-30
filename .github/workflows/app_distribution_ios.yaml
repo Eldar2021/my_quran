@@ -53,7 +53,7 @@ jobs:
           project-path: app/ios/Runner.xcodeproj
           workspace-path: app/ios/Runner.xcworkspace
           scheme: Runner
-          # configuration: Release
+          configuration: Release
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
           p12-cer-base64: ${{ secrets.P12_KEY_BASE64 }}
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
