@@ -39,7 +39,7 @@ jobs:
           pod install
 
       - name: Selecting Xcode Version
-        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+        run: sudo xcode-select -switch /Applications/Xcode.app
         
       - name: Running Xcode version
         run: /usr/bin/xcodebuild -version
