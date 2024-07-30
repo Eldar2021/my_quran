@@ -60,7 +60,7 @@ jobs:
           p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
       certificate-password:
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-          code-signing-identity: "Apple Development: Turat Alybaev (98T99A2RVX)"
+          code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }} 
           team-id: ${{ secrets.TEAM_ID }}
           output-path: build/ios/ipa
           configuration: Release
