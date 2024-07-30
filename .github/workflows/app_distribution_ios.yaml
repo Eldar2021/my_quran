@@ -58,7 +58,7 @@ jobs:
         uses: yukiarrr/ios-build-action@v1.12.0
         with:
           # workspace-path: app/ios/Runner.xcworkspace
-          project-path: Runner.xcodeproj
+          project-path: app/ios/Runner.xcodeproj
           scheme: Runner
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
           p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
