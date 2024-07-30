@@ -50,20 +50,20 @@ jobs:
       - name: Update settings
         run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
 
-      # - name: Build Archive
-      #   uses: yukiarrr/ios-build-action@v1.5.0
-      #   with:
-      #     project-path: app/ios/Runner.xcodeproj
-      #     workspace-path: app/ios/Runner.xcworkspace
-      #     scheme: Runner
-      #     p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
-      #     p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
-      # certificate-password:
-      #     mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-      #     code-signing-identity: Apple Development
-      #     team-id: ${{ secrets.TEAM_ID }}
-      #     output-path: build/ios/ipa
-      #     configuration: Release
+      - name: Build Archive
+        uses: yukiarrr/ios-build-action@v1.12.0
+        with:
+          project-path: app/ios/Runner.xcodeproj
+          workspace-path: app/ios/Runner.xcworkspace
+          scheme: Runner
+          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
+          p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
+      certificate-password:
+          mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+          code-signing-identity: "Apple Development: Turat Alybaev (98T99A2RVX)"
+          team-id: ${{ secrets.TEAM_ID }}
+          output-path: build/ios/ipa
+          configuration: Release
 
       - name: Saving IPA File
         uses: actions/upload-artifact@v2
