@@ -57,7 +57,7 @@ jobs:
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.12.0
         with:
-          # workspace-path: app/ios/Runner.xcworkspace
+          workspace-path: app/ios/Runner.xcworkspace
           project-path: app/ios/Runner.xcodeproj
           scheme: Runner
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
@@ -74,3 +74,11 @@ jobs:
         with:
           name: ipa
           path: build/ios/ipa/*.ipa
+
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.APP_ID}}
+          serviceCredentialsFileContent: ${{secrets.CREDENTIAL_FILE_CONTENT}}
+          groups: my_quran_testers
+          file: app/build/app/outputs/flutter-apk/app-release.apk  
