@@ -40,16 +40,12 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Selecting Xcode Version
         run: sudo xcode-select -switch /Applications/Xcode.app
         
       - name: Running Xcode version
         run: /usr/bin/xcodebuild -version
-   
-      - name: Build Cleanup
-        run: |
-          xcodebuild clean -project Runner.xcodeproj -scheme Runner | xcpretty
 
       # - name: Update settings
       #   run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
@@ -59,7 +55,7 @@ jobs:
         with:
           project-path: app/ios/Runner.xcodeproj
           workspace-path: app/ios/Runner.xcworkspace
-          # scheme: Runner
+          scheme: Runner
           # configuration: Release
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
           p12-cer-base64: ${{ secrets.P12_KEY_BASE64 }}
