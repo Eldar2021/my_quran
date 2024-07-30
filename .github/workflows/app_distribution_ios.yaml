@@ -58,6 +58,7 @@ jobs:
       #     scheme: Runner
       #     p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
       #     p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
+      # certificate-password:
       #     mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
       #     code-signing-identity: Apple Development
       #     team-id: ${{ secrets.TEAM_ID }}
