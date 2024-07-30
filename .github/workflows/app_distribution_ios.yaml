@@ -23,23 +23,23 @@ jobs:
         with:
           channel: 'stable'
 
-      # - run: flutter doctor
+      - run: flutter doctor
 
-      # - run: dart pub global activate flutterfire_cli
+      - run: dart pub global activate flutterfire_cli
 
-      # - name: Install Dart Dependencies
-      #   run: dart pub get
+      - name: Install Dart Dependencies
+        run: dart pub get
 
-      # - name: Melos Install
-      #   run: dart pub global activate melos
+      - name: Melos Install
+        run: dart pub global activate melos
 
-      # - name: Melos Bootstrap
-      #   run: melos bootstrap
+      - name: Melos Bootstrap
+        run: melos bootstrap
 
-      # - name: Navigate to iOS directory and install CocoaPods
-      #   run: |
-      #     cd app/ios
-      #     pod install
+      - name: Navigate to iOS directory and install CocoaPods
+        run: |
+          cd app/ios
+          pod install
 
       - name: Selecting Xcode Version
         run: sudo xcode-select -switch /Applications/Xcode.app
@@ -47,8 +47,8 @@ jobs:
       - name: Running Xcode Version
         run: /usr/bin/xcodebuild -version
 
-      # - name: Update settings
-      #   run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
+      - name: Update settings
+        run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
 
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.12.0
@@ -62,7 +62,7 @@ jobs:
           code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }} 
           certificate-password: ${{ secrets.CERTIFICATE_PASSWORD }}
           team-id: ${{ secrets.TEAM_ID }}
-          output-path: build/ios/ipa
+          output-path: myquran.ipa
           configuration: Release
 
       - name: Saving IPA File
