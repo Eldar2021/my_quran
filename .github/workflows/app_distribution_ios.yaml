@@ -48,8 +48,8 @@ jobs:
       - name: Running Xcode Version
         run: /usr/bin/xcodebuild -version
 
-      # - name: Update settings
-      #   run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
+      - name: Update settings
+        run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
 
       - name: Install Gems
         run: gem install cocoapods fastlane
