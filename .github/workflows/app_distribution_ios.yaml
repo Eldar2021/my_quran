@@ -57,8 +57,8 @@ jobs:
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.12.0
         with:
-          project-path: myquran/app/ios/Runner.xcodeproj
-          workspace-path: myquran/app/ios/Runner.xcworkspace
+          project-path: app/ios/Runner.xcodeproj
+          workspace-path: app/ios/Runner.xcworkspace
           scheme: Runner
           p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
           p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
