@@ -39,6 +39,7 @@ jobs:
       - name: Navigate to iOS directory and install CocoaPods
         run: |
           cd app/ios
+          pod repo update
           pod install
 
       - name: Selecting Xcode Version
@@ -49,8 +50,10 @@ jobs:
 
       - name: Update settings
         run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
+
       - name: Install Gems
         run: gem install cocoapods fastlane
+
       - name: Build Archive
         uses: yukiarrr/ios-build-action@v1.12.0
         with:
