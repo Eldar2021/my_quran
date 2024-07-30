@@ -52,7 +52,7 @@ jobs:
         run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
           
       - name: Build Archive
-        uses: yukiarrr/ios-build-action@v1.5.0  
+        uses: yukiarrr/ios-build-action@v1.12.0  
         with:
           project-path: app/ios/Runner.xcodeproj
           workspace-path: app/ios/Runner.xcworkspace
