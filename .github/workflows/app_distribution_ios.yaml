@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up JDK 11
         uses: actions/setup-java@v3
@@ -19,7 +19,7 @@ jobs:
           java-version: '11'
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
 
@@ -27,43 +27,45 @@ jobs:
 
       - run: dart pub global activate flutterfire_cli
 
-      - name: "Melos Install"
+      - name: Install Dart Dependencies
+        run: dart pub get
+
+      - name: Melos Install
         run: dart pub global activate melos
 
-      - name: "Melos bs"
+      - name: Melos Bootstrap
         run: melos bootstrap
 
-      - name: "Navigate to iOS directory and install CocoaPods"
+      - name: Navigate to iOS directory and install CocoaPods
         run: |
           cd app/ios
           pod install
-          
+
       - name: Selecting Xcode Version
         run: sudo xcode-select -switch /Applications/Xcode.app
 
-      - name: Running Xcode version
+      - name: Running Xcode Version
         run: /usr/bin/xcodebuild -version
 
       - name: Update settings
         run: fastlane run update_code_signing_settings use_automatic_signing:"true" path:"app/ios/Runner.xcodeproj"
 
-      - name: Build Archive
-        uses: yukiarrr/ios-build-action@v1.5.0  
-        with:
-          project-path: app/ios/Runner.xcodeproj
-          workspace-path: app/ios/Runner.xcworkspace
-          scheme: Runner
-          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
-          p12-cer-base64: ${{ secrets.P12_KEY_BASE64 }}
-          mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-          code-signing-identity: Apple Development  
-          team-id: ${{ secrets.TEAM_ID }}
-          output-path: myquran.ipa
-          configuration: Release
-
+      # - name: Build Archive
+      #   uses: yukiarrr/ios-build-action@v1.5.0
+      #   with:
+      #     project-path: app/ios/Runner.xcodeproj
+      #     workspace-path: app/ios/Runner.xcworkspace
+      #     scheme: Runner
+      #     p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
+      #     p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
+      #     mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+      #     code-signing-identity: Apple Development
+      #     team-id: ${{ secrets.TEAM_ID }}
+      #     output-path: build/ios/ipa
+      #     configuration: Release
 
       - name: Saving IPA File
-        uses: actions/upload-artifact@v2   
+        uses: actions/upload-artifact@v2
         with:
           name: ipa
           path: build/ios/ipa/*.ipa
