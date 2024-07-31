@@ -25,13 +25,13 @@ jobs:
 
     - name: Clear RubyGems Cache
       run: |
-        rm -rf ~/.bundle/cache # Clear Bundler cache manually
+        rm -rf ~/.bundle/cache
 
-    - name: Install `nkf` Dependency
-      run: gem install nkf
-
-    - name: Install Fastlane and Dependencies
+    - name: Install Specific Gem Versions
       run: |
+        gem install nkf
+        gem install strscan # Try to install the specific gem that is causing issues
+        gem install rexml   # Ensure rexml is also installed
         gem install fastlane
         cd app/ios/fastlane
         bundle install --retry 3 --jobs 4
