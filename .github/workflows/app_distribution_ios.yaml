@@ -23,8 +23,8 @@ jobs:
       run: gem install fastlane
 
     - name: Change directory to fastlane
-      run: cd fastlane 
-      
+      run: cd app/ios/fastlane 
+
     - name: Install dependencies
       run: bundle install 
 
