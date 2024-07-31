@@ -20,6 +20,11 @@ jobs:
       with:
         ruby-version: 3.2
 
+    - name: Install Build Tools
+      run: |
+        xcode-select --install # Install Xcode command line tools
+        brew install make      # Install make via Homebrew (if not already available)
+
     - name: Install Bundler
       run: gem install bundler
 
@@ -27,11 +32,8 @@ jobs:
       run: |
         rm -rf ~/.bundle/cache
 
-    - name: Install Specific Gem Versions
+    - name: Install Dependencies
       run: |
-        gem install nkf
-        gem install strscan # Try to install the specific gem that is causing issues
-        gem install rexml   # Ensure rexml is also installed
         gem install fastlane
         cd app/ios/fastlane
         bundle install --retry 3 --jobs 4
