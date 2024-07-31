@@ -21,15 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios distribute
 ```
 
-My awesome app
-
-### ios increment_version
-
-```sh
-[bundle exec] fastlane ios increment_version
-```
-
-
+MyQuran App
 
 ----
 
