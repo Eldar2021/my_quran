@@ -18,44 +18,26 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2
-
-    - name: Install Build Tools
-      run: |
-        brew update # Update Homebrew
-        brew install make # Install make
-        # Ensure make is correctly linked
-        ln -sf /opt/homebrew/opt/make/libexec/gnubin/make /usr/local/bin/make
-        # Verify installation and path
-        which make
-        make --version
-        brew doctor # Run Homebrew diagnostics
-
-    - name: Install Bundler
-      run: gem install bundler
-
-    - name: Clear RubyGems Cache
-      run: |
-        rm -rf ~/.bundle/cache
+        ruby-version: '3.2'
+        bundler-cache: true # Enable caching for bundle install results
+        working-directory: app/ios/fastlane # Set the working directory to the location of the Gemfile
 
     - name: Install Dependencies
-      run: |
-        gem install fastlane
-        cd app/ios/fastlane
-        bundle install --retry 3 --jobs 4
-      env:
-        PATH: /usr/local/bin:$PATH
+      run: bundle install --retry 3 --jobs 4
+      working-directory: app/ios/fastlane # Ensure the Bundler command is run in the correct directory
 
     - name: Run Fastlane Increment Version
-      run: |
-        cd app/ios/fastlane
-        fastlane increment_version
+      uses: maierj/fastlane-action@v3.1.0
+      with:
+        lane: 'increment_version'
+        subdirectory: 'app/ios/fastlane'
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
     - name: Run Fastlane Distribute
-      run: |
-        cd app/ios/fastlane
-        fastlane distribute
+      uses: maierj/fastlane-action@v3.1.0
+      with:
+        lane: 'distribute'
+        subdirectory: 'app/ios/fastlane'
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
