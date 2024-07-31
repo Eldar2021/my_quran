@@ -20,11 +20,18 @@ jobs:
       with:
         ruby-version: 3.2
 
+    - name: Install Bundler
+      run: gem install bundler
+
+    - name: Clear RubyGems Cache
+      run: |
+        rm -rf ~/.bundle/cache # Clear Bundler cache manually
+
     - name: Install Fastlane and Dependencies
       run: |
         gem install fastlane
         cd app/ios/fastlane
-        bundle install --retry 3 --jobs 4 # Retry and use multiple jobs to speed up installation
+        bundle install --retry 3 --jobs 4
       env:
         PATH: /usr/local/bin:$PATH
 
