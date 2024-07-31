@@ -1,0 +1,19 @@
+platform :ios do
+  desc "MyQuran App"
+  lane :distribute do
+      build_ios_app()
+      release = firebase_app_distribution(
+          app: "1:417182149715:ios:f6d207c487b6110e76eaa6",
+          testers: "my_quran_testers",
+          release_notes: "Lots of amazing new features to test out!"
+      )
+
+  end
+
+  # lane :increment_version do
+  #   latest_release = firebase_app_distribution_get_latest_release(
+  #     app: "1:417182149715:ios:f6d207c487b6110e76eaa6"
+  #   )
+  #   increment_build_number({ build_number: latest_release[:buildVersion].to_i + 1 })
+  # end
+end
