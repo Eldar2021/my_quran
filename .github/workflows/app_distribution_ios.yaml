@@ -26,13 +26,13 @@ jobs:
       run: bundle install --retry 3 --jobs 4
       working-directory: app/ios/fastlane # Ensure the Bundler command is run in the correct directory
 
-    - name: Run Fastlane Increment Version
-      uses: maierj/fastlane-action@v3.1.0
-      with:
-        lane: 'ios increment_version'
-        subdirectory: 'app/ios/fastlane'
-      env:
-        FIREBASE_TOKEN: '1//0cRXAgtWTnX9hCgYIARAAGAwSNwF-L9IrW3YAY8S0Se9HemYo1pKoN0fuUCCmteWN45gSOhLpHwtZFTLqFROyzS86bvS8VuiAvpQ'
+    # - name: Run Fastlane Increment Version
+    #   uses: maierj/fastlane-action@v3.1.0
+    #   with:
+    #     lane: 'ios increment_version'
+    #     subdirectory: 'app/ios/fastlane'
+    #   env:
+    #     FIREBASE_TOKEN: '1//0cRXAgtWTnX9hCgYIARAAGAwSNwF-L9IrW3YAY8S0Se9HemYo1pKoN0fuUCCmteWN45gSOhLpHwtZFTLqFROyzS86bvS8VuiAvpQ'
 
     - name: Run Fastlane Distribute
       uses: maierj/fastlane-action@v3.1.0
