@@ -20,9 +20,6 @@ jobs:
       with:
         ruby-version: 3.2
 
-    - name: Clear gem cache
-      run: gem install bundler && bundle cache clean
-
     - name: Install Fastlane and Dependencies
       run: |
         gem install fastlane
