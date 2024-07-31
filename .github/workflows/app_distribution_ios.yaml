@@ -27,6 +27,9 @@ jobs:
       run: |
         rm -rf ~/.bundle/cache # Clear Bundler cache manually
 
+    - name: Install `nkf` Dependency
+      run: gem install nkf
+
     - name: Install Fastlane and Dependencies
       run: |
         gem install fastlane
@@ -39,12 +42,12 @@ jobs:
       run: |
         cd app/ios/fastlane
         fastlane increment_version
-      # env:
-      #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
     - name: Run Fastlane Distribute
       run: |
         cd app/ios/fastlane
         fastlane distribute
-      # env:
-      #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
