@@ -22,8 +22,9 @@ jobs:
 
     - name: Install Build Tools
       run: |
-        xcode-select --install # Install Xcode command line tools
-        brew install make      # Install make via Homebrew (if not already available)
+        brew update # Update Homebrew to ensure we get the latest versions
+        brew install make # Install make if not already installed
+        brew doctor # Run Homebrew diagnostic to ensure everything is set up correctly
 
     - name: Install Bundler
       run: gem install bundler
