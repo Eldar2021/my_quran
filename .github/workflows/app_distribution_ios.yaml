@@ -1,10 +1,11 @@
-name: Build & upload to Firebase IOS App Distribution
+name: Build & Upload to Firebase iOS App Distribution
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   build:
     name: Build and Distribute iOS App
@@ -17,13 +18,16 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2 
+        ruby-version: 3.2
+
+    - name: Clear gem cache
+      run: gem install bundler && bundle cache clean
 
     - name: Install Fastlane and Dependencies
       run: |
         gem install fastlane
         cd app/ios/fastlane
-        bundle install
+        bundle install --retry 3 --jobs 4 # Retry and use multiple jobs to speed up installation
       env:
         PATH: /usr/local/bin:$PATH
 
@@ -32,7 +36,7 @@ jobs:
         cd app/ios/fastlane
         fastlane increment_version
       # env:
-        # FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
     - name: Run Fastlane Distribute
       run: |
