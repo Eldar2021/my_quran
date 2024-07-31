@@ -60,8 +60,8 @@ jobs:
           workspace-path: app/ios/Runner.xcworkspace
           project-path: app/ios/Runner.xcodeproj
           scheme: Runner
-          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
-          p12-cer-base64: ${{ secrets.P12_CER_BASE64 }}
+          p12-key-base64: ${{ secrets.P12_TEST }}
+          p12-cer-base64: ${{ secrets.CER_TEST }}
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
           code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }} 
           certificate-password: ${{ secrets.CERTIFICATE_PASSWORD }}
