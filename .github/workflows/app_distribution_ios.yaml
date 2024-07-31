@@ -19,21 +19,24 @@ jobs:
       with:
         ruby-version: 3.2 
 
-    - name: Install Fastlane
-      run: gem install fastlane
-
-    - name: Change directory to fastlane
-      run: cd app/ios/fastlane 
-
-    - name: Install dependencies
-      run: bundle install 
+    - name: Install Fastlane and Dependencies
+      run: |
+        gem install fastlane
+        cd app/ios/fastlane
+        bundle install
+      env:
+        PATH: /usr/local/bin:$PATH
 
     - name: Run Fastlane Increment Version
-      run: fastlane increment_version
+      run: |
+        cd app/ios/fastlane
+        fastlane increment_version
       # env:
-      #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        # FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
     - name: Run Fastlane Distribute
-      run: fastlane distribute
+      run: |
+        cd app/ios/fastlane
+        fastlane distribute
       # env:
       #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
