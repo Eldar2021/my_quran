@@ -19,6 +19,9 @@ jobs:
       with:
         ruby-version: 3.2 
 
+    - name: Change directory to fastlane
+      run: cd fastlane 
+
     - name: Install Fastlane
       run: gem install fastlane
 
