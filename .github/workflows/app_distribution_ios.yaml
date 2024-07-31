@@ -22,9 +22,14 @@ jobs:
 
     - name: Install Build Tools
       run: |
-        brew update # Update Homebrew to ensure we get the latest versions
-        brew install make # Install make if not already installed
-        brew doctor # Run Homebrew diagnostic to ensure everything is set up correctly
+        brew update # Update Homebrew
+        brew install make # Install make
+        # Ensure make is correctly linked
+        ln -sf /opt/homebrew/opt/make/libexec/gnubin/make /usr/local/bin/make
+        # Verify installation and path
+        which make
+        make --version
+        brew doctor # Run Homebrew diagnostics
 
     - name: Install Bundler
       run: gem install bundler
