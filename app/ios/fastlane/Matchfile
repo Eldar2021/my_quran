@@ -5,4 +5,4 @@ storage_mode("git")
 type("development")
 
 app_identifier(["com.alee.hatimapp"])
-username("alybaeb_turat@icloud.com") #
+username("alybaeb_turat@icloud.com") 
