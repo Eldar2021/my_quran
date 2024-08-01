@@ -12,26 +12,26 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Check out the code
-      uses: actions/checkout@v3
+      - name: Check out the code
+        uses: actions/checkout@v3
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.2'
-        bundler-cache: true 
-        working-directory: app/ios/fastlane 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true 
+          working-directory: app/ios/fastlane 
 
       - name: Install Dependencies
-        run: bundle install --retry 3 --jobs 4
-        working-directory: app/ios/fastlane
+          run: bundle install --retry 3 --jobs 4
+          working-directory: app/ios/fastlane
 
       - name: Setup Fastlane Match
-        run: fastlane match development --type development
-        
+          run: fastlane match development --type development
+          
       - name: Run Fastlane Distribute
-        uses: maierj/fastlane-action@v3.1.0
-        with:
-          lane: 'ios distribute'
-          subdirectory: 'app/ios/fastlane'
-        env:
+          uses: maierj/fastlane-action@v3.1.0
+          with:
+            lane: 'ios distribute'
+            subdirectory: 'app/ios/fastlane'
+          env:
