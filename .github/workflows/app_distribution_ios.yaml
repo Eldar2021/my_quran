@@ -34,4 +34,3 @@ jobs:
           with:
             lane: 'ios distribute'
             subdirectory: 'app/ios/fastlane'
-          env:
