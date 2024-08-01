@@ -35,3 +35,6 @@ jobs:
         with:
           lane: 'ios distribute'
           subdirectory: 'app/ios/fastlane'
+
+        env:
+          FIREBASE_TOKEN: '1//0caDuHJd01wZlCgYIARAAGAwSNwF-L9IrOqeGdVBVqmPesdNpbJ9tDy1RQGrNMdrsSy0Kp9qhKJtCxJT2krUBqyeDv0I4dA_TzUA'
