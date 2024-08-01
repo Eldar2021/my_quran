@@ -19,25 +19,19 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2'
-        bundler-cache: true # Enable caching for bundle install results
-        working-directory: app/ios/fastlane # Set the working directory to the location of the Gemfile
+        bundler-cache: true 
+        working-directory: app/ios/fastlane 
 
-    - name: Install Dependencies
-      run: bundle install --retry 3 --jobs 4
-      working-directory: app/ios/fastlane # Ensure the Bundler command is run in the correct directory
+      - name: Install Dependencies
+        run: bundle install --retry 3 --jobs 4
+        working-directory: app/ios/fastlane
 
-    # - name: Run Fastlane Increment Version
-    #   uses: maierj/fastlane-action@v3.1.0
-    #   with:
-    #     lane: 'ios increment_version'
-    #     subdirectory: 'app/ios/fastlane'
-    #   env:
-    #     FIREBASE_TOKEN: '1//0cRXAgtWTnX9hCgYIARAAGAwSNwF-L9IrW3YAY8S0Se9HemYo1pKoN0fuUCCmteWN45gSOhLpHwtZFTLqFROyzS86bvS8VuiAvpQ'
-
-    - name: Run Fastlane Distribute
-      uses: maierj/fastlane-action@v3.1.0
-      with:
-        lane: 'ios distribute'
-        subdirectory: 'app/ios/fastlane'
-      env:
-        FIREBASE_TOKEN: '1//0cRXAgtWTnX9hCgYIARAAGAwSNwF-L9IrW3YAY8S0Se9HemYo1pKoN0fuUCCmteWN45gSOhLpHwtZFTLqFROyzS86bvS8VuiAvpQ'
+      - name: Setup Fastlane Match
+        run: fastlane match development --type development
+        
+      - name: Run Fastlane Distribute
+        uses: maierj/fastlane-action@v3.1.0
+        with:
+          lane: 'ios distribute'
+          subdirectory: 'app/ios/fastlane'
+        env:

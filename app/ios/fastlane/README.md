@@ -15,13 +15,21 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios increment_version
+
+```sh
+[bundle exec] fastlane ios increment_version
+```
+
+Increment the build number
+
 ### ios distribute
 
 ```sh
 [bundle exec] fastlane ios distribute
 ```
 
-MyQuran App
+Distribute the app
 
 ----
 

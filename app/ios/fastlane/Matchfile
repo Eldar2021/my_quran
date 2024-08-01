@@ -1,0 +1,8 @@
+git_url("https://github.com/aidaiym/test")
+
+storage_mode("git")
+
+type("development")
+
+app_identifier(["com.alee.hatimapp"])
+username("alybaeb_turat@icloud.com") #
