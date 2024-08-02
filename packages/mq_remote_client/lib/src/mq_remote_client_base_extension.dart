@@ -1,6 +1,6 @@
-part of 'mq_dio.dart';
+part of 'mq_remote_client.dart';
 
-extension MqDioBaseMehtods on MqDio {
+extension MqRemoteClientBaseMehtods on MqRemoteClient {
   Future<Either<T, CustomException>> _get<T>(String url) async {
     try {
       if (await network.checkInternetConnection()) {
@@ -9,11 +9,9 @@ extension MqDioBaseMehtods on MqDio {
       } else {
         return const Left(CustomException(FailureType.connection));
       }
-    } on DioException catch (e, s) {
-      MqCrashlytics.report(e, s);
+    } on DioException catch (e) {
       return Left(_parseDioException(e));
     } catch (e, s) {
-      MqCrashlytics.report(e, s);
       return Left(_unknownExc(e, s));
     }
   }
@@ -29,11 +27,9 @@ extension MqDioBaseMehtods on MqDio {
       } else {
         return const Left(CustomException(FailureType.connection));
       }
-    } on DioException catch (e, s) {
-      MqCrashlytics.report(e, s);
+    } on DioException catch (e) {
       return Left(_parseDioException(e));
     } catch (e, s) {
-      MqCrashlytics.report(e, s);
       return Left(_unknownExc(e, s));
     }
   }
@@ -49,11 +45,9 @@ extension MqDioBaseMehtods on MqDio {
       } else {
         return const Left(CustomException(FailureType.connection));
       }
-    } on DioException catch (e, s) {
-      MqCrashlytics.report(e, s);
+    } on DioException catch (e) {
       return Left(_parseDioException(e));
     } catch (e, s) {
-      MqCrashlytics.report(e, s);
       return Left(_unknownExc(e, s));
     }
   }
@@ -69,11 +63,9 @@ extension MqDioBaseMehtods on MqDio {
       } else {
         return const Left(CustomException(FailureType.connection));
       }
-    } on DioException catch (e, s) {
-      MqCrashlytics.report(e, s);
+    } on DioException catch (e) {
       return Left(_parseDioException(e));
     } catch (e, s) {
-      MqCrashlytics.report(e, s);
       return Left(_unknownExc(e, s));
     }
   }
@@ -87,8 +79,7 @@ extension MqDioBaseMehtods on MqDio {
         Left.new,
         (e) => Right(fromJson(e)),
       );
-    } catch (e, s) {
-      MqCrashlytics.report(e, s);
+    } catch (e) {
       return Left(CustomException(FailureType.deserialization, message: '$e'));
     }
   }
@@ -102,8 +93,7 @@ extension MqDioBaseMehtods on MqDio {
         Left.new,
         (r) => Right(r.map((e) => fromJson(e as Map<String, dynamic>)).toList()),
       );
-    } catch (e, s) {
-      MqCrashlytics.report(e, s);
+    } catch (e) {
       return Left(CustomException(FailureType.deserialization, message: '$e'));
     }
   }

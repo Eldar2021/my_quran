@@ -45,6 +45,8 @@ dependencies:
     path: ../packages/mq_ci_keys/ 
   mq_either:
     path: ../packages/mq_either/
+  mq_remote_client:
+    path: ../packages/mq_remote_client/
   # flutter_native_splash: ^2.4.0
 
 dev_dependencies:

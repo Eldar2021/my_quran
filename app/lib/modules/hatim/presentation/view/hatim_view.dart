@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
@@ -21,7 +22,7 @@ class HatimView extends StatelessWidget {
         repo: HatimReadRepositoryImpl(
           dataSource: context.read<AppConfig>().isMockData
               ? HatimRemoteDataSourceMock()
-              : HatimRemoteDataSourceImpl(remoteClient: context.read<MqDio>()),
+              : HatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
         ),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetInitailDataEvent()),
