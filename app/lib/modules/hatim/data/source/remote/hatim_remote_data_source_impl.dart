@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -11,7 +12,7 @@ class HatimRemoteDataSourceImpl implements HatimRemoteDataSource {
     required this.remoteClient,
   });
 
-  final MqDio remoteClient;
+  final MqRemoteClient remoteClient;
 
   late final WebSocketChannel channel;
   bool isInitilized = false;

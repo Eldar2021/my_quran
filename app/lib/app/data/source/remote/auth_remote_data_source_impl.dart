@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:mq_either/mq_either.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
@@ -15,7 +16,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required this.isIntegrationTest,
   });
 
-  final MqDio client;
+  final MqRemoteClient client;
   final PreferencesStorage storage;
   final SoccialAuth soccialAuth;
   final bool isIntegrationTest;

@@ -1,16 +1,26 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mq_either/mq_either.dart';
-import 'package:my_quran/core/core.dart';
+import 'package:mq_remote_client/src/http_exception.dart';
+import 'package:mq_remote_client/src/network_client.dart';
 
-part 'mq_dio_base_extension.dart';
+part 'mq_remote_client_base_extension.dart';
+
+/// {@template mq_remote_client}
+/// MQ remote client package
+/// {@endtemplate}
 
 typedef FromJson<T> = T Function(Map<String, dynamic>);
+
+/// A function type that converts a [Map<String, dynamic>] to an object of type T
+///
+/// Used to deserialize JSON responses from the server.
 typedef ResolveValue = String? Function();
 
-@immutable
-class MqDio {
-  const MqDio({
+/// A client for making HTTP requests with custom headers and handling JSON
+/// responses.
+class MqRemoteClient {
+  /// {@macro mq_remote_client}
+  const MqRemoteClient({
     required this.dio,
     required this.network,
     this.language,
@@ -18,12 +28,22 @@ class MqDio {
     this.oldToken,
   });
 
+  /// The Dio instance used for making HTTP requests.
   final Dio dio;
+
+  /// The network client for handling network-related tasks.
   final NetworkClient network;
+
+  /// A function that resolves the language value for the headers.
   final ResolveValue? language;
+
+  /// A function that resolves the authorization token for the headers.
   final ResolveValue? token;
+
+  /// A function that resolves the old token for the headers.
   final ResolveValue? oldToken;
 
+  /// Initializes the Dio instance with interceptors to add custom headers.
   void initilize() {
     dio.interceptors.add(
       InterceptorsWrapper(
@@ -45,6 +65,9 @@ class MqDio {
     );
   }
 
+  /// Makes a GET request to the given [url] and parses the response as type [T]
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> get<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -53,6 +76,10 @@ class MqDio {
     return response;
   }
 
+  /// Makes a GET request to the given [url] and parses the response as type [T]
+  /// from a JSON object.
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> getType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -61,6 +88,10 @@ class MqDio {
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
 
+  /// Makes a GET request to the given [url] and parses the response as a list
+  /// of type [T].
+  ///
+  /// The [fromJson] parameter is used to parse each JSON object in the list.
   Future<Either<List<T>, CustomException>> getListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -69,6 +100,10 @@ class MqDio {
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
 
+  /// Makes a POST request to the given [url] with an optional [body] and parses
+  /// the response as type [T].
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> post<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -78,6 +113,10 @@ class MqDio {
     return response;
   }
 
+  /// Makes a POST request to the given [url] with an optional [body] and parses
+  /// the response as type [T] from a JSON object.
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> postType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -87,6 +126,10 @@ class MqDio {
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
 
+  /// Makes a POST request to the given [url] with an optional [body] and parses
+  /// the response as a list of type [T].
+  ///
+  /// The [fromJson] parameter is used to parse each JSON object in the list.
   Future<Either<List<T>, CustomException>> postListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -96,6 +139,10 @@ class MqDio {
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
 
+  /// Makes a PUT request to the given [url] with an optional [body] and parses
+  /// the response as type [T].
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> put<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -105,6 +152,10 @@ class MqDio {
     return response;
   }
 
+  /// Makes a PUT request to the given [url] with an optional [body] and parses
+  /// the response as type [T] from a JSON object.
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> putType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -114,6 +165,10 @@ class MqDio {
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
 
+  /// Makes a PUT request to the given [url] with an optional [body] and parses
+  /// the response as a list of type [T].
+  ///
+  /// The [fromJson] parameter is used to parse each JSON object in the list.
   Future<Either<List<T>, CustomException>> putListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -123,6 +178,10 @@ class MqDio {
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
 
+  /// Makes a PATCH request to the given [url] with an optional [body] and
+  /// parses the response as type [T].
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> patch<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -132,6 +191,10 @@ class MqDio {
     return response;
   }
 
+  /// Makes a PATCH request to the given [url] with an optional [body] and
+  /// parses the response as type [T] from a JSON object.
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> patchType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -141,6 +204,10 @@ class MqDio {
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
 
+  /// Makes a PATCH request to the given [url] with an optional [body] and
+  /// parses the response as a list of type [T].
+  ///
+  /// The [fromJson] parameter is used to parse each JSON object in the list.
   Future<Either<List<T>, CustomException>> patchListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
@@ -149,4 +216,6 @@ class MqDio {
     final data = await _patch<List<dynamic>>(url, body: body);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
+
+  // Private methods _get, _post, _put, _patch, _convertType, _convertListOfType
 }

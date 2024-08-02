@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 
 @immutable
 final class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   const HomeRemoteDataSourceImpl(this.remoteClient);
 
-  final MqDio remoteClient;
+  final MqRemoteClient remoteClient;
 
   @override
   Future<HomeModelResponse> getRemoteData() async {

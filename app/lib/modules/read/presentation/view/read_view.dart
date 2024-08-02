@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
@@ -33,7 +34,7 @@ class ReadView extends StatelessWidget {
               ReadRepositoryImpl(
                 context.read<AppConfig>().isMockData
                     ? ReadRemoteDataSourceMock()
-                    : ReadRemoteDataSourceImpl(context.read<MqDio>()),
+                    : ReadRemoteDataSourceImpl(context.read<MqRemoteClient>()),
                 ReadLocalDataSourceImpl(context.read<PreferencesStorage>()),
               ),
             ),

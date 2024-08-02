@@ -829,6 +829,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0+1"
+  mq_remote_client:
+    dependency: "direct main"
+    description:
+      path: "../packages/mq_remote_client"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   mq_storage:
     dependency: "direct main"
     description:

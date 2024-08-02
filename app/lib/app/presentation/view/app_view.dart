@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
               remoteDataSource: isMockData
                   ? const AuthRemoteDataSourceMock()
                   : AuthRemoteDataSourceImpl(
-                      client: context.read<MqDio>(),
+                      client: context.read<MqRemoteClient>(),
                       storage: context.read<PreferencesStorage>(),
                       soccialAuth: context.read<SoccialAuth>(),
                       isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
@@ -77,7 +78,9 @@ class MyApp extends StatelessWidget {
                 isMockData
                     ? const HomeLocalDataSourceMock()
                     : HomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
-                isMockData ? const HomeRemoteDataSourceMock() : HomeRemoteDataSourceImpl(context.read<MqDio>()),
+                isMockData
+                    ? const HomeRemoteDataSourceMock()
+                    : HomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
               ),
             ),
           ),

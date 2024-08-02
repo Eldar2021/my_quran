@@ -1,13 +1,13 @@
 import 'package:meta/meta.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 
 @immutable
 final class ReadRemoteDataSourceImpl implements ReadRemoteDataSource {
   const ReadRemoteDataSourceImpl(this.remoteClient);
 
-  final MqDio remoteClient;
+  final MqRemoteClient remoteClient;
 
   @override
   Future<QuranPageResponse?> fetchPage(int page, String quranFmt) async {
