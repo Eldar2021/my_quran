@@ -18,6 +18,54 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final PreferencesStorage storage;
   final SoccialAuth soccialAuth;
   final bool isIntegrationTest;
+  @override
+  Future<Either<UserModelResponse, Exception>> verifyOtp({
+    required String otp,
+    required String email,
+    required String languageCode,
+    required Gender gender,
+  }) async {
+    try {
+      final token = await client.postType(
+        apiConst.loginWithEmailVerify,
+        fromJson: TokenResponse.fromJson,
+        body: {'email': email, 'opt': otp},
+      );
+
+      return token.fold(
+        (error) {
+          return Left(error);
+        },
+        (r) async {
+          final user = UserModelResponse(
+            accessToken: r.key,
+            username: email,
+            gender: gender,
+            localeCode: languageCode,
+          );
+
+          await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+
+          return Right(user);
+        },
+      );
+    } catch (e) {
+      return Left(Exception('Error fetching SMS code: $e'));
+    }
+  }
+
+  @override
+  Future<void> loginWithEmail(String email) async {
+    try {
+      await client.post<TokenResponse>(
+        apiConst.loginWithEmailSend,
+        fromJson: TokenResponse.fromJson,
+        body: {'email': email},
+      );
+    } catch (e) {
+      throw Exception('Error during login: $e');
+    }
+  }
 
   @override
   Future<Either<UserModelResponse, Exception>> signInWithGoogle(
@@ -25,7 +73,6 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     Gender gender,
   ) async {
     final googleAuth = await _getGoogleAuth();
-
     final token = await client.postType(
       apiConst.loginWithGoogle,
       fromJson: TokenResponse.fromJson,
@@ -39,7 +86,6 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         gender: gender,
         localeCode: languageCode,
       );
-
       await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
 
       return Right(user);
@@ -54,11 +100,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
     } else {
       final googleAuth = await soccialAuth.signInWithGoogle();
-      final accessToken = googleAuth.credential?.accessToken ?? '';
-      final username = googleAuth.user?.displayName ?? '';
+      final accessToken = googleAuth?['accessToken'] ?? '';
+      final username = googleAuth?['name'] ?? '';
       return _UserReqParam(
-        name: username,
-        accessToken: accessToken,
+        name: username.toString(),
+        accessToken: accessToken.toString(),
       );
     }
   }
@@ -146,53 +192,6 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> logoutRemote() async {
     await soccialAuth.logOut();
-  }
-
-  @override
-  Future<Either<UserModelResponse, Exception>> fetchSmsCode({
-    required String code,
-    required String languageCode,
-    required Gender gender,
-  }) async {
-    try {
-      final token = await client.post(
-        'apiConst.fetchSmsCode',
-        fromJson: TokenResponse.fromJson,
-        body: {'code': code},
-      );
-      return token.fold(
-        (error) {
-          return Left(error);
-        },
-        (r) async {
-          final user = UserModelResponse(
-            accessToken: r.key,
-            username: '',
-            gender: gender,
-            localeCode: languageCode,
-          );
-
-          await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
-
-          return Right(user);
-        },
-      );
-    } catch (e) {
-      return Left(Exception('Error fetching SMS code: $e'));
-    }
-  }
-
-  @override
-  Future<void> loginWithEmail(String email) async {
-    try {
-      await client.post(
-        'apiConst.loginWithEmail',
-        fromJson: TokenResponse.fromJson,
-        body: {'email': email},
-      );
-    } catch (e) {
-      throw Exception('Error during login: $e');
-    }
   }
 }
 

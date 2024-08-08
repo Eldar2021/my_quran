@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
             PatchLocaleCodeUseCase(context.read<AuthRepository>()),
             LogoutUseCase(context.read<AuthRepository>()),
             EmailLoginUseCase(context.read<AuthRepository>()),
-            FetchSmsCodeUseCase(context.read<AuthRepository>()),
+            VerifyOtpUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(

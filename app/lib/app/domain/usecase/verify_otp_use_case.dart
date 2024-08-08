@@ -3,18 +3,20 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/core/core.dart';
 
 @immutable
-final class FetchSmsCodeUseCase {
-  const FetchSmsCodeUseCase(this.repository);
+final class VerifyOtpUseCase {
+  const VerifyOtpUseCase(this.repository);
 
   final AuthRepository repository;
 
   Future<Either<UserEntity, Exception>> call({
-    required String code,
+    required String email,
+    required String otp,
     required String languageCode,
     required Gender gender,
   }) {
-    return repository.fetchSmsCode(
-      code: code,
+    return repository.verifyOtp(
+      email: email,
+      otp: otp,
       languageCode: languageCode,
       gender: gender,
     );

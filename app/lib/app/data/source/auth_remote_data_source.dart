@@ -4,8 +4,9 @@ import 'package:my_quran/core/core.dart';
 abstract class AuthRemoteDataSource {
   Future<void> loginWithEmail(String email);
 
-  Future<Either<UserModelResponse, Exception>> fetchSmsCode({
-    required String code,
+  Future<Either<UserModelResponse, Exception>> verifyOtp({
+    required String email,
+    required String otp,
     required String languageCode,
     required Gender gender,
   });

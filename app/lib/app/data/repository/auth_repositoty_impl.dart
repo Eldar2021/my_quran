@@ -39,13 +39,19 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> fetchSmsCode({
-    required String code,
+  Future<Either<UserEntity, Exception>> verifyOtp({
+    required String email,
+    required String otp,
     required String languageCode,
     required Gender gender,
   }) async {
     try {
-      final res = await remoteDataSource.fetchSmsCode(code: code, languageCode: languageCode, gender: gender);
+      final res = await remoteDataSource.verifyOtp(
+        email: email,
+        otp: otp,
+        languageCode: languageCode,
+        gender: gender,
+      );
 
       return res.fold(
         Left.new,

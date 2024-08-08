@@ -59,9 +59,12 @@ final class AppRouter {
         builder: (context, state) => SignInView(),
       ),
       GoRoute(
-        path: '/$verificationCode',
+        path: '/$verificationCode/:email',
         name: verificationCode,
-        builder: (context, state) => VerificationCodeView(),
+        builder: (context, state) {
+          final email = state.pathParameters['email'];
+          return VerificationCodeView(email: email!);
+        },
       ),
       GoRoute(
         path: '/$devModeView',

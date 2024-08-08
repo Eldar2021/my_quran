@@ -24,7 +24,7 @@ extension PumpApp on WidgetTester {
     MqRemoteConfig remoteConfig,
     PackageInfo packageInfo,
     EmailLoginUseCase emailSignIn,
-    FetchSmsCodeUseCase fetchSmsCode,
+    VerifyOtpUseCase fetchSmsCode,
   ) {
     return pumpWidget(
       MultiRepositoryProvider(

@@ -11,8 +11,9 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   Future<void> loginWithEmail(String email) async {}
 
   @override
-  Future<Either<UserModelResponse, Exception>> fetchSmsCode({
-    required String code,
+  Future<Either<UserModelResponse, Exception>> verifyOtp({
+    required String email,
+    required String otp,
     required String languageCode,
     required Gender gender,
   }) async {

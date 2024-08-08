@@ -18,7 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
     this.patchLocaleCodeUseCase,
     this.logoutUseCase,
     this.loginUsecase,
-    this.fetchSmsCodeUseCase,
+    this.verifyOtpUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
   final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
   final LogoutUseCase logoutUseCase;
   final EmailLoginUseCase loginUsecase;
-  final FetchSmsCodeUseCase fetchSmsCodeUseCase;
+  final VerifyOtpUseCase verifyOtpUseCase;
 
   Future<void> login(String email) async {
     try {
@@ -39,9 +39,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<AuthState> fetchSmsCode(String code) async {
-    final user = await fetchSmsCodeUseCase(
-      code: code,
+  Future<AuthState> verifyOtp(String otp, String email) async {
+    final user = await verifyOtpUseCase(
+      email: email,
+      otp: otp,
       languageCode: state.currentLocale.languageCode,
       gender: state.gender,
     );

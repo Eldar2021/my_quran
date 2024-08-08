@@ -43,7 +43,7 @@ void main() {
     final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
     final logoutUseCase = LogoutUseCase(authRepository);
     final emailSignIn = EmailLoginUseCase(authRepository);
-    final fetchSmsCode = FetchSmsCodeUseCase(authRepository);
+    final fetchSmsCode = VerifyOtpUseCase(authRepository);
 
     when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);

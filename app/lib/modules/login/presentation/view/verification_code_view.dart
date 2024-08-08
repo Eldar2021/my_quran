@@ -9,11 +9,11 @@ import 'package:my_quran/utils/urils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerificationCodeView extends StatelessWidget {
-  VerificationCodeView({super.key});
+  VerificationCodeView({required this.email, super.key});
 
   final TextEditingController verificationCodeController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +81,7 @@ class VerificationCodeView extends StatelessWidget {
                 CustomButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      context.read<AuthCubit>().fetchSmsCode(verificationCodeController.text);
+                      context.read<AuthCubit>().verifyOtp(verificationCodeController.text, email);
                     }
                   },
                   text: 'Verify',

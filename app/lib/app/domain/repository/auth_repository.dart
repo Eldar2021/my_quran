@@ -6,8 +6,9 @@ abstract class AuthRepository {
 
   Future<void> loginWithEmail(String email);
 
-  Future<Either<UserEntity, Exception>> fetchSmsCode({
-    required String code,
+  Future<Either<UserEntity, Exception>> verifyOtp({
+    required String email,
+    required String otp,
     required String languageCode,
     required Gender gender,
   });
