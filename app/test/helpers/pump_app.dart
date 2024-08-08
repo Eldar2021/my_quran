@@ -23,6 +23,8 @@ extension PumpApp on WidgetTester {
     LogoutUseCase logoutUseCase,
     MqRemoteConfig remoteConfig,
     PackageInfo packageInfo,
+    EmailLoginUseCase emailSignIn,
+    VerifyOtpUseCase verifyOtp,
   ) {
     return pumpWidget(
       MultiRepositoryProvider(
@@ -49,6 +51,8 @@ extension PumpApp on WidgetTester {
                 patchGenderUseCase,
                 patchLocaleCodeUseCase,
                 logoutUseCase,
+                emailSignIn,
+                verifyOtp,
               ),
             ),
             BlocProvider(
