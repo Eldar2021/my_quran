@@ -4,6 +4,10 @@ final class MqKeys {
   static const loginNext = 'login-next';
   static const loginSelectGender = 'login-select-gender';
   static const signInView = 'sign-in-view';
+  static const sendOtp = 'send-otp';
+  static const verifyOtpView = 'verify-otp-view';
+  static const emailTextField = 'email-text-field';
+  static const otpTextField = 'otp-text-field';
 
   // home
   static const home = 'home';

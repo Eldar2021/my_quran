@@ -45,6 +45,7 @@ dependencies:
     path: ../packages/mq_ci_keys/ 
   mq_either:
     path: ../packages/mq_either/
+  pin_code_fields: ^8.0.1
   # flutter_native_splash: ^2.4.0
 
 dev_dependencies:

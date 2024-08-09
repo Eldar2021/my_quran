@@ -15,6 +15,7 @@ final class AnalyticKey {
   static const goHatimReadPage = 'go_hatim_read_page';
   static const goQuranReadByJuz = 'go_quran_read_by_juz';
   static const goQuranReadBySurah = 'go_quran_read_by_surah';
+  static const goVerificationOtp = 'go_verification_otp';
 
   // select - unselect
   static const selectLanguage = 'select_language';
@@ -29,7 +30,7 @@ final class AnalyticKey {
 
   // action
   static const tapLogout = 'tap_logout';
-  static const tapLoginWithSoccial = 'tap_login_with_soccial';
+  static const tapLogin = 'tap_login';
   static const tapPrivacyPolicy = 'tap_privacy_policy';
   static const tapQuranReadSettings = 'tap_quran_read_settings';
   static const showAmin = 'show_amin';

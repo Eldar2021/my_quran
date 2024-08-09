@@ -87,5 +87,11 @@
     "recommendedVersionDescription": "Доступна новая версия приложения.",
     "remindMeLater": "Напомнить позже",
     "updateNow": "Обновить сейчас",
-    "hatimNotAvailable": "Хатим недоступен."
+    "hatimNotAvailable": "Хатим недоступен.",
+    "enterEmailToLogin": "Введите ваш email для входа в приложение.",
+    "email": "Эл. почта",
+    "emailRequired": "Требуется электронная почта.",
+    "invalidEmail": "Пожалуйста, введите действующий адрес электронной почты.",
+    "signIn": "Войти",
+    "orContinueWith": "Или продолжить с"
 }

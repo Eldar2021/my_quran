@@ -10,7 +10,7 @@ class SoccialAuth {
 
   final GoogleSignIn _googleSignIn;
 
-  Future<UserCredential> signInWithGoogle() async {
+  Future<Map<String, dynamic>?> signInWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
       final googleAuth = await googleUser?.authentication;
@@ -18,9 +18,11 @@ class SoccialAuth {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      return userCredential;
+      final respone = {
+        'name': googleUser!.displayName ?? '',
+        'accessToken': credential.accessToken,
+      };
+      return respone;
     } catch (e, s) {
       MqCrashlytics.report(e, s);
       rethrow;

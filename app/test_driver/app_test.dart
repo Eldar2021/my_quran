@@ -33,7 +33,7 @@ void main() async {
     });
 
     test('sign-in-with-google-account', () async {
-      await loginWithGoogleApple(driver);
+      await loginWithGoogle(driver);
     });
   });
 

@@ -87,5 +87,11 @@
     "recommendedVersionDescription": "A new version of the app is available.",
     "remindMeLater": "Remind me later",
     "updateNow": "Update now",
-    "hatimNotAvailable": "Hatim is not available."
+    "hatimNotAvailable": "Hatim is not available.",
+    "enterEmailToLogin": "Please enter your email to log in to our application.",
+    "email": "Email",
+    "emailRequired": "Email is required.",
+    "invalidEmail": "Please enter a valid email address.",
+    "signIn": "Sign in",
+    "orContinueWith": "Or continue with"
 }
