@@ -15,6 +15,7 @@ final class AnalyticKey {
   static const goHatimReadPage = 'go_hatim_read_page';
   static const goQuranReadByJuz = 'go_quran_read_by_juz';
   static const goQuranReadBySurah = 'go_quran_read_by_surah';
+  static const goVerificationOtp = 'go_verification_otp';
 
   // select - unselect
   static const selectLanguage = 'select_language';

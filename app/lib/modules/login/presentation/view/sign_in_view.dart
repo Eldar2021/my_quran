@@ -62,6 +62,7 @@ class SignInView extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               CustomTextFormField(
+                key: const Key(MqKeys.emailTextField),
                 controller: emailController,
                 labelText: context.l10n.email,
                 validator: (value) {
@@ -76,13 +77,12 @@ class SignInView extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               CustomButton(
-                key: Key(MqKeys.loginTypeName('email')),
+                key: const Key(MqKeys.sendOtp),
                 text: context.l10n.signIn,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     MqAnalytic.track(
-                      AnalyticKey.tapLogin,
-                      params: {'soccial': 'email'},
+                      AnalyticKey.goVerificationOtp,
                     );
                     try {
                       context.read<AuthCubit>().login(emailController.text);

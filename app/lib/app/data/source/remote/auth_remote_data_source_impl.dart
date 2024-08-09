@@ -59,9 +59,9 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> loginWithEmail(String email) async {
     try {
-      await client.post<TokenResponse>(
+      await client.post(
         apiConst.loginWithEmailSend,
-        fromJson: TokenResponse.fromJson,
+        fromJson: Map<String, dynamic>.from,
         body: {'email': email},
       );
     } catch (e) {
