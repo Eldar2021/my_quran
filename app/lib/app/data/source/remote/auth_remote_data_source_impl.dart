@@ -157,7 +157,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required Gender gender,
   }) async {
     try {
-      final token = await client.post(
+      final token = await client.postType(
         'apiConst.fetchSmsCode',
         fromJson: TokenResponse.fromJson,
         body: {'code': code},
@@ -187,7 +187,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> loginWithEmail(String email) async {
     try {
-      await client.post(
+      await client.postType(
         'apiConst.loginWithEmail',
         fromJson: TokenResponse.fromJson,
         body: {'email': email},

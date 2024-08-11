@@ -8,7 +8,6 @@ part 'mq_remote_client_base_extension.dart';
 /// {@template mq_remote_client}
 /// MQ remote client package
 /// {@endtemplate}
-
 typedef FromJson<T> = T Function(Map<String, dynamic>);
 
 /// A function type that converts a [Map<String, dynamic>] to an object of type T
@@ -66,14 +65,8 @@ class MqRemoteClient {
   }
 
   /// Makes a GET request to the given [url] and parses the response as type [T]
-  ///
-  /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, CustomException>> get<T>(
-    String url, {
-    required FromJson<T> fromJson,
-  }) async {
-    final response = await _get<T>(url);
-    return response;
+  Future<Either<T, CustomException>> get<T>(String url) {
+    return _get<T>(url);
   }
 
   /// Makes a GET request to the given [url] and parses the response as type [T]
@@ -102,15 +95,11 @@ class MqRemoteClient {
 
   /// Makes a POST request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  ///
-  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> post<T>(
     String url, {
-    required FromJson<T> fromJson,
     Map<String, dynamic>? body,
-  }) async {
-    final response = await _post<T>(url, body: body);
-    return response;
+  }) {
+    return _post<T>(url, body: body);
   }
 
   /// Makes a POST request to the given [url] with an optional [body] and parses
@@ -141,15 +130,11 @@ class MqRemoteClient {
 
   /// Makes a PUT request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  ///
-  /// The [fromJson] parameter is used to parse the JSON response.
   Future<Either<T, CustomException>> put<T>(
     String url, {
-    required FromJson<T> fromJson,
     Map<String, dynamic>? body,
-  }) async {
-    final response = await _put<T>(url, body: body);
-    return response;
+  }) {
+    return _put<T>(url, body: body);
   }
 
   /// Makes a PUT request to the given [url] with an optional [body] and parses
@@ -216,6 +201,4 @@ class MqRemoteClient {
     final data = await _patch<List<dynamic>>(url, body: body);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
-
-  // Private methods _get, _post, _put, _patch, _convertType, _convertListOfType
 }

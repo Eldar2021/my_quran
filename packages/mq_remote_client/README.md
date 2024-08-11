@@ -1,6 +1,6 @@
 # MqRemoteClient
 
-MqRemoteClient is a Dart package that simplifies HTTP requests using the Dio library, providing a convenient and consistent way to handle network operations with error handling and custom token management.
+`MqRemoteClient` is a Dart package that simplifies HTTP requests using the Dio library, providing a convenient and consistent way to handle network operations with error handling and custom token management.
 
 ## Features
 
@@ -44,7 +44,6 @@ mqRemoteClient.initilize();
 ```dart
 final result = await mqRemoteClient.get<Map<String, dynamic>>(
   'https://example.com/api/resource',
-  fromJson: (json) => json,
 );
 
 result.fold(
@@ -58,7 +57,6 @@ result.fold(
 ```dart
 final result = await mqRemoteClient.post<Map<String, dynamic>>(
   'https://example.com/api/resource',
-  fromJson: (json) => json,
   body: {'key': 'value'},
 );
 
@@ -72,7 +70,6 @@ result.fold(
 ```dart
 final result = await mqRemoteClient.put<Map<String, dynamic>>(
   'https://example.com/api/resource',
-  fromJson: (json) => json,
   body: {'key': 'value'},
 );
 
@@ -87,7 +84,6 @@ result.fold(
 ```dart
 final result = await mqRemoteClient.patch<Map<String, dynamic>>(
   'https://example.com/api/resource',
-  fromJson: (json) => json,
   body: {'key': 'value'},
 );
 

@@ -29,7 +29,7 @@ Future<void> main({AppConfig? appConfig}) async {
   );
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
 
-  await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: kDebugMode);
+  await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: !kDebugMode);
 
   FlutterError.onError = MqCrashlytics.recordFlutterError;
 

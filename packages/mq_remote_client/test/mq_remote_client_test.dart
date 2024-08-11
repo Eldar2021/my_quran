@@ -9,7 +9,10 @@ class MockDio extends Mock implements Dio {}
 void main() {
   group('MqRemoteClient', () {
     test('can be instantiated', () {
-      expect(MqRemoteClient(dio: MockDio(), network: NetworkClient(Connectivity())), isNotNull);
+      expect(
+        MqRemoteClient(dio: MockDio(), network: NetworkClient(Connectivity())),
+        isNotNull,
+      );
     });
   });
 }
