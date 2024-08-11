@@ -1,4 +1,5 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:mocktail/mocktail.dart';
@@ -8,7 +9,7 @@ import 'package:my_quran/modules/modules.dart';
 
 final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
-final class MockRemoteClient extends Mock implements MqDio {}
+final class MockRemoteClient extends Mock implements MqRemoteClient {}
 
 final class MockSccialAuth extends Mock implements SoccialAuth {}
 

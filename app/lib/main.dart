@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -26,9 +27,9 @@ Future<void> main({AppConfig? appConfig}) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
+  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
 
-  await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: kDebugMode);
+  await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: kReleaseMode);
 
   FlutterError.onError = MqCrashlytics.recordFlutterError;
 
@@ -73,8 +74,8 @@ Future<void> main({AppConfig? appConfig}) async {
           create: (context) => NetworkClient(Connectivity()),
         ),
         RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
-        RepositoryProvider<MqDio>(
-          create: (context) => MqDio(
+        RepositoryProvider<MqRemoteClient>(
+          create: (context) => MqRemoteClient(
             dio: Dio(),
             network: context.read<NetworkClient>(),
             language: () => storage.readString(key: StorageKeys.localeKey),

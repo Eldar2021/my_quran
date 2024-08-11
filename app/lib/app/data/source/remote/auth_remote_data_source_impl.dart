@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:mq_either/mq_either.dart';
+import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
@@ -15,7 +16,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required this.isIntegrationTest,
   });
 
-  final MqDio client;
+  final MqRemoteClient client;
   final PreferencesStorage storage;
   final SoccialAuth soccialAuth;
   final bool isIntegrationTest;
@@ -156,7 +157,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required Gender gender,
   }) async {
     try {
-      final token = await client.post(
+      final token = await client.postType(
         'apiConst.fetchSmsCode',
         fromJson: TokenResponse.fromJson,
         body: {'code': code},
@@ -186,7 +187,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> loginWithEmail(String email) async {
     try {
-      await client.post(
+      await client.postType(
         'apiConst.loginWithEmail',
         fromJson: TokenResponse.fromJson,
         body: {'email': email},

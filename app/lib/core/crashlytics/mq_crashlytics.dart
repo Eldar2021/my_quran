@@ -47,7 +47,6 @@ final class MqCrashlytics {
   }
 
   static Future<void> setCrashlyticsCollectionEnabled({required bool enabled}) async {
-    if (kDebugMode) return;
     return crashlytics.setCrashlyticsCollectionEnabled(enabled);
   }
 
