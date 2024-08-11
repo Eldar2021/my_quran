@@ -27,7 +27,7 @@ Future<void> main({AppConfig? appConfig}) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
+  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
 
   await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: !kDebugMode);
 
