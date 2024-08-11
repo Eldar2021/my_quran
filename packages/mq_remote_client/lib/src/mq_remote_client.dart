@@ -65,7 +65,7 @@ class MqRemoteClient {
   }
 
   /// Makes a GET request to the given [url] and parses the response as type [T]
-  Future<Either<T, CustomException>> get<T>(String url) {
+  Future<Either<T, MqRemoteException>> get<T>(String url) {
     return _get<T>(url);
   }
 
@@ -73,7 +73,7 @@ class MqRemoteClient {
   /// from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, CustomException>> getType<T>(
+  Future<Either<T, MqRemoteException>> getType<T>(
     String url, {
     required FromJson<T> fromJson,
   }) async {
@@ -85,7 +85,7 @@ class MqRemoteClient {
   /// of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, CustomException>> getListOfType<T>(
+  Future<Either<List<T>, MqRemoteException>> getListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
   }) async {
@@ -95,7 +95,7 @@ class MqRemoteClient {
 
   /// Makes a POST request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, CustomException>> post<T>(
+  Future<Either<T, MqRemoteException>> post<T>(
     String url, {
     Map<String, dynamic>? body,
   }) {
@@ -106,7 +106,7 @@ class MqRemoteClient {
   /// the response as type [T] from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, CustomException>> postType<T>(
+  Future<Either<T, MqRemoteException>> postType<T>(
     String url, {
     required FromJson<T> fromJson,
     Map<String, dynamic>? body,
@@ -119,7 +119,7 @@ class MqRemoteClient {
   /// the response as a list of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, CustomException>> postListOfType<T>(
+  Future<Either<List<T>, MqRemoteException>> postListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
     Map<String, dynamic>? body,
@@ -130,7 +130,7 @@ class MqRemoteClient {
 
   /// Makes a PUT request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, CustomException>> put<T>(
+  Future<Either<T, MqRemoteException>> put<T>(
     String url, {
     Map<String, dynamic>? body,
   }) {
@@ -141,7 +141,7 @@ class MqRemoteClient {
   /// the response as type [T] from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, CustomException>> putType<T>(
+  Future<Either<T, MqRemoteException>> putType<T>(
     String url, {
     required FromJson<T> fromJson,
     Map<String, dynamic>? body,
@@ -154,7 +154,7 @@ class MqRemoteClient {
   /// the response as a list of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, CustomException>> putListOfType<T>(
+  Future<Either<List<T>, MqRemoteException>> putListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
     Map<String, dynamic>? body,
@@ -167,7 +167,7 @@ class MqRemoteClient {
   /// parses the response as type [T].
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, CustomException>> patch<T>(
+  Future<Either<T, MqRemoteException>> patch<T>(
     String url, {
     required FromJson<T> fromJson,
     Map<String, dynamic>? body,
@@ -180,7 +180,7 @@ class MqRemoteClient {
   /// parses the response as type [T] from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, CustomException>> patchType<T>(
+  Future<Either<T, MqRemoteException>> patchType<T>(
     String url, {
     required FromJson<T> fromJson,
     Map<String, dynamic>? body,
@@ -193,7 +193,7 @@ class MqRemoteClient {
   /// parses the response as a list of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, CustomException>> patchListOfType<T>(
+  Future<Either<List<T>, MqRemoteException>> patchListOfType<T>(
     String url, {
     required FromJson<T> fromJson,
     Map<String, dynamic>? body,

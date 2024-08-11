@@ -1,8 +1,12 @@
 import 'package:meta/meta.dart';
 
+/// Exception class for remote MQ (Message Queue) errors.
+/// [failureType] indicates the type of failure.
+/// Optional [error], [message], [stackTrace],
+/// and [statusCode] provide additional details.
 @immutable
-final class CustomException implements Exception {
-  const CustomException(
+final class MqRemoteException implements Exception {
+  const MqRemoteException(
     this.failureType, {
     this.error,
     this.message,
@@ -17,29 +21,30 @@ final class CustomException implements Exception {
   final int? statusCode;
 }
 
+/// Enum representing different failure types.
 enum FailureType {
-  /// Represents http error 400
+  /// HTTP 400 error.
   badRequest('Represents http error '),
 
-  /// Represents http error 401
+  /// HTTP 401 error.
   noAuthorization('Authentication error'),
 
-  /// Forbidden http error 403
+  /// HTTP 403 error.
   forbidden('Forbidden http error'),
 
-  /// Internal server http error 500
+  /// HTTP 500 error.
   internalServer('Internal server http error'),
 
-  /// Json decode error
+  /// JSON decoding error.
   decode('Json decode error'),
 
-  /// Json deserialization error
+  /// JSON deserialization error.
   deserialization('Json deserialization error'),
 
-  /// Internet Connection error
+  /// No internet connection error.
   connection('Device unconected internet'),
 
-  /// Unknown error
+  /// Unknown error.
   unknown('Unknown error');
 
   const FailureType(this.message);
