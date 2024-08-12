@@ -1,31 +1,30 @@
 final class TestModel {
   const TestModel({
+    required this.userId,
     required this.id,
     required this.title,
-    required this.content,
-    required this.showAt,
+    required this.body,
   });
 
   factory TestModel.fromJson(Map<String, dynamic> json) {
     return TestModel(
-      id: json['id'] as String,
+      userId: json['userId'] as int,
+      id: json['id'] as int,
       title: json['title'] as String,
-      content: json['content'] as String,
-      showAt: json['showAt'] as String,
+      body: json['body'] as String,
     );
   }
-
-  final String id;
+  final int userId;
+  final int id;
   final String title;
-  final String content;
-  final String showAt;
+  final String body;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      'userId': userId,
       'id': id,
       'title': title,
-      'content': content,
-      'showAt': showAt,
+      'body': body,
     };
   }
 }
