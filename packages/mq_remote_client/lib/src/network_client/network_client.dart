@@ -1,5 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 /// A client for checking the device's internet connection status.
 @immutable

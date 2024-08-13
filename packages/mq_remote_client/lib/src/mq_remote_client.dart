@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:mq_either/mq_either.dart';
-import 'package:mq_remote_client/src/http_exception.dart';
-import 'package:mq_remote_client/src/network_client.dart';
+
+import 'package:mq_remote_client/mq_remote_client.dart';
 
 part 'mq_remote_client_base_extension.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 

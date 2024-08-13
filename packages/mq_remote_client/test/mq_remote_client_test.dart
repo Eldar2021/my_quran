@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 
-import 'mock_network_client.dart';
-import 'test_model.dart';
+import 'helpers/mock_network_client.dart';
+import 'helpers/test_model.dart';
 
 void main() {
   late MqRemoteClient client;
