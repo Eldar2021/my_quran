@@ -69,6 +69,8 @@ class MyApp extends StatelessWidget {
             PatchGenderUseCase(context.read<AuthRepository>()),
             PatchLocaleCodeUseCase(context.read<AuthRepository>()),
             LogoutUseCase(context.read<AuthRepository>()),
+            EmailLoginUseCase(context.read<AuthRepository>()),
+            VerifyOtpUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(
