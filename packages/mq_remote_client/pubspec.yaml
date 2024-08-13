@@ -1,5 +1,5 @@
 name: mq_remote_client
-description: MQ remote client package
+description: My Quran Remote Client
 version: 0.1.0+1
 publish_to: none
 
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  connectivity_plus: ^6.0.3
+  connectivity_plus: ^6.0.5
   dio: ^5.5.0+1
   meta: ^1.12.0
   mq_either:
