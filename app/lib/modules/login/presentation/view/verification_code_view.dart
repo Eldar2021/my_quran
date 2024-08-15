@@ -10,12 +10,31 @@ import 'package:my_quran/theme/custom/typography/typography_theme.dart';
 import 'package:my_quran/utils/urils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerificationCodeView extends StatelessWidget {
-  VerificationCodeView({required this.email, super.key});
+class VerificationCodeView extends StatefulWidget {
+  const VerificationCodeView({required this.email, super.key});
 
-  final TextEditingController verificationCodeController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final String email;
+
+  @override
+  State<VerificationCodeView> createState() => _VerificationCodeViewState();
+}
+
+class _VerificationCodeViewState extends State<VerificationCodeView> {
+  late TextEditingController verificationCodeController;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    verificationCodeController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    verificationCodeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +78,7 @@ class VerificationCodeView extends StatelessWidget {
                     horizontal: 50,
                   ),
                   child: PinCodeTextField(
+                    autoDisposeControllers: false,
                     key: const Key(MqKeys.otpTextField),
                     appContext: context,
                     length: 4,
@@ -90,7 +110,7 @@ class VerificationCodeView extends StatelessWidget {
                         AnalyticKey.tapLogin,
                         params: {'soccial': 'email'},
                       );
-                      context.read<AuthCubit>().verifyOtp(verificationCodeController.text, email);
+                      context.read<AuthCubit>().verifyOtp(verificationCodeController.text, widget.email);
                     }
                   },
                   text: 'Verify',

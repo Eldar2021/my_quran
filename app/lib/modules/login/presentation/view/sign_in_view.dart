@@ -16,11 +16,28 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
 
-class SignInView extends StatelessWidget {
-  SignInView({super.key});
+class SignInView extends StatefulWidget {
+  const SignInView({super.key});
 
-  final emailController = TextEditingController();
+  @override
+  State<SignInView> createState() => _SignInViewState();
+}
+
+class _SignInViewState extends State<SignInView> {
   final formKey = GlobalKey<FormState>();
+  late TextEditingController emailController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +102,10 @@ class SignInView extends StatelessWidget {
                       AnalyticKey.goVerificationOtp,
                     );
                     try {
+                      unawaited(AppAlert.showLoading(context));
                       context.read<AuthCubit>().loginWithEmail(emailController.text);
                       context.goNamed(AppRouter.verificationCode, pathParameters: {'email': emailController.text});
+                      if (context.mounted) context.loaderOverlay.hide();
                     } catch (e) {
                       log(e.toString());
                     }
