@@ -26,6 +26,7 @@ final class AppRouter {
   static const hatimRead = 'hatim-read';
   static const login = 'login';
   static const loginWihtSoccial = 'login-with-soccial';
+  static const verificationCode = 'verification-code';
 
   static const settingsPage = 'settings';
   static const langSettings = 'lang-settings';
@@ -51,6 +52,14 @@ final class AppRouter {
         path: '/$login',
         name: login,
         builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
+        path: '/$verificationCode/:email',
+        name: verificationCode,
+        builder: (context, state) {
+          final email = state.pathParameters['email'];
+          return VerificationCodeView(email: email!);
+        },
       ),
       GoRoute(
         path: '/$loginWihtSoccial',
@@ -114,7 +123,7 @@ final class AppRouter {
     redirect: (context, state) {
       final path = state.matchedLocation;
       if (!context.read<AuthCubit>().isAuthedticated) {
-        if (!path.contains(devModeView) && !path.contains(loginWihtSoccial)) {
+        if (!path.contains(devModeView) && !path.contains(loginWihtSoccial) && !path.contains(verificationCode)) {
           return '/$login';
         }
       }

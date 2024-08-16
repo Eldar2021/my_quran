@@ -10,6 +10,8 @@ class ApiConst {
   static const domain = 'https://myquran.life';
 
   String get socketBase => 'wss://myquran.life/ws';
+  String get loginEmailSend => '$_getDomain/api/v1/accounts/otp/send/';
+  String get loginEmailVerify => '$_getDomain/api/v1/accounts/otp/verify/';
   String get loginWithGoogle => '$_getDomain/api/v1/accounts/google/';
   String get loginWithApple => '$_getDomain/api/v1/accounts/apple/';
   String putProfile(String userId) => '$_getDomain/api/v1/accounts/profile/$userId/';

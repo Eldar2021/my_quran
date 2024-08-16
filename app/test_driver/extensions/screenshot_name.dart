@@ -6,6 +6,8 @@ class Screenshots {
   static const loginGenderFemalePage = '004-login-gender-page-male';
   static const loginGooglePage = '005-login-google-page';
   static const loginApplePage = '006-login-apple-page';
+  static const sendOtp = '007-send-otp';
+  static const loginEmail = '008-login-email-page';
 
   /// 21-40 home
   static const homeInit = '021-home-init';
