@@ -39,21 +39,21 @@
 
 ## [Bug Fixes]
 
-- Fixed MqReomteClient unit tests
+- Fixed MqRemoteClient unit tests
 
 ## [UX]
 
-- Added Email Otp Authentication
+- Added Email OTP Authentication
 
 ## [Technical]
 
-- Created MqReomteClient package
+- Created MqRemoteClient package
 - Created MqEither Package
 - Implemented dio
 - Bump Flutter v3.22.2
 - Integrated FirebaseRemoteConfig
-- Integrated FirebaseAnalitycs
-- Integrated FirebaseCrashlytics
+- Integrated FirebaseAnalytics
+- Integrated Firebase Crashlytics
 - Added mock data source to app module
 - Added mock data to home module
 - Added mock data to read and hatim modules
