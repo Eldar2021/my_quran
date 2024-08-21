@@ -34,3 +34,26 @@
 - Implement detect untranslated localizations
 - Change module architecture (data & domain & presentation)
 - Changed api to myquran.life
+
+# What's Changed v1.3.2
+
+## [Bug Fixes]
+
+- Fixed MqRemoteClient unit tests
+
+## [UX]
+
+- Added Email OTP Authentication
+
+## [Technical]
+
+- Created MqRemoteClient package
+- Created MqEither Package
+- Implemented dio
+- Bump Flutter v3.22.2
+- Integrated FirebaseRemoteConfig
+- Integrated FirebaseAnalytics
+- Integrated Firebase Crashlytics
+- Added mock data source to app module
+- Added mock data to home module
+- Added mock data to read and hatim modules
