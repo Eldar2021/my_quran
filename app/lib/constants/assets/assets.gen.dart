@@ -18,6 +18,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/al_quran.svg
   SvgGenImage get alQuran => const SvgGenImage('assets/icons/al_quran.svg');
 
+  /// File path: assets/icons/asr_time.svg
+  SvgGenImage get asrTime => const SvgGenImage('assets/icons/asr_time.svg');
+
+  /// File path: assets/icons/beshim.svg
+  SvgGenImage get beshim => const SvgGenImage('assets/icons/beshim.svg');
+
   /// File path: assets/icons/contact_us.svg
   SvgGenImage get contactUs => const SvgGenImage('assets/icons/contact_us.svg');
 
@@ -33,17 +39,69 @@ class $AssetsIconsGen {
   /// File path: assets/icons/github.svg
   SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
 
+  /// File path: assets/icons/go_right.svg
+  SvgGenImage get goRight => const SvgGenImage('assets/icons/go_right.svg');
+
   /// File path: assets/icons/google-icon.svg
   SvgGenImage get googleIcon => const SvgGenImage('assets/icons/google-icon.svg');
+
+  /// File path: assets/icons/headphones.svg
+  SvgGenImage get headphones => const SvgGenImage('assets/icons/headphones.svg');
+
+  /// File path: assets/icons/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
   /// File path: assets/icons/male.svg
   SvgGenImage get male => const SvgGenImage('assets/icons/male.svg');
 
+  /// File path: assets/icons/moon.svg
+  SvgGenImage get moon => const SvgGenImage('assets/icons/moon.svg');
+
+  /// File path: assets/icons/notebook.svg
+  SvgGenImage get notebook => const SvgGenImage('assets/icons/notebook.svg');
+
   /// File path: assets/icons/open_book.svg
   SvgGenImage get openBook => const SvgGenImage('assets/icons/open_book.svg');
 
+  /// File path: assets/icons/qibla.svg
+  SvgGenImage get qibla => const SvgGenImage('assets/icons/qibla.svg');
+
+  /// File path: assets/icons/quran_book.svg
+  SvgGenImage get quranBook => const SvgGenImage('assets/icons/quran_book.svg');
+
+  /// File path: assets/icons/settings_burger.svg
+  SvgGenImage get settingsBurger => const SvgGenImage('assets/icons/settings_burger.svg');
+
+  /// File path: assets/icons/sham.svg
+  SvgGenImage get sham => const SvgGenImage('assets/icons/sham.svg');
+
+  /// File path: assets/icons/time.svg
+  SvgGenImage get time => const SvgGenImage('assets/icons/time.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [alQuran, contactUs, duaFemale, duaMale, female, github, googleIcon, male, openBook];
+  List<SvgGenImage> get values => [
+        alQuran,
+        asrTime,
+        beshim,
+        contactUs,
+        duaFemale,
+        duaMale,
+        female,
+        github,
+        goRight,
+        googleIcon,
+        headphones,
+        home,
+        male,
+        moon,
+        notebook,
+        openBook,
+        qibla,
+        quranBook,
+        settingsBurger,
+        sham,
+        time
+      ];
 }
 
 class $AssetsImagesGen {
@@ -55,11 +113,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/dua_female.jpg
   AssetGenImage get duaFemale => const AssetGenImage('assets/images/dua_female.jpg');
 
+  /// File path: assets/images/emoji.png
+  AssetGenImage get emoji => const AssetGenImage('assets/images/emoji.png');
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [appIcon, duaFemale, splash];
+  List<AssetGenImage> get values => [appIcon, duaFemale, emoji, splash];
 }
 
 class Assets {

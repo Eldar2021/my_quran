@@ -48,6 +48,11 @@ dependencies:
   mq_storage:
     path: ../packages/mq_storage
   pin_code_fields: ^8.0.1
+  curved_navigation_bar: ^1.0.6
+  syncfusion_flutter_gauges: ^27.1.50
+  geolocator: ^12.0.0
+  geolocator_android: 4.5.5
+  geocoding: ^3.0.0
   # flutter_native_splash: ^2.4.0
 
 dev_dependencies:
