@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:my_quran/utils/urils.dart';
+import 'package:my_quran/utils/utils.dart';
 
 class SeekBar extends StatelessWidget {
   const SeekBar({

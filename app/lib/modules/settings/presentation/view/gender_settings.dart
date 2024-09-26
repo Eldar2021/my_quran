@@ -7,7 +7,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/utils/urils.dart';
+import 'package:my_quran/utils/utils.dart';
 
 class GenderSettingView extends StatelessWidget {
   const GenderSettingView({super.key});

@@ -99,6 +99,9 @@ class MyApp extends StatelessWidget {
             remoteConfig: context.read<MqRemoteConfig>(),
           ),
         ),
+        BlocProvider(
+          create: (context) => LocationCubit(),
+        ),
       ],
       child: const QuranApp(),
     );

@@ -14,7 +14,7 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
-import 'package:my_quran/utils/urils.dart';
+import 'package:my_quran/utils/utils.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});

@@ -7,7 +7,7 @@ import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/theme/custom/typography/typography_theme.dart';
-import 'package:my_quran/utils/urils.dart';
+import 'package:my_quran/utils/utils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerificationCodeView extends StatefulWidget {

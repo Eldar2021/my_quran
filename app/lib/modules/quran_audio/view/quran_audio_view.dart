@@ -6,7 +6,7 @@ import 'package:my_quran/core/core.dart';
 
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/utils/urils.dart';
+import 'package:my_quran/utils/utils.dart';
 
 class QuranAudioView extends StatelessWidget {
   const QuranAudioView({super.key});

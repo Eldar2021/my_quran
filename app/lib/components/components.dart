@@ -1,3 +1,4 @@
+export 'animations/animated_prayer_time.dart';
 export 'button/custom_button.dart';
 export 'card/gender_card.dart';
 export 'card/material_card.dart';
