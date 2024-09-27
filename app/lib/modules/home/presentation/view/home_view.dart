@@ -137,7 +137,7 @@ class _HomeViewState extends State<HomeView> {
                                       child: Text(
                                         l10n.homeAllHatim,
                                         style: const TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           color: Color(0xff1C274C),
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -160,10 +160,12 @@ class _HomeViewState extends State<HomeView> {
                                     Flexible(
                                       child: Text(
                                         l10n.allDonePages,
-                                        style: const TextStyle(fontSize: 16, color: Color(0xff1C274C)),
+                                        style: const TextStyle(           fontSize: 14,
+                                          color: Color(0xff1C274C),
+                                          fontWeight: FontWeight.bold,),
                                       ),
                                     ),
-                                    const SizedBox(width: 20),
+                                    const SizedBox(width: 5),
                                     Text(
                                       '${homeCubit.state.homeModel?.allDonePages ?? 0}',
                                       style: const TextStyle(
@@ -181,7 +183,9 @@ class _HomeViewState extends State<HomeView> {
                                     Flexible(
                                       child: Text(
                                         l10n.homeUserReadAllPage,
-                                        style: const TextStyle(fontSize: 16, color: Color(0xff1C274C)),
+                                        style: const TextStyle(           fontSize: 14,
+                                          color: Color(0xff1C274C),
+                                          fontWeight: FontWeight.bold,),
                                       ),
                                     ),
                                     Text(

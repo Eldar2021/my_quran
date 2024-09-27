@@ -92,5 +92,8 @@
 	<array>
 		<string>audio</string>
 	</array>
+	<!-- Geolocator  -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open.</string>
 </dict>
 </plist>
