@@ -45,7 +45,12 @@ class _HomeViewState extends State<HomeView> {
         leading: Padding(
           padding: const EdgeInsets.all(14),
           child: GestureDetector(
-            onTap: () => context.goNamed(AppRouter.settingsPage),
+            onTap: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) => const SettingsView(),
+              ),
+            ),
             child: Assets.icons.settingsBurger.svg(key: const Key(MqKeys.settings)),
           ),
         ),
@@ -160,9 +165,11 @@ class _HomeViewState extends State<HomeView> {
                                     Flexible(
                                       child: Text(
                                         l10n.allDonePages,
-                                        style: const TextStyle(           fontSize: 14,
+                                        style: const TextStyle(
+                                          fontSize: 14,
                                           color: Color(0xff1C274C),
-                                          fontWeight: FontWeight.bold,),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(width: 5),
@@ -183,9 +190,11 @@ class _HomeViewState extends State<HomeView> {
                                     Flexible(
                                       child: Text(
                                         l10n.homeUserReadAllPage,
-                                        style: const TextStyle(           fontSize: 14,
+                                        style: const TextStyle(
+                                          fontSize: 14,
                                           color: Color(0xff1C274C),
-                                          fontWeight: FontWeight.bold,),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     Text(
