@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -153,20 +154,21 @@ class _SignInViewState extends State<SignInView> {
                 ),
               ),
               const SizedBox(height: 16),
-              SignInWithAppleButton(
-                key: Key(MqKeys.loginTypeName('apple')),
-                text: 'Apple',
-                height: 50,
-                onPressed: () async {
-                  MqAnalytic.track(
-                    AnalyticKey.tapLogin,
-                    params: {'soccial': 'apple'},
-                  );
-                  unawaited(AppAlert.showLoading(context));
-                  await context.read<AuthCubit>().signInWithApple();
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
-              ),
+              if (Platform.isIOS)
+                SignInWithAppleButton(
+                  key: Key(MqKeys.loginTypeName('apple')),
+                  text: 'Apple',
+                  height: 50,
+                  onPressed: () async {
+                    MqAnalytic.track(
+                      AnalyticKey.tapLogin,
+                      params: {'soccial': 'apple'},
+                    );
+                    unawaited(AppAlert.showLoading(context));
+                    await context.read<AuthCubit>().signInWithApple();
+                    if (context.mounted) context.loaderOverlay.hide();
+                  },
+                ),
               const SizedBox(height: 40),
               TextButton(
                 onPressed: () {

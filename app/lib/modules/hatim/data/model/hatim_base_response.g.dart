@@ -6,14 +6,12 @@ part of 'hatim_base_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-HatimBaseResponse _$HatimBaseResponseFromJson(Map<String, dynamic> json) =>
-    HatimBaseResponse(
+HatimBaseResponse _$HatimBaseResponseFromJson(Map<String, dynamic> json) => HatimBaseResponse(
       type: $enumDecode(_$HatimResponseTypeEnumMap, json['type']),
       data: json['data'],
     );
 
-Map<String, dynamic> _$HatimBaseResponseToJson(HatimBaseResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$HatimBaseResponseToJson(HatimBaseResponse instance) => <String, dynamic>{
       'type': _$HatimResponseTypeEnumMap[instance.type]!,
       'data': instance.data,
     };
