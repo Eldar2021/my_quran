@@ -91,5 +91,7 @@
     "readed": "Read",
     "reading": "Reading",
     "notSelected": "Not selected",
-    "pages": "pages"
+    "pages": "pages",
+    "deleteAccount": "Delete account",
+    "confirmDeleteAccount": "Are you sure you want to delete this account?"
 }

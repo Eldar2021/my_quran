@@ -66,7 +66,10 @@ final class MqKeys {
   static const settingsDevelopers = 'settings-developers';
   static const settingsDevelopersPage = 'settings-developers-page';
   static const String logoutButton = 'logout-button';
+  static const String deleteAccountButton = 'delete-button';
+
   static const String confirmLogoutButton = 'confirm-logout-button';
+  static const String confirmDeleteAccountButton = 'confirm-delete-account-button';
   static const String confirmLogoutButtonYes = 'confirm-logout-button-yes';
 
   // gender

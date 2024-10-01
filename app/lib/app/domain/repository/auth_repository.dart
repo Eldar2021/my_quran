@@ -35,4 +35,5 @@ abstract class AuthRepository {
   });
 
   Future<void> logout() async {}
+  Future<void> deleteAccount() async {}
 }

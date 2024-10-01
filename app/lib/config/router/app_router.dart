@@ -70,12 +70,6 @@ final class AppRouter {
         name: devModeView,
         builder: (context, state) => const DevModeView(),
       ),
-      GoRoute(
-        path: '/$settingsPage',
-        name: settingsPage,
-        builder: (context, state) => const SettingsView(),
-        routes: settingsSubRoutes,
-      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => MainView(navigationShell),
         branches: [
@@ -141,6 +135,12 @@ final class AppRouter {
             },
           ),
         ],
+      ),
+      GoRoute(
+        path: settingsPage,
+        name: settingsPage,
+        builder: (context, state) => const SettingsView(),
+        routes: settingsSubRoutes,
       ),
     ];
   }

@@ -107,52 +107,49 @@ class _PrayTimeWidgetState extends State<PrayTimeWidget> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 60),
-                  child: SizedBox(
-                    height: 64,
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'This feature will be added in the future...',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Color(0xff1C274C),
-                              padding: EdgeInsets.only(bottom: 30, top: 10, left: 10),
+                SizedBox(
+                  height: 64,
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'This feature will be added in the future...',
+                              style: TextStyle(color: Colors.white),
                             ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(8),
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          child: Text(
-                            '${context.l10n.nextPrayer}: $_nextPrayerName $_nextPrayerTime',
-                            style: const TextStyle(
-                              color: Color(0xff1C274C),
-                              fontSize: 10,
-                            ),
+                            backgroundColor: Color(0xff1C274C),
+                            padding: EdgeInsets.only(bottom: 30, top: 10, left: 10),
                           ),
                         ),
-                        Positioned(
-                          top: 0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                              border: Border.all(color: Colors.white, width: 4),
-                            ),
-                            child: Assets.icons.time.svg(),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(8),
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
                         ),
-                      ],
-                    ),
+                        child: Text(
+                          '${context.l10n.nextPrayer}: $_nextPrayerName $_nextPrayerTime',
+                          style: const TextStyle(
+                            color: Color(0xff1C274C),
+                            fontSize: 10,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(color: Colors.white, width: 4),
+                          ),
+                          child: Assets.icons.time.svg(),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

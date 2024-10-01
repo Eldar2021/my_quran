@@ -90,5 +90,7 @@
     "readed": "Telah dibaca",
     "reading": "Membaca",
     "notSelected": "Belum dipilih",
-    "pages": "halaman"
+    "pages": "halaman",
+    "deleteAccount": "Hapus akun",
+    "confirmDeleteAccount": "Apakah Anda yakin ingin menghapus akun ini?"
 }

@@ -90,5 +90,7 @@
     "readed": "Оқылды",
     "reading": "Оқып жатыр",
     "notSelected": "Таңдалмаған",
-    "pages": "парақ"
+    "pages": "парақ",
+    "deleteAccount": "Аккаунтты жою",
+    "confirmDeleteAccount": "Сіз бұл аккаунтты жойғыңыз келетініне сенімдісіз бе?"
 }

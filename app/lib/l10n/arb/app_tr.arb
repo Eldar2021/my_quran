@@ -90,5 +90,7 @@
     "readed": "Okundu",
     "reading": "Okunuyor",
     "notSelected": "Seçilmedi",
-    "pages": "sayfa"
+    "pages": "sayfa",
+    "deleteAccount": "Hesabı sil",
+    "confirmDeleteAccount": "Bu hesabı silmek istediğinizden emin misiniz?"
 }

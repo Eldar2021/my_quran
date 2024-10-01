@@ -90,5 +90,7 @@
     "readed": "تمت القراءة",
     "reading": "يقرأ",
     "notSelected": "لم يتم التحديد",
-    "pages": "صفحات"
+    "pages": "صفحات",
+    "deleteAccount": "حذف الحساب",
+    "confirmDeleteAccount": "هل أنت متأكد أنك تريد حذف هذا الحساب؟"
 }

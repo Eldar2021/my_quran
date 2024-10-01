@@ -58,4 +58,14 @@ class SoccialAuth {
       rethrow;
     }
   }
+
+  Future<void> deleteAccount() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      await _googleSignIn.signOut();
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      rethrow;
+    }
+  }
 }

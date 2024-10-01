@@ -34,4 +34,5 @@ abstract class AuthRemoteDataSource {
   });
 
   Future<void> logoutRemote();
+  Future<void> deleteAccountRemote();
 }
