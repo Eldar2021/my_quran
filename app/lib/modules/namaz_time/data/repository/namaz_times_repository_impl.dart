@@ -30,9 +30,14 @@ final class NamazTimesRepositoryImpl implements NamazTimesRepository {
         asrOffset: 1,
         magribOffset: 1,
         ishaOffset: 1,
-        timezone: ' 1',
         id: 1,
-        subLocations: [],
+        useFormula: 1,
+        validUntil: '',
+        startDateTz: '',
+        startDateSecondTz: '',
+        timezone: 1,
+        secondTimezone: 1,
+        times: {},
       );
     }
   }
@@ -52,7 +57,12 @@ final class NamazTimesRepositoryImpl implements NamazTimesRepository {
       ishaOffset: response.ishaOffset,
       timezone: response.timezone,
       id: response.id,
-      subLocations: response.subLocations ?? [],
+      useFormula: response.useFormula,
+      validUntil: response.validUntil,
+      startDateTz: response.startDateTz,
+      startDateSecondTz: response.startDateSecondTz,
+      secondTimezone: response.secondTimezone,
+      times: response.times,
     );
   }
 

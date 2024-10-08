@@ -111,7 +111,7 @@ class _PrayTimeWidgetState extends State<PrayTimeWidget> {
                   onTap: () => Navigator.push<void>(
                     context,
                     MaterialPageRoute<void>(
-                      builder: (BuildContext context) => const NamazTimeView(),
+                      builder: (BuildContext context) => const ChooseContinentView(),
                     ),
                   ),
                   child: SizedBox(

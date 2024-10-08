@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'namaz_times_response.dart';
+part of 'namaz_times_model_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -9,10 +9,7 @@ part of 'namaz_times_response.dart';
 NamazTimesResponse _$NamazTimesResponseFromJson(Map<String, dynamic> json) =>
     NamazTimesResponse(
       id: (json['id'] as num).toInt(),
-      title: json['title'] as String,
-      subLocations: (json['subLocations'] as List<dynamic>?)
-          ?.map((e) => SubLocation.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      title: json['title'] as String?,
       titleRu: json['titleRu'] as String?,
       titleEn: json['titleEn'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
@@ -23,15 +20,16 @@ NamazTimesResponse _$NamazTimesResponseFromJson(Map<String, dynamic> json) =>
       asrOffset: (json['asrOffset'] as num?)?.toInt(),
       magribOffset: (json['magribOffset'] as num?)?.toInt(),
       ishaOffset: (json['ishaOffset'] as num?)?.toInt(),
-      useFormula: json['useFormula'] as bool?,
-      startDateTz: json['startDateTz'] == null
-          ? null
-          : DateTime.parse(json['startDateTz'] as String),
-      startDateSecondTz: json['startDateSecondTz'] == null
-          ? null
-          : DateTime.parse(json['startDateSecondTz'] as String),
-      timezone: json['timezone'] as String?,
-      secondTimezone: json['secondTimezone'] as String?,
+      useFormula: (json['useFormula'] as num?)?.toInt(),
+      validUntil: json['validUntil'] as String?,
+      startDateTz: json['startDateTz'] as String?,
+      startDateSecondTz: json['startDateSecondTz'] as String?,
+      timezone: (json['timezone'] as num?)?.toInt(),
+      secondTimezone: (json['secondTimezone'] as num?)?.toInt(),
+      times: (json['times'] as Map<String, dynamic>?)?.map(
+        (k, e) =>
+            MapEntry(k, (e as List<dynamic>).map((e) => e as String).toList()),
+      ),
     );
 
 Map<String, dynamic> _$NamazTimesResponseToJson(NamazTimesResponse instance) =>
@@ -49,9 +47,10 @@ Map<String, dynamic> _$NamazTimesResponseToJson(NamazTimesResponse instance) =>
       'magribOffset': instance.magribOffset,
       'ishaOffset': instance.ishaOffset,
       'useFormula': instance.useFormula,
-      'startDateTz': instance.startDateTz?.toIso8601String(),
-      'startDateSecondTz': instance.startDateSecondTz?.toIso8601String(),
+      'validUntil': instance.validUntil,
+      'startDateTz': instance.startDateTz,
+      'startDateSecondTz': instance.startDateSecondTz,
       'timezone': instance.timezone,
       'secondTimezone': instance.secondTimezone,
-      'subLocations': instance.subLocations,
+      'times': instance.times,
     };

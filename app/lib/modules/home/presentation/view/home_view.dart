@@ -64,7 +64,7 @@ class _HomeViewState extends State<HomeView> {
                 Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const NamazTimeView(),
+                    builder: (BuildContext context) => const ChooseContinentView(),
                   ),
                 );
               },

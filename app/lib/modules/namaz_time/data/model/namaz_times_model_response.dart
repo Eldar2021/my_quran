@@ -1,9 +1,12 @@
-import 'package:intl/intl.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'namaz_times_model_response.g.dart';
+
+@JsonSerializable()
 @immutable
-final class NamazTimesEntity {
-  const NamazTimesEntity({
+class NamazTimesResponse {
+  const NamazTimesResponse({
     required this.id,
     this.title,
     this.titleRu,
@@ -25,6 +28,10 @@ final class NamazTimesEntity {
     this.times,
   });
 
+  factory NamazTimesResponse.fromJson(Map<String, dynamic> json) => _$NamazTimesResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NamazTimesResponseToJson(this);
+
   final int id;
   final String? title;
   final String? titleRu;
@@ -44,9 +51,4 @@ final class NamazTimesEntity {
   final int? timezone;
   final int? secondTimezone;
   final Map<String, List<String>>? times;
-
-  List<String>? getTodaysTimes() {
-    final today = DateFormat('dd.MM').format(DateTime.now());
-    return times![today];
-  }
 }

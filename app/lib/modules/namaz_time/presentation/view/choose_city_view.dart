@@ -3,19 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class RegionsView extends StatelessWidget {
-  const RegionsView({required this.continentId, super.key});
+class CityView extends StatelessWidget {
+  const CityView({required this.regionId, super.key});
 
-  final int continentId;
+  final int regionId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Regions'),
+        title: const Text('City'),
       ),
       body: BlocProvider(
-        create: (context) => context.read<NamazTimeCubit>()..getRegions(continentId),
+        create: (context) => context.read<NamazTimeCubit>()..getRegions(regionId),
         child: BlocBuilder<NamazTimeCubit, NamazTimeState>(
           builder: (context, state) {
             if (state.status == FetchStatus.loading) {
@@ -32,7 +32,13 @@ class RegionsView extends StatelessWidget {
                   return ListTile(
                     title: Text(region.title ?? ''),
                     onTap: () {
-                      context.read<NamazTimeCubit>().getRegions(region.id);
+                      Navigator.push<ChooseContinentView>(
+                        context,
+                        MaterialPageRoute<ChooseContinentView>(
+                          builder: (context) => NamazTimeView(cityId: region.id),
+                        ),
+                      );
+                      // context.read<NamazTimeCubit>().getRegions(region.id);
                     },
                   );
                 },
