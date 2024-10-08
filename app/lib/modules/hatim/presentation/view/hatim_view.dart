@@ -44,6 +44,7 @@ class _HatimUIState extends State<HatimUI> {
     return Scaffold(
       key: const Key(MqKeys.hatimPage),
       appBar: AppBar(
+        backgroundColor: const Color(0xffF5F5F5),
         title: Text(context.l10n.hatim),
         actions: [
           BlocBuilder<HatimBloc, HatimState>(
@@ -101,8 +102,22 @@ class _HatimUIState extends State<HatimUI> {
                     context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
                   }
                 },
-                label: Text(context.l10n.read),
-                icon: Assets.icons.openBook.svg(),
+                label: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    children: <Widget>[
+                      Text(context.l10n.read),
+                      const SizedBox(width: 8),
+                      Assets.icons.notebook.svg(width: 18),
+                    ],
+                  ),
+                ),
+                backgroundColor: Colors.white,
+                foregroundColor: const Color(0xff1C274C),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(color: Color(0xffC992B1)),
+                  borderRadius: BorderRadius.circular(100),
+                ),
               );
             }
           }

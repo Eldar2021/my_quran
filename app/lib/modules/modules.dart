@@ -7,3 +7,4 @@ export 'read/read.dart';
 export 'settings/settings.dart';
 export 'quran_audio/quran_audio.dart';
 export 'dev_mode/dev_mode.dart';
+export 'namaz_time/namaz_time.dart';

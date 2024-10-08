@@ -11,6 +11,8 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/modules/namaz_time/data/repository/namaz_times_repository_impl.dart';
+import 'package:my_quran/modules/namaz_time/domain/usecase/get_regions_usecase.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class MyApp extends StatelessWidget {
@@ -71,6 +73,7 @@ class MyApp extends StatelessWidget {
             LogoutUseCase(context.read<AuthRepository>()),
             EmailLoginUseCase(context.read<AuthRepository>()),
             VerifyOtpUseCase(context.read<AuthRepository>()),
+            DeleteAccountUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(
@@ -97,6 +100,22 @@ class MyApp extends StatelessWidget {
           create: (context) => RemoteConfigCubit(
             packageInfo: context.read<PackageInfo>(),
             remoteConfig: context.read<MqRemoteConfig>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => LocationCubit(),
+        ),
+        BlocProvider(
+          create: (context) => NamazTimeCubit(
+            GetNamazTimesUseCase(
+              NamazTimesRepositoryImpl(NamazTimesRemoteDataSourceImpl(context.read<MqRemoteClient>())),
+            ),
+            GetContinentsUseCase(
+              NamazTimesRepositoryImpl(NamazTimesRemoteDataSourceImpl(context.read<MqRemoteClient>())),
+            ),
+            GetRegionsUseCase(
+              NamazTimesRepositoryImpl(NamazTimesRemoteDataSourceImpl(context.read<MqRemoteClient>())),
+            ),
           ),
         ),
       ],

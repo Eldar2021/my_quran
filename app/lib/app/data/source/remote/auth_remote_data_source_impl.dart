@@ -198,6 +198,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> logoutRemote() async {
     await soccialAuth.logOut();
   }
+
+  @override
+  Future<void> deleteAccountRemote() async {
+    await soccialAuth.deleteAccount();
+  }
 }
 
 @immutable

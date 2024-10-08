@@ -9,3 +9,4 @@ export 'audio/seek_bar.dart';
 export 'audio/audio_center_button.dart';
 export 'alert/confirmation_dialog.dart';
 export 'forms/custom_text_field.dart';
+export 'animations/animated_prayer_time.dart';

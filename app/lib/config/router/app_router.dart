@@ -11,7 +11,6 @@ final rootNavigatorKey = GlobalKey<NavigatorState>();
 final _sectionNavigatorKey1 = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
 final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
-final _sectionNavigatorKey4 = GlobalKey<NavigatorState>(debugLabel: 'settings');
 
 @immutable
 final class AppRouter {
@@ -78,10 +77,10 @@ final class AppRouter {
             navigatorKey: _sectionNavigatorKey1,
             routes: [
               GoRoute(
-                path: '/$home',
-                name: home,
-                builder: (context, state) => const HomeView(),
-                routes: homeSubRoutes,
+                path: '/$quran',
+                name: quran,
+                builder: (context, state) => const QuranView(),
+                routes: quranSubRoutes,
               ),
             ],
           ),
@@ -89,10 +88,10 @@ final class AppRouter {
             navigatorKey: _sectionNavigatorKey2,
             routes: [
               GoRoute(
-                path: '/$quran',
-                name: quran,
-                builder: (context, state) => const QuranView(),
-                routes: quranSubRoutes,
+                path: '/$home',
+                name: home,
+                builder: (context, state) => const HomeView(),
+                routes: homeSubRoutes,
               ),
             ],
           ),
@@ -103,17 +102,6 @@ final class AppRouter {
                 path: '/$quranAudio',
                 name: quranAudio,
                 builder: (context, state) => const QuranAudioView(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _sectionNavigatorKey4,
-            routes: [
-              GoRoute(
-                path: '/$settingsPage',
-                name: settingsPage,
-                builder: (context, state) => const SettingsView(),
-                routes: settingsSubRoutes,
               ),
             ],
           ),
@@ -141,13 +129,18 @@ final class AppRouter {
           GoRoute(
             path: '$hatimRead/:isHatim/:pages',
             name: hatimRead,
-            parentNavigatorKey: rootNavigatorKey,
             builder: (context, state) {
               final args = ParseParams.parseRead(state.pathParameters);
               return ReadView(args.$1, isHatim: args.$2);
             },
           ),
         ],
+      ),
+      GoRoute(
+        path: settingsPage,
+        name: settingsPage,
+        builder: (context, state) => const SettingsView(),
+        routes: settingsSubRoutes,
       ),
     ];
   }
@@ -157,7 +150,6 @@ final class AppRouter {
       GoRoute(
         path: '$read/:isHatim/:pages',
         name: read,
-        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseRead(state.pathParameters);
           return ReadView(args.$1, isHatim: args.$2);

@@ -36,10 +36,10 @@ final class AppAlert {
     );
   }
 
-  static Future<T?> showAmin<T>(BuildContext context, Gender gender, {required bool isHatim, required int totalPages}) {
-    final colorScheme = Theme.of(context).colorScheme;
+  static Future<T?> showAmin<T>(BuildContext ctx, Gender gender, {required bool isHatim, required int totalPages}) {
+    final colorScheme = Theme.of(ctx).colorScheme;
     return showDialog<T>(
-      context: context,
+      context: ctx,
       builder: (context) {
         return AlertDialog(
           icon: gender == Gender.male

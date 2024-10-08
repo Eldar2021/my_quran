@@ -14,6 +14,8 @@ class ApiConst {
   String get loginEmailVerify => '$_getDomain/api/v1/accounts/otp/verify/';
   String get loginWithGoogle => '$_getDomain/api/v1/accounts/google/';
   String get loginWithApple => '$_getDomain/api/v1/accounts/apple/';
+  String get nasaatMediaContinentsApi => 'http://165.232.39.64/api_places_times.php';
+  String nasaatMediaNamazTimesApi(int placeId) => '$nasaatMediaContinentsApi?place_id=$placeId';
   String putProfile(String userId) => '$_getDomain/api/v1/accounts/profile/$userId/';
   String get hatimDashBoard => '$_getDomain/api/v1/hatim/dashboard';
   String get joinToHatim => '$_getDomain/api/v1/hatim/join_to_hatim';
