@@ -60,16 +60,24 @@ class _HomeViewState extends State<HomeView> {
           Padding(
             padding: const EdgeInsets.all(6),
             child: IconButton(
-              onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    'This feature will be added in the future...',
-                    style: TextStyle(color: Colors.white),
+              onPressed: () {
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const NamazTimeView(),
                   ),
-                  backgroundColor: Color(0xff1C274C),
-                  padding: EdgeInsets.only(bottom: 30, top: 10, left: 10),
-                ),
-              ),
+                );
+              },
+              // ScaffoldMessenger.of(context).showSnackBar(
+              //   const SnackBar(
+              //     content: Text(
+              //       'This feature will be added in the future...',
+              //       style: TextStyle(color: Colors.white),
+              //     ),
+              //     backgroundColor: Color(0xff1C274C),
+              //     padding: EdgeInsets.only(bottom: 30, top: 10, left: 10),
+              //   ),
+              // ),
               icon: Assets.icons.qibla.svg(),
             ),
           ),

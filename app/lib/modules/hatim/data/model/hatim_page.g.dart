@@ -13,7 +13,8 @@ HatimPages _$HatimPagesFromJson(Map<String, dynamic> json) => HatimPages(
       mine: json['mine'] as bool,
     );
 
-Map<String, dynamic> _$HatimPagesToJson(HatimPages instance) => <String, dynamic>{
+Map<String, dynamic> _$HatimPagesToJson(HatimPages instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'number': instance.number,
       'status': _$HatimPageStatusEnumMap[instance.status]!,
