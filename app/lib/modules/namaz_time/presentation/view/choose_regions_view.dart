@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/modules/namaz_time/presentation/view/choose_city_view.dart';
 
 class RegionsView extends StatelessWidget {
   const RegionsView({required this.continentId, super.key});
