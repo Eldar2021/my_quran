@@ -201,4 +201,39 @@ class MqRemoteClient {
     final data = await _patch<List<dynamic>>(url, body: body);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
+
+  /// Makes a DELETE request to the given [url] with an optional [body] and parses
+  /// the response as type [T].
+  Future<Either<T, MqRemoteException>> delete<T>(
+    String url, {
+    Map<String, dynamic>? body,
+  }) {
+    return _delete<T>(url, body: body);
+  }
+
+  /// Makes a DELETE request to the given [url] with an optional [body] and parses
+  /// the response as type [T] from a JSON object.
+  ///
+  /// The [fromJson] parameter is used to parse the JSON response.
+  Future<Either<T, MqRemoteException>> deleteType<T>(
+    String url, {
+    required FromJson<T> fromJson,
+    Map<String, dynamic>? body,
+  }) async {
+    final data = await _delete<Map<String, dynamic>>(url, body: body);
+    return _convertType<T>(jsonData: data, fromJson: fromJson);
+  }
+
+  /// Makes a DELETE request to the given [url] with an optional [body] and parses
+  /// the response as a list of type [T].
+  ///
+  /// The [fromJson] parameter is used to parse each JSON object in the list.
+  Future<Either<List<T>, MqRemoteException>> deleteListOfType<T>(
+    String url, {
+    required FromJson<T> fromJson,
+    Map<String, dynamic>? body,
+  }) async {
+    final data = await _delete<List<dynamic>>(url, body: body);
+    return _convertListOfType(jsonData: data, fromJson: fromJson);
+  }
 }

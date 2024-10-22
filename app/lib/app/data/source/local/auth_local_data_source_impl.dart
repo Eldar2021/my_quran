@@ -56,4 +56,10 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   Future<void> logoutLocal() async {
     await storage.clear();
   }
+
+  @override
+  Future<void> deleteAccountLocal() async {
+    await storage.clear();
+    await storage.delete(key: StorageKeys.tokenKey);
+  }
 }

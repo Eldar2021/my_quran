@@ -22,4 +22,7 @@ final class AuthLocalDataSourceMock implements AuthLocalDataSource {
 
   @override
   Future<void> logoutLocal() async => Future.value();
+
+  @override
+  Future<void> deleteAccountLocal() async => Future.value();
 }

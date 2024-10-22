@@ -79,6 +79,24 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
     }
   }
 
+  Future<Either<T, MqRemoteException>> _delete<T>(
+    String url, {
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      if (await network.checkInternetConnection()) {
+        final response = await dio.delete<T>(url, data: body);
+        return Right(response.data as T);
+      } else {
+        return const Left(MqRemoteException(FailureType.connection));
+      }
+    } on DioException catch (e) {
+      return Left(_parseDioException(e));
+    } catch (e, s) {
+      return Left(_unknownExc(e, s));
+    }
+  }
+
   /// Converts JSON data to a specific type [T] using [fromJson] function.
   /// Returns either the converted type [T] or an [MqRemoteException].
   Future<Either<T, MqRemoteException>> _convertType<T>({

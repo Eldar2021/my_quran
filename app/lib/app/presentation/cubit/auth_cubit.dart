@@ -19,6 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
     this.logoutUseCase,
     this.loginWithEmailUsecase,
     this.verifyOtpUseCase,
+    this.deleteAccountUseCase,
   ) : super(AuthState(user: getInitialUserUseCase.call));
 
   final GetInitialUserUseCase getInitialUserUseCase;
@@ -30,6 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
   final LogoutUseCase logoutUseCase;
   final EmailLoginUseCase loginWithEmailUsecase;
   final VerifyOtpUseCase verifyOtpUseCase;
+  final DeleteAccountUseCase deleteAccountUseCase;
 
   Future<void> loginWithEmail(String email) async {
     try {
@@ -124,6 +126,15 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> logout() async {
     try {
       await logoutUseCase.call();
+      emit(const AuthState());
+    } catch (e) {
+      emit(state.copyWith(exception: Exception(e)));
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    try {
+      await deleteAccountUseCase.call();
       emit(const AuthState());
     } catch (e) {
       emit(state.copyWith(exception: Exception(e)));

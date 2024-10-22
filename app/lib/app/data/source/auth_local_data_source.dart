@@ -7,4 +7,5 @@ abstract class AuthLocalDataSource {
   Future<void> saveGender(Gender gender);
   Future<void> saveLocaleCode(String localeCode);
   Future<void> logoutLocal();
+  Future<void> deleteAccountLocal();
 }

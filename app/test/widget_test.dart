@@ -44,6 +44,7 @@ void main() {
     final logoutUseCase = LogoutUseCase(authRepository);
     final emailSignIn = EmailLoginUseCase(authRepository);
     final verifyOtp = VerifyOtpUseCase(authRepository);
+    final deleteAccount = DeleteAccountUseCase(authRepository);
 
     when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
     when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
@@ -68,6 +69,7 @@ void main() {
       packageInfo,
       emailSignIn,
       verifyOtp,
+      deleteAccount,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

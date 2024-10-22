@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/theme/theme.dart';
 
 part 'hatim_page.g.dart';
 
@@ -45,23 +44,25 @@ enum HatimPageStatus {
 
   Color get bgColor {
     return switch (this) {
-      HatimPageStatus.done => AppColors.red,
-      HatimPageStatus.booked || HatimPageStatus.inProgress => AppColors.yellow,
-      _ => AppColors.green,
+      HatimPageStatus.done => const Color(0xffA851FA).withOpacity(0.6),
+      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(0xffC992B1).withOpacity(0.6),
+      _ => const Color(0xffF6684E).withOpacity(0.9),
     };
   }
 
   Color get frColor {
     return switch (this) {
-      HatimPageStatus.done || HatimPageStatus.todo => AppColors.white,
-      _ => AppColors.black,
+      HatimPageStatus.done => const Color(0xffA851FA).withOpacity(0.6),
+      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(0xffC992B1).withOpacity(0.6),
+      _ => const Color(0xffF6684E).withOpacity(0.9),
     };
   }
 
   Color? get iconColor {
     return switch (this) {
-      HatimPageStatus.done => null,
-      _ => AppColors.black,
+      HatimPageStatus.done => const Color(0xffA851FA).withOpacity(0.6),
+      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(0xffC992B1).withOpacity(0.6),
+      _ => const Color(0xffF6684E).withOpacity(0.9),
     };
   }
 
