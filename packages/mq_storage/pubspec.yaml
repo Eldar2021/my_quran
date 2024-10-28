@@ -4,14 +4,14 @@ version: 0.1.0+1
 publish_to: none
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
-  flutter: 3.22.2
+  sdk: ">=3.5.0 <4.0.0"
+  flutter: ^3.24.3
 
 dependencies:
   flutter:
     sdk: flutter
   # flutter_secure_storage: ^9.2.2
-  shared_preferences: ^2.2.3
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
