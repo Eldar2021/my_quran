@@ -69,6 +69,9 @@ dependencies:
   mq_storage:
     path: ../packages/mq_storage
   curved_navigation_bar: ^1.0.6
+  geocoding: ^3.0.0
+  geolocator: ^13.0.1
+  syncfusion_flutter_gauges: ^27.1.57
 
 dev_dependencies:
   flutter_test:

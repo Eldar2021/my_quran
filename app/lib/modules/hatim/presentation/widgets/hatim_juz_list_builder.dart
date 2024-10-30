@@ -29,9 +29,9 @@ class HatimJuzListBuilder extends StatelessWidget {
                 subtitle: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    VerticalText(context.l10n.hatimDoneRead, '${item.done}'),
-                    VerticalText(context.l10n.hatimProccessRead, '${item.inProgress}'),
-                    VerticalText(context.l10n.hatimEmptyRead, '${item.toDo}'),
+                    VerticalText(context.l10n.read, '${item.done}'),
+                    VerticalText(context.l10n.reading, '${item.inProgress}'),
+                    VerticalText(context.l10n.notSelected, '${item.toDo}'),
                   ],
                 ),
                 onTap: () async {
