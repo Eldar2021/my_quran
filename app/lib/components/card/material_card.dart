@@ -8,6 +8,7 @@ class MaterialCard extends StatelessWidget {
     this.check,
     super.key,
   });
+
   final Color color;
   final String text;
   final Widget? check;
