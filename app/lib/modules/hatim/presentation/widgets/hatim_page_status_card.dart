@@ -31,6 +31,7 @@ class HatimPageStatusCard extends StatelessWidget {
         child: MaterialCard(
           text: '$pageNumber',
           textColor: status.frColor,
+          color: Colors.white,
           check: isMine
               ? Positioned(
                   right: 2,

@@ -4,6 +4,7 @@ class MaterialCard extends StatelessWidget {
   const MaterialCard({
     required this.text,
     required this.textColor,
+    required this.color,
     this.check,
     super.key,
   });
@@ -11,12 +12,13 @@ class MaterialCard extends StatelessWidget {
   final String text;
   final Widget? check;
   final Color textColor;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.circle,
-      color: Colors.white,
+      color: color,
       child: Stack(
         children: [
           Center(child: Text(text, style: TextStyle(color: textColor))),
