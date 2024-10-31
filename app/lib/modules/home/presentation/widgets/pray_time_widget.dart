@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -7,66 +6,8 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class PrayTimeWidget extends StatefulWidget {
+class PrayTimeWidget extends StatelessWidget {
   const PrayTimeWidget({super.key});
-
-  @override
-  State<PrayTimeWidget> createState() => _PrayTimeWidgetState();
-}
-
-class _PrayTimeWidgetState extends State<PrayTimeWidget> {
-  late Timer _timer;
-  // String _nextPrayerName = '';
-  // String _nextPrayerTime = '';
-
-  @override
-  void initState() {
-    super.initState();
-    // _updateNextPrayerDetails();
-    // _timer = Timer.periodic(const Duration(minutes: 1), (_) {
-    //   _updateNextPrayerDetails();
-    // });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
-  // void _updateNextPrayerDetails() {
-  //   final now = DateTime.now();
-  //   final nextPrayer = _getNextPrayerDetails(now);
-  //   setState(() {
-  //     _nextPrayerName = nextPrayer.name;
-  //     _nextPrayerTime = nextPrayer.countdown;
-  //   });
-  // }
-
-  // _PrayerDetails _getNextPrayerDetails(DateTime now) {
-  //   final prayerTimes = [
-  //     _PrayerTime('Bagymdat', DateTime.now().copyWith(hour: 5, minute: 33)),
-  //     _PrayerTime('Beshim', DateTime.now().copyWith(hour: 13, minute: 21)),
-  //     _PrayerTime('Asr', DateTime.now().copyWith(hour: 17, minute: 44)),
-  //     _PrayerTime('Sham', DateTime.now().copyWith(hour: 19, minute: 01)),
-  //     _PrayerTime('Kuptan', DateTime.now().copyWith(hour: 21, minute: 09)),
-  //   ];
-
-  //   for (final prayerTime in prayerTimes) {
-  //     if (now.isBefore(prayerTime.time)) {
-  //       final duration = prayerTime.time.difference(now);
-  //       return _PrayerDetails(prayerTime.name, _formatDuration(duration));
-  //     }
-  //   }
-
-  //   return _PrayerDetails('Bagymdat', '');
-  // }
-
-  // String _formatDuration(Duration duration) {
-  //   final hours = duration.inHours;
-  //   final minutes = duration.inMinutes % 60;
-  //   return '$hours h $minutes min';
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -172,15 +113,3 @@ class _PrayTimeWidgetState extends State<PrayTimeWidget> {
     );
   }
 }
-
-// class _PrayerDetails {
-//   _PrayerDetails(this.name, this.countdown);
-//   final String name;
-//   final String countdown;
-// }
-
-// class _PrayerTime {
-//   _PrayerTime(this.name, this.time);
-//   final String name;
-//   final DateTime time;
-// }

@@ -25,17 +25,18 @@ class PrayerTimeAnimation extends StatefulWidget {
 }
 
 class _PrayerTimeAnimationState extends State<PrayerTimeAnimation> {
-  Stream<DateTime>? _subscription;
+  late StreamSubscription<DateTime> _subscription;
   double timelineValue = 0;
 
   @override
   void initState() {
     _subscription = Stream.periodic(const Duration(seconds: 1), (v) {
       final now = DateTime.now();
-      timelineValue = _calculateTimelineValue(now);
-
+      setState(() {
+        timelineValue = _calculateTimelineValue(now);
+      });
       return now;
-    });
+    }).listen((event) {});
     super.initState();
   }
 
@@ -54,11 +55,17 @@ class _PrayerTimeAnimationState extends State<PrayerTimeAnimation> {
   }
 
   @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(25),
-      child: StreamBuilder<Object>(
-        stream: _subscription,
+      child: StreamBuilder<DateTime>(
+        stream: Stream.periodic(const Duration(seconds: 1), (_) => DateTime.now()),
         builder: (context, snapshot) {
           return SfRadialGauge(
             axes: <RadialAxis>[
