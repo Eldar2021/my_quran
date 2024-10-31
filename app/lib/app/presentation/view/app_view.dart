@@ -11,6 +11,7 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+
 import 'package:package_info_plus/package_info_plus.dart';
 
 class MyApp extends StatelessWidget {
@@ -98,6 +99,9 @@ class MyApp extends StatelessWidget {
             packageInfo: context.read<PackageInfo>(),
             remoteConfig: context.read<MqRemoteConfig>(),
           ),
+        ),
+        BlocProvider(
+          create: (context) => LocationCubit(),
         ),
       ],
       child: const QuranApp(),

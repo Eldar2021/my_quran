@@ -19,12 +19,6 @@ class HatimJusBottomSheet extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         children: [
-          Text(
-            context.l10n.hatimPleaseSelectPage,
-            key: const Key(MqKeys.hatimSelectPage),
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-          ),
           const SizedBox(height: 20),
           BlocBuilder<HatimBloc, HatimState>(
             builder: (context, state) {
@@ -40,21 +34,21 @@ class HatimJusBottomSheet extends StatelessWidget {
           const SizedBox(height: 20),
           ColorTextAppHint(
             color: AppColors.red,
-            hintText: context.l10n.hatimDoneReadDesc,
+            hintText: context.l10n.readed,
           ),
           const SizedBox(height: 10),
           ColorTextAppHint(
             color: AppColors.yellow,
-            hintText: context.l10n.hatimProccessReadDesc,
+            hintText: context.l10n.reading,
           ),
           const SizedBox(height: 10),
           ColorTextAppHint(
             color: AppColors.green,
-            hintText: context.l10n.hatimEmptyReadDesc,
+            hintText: context.l10n.notSelected,
           ),
           const SizedBox(height: 20),
           Text(
-            context.l10n.hatimUserHintSelectEmtyPage,
+            context.l10n.selectUnoccupiedPages,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           const SizedBox(height: 20),

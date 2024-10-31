@@ -144,4 +144,40 @@ class CustomButton extends StatelessWidget {
   }
 }
 
+// Next Namaz Time Calculation
+
+  // void _updateNextPrayerDetails() {
+  //   final now = DateTime.now();
+  //   final nextPrayer = _getNextPrayerDetails(now);
+  //   setState(() {
+  //     _nextPrayerName = nextPrayer.name;
+  //     _nextPrayerTime = nextPrayer.countdown;
+  //   });
+  // }
+
+  // _PrayerDetails _getNextPrayerDetails(DateTime now) {
+  //   final prayerTimes = [
+  //     _PrayerTime('Bagymdat', DateTime.now().copyWith(hour: 5, minute: 33)),
+  //     _PrayerTime('Beshim', DateTime.now().copyWith(hour: 13, minute: 21)),
+  //     _PrayerTime('Asr', DateTime.now().copyWith(hour: 17, minute: 44)),
+  //     _PrayerTime('Sham', DateTime.now().copyWith(hour: 19, minute: 01)),
+  //     _PrayerTime('Kuptan', DateTime.now().copyWith(hour: 21, minute: 09)),
+  //   ];
+
+  //   for (final prayerTime in prayerTimes) {
+  //     if (now.isBefore(prayerTime.time)) {
+  //       final duration = prayerTime.time.difference(now);
+  //       return _PrayerDetails(prayerTime.name, _formatDuration(duration));
+  //     }
+  //   }
+
+  //   return _PrayerDetails('Bagymdat', '');
+  // }
+
+  // String _formatDuration(Duration duration) {
+  //   final hours = duration.inHours;
+  //   final minutes = duration.inMinutes % 60;
+  //   return '$hours h $minutes min';
+  // }
+
 */

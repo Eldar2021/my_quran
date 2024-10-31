@@ -31,6 +31,8 @@ dependencies:
   # UI & User Interaction
   pin_code_fields: ^8.0.1
   cupertino_icons: ^1.0.8
+  syncfusion_flutter_gauges: ^27.1.57
+  curved_navigation_bar: ^1.0.6
 
   # Networking & Internet
   dio: ^5.7.0 #5.5.0+1
@@ -57,6 +59,10 @@ dependencies:
   # Device & System Information
   package_info_plus: ^8.1.0
 
+  # Location
+  geocoding: ^3.0.0
+  geolocator: ^13.0.1
+
   # flutter_native_splash: ^2.4.0
 
   # Packages
@@ -68,6 +74,7 @@ dependencies:
     path: ../packages/mq_remote_client
   mq_storage:
     path: ../packages/mq_storage
+
 
 dev_dependencies:
   flutter_test:
