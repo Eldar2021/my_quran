@@ -70,11 +70,11 @@ class HatimJuzListBuilder extends StatelessWidget {
             const SizedBox(height: 30),
             Column(
               children: [
-                _buildLegendRow(context, context.l10n.notSelected, const Color(0xffF6684E)),
+                HatimStatusWidget(text: context.l10n.notSelected, color: const Color(0xffF6684E)),
                 const SizedBox(height: 8),
-                _buildLegendRow(context, context.l10n.reading, const Color(0xffFFCADC)),
+                HatimStatusWidget(text: context.l10n.reading, color: const Color(0xffFFCADC)),
                 const SizedBox(height: 8),
-                _buildLegendRow(context, context.l10n.readed, const Color(0xffA851FA)),
+                HatimStatusWidget(text: context.l10n.readed, color: const Color(0xffA851FA)),
               ],
             ),
             const SizedBox(height: 20),
@@ -167,7 +167,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                           GaugeAnnotation(
                             positionFactor: 0.7,
                             angle: 90,
-                            widget: _buildJuzAnnotation(context, item),
+                            widget: JuzAnnotationWidget(item: item),
                           ),
                         ],
                       ),
@@ -180,79 +180,6 @@ class HatimJuzListBuilder extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildLegendRow(BuildContext context, String text, Color color) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Text(' $text ', style: const TextStyle(fontSize: 12)),
-        Container(
-          width: 18,
-          height: 18,
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border.all(color: color),
-          ),
-          child: CircleAvatar(
-            backgroundColor: color,
-          ),
-        ),
-      ],
-    );
-  }
-
-  // Helper method to build the juz annotation widget
-  Widget _buildJuzAnnotation(BuildContext context, HatimJusEntity item) {
-    return Column(
-      children: [
-        Text(
-          '${item.number}-${context.l10n.juz}',
-          style: const TextStyle(
-            color: Color(0xff1C274C),
-            fontSize: 10,
-          ),
-        ),
-        const SizedBox(height: 5),
-        _buildProgressRow(context, item.done, context.l10n.pages, const Color(0xffA851FA)),
-        _buildProgressRow(context, item.inProgress, context.l10n.pages, const Color(0xffFFCADC)),
-        _buildProgressRow(context, item.toDo, context.l10n.pages, const Color(0xffF6684E)),
-      ],
-    );
-  }
-
-  // Helper method to build a row showing progress details
-  Widget _buildProgressRow(BuildContext context, int count, String label, Color color) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            text: '$count ',
-            style: const TextStyle(
-              fontSize: 10,
-              color: Color(0xff1C274C),
-            ),
-            children: [
-              TextSpan(
-                text: ' $label  ',
-                style: const TextStyle(
-                  color: Color(0xff666666),
-                  fontSize: 10,
-                ),
-              ),
-            ],
-          ),
-        ),
-        CircleAvatar(
-          radius: 3.5,
-          backgroundColor: color,
-        ),
-      ],
     );
   }
 }
