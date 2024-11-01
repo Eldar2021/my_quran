@@ -19,12 +19,12 @@ Future<void> checkHatimSelectPage(FlutterDriver driver) async {
   await driver.takeScreenshot(Screenshots.hatimPages);
 }
 
-Future<void> backHatimJuzs(FlutterDriver driver) async {
-  await driver.scrollUntilVisible(
-    find.byValueKey(MqKeys.hatimSelectPageScroll),
-    find.byValueKey(MqKeys.hatimSelectPageCancel),
-    dyScroll: -50,
-  );
-  await driver.tap(find.byValueKey(MqKeys.hatimSelectPageCancel));
-  await driver.waitFor(find.byValueKey(MqKeys.hatimJuzsList));
-}
+// Future<void> backHatimJuzs(FlutterDriver driver) async {
+//   await driver.scrollUntilVisible(
+//     find.byValueKey(MqKeys.hatimSelectPageScroll),
+//     find.byValueKey(MqKeys.hatimSelectPageCancel),
+//     dyScroll: -50,
+//   );
+//   await driver.tap(find.byValueKey(MqKeys.hatimSelectPageCancel));
+//   await driver.waitFor(find.byValueKey(MqKeys.hatimJuzsList));
+// }

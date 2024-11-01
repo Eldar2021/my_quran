@@ -127,7 +127,7 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         children: [
                           const SizedBox(height: 20),
-                          Assets.icons.quranBook.svg(),
+                          Assets.icons.quranBook.svg(key: const Key(MqKeys.alQuran)),
                           Container(
                             padding: const EdgeInsets.all(20),
                             margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),

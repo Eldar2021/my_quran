@@ -61,7 +61,7 @@ void main() async {
     });
 
     test('back-hatim-select-juzs-view', () async {
-      await backHatimJuzs(driver);
+      await backPage(driver);
     });
 
     test('back-home-view', () async {
@@ -110,10 +110,13 @@ void main() async {
   });
 
   group('Settings', () {
-    test('go-settings', () async {
-      await goBottomSettings(driver);
+    test('go-home', () async {
+      await goBottomHome(driver);
     });
 
+    test('go-settings', () async {
+      await goSettings(driver);
+    });
     test('check-settings-view', () async {
       await checkSettingsView(driver);
     });

@@ -94,6 +94,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                 final endAngleInProgress = (item.inProgress / 20) * 100;
 
                 return GestureDetector(
+                  key: Key(MqKeys.hatimJuzIndex(index)),
                   onTap: () async {
                     MqAnalytic.track(
                       AnalyticKey.selectHatimJuz,

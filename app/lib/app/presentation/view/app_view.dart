@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => LocationCubit(),
+          create: (context) => LocationCubit(context.read<AppConfig>()),
         ),
       ],
       child: const QuranApp(),
