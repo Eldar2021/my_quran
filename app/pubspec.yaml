@@ -74,6 +74,7 @@ dependencies:
     path: ../packages/mq_remote_client
   mq_storage:
     path: ../packages/mq_storage
+  device_preview: ^1.2.0
 
 
 dev_dependencies:
