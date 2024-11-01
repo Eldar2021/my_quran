@@ -19,15 +19,20 @@ class HatimPageStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 55,
       width: 55,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: status.bgColor, width: 6),
+      ),
       child: InkWell(
         onTap: onTap,
         child: MaterialCard(
-          color: status.bgColor,
           text: '$pageNumber',
           textColor: status.frColor,
+          color: Colors.white,
+          type: MaterialType.circle,
           check: isMine
               ? Positioned(
                   right: 2,
