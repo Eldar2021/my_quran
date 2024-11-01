@@ -15,7 +15,7 @@ Future<void> tapHatimJuz(FlutterDriver driver) async {
   //   find.byValueKey(MqKeys.hatimSelectPageCancel),
   //   dyScroll: -50,
   // );
-  await driver.tap(find.byValueKey(MqKeys.hatimJuzIndex(2)));
+  await driver.tap(find.byValueKey(MqKeys.hatimJuzIndex(1)));
   await driver.waitFor(find.byValueKey(MqKeys.hatimSelectPage));
 }
 
