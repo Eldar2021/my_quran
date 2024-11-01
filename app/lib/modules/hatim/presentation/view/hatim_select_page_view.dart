@@ -18,6 +18,8 @@ class HatimJusSelectPagesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Aidai 2');
+    //
     return Scaffold(
       key: const Key(MqKeys.hatimSelectPage),
       appBar: AppBar(

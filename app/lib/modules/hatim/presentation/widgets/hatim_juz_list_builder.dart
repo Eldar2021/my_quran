@@ -95,22 +95,32 @@ class HatimJuzListBuilder extends StatelessWidget {
 
                 return InkWell(
                   onTap: () async {
-                    MqAnalytic.track(
-                      AnalyticKey.selectHatimJuz,
-                      params: {'juzId': item.id},
-                    );
-                    final bloc = context.read<HatimBloc>();
-
-                    await Navigator.push<void>(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => BlocProvider.value(
-                          value: bloc..add(GetHatimJuzPagesEvent(item.id)),
-                          child: HatimJusSelectPagesView(hatimJusEntity: item),
+                    print('Aidai 0');
+                    try {
+                      MqAnalytic.track(
+                        AnalyticKey.selectHatimJuz,
+                        params: {'juzId': item.id},
+                      );
+                      print('Aidai 0.1');
+                      final bloc = context.read<HatimBloc>();
+                      print('Aidai 0.2');
+                      await Navigator.push<void>(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => BlocProvider.value(
+                            value: bloc..add(GetHatimJuzPagesEvent(item.id)),
+                            child: HatimJusSelectPagesView(hatimJusEntity: item),
+                          ),
                         ),
-                      ),
-                    );
-                    bloc.add(const ResetJuzPagesEvent());
+                      );
+                      print('Aidai 0.3');
+                      bloc.add(const ResetJuzPagesEvent());
+                      print('Aidai 0.4');
+                    } catch (e) {
+                      print('Aidai Error $e');
+                    }
+
+                    print('Aidai 1');
                   },
                   child: SfRadialGauge(
                     key: Key(MqKeys.hatimJuzIndex(index)),
