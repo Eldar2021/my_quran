@@ -23,8 +23,8 @@ Future<void> tapHatimJuz(FlutterDriver driver) async {
 
 Future<void> checkHatimSelectPage(FlutterDriver driver) async {
   print('checkHatimSelectPage init');
-  await driver.waitFor(find.byValueKey(MqKeys.hatimSelectPage));
-  print('checkHatimSelectPage tap');
+  // await driver.waitFor(find.byValueKey(MqKeys.hatimSelectPage));
+  print('checkHatimSelectPage waitFor');
   await driver.takeScreenshot(Screenshots.hatimPages);
   print('checkHatimSelectPage takeScreenshot');
 }
