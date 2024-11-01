@@ -94,7 +94,6 @@ class HatimJuzListBuilder extends StatelessWidget {
                 final endAngleInProgress = (item.inProgress / 20) * 100;
 
                 return InkWell(
-                  key: Key(MqKeys.hatimJuzIndex(index)),
                   onTap: () async {
                     MqAnalytic.track(
                       AnalyticKey.selectHatimJuz,
@@ -114,6 +113,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                     bloc.add(const ResetJuzPagesEvent());
                   },
                   child: SfRadialGauge(
+                    key: Key(MqKeys.hatimJuzIndex(index)),
                     axes: <RadialAxis>[
                       RadialAxis(
                         startAngle: 0,
