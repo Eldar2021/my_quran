@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -132,7 +131,6 @@ class _QuranAppState extends State<QuranApp> {
       child: AppListener(
         navigationKey: rootNavigatorKey,
         child: MaterialApp.router(
-          builder: DevicePreview.appBuilder,
           title: 'MyQuranKhatm',
           debugShowCheckedModeBanner: false,
           locale: context.watch<AuthCubit>().state.currentLocale,

@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -88,9 +87,7 @@ Future<void> main({AppConfig? appConfig}) async {
           create: (context) => SoccialAuth(GoogleSignIn()),
         ),
       ],
-      child: DevicePreview(
-        builder: (context) => const MyApp(),
-      ),
+      child: const MyApp(),
     ),
   );
 }
