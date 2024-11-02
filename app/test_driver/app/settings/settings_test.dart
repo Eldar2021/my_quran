@@ -4,6 +4,10 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import '../../extensions/extensions.dart';
 import '../navigation.dart';
 
+Future<void> goSettings(FlutterDriver driver) async {
+  await driver.tap(find.byValueKey(MqKeys.settings));
+}
+
 Future<void> checkSettingsView(FlutterDriver driver) async {
   await driver.waitFor(find.byValueKey(MqKeys.settingsView));
   await driver.takeScreenshot(Screenshots.settingsInit);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/constants/contants.dart';
 
 import 'package:my_quran/core/core.dart';
@@ -18,6 +19,7 @@ class HatimJusSelectPagesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key(MqKeys.hatimSelectPage),
       appBar: AppBar(
         backgroundColor: const Color(0xffF5F5F5),
         title: Text(context.l10n.hatim),
