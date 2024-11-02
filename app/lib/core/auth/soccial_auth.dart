@@ -49,6 +49,16 @@ class SoccialAuth {
     }
   }
 
+  Future<void> deleteAccount() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      await _googleSignIn.signOut();
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      rethrow;
+    }
+  }
+
   Future<void> logOut() async {
     try {
       await FirebaseAuth.instance.signOut();

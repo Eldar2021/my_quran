@@ -34,6 +34,7 @@ final class AnalyticKey {
   static const tapPrivacyPolicy = 'tap_privacy_policy';
   static const tapQuranReadSettings = 'tap_quran_read_settings';
   static const showAmin = 'show_amin';
+  static const tapDeleteAccount = 'tap_delete_account';
 
   // refresh
   static const refreshHomePage = 'refresh_home';
