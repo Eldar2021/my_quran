@@ -34,5 +34,7 @@ abstract class AuthRepository {
     required String localeCode,
   });
 
+  Future<void> deleteAccount() async {}
+
   Future<void> logout() async {}
 }

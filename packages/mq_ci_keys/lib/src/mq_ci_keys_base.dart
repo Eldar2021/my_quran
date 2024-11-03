@@ -68,6 +68,8 @@ final class MqKeys {
   static const String logoutButton = 'logout-button';
   static const String confirmLogoutButton = 'confirm-logout-button';
   static const String confirmLogoutButtonYes = 'confirm-logout-button-yes';
+  static const String deleteAccountButton = 'delete-button';
+  static const String confirmDeleteAccountButton = 'confirm-delete-account-button';
 
   // gender
   static const gender = 'gender';

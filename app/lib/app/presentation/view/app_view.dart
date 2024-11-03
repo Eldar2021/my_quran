@@ -72,6 +72,7 @@ class MyApp extends StatelessWidget {
             LogoutUseCase(context.read<AuthRepository>()),
             EmailLoginUseCase(context.read<AuthRepository>()),
             VerifyOtpUseCase(context.read<AuthRepository>()),
+            DeleteAccountUseCase(context.read<AuthRepository>()),
           ),
         ),
         BlocProvider(

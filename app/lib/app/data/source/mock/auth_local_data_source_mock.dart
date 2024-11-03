@@ -21,5 +21,8 @@ final class AuthLocalDataSourceMock implements AuthLocalDataSource {
   Future<void> saveLocaleCode(String localeCode) => Future.value();
 
   @override
+  Future<void> deleteAccountLocal() async => Future.value();
+
+  @override
   Future<void> logoutLocal() async => Future.value();
 }

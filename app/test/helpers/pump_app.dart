@@ -25,6 +25,7 @@ extension PumpApp on WidgetTester {
     PackageInfo packageInfo,
     EmailLoginUseCase emailSignIn,
     VerifyOtpUseCase verifyOtp,
+    DeleteAccountUseCase deleteAccount,
   ) {
     return pumpWidget(
       MultiRepositoryProvider(
@@ -53,6 +54,7 @@ extension PumpApp on WidgetTester {
                 logoutUseCase,
                 emailSignIn,
                 verifyOtp,
+                deleteAccount,
               ),
             ),
             BlocProvider(

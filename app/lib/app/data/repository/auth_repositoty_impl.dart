@@ -138,6 +138,17 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<void> deleteAccount() async {
+    try {
+      await remoteDataSource.deleteAccountRemote();
+      await localDataSource.deleteAccountLocal();
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('Delete Account error: $e\n$s');
+    }
+  }
+
+  @override
   Future<void> logout() async {
     try {
       await remoteDataSource.logoutRemote();

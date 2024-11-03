@@ -14,5 +14,6 @@ export 'usecase/patch_locale_code_use_case.dart';
 export 'usecase/logout_use_case.dart';
 export 'usecase/email_login_usecase.dart';
 export 'usecase/verify_otp_use_case.dart';
+export 'usecase/delete_account_use_case.dart';
 export 'entity/user_entity.dart';
 export 'entity/user_data_entity.dart';

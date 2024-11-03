@@ -195,6 +195,13 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
+  Future<void> deleteAccountRemote() async {
+    await client.delete<Map<String, dynamic>>(apiConst.deleteProfile);
+
+    await soccialAuth.deleteAccount();
+  }
+
+  @override
   Future<void> logoutRemote() async {
     await soccialAuth.logOut();
   }

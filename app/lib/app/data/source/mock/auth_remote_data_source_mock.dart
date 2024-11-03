@@ -88,5 +88,8 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
+  Future<void> deleteAccountRemote() async {}
+
+  @override
   Future<void> logoutRemote() async {}
 }

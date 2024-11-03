@@ -33,5 +33,7 @@ abstract class AuthRemoteDataSource {
     required String localeCode,
   });
 
+  Future<void> deleteAccountRemote();
+
   Future<void> logoutRemote();
 }
