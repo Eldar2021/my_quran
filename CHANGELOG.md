@@ -57,3 +57,18 @@
 - Added mock data source to app module
 - Added mock data to home module
 - Added mock data to read and hatim modules
+
+---
+
+# What's Changed v1.3.3+12
+
+## [UX]
+
+- Integrated delete account
+- Changed Hatim design
+- Changed Home design
+
+## [Technical]
+
+- Fixed integration test error
+- Bump flutter version
