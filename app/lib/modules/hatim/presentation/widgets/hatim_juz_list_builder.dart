@@ -151,7 +151,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                           widget: InkWell(
                             onTap: () => _onTap(item, context),
                             child: JuzAnnotationWidget(
-                              key: Key(MqKeys.hatimJuzIndex(index)),
+                              key: Key(MqKeys.hatimJuzIndex(1)),
                               item: item,
                             ),
                           ),
