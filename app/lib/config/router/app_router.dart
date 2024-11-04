@@ -71,7 +71,9 @@ final class AppRouter {
         builder: (context, state) => const DevModeView(),
       ),
       StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) => MainView(navigationShell),
+        builder: (context, state, navigationShell) {
+          return MainView(navigationShell);
+        },
         branches: [
           StatefulShellBranch(
             navigatorKey: _sectionNavigatorKey1,
@@ -124,11 +126,13 @@ final class AppRouter {
       GoRoute(
         path: hatim,
         name: hatim,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const HatimView(),
         routes: [
           GoRoute(
             path: '$hatimRead/:isHatim/:pages',
             name: hatimRead,
+            parentNavigatorKey: rootNavigatorKey,
             builder: (context, state) {
               final args = ParseParams.parseRead(state.pathParameters);
               return ReadView(args.$1, isHatim: args.$2);
@@ -139,6 +143,7 @@ final class AppRouter {
       GoRoute(
         path: settingsPage,
         name: settingsPage,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const SettingsView(),
         routes: settingsSubRoutes,
       ),
@@ -150,6 +155,7 @@ final class AppRouter {
       GoRoute(
         path: '$read/:isHatim/:pages',
         name: read,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseRead(state.pathParameters);
           return ReadView(args.$1, isHatim: args.$2);
@@ -163,31 +169,37 @@ final class AppRouter {
       GoRoute(
         path: genderSettings,
         name: genderSettings,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const GenderSettingView(),
       ),
       GoRoute(
         path: langSettings,
         name: langSettings,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const LangSettingsView(),
       ),
       GoRoute(
         path: themeSettings,
         name: themeSettings,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const ThemeSettingsView(),
       ),
       GoRoute(
         path: aboutUs,
         name: aboutUs,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const AboutUsVuew(),
       ),
       GoRoute(
         path: contactUs,
         name: contactUs,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const ContactUsView(),
       ),
       GoRoute(
         path: developers,
         name: developers,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const DevelopersView(),
       ),
     ];
