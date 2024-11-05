@@ -94,6 +94,7 @@ class HatimJuzListBuilder extends StatelessWidget {
                   endAngleInProgress: endAngleInProgress,
                   endAngleDone: endAngleDone,
                   item: item,
+                  index: index,
                   onTap: () => _onTap(item, context),
                 );
               },
@@ -132,6 +133,7 @@ class HatimJuzItemWidget extends StatelessWidget {
     required this.endAngleDone,
     required this.item,
     required this.onTap,
+    required this.index,
     super.key,
   });
 
@@ -140,6 +142,7 @@ class HatimJuzItemWidget extends StatelessWidget {
   final double endAngleDone;
   final HatimJusEntity item;
   final void Function() onTap;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
