@@ -15,7 +15,6 @@ class HatimJuzListBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final completedItems = items.where((item) => [20, 21, 23].contains(item.done)).length;
     final gaugeValue = (completedItems / 30) * 100;
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(14, 0, 14, 0),
       child: SingleChildScrollView(
@@ -148,9 +147,6 @@ class HatimJuzItemWidget extends StatelessWidget {
     return SfRadialGauge(
       axes: <RadialAxis>[
         RadialAxis(
-          // onAxisTapped: (value) {
-          //   log('2');
-          // },
           startAngle: 0,
           endAngle: 0,
           showTicks: false,
