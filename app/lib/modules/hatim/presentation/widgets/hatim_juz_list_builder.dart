@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
@@ -14,7 +16,6 @@ class HatimJuzListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final completedItems = items.where((item) => [20, 21, 23].contains(item.done)).length;
-
     final gaugeValue = (completedItems / 30) * 100;
 
     return Padding(
@@ -146,72 +147,87 @@ class HatimJuzItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SfRadialGauge(
-      axes: <RadialAxis>[
-        RadialAxis(
-          startAngle: 0,
-          endAngle: 0,
-          showTicks: false,
-          showLabels: false,
-          axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.5)),
-          pointers: <GaugePointer>[
-            RangePointer(
-              value: endAngleTodo,
-              width: 0.03,
-              sizeUnit: GaugeSizeUnit.factor,
-              cornerStyle: CornerStyle.startCurve,
-              color: const Color(0xffF6684E),
+    return InkWell(
+      onTap: !isAndroid ? onTap : null,
+      child: SfRadialGauge(
+        key: !isAndroid ? Key(MqKeys.hatimJuzIndex(index)) : null,
+        axes: <RadialAxis>[
+          RadialAxis(
+            startAngle: 0,
+            endAngle: 0,
+            showTicks: false,
+            showLabels: false,
+            axisLineStyle: AxisLineStyle(
+              thickness: 2,
+              color: const Color(0xffFFDEEA).withOpacity(0.5),
             ),
-          ],
-        ),
-        RadialAxis(
-          startAngle: 0,
-          endAngle: 0,
-          showTicks: false,
-          showLabels: false,
-          radiusFactor: 0.85,
-          axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.4)),
-          pointers: <GaugePointer>[
-            RangePointer(
-              value: endAngleInProgress,
-              width: 0.03,
-              sizeUnit: GaugeSizeUnit.factor,
-              cornerStyle: CornerStyle.startCurve,
-              color: const Color.fromARGB(255, 232, 168, 192),
+            pointers: <GaugePointer>[
+              RangePointer(
+                value: endAngleTodo,
+                width: 0.03,
+                sizeUnit: GaugeSizeUnit.factor,
+                cornerStyle: CornerStyle.startCurve,
+                color: const Color(0xffF6684E),
+              ),
+            ],
+          ),
+          RadialAxis(
+            startAngle: 0,
+            endAngle: 0,
+            showTicks: false,
+            showLabels: false,
+            radiusFactor: 0.85,
+            axisLineStyle: AxisLineStyle(
+              thickness: 2,
+              color: const Color(0xffFFDEEA).withOpacity(0.4),
             ),
-          ],
-        ),
-        RadialAxis(
-          startAngle: 0,
-          endAngle: 0,
-          showTicks: false,
-          radiusFactor: 0.75,
-          showLabels: false,
-          axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.4)),
-          pointers: <GaugePointer>[
-            RangePointer(
-              value: endAngleDone,
-              width: 0.03,
-              sizeUnit: GaugeSizeUnit.factor,
-              cornerStyle: CornerStyle.startCurve,
-              color: const Color(0xffA851FA),
+            pointers: <GaugePointer>[
+              RangePointer(
+                value: endAngleInProgress,
+                width: 0.03,
+                sizeUnit: GaugeSizeUnit.factor,
+                cornerStyle: CornerStyle.startCurve,
+                color: const Color.fromARGB(255, 232, 168, 192),
+              ),
+            ],
+          ),
+          RadialAxis(
+            startAngle: 0,
+            endAngle: 0,
+            showTicks: false,
+            radiusFactor: 0.75,
+            showLabels: false,
+            axisLineStyle: AxisLineStyle(
+              thickness: 2,
+              color: const Color(0xffFFDEEA).withOpacity(0.4),
             ),
-          ],
-          annotations: <GaugeAnnotation>[
-            GaugeAnnotation(
-              positionFactor: 0.7,
-              angle: 90,
-              widget: InkWell(
-                onTap: onTap,
-                child: JuzAnnotationWidget(
-                  key: Key(MqKeys.hatimJuzIndex(index)),
-                  item: item,
+            pointers: <GaugePointer>[
+              RangePointer(
+                value: endAngleDone,
+                width: 0.03,
+                sizeUnit: GaugeSizeUnit.factor,
+                cornerStyle: CornerStyle.startCurve,
+                color: const Color(0xffA851FA),
+              ),
+            ],
+            annotations: <GaugeAnnotation>[
+              GaugeAnnotation(
+                positionFactor: 0.7,
+                angle: 90,
+                widget: InkWell(
+                  onTap: isAndroid ? onTap : null,
+                  child: JuzAnnotationWidget(
+                    key: isAndroid ? Key(MqKeys.hatimJuzIndex(index)) : null,
+                    item: item,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
+
+  bool get isAndroid => Platform.isAndroid;
 }
