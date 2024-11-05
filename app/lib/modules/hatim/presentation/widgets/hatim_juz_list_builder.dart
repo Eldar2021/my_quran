@@ -146,72 +146,72 @@ class HatimJuzItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        key: Key(MqKeys.hatimJuzIndex(index)),
-        child: SfRadialGauge(
-          axes: <RadialAxis>[
-            RadialAxis(
-              startAngle: 0,
-              endAngle: 0,
-              showTicks: false,
-              showLabels: false,
-              axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.5)),
-              pointers: <GaugePointer>[
-                RangePointer(
-                  value: endAngleTodo,
-                  width: 0.03,
-                  sizeUnit: GaugeSizeUnit.factor,
-                  cornerStyle: CornerStyle.startCurve,
-                  color: const Color(0xffF6684E),
-                ),
-              ],
-            ),
-            RadialAxis(
-              startAngle: 0,
-              endAngle: 0,
-              showTicks: false,
-              showLabels: false,
-              radiusFactor: 0.85,
-              axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.4)),
-              pointers: <GaugePointer>[
-                RangePointer(
-                  value: endAngleInProgress,
-                  width: 0.03,
-                  sizeUnit: GaugeSizeUnit.factor,
-                  cornerStyle: CornerStyle.startCurve,
-                  color: const Color.fromARGB(255, 232, 168, 192),
-                ),
-              ],
-            ),
-            RadialAxis(
-              startAngle: 0,
-              endAngle: 0,
-              showTicks: false,
-              radiusFactor: 0.75,
-              showLabels: false,
-              axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.4)),
-              pointers: <GaugePointer>[
-                RangePointer(
-                  value: endAngleDone,
-                  width: 0.03,
-                  sizeUnit: GaugeSizeUnit.factor,
-                  cornerStyle: CornerStyle.startCurve,
-                  color: const Color(0xffA851FA),
-                ),
-              ],
-              annotations: <GaugeAnnotation>[
-                GaugeAnnotation(
-                  positionFactor: 0.7,
-                  angle: 90,
-                  widget: JuzAnnotationWidget(item: item),
-                ),
-              ],
+    return SfRadialGauge(
+      axes: <RadialAxis>[
+        RadialAxis(
+          startAngle: 0,
+          endAngle: 0,
+          showTicks: false,
+          showLabels: false,
+          axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.5)),
+          pointers: <GaugePointer>[
+            RangePointer(
+              value: endAngleTodo,
+              width: 0.03,
+              sizeUnit: GaugeSizeUnit.factor,
+              cornerStyle: CornerStyle.startCurve,
+              color: const Color(0xffF6684E),
             ),
           ],
         ),
-      ),
+        RadialAxis(
+          startAngle: 0,
+          endAngle: 0,
+          showTicks: false,
+          showLabels: false,
+          radiusFactor: 0.85,
+          axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.4)),
+          pointers: <GaugePointer>[
+            RangePointer(
+              value: endAngleInProgress,
+              width: 0.03,
+              sizeUnit: GaugeSizeUnit.factor,
+              cornerStyle: CornerStyle.startCurve,
+              color: const Color.fromARGB(255, 232, 168, 192),
+            ),
+          ],
+        ),
+        RadialAxis(
+          startAngle: 0,
+          endAngle: 0,
+          showTicks: false,
+          radiusFactor: 0.75,
+          showLabels: false,
+          axisLineStyle: AxisLineStyle(thickness: 2, color: const Color(0xffFFDEEA).withOpacity(0.4)),
+          pointers: <GaugePointer>[
+            RangePointer(
+              value: endAngleDone,
+              width: 0.03,
+              sizeUnit: GaugeSizeUnit.factor,
+              cornerStyle: CornerStyle.startCurve,
+              color: const Color(0xffA851FA),
+            ),
+          ],
+          annotations: <GaugeAnnotation>[
+            GaugeAnnotation(
+              positionFactor: 0.7,
+              angle: 90,
+              widget: InkWell(
+                onTap: onTap,
+                child: JuzAnnotationWidget(
+                  key: Key(MqKeys.hatimJuzIndex(index)),
+                  item: item,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
