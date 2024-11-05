@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,7 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
@@ -146,11 +148,27 @@ class _SignInViewState extends State<SignInView> {
                     children: [
                       Assets.icons.googleIcon.svg(height: 25),
                       const SizedBox(width: 10),
-                      Text(context.l10n.google, style: context.bodyMedium),
+                      Text(context.l10n.google, style: const TextStyle(fontSize: 18)),
                     ],
                   ),
                 ),
               ),
+              const SizedBox(height: 16),
+              if (Platform.isIOS)
+                SignInWithAppleButton(
+                  key: Key(MqKeys.loginTypeName('apple')),
+                  text: 'Apple',
+                  height: 50,
+                  onPressed: () async {
+                    MqAnalytic.track(
+                      AnalyticKey.tapLogin,
+                      params: {'soccial': 'apple'},
+                    );
+                    unawaited(AppAlert.showLoading(context));
+                    await context.read<AuthCubit>().signInWithApple();
+                    if (context.mounted) context.loaderOverlay.hide();
+                  },
+                ),
               const SizedBox(height: 40),
               TextButton(
                 onPressed: () {

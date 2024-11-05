@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:meta/meta.dart';
 import 'package:mq_either/mq_either.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
@@ -126,8 +128,12 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       fromJson: TokenResponse.fromJson,
       body: {'access_token': appleAuth.accessToken},
     );
+    log('accessToken ${appleAuth.accessToken}');
+    return token.fold((l) {
+      log('Error occurred: ${l.message}');
 
-    return token.fold(Left.new, (r) async {
+      return Left(l);
+    }, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
         username: appleAuth.name,
@@ -149,7 +155,9 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
     } else {
       final appleAuth = await soccialAuth.signInWithApple();
+
       final accessToken = appleAuth.credential?.accessToken ?? '';
+
       final username = appleAuth.user?.displayName ?? '';
       return _UserReqParam(
         name: username,

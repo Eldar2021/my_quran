@@ -37,11 +37,14 @@ class SoccialAuth {
           AppleIDAuthorizationScopes.fullName,
         ],
       );
+
       final oauthCredential = OAuthProvider('apple.com').credential(
         idToken: appleCredential.identityToken,
         accessToken: appleCredential.authorizationCode,
       );
+
       final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+
       return userCredential;
     } catch (e, s) {
       MqCrashlytics.report(e, s);
