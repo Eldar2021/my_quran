@@ -149,7 +149,7 @@ class HatimJuzItemWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        key: Key(MqKeys.hatimJuzIndex(1)),
+        key: Key(MqKeys.hatimJuzIndex(index)),
         child: SfRadialGauge(
           axes: <RadialAxis>[
             RadialAxis(
