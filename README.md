@@ -24,14 +24,13 @@ Regardless of your nationality, place of residence, gender, or social status, yo
   <img src="doc/iPhone 14 Pro Max/109-settings-theme-page-light-red.png" width="22%" />
 </p>
 
-### Getting Started
 
 ## Requirements
 
-- Dart sdk: ">=3.4.0 <4.0.0"
-- Flutter: "3.22.2"
-- Android: minSdkVersion 19
-- iOS: --ios-language swift, Xcode version >= 15.0.0
+- Dart sdk: ">=3.5.0 <4.0.0"
+- Flutter: "3.24.3"
+- Android: minSdkVersion 23
+- iOS: --ios-language swift, Xcode version >= 15.4.0
 
 ## Melos
 
