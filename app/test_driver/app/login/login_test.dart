@@ -38,8 +38,8 @@ Future<void> verifyOtp(FlutterDriver driver) async {
 
 Future<void> loginWithGoogle(FlutterDriver driver) async {
   await driver.waitFor(find.byValueKey(MqKeys.signInView));
-  await driver.tap(find.byValueKey(MqKeys.loginTypeName('google')));
   await driver.takeScreenshot(Screenshots.loginGooglePage);
+  await driver.tap(find.byValueKey(MqKeys.loginTypeName('google')));
   await Future<void>.delayed(const Duration(seconds: 1));
 }
 
