@@ -23,7 +23,7 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<!-- Geolocation -->
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open.</string>
+	<string>We use your location to determine the exact prayer time based on your current location.</string>
 	<key>CFBundleDisplayName</key>
 	<string>MyQuran</string>
 	<key>CFBundleExecutable</key>
