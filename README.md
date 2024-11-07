@@ -1,36 +1,36 @@
-# hatim
+# My Quran Hatim Aplication.
 
-My Quran Hatim Aplication.
+Regardless of your nationality, place of residence, gender, or social status, you're invited to join a global community with MyQuran App. This app offers a personalized and comprehensive way to engage with the Quran, making it easy for users to track their recitations, follow prayer times.
+
 
 <p align="center">
-  <img src="doc/iPhone 14 Pro Max/001-login-language-page-en.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/021-home-init.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/041-hatim-juzs.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/042-hatim-pages.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/005-login-google-page.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/021-home-init.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/041-hatim-juzs.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/042-hatim-pages.png" width="22%" />
 </p>
 
 <p align="center">
-  <img src="doc/iPhone 14 Pro Max/062-read-quran-surahs.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/063-read-quran-baqarah.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/064-read-quran-settings.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/082-quran-audio-play-fatiha.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/062-read-quran-surahs.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/063-read-quran-baqarah.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/064-read-quran-settings.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/082-quran-audio-play-fatiha.png" width="22%" />
 </p>
 
 <p align="center">
-  <img src="doc/iPhone 14 Pro Max/101-settings-init.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/102-settings-gender-male.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/104-settings-language-page-en.png" width="22%" />
-  <img src="doc/iPhone 14 Pro Max/109-settings-theme-page-light-red.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/101-settings-init.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/102-settings-gender-male.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/104-settings-language-page-en.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/109-settings-theme-page-light-red.png" width="22%" />
 </p>
 
-### Getting Started
 
 ## Requirements
 
-- Dart sdk: ">=3.4.0 <4.0.0"
-- Flutter: "3.22.2"
-- Android: minSdkVersion 19
-- iOS: --ios-language swift, Xcode version >= 15.0.0
+- Dart sdk: ">=3.5.0 <4.0.0"
+- Flutter: "3.24.3"
+- Android: minSdkVersion 23
+- iOS: --ios-language swift, Xcode version >= 15.4.0
 
 ## Melos
 
