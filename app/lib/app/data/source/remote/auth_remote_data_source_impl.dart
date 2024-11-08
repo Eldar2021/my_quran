@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_either/mq_either.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
@@ -8,6 +9,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
 final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -126,17 +128,22 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final token = await client.postType(
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
-      body: {'access_token': appleAuth.accessToken},
+      body: {'access_token': appleAuth.$1.accessToken},
     );
-    log('accessToken ${appleAuth.accessToken}');
+    log('accessToken ${appleAuth.$1.accessToken}');
     return token.fold((l) {
       log('Error occurred: ${l.message}');
+      final exc = AppleSignInExc(
+        userCredential: appleAuth.$2,
+        authorizationCredentialAppleID: appleAuth.$3,
+        exc: l,
+      );
 
-      return Left(l);
+      return Left(exc);
     }, (r) async {
       final user = UserModelResponse(
         accessToken: r.key,
-        username: appleAuth.name,
+        username: appleAuth.$1.name,
         gender: gender,
         localeCode: languageCode,
       );
@@ -147,21 +154,29 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     });
   }
 
-  Future<_UserReqParam> _getAppleAuth() async {
+  Future<(_UserReqParam, UserCredential?, AuthorizationCredentialAppleID?)> _getAppleAuth() async {
     if (isIntegrationTest) {
-      return const _UserReqParam(
-        name: 'Test User',
-        accessToken: r'myquran_te$t_t0ken',
+      return (
+        const _UserReqParam(
+          name: 'Test User',
+          accessToken: r'myquran_te$t_t0ken',
+        ),
+        null,
+        null,
       );
     } else {
       final appleAuth = await soccialAuth.signInWithApple();
 
-      final accessToken = appleAuth.credential?.accessToken ?? '';
+      final accessToken = appleAuth.$1.credential?.accessToken ?? '';
 
-      final username = appleAuth.user?.displayName ?? '';
-      return _UserReqParam(
-        name: username,
-        accessToken: accessToken,
+      final username = appleAuth.$1.user?.displayName ?? '';
+      return (
+        _UserReqParam(
+          name: username,
+          accessToken: accessToken,
+        ),
+        appleAuth.$1,
+        appleAuth.$2
       );
     }
   }
@@ -224,4 +239,16 @@ final class _UserReqParam {
 
   final String name;
   final String accessToken;
+}
+
+class AppleSignInExc implements Exception {
+  const AppleSignInExc({
+    required this.userCredential,
+    required this.authorizationCredentialAppleID,
+    required this.exc,
+  });
+
+  final UserCredential? userCredential;
+  final AuthorizationCredentialAppleID? authorizationCredentialAppleID;
+  final MqRemoteException? exc;
 }
