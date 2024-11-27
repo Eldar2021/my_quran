@@ -13,6 +13,7 @@ class JuzAnnotationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           '${item.number}-${context.l10n.juz}',

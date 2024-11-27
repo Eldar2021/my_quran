@@ -39,7 +39,7 @@ class SettingsView extends StatelessWidget {
             ),
             onTap: () {
               MqAnalytic.track(AnalyticKey.goGenderPage);
-              context.goNamed(AppRouter.genderSettings);
+              context.pushNamed(AppRouter.genderSettings);
             },
           ),
           ListTile(
@@ -59,7 +59,7 @@ class SettingsView extends StatelessWidget {
             ),
             onTap: () {
               MqAnalytic.track(AnalyticKey.selectLanguage);
-              context.goNamed(AppRouter.langSettings);
+              context.pushNamed(AppRouter.langSettings);
             },
           ),
           ListTile(
@@ -68,7 +68,7 @@ class SettingsView extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               MqAnalytic.track(AnalyticKey.goThemePage);
-              context.goNamed(AppRouter.themeSettings);
+              context.pushNamed(AppRouter.themeSettings);
             },
           ),
           ListTile(
@@ -77,7 +77,7 @@ class SettingsView extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               MqAnalytic.track(AnalyticKey.goAboutUsPage);
-              context.goNamed(AppRouter.aboutUs);
+              context.pushNamed(AppRouter.aboutUs);
             },
           ),
           ListTile(
@@ -86,7 +86,7 @@ class SettingsView extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               MqAnalytic.track(AnalyticKey.goContactUsPage);
-              context.goNamed(AppRouter.contactUs);
+              context.pushNamed(AppRouter.contactUs);
             },
           ),
           ListTile(
@@ -95,7 +95,7 @@ class SettingsView extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               MqAnalytic.track(AnalyticKey.goDevelopersPage);
-              context.goNamed(AppRouter.developers);
+              context.pushNamed(AppRouter.developers);
             },
           ),
           ListTile(

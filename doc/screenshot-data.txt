@@ -1,0 +1,8 @@
+App Store
+  1) 6.9" Display - iPhone 16 Pro Max
+  2) iPad 13" Display - iPad Pro 13-inch (M4)
+
+Play Store
+  1) Phone screenshots * - iPhone 16 Pro Max
+  2) 7-inch tablet screenshots * - iPad Pro 13-inch (M4)
+  3) Change 10-inch tablet screenshots * - iPad Pro 13-inch (M4)
