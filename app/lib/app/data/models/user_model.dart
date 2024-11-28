@@ -12,6 +12,7 @@ final class UserModelResponse {
     required this.username,
     required this.gender,
     required this.localeCode,
+    this.identityToken,
   });
 
   factory UserModelResponse.fromJson(Map<String, dynamic> json) => _$UserModelResponseFromJson(json);
@@ -21,18 +22,21 @@ final class UserModelResponse {
   final String username;
   final Gender gender;
   final String localeCode;
+  final String? identityToken;
 
   UserModelResponse copyWith({
     String? accessToken,
     String? username,
     Gender? gender,
     String? localeCode,
+    String? identityToken,
   }) {
     return UserModelResponse(
       accessToken: accessToken ?? this.accessToken,
       username: username ?? this.username,
       gender: gender ?? this.gender,
       localeCode: localeCode ?? this.localeCode,
+      identityToken: identityToken ?? this.identityToken,
     );
   }
 }

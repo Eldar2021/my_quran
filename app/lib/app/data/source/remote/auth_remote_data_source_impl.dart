@@ -128,9 +128,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final token = await client.postType(
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
-      body: {'access_token': appleAuth.$1.accessToken},
+      body: {
+        'access_token': appleAuth.$1.accessToken,
+        'id_token': appleAuth.$1.identityToken,
+      },
     );
-    log('accessToken ${appleAuth.$1.accessToken}');
     return token.fold((l) {
       log('Error occurred: ${l.message}');
       final exc = AppleSignInExc(
@@ -166,14 +168,15 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
     } else {
       final appleAuth = await soccialAuth.signInWithApple();
-
-      final accessToken = appleAuth.$1.credential?.accessToken ?? '';
-
+      final identityToken = appleAuth.$2.identityToken ?? '';
+      final accessToken = appleAuth.$1.credential!.accessToken ?? '';
       final username = appleAuth.$1.user?.displayName ?? '';
+
       return (
         _UserReqParam(
           name: username,
           accessToken: accessToken,
+          identityToken: identityToken,
         ),
         appleAuth.$1,
         appleAuth.$2
@@ -235,10 +238,12 @@ final class _UserReqParam {
   const _UserReqParam({
     required this.name,
     required this.accessToken,
+    this.identityToken,
   });
 
   final String name;
   final String accessToken;
+  final String? identityToken;
 }
 
 class AppleSignInExc implements Exception {
