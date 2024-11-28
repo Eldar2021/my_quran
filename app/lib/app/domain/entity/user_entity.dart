@@ -7,14 +7,12 @@ final class UserEntity {
     required this.username,
     required this.gender,
     required this.localeCode,
-    this.identityToken,
   });
 
   final String accessToken;
   final String username;
   final Gender gender;
   final String localeCode;
-  final String? identityToken;
 
   UserEntity copyWith({
     String? accessToken,
@@ -28,7 +26,6 @@ final class UserEntity {
       username: username ?? this.username,
       gender: gender ?? this.gender,
       localeCode: localeCode ?? this.localeCode,
-      identityToken: identityToken ?? this.identityToken,
     );
   }
 }
