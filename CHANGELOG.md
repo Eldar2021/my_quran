@@ -72,3 +72,26 @@
 
 - Fixed integration test error
 - Bump flutter version
+
+---
+
+# What's Changed v1.3.4+14
+
+## [Bug Fixes]
+
+- Fixed BottomNav always show
+- Fixed Settings twice navigation pop
+- Fixed onTap juz item 
+
+## [UX]
+
+- Integrated sign in with apple
+- Add description to access location
+
+## [Technical]
+
+- Created CODE_OF_CONDUCT md file
+- Changed screenshots and description
+- Added Contributing to MyQuran md file
+- Created LICENSE
+- Created SECURITY md
