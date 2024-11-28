@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
+
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
-
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
@@ -98,9 +100,7 @@ class _SignInViewState extends State<SignInView> {
                 text: context.l10n.signIn,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    MqAnalytic.track(
-                      AnalyticKey.goVerificationOtp,
-                    );
+                    MqAnalytic.track(AnalyticKey.goVerificationOtp);
                     try {
                       unawaited(AppAlert.showLoading(context));
                       context.read<AuthCubit>().loginWithEmail(emailController.text);
@@ -146,11 +146,27 @@ class _SignInViewState extends State<SignInView> {
                     children: [
                       Assets.icons.googleIcon.svg(height: 25),
                       const SizedBox(width: 10),
-                      Text(context.l10n.google, style: context.bodyMedium),
+                      Text(context.l10n.google, style: const TextStyle(fontSize: 18)),
                     ],
                   ),
                 ),
               ),
+              const SizedBox(height: 16),
+              if (Platform.isIOS)
+                SignInWithAppleButton(
+                  key: Key(MqKeys.loginTypeName('apple')),
+                  text: 'Apple',
+                  height: 50,
+                  onPressed: () async {
+                    MqAnalytic.track(
+                      AnalyticKey.tapLogin,
+                      params: {'soccial': 'apple'},
+                    );
+                    unawaited(AppAlert.showLoading(context));
+                    await context.read<AuthCubit>().signInWithApple();
+                    if (context.mounted) context.loaderOverlay.hide();
+                  },
+                ),
               const SizedBox(height: 40),
               TextButton(
                 onPressed: () {
