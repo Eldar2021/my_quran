@@ -11,6 +11,7 @@ UserModelResponse _$UserModelResponseFromJson(Map<String, dynamic> json) => User
       username: json['username'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       localeCode: json['localeCode'] as String,
+      identityToken: json['identityToken'] as String?,
     );
 
 Map<String, dynamic> _$UserModelResponseToJson(UserModelResponse instance) => <String, dynamic>{
@@ -18,6 +19,7 @@ Map<String, dynamic> _$UserModelResponseToJson(UserModelResponse instance) => <S
       'username': instance.username,
       'gender': _$GenderEnumMap[instance.gender]!,
       'localeCode': instance.localeCode,
+      'identityToken': instance.identityToken,
     };
 
 const _$GenderEnumMap = {
