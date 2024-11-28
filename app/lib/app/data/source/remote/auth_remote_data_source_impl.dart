@@ -85,18 +85,24 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       body: {'access_token': googleAuth.accessToken},
     );
 
-    return token.fold(Left.new, (r) async {
-      final user = UserModelResponse(
-        accessToken: r.key,
-        username: googleAuth.name,
-        gender: gender,
-        localeCode: languageCode,
-      );
+    return token.fold(
+      Left.new,
+      (r) async {
+        final user = UserModelResponse(
+          accessToken: r.key,
+          username: googleAuth.name,
+          gender: gender,
+          localeCode: languageCode,
+        );
 
-      await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+        await storage.writeString(
+          key: StorageKeys.tokenKey,
+          value: user.accessToken,
+        );
 
-      return Right(user);
-    });
+        return Right(user);
+      },
+    );
   }
 
   Future<_UserReqParam> _getGoogleAuth() async {

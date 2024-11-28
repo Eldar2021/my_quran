@@ -19,7 +19,6 @@ final class UserEntity {
     String? username,
     Gender? gender,
     String? localeCode,
-    String? identityToken,
   }) {
     return UserEntity(
       accessToken: accessToken ?? this.accessToken,

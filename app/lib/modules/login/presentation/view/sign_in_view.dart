@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +17,6 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
