@@ -1,15 +1,12 @@
-import 'dart:developer';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_either/mq_either.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
+
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
 final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -40,9 +37,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
 
       return token.fold(
-        (error) {
-          return Left(error);
-        },
+        Left.new,
         (r) async {
           final user = UserModelResponse(
             accessToken: r.key,
@@ -51,7 +46,10 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             localeCode: languageCode,
           );
 
-          await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+          await storage.writeString(
+            key: StorageKeys.tokenKey,
+            value: user.accessToken,
+          );
 
           return Right(user);
         },
@@ -129,42 +127,36 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
       body: {
-        'access_token': appleAuth.$1.accessToken,
-        'id_token': appleAuth.$1.identityToken,
+        'access_token': appleAuth.accessToken,
+        'id_token': appleAuth.identityToken,
       },
     );
-    return token.fold((l) {
-      log('Error occurred: ${l.message}');
-      final exc = AppleSignInExc(
-        userCredential: appleAuth.$2,
-        authorizationCredentialAppleID: appleAuth.$3,
-        exc: l,
-      );
 
-      return Left(exc);
-    }, (r) async {
-      final user = UserModelResponse(
-        accessToken: r.key,
-        username: appleAuth.$1.name,
-        gender: gender,
-        localeCode: languageCode,
-      );
+    return token.fold(
+      Left.new,
+      (r) async {
+        final user = UserModelResponse(
+          accessToken: r.key,
+          username: appleAuth.name,
+          gender: gender,
+          localeCode: languageCode,
+        );
 
-      await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+        await storage.writeString(
+          key: StorageKeys.tokenKey,
+          value: user.accessToken,
+        );
 
-      return Right(user);
-    });
+        return Right(user);
+      },
+    );
   }
 
-  Future<(_UserReqParam, UserCredential?, AuthorizationCredentialAppleID?)> _getAppleAuth() async {
+  Future<_UserReqParam> _getAppleAuth() async {
     if (isIntegrationTest) {
-      return (
-        const _UserReqParam(
-          name: 'Test User',
-          accessToken: r'myquran_te$t_t0ken',
-        ),
-        null,
-        null,
+      return const _UserReqParam(
+        name: 'Test User',
+        accessToken: r'myquran_te$t_t0ken',
       );
     } else {
       final appleAuth = await soccialAuth.signInWithApple();
@@ -172,14 +164,10 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final accessToken = appleAuth.$1.credential!.accessToken ?? '';
       final username = appleAuth.$1.user?.displayName ?? '';
 
-      return (
-        _UserReqParam(
-          name: username,
-          accessToken: accessToken,
-          identityToken: identityToken,
-        ),
-        appleAuth.$1,
-        appleAuth.$2
+      return _UserReqParam(
+        name: username,
+        accessToken: accessToken,
+        identityToken: identityToken,
       );
     }
   }
@@ -244,16 +232,4 @@ final class _UserReqParam {
   final String name;
   final String accessToken;
   final String? identityToken;
-}
-
-class AppleSignInExc implements Exception {
-  const AppleSignInExc({
-    required this.userCredential,
-    required this.authorizationCredentialAppleID,
-    required this.exc,
-  });
-
-  final UserCredential? userCredential;
-  final AuthorizationCredentialAppleID? authorizationCredentialAppleID;
-  final MqRemoteException? exc;
 }
