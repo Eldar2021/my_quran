@@ -185,7 +185,7 @@ class _SignInViewState extends State<SignInView> {
                 onPressed: () {
                   context.goNamed(AppRouter.home);
                 },
-                child: const Text('countinue as guest'),
+                child: const Text('Countinue as guest'),
               ),
             ],
           ),

@@ -98,62 +98,64 @@ class SettingsView extends StatelessWidget {
               context.pushNamed(AppRouter.developers);
             },
           ),
-          ListTile(
-            key: const Key(MqKeys.logoutButton),
-            title: Text(context.l10n.logout),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return BlocListener<AuthCubit, AuthState>(
-                    listener: (context, state) {
-                      if (!state.isAuthedticated) {
-                        context.go('/login');
-                      }
-                    },
-                    child: ConfirmationWidget(
-                      key: const Key(MqKeys.confirmLogoutButton),
-                      title: context.l10n.logout,
-                      content: context.l10n.signOutContext,
-                      onPressed: () {
-                        MqAnalytic.track(AnalyticKey.tapLogout);
-                        authCubit.logout();
+          if (authCubit.state.isAuthedticated)
+            ListTile(
+              key: const Key(MqKeys.logoutButton),
+              title: Text(context.l10n.logout),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return BlocListener<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        if (!state.isAuthedticated) {
+                          context.go('/login');
+                        }
                       },
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-          ListTile(
-            key: const Key(MqKeys.deleteAccountButton),
-            title: Text(context.l10n.deleteAccount),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return BlocListener<AuthCubit, AuthState>(
-                    listener: (context, state) {
-                      if (!state.isAuthedticated) {
-                        context.go('/login');
-                      }
-                    },
-                    child: ConfirmationWidget(
-                      key: const Key(MqKeys.confirmDeleteAccountButton),
-                      title: context.l10n.deleteAccount,
-                      content: context.l10n.confirmDeleteAccount,
-                      onPressed: () {
-                        MqAnalytic.track(AnalyticKey.tapDeleteAccount);
-                        authCubit.deleteAccount();
+                      child: ConfirmationWidget(
+                        key: const Key(MqKeys.confirmLogoutButton),
+                        title: context.l10n.logout,
+                        content: context.l10n.signOutContext,
+                        onPressed: () {
+                          MqAnalytic.track(AnalyticKey.tapLogout);
+                          authCubit.logout();
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          if (authCubit.state.isAuthedticated)
+            ListTile(
+              key: const Key(MqKeys.deleteAccountButton),
+              title: Text(context.l10n.deleteAccount),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return BlocListener<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        if (!state.isAuthedticated) {
+                          context.go('/login');
+                        }
                       },
-                    ),
-                  );
-                },
-              );
-            },
-          ),
+                      child: ConfirmationWidget(
+                        key: const Key(MqKeys.confirmDeleteAccountButton),
+                        title: context.l10n.deleteAccount,
+                        content: context.l10n.confirmDeleteAccount,
+                        onPressed: () {
+                          MqAnalytic.track(AnalyticKey.tapDeleteAccount);
+                          authCubit.deleteAccount();
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ListTile(
             title: Text(context.l10n.version),
             trailing: InkWell(

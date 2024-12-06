@@ -16,7 +16,6 @@ class DevelopersView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsDevelopersPage),
-        title: Text(context.l10n.profileForDevelopers),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
