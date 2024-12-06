@@ -92,5 +92,6 @@
     "notSelected": "Не выбрано",
     "pages": "листов",
     "deleteAccount": "Удалить аккаунт",
-    "confirmDeleteAccount": "Вы уверены, что хотите удалить этот аккаунт?"
+    "confirmDeleteAccount": "Вы уверены, что хотите удалить этот аккаунт?",
+    "continueAsGuest": "Продолжить как гость"
 }

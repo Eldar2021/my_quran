@@ -94,5 +94,6 @@
     "notSelected": "Тандала элек",
     "pages": "бет",
     "deleteAccount": "Аккаунтты өчүрүү",
-    "confirmDeleteAccount": "Чын эле аккаунтту өчүрүүнү каалайсызбы?"
+    "confirmDeleteAccount": "Чын эле аккаунтту өчүрүүнү каалайсызбы?",
+    "continueAsGuest": "Конок катары улантыңыз"
 }
