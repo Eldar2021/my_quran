@@ -29,20 +29,22 @@ class SoccialAuth {
     }
   }
 
-  Future<UserCredential> signInWithApple() async {
+  Future<(UserCredential, AuthorizationCredentialAppleID)> signInWithApple() async {
     try {
-      final appleCredential = await SignInWithApple.getAppleIDCredential(
+      final credential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
       );
+
       final oauthCredential = OAuthProvider('apple.com').credential(
-        idToken: appleCredential.identityToken,
-        accessToken: appleCredential.authorizationCode,
+        idToken: credential.identityToken,
+        accessToken: credential.authorizationCode,
       );
+
       final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-      return userCredential;
+      return (userCredential, credential);
     } catch (e, s) {
       MqCrashlytics.report(e, s);
       rethrow;

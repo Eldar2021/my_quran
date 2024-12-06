@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 import 'package:mq_either/mq_either.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
+
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
@@ -36,9 +37,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
 
       return token.fold(
-        (error) {
-          return Left(error);
-        },
+        Left.new,
         (r) async {
           final user = UserModelResponse(
             accessToken: r.key,
@@ -47,7 +46,10 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             localeCode: languageCode,
           );
 
-          await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+          await storage.writeString(
+            key: StorageKeys.tokenKey,
+            value: user.accessToken,
+          );
 
           return Right(user);
         },
@@ -83,18 +85,24 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       body: {'access_token': googleAuth.accessToken},
     );
 
-    return token.fold(Left.new, (r) async {
-      final user = UserModelResponse(
-        accessToken: r.key,
-        username: googleAuth.name,
-        gender: gender,
-        localeCode: languageCode,
-      );
+    return token.fold(
+      Left.new,
+      (r) async {
+        final user = UserModelResponse(
+          accessToken: r.key,
+          username: googleAuth.name,
+          gender: gender,
+          localeCode: languageCode,
+        );
 
-      await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+        await storage.writeString(
+          key: StorageKeys.tokenKey,
+          value: user.accessToken,
+        );
 
-      return Right(user);
-    });
+        return Right(user);
+      },
+    );
   }
 
   Future<_UserReqParam> _getGoogleAuth() async {
@@ -124,21 +132,30 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final token = await client.postType(
       apiConst.loginWithApple,
       fromJson: TokenResponse.fromJson,
-      body: {'access_token': appleAuth.accessToken},
+      body: {
+        'access_token': appleAuth.accessToken,
+        'id_token': appleAuth.identityToken,
+      },
     );
 
-    return token.fold(Left.new, (r) async {
-      final user = UserModelResponse(
-        accessToken: r.key,
-        username: appleAuth.name,
-        gender: gender,
-        localeCode: languageCode,
-      );
+    return token.fold(
+      Left.new,
+      (r) async {
+        final user = UserModelResponse(
+          accessToken: r.key,
+          username: appleAuth.name,
+          gender: gender,
+          localeCode: languageCode,
+        );
 
-      await storage.writeString(key: StorageKeys.tokenKey, value: user.accessToken);
+        await storage.writeString(
+          key: StorageKeys.tokenKey,
+          value: user.accessToken,
+        );
 
-      return Right(user);
-    });
+        return Right(user);
+      },
+    );
   }
 
   Future<_UserReqParam> _getAppleAuth() async {
@@ -149,11 +166,14 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
     } else {
       final appleAuth = await soccialAuth.signInWithApple();
-      final accessToken = appleAuth.credential?.accessToken ?? '';
-      final username = appleAuth.user?.displayName ?? '';
+      final identityToken = appleAuth.$2.identityToken ?? '';
+      final accessToken = appleAuth.$1.credential!.accessToken ?? '';
+      final username = appleAuth.$1.user?.displayName ?? '';
+
       return _UserReqParam(
         name: username,
         accessToken: accessToken,
+        identityToken: identityToken,
       );
     }
   }
@@ -212,8 +232,10 @@ final class _UserReqParam {
   const _UserReqParam({
     required this.name,
     required this.accessToken,
+    this.identityToken,
   });
 
   final String name;
   final String accessToken;
+  final String? identityToken;
 }
