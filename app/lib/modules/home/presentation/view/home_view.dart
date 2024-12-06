@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/config/config.dart';
 
@@ -266,6 +265,6 @@ class _HomeViewState extends State<HomeView> {
 
   void _onJoinToHatim() {
     MqAnalytic.track(AnalyticKey.goHatim);
-    context.goNamed(AppRouter.hatim);
+    context.goNamedIfAuthenticated(AppRouter.hatim);
   }
 }

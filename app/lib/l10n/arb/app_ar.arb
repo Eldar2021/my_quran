@@ -92,5 +92,6 @@
     "notSelected": "لم يتم التحديد",
     "pages": "صفحات",
     "deleteAccount": "حذف الحساب",
-    "confirmDeleteAccount": "هل أنت متأكد أنك تريد حذف هذا الحساب؟"
+    "confirmDeleteAccount": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
+    "continueAsGuest": "متابعة كضيف"
 }

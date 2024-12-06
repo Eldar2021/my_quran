@@ -92,5 +92,6 @@
     "notSelected": "Seçilmedi",
     "pages": "sayfa",
     "deleteAccount": "Hesabı sil",
-    "confirmDeleteAccount": "Bu hesabı silmek istediğinizden emin misiniz?"
+    "confirmDeleteAccount": "Bu hesabı silmek istediğinizden emin misiniz?",
+    "continueAsGuest": "Misafir olarak devam et"
 }

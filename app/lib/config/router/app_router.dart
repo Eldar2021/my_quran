@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -14,7 +12,19 @@ final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio
 
 @immutable
 final class AppRouter {
-  const AppRouter._();
+  const AppRouter._({
+    required this.isFirstTime,
+  });
+
+  factory AppRouter.intance({
+    required bool isFirstTime,
+  }) {
+    return AppRouter._(
+      isFirstTime: isFirstTime,
+    );
+  }
+
+  final bool isFirstTime;
 
   static const home = 'home';
   static const hatim = 'hatim';
@@ -36,92 +46,85 @@ final class AppRouter {
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
 
-  static final router = GoRouter(
-    initialLocation: '/home',
-    navigatorKey: rootNavigatorKey,
-    debugLogDiagnostics: kDebugMode,
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('Init')),
+  GoRouter router() {
+    return GoRouter(
+      initialLocation: isFirstTime ? '/$login' : '/home',
+      navigatorKey: rootNavigatorKey,
+      debugLogDiagnostics: kDebugMode,
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const Scaffold(
+            body: Center(child: Text('Init')),
+          ),
         ),
-      ),
-      GoRoute(
-        path: '/$login',
-        name: login,
-        builder: (context, state) => const LoginView(),
-      ),
-      GoRoute(
-        path: '/$verificationCode/:email',
-        name: verificationCode,
-        builder: (context, state) {
-          final email = state.pathParameters['email'];
-          return VerificationCodeView(email: email!);
-        },
-      ),
-      GoRoute(
-        path: '/$loginWihtSoccial',
-        name: loginWihtSoccial,
-        builder: (context, state) => const SignInView(),
-      ),
-      GoRoute(
-        path: '/$devModeView',
-        name: devModeView,
-        builder: (context, state) => const DevModeView(),
-      ),
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return MainView(navigationShell);
-        },
-        branches: [
-          StatefulShellBranch(
-            navigatorKey: _sectionNavigatorKey1,
-            routes: [
-              GoRoute(
-                path: '/$quran',
-                name: quran,
-                builder: (context, state) => const QuranView(),
-                routes: quranSubRoutes,
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _sectionNavigatorKey2,
-            routes: [
-              GoRoute(
-                path: '/$home',
-                name: home,
-                builder: (context, state) => const HomeView(),
-                routes: homeSubRoutes,
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _sectionNavigatorKey3,
-            routes: [
-              GoRoute(
-                path: '/$quranAudio',
-                name: quranAudio,
-                builder: (context, state) => const QuranAudioView(),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ],
-    redirect: (context, state) {
-      final path = state.matchedLocation;
-      if (!context.read<AuthCubit>().isAuthedticated) {
-        if (!path.contains(devModeView) && !path.contains(loginWihtSoccial) && !path.contains(verificationCode)) {
-          return '/$login';
-        }
-      }
-      return null;
-    },
-  );
+        GoRoute(
+          path: '/$login',
+          name: login,
+          builder: (context, state) => const LoginView(),
+        ),
+        GoRoute(
+          path: '/$verificationCode/:email',
+          name: verificationCode,
+          builder: (context, state) {
+            final email = state.pathParameters['email'];
+            return VerificationCodeView(email: email!);
+          },
+        ),
+        GoRoute(
+          path: '/$loginWihtSoccial',
+          name: loginWihtSoccial,
+          builder: (context, state) => const SignInView(),
+        ),
+        GoRoute(
+          path: '/$devModeView',
+          name: devModeView,
+          builder: (context, state) => const DevModeView(),
+        ),
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) {
+            return MainView(navigationShell);
+          },
+          branches: [
+            StatefulShellBranch(
+              navigatorKey: _sectionNavigatorKey1,
+              routes: [
+                GoRoute(
+                  path: '/$quran',
+                  name: quran,
+                  builder: (context, state) => const QuranView(),
+                  routes: _quranSubRoutes,
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              navigatorKey: _sectionNavigatorKey2,
+              routes: [
+                GoRoute(
+                  path: '/$home',
+                  name: home,
+                  builder: (context, state) => const HomeView(),
+                  routes: _homeSubRoutes,
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              navigatorKey: _sectionNavigatorKey3,
+              routes: [
+                GoRoute(
+                  path: '/$quranAudio',
+                  name: quranAudio,
+                  builder: (context, state) => const QuranAudioView(),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 
-  static List<RouteBase> get homeSubRoutes {
+  static List<RouteBase> get _homeSubRoutes {
     return [
       GoRoute(
         path: hatim,
@@ -145,12 +148,12 @@ final class AppRouter {
         name: settingsPage,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const SettingsView(),
-        routes: settingsSubRoutes,
+        routes: _settingsSubRoutes,
       ),
     ];
   }
 
-  static List<RouteBase> get quranSubRoutes {
+  static List<RouteBase> get _quranSubRoutes {
     return [
       GoRoute(
         path: '$read/:isHatim/:pages',
@@ -164,7 +167,7 @@ final class AppRouter {
     ];
   }
 
-  static List<RouteBase> get settingsSubRoutes {
+  static List<RouteBase> get _settingsSubRoutes {
     return [
       GoRoute(
         path: genderSettings,

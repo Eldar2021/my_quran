@@ -92,5 +92,6 @@
     "notSelected": "Belum dipilih",
     "pages": "halaman",
     "deleteAccount": "Hapus akun",
-    "confirmDeleteAccount": "Apakah Anda yakin ingin menghapus akun ini?"
+    "confirmDeleteAccount": "Apakah Anda yakin ingin menghapus akun ini?",
+    "continueAsGuest": "Lanjutkan sebagai tamu"
 }

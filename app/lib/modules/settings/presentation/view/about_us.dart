@@ -10,7 +10,6 @@ class AboutUsVuew extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.settingsAboutUsPage),
-        title: Text(context.l10n.aboutUs),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
@@ -24,6 +23,7 @@ class AboutUsVuew extends StatelessWidget {
           Text(
             context.l10n.aboutUsDevsDesc,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

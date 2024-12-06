@@ -181,6 +181,12 @@ class _SignInViewState extends State<SignInView> {
                 ),
               ),
               const SizedBox(height: 10),
+              TextButton(
+                onPressed: () {
+                  context.goNamed(AppRouter.home);
+                },
+                child: Text(context.l10n.continueAsGuest),
+              ),
             ],
           ),
         ),

@@ -92,5 +92,6 @@
     "notSelected": "Таңдалмаған",
     "pages": "парақ",
     "deleteAccount": "Аккаунтты жою",
-    "confirmDeleteAccount": "Сіз бұл аккаунтты жойғыңыз келетініне сенімдісіз бе?"
+    "confirmDeleteAccount": "Сіз бұл аккаунтты жойғыңыз келетініне сенімдісіз бе?",
+    "continueAsGuest": "Қонақ ретінде жалғастыру"
 }
