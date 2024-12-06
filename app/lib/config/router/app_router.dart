@@ -121,15 +121,6 @@ final class AppRouter {
           ],
         ),
       ],
-      // redirect: (context, state) {
-      //   final path = state.matchedLocation;
-      //   if (!context.read<AuthCubit>().isAuthedticated) {
-      //     if (!path.contains(devModeView) && !path.contains(loginWihtSoccial) && !path.contains(verificationCode)) {
-      //       return '/$login';
-      //     }
-      //   }
-      //   return null;
-      // },
     );
   }
 

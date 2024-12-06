@@ -96,7 +96,7 @@ class _PaginationViewState extends State<PaginationView> {
                         MqAnalytic.track(AnalyticKey.showAmin);
                         final value = await AppAlert.showAmin<bool>(
                           context,
-                          context.read<AuthCubit>().state.genderForNow ?? Gender.male,
+                          context.read<AuthCubit>().state.gender,
                           totalPages: widget.pages.length,
                           isHatim: widget.isHatim,
                         );

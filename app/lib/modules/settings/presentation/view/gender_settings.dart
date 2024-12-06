@@ -35,7 +35,7 @@ class GenderSettingView extends StatelessWidget {
             GenderCard(
               key: const Key(MqKeys.settingsGenderMale),
               Gender.male,
-              isSelect: authCubit.state.genderForNow == Gender.male,
+              isSelect: authCubit.state.gender == Gender.male,
               onTap: () async {
                 MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
                 context.loaderOverlay.show();
@@ -46,7 +46,7 @@ class GenderSettingView extends StatelessWidget {
             GenderCard(
               key: const Key(MqKeys.settingsGenderFemale),
               Gender.female,
-              isSelect: authCubit.state.genderForNow == Gender.female,
+              isSelect: authCubit.state.gender == Gender.female,
               onTap: () async {
                 MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
                 context.loaderOverlay.show();
