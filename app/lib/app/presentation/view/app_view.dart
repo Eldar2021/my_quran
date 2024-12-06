@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
@@ -118,8 +119,13 @@ class QuranApp extends StatefulWidget {
 }
 
 class _QuranAppState extends State<QuranApp> {
+  late final GoRouter _router;
+
   @override
   void initState() {
+    _router = AppRouter.intance(
+      isFirstTime: !context.read<AuthCubit>().isAuthedticated,
+    ).router();
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       context.read<RemoteConfigCubit>().init();
@@ -138,7 +144,7 @@ class _QuranAppState extends State<QuranApp> {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: context.watch<AppCubit>().state.theme.themeData,
-          routerConfig: AppRouter.router,
+          routerConfig: _router,
         ),
       ),
     );
