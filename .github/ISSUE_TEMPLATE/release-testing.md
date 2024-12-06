@@ -12,6 +12,7 @@ Tested v<versioncode>
 # Create branch & Check auto CI
 - [ ] `rl/v<versioncode>`
 - [ ] Change version in `app/pubspec.yaml`
+- [ ] Write change information
 - [ ] Run `git add .`
 - [ ] Run `git commit -m "release v<versioncode>"`
 - [ ] Run `git push --set-upstream origin rl/v<versioncode>`
@@ -23,7 +24,6 @@ Tested v<versioncode>
 - [ ] Create a tag 
   - `git tag -a v<version> -m "release v<versioncode"`
   - `git push origin v<version>`
-- [ ] Write change information
  
 ## Deploy Android 
 Testing (Open Testing)
