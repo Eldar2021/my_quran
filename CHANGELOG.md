@@ -81,7 +81,7 @@
 
 - Fixed BottomNav always show
 - Fixed Settings twice navigation pop
-- Fixed onTap juz item 
+- Fixed onTap juz item
 
 ## [UX]
 
@@ -95,3 +95,11 @@
 - Added Contributing to MyQuran md file
 - Created LICENSE
 - Created SECURITY md
+
+---
+
+# What's Changed v1.3.5+15
+
+## [UX]
+
+- Added access to some features without logging in
