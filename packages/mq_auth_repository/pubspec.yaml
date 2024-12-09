@@ -9,10 +9,23 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter
+    sdk: flutter 
+  # plugins
+  google_sign_in: ^6.2.2
+  sign_in_with_apple: ^6.1.4
+  # packages
+  meta: ^1.15.0
+  json_annotation: ^4.9.0
+  # local packages
+  mq_remote_client:
+    path: ../mq_remote_client
+  mq_storage:
+    path: ../mq_storage
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+  json_serializable: ^6.9.0
+  build_runner: ^2.4.13
