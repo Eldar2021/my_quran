@@ -1,4 +1,4 @@
 /// MyQuran Analytics package
-library;
+library mq_analytics;
 
 export 'src/mq_analytics.dart';

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mq_crashlytics/mq_crashlytics.dart';
 
 @immutable
 final class MqAnalytic {
