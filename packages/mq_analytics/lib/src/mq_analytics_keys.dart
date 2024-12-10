@@ -35,4 +35,7 @@ abstract class AnalyticKey {
 
   // refresh
   static const refreshHomePage = 'refresh_home';
+
+  // test
+  static const test = 'test';
 }
