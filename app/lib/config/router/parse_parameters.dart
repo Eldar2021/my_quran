@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:meta/meta.dart';
-import 'package:my_quran/core/core.dart';
+import 'package:mq_crashlytics/mq_crashlytics.dart';
 
 @immutable
 final class ParseParams {

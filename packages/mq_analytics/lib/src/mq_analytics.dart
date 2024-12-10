@@ -2,13 +2,20 @@ import 'dart:developer';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:my_quran/core/core.dart';
-
-part 'mq_analytic_keys.dart';
+import 'package:mq_crashlytics/mq_crashlytics.dart';
 
 @immutable
 final class MqAnalytic {
   const MqAnalytic._();
+
+  static Future<void> setAnalyticsCollectionEnabled({required bool enabled}) async {
+    try {
+      await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(enabled);
+    } catch (error, stackTrace) {
+      MqCrashlytics.report(error, stackTrace);
+      log('MqAnalytics setAnalyticsCollectionEnabled error: $error, stackTrace: $stackTrace');
+    }
+  }
 
   static Future<void> setUserProperty(String userName) async {
     try {

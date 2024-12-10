@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/presentation/presenation.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
-import 'package:my_quran/theme/custom/typography/typography_theme.dart';
+import 'package:my_quran/theme/theme.dart';
 import 'package:my_quran/utils/urils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 

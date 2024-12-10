@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:meta/meta.dart';
+import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:mq_either/mq_either.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/core/core.dart';
