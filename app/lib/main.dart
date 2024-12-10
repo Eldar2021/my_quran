@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
 
@@ -27,7 +27,8 @@ Future<void> main({AppConfig? appConfig}) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
+
+  await MqAnalytic.setAnalyticsCollectionEnabled(enabled: kReleaseMode);
 
   await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: kReleaseMode);
 
