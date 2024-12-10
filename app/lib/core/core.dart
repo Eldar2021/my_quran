@@ -1,5 +1,4 @@
 export 'auth/soccial_auth.dart';
-export 'crashlytics/mq_crashlytics.dart';
 export 'exceptions/network_exception.dart';
 export 'exceptions/server_exception.dart';
 export 'exceptions/auth_exception.dart';
