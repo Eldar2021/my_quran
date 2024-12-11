@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:my_quran/core/core.dart';
+import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/modules/hatim/hatim.dart';
 
 part 'hatim_event.dart';

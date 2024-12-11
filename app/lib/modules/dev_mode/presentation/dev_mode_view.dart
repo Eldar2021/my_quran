@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_analytics/mq_analytics.dart';
+import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/app_config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/utils/show/alerts.dart';
 
 class DevModeView extends StatefulWidget {
@@ -65,6 +66,23 @@ class _DevModeViewState extends State<DevModeView> {
               }
             },
             child: const Text('Save'),
+          ),
+          const SizedBox(height: 20),
+          TextButton(
+            onPressed: () async {
+              MqCrashlytics.report(
+                Exception('Test report Error'),
+                StackTrace.current,
+              );
+              MqCrashlytics.recordFlutterError(
+                FlutterErrorDetails(
+                  exception: Exception('Test recordFlutterError Error'),
+                ),
+              );
+              await MqCrashlytics.setUserIdentifier('Test Eldiiar');
+              MqAnalytic.track(AnalyticKey.test, params: {'Tested By': 'Eldiiar'});
+            },
+            child: const Text('Test Crashlytics and Analytics'),
           ),
         ],
       ),

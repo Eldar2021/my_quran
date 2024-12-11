@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:my_quran/core/core.dart';
+import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/modules/modules.dart';
 
 @immutable

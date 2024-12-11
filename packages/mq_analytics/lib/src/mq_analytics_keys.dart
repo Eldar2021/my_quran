@@ -1,7 +1,4 @@
-part of 'mq_analytic.dart';
-
-@immutable
-final class AnalyticKey {
+abstract class AnalyticKey {
   const AnalyticKey._();
 
   // go - back
@@ -38,4 +35,7 @@ final class AnalyticKey {
 
   // refresh
   static const refreshHomePage = 'refresh_home';
+
+  // test
+  static const test = 'test';
 }

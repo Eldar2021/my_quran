@@ -343,7 +343,7 @@ packages:
     source: hosted
     version: "7.0.0"
   firebase_analytics:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_analytics
       sha256: "2c4e7b548d41b46e8aa08bc3bd1163146be7e6d48f678f2e6dd3114994e42458"
@@ -415,7 +415,7 @@ packages:
     source: hosted
     version: "2.18.1"
   firebase_crashlytics:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_crashlytics
       sha256: "6899800fff1af819955aef740f18c4c8600f8b952a2a1ea97bc0872ebb257387"
@@ -916,6 +916,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  mq_analytics:
+    dependency: "direct main"
+    description:
+      path: "../packages/mq_analytics"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   mq_ci_keys:
     dependency: "direct main"
     description:
@@ -923,6 +930,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0"
+  mq_crashlytics:
+    dependency: "direct main"
+    description:
+      path: "../packages/mq_crashlytics"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   mq_either:
     dependency: "direct main"
     description:
