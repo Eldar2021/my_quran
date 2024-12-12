@@ -76,6 +76,8 @@ dependencies:
     path: ../packages/mq_crashlytics
   mq_analytics:
     path: ../packages/mq_analytics
+  mq_remote_config:
+    path: ../packages/mq_remote_config
 
 dev_dependencies:
   flutter_test:

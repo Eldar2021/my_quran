@@ -12,6 +12,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
+import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 import 'package:my_quran/app/app.dart';

@@ -1,5 +1,6 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
+import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:mocktail/mocktail.dart';
