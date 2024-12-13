@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -6,24 +7,24 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class MqRemoteConfig {
-  const MqRemoteConfig({
-    required this.remoteConfig,
+  MqRemoteConfig({
     required this.buildNumber,
-  });
+    FirebaseRemoteConfig? firebaseRemoteConfig,
+  }) : _firebaseRemoteConfig = firebaseRemoteConfig ?? FirebaseRemoteConfig.instance;
 
-  final FirebaseRemoteConfig remoteConfig;
+  final FirebaseRemoteConfig _firebaseRemoteConfig;
   final String buildNumber;
 
   Future<void> initialise() async {
-    await remoteConfig.setConfigSettings(
+    await _firebaseRemoteConfig.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(minutes: 1),
         minimumFetchInterval: const Duration(hours: 1),
       ),
     );
 
-    await remoteConfig.setDefaults(_defaultParams(currentBuildNumber));
-    await remoteConfig.fetchAndActivate();
+    await _firebaseRemoteConfig.setDefaults(_defaultParams(currentBuildNumber));
+    await _firebaseRemoteConfig.fetchAndActivate();
   }
 
   int get currentBuildNumber => int.tryParse(buildNumber) ?? 100;
@@ -31,7 +32,7 @@ class MqRemoteConfig {
   int get recommendedBuildNumber => version.$2;
 
   (int, int) get version {
-    final data = jsonDecode(remoteConfig.getString(_appVersion)) as Map<String, dynamic>;
+    final data = jsonDecode(_firebaseRemoteConfig.getString(_appVersion)) as Map<String, dynamic>;
     final platformName = Platform.isIOS ? 'ios' : 'android';
     final versionData = data[platformName] as Map<String, dynamic>;
     return (versionData['requiredBuildNumber'], versionData['recommendedBuildNumber']);
@@ -60,5 +61,22 @@ class MqRemoteConfig {
     };
   }
 
-  bool get hatimIsEnable => remoteConfig.getBool(_hatimIsEnable);
+  bool get hatimIsEnable => _firebaseRemoteConfig.getBool(_hatimIsEnable);
+
+  StreamSubscription<void> listen(
+    void Function() onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
+    return _firebaseRemoteConfig.onConfigUpdated.listen(
+      (data) async {
+        await _firebaseRemoteConfig.activate();
+        onData();
+      },
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
+  }
 }

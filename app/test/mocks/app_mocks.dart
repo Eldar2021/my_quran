@@ -1,4 +1,5 @@
-import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'dart:async';
+
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -29,12 +30,12 @@ final class MockHomeRepositoryImpl implements HomeRepository {
   }
 }
 
-final class MockFirebaseRemoteConfig extends Mock implements FirebaseRemoteConfig {
-  @override
-  Stream<RemoteConfigUpdate> get onConfigUpdated {
-    return const Stream.empty();
-  }
-}
+// final class MockFirebaseRemoteConfig extends Mock implements FirebaseRemoteConfig {
+//   @override
+//   Stream<RemoteConfigUpdate> get onConfigUpdated {
+//     return const Stream.empty();
+//   }
+// }
 
 class MockMqRemoteConfig implements MqRemoteConfig {
   @override
@@ -59,5 +60,17 @@ class MockMqRemoteConfig implements MqRemoteConfig {
   (int, int) get version => (10, 10);
 
   @override
-  FirebaseRemoteConfig get remoteConfig => MockFirebaseRemoteConfig();
+  StreamSubscription<void> listen(
+    void Function() onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
+    return Stream.value('').listen(
+      (i) => onData(),
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
+  }
 }

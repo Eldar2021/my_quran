@@ -18,10 +18,7 @@ class RemoteConfigCubit extends Cubit<RemoteConfigState> {
 
   Future<void> init() async {
     _emitNewState();
-    remoteConfig.remoteConfig.onConfigUpdated.listen((event) async {
-      await remoteConfig.remoteConfig.activate();
-      _emitNewState();
-    });
+    remoteConfig.listen(_emitNewState);
   }
 
   void _emitNewState() {

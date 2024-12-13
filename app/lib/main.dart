@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,10 +56,7 @@ Future<void> main({AppConfig? appConfig}) async {
 
   final packageInfo = await PackageInfo.fromPlatform();
 
-  final remoteConfig = MqRemoteConfig(
-    remoteConfig: FirebaseRemoteConfig.instance,
-    buildNumber: packageInfo.buildNumber,
-  );
+  final remoteConfig = MqRemoteConfig(buildNumber: packageInfo.buildNumber);
 
   await remoteConfig.initialise();
   appConfig ??= AppConfig(storage: storage);
