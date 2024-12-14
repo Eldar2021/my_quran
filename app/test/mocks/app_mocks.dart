@@ -30,13 +30,6 @@ final class MockHomeRepositoryImpl implements HomeRepository {
   }
 }
 
-// final class MockFirebaseRemoteConfig extends Mock implements FirebaseRemoteConfig {
-//   @override
-//   Stream<RemoteConfigUpdate> get onConfigUpdated {
-//     return const Stream.empty();
-//   }
-// }
-
 class MockMqRemoteConfig implements MqRemoteConfig {
   @override
   String get buildNumber => '1.3.0';
