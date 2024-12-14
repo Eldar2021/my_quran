@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: mq_ci_keys,mq_storage,mq_either,mq_analytics,mq_crashlytics
+# melos_managed_dependency_overrides: mq_ci_keys,mq_storage,mq_either,mq_analytics,mq_crashlytics,mq_remote_config
 dependency_overrides:
   mq_analytics:
     path: ../packages/mq_analytics
@@ -10,6 +10,8 @@ dependency_overrides:
     path: ../packages/mq_either
   mq_remote_client:
     path: ../packages/mq_remote_client
+  mq_remote_config:
+    path: ../packages/mq_remote_config
   mq_storage:
     path: ../packages/mq_storage
 

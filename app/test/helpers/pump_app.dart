@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mq_remote_config/mq_remote_config.dart';
 
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/app_config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
