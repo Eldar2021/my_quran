@@ -7,7 +7,7 @@ final class HomeState extends Equatable {
     this.homeModel,
   });
 
-  final HomeEntity? homeModel;
+  final MqHomeEntity? homeModel;
   final FetchStatus status;
 
   @override

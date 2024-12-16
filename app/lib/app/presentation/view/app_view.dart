@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
@@ -79,15 +80,13 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => HomeCubit(
-            GetHomeDataUseCase(
-              HomeRepositoryImpl(
-                isMockData
-                    ? const HomeLocalDataSourceMock()
-                    : HomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
-                isMockData
-                    ? const HomeRemoteDataSourceMock()
-                    : HomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
-              ),
+            MqHomeRepositoryImpl(
+              isMockData
+                  ? const MqHomeLocalDataSourceMock()
+                  : MqHomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
+              isMockData
+                  ? const MqHomeRemoteDataSourceMock()
+                  : MqHomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
             ),
           ),
         ),
