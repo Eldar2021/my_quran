@@ -1,7 +1,16 @@
 # My Quran Hatim Aplication.
 
-Regardless of your nationality, place of residence, gender, or social status, you're invited to join a global community with MyQuran App. This app offers a personalized and comprehensive way to engage with the Quran, making it easy for users to track their recitations, follow prayer times.
+<p align="center">
+  <a href="https://apps.apple.com/kg/app/my-quran/id1671645027">
+    <img src="doc/images/app_store.png" alt="Get it on App Store" width="30%">
+  </a>
+  &emsp; &emsp;&emsp;&emsp;&emsp;
+  <a href="https://play.google.com/store/apps/details?id=com.alee.my_quran">
+    <img src="doc/images/google_play.png" alt="Get it on Play Store" width="30%">
+  </a>
+</p>
 
+Regardless of your nationality, place of residence, gender, or social status, you're invited to join a global community with MyQuran App. This app offers a personalized and comprehensive way to engage with the Quran, making it easy for users to track their recitations, follow prayer times. [App link.](https://onelink.to/q58a9t)
 
 <p align="center">
   <img src="doc/iPhone 16 Pro Max/005-login-google-page.png" width="22%" />
@@ -23,7 +32,6 @@ Regardless of your nationality, place of residence, gender, or social status, yo
   <img src="doc/iPhone 16 Pro Max/104-settings-language-page-en.png" width="22%" />
   <img src="doc/iPhone 16 Pro Max/109-settings-theme-page-light-red.png" width="22%" />
 </p>
-
 
 ## Requirements
 
