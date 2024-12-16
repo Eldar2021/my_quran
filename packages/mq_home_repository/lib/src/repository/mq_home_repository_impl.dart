@@ -2,20 +2,20 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
-import 'package:my_quran/modules/modules.dart';
+import 'package:mq_home_repository/mq_home_repository.dart';
 
 @immutable
-final class HomeRepositoryImpl implements HomeRepository {
-  const HomeRepositoryImpl(
+final class MqHomeRepositoryImpl implements MqHomeRepository {
+  const MqHomeRepositoryImpl(
     this.localDataSource,
     this.remoteDataSource,
   );
 
-  final HomeLocalDataSource localDataSource;
-  final HomeRemoteDataSource remoteDataSource;
+  final MqHomeLocalDataSource localDataSource;
+  final MqHomeRemoteDataSource remoteDataSource;
 
   @override
-  Future<HomeEntity> getData() async {
+  Future<MqHomeEntity> getData() async {
     try {
       final remoteData = await remoteDataSource.getRemoteData();
       await localDataSource.saveLocalData(remoteData);
@@ -27,8 +27,8 @@ final class HomeRepositoryImpl implements HomeRepository {
     }
   }
 
-  HomeEntity _convertData(HomeModelResponse response) {
-    return HomeEntity(
+  MqHomeEntity _convertData(MqHomeModelResponse response) {
+    return MqHomeEntity(
       allDoneHatims: response.allDoneHatims,
       allDonePages: response.allDonePages,
       donePages: response.donePages,

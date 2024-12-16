@@ -75,7 +75,9 @@ Future<void> main({AppConfig? appConfig}) async {
         RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => MqRemoteClient(
-            dio: Dio(),
+            dio: Dio(
+              BaseOptions(baseUrl: ApiConst.domain),
+            ),
             network: context.read<NetworkClient>(),
             language: () => storage.readString(key: StorageKeys.localeKey),
             token: () => storage.readString(key: StorageKeys.tokenKey),

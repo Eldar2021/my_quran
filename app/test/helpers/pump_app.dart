@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 
 import 'package:my_quran/app/app.dart';
@@ -17,7 +18,7 @@ extension PumpApp on WidgetTester {
     GoogleSignInUseCase googleSignInUseCase,
     AppleSignInUseCase appleSignInUseCase,
     SerUserDataUseCase setUserDataUseCase,
-    HomeRepository homeRepo,
+    MqHomeRepository homeRepo,
     PatchGenderUseCase patchGenderUseCase,
     PatchLocaleCodeUseCase patchLocaleCodeUseCase,
     LogoutUseCase logoutUseCase,
@@ -58,7 +59,7 @@ extension PumpApp on WidgetTester {
               ),
             ),
             BlocProvider(
-              create: (context) => HomeCubit(GetHomeDataUseCase(homeRepo)),
+              create: (context) => HomeCubit(homeRepo),
             ),
             BlocProvider(
               create: (context) => RemoteConfigCubit(

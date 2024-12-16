@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'home_model_response.g.dart';
+part 'mq_home_model_response.g.dart';
 
 @JsonSerializable()
 @immutable
-final class HomeModelResponse {
-  const HomeModelResponse({
+final class MqHomeModelResponse {
+  const MqHomeModelResponse({
     required this.allDoneHatims,
     required this.allDonePages,
     required this.donePages,
   });
 
-  factory HomeModelResponse.fromJson(Map<String, dynamic> json) => _$HomeModelResponseFromJson(json);
+  factory MqHomeModelResponse.fromJson(Map<String, dynamic> json) => _$HomeModelResponseFromJson(json);
   Map<String, dynamic> toJson() => _$HomeModelResponseToJson(this);
 
   final int allDoneHatims;

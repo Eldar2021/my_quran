@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -7,7 +8,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/core/core.dart';
-import 'package:my_quran/modules/modules.dart';
 
 final class MockPreferencesStorage extends Mock implements PreferencesStorage {}
 
@@ -23,10 +23,10 @@ final class MockPackageInfo extends Mock implements PackageInfo {
   String get buildNumber => '10';
 }
 
-final class MockHomeRepositoryImpl implements HomeRepository {
+final class MockHomeRepositoryImpl implements MqHomeRepository {
   @override
-  Future<HomeEntity> getData() async {
-    return const HomeEntity(allDoneHatims: 8, allDonePages: 5325, donePages: 634);
+  Future<MqHomeEntity> getData() async {
+    return const MqHomeEntity(allDoneHatims: 8, allDonePages: 5325, donePages: 634);
   }
 }
 
