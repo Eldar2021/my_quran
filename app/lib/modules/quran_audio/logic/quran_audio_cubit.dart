@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
+import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/modules/modules.dart';
 
 part 'quran_audio_state.dart';
 
