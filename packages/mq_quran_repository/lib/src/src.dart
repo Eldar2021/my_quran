@@ -26,3 +26,5 @@ export 'source/mock/mq_quran_remote_data_source_mock.dart';
 export 'source/mq_quran_local_data_source.dart';
 export 'source/mq_quran_remote_data_source.dart';
 export 'source/remote/mq_quran_remote_data_source_impl.dart';
+// static
+export 'static/mq_quran_static.dart';

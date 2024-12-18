@@ -3,8 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'juz_surah_model.g.dart';
 
-@immutable
 @JsonSerializable()
+@immutable
 final class JuzSurahResponse {
   const JuzSurahResponse({
     required this.name,

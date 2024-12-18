@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
-
-const sajdaAyats = [
-  1160,
-  1722,
-  1951,
-  2138,
-  2308,
-  2613,
-  2672,
-  2915,
-  3185,
-  3518,
-  3994,
-  4256,
-  4846,
-  5905,
-  6125,
-];
+import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 @immutable
 final class VerseEnity {
@@ -33,5 +16,5 @@ final class VerseEnity {
   int get juzNumber => int.parse(verseKey.split(':').first);
   int get ayatNumber => int.parse(verseKey.split(':').last);
   bool get isFirst => ayatNumber == 1;
-  bool get hasSajda => sajdaAyats.contains(id);
+  bool get hasSajda => MqQuranStatic.sajdaAyats.contains(id);
 }

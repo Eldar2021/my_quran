@@ -4,8 +4,8 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 part 'juz_model.g.dart';
 
-@immutable
 @JsonSerializable()
+@immutable
 final class JuzResponse {
   const JuzResponse({
     required this.id,

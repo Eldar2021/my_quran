@@ -4,8 +4,8 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 part 'quran_page_response.g.dart';
 
-@immutable
 @JsonSerializable()
+@immutable
 final class QuranPageResponse {
   const QuranPageResponse({
     required this.verses,

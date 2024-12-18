@@ -3,8 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'verse_response.g.dart';
 
-@immutable
 @JsonSerializable()
+@immutable
 final class VerseResponse {
   const VerseResponse({
     required this.id,

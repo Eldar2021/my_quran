@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 
-const bismallah = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ';
-const sajdaSymbol = '۩';
-
 @immutable
 final class QuranPageEntity {
   const QuranPageEntity({
@@ -19,7 +16,7 @@ final class QuranPageEntity {
       ..writeAll(
         verses.map(
           (e) =>
-              '${e.isFirst ? '\n\n${bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} ${e.hasSajda ? sajdaSymbol : ''} \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E',
+              '${e.isFirst ? '\n\n${MqQuranStatic.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} ${e.hasSajda ? MqQuranStatic.sajdaSymbol : ''} \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E',
         ),
         '  ',
       );

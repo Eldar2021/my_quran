@@ -3,8 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'filters_response.g.dart';
 
-@immutable
 @JsonSerializable()
+@immutable
 final class FiltersResponse {
   const FiltersResponse({required this.pageNumber});
 

@@ -4,8 +4,8 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 part 'meta_response.g.dart';
 
-@immutable
 @JsonSerializable()
+@immutable
 final class MetaResponse {
   const MetaResponse({required this.filters});
 
