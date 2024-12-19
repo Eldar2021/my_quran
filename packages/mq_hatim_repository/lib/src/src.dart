@@ -5,9 +5,9 @@ export 'entity/mq_hatim_page_entity.dart';
 export 'entity/mq_hatim_read_entity.dart';
 // models
 export 'model/hatim_base_response.dart';
-export 'model/hatim_juz.dart';
 export 'model/hatim_page.dart';
 export 'model/hatim_read_model.dart';
+export 'model/mq_hatim_juz.dart';
 // repositories
 export 'repository/mq_hatim_read_repository.dart';
 export 'repository/mq_hatim_read_repository_impl.dart';

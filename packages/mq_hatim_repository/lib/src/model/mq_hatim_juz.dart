@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
-part 'hatim_juz.g.dart';
+part 'mq_hatim_juz.g.dart';
 
 @JsonSerializable()
 class HatimJus {

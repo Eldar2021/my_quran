@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'hatim_juz.dart';
+part of 'mq_hatim_juz.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
