@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'hatim_base_response.g.dart';
+part 'mq_hatim_base_response.g.dart';
 
 @JsonSerializable()
 @immutable

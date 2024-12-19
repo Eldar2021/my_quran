@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'hatim_base_response.dart';
+part of 'mq_hatim_base_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

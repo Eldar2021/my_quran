@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
-part 'hatim_read_model.g.dart';
+part 'mq_hatim_read_model.g.dart';
 
 @JsonSerializable()
 class HatimReadModel {

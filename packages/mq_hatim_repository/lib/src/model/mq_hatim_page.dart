@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
-part 'hatim_page.g.dart';
+part 'mq_hatim_page.g.dart';
 
 @JsonSerializable()
 class HatimPages {
