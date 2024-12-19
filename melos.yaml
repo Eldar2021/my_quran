@@ -6,7 +6,7 @@ packages:
 
 command:
   bootstrap:
-    runPubGetInParallel: false
+    # runPubGetInParallel: false
     usePubspecOverrides: true
 
 scripts:
@@ -67,11 +67,11 @@ scripts:
     description: "Run Flutter doctor"
 
   run-build-runner:
-    run: cd app && flutter pub run build_runner build --delete-conflicting-outputs
+    run: cd app && dart run build_runner build --delete-conflicting-outputs
     description: "Run unit tests selected package"
 
   run-build-runner-all:
-    run: melos exec --depends-on="build_runner" -- flutter pub run build_runner build --delete-conflicting-outputs
+    run: melos exec --depends-on="build_runner" -- dart run build_runner build --delete-conflicting-outputs
     description: "Generate code with build_runner"
 
   # Run My Quran

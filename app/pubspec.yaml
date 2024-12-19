@@ -83,7 +83,7 @@ dependencies:
     path: ../packages/mq_quran_repository
   mq_hatim_repository:
     path: ../packages/mq_hatim_repository
-    
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -94,7 +94,7 @@ dev_dependencies:
   mocktail: ^1.0.4
   build_runner: ^2.4.13
   flutter_gen_runner: ^5.8.0
-  json_serializable: ^6.8.0
+  json_serializable: ^6.9.0
   # flutter_launcher_icons: ^0.13.1
 
 flutter:
