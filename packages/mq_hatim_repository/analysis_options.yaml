@@ -1,6 +1,3 @@
-analyzer:
-  errors:
-    one_member_abstracts: ignore
 include: package:very_good_analysis/analysis_options.6.0.0.yaml
 
 linter:
@@ -8,3 +5,11 @@ linter:
     public_member_api_docs: false
     lines_longer_than_80_chars: false
     sort_pub_dependencies: false
+
+analyzer:
+  errors:
+    one_member_abstracts: ignore
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "bin/cache/**"
