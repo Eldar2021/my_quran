@@ -1,5 +1,5 @@
-name: mq_quran_repository
-description: MqQuranRepository Package
+name: mq_hatim_repository
+description: Mq hatim repository package
 version: 0.1.0+1
 publish_to: none
 
@@ -11,17 +11,18 @@ dependencies:
   flutter:
     sdk: flutter
   json_annotation: ^4.9.0
+  web_socket_channel: ^3.0.1
 
   # Packages
+  mq_crashlytics:
+    path: ../mq_crashlytics
   mq_remote_client:
     path: ../mq_remote_client
-  mq_storage:
-    path: ../mq_storage
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.4.13
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
-  build_runner: ^2.4.13
   json_serializable: ^6.9.0

@@ -12,8 +12,8 @@ final class MqHomeModelResponse {
     required this.donePages,
   });
 
-  factory MqHomeModelResponse.fromJson(Map<String, dynamic> json) => _$HomeModelResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$HomeModelResponseToJson(this);
+  factory MqHomeModelResponse.fromJson(Map<String, dynamic> json) => _$MqHomeModelResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$MqHomeModelResponseToJson(this);
 
   final int allDoneHatims;
   final int allDonePages;

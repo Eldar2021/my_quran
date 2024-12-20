@@ -9,15 +9,12 @@ class ApiConst {
 
   static const domain = 'https://myquran.life';
 
-  String get socketBase => 'wss://myquran.life/ws';
   String get loginEmailSend => '$_getDomain/api/v1/accounts/otp/send/';
   String get loginEmailVerify => '$_getDomain/api/v1/accounts/otp/verify/';
   String get loginWithGoogle => '$_getDomain/api/v1/accounts/google/';
   String get loginWithApple => '$_getDomain/api/v1/accounts/apple/';
   String get deleteProfile => '$_getDomain/api/v1/accounts/profile/delete_my_account/';
   String putProfile(String userId) => '$_getDomain/api/v1/accounts/profile/$userId/';
-  String get joinToHatim => '$_getDomain/api/v1/hatim/join_to_hatim';
-  String getSocket(String token) => '$socketBase/?token=$token';
 
   String get _getDomain {
     if (isDevmode && devDomain != null && devDomain!.isNotEmpty) return devDomain!;
