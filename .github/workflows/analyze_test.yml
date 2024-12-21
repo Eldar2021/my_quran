@@ -2,7 +2,7 @@ name: Analyze code and Unit test
 
 on:
   push:
-    branches: [main, el/fix-ci-generate-files]
+    branches: [main]
   pull_request:
     branches: [main]
 
