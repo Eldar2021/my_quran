@@ -37,6 +37,7 @@ jobs:
 
       - name: "Run the build_runner and return an error if files are changed"
         run: |
-          melos run-build-runner-all 
-          melos format-all
+          ./scripts/delete_g_files.sh
+          melos run run-build-runner-init 
+          dart format . --line-length 120
           git diff --exit-code

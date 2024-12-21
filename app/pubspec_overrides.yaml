@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: mq_analytics,mq_ci_keys,mq_crashlytics,mq_either,mq_home_repository,mq_quran_repository,mq_remote_config,mq_storage,mq_hatim_repository
+# melos_managed_dependency_overrides: mq_analytics,mq_ci_keys,mq_crashlytics,mq_either,mq_hatim_repository,mq_home_repository,mq_quran_repository,mq_remote_config,mq_storage
 dependency_overrides:
   mq_analytics:
     path: ../packages/mq_analytics
