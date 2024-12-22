@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/constants/contants.dart';
-import 'package:my_quran/modules/modules.dart';
 
 @immutable
 final class LocalThemeDataSourceImpl implements LocalThemeDataSource {
@@ -10,9 +9,11 @@ final class LocalThemeDataSourceImpl implements LocalThemeDataSource {
 
   final PreferencesStorage storage;
 
+  static const _readThemeKey = 'readThemeKey';
+
   @override
   ReadThemeData getInitialThemeState() {
-    final value = storage.readString(key: StorageKeys.readThemeKey);
+    final value = storage.readString(key: _readThemeKey);
     if (value == null) return ReadThemeData.initial;
     return ReadThemeData.fromJson(json.decode(value) as Map<String, dynamic>);
   }
@@ -20,6 +21,6 @@ final class LocalThemeDataSourceImpl implements LocalThemeDataSource {
   @override
   Future<void> saveThemeState(ReadThemeData themeState) async {
     final value = json.encode(themeState.toJson());
-    await storage.writeString(key: StorageKeys.readThemeKey, value: value);
+    await storage.writeString(key: _readThemeKey, value: value);
   }
 }

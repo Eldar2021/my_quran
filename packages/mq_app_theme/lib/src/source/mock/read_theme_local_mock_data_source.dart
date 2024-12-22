@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
-import 'package:my_quran/modules/modules.dart';
+import 'package:flutter/material.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 
 @immutable
 final class LocalThemeDataSourceMock implements LocalThemeDataSource {

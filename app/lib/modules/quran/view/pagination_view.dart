@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mq_analytics/mq_analytics.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
