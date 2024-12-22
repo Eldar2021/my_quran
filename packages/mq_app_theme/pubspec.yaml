@@ -1,4 +1,4 @@
-name: mq_app_teheme
+name: mq_app_theme
 description: My Quran app theme
 version: 0.1.0+1
 publish_to: none
@@ -10,6 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  package_info_plus: ^8.1.0
+
+  mq_storage:
+    path: ../mq_storage
 
 dev_dependencies:
   flutter_test:
