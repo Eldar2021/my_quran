@@ -11,13 +11,14 @@ final class LocalThemeDataSourceImpl implements LocalThemeDataSource {
   final PreferencesStorage storage;
 
   @override
-  ReadThemeState get initialTheme {
+  ReadThemeData getInitialThemeState() {
     final value = storage.readString(key: StorageKeys.readThemeKey);
-    return value != null ? ReadThemeState.fromJson(json.decode(value) as Map<String, dynamic>) : const ReadThemeState();
+    if (value == null) return ReadThemeData.initial;
+    return ReadThemeData.fromJson(json.decode(value) as Map<String, dynamic>);
   }
 
   @override
-  Future<void> saveThemeState(ReadThemeState themeState) async {
+  Future<void> saveThemeState(ReadThemeData themeState) async {
     final value = json.encode(themeState.toJson());
     await storage.writeString(key: StorageKeys.readThemeKey, value: value);
   }

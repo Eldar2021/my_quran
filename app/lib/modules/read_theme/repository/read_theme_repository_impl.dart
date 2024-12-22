@@ -8,12 +8,12 @@ final class ReadThemeRepositoryImpl implements ReadThemeRepository {
   final LocalThemeDataSourceImpl localThemeDataSource;
 
   @override
-  ReadThemeState get getInitialThemeState {
-    return localThemeDataSource.initialTheme;
+  ReadThemeData getInitialThemeState() {
+    return localThemeDataSource.getInitialThemeState();
   }
 
   @override
-  Future<void> saveThemeState(ReadThemeState themeState) async {
+  Future<void> saveThemeState(ReadThemeData themeState) {
     return localThemeDataSource.saveThemeState(themeState);
   }
 }

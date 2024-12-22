@@ -6,12 +6,22 @@ import 'package:my_quran/modules/modules.dart';
 part 'read_theme_state.dart';
 
 class ReadThemeCubit extends Cubit<ReadThemeState> {
-  ReadThemeCubit({required this.readThemeRepository}) : super(const ReadThemeState());
+  ReadThemeCubit({
+    required this.readThemeRepository,
+  }) : super(const ReadThemeState());
 
   final ReadThemeRepository readThemeRepository;
 
   void initializeTheme() {
-    emit(readThemeRepository.getInitialThemeState);
+    final data = readThemeRepository.getInitialThemeState();
+    emit(
+      ReadThemeState(
+        modeIndex: data.modeIndex,
+        verticalSpaceSize: data.verticalSpaceSize,
+        horizontalSpaceSize: data.horizontalSpaceSize,
+        textSize: data.textSize,
+      ),
+    );
   }
 
   void changeMode(int index) {
@@ -31,6 +41,12 @@ class ReadThemeCubit extends Cubit<ReadThemeState> {
   }
 
   Future<void> saveChanges() async {
-    await readThemeRepository.saveThemeState(state);
+    final date = ReadThemeData(
+      modeIndex: state.modeIndex,
+      verticalSpaceSize: state.verticalSpaceSize,
+      horizontalSpaceSize: state.horizontalSpaceSize,
+      textSize: state.textSize,
+    );
+    await readThemeRepository.saveThemeState(date);
   }
 }

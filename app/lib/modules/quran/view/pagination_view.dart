@@ -62,7 +62,7 @@ class _PaginationViewState extends State<PaginationView> {
           widget.pages[index].toArabicDigits,
           style: TextStyle(
             fontSize: readThemeCubit.state.textSize,
-            color: frReadThemeColor[readThemeCubit.state.modeIndex],
+            color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
           ),
         ),
       ),
@@ -84,7 +84,7 @@ class _PaginationViewState extends State<PaginationView> {
                     style: TextStyle(
                       fontFamily: FontFamily.qpcUthmanicHafs,
                       fontSize: readThemeCubit.state.textSize,
-                      color: frReadThemeColor[readThemeCubit.state.modeIndex],
+                      color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
                       height: 2.5,
                     ),
                     textDirection: TextDirection.rtl,
@@ -92,7 +92,7 @@ class _PaginationViewState extends State<PaginationView> {
                   if (widget.pages[index] == widget.pages.last)
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: frReadThemeColor[readThemeCubit.state.modeIndex],
+                        foregroundColor: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
                       ),
                       onPressed: () async {
                         MqAnalytic.track(AnalyticKey.showAmin);
@@ -123,10 +123,3 @@ class _PaginationViewState extends State<PaginationView> {
     super.dispose();
   }
 }
-
-const frReadThemeColor = [
-  Color(0xff000000),
-  Color(0xff000000),
-  Color(0xffFFFFFF),
-  Color(0xffFFFFFF),
-];

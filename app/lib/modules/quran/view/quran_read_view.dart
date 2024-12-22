@@ -12,13 +12,6 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
-const bgReadThemeColor = [
-  Color(0xffFFFFFF),
-  Color(0xffFFEBD0),
-  Color(0xff363636),
-  Color(0xff000000),
-];
-
 class ReadView extends StatelessWidget {
   const ReadView(this.pages, {required this.isHatim, super.key});
 
@@ -75,15 +68,15 @@ class ReadUI extends StatelessWidget {
   Widget build(BuildContext context) {
     final readThemeCubit = context.watch<ReadThemeCubit>();
     return Scaffold(
-      backgroundColor: bgReadThemeColor[readThemeCubit.state.modeIndex],
+      backgroundColor: ReadThemeData.bgReadThemeColor[readThemeCubit.state.modeIndex],
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: true,
             stretch: true,
             centerTitle: true,
-            backgroundColor: bgReadThemeColor[readThemeCubit.state.modeIndex],
-            foregroundColor: frReadThemeColor[readThemeCubit.state.modeIndex],
+            backgroundColor: ReadThemeData.bgReadThemeColor[readThemeCubit.state.modeIndex],
+            foregroundColor: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: FittedBox(
@@ -94,7 +87,7 @@ class ReadUI extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: FontFamily.qpcUthmanicHafs,
                     fontSize: 26,
-                    color: frReadThemeColor[readThemeCubit.state.modeIndex],
+                    color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
                   ),
                 ),
               ),
@@ -115,7 +108,7 @@ class ReadUI extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.settings,
-                  color: frReadThemeColor[readThemeCubit.state.modeIndex],
+                  color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
                 ),
               ),
             ],
@@ -191,11 +184,11 @@ class ChangeReadTheme extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(
-            bgReadThemeColor.length,
+            ReadThemeData.bgReadThemeColor.length,
             (index) => InkWell(
               onTap: () => context.read<ReadThemeCubit>().changeMode(index),
               child: Material(
-                color: bgReadThemeColor[index],
+                color: ReadThemeData.bgReadThemeColor[index],
                 type: MaterialType.card,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
@@ -205,7 +198,7 @@ class ChangeReadTheme extends StatelessWidget {
                   width: 70,
                   height: 40,
                   child: Center(
-                    child: Text('A', style: TextStyle(color: frReadThemeColor[index], fontSize: 22)),
+                    child: Text('A', style: TextStyle(color: ReadThemeData.frReadThemeColor[index], fontSize: 22)),
                   ),
                 ),
               ),

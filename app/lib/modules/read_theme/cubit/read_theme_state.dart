@@ -9,15 +9,6 @@ final class ReadThemeState extends Equatable {
     this.textSize = 28,
   });
 
-  factory ReadThemeState.fromJson(Map<String, dynamic> map) {
-    return ReadThemeState(
-      verticalSpaceSize: map['verticalSpaceSize'] as double,
-      horizontalSpaceSize: map['horizontalSpaceSize'] as double,
-      modeIndex: map['modeIndex'] as int,
-      textSize: map['textSize'] as double,
-    );
-  }
-
   final double verticalSpaceSize;
   final double horizontalSpaceSize;
   final int modeIndex;
@@ -43,14 +34,5 @@ final class ReadThemeState extends Equatable {
       modeIndex: modeIndex ?? this.modeIndex,
       textSize: textSize ?? this.textSize,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'verticalSpaceSize': verticalSpaceSize,
-      'horizontalSpaceSize': horizontalSpaceSize,
-      'modeIndex': modeIndex,
-      'textSize': textSize,
-    };
   }
 }
