@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:my_quran/app/app.dart';
-import 'package:my_quran/constants/contants.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:mq_home_repository/mq_home_repository.dart';
 
 import 'helpers/helpers.dart';
 import 'mocks/app_mocks.dart';
@@ -11,52 +11,26 @@ import 'mocks/app_mocks.dart';
 
 void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
-    final storage = MockPreferencesStorage();
     final packageInfo = MockPackageInfo();
-    final remoteClient = MockRemoteClient();
     final remoteConfig = MockMqRemoteConfig();
-    final homeRepo = MockHomeRepositoryImpl();
-    final authRepository = AuthRepositoryImpl(
-      localDataSource: AuthLocalDataSourceImpl(storage),
-      remoteDataSource: AuthRemoteDataSourceImpl(
-        client: remoteClient,
-        storage: storage,
-        soccialAuth: MockSccialAuth(),
-        isIntegrationTest: true,
-      ),
+    const appRepository = AppRepositoryImpl(
+      AppLocalDataSourceMock(),
+    );
+    const homeRepo = MqHomeRepositoryImpl(
+      MqHomeLocalDataSourceMock(),
+      MqHomeRemoteDataSourceMock(),
+    );
+    const authRepository = AuthRepositoryImpl(
+      localDataSource: AuthLocalDataSourceMock(),
+      remoteDataSource: AuthRemoteDataSourceMock(),
     );
 
-    final getInitialUserUseCase = GetInitialUserUseCase(authRepository);
-    final googleSignInUseCase = GoogleSignInUseCase(authRepository);
-    final appleSignInUseCase = AppleSignInUseCase(authRepository);
-    final setUserDataUseCase = SerUserDataUseCase(authRepository);
-    final patchLocaleCodeUseCase = PatchLocaleCodeUseCase(authRepository);
-    final pathGenderUseCase = PatchGenderUseCase(authRepository);
-    final logoutUseCase = LogoutUseCase(authRepository);
-    final emailSignIn = EmailLoginUseCase(authRepository);
-    final verifyOtp = VerifyOtpUseCase(authRepository);
-    final deleteAccount = DeleteAccountUseCase(authRepository);
-
-    when(() => storage.readString(key: StorageKeys.tokenKey)).thenReturn(null);
-    when(() => storage.readString(key: StorageKeys.genderKey)).thenReturn(null);
-    when(() => storage.readString(key: StorageKeys.localeKey)).thenReturn('en');
-    when(() => storage.readString(key: StorageKeys.modeKey)).thenReturn(null);
-    when(() => storage.readString(key: StorageKeys.colorKey)).thenReturn(null);
-
     await tester.pumpApp(
-      getInitialUserUseCase,
-      googleSignInUseCase,
-      appleSignInUseCase,
-      setUserDataUseCase,
+      appRepository,
+      authRepository,
       homeRepo,
-      pathGenderUseCase,
-      patchLocaleCodeUseCase,
-      logoutUseCase,
       remoteConfig,
       packageInfo,
-      emailSignIn,
-      verifyOtp,
-      deleteAccount,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

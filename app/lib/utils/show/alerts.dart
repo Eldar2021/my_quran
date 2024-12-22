@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_quran/app/app.dart';
-
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -36,7 +35,12 @@ final class AppAlert {
     );
   }
 
-  static Future<T?> showAmin<T>(BuildContext ctx, Gender gender, {required bool isHatim, required int totalPages}) {
+  static Future<T?> showAmin<T>(
+    BuildContext ctx,
+    Gender gender, {
+    required bool isHatim,
+    required int totalPages,
+  }) {
     final colorScheme = Theme.of(ctx).colorScheme;
     return showDialog<T>(
       context: ctx,

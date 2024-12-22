@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mq_app_theme/mq_app_theme.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 
@@ -11,19 +12,11 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
-    GetInitialUserUseCase getInitialUserUseCase,
-    GoogleSignInUseCase googleSignInUseCase,
-    AppleSignInUseCase appleSignInUseCase,
-    SerUserDataUseCase setUserDataUseCase,
+    AppRepository appRepository,
+    AuthRepository authRepository,
     MqHomeRepository homeRepo,
-    PatchGenderUseCase patchGenderUseCase,
-    PatchLocaleCodeUseCase patchLocaleCodeUseCase,
-    LogoutUseCase logoutUseCase,
     MqRemoteConfig remoteConfig,
     PackageInfo packageInfo,
-    EmailLoginUseCase emailSignIn,
-    VerifyOtpUseCase verifyOtp,
-    DeleteAccountUseCase deleteAccount,
   ) {
     return pumpWidget(
       MultiRepositoryProvider(
@@ -34,23 +27,10 @@ extension PumpApp on WidgetTester {
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => AppCubit(
-                const AppRepositoryImpl(AppLocalDataSourceMock()),
-              ),
+              create: (context) => AppCubit(appRepository),
             ),
             BlocProvider(
-              create: (context) => AuthCubit(
-                getInitialUserUseCase,
-                googleSignInUseCase,
-                appleSignInUseCase,
-                setUserDataUseCase,
-                patchGenderUseCase,
-                patchLocaleCodeUseCase,
-                logoutUseCase,
-                emailSignIn,
-                verifyOtp,
-                deleteAccount,
-              ),
+              create: (context) => AuthCubit(authRepository),
             ),
             BlocProvider(
               create: (context) => HomeCubit(homeRepo),
