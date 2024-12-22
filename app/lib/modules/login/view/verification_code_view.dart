@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/app/presentation/presenation.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/utils/urils.dart';
