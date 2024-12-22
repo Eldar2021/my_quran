@@ -923,6 +923,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0+1"
+  mq_app_theme:
+    dependency: "direct main"
+    description:
+      path: "../packages/mq_app_theme"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   mq_ci_keys:
     dependency: "direct main"
     description:
