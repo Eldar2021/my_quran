@@ -3,25 +3,27 @@ import 'package:mq_app_theme/mq_app_theme.dart';
 
 @immutable
 final class AppRepositoryImpl implements AppRepository {
-  const AppRepositoryImpl();
+  const AppRepositoryImpl(
+    this.dataSource,
+  );
+
+  final AppLocalDataSource dataSource;
 
   @override
-  String appVersion() {
-    throw UnimplementedError();
-  }
+  String appVersion() => dataSource.appVersion();
 
   @override
   CustomTheme getInitialThemeState() {
-    throw UnimplementedError();
+    return dataSource.initialTheme();
   }
 
   @override
   Future<void> saveThemeMode({required bool isDark}) {
-    throw UnimplementedError();
+    return dataSource.saveThemeMode(isDark: isDark);
   }
 
   @override
   Future<void> saveThemePrimaryColor(int index) {
-    throw UnimplementedError();
+    return dataSource.saveThemePrimaryColor(index);
   }
 }
