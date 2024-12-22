@@ -6,7 +6,9 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
 class SoccialAuth {
-  const SoccialAuth(this._googleSignIn);
+  SoccialAuth({
+    GoogleSignIn? googleSignIn,
+  }) : _googleSignIn = googleSignIn ?? GoogleSignIn();
 
   final GoogleSignIn _googleSignIn;
 

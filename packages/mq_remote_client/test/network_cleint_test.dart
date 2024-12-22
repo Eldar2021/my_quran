@@ -12,7 +12,7 @@ void main() {
 
     setUp(() {
       mockConnectivity = MockConnectivity();
-      networkClient = NetworkClient(mockConnectivity);
+      networkClient = NetworkClient(connectivity: mockConnectivity);
     });
 
     test('returns true when connected via Wi-Fi', () async {

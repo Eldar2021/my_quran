@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 @immutable
 class NetworkClient {
   /// Creates a [NetworkClient] with the given [connectivity] instance.
-  const NetworkClient(this.connectivity);
+  NetworkClient({Connectivity? connectivity}) : connectivity = connectivity ?? Connectivity();
 
   /// The [Connectivity] instance used to check the connection type.
   final Connectivity connectivity;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_app_theme/mq_app_theme.dart';
@@ -49,7 +48,7 @@ class MyApp extends StatelessWidget {
                   : AuthRemoteDataSourceImpl(
                       client: context.read<MqRemoteClient>(),
                       storage: context.read<PreferencesStorage>(),
-                      soccialAuth: SoccialAuth(GoogleSignIn()),
+                      soccialAuth: SoccialAuth(),
                       isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
                     ),
             );

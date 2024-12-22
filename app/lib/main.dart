@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -66,15 +65,11 @@ Future<void> main({AppConfig? appConfig}) async {
         RepositoryProvider<AppConfig>(create: (context) => appConfig!),
         RepositoryProvider<PreferencesStorage>(create: (context) => storage),
         RepositoryProvider<PackageInfo>(create: (context) => packageInfo),
-        RepositoryProvider<NetworkClient>(
-          create: (context) => NetworkClient(Connectivity()),
-        ),
+        RepositoryProvider<NetworkClient>(create: (context) => NetworkClient()),
         RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => MqRemoteClient(
-            dio: Dio(
-              BaseOptions(baseUrl: ApiConst.domain),
-            ),
+            dio: Dio(BaseOptions(baseUrl: ApiConst.domain)),
             network: context.read<NetworkClient>(),
             language: () => storage.readString(key: StorageKeys.localeKey),
             token: () => storage.readString(key: StorageKeys.tokenKey),
