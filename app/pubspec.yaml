@@ -82,8 +82,10 @@ dependencies:
   mq_quran_repository:
     path: ../packages/mq_quran_repository
   mq_hatim_repository:
-    path: ../packages/mq_hatim_repository  
-    
+    path: ../packages/mq_hatim_repository
+  mq_app_theme:
+    path: ../packages/mq_app_theme
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

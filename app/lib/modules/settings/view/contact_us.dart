@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/theme/theme.dart';
 
 class ContactUsView extends StatelessWidget {
   const ContactUsView({super.key});

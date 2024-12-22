@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/theme/theme.dart';
 
 class ContactUsCard extends StatelessWidget {
   const ContactUsCard({super.key});
