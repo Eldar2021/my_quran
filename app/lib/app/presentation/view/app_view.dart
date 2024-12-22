@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_app_theme/mq_app_theme.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
-
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-
 import 'package:package_info_plus/package_info_plus.dart';
 
 class MyApp extends StatelessWidget {
@@ -50,25 +49,14 @@ class MyApp extends StatelessWidget {
                   : AuthRemoteDataSourceImpl(
                       client: context.read<MqRemoteClient>(),
                       storage: context.read<PreferencesStorage>(),
-                      soccialAuth: context.read<SoccialAuth>(),
+                      soccialAuth: SoccialAuth(GoogleSignIn()),
                       isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
                     ),
             );
           },
         ),
         BlocProvider(
-          create: (context) => AuthCubit(
-            GetInitialUserUseCase(context.read<AuthRepository>()),
-            GoogleSignInUseCase(context.read<AuthRepository>()),
-            AppleSignInUseCase(context.read<AuthRepository>()),
-            SerUserDataUseCase(context.read<AuthRepository>()),
-            PatchGenderUseCase(context.read<AuthRepository>()),
-            PatchLocaleCodeUseCase(context.read<AuthRepository>()),
-            LogoutUseCase(context.read<AuthRepository>()),
-            EmailLoginUseCase(context.read<AuthRepository>()),
-            VerifyOtpUseCase(context.read<AuthRepository>()),
-            DeleteAccountUseCase(context.read<AuthRepository>()),
-          ),
+          create: (context) => AuthCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
           create: (context) => HomeCubit(

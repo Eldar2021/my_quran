@@ -2,47 +2,26 @@ import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:my_quran/app/app.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(
-    this.getInitialUserUseCase,
-    this.googleSignIn,
-    this.appleSignIn,
-    this.serUserDataUseCase,
-    this.patchGenderUseCase,
-    this.patchLocaleCodeUseCase,
-    this.logoutUseCase,
-    this.loginWithEmailUsecase,
-    this.verifyOtpUseCase,
-    this.deleteAccountUseCase,
-  ) : super(AuthState(user: getInitialUserUseCase.call));
+  AuthCubit(this.authRepository) : super(AuthState(user: authRepository.init));
 
-  final GetInitialUserUseCase getInitialUserUseCase;
-  final GoogleSignInUseCase googleSignIn;
-  final AppleSignInUseCase appleSignIn;
-  final SerUserDataUseCase serUserDataUseCase;
-  final PatchGenderUseCase patchGenderUseCase;
-  final PatchLocaleCodeUseCase patchLocaleCodeUseCase;
-  final LogoutUseCase logoutUseCase;
-  final EmailLoginUseCase loginWithEmailUsecase;
-  final VerifyOtpUseCase verifyOtpUseCase;
-  final DeleteAccountUseCase deleteAccountUseCase;
+  final AuthRepository authRepository;
 
   Future<void> loginWithEmail(String email) async {
     try {
-      await loginWithEmailUsecase(email);
+      await authRepository.loginWithEmail(email);
     } catch (e) {
       emit(state.copyWith(exception: Exception(e)));
     }
   }
 
   Future<AuthState> verifyOtp(String otp, String email) async {
-    final user = await verifyOtpUseCase(
+    final user = await authRepository.verifyOtp(
       email: email,
       otp: otp,
       languageCode: state.currentLocale.languageCode,
@@ -56,7 +35,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<AuthState> signInWithGoogle() async {
-    final user = await googleSignIn(
+    final user = await authRepository.signWithGoogle(
       state.currentLocale.languageCode,
       state.gender,
     );
@@ -68,7 +47,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<AuthState> signInWithApple() async {
-    final user = await appleSignIn(
+    final user = await authRepository.signWithApple(
       state.currentLocale.languageCode,
       state.gender,
     );
@@ -82,12 +61,12 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> setUserData(UserEntity userEntity) {
-    return serUserDataUseCase(userEntity);
+    return authRepository.setUserData(userEntity);
   }
 
   Future<void> saveLocale(String localeCode) async {
     if (state.isAuthedticated) {
-      final res = await patchLocaleCodeUseCase(
+      final res = await authRepository.patchLocaleCode(
         userId: state.user!.accessToken,
         localeCode: localeCode,
       );
@@ -106,7 +85,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> saveGender(Gender gender) async {
     if (state.isAuthedticated) {
-      final res = await patchGenderUseCase(
+      final res = await authRepository.patchGender(
         userId: state.user!.accessToken,
         gender: gender,
       );
@@ -125,7 +104,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> deleteAccount() async {
     try {
-      await deleteAccountUseCase.call();
+      await authRepository.deleteAccount();
       emit(const AuthState());
     } catch (e) {
       emit(state.copyWith(exception: Exception(e)));
@@ -134,7 +113,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> logout() async {
     try {
-      await logoutUseCase.call();
+      await authRepository.logout();
       emit(const AuthState());
     } catch (e) {
       emit(state.copyWith(exception: Exception(e)));

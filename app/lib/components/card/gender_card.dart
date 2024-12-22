@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_quran/app/app.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';

@@ -930,6 +930,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0+1"
+  mq_auth_repository:
+    dependency: "direct main"
+    description:
+      path: "../packages/mq_auth_repository"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   mq_ci_keys:
     dependency: "direct main"
     description:
