@@ -10,15 +10,9 @@ command:
     usePubspecOverrides: true
 
 scripts:
-  format:
+  format-code:
     exec: dart format . --line-length 120
-    select-package:
-      dir-exists: lib
     description: "Format Dart code for selected package"
-
-  format-all:
-    exec: dart format . --line-length 120
-    description: "Format all Dart code"
 
   format-check:
     exec: dart format . --line-length 120 --set-exit-if-changed
@@ -34,29 +28,11 @@ scripts:
 
   flutter-clean:
     exec: flutter clean
-    select-package:
-      dir-exists: lib
-    description: "Clean pub dependencies selected package"
-
-  flutter-clean-all:
-    exec: flutter clean
     description: "Clean pub dependencies"
 
   pub-get:
     exec: flutter pub get
-    select-package:
-      dir-exists: lib
-    description: "Clean pub dependencies selected package"
-
-  pub-get-all:
-    exec: flutter pub get
     description: "Get pub dependencies"
-
-  test:
-    exec: flutter test
-    select-package:
-      dir-exists: test
-    description: "Run unit tests selected package"
 
   unit-test:
     exec: flutter test
@@ -67,19 +43,10 @@ scripts:
     description: "Run Flutter doctor"
 
   run-build-runner:
-    run: cd app && flutter pub run build_runner build --delete-conflicting-outputs
-    description: "Run unit tests selected package"
-
-  run-build-runner-all:
-    run: melos exec --depends-on="build_runner" -- flutter pub run build_runner build --delete-conflicting-outputs
-    description: "Generate code with build_runner"
-
-  run-build-runner-clean:
-    run: melos exec --depends-on="build_runner" -- flutter packages pub run build_runner clean
-    description: "Generate code with build_runner"
-
-  run-build-runner-init:
-    run: melos exec --depends-on="build_runner" -- flutter pub run build_runner build
+    run: |
+      ./scripts/delete_g_files.sh
+      melos exec --depends-on="build_runner" -- flutter pub run build_runner build
+      dart format . --line-length 120
     description: "Generate code with build_runner"
 
   # Run My Quran
