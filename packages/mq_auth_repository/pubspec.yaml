@@ -10,9 +10,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  meta: ^1.15.0
+  json_annotation: ^4.9.0
+  firebase_auth: ^5.3.1
+  google_sign_in: ^6.2.1
+  sign_in_with_apple: ^6.1.3
+
+  mq_crashlytics:
+    path: ../mq_crashlytics
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+  build_runner: ^2.4.13
+  json_serializable: ^6.8.0
