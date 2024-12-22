@@ -15,11 +15,7 @@ void main() {
     final packageInfo = MockPackageInfo();
     final remoteClient = MockRemoteClient();
     final remoteConfig = MockMqRemoteConfig();
-
     final homeRepo = MockHomeRepositoryImpl();
-    final appLocalDataSource = AppLocalDataSourceImpl(packageInfo: packageInfo);
-    final appRepository = AppRepositoryImpl(appLocalDataSource);
-    final themeRepository = ThemeRepositoryImpl(ThemeLocalDataSourceImpl(storage));
     final authRepository = AuthRepositoryImpl(
       localDataSource: AuthLocalDataSourceImpl(storage),
       remoteDataSource: AuthRemoteDataSourceImpl(
@@ -30,17 +26,12 @@ void main() {
       ),
     );
 
-    final getInitialThemeUseCase = GetAppInitialThemeUseCase(themeRepository);
     final getInitialUserUseCase = GetInitialUserUseCase(authRepository);
-
     final googleSignInUseCase = GoogleSignInUseCase(authRepository);
     final appleSignInUseCase = AppleSignInUseCase(authRepository);
     final setUserDataUseCase = SerUserDataUseCase(authRepository);
     final patchLocaleCodeUseCase = PatchLocaleCodeUseCase(authRepository);
     final pathGenderUseCase = PatchGenderUseCase(authRepository);
-    final setModeUseCase = SetModeUseCase(themeRepository);
-    final setColorUseCase = SetColorUseCase(themeRepository);
-    final getAppVersionUseCase = GetAppVersionUseCase(appRepository);
     final logoutUseCase = LogoutUseCase(authRepository);
     final emailSignIn = EmailLoginUseCase(authRepository);
     final verifyOtp = VerifyOtpUseCase(authRepository);
@@ -53,11 +44,7 @@ void main() {
     when(() => storage.readString(key: StorageKeys.colorKey)).thenReturn(null);
 
     await tester.pumpApp(
-      getInitialThemeUseCase,
-      setModeUseCase,
-      setColorUseCase,
       getInitialUserUseCase,
-      getAppVersionUseCase,
       googleSignInUseCase,
       appleSignInUseCase,
       setUserDataUseCase,

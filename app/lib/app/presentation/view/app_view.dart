@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
@@ -29,23 +30,14 @@ class MyApp extends StatelessWidget {
           create: (context) => AppRepositoryImpl(
             isMockData
                 ? const AppLocalDataSourceMock()
-                : AppLocalDataSourceImpl(packageInfo: context.read<PackageInfo>()),
-          ),
-        ),
-        RepositoryProvider<ThemeRepository>(
-          create: (context) => ThemeRepositoryImpl(
-            isMockData
-                ? const ThemeLocalDataSourceMock()
-                : ThemeLocalDataSourceImpl(context.read<PreferencesStorage>()),
+                : AppLocalDataSourceImpl(
+                    packageInfo: context.read<PackageInfo>(),
+                    storage: context.read<PreferencesStorage>(),
+                  ),
           ),
         ),
         BlocProvider(
-          create: (context) => AppCubit(
-            getInitialThemeUseCase: GetAppInitialThemeUseCase(context.read<ThemeRepository>()),
-            setModeUseCase: SetModeUseCase(context.read<ThemeRepository>()),
-            setColorUseCase: SetColorUseCase(context.read<ThemeRepository>()),
-            getAppVersionUseCase: GetAppVersionUseCase(context.read<AppRepository>()),
-          ),
+          create: (context) => AppCubit(context.read<AppRepository>()),
         ),
         RepositoryProvider<AuthRepository>(
           create: (context) {

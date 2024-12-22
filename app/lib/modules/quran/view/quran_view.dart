@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
@@ -8,7 +9,6 @@ import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/theme/theme.dart';
 
 class QuranView extends StatelessWidget {
   const QuranView({super.key});

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_analytics/mq_analytics.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/theme/theme.dart';
 
 class ThemeSettingsView extends StatelessWidget {
   const ThemeSettingsView({super.key});
@@ -67,5 +67,19 @@ class ThemeSettingsView extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+extension TargetColorDisplayeName on TargetColor {
+  String displayName(BuildContext context) {
+    return switch (this) {
+      TargetColor.red => context.l10n.colorRed,
+      TargetColor.yellow => context.l10n.colorYellow,
+      TargetColor.green => context.l10n.colorGreen,
+      TargetColor.blue => context.l10n.colorBlue,
+      TargetColor.purple => context.l10n.colorPurple,
+      TargetColor.brown => context.l10n.colorBrown,
+      TargetColor.deepOrange => context.l10n.colorOrange,
+    };
   }
 }

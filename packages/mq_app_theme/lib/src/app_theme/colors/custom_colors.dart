@@ -24,18 +24,6 @@ enum TargetColor {
     };
   }
 
-  // String displayName(BuildContext context) {
-  //   return switch (this) {
-  //     TargetColor.red => context.l10n.colorRed,
-  //     TargetColor.yellow => context.l10n.colorYellow,
-  //     TargetColor.green => context.l10n.colorGreen,
-  //     TargetColor.blue => context.l10n.colorBlue,
-  //     TargetColor.purple => context.l10n.colorPurple,
-  //     TargetColor.brown => context.l10n.colorBrown,
-  //     TargetColor.deepOrange => context.l10n.colorOrange,
-  //   };
-  // }
-
   final Color color;
   final int caheIindex;
 }

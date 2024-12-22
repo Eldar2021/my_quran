@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 
@@ -10,11 +11,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
-    GetAppInitialThemeUseCase getInitialThemeUseCase,
-    SetModeUseCase setModeUseCase,
-    SetColorUseCase setColorUseCase,
     GetInitialUserUseCase getInitialUserUseCase,
-    GetAppVersionUseCase getAppVersionUseCase,
     GoogleSignInUseCase googleSignInUseCase,
     AppleSignInUseCase appleSignInUseCase,
     SerUserDataUseCase setUserDataUseCase,
@@ -38,10 +35,7 @@ extension PumpApp on WidgetTester {
           providers: [
             BlocProvider(
               create: (context) => AppCubit(
-                getInitialThemeUseCase: getInitialThemeUseCase,
-                setModeUseCase: setModeUseCase,
-                setColorUseCase: setColorUseCase,
-                getAppVersionUseCase: getAppVersionUseCase,
+                const AppRepositoryImpl(AppLocalDataSourceMock()),
               ),
             ),
             BlocProvider(
