@@ -103,3 +103,24 @@
 ## [UX]
 
 - Added access to some features without logging in
+
+---
+
+# What's Changed v1.3.7+17
+
+## [Bug Fixes]
+
+- Fixed build runner error CI
+
+## [Technical]
+
+- Extracted MqCrashlytics package
+- Extracted MqAnalytics package
+- Extracted RemoteConfig package
+- Extracted HomeRepository package
+- Extracted QuranRepository package
+- Extracted HatimRepository package
+- Extracted AppTheme package
+- Extracted MqAuthRepository package
+- Removed presentation layers
+- Added App links to readme file
