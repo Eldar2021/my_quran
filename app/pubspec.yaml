@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: "none"
 
-version: 1.3.6+16
+version: 1.3.7+17
 
 environment:
   sdk: ">=3.5.0 <4.0.0"
@@ -56,8 +56,6 @@ dependencies:
   geocoding: ^3.0.0
   geolocator: ^13.0.1
 
-  # flutter_native_splash: ^2.4.0
-
   # Packages
   mq_ci_keys:
     path: ../packages/mq_ci_keys
@@ -83,6 +81,8 @@ dependencies:
     path: ../packages/mq_hatim_repository
   mq_app_theme:
     path: ../packages/mq_app_theme
+
+  # flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:
