@@ -55,7 +55,7 @@ class RootPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter News Example Gallery'),
+        title: const Text('My Quran Gallery App'),
       ),
       body: ListView.separated(
         itemCount: pages.length,
