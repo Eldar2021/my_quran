@@ -3,6 +3,7 @@ name: quran
 packages:
   - app
   - packages/**
+  - packages/mq_app_ui/gallery/
 
 command:
   bootstrap:
