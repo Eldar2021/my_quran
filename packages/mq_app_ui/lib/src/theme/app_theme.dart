@@ -5,8 +5,6 @@ abstract class AppTheme {
 
   ColorScheme get colorScheme;
 
-  Color get backgroundColor;
-
   AppBarTheme get appBarTheme {
     return const AppBarTheme();
   }

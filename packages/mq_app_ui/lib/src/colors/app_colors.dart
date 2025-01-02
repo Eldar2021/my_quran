@@ -15,6 +15,12 @@ abstract class AppColors {
   /// This is a tomato color
   static const Color tomato = Color(0xffEB4F29);
 
+  /// Tomato3 figma style properties
+  /// hex: #FF4139
+  /// opacity: 1
+  /// This is a tomato3 color
+  static const Color tomato3 = Color(0xffEF6F33);
+
   /// Tomato Gradient figma style properties
   /// linear gradient
   /// start,stop hex: (#EF6F33,#E93921)

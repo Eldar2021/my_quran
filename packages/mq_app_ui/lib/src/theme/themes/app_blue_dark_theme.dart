@@ -4,12 +4,13 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 @immutable
 final class AppBlueDarkTheme extends AppTheme {
   @override
-  Color get backgroundColor => AppColors.black3;
-
-  @override
   ColorScheme get colorScheme {
     return ColorScheme.fromSeed(
       seedColor: AppColors.darkslateblue,
+      primary: AppColors.darkslateblue,
+      onPrimary: AppColors.white,
+      error: AppColors.darkred,
+      onError: AppColors.white,
       brightness: Brightness.dark,
     );
   }
@@ -20,8 +21,6 @@ final class AppBlueDarkTheme extends AppTheme {
       primaryColor: AppColors.darkslateblue,
       splashColor: AppColors.transparent,
       textTheme: uiTextTheme,
-      canvasColor: backgroundColor,
-      scaffoldBackgroundColor: backgroundColor,
       iconTheme: iconTheme,
       appBarTheme: appBarTheme,
       dividerTheme: dividerTheme,
