@@ -8,8 +8,16 @@ final class AppOrangeTheme extends AppTheme {
 
   @override
   ColorScheme get colorScheme {
-    return ColorScheme.fromSeed(
-      seedColor: AppColors.tomato,
+    return const ColorScheme(
+      brightness: Brightness.light,
+      primary: AppColors.tomato,
+      onPrimary: AppColors.white,
+      secondary: AppColors.tomato,
+      onSecondary: AppColors.white,
+      error: AppColors.darkred,
+      onError: AppColors.white,
+      surface: AppColors.tomato,
+      onSurface: AppColors.white,
     );
   }
 

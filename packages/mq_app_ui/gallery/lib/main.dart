@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/colors/theme_colors_view.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,9 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter News Example Gallery',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppOrangeTheme().themeData,
       home: const RootPage(),
     );
   }
@@ -25,10 +25,9 @@ class RootPage extends StatelessWidget {
     final pages = [
       ListItem(
         icon: const Icon(Icons.color_lens),
-        title: const Text('Colors'),
+        title: const Text('Theme Colors'),
         subtitle: const Text('All of the predefined colors'),
-        // onTap: () => Navigator.of(context).push<void>(ColorsPage.route()),
-        onTap: () {},
+        onTap: () => Navigator.of(context).push<void>(ThemeColorsView.route()),
       ),
       ListItem(
         icon: const Icon(Icons.text_format),
