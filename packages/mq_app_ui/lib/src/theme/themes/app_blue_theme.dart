@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 @immutable
-final class AppOrangeTheme extends AppTheme {
+final class AppBlueTheme extends AppTheme {
   @override
   Color get backgroundColor => AppColors.white;
 
   @override
   ColorScheme get colorScheme {
     return ColorScheme.fromSeed(
-      seedColor: AppColors.tomato,
+      seedColor: AppColors.darkslateblue,
     );
   }
 
   @override
   ThemeData get themeData {
     return ThemeData(
-      primaryColor: AppColors.tomato,
+      primaryColor: AppColors.darkslateblue,
       splashColor: AppColors.transparent,
       textTheme: uiTextTheme,
       canvasColor: backgroundColor,
