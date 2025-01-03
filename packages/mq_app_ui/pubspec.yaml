@@ -21,6 +21,20 @@ dev_dependencies:
   build_runner: ^2.0.3
   flutter_gen_runner: ^5.2.0
 
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/fonts/
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: qpc_uthmanic_hafs
+      fonts:
+        - asset: assets/fonts/qpc_uthmanic_hafs/qpc_uthmanic_hafs.otf
+
 flutter_gen:
   assets:
     enabled: true
