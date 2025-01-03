@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
+import 'package:gallery/typography/app_typography_page.dart';
+import 'package:gallery/typography/theme_typography_page.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 void main() => runApp(const MyApp());
@@ -28,20 +30,33 @@ class RootPage extends StatelessWidget {
         icon: const Icon(Icons.color_lens),
         title: const Text('Theme Colors'),
         subtitle: const Text('All theme colors'),
-        onTap: () => Navigator.of(context).push<void>(ThemeColorsView.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          ThemeColorsView.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.color_lens),
         title: const Text('App Colors'),
         subtitle: const Text('All app colors'),
-        onTap: () => Navigator.of(context).push<void>(AppColorsView.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          AppColorsView.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.text_format),
-        title: const Text('Typography'),
+        title: const Text('Theme Typography'),
         subtitle: const Text('All of the predefined text styles'),
-        // onTap: () => Navigator.of(context).push<void>(TypographyPage.route()),
-        onTap: () {},
+        onTap: () => Navigator.of(context).push<void>(
+          ThemeTypographyPage.route(),
+        ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.text_format),
+        title: const Text('App Typography'),
+        subtitle: const Text('All of the predefined text styles'),
+        onTap: () => Navigator.of(context).push<void>(
+          AppTypographyPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.border_vertical),
