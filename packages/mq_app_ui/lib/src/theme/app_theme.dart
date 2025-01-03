@@ -5,6 +5,10 @@ abstract class AppTheme {
 
   ColorScheme get colorScheme;
 
+  TextTheme get textTheme;
+
+  TextTheme get primaryTextTheme;
+
   AppBarTheme get appBarTheme {
     return const AppBarTheme();
   }
@@ -19,14 +23,6 @@ abstract class AppTheme {
 
   DividerThemeData get dividerTheme {
     return const DividerThemeData();
-  }
-
-  TextTheme get contentTextTheme {
-    return const TextTheme();
-  }
-
-  TextTheme get uiTextTheme {
-    return const TextTheme();
   }
 
   InputDecorationTheme get inputDecorationTheme {
