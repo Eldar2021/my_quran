@@ -6,6 +6,7 @@ abstract class AppTextStyles {
   /// Font Size: 57
   /// Font Weight: w700
   static const displayLarge = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 57,
     fontWeight: FontWeight.bold,
   );
@@ -14,6 +15,7 @@ abstract class AppTextStyles {
   /// Font Size: 45
   /// Font Weight: w700
   static const displayMedium = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 45,
     fontWeight: FontWeight.bold,
   );
@@ -22,6 +24,7 @@ abstract class AppTextStyles {
   /// Font Size: 36
   /// Font Weight: w700
   static const displaySmall = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 36,
     fontWeight: FontWeight.bold,
   );
@@ -30,6 +33,7 @@ abstract class AppTextStyles {
   /// Font Size: 32
   /// Font Weight: w600
   static const headlineLarge = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 32,
     fontWeight: FontWeight.w600,
   );
@@ -38,6 +42,7 @@ abstract class AppTextStyles {
   /// Font Size: 28
   /// Font Weight: w600
   static const headlineMedium = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 28,
     fontWeight: FontWeight.w600,
   );
@@ -46,6 +51,7 @@ abstract class AppTextStyles {
   /// Font Size: 24
   /// Font Weight: w500
   static const headlineSmall = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 24,
     fontWeight: FontWeight.w500,
   );
@@ -54,6 +60,7 @@ abstract class AppTextStyles {
   /// Font Size: 22
   /// Font Weight: w500
   static const titleLarge = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 22,
     fontWeight: FontWeight.w500,
   );
@@ -62,6 +69,7 @@ abstract class AppTextStyles {
   /// Font Size: 16
   /// Font Weight: w500
   static const titleMedium = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
@@ -70,6 +78,7 @@ abstract class AppTextStyles {
   /// Font Size: 14
   /// Font Weight: w500
   static const titleSmall = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
@@ -78,6 +87,7 @@ abstract class AppTextStyles {
   /// Font Size: 16
   /// Font Weight: w400
   static const bodyLarge = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );
@@ -86,6 +96,7 @@ abstract class AppTextStyles {
   /// Font Size: 14
   /// Font Weight: w400
   static const bodyMedium = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 14,
     fontWeight: FontWeight.normal,
   );
@@ -94,6 +105,7 @@ abstract class AppTextStyles {
   /// Font Size: 12
   /// Font Weight: w400
   static const bodySmall = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 12,
     fontWeight: FontWeight.normal,
   );
@@ -102,6 +114,7 @@ abstract class AppTextStyles {
   /// Font Size: 14
   /// Font Weight: w500
   static const labelLarge = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
@@ -110,6 +123,7 @@ abstract class AppTextStyles {
   /// Font Size: 12
   /// Font Weight: w500
   static const labelMedium = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 12,
     fontWeight: FontWeight.w500,
   );
@@ -118,6 +132,7 @@ abstract class AppTextStyles {
   /// Font Size: 11
   /// Font Weight: w500
   static const labelSmall = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 11,
     fontWeight: FontWeight.w500,
   );
