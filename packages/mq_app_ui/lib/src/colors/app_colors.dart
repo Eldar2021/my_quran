@@ -1,151 +1,169 @@
 import 'package:flutter/material.dart';
 
+/// AppColors
+/// This class contains all the colors used in the app
 abstract class AppColors {
-  /// colorsBrOrange figma style properties
-  /// hex: #d95a38
-  /// opacity: 1
-  static const Color colorsBrOrange = Color(0xffd95a38);
+  /// Transparent figma style properties
+  /// hex: #000000
+  /// opacity: 0
+  /// This is a transparent color
+  static const Color transparent = Color(0x00000000);
 
-  /// colorsBrGradient figma style properties
+  /// Tomato figma style properties
+  /// hex: #EB4F29
+  /// opacity: 1
+  /// This is a tomato color
+  static const Color tomato = Color(0xffEB4F29);
+
+  /// tomato2 figma style properties
+  /// hex: #FF4139
+  /// opacity: 1
+  /// This is a tomato2 color
+  static const Color tomato2 = Color(0xffFF4139);
+
+  /// Tomato3 figma style properties
+  /// hex: #FF4139
+  /// opacity: 1
+  /// This is a tomato3 color
+  static const Color tomato3 = Color(0xffEF6F33);
+
+  /// Tomato Gradient figma style properties
   /// linear gradient
-  /// start,stop hex: (#df7643,#d74931)
+  /// start,stop hex: (#EF6F33,#E93921)
   /// start,stop opacity: (1,1)
-  static const List<Color> colorsBrGradient = <Color>[
-    Color(0xffdf7643),
-    Color(0xffd74931),
+  /// This is a tomatoGradient color
+  static const List<Color> tomatoGradient = <Color>[
+    Color(0xffEF6F33),
+    Color(0xffE93921),
   ];
 
-  /// colorsBrBlue figma style properties
-  /// hex: #235190
+  /// darkslateblue figma style properties
+  /// hex: #075395
   /// opacity: 1
-  static const Color colorsBrBlue = Color(0xff235190);
+  /// This is a darkslateblue color
+  static const Color darkslateblue = Color(0xff075395);
 
-  /// colorsBrGradient2 figma style properties
+  /// Darkslateblue Gradient figma style properties
   /// linear gradient
-  /// start,stop hex: (#97c6fa,#408af0)
+  /// start,stop hex: (#89C8FF,#118CF8)
   /// start,stop opacity: (1,1)
-  static const List<Color> colorsBrGradient2 = <Color>[
-    Color(0xff97c6fa),
-    Color(0xff408af0),
+  /// This is a darkslateblueGradient color
+  static const List<Color> darkslateblueGradient = <Color>[
+    Color(0xff89C8FF),
+    Color(0xff118CF8),
   ];
 
-  /// colorsBrBlue2 figma style properties
-  /// hex: #68abf8
+  /// cornflowerblue figma style properties
+  /// hex: #50ADFF
   /// opacity: 1
-  static const Color colorsBrBlue2 = Color(0xff68abf8);
+  /// This is a cornflowerblue color
+  static const Color cornflowerblue = Color(0xff50ADFF);
 
-  /// colorsBrBlue3 figma style properties
-  /// hex: #408af0
+  /// dodgerblue figma style properties
+  /// hex: #118CF8
   /// opacity: 1
-  static const Color colorsBrBlue3 = Color(0xff408af0);
+  /// This is a dodgerblue color
+  static const Color dodgerblue = Color(0xff118CF8);
 
-  /// colorsBrBlue4 figma style properties
-  /// hex: #f1f4fd
+  /// White figma style properties
+  /// hex: #ffffff
   /// opacity: 1
-  static const Color colorsBrBlue4 = Color(0xfff1f4fd);
+  /// This is a white color
+  static const Color white = Color(0xffffffff);
 
-  /// colorsBrShadow figma style properties
+  /// whitesmoke figma style properties
+  /// hex: #F3F3F3
+  /// opacity: 1
+  /// This is a whitesmoke color
+  static const Color whitesmoke = Color(0xffF3F3F3);
+
+  /// ghostwhite figma style properties
+  /// hex: #F0F4FE
+  /// opacity: 1
+  /// This is a ghostwhite color
+  static const Color ghostwhite = Color(0xffF0F4FE);
+
+  /// darkred figma style properties
+  /// hex: #A30C05
+  /// opacity: 1
+  /// This is a darkred color
+  static const Color darkred = Color(0xffA30C05);
+
+  /// mediumseagreen figma style properties
+  /// hex: #4AB65E
+  /// opacity: 1
+  /// This is a mediumseagreen color
+  static const Color mediumseagreen = Color(0xff4AB65E);
+
+  /// goldenrod figma style properties
+  /// hex: #FFB651
+  /// opacity: 1
+  /// This is a goldenrod color
+  static const Color goldenrod = Color(0xffFFB651);
+
+  /// Black figma style properties
+  /// hex: #000000
+  /// opacity: 1
+  /// This is a black color
+  static const Color black = Color(0xff000000);
+
+  /// Black2 figma style properties
+  /// hex: #0E0E0F
+  /// opacity: 1
+  /// This is a black2 color
+  static const Color black2 = Color(0xff0E0E0F);
+
+  /// Black3 figma style properties
+  /// hex: #1C1C1E
+  /// opacity: 1
+  /// This is a black3 color
+  static const Color black3 = Color(0xff1C1C1E);
+
+  /// Black4 figma style properties
+  /// hex: #1D1D1D
+  /// opacity: 1
+  /// This is a black4 color
+  static const Color black4 = Color(0xff1D1D1D);
+
+  /// Black5 figma style properties
+  /// hex: #222222
+  /// opacity: 1
+  /// This is a black5 color
+  static const Color black5 = Color(0xff222222);
+
+  /// darkslategray figma style properties
+  /// hex: #2A2B30
+  /// opacity: 1
+  /// This is a darkslategray color
+  static const Color darkslategray = Color(0xff2A2B30);
+
+  /// darkslategray2 figma style properties
   /// hex: #373737
   /// opacity: 1
-  static const Color colorsBrShadow = Color(0xff373737);
+  /// This is a darkslategray2 color
+  static const Color darkslategray2 = Color(0xff373737);
 
-  /// colorsBrBlackBg figma style properties
-  /// hex: #0e0e0f
+  /// slategray figma style properties
+  /// hex: #6D7081
   /// opacity: 1
-  static const Color colorsBrBlackBg = Color(0xff0e0e0f);
+  /// This is a slategray color
+  static const Color slategray = Color(0xff6D7081);
 
-  /// colorsBrDarkmode figma style properties
-  /// hex: #1c1c1e
+  /// darkgray figma style properties
+  /// hex: #9FA1B5
   /// opacity: 1
-  static const Color colorsBrDarkmode = Color(0xff1c1c1e);
+  /// This is a darkgray color
+  static const Color darkgray = Color(0xff9FA1B5);
 
-  /// colorsBrBookBg figma style properties
-  /// hex: #fceed9
+  /// gainsboro figma style properties
+  /// hex: #E3E3E3
   /// opacity: 1
-  static const Color colorsBrBookBg = Color(0xfffceed9);
+  /// This is a gainsboro color
+  static const Color gainsboro = Color(0xffE3E3E3);
 
-  /// colorsBrBlack figma style properties
-  /// hex: #2a2b30
+  /// Papaya Whip figma style properties
+  /// hex: #FFEED6
   /// opacity: 1
-  static const Color colorsBrBlack = Color(0xff2a2b30);
-
-  /// colorsBrBlack2 figma style properties
-  /// hex: #6e707f
-  /// opacity: 1
-  static const Color colorsBrBlack2 = Color(0xff6e707f);
-
-  /// colorsBrBlack3 figma style properties
-  /// hex: #1d1d1d
-  /// opacity: 1
-  static const Color colorsBrBlack3 = Color(0xff1d1d1d);
-
-  /// colorsBrBlack4 figma style properties
-  /// hex: #222222
-  /// opacity: 1
-  static const Color colorsBrBlack4 = Color(0xff222222);
-
-  /// colorsDarkBottomNav figma style properties
-  /// hex: #222222
-  /// opacity: 1
-  static const Color colorsDarkBottomNav = Color(0xff222222);
-
-  /// colorsDarkCardBg figma style properties
-  /// hex: #353333
-  /// opacity: 1
-  static const Color colorsDarkCardBg = Color(0xff353333);
-
-  /// colorsBrError figma style properties
-  /// hex: #952116
-  /// opacity: 1
-  static const Color colorsBrError = Color(0xff952116);
-
-  /// colorsBrError2 figma style properties
-  /// hex: #eb5244
-  /// opacity: 1
-  static const Color colorsBrError2 = Color(0xffeb5244);
-
-  /// colorsBrGreen figma style properties
-  /// hex: #69b468
-  /// opacity: 1
-  static const Color colorsBrGreen = Color(0xff69b468);
-
-  /// colorsBrYellow figma style properties
-  /// hex: #f4b963
-  /// opacity: 1
-  static const Color colorsBrYellow = Color(0xfff4b963);
-
-  /// colorsBrLinearWhite figma style properties
-  /// hex: #ffffff
-  /// opacity: 1
-  static const Color colorsBrLinearWhite = Color(0xffffffff);
-
-  /// colorsBrWhite figma style properties
-  /// hex: #ffffff
-  /// opacity: 1
-  static const Color colorsBrWhite = Color(0xffffffff);
-
-  /// colorsBrWhite2 figma style properties
-  /// hex: #f3f3f3
-  /// opacity: 1
-  static const Color colorsBrWhite2 = Color(0xfff3f3f3);
-
-  /// colorsBrGrey figma style properties
-  /// hex: #9fa1b3
-  /// opacity: 1
-  static const Color colorsBrGrey = Color(0xff9fa1b3);
-
-  /// colorsBrGrey2 figma style properties
-  /// hex: #e3e3e3
-  /// opacity: 1
-  static const Color colorsBrGrey2 = Color(0xffe3e3e3);
-
-  /// colorsBrGrey3 figma style properties
-  /// hex: #bdc4cd
-  /// opacity: 1
-  static const Color colorsBrGrey3 = Color(0xffbdc4cd);
-
-  /// colorsBrGrey4 figma style properties
-  /// hex: #9f9f9f
-  /// opacity: 1
-  static const Color colorsBrGrey4 = Color(0xff9f9f9f);
+  /// This is a papayaWhip color
+  static const Color papayaWhip = Color(0xffFFEED6);
 }

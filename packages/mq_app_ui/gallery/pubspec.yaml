@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  mq_app_ui:
+    path: ../
 
 dev_dependencies:
   flutter_test:

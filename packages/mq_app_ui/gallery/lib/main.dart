@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/colors/app_colors_view.dart';
+import 'package:gallery/colors/theme_colors_view.dart';
+import 'package:gallery/spacing/spacing_page.dart';
+import 'package:gallery/typography/app_typography_page.dart';
+import 'package:gallery/typography/theme_typography_page.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,9 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter News Example Gallery',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppOrangeTheme().themeData,
       home: const RootPage(),
     );
   }
@@ -25,24 +29,43 @@ class RootPage extends StatelessWidget {
     final pages = [
       ListItem(
         icon: const Icon(Icons.color_lens),
-        title: const Text('Colors'),
-        subtitle: const Text('All of the predefined colors'),
-        // onTap: () => Navigator.of(context).push<void>(ColorsPage.route()),
-        onTap: () {},
+        title: const Text('Theme Colors'),
+        subtitle: const Text('All theme colors'),
+        onTap: () => Navigator.of(context).push<void>(
+          ThemeColorsView.route(),
+        ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.color_lens),
+        title: const Text('App Colors'),
+        subtitle: const Text('All app colors'),
+        onTap: () => Navigator.of(context).push<void>(
+          AppColorsView.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.text_format),
-        title: const Text('Typography'),
-        subtitle: const Text('All of the predefined text styles'),
-        // onTap: () => Navigator.of(context).push<void>(TypographyPage.route()),
-        onTap: () {},
+        title: const Text('Theme Typography'),
+        subtitle: const Text('All of the predefined theme text styles'),
+        onTap: () => Navigator.of(context).push<void>(
+          ThemeTypographyPage.route(),
+        ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.text_format),
+        title: const Text('App Typography'),
+        subtitle: const Text('All of the predefined app text styles'),
+        onTap: () => Navigator.of(context).push<void>(
+          AppTypographyPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.border_vertical),
         title: const Text('Spacing'),
         subtitle: const Text('All of the predefined spacings'),
-        // onTap: () => Navigator.of(context).push<void>(SpacingPage.route()),
-        onTap: () {},
+        onTap: () => Navigator.of(context).push<void>(
+          SpacingPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.widgets),

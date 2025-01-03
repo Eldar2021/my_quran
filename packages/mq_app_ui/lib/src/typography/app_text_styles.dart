@@ -1,304 +1,139 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
-abstract class AppTextStyle {
-  /// The name of the package that the text styles are defined in.
-  ///
-  /// Must be non-null if the font family is defined in a package that is not
-  /// the main application package.
-  ///
-  /// If your font is defined in the main application package, set this to null
-  /// or remove it entirely.
-  static const _fontPackage = 'app_ui';
-
-  /// 30Extrabold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 30px
-  /// height: 32px
-  /// fontWeight: 700
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const extrabold30 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 30,
-    height: 1.07,
-    fontWeight: FontWeight.w700,
-    package: _fontPackage,
+/// App Text Styles Definitions
+abstract class AppTextStyles {
+  /// Display Large
+  /// Font Size: 57
+  /// Font Weight: w700
+  static const displayLarge = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 57,
+    fontWeight: FontWeight.bold,
   );
 
-  /// 28Semibold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 28px
-  /// height: 30px
-  /// fontWeight: 600
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const semibold28 = TextStyle(
-    fontFamily: 'Roboto',
+  /// Display Medium
+  /// Font Size: 45
+  /// Font Weight: w700
+  static const displayMedium = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 45,
+    fontWeight: FontWeight.bold,
+  );
+
+  /// Display Small
+  /// Font Size: 36
+  /// Font Weight: w700
+  static const displaySmall = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 36,
+    fontWeight: FontWeight.bold,
+  );
+
+  /// Headline Large
+  /// Font Size: 32
+  /// Font Weight: w600
+  static const headlineLarge = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
+  );
+
+  /// Headline Medium
+  /// Font Size: 28
+  /// Font Weight: w600
+  static const headlineMedium = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 28,
-    height: 1.07,
     fontWeight: FontWeight.w600,
-    package: _fontPackage,
   );
 
-  /// 22Black figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 22px
-  /// height: 24px
-  /// fontWeight: 900
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const black22 = TextStyle(
-    fontFamily: 'Roboto',
+  /// Headline Small
+  /// Font Size: 24
+  /// Font Weight: w500
+  static const headlineSmall = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+  );
+
+  /// Title Large
+  /// Font Size: 22
+  /// Font Weight: w500
+  static const titleLarge = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 22,
-    height: 1.09,
-    fontWeight: FontWeight.w900,
-    package: _fontPackage,
-  );
-
-  /// 22Semibold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 22px
-  /// height: 18px
-  /// fontWeight: 600
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const semibold22 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 22,
-    height: 0.82,
-    fontWeight: FontWeight.w600,
-    package: _fontPackage,
-  );
-
-  /// 22Regular figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 22px
-  /// height: 18px
-  /// fontWeight: 400
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const regular22 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 22,
-    height: 0.82,
-    fontWeight: FontWeight.w400,
-    package: _fontPackage,
-  );
-
-  /// 18Bold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 18px
-  /// height: 19px
-  /// fontWeight: 700
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const bold18 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 18,
-    height: 1.06,
-    fontWeight: FontWeight.w700,
-    package: _fontPackage,
-  );
-
-  /// 18Medium figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 18px
-  /// height: 24px
-  /// fontWeight: 500
-  /// letterSpacing: -1.1%
-  /// fontStyle: none
-  /// decoration: none
-  static const medium18 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 18,
-    height: 1.33,
     fontWeight: FontWeight.w500,
-    letterSpacing: -0.2,
-    package: _fontPackage,
   );
 
-  /// 18MediumUnderlined figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 18px
-  /// height: 24px
-  /// fontWeight: 500
-  /// letterSpacing: -1.1%
-  /// fontStyle: none
-  /// decoration: underline
-  static const mediumUnderlined18 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 18,
-    height: 1.33,
+  /// Title Medium
+  /// Font Size: 16
+  /// Font Weight: w500
+  static const titleMedium = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 16,
     fontWeight: FontWeight.w500,
-    letterSpacing: -0.2,
-    decoration: TextDecoration.underline,
-    package: _fontPackage,
   );
 
-  /// 16Bold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 16px
-  /// height: 24px
-  /// fontWeight: 700
-  /// letterSpacing: -1.1%
-  /// fontStyle: none
-  /// decoration: none
-  static const bold16 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 16,
-    height: 1.5,
-    fontWeight: FontWeight.w700,
-    letterSpacing: -0.18,
-    package: _fontPackage,
-  );
-
-  /// 16Semibold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 16px
-  /// height: 24px
-  /// fontWeight: 600
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const semibold16 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 16,
-    height: 1.5,
-    fontWeight: FontWeight.w600,
-    package: _fontPackage,
-  );
-
-  /// 16Medium figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 16px
-  /// height: 18px
-  /// fontWeight: 500
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const medium16 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 16,
-    height: 1.13,
+  /// Title Small
+  /// Font Size: 14
+  /// Font Weight: w500
+  static const titleSmall = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 14,
     fontWeight: FontWeight.w500,
-    package: _fontPackage,
   );
 
-  /// 16Regular figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 16px
-  /// height: 18px
-  /// fontWeight: 400
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const regular16 = TextStyle(
-    fontFamily: 'Roboto',
+  /// Body Large
+  /// Font Size: 16
+  /// Font Weight: w400
+  static const bodyLarge = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 16,
-    height: 1.13,
-    fontWeight: FontWeight.w400,
-    package: _fontPackage,
+    fontWeight: FontWeight.normal,
   );
 
-  /// 14Extrabold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 14px
-  /// height: 19px
-  /// fontWeight: 700
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const extrabold14 = TextStyle(
-    fontFamily: 'Roboto',
+  /// Body Medium
+  /// Font Size: 14
+  /// Font Weight: w400
+  static const bodyMedium = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 14,
-    height: 1.36,
-    fontWeight: FontWeight.w700,
-    package: _fontPackage,
+    fontWeight: FontWeight.normal,
   );
 
-  /// 14Bold figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 14px
-  /// height: 19px
-  /// fontWeight: 700
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const bold14 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 14,
-    height: 1.36,
-    fontWeight: FontWeight.w700,
-    package: _fontPackage,
-  );
-
-  /// 14Medium figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 14px
-  /// height: 16px
-  /// fontWeight: 500
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const medium14 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 14,
-    height: 1.14,
-    fontWeight: FontWeight.w500,
-    package: _fontPackage,
-  );
-
-  /// 14Regular figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 14px
-  /// height: 17px
-  /// fontWeight: 400
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const regular14 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 14,
-    height: 1.21,
-    fontWeight: FontWeight.w400,
-    package: _fontPackage,
-  );
-
-  /// 12Medium figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 12px
-  /// height: 24px
-  /// fontWeight: 500
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const medium12 = TextStyle(
-    fontFamily: 'Roboto',
+  /// Body Small
+  /// Font Size: 12
+  /// Font Weight: w400
+  static const bodySmall = TextStyle(
+    package: 'mq_app_ui',
     fontSize: 12,
-    height: 2,
-    fontWeight: FontWeight.w500,
-    package: _fontPackage,
+    fontWeight: FontWeight.normal,
   );
 
-  /// 10Medium figma style properties
-  /// fontFamily: Roboto
-  /// fontSize: 10px
-  /// height: 24px
-  /// fontWeight: 500
-  /// letterSpacing: none
-  /// fontStyle: none
-  /// decoration: none
-  static const medium10 = TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 10,
-    height: 2.4,
+  /// Label Large
+  /// Font Size: 14
+  /// Font Weight: w500
+  static const labelLarge = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 14,
     fontWeight: FontWeight.w500,
-    package: _fontPackage,
+  );
+
+  /// Label Medium
+  /// Font Size: 12
+  /// Font Weight: w500
+  static const labelMedium = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
+  /// Label Small
+  /// Font Size: 11
+  /// Font Weight: w500
+  static const labelSmall = TextStyle(
+    package: 'mq_app_ui',
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
   );
 }
