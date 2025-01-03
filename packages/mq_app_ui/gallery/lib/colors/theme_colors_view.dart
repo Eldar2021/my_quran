@@ -13,201 +13,201 @@ class ThemeColorsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final colorItems = [
-      _ColorSquare(
+      ColorSquare(
         name: 'Primary',
         color: colors.primary,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Primary',
         color: colors.onPrimary,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Primary Container',
         color: colors.primaryContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Primary Container',
         color: colors.onPrimaryContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Primary Fixed',
         color: colors.primaryFixed,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Primary Fixed Dim',
         color: colors.primaryFixedDim,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Primary Fixed',
         color: colors.onPrimaryFixed,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Primary Fixed Variant',
         color: colors.onPrimaryFixedVariant,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Secondary',
         color: colors.secondary,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Secondary',
         color: colors.onSecondary,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Secondary Container',
         color: colors.secondaryContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Secondary Container',
         color: colors.onSecondaryContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Secondary Fixed',
         color: colors.secondaryFixed,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Secondary Fixed Dim',
         color: colors.secondaryFixedDim,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Secondary Fixed',
         color: colors.onSecondaryFixed,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Secondary Fixed Variant',
         color: colors.onSecondaryFixedVariant,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Tertiary',
         color: colors.tertiary,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Tertiary',
         color: colors.onTertiary,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Tertiary Container',
         color: colors.tertiaryContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Tertiary Container',
         color: colors.onTertiaryContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Tertiary Fixed',
         color: colors.tertiaryFixed,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Tertiary Fixed Dim',
         color: colors.tertiaryFixedDim,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Tertiary Fixed',
         color: colors.onTertiaryFixed,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Tertiary Fixed Variant',
         color: colors.onTertiaryFixedVariant,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Error',
         color: colors.error,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Error',
         color: colors.onError,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Error Container',
         color: colors.errorContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Error Container',
         color: colors.onErrorContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Outline',
         color: colors.outline,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Outline Variant',
         color: colors.outlineVariant,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface',
         color: colors.surface,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Dim',
         color: colors.surfaceDim,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Bright',
         color: colors.surfaceBright,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Container Lowest',
         color: colors.surfaceContainerLowest,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Container Low',
         color: colors.surfaceContainerLow,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Container',
         color: colors.surfaceContainer,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Container High',
         color: colors.surfaceContainerHigh,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Container Highest',
         color: colors.surfaceContainerHighest,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Surface',
         color: colors.onSurface,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Surface Variant',
         color: colors.onSurfaceVariant,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Inverse Surface',
         color: colors.inverseSurface,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Inverse Surface',
         color: colors.onInverseSurface,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Inverse Primary',
         color: colors.inversePrimary,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Shadow',
         color: colors.shadow,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Scrim',
         color: colors.scrim,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Tint',
         color: colors.surfaceTint,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Background!',
         // ignore: deprecated_member_use
         color: colors.background,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'On Background!',
         // ignore: deprecated_member_use
         color: colors.onBackground,
       ),
-      _ColorSquare(
+      ColorSquare(
         name: 'Surface Variant!',
         // ignore: deprecated_member_use
         color: colors.surfaceVariant,
@@ -215,7 +215,7 @@ class ThemeColorsView extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Colors')),
+      appBar: AppBar(title: const Text('Theme Colors')),
       body: GridView.builder(
         itemCount: colorItems.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -227,10 +227,11 @@ class ThemeColorsView extends StatelessWidget {
   }
 }
 
-class _ColorSquare extends StatelessWidget {
-  const _ColorSquare({
+class ColorSquare extends StatelessWidget {
+  const ColorSquare({
     required this.color,
     required this.name,
+    super.key,
   });
 
   final Color color;
@@ -243,11 +244,8 @@ class _ColorSquare extends StatelessWidget {
   }
 
   String get hexCode {
-    if (color.value.toRadixString(16).length <= 2) {
-      return '--';
-    } else {
-      return '#${color.value.toRadixString(16).substring(2).toUpperCase()}';
-    }
+    if (color.value.toRadixString(16).length <= 2) return '--';
+    return '#${color.value.toRadixString(16).substring(2).toUpperCase()}';
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
@@ -26,8 +27,14 @@ class RootPage extends StatelessWidget {
       ListItem(
         icon: const Icon(Icons.color_lens),
         title: const Text('Theme Colors'),
-        subtitle: const Text('All of the predefined colors'),
+        subtitle: const Text('All theme colors'),
         onTap: () => Navigator.of(context).push<void>(ThemeColorsView.route()),
+      ),
+      ListItem(
+        icon: const Icon(Icons.color_lens),
+        title: const Text('App Colors'),
+        subtitle: const Text('All app colors'),
+        onTap: () => Navigator.of(context).push<void>(AppColorsView.route()),
       ),
       ListItem(
         icon: const Icon(Icons.text_format),
