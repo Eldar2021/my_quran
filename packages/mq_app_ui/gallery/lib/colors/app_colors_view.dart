@@ -19,8 +19,16 @@ class AppColorsView extends StatelessWidget {
         color: AppColors.tomato,
       ),
       ColorSquare(
+        name: 'Tomato2',
+        color: AppColors.tomato2,
+      ),
+      ColorSquare(
         name: 'Tomato3',
         color: AppColors.tomato3,
+      ),
+      ColorSquare(
+        name: 'Transparent',
+        color: AppColors.transparent,
       ),
       ColorSquare(
         name: 'Darkslateblue',
@@ -33,6 +41,10 @@ class AppColorsView extends StatelessWidget {
       ColorSquare(
         name: 'Dodgerblue',
         color: AppColors.dodgerblue,
+      ),
+      ColorSquare(
+        name: 'Transparent',
+        color: AppColors.transparent,
       ),
       ColorSquare(
         name: 'White',
@@ -49,10 +61,6 @@ class AppColorsView extends StatelessWidget {
       ColorSquare(
         name: 'Darkred',
         color: AppColors.darkred,
-      ),
-      ColorSquare(
-        name: 'Tomato2',
-        color: AppColors.tomato2,
       ),
       ColorSquare(
         name: 'Mediumseagreen',

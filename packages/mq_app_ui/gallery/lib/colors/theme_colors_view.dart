@@ -261,16 +261,20 @@ class ColorSquare extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              name,
-              style: textStyle,
-              textAlign: TextAlign.center,
+            FittedBox(
+              child: Text(
+                name,
+                style: textStyle,
+                textAlign: TextAlign.center,
+              ),
             ),
             const SizedBox(height: 8),
-            Text(
-              hexCode,
-              style: textStyle,
-              textAlign: TextAlign.center,
+            FittedBox(
+              child: Text(
+                hexCode,
+                style: textStyle,
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),

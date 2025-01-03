@@ -15,6 +15,12 @@ abstract class AppColors {
   /// This is a tomato color
   static const Color tomato = Color(0xffEB4F29);
 
+  /// tomato2 figma style properties
+  /// hex: #FF4139
+  /// opacity: 1
+  /// This is a tomato2 color
+  static const Color tomato2 = Color(0xffFF4139);
+
   /// Tomato3 figma style properties
   /// hex: #FF4139
   /// opacity: 1
@@ -82,12 +88,6 @@ abstract class AppColors {
   /// opacity: 1
   /// This is a darkred color
   static const Color darkred = Color(0xffA30C05);
-
-  /// tomato2 figma style properties
-  /// hex: #FF4139
-  /// opacity: 1
-  /// This is a tomato2 color
-  static const Color tomato2 = Color(0xffFF4139);
 
   /// mediumseagreen figma style properties
   /// hex: #4AB65E
