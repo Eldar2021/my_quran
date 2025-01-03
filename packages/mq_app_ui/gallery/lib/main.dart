@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
+import 'package:gallery/spacing/spacing_page.dart';
 import 'package:gallery/typography/app_typography_page.dart';
 import 'package:gallery/typography/theme_typography_page.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
@@ -45,7 +46,7 @@ class RootPage extends StatelessWidget {
       ListItem(
         icon: const Icon(Icons.text_format),
         title: const Text('Theme Typography'),
-        subtitle: const Text('All of the predefined text styles'),
+        subtitle: const Text('All of the predefined theme text styles'),
         onTap: () => Navigator.of(context).push<void>(
           ThemeTypographyPage.route(),
         ),
@@ -53,7 +54,7 @@ class RootPage extends StatelessWidget {
       ListItem(
         icon: const Icon(Icons.text_format),
         title: const Text('App Typography'),
-        subtitle: const Text('All of the predefined text styles'),
+        subtitle: const Text('All of the predefined app text styles'),
         onTap: () => Navigator.of(context).push<void>(
           AppTypographyPage.route(),
         ),
@@ -62,8 +63,9 @@ class RootPage extends StatelessWidget {
         icon: const Icon(Icons.border_vertical),
         title: const Text('Spacing'),
         subtitle: const Text('All of the predefined spacings'),
-        // onTap: () => Navigator.of(context).push<void>(SpacingPage.route()),
-        onTap: () {},
+        onTap: () => Navigator.of(context).push<void>(
+          SpacingPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.widgets),
