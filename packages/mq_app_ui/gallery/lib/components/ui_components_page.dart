@@ -330,7 +330,7 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
             ),
             icon: Assets.icons.quran.svg(
               colorFilter: ColorFilter.mode(
-                colorScheme.onPrimary,
+                colorScheme.outline,
                 BlendMode.srcIn,
               ),
             ),
@@ -340,7 +340,7 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
             activeIcon: Assets.icons.prayingMan.svg(
               width: 27,
               colorFilter: ColorFilter.mode(
-                colorScheme.outline,
+                colorScheme.primary,
                 BlendMode.srcIn,
               ),
             ),

@@ -43,6 +43,18 @@ abstract class AppColors {
   /// This is a darkslateblue color
   static const Color darkslateblue = Color(0xff075395);
 
+  /// dodgerblue figma style properties
+  /// hex: #118CF8
+  /// opacity: 1
+  /// This is a dodgerblue color
+  static const Color dodgerblue = Color(0xff118CF8);
+
+  /// cornflowerblue figma style properties
+  /// hex: #50ADFF
+  /// opacity: 1
+  /// This is a cornflowerblue color
+  static const Color cornflowerblue = Color(0xff50ADFF);
+
   /// Darkslateblue Gradient figma style properties
   /// linear gradient
   /// start,stop hex: (#89C8FF,#118CF8)
@@ -52,18 +64,6 @@ abstract class AppColors {
     Color(0xff89C8FF),
     Color(0xff118CF8),
   ];
-
-  /// cornflowerblue figma style properties
-  /// hex: #50ADFF
-  /// opacity: 1
-  /// This is a cornflowerblue color
-  static const Color cornflowerblue = Color(0xff50ADFF);
-
-  /// dodgerblue figma style properties
-  /// hex: #118CF8
-  /// opacity: 1
-  /// This is a dodgerblue color
-  static const Color dodgerblue = Color(0xff118CF8);
 
   /// White figma style properties
   /// hex: #ffffff

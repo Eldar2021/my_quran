@@ -17,11 +17,6 @@ final class AppOrangeDarkTheme extends AppTheme {
       onSurface: AppColors.white,
       error: AppColors.darkred,
       onError: AppColors.white,
-      // seedColor: AppColors.tomato,
-      // primary: AppColors.tomato,
-      // onPrimary: AppColors.white,
-      // error: AppColors.darkred,
-      // onError: AppColors.white,
       brightness: Brightness.dark,
     );
   }

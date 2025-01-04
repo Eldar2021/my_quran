@@ -9,6 +9,12 @@ final class AppBlueTheme extends AppTheme {
       seedColor: AppColors.darkslateblue,
       primary: AppColors.darkslateblue,
       onPrimary: AppColors.white,
+      secondary: AppColors.dodgerblue,
+      onSecondary: AppColors.white,
+      tertiary: AppColors.cornflowerblue,
+      onTertiary: AppColors.white,
+      surface: AppColors.white,
+      onSurface: AppColors.black,
       error: AppColors.darkred,
       onError: AppColors.white,
     );
