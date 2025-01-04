@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
+import 'package:gallery/components/ui_components_page.dart';
 import 'package:gallery/spacing/spacing_page.dart';
 import 'package:gallery/typography/app_typography_page.dart';
 import 'package:gallery/typography/theme_typography_page.dart';
@@ -69,10 +70,11 @@ class RootPage extends StatelessWidget {
       ),
       ListItem(
         icon: const Icon(Icons.widgets),
-        title: const Text('Widgets'),
-        subtitle: const Text('All of the predefined widgets'),
-        // onTap: () => Navigator.of(context).push<void>(WidgetsPage.route()),
-        onTap: () {},
+        title: const Text('UI Components'),
+        subtitle: const Text('All of the predefined components'),
+        onTap: () => Navigator.of(context).push<void>(
+          UiComponentsPage.route(),
+        ),
       ),
     ];
 
