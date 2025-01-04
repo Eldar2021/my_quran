@@ -9,6 +9,7 @@ class GenderRedioWidget extends StatelessWidget {
   const GenderRedioWidget({
     required this.gender,
     this.itemIsMale = true,
+    this.icon,
     this.onChanged,
     this.title,
     super.key,
@@ -16,6 +17,7 @@ class GenderRedioWidget extends StatelessWidget {
 
   final AppUiGender gender;
   final void Function(AppUiGender?)? onChanged;
+  final Widget? icon;
   final String? title;
   final bool itemIsMale;
 
@@ -28,18 +30,7 @@ class GenderRedioWidget extends StatelessWidget {
       value: itemIsMale ? AppUiGender.male : AppUiGender.famela,
       groupValue: gender,
       onChanged: onChanged,
-      // secondary: Assets.images.backgroundBlue.image(),
-      // secondary: Assets.icons.userMale.svg(
-      //     // color: Colors.black,
-      //     ),
-
-      // secondary: Icon(Icons.book),
-      // secondary: SvgPicture.asset(
-      //   'assets/icons/book.svg',
-      //   // itemIsMale ? Assets.icons.userMale.path : Assets.icons.userFemale.path,
-      //   package: 'mq_app_ui',
-      //   color: Colors.black,
-      // ),
+      secondary: icon,
       title: Text(
         title ?? '',
         style: textTheme.titleMedium?.copyWith(

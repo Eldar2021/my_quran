@@ -85,13 +85,10 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
             'Gender Redio Widget',
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          // SvgPicture.asset(
-          //   'assets/icons/book.svg',
-          //   color: Theme.of(context).colorScheme.primary,
-          // ),
           GenderRedioWidget(
             gender: gender,
             title: 'Male',
+            icon: Assets.icons.backIcon.svg(),
             onChanged: (p0) {
               setState(() {
                 gender = p0!;
@@ -101,6 +98,7 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
           GenderRedioWidget(
             gender: gender,
             itemIsMale: false,
+            icon: Assets.icons.userMale.svg(),
             title: 'Female',
             onChanged: (p0) {
               setState(() {

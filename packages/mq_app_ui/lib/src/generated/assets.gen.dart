@@ -27,6 +27,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow_top.svg
   SvgGenImage get arrowTop => const SvgGenImage('assets/icons/arrow_top.svg');
 
+  /// File path: assets/icons/back_icon.svg
+  SvgGenImage get backIcon => const SvgGenImage('assets/icons/back_icon.svg');
+
   /// File path: assets/icons/background_1.svg
   SvgGenImage get background1 => const SvgGenImage('assets/icons/background_1.svg');
 
@@ -174,6 +177,7 @@ class $AssetsIconsGen {
         apple,
         arrowDown,
         arrowTop,
+        backIcon,
         background1,
         bigAHorizontalLine,
         bigAVerticalLine,
@@ -246,7 +250,7 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
-  static const String package = 'gallery';
+  static const String package = 'mq_app_ui';
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
@@ -261,7 +265,7 @@ class AssetGenImage {
 
   final String _assetName;
 
-  static const String package = 'gallery';
+  static const String package = 'mq_app_ui';
 
   final Size? size;
   final Set<String> flavors;
@@ -332,7 +336,7 @@ class AssetGenImage {
 
   String get path => _assetName;
 
-  String get keyName => 'packages/gallery/$_assetName';
+  String get keyName => 'packages/mq_app_ui/$_assetName';
 }
 
 class SvgGenImage {
@@ -353,7 +357,7 @@ class SvgGenImage {
   final Set<String> flavors;
   final bool _isVecFormat;
 
-  static const String package = 'gallery';
+  static const String package = 'mq_app_ui';
 
   _svg.SvgPicture svg({
     Key? key,
@@ -410,5 +414,5 @@ class SvgGenImage {
 
   String get path => _assetName;
 
-  String get keyName => 'packages/gallery/$_assetName';
+  String get keyName => 'packages/mq_app_ui/$_assetName';
 }

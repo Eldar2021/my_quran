@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  flutter_svg: ^2.0.16
   pinput: ^5.0.0
   mq_app_ui:
     path: ../
@@ -22,27 +21,6 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
-  build_runner: ^2.0.3
-  flutter_gen_runner: ^5.2.0
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
-    - assets/icons/
-
-  fonts:
-    - family: qpc_uthmanic_hafs
-      fonts:
-        - asset: assets/fonts/qpc_uthmanic_hafs/qpc_uthmanic_hafs.otf
-
-flutter_gen:
-  assets:
-    enabled: true
-    outputs:
-      package_parameter_enabled: true
-  output: lib/generated/
-  line_length: 120
-
-  integrations:
-    flutter_svg: true
