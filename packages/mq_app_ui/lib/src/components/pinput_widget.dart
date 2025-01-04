@@ -31,6 +31,7 @@ class PinputWidget extends StatelessWidget {
       validator: validator,
       onCompleted: onCompleted,
       errorText: errorText,
+      disabledPinTheme: pinTheme(theme),
       submittedPinTheme: pinTheme(theme).copyWith(
         decoration: BoxDecoration(
           border: Border.all(
@@ -74,7 +75,9 @@ class PinputWidget extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         border: Border.all(
-          color: theme.colorScheme.shadow.withOpacity(0.3),
+          color: theme.brightness == Brightness.dark
+              ? theme.colorScheme.onSurface.withOpacity(0.7)
+              : theme.colorScheme.shadow.withOpacity(0.3),
         ),
         borderRadius: BorderRadius.circular(10),
       ),

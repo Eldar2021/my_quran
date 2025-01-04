@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 
 abstract class AppTheme {
+  const AppTheme();
+
   ThemeData get themeData;
 
   ColorScheme get colorScheme;
@@ -34,7 +37,31 @@ abstract class AppTheme {
   }
 
   ElevatedButtonThemeData get elevatedButtonTheme {
-    return const ElevatedButtonThemeData();
+    return ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size.fromHeight(52),
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(99),
+        ),
+        textStyle: primaryTextTheme.titleMedium?.copyWith(fontSize: 18),
+      ),
+    );
+  }
+
+  OutlinedButtonThemeData get outlinedButtonTheme {
+    return OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        side: BorderSide(color: colorScheme.primary),
+        fixedSize: const Size.fromHeight(50),
+        iconColor: colorScheme.primary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(99),
+        ),
+        textStyle: primaryTextTheme.titleMedium?.copyWith(fontSize: 18),
+      ),
+    );
   }
 
   TextButtonThemeData get textButtonTheme {
@@ -46,11 +73,19 @@ abstract class AppTheme {
   }
 
   ListTileThemeData get listTileTheme {
-    return const ListTileThemeData();
+    return ListTileThemeData(
+      titleTextStyle: primaryTextTheme.titleMedium?.copyWith(
+        fontSize: 18,
+      ),
+    );
   }
 
   SwitchThemeData get switchTheme {
-    return const SwitchThemeData();
+    return SwitchThemeData(
+      trackOutlineColor: WidgetStateProperty.resolveWith(
+        (states) => AppColors.transparent,
+      ),
+    );
   }
 
   ProgressIndicatorThemeData get progressIndicatorTheme {

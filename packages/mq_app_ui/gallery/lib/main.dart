@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/body/bg_image_body.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
 import 'package:gallery/components/ui_components_page.dart';
@@ -6,18 +7,34 @@ import 'package:gallery/spacing/spacing_page.dart';
 import 'package:gallery/typography/app_typography_page.dart';
 import 'package:gallery/typography/theme_typography_page.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_storage/mq_storage.dart';
 
-void main() => runApp(const MyApp());
+MqAppUiNotifier? themeProvider;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final storage = await PreferencesStorage.getInstance();
+
+  themeProvider = MqAppUiNotifier(storage)..init();
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter News Example Gallery',
-      theme: AppOrangeTheme().themeData,
-      home: const RootPage(),
+    return ListenableBuilder(
+      listenable: themeProvider!,
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          title: 'Flutter News Example Gallery',
+          theme: themeProvider!.theme.themeData,
+          home: const RootPage(),
+        );
+      },
     );
   }
 }
@@ -75,6 +92,50 @@ class RootPage extends StatelessWidget {
         onTap: () => Navigator.of(context).push<void>(
           UiComponentsPage.route(),
         ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.widgets),
+        title: const Text('Body Image'),
+        subtitle: const Text('All of the predefined body'),
+        onTap: () => Navigator.of(context).push<void>(
+          BgImageBodyPage.route(),
+        ),
+      ),
+      Wrap(
+        children: [
+          TextButton(
+            onPressed: () {
+              themeProvider!.changeTheme(
+                MqAppUiType.orange,
+              );
+            },
+            child: const Text('Orange'),
+          ),
+          TextButton(
+            onPressed: () {
+              themeProvider!.changeTheme(
+                MqAppUiType.orangeDark,
+              );
+            },
+            child: const Text('OrangeDark'),
+          ),
+          TextButton(
+            onPressed: () {
+              themeProvider!.changeTheme(
+                MqAppUiType.blue,
+              );
+            },
+            child: const Text('Blue'),
+          ),
+          TextButton(
+            onPressed: () {
+              themeProvider!.changeTheme(
+                MqAppUiType.blueDark,
+              );
+            },
+            child: const Text('BlueDark'),
+          ),
+        ],
       ),
     ];
 
