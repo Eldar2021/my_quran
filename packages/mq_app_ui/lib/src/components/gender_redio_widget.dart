@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 
 enum AppUiGender {
   male,
@@ -29,7 +28,7 @@ class GenderRedioWidget extends StatelessWidget {
       value: itemIsMale ? AppUiGender.male : AppUiGender.famela,
       groupValue: gender,
       onChanged: onChanged,
-      secondary: Assets.images.backgroundBlue.image(),
+      // secondary: Assets.images.backgroundBlue.image(),
       // secondary: Assets.icons.userMale.svg(
       //     // color: Colors.black,
       //     ),
