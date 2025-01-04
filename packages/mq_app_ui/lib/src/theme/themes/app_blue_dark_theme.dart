@@ -29,6 +29,7 @@ final class AppBlueDarkTheme extends AppTheme {
       buttonTheme: buttonTheme,
       snackBarTheme: snackBarTheme,
       elevatedButtonTheme: elevatedButtonTheme,
+      outlinedButtonTheme: outlinedButtonTheme,
       textButtonTheme: textButtonTheme,
       colorScheme: colorScheme,
       bottomSheetTheme: bottomSheetTheme,
