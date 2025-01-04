@@ -88,7 +88,6 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
           GenderRedioWidget(
             gender: gender,
             title: 'Male',
-            icon: Assets.icons.backIcon.svg(),
             onChanged: (p0) {
               setState(() {
                 gender = p0!;
@@ -98,7 +97,6 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
           GenderRedioWidget(
             gender: gender,
             itemIsMale: false,
-            icon: Assets.icons.arrowDown.svg(),
             title: 'Female',
             onChanged: (p0) {
               setState(() {

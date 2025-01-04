@@ -18,35 +18,26 @@ class $AssetsIconsGen {
   /// File path: assets/icons/a_digit.svg
   SvgGenImage get aDigit => const SvgGenImage('assets/icons/a_digit.svg');
 
-  /// File path: assets/icons/apple.svg
-  SvgGenImage get apple => const SvgGenImage('assets/icons/apple.svg');
+  /// File path: assets/icons/a_digit_vertical.svg
+  SvgGenImage get aDigitVertical => const SvgGenImage('assets/icons/a_digit_vertical.svg');
 
-  /// File path: assets/icons/arrow_down.svg
-  SvgGenImage get arrowDown => const SvgGenImage('assets/icons/arrow_down.svg');
+  /// File path: assets/icons/a_digit_vertical_small.svg
+  SvgGenImage get aDigitVerticalSmall => const SvgGenImage('assets/icons/a_digit_vertical_small.svg');
 
-  /// File path: assets/icons/arrow_top.svg
-  SvgGenImage get arrowTop => const SvgGenImage('assets/icons/arrow_top.svg');
+  /// File path: assets/icons/a_horizontal.svg
+  SvgGenImage get aHorizontal => const SvgGenImage('assets/icons/a_horizontal.svg');
+
+  /// File path: assets/icons/a_horizontal_big.svg
+  SvgGenImage get aHorizontalBig => const SvgGenImage('assets/icons/a_horizontal_big.svg');
+
+  /// File path: assets/icons/arrow_right.svg
+  SvgGenImage get arrowRight => const SvgGenImage('assets/icons/arrow_right.svg');
 
   /// File path: assets/icons/back_icon.svg
   SvgGenImage get backIcon => const SvgGenImage('assets/icons/back_icon.svg');
 
-  /// File path: assets/icons/background_1.svg
-  SvgGenImage get background1 => const SvgGenImage('assets/icons/background_1.svg');
-
-  /// File path: assets/icons/big_a_horizontal_line.svg
-  SvgGenImage get bigAHorizontalLine => const SvgGenImage('assets/icons/big_a_horizontal_line.svg');
-
-  /// File path: assets/icons/big_a_vertical_line.svg
-  SvgGenImage get bigAVerticalLine => const SvgGenImage('assets/icons/big_a_vertical_line.svg');
-
   /// File path: assets/icons/book.svg
   SvgGenImage get book => const SvgGenImage('assets/icons/book.svg');
-
-  /// File path: assets/icons/book_contact.svg
-  SvgGenImage get bookContact => const SvgGenImage('assets/icons/book_contact.svg');
-
-  /// File path: assets/icons/book_mark.svg
-  SvgGenImage get bookMark => const SvgGenImage('assets/icons/book_mark.svg');
 
   /// File path: assets/icons/book_mark_fill.svg
   SvgGenImage get bookMarkFill => const SvgGenImage('assets/icons/book_mark_fill.svg');
@@ -54,74 +45,77 @@ class $AssetsIconsGen {
   /// File path: assets/icons/check.svg
   SvgGenImage get check => const SvgGenImage('assets/icons/check.svg');
 
-  /// File path: assets/icons/cloud_download.svg
-  SvgGenImage get cloudDownload => const SvgGenImage('assets/icons/cloud_download.svg');
+  /// File path: assets/icons/cloud.svg
+  SvgGenImage get cloud => const SvgGenImage('assets/icons/cloud.svg');
 
-  /// File path: assets/icons/cloud_light.svg
-  SvgGenImage get cloudLight => const SvgGenImage('assets/icons/cloud_light.svg');
+  /// File path: assets/icons/developers.svg
+  SvgGenImage get developers => const SvgGenImage('assets/icons/developers.svg');
 
-  /// File path: assets/icons/copy_fill.svg
-  SvgGenImage get copyFill => const SvgGenImage('assets/icons/copy_fill.svg');
+  /// File path: assets/icons/donate.svg
+  SvgGenImage get donate => const SvgGenImage('assets/icons/donate.svg');
+
+  /// File path: assets/icons/download.svg
+  SvgGenImage get download => const SvgGenImage('assets/icons/download.svg');
 
   /// File path: assets/icons/email_sms.svg
   SvgGenImage get emailSms => const SvgGenImage('assets/icons/email_sms.svg');
 
+  /// File path: assets/icons/favourite.svg
+  SvgGenImage get favourite => const SvgGenImage('assets/icons/favourite.svg');
+
   /// File path: assets/icons/github.svg
   SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
 
-  /// File path: assets/icons/google.svg
-  SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
-
-  /// File path: assets/icons/hand_donate.svg
-  SvgGenImage get handDonate => const SvgGenImage('assets/icons/hand_donate.svg');
-
-  /// File path: assets/icons/hand_dua.svg
-  SvgGenImage get handDua => const SvgGenImage('assets/icons/hand_dua.svg');
-
-  /// File path: assets/icons/islamic_symbol.svg
-  SvgGenImage get islamicSymbol => const SvgGenImage('assets/icons/islamic_symbol.svg');
+  /// File path: assets/icons/heptagon.svg
+  SvgGenImage get heptagon => const SvgGenImage('assets/icons/heptagon.svg');
 
   /// File path: assets/icons/islamic_symbol_fill.svg
   SvgGenImage get islamicSymbolFill => const SvgGenImage('assets/icons/islamic_symbol_fill.svg');
 
-  /// File path: assets/icons/languages.svg
-  SvgGenImage get languages => const SvgGenImage('assets/icons/languages.svg');
-
   /// File path: assets/icons/light_dark.svg
   SvgGenImage get lightDark => const SvgGenImage('assets/icons/light_dark.svg');
 
-  /// File path: assets/icons/location_marker.svg
-  SvgGenImage get locationMarker => const SvgGenImage('assets/icons/location_marker.svg');
+  /// File path: assets/icons/listen_quran.svg
+  SvgGenImage get listenQuran => const SvgGenImage('assets/icons/listen_quran.svg');
+
+  /// File path: assets/icons/location.svg
+  SvgGenImage get location => const SvgGenImage('assets/icons/location.svg');
 
   /// File path: assets/icons/logout.svg
   SvgGenImage get logout => const SvgGenImage('assets/icons/logout.svg');
 
-  /// File path: assets/icons/moon_islam.svg
-  SvgGenImage get moonIslam => const SvgGenImage('assets/icons/moon_islam.svg');
+  /// File path: assets/icons/moon_islamic.svg
+  SvgGenImage get moonIslamic => const SvgGenImage('assets/icons/moon_islamic.svg');
 
   /// File path: assets/icons/next_fill.svg
   SvgGenImage get nextFill => const SvgGenImage('assets/icons/next_fill.svg');
 
+  /// File path: assets/icons/outline_fill.svg
+  SvgGenImage get outlineFill => const SvgGenImage('assets/icons/outline_fill.svg');
+
+  /// File path: assets/icons/pause_fill.svg
+  SvgGenImage get pauseFill => const SvgGenImage('assets/icons/pause_fill.svg');
+
   /// File path: assets/icons/pause_outline.svg
   SvgGenImage get pauseOutline => const SvgGenImage('assets/icons/pause_outline.svg');
 
-  /// File path: assets/icons/pause_outline_fill.svg
-  SvgGenImage get pauseOutlineFill => const SvgGenImage('assets/icons/pause_outline_fill.svg');
+  /// File path: assets/icons/phone.svg
+  SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
 
   /// File path: assets/icons/play_outline.svg
   SvgGenImage get playOutline => const SvgGenImage('assets/icons/play_outline.svg');
 
-  /// File path: assets/icons/play_outline_fill.svg
-  SvgGenImage get playOutlineFill => const SvgGenImage('assets/icons/play_outline_fill.svg');
+  /// File path: assets/icons/prayer_hand.svg
+  SvgGenImage get prayerHand => const SvgGenImage('assets/icons/prayer_hand.svg');
+
+  /// File path: assets/icons/praying_man.svg
+  SvgGenImage get prayingMan => const SvgGenImage('assets/icons/praying_man.svg');
 
   /// File path: assets/icons/previous_fill.svg
   SvgGenImage get previousFill => const SvgGenImage('assets/icons/previous_fill.svg');
 
-  /// File path: assets/icons/quran_audio.svg
-  SvgGenImage get quranAudio => const SvgGenImage('assets/icons/quran_audio.svg');
-
-  /// File path: assets/icons/quran_with_table.svg
-  SvgGenImage get quranWithTable => const SvgGenImage('assets/icons/quran_with_table.svg');
+  /// File path: assets/icons/quran.svg
+  SvgGenImage get quran => const SvgGenImage('assets/icons/quran.svg');
 
   /// File path: assets/icons/qybla_direction.svg
   SvgGenImage get qyblaDirection => const SvgGenImage('assets/icons/qybla_direction.svg');
@@ -135,12 +129,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/share_fill.svg
   SvgGenImage get shareFill => const SvgGenImage('assets/icons/share_fill.svg');
 
-  /// File path: assets/icons/small_a_horizontal_line.svg
-  SvgGenImage get smallAHorizontalLine => const SvgGenImage('assets/icons/small_a_horizontal_line.svg');
-
-  /// File path: assets/icons/small_a_vertical_line.svg
-  SvgGenImage get smallAVerticalLine => const SvgGenImage('assets/icons/small_a_vertical_line.svg');
-
   /// File path: assets/icons/sms.svg
   SvgGenImage get sms => const SvgGenImage('assets/icons/sms.svg');
 
@@ -150,8 +138,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/telegram.svg
   SvgGenImage get telegram => const SvgGenImage('assets/icons/telegram.svg');
 
-  /// File path: assets/icons/three_users.svg
-  SvgGenImage get threeUsers => const SvgGenImage('assets/icons/three_users.svg');
+  /// File path: assets/icons/translate.svg
+  SvgGenImage get translate => const SvgGenImage('assets/icons/translate.svg');
 
   /// File path: assets/icons/trash.svg
   SvgGenImage get trash => const SvgGenImage('assets/icons/trash.svg');
@@ -162,11 +150,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user_male.svg
   SvgGenImage get userMale => const SvgGenImage('assets/icons/user_male.svg');
 
-  /// File path: assets/icons/user_preying.svg
-  SvgGenImage get userPreying => const SvgGenImage('assets/icons/user_preying.svg');
-
-  /// File path: assets/icons/user_settings.svg
-  SvgGenImage get userSettings => const SvgGenImage('assets/icons/user_settings.svg');
+  /// File path: assets/icons/users.svg
+  SvgGenImage get users => const SvgGenImage('assets/icons/users.svg');
 
   /// File path: assets/icons/whatsapp.svg
   SvgGenImage get whatsapp => const SvgGenImage('assets/icons/whatsapp.svg');
@@ -174,56 +159,51 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         aDigit,
-        apple,
-        arrowDown,
-        arrowTop,
+        aDigitVertical,
+        aDigitVerticalSmall,
+        aHorizontal,
+        aHorizontalBig,
+        arrowRight,
         backIcon,
-        background1,
-        bigAHorizontalLine,
-        bigAVerticalLine,
         book,
-        bookContact,
-        bookMark,
         bookMarkFill,
         check,
-        cloudDownload,
-        cloudLight,
-        copyFill,
+        cloud,
+        developers,
+        donate,
+        download,
         emailSms,
+        favourite,
         github,
-        google,
-        handDonate,
-        handDua,
-        islamicSymbol,
+        heptagon,
         islamicSymbolFill,
-        languages,
         lightDark,
-        locationMarker,
+        listenQuran,
+        location,
         logout,
-        moonIslam,
+        moonIslamic,
         nextFill,
+        outlineFill,
+        pauseFill,
         pauseOutline,
-        pauseOutlineFill,
+        phone,
         playOutline,
-        playOutlineFill,
+        prayerHand,
+        prayingMan,
         previousFill,
-        quranAudio,
-        quranWithTable,
+        quran,
         qyblaDirection,
         settingsFilter,
         share,
         shareFill,
-        smallAHorizontalLine,
-        smallAVerticalLine,
         sms,
         sun,
         telegram,
-        threeUsers,
+        translate,
         trash,
         userFemale,
         userMale,
-        userPreying,
-        userSettings,
+        users,
         whatsapp
       ];
 }
