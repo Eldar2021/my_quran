@@ -280,7 +280,7 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
             child: Slider(
               value: sliderValue,
               inactiveColor: colorScheme.outline.withOpacity(0.2),
-              thumbColor: colorScheme.surface,
+              thumbColor: colorScheme.onSecondary,
               onChanged: (v) {
                 setState(() {
                   sliderValue = v;
@@ -328,18 +328,29 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
                 BlendMode.srcIn,
               ),
             ),
-            icon: Assets.icons.quran.svg(),
+            icon: Assets.icons.quran.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.onPrimary,
+                BlendMode.srcIn,
+              ),
+            ),
             label: 'Quran',
           ),
           BottomNavigationBarItem(
             activeIcon: Assets.icons.prayingMan.svg(
               width: 27,
               colorFilter: ColorFilter.mode(
-                colorScheme.primary,
+                colorScheme.outline,
                 BlendMode.srcIn,
               ),
             ),
-            icon: Assets.icons.prayingMan.svg(width: 27),
+            icon: Assets.icons.prayingMan.svg(
+              width: 27,
+              colorFilter: ColorFilter.mode(
+                colorScheme.outline,
+                BlendMode.srcIn,
+              ),
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
@@ -349,7 +360,12 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
                 BlendMode.srcIn,
               ),
             ),
-            icon: Assets.icons.listenQuran.svg(),
+            icon: Assets.icons.listenQuran.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.outline,
+                BlendMode.srcIn,
+              ),
+            ),
             label: 'Messages',
           ),
         ],
