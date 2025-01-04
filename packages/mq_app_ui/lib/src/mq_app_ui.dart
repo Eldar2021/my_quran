@@ -6,6 +6,7 @@ export 'typography/app_font_weight.dart';
 export 'typography/app_text_styles.dart';
 export 'generated/assets.gen.dart';
 export 'generated/fonts.gen.dart';
+export 'notifier/theme_notifier.dart';
 export 'components/pinput_widget.dart';
 export 'components/language_dropdown_button_form_field.dart';
 export 'components/outline_theme_item.dart';

@@ -15,6 +15,8 @@ dependencies:
   pinput: ^5.0.0
   mq_app_ui:
     path: ../
+  mq_storage:
+    path: ../../mq_storage
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,8 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 
 @immutable
 final class AppOrangeTheme extends AppTheme {
+  const AppOrangeTheme();
+
   @override
   ColorScheme get colorScheme {
     return ColorScheme.fromSeed(

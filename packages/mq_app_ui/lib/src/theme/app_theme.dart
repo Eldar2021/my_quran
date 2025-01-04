@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 abstract class AppTheme {
+  const AppTheme();
+
   ThemeData get themeData;
 
   ColorScheme get colorScheme;
