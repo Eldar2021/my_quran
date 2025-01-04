@@ -98,7 +98,7 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
           GenderRedioWidget(
             gender: gender,
             itemIsMale: false,
-            icon: Assets.icons.userMale.svg(),
+            icon: Assets.icons.arrowDown.svg(),
             title: 'Female',
             onChanged: (p0) {
               setState(() {
