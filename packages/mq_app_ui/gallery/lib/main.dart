@@ -16,7 +16,7 @@ void main() async {
 
   final storage = await PreferencesStorage.getInstance();
 
-  themeProvider = MqAppUiNotifier(storage);
+  themeProvider = MqAppUiNotifier(storage)..init();
 
   runApp(const MyApp());
 }
