@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/body/bg_image_body.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
 import 'package:gallery/components/ui_components_page.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter News Example Gallery',
-      theme: AppBlueDarkTheme().themeData,
+      theme: AppOrangeTheme().themeData,
       home: const RootPage(),
     );
   }
@@ -74,6 +75,14 @@ class RootPage extends StatelessWidget {
         subtitle: const Text('All of the predefined components'),
         onTap: () => Navigator.of(context).push<void>(
           UiComponentsPage.route(),
+        ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.widgets),
+        title: const Text('Body Image'),
+        subtitle: const Text('All of the predefined body'),
+        onTap: () => Navigator.of(context).push<void>(
+          BgImageBodyPage.route(),
         ),
       ),
     ];

@@ -10,3 +10,4 @@ export 'components/pinput_widget.dart';
 export 'components/language_dropdown_button_form_field.dart';
 export 'components/outline_theme_item.dart';
 export 'components/gender_redio_widget.dart';
+export 'components/scaffold_with_bg_image.dart';
