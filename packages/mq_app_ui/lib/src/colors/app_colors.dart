@@ -166,4 +166,66 @@ abstract class AppColors {
   /// opacity: 1
   /// This is a papayaWhip color
   static const Color papayaWhip = Color(0xffFFEED6);
+
+  /// Whatsapp figma style properties
+  /// hex: #25D366
+  /// opacity: 1
+  /// This is a whatsapp color
+  static const Color whatsapp = Color(0xff25D366);
+
+  /// Telegram figma style properties
+  /// hex: #2BABEE
+  /// opacity: 1
+  /// This is a telegram color
+  static const Color telegram = Color(0xff2BABEE);
+
+  static LinearGradient cardGradient(ThemeData theme, {bool isTomato = false, bool isBlue = false}) {
+    final brightness = theme.brightness;
+    if ((theme.colorScheme.primary == AppColors.tomato || isTomato) && isBlue == false) {
+      return switch (brightness) {
+        Brightness.light => const LinearGradient(
+            colors: [
+              Color(0xFFFCEBE6),
+              Color(0xFFFFFDFD),
+              Color(0xFFFCEBE6),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        Brightness.dark => const LinearGradient(
+            colors: [
+              Color(0xFF3C2D2B),
+              Color(0xFF2B292A),
+              Color(0xFF2B292A),
+              Color(0xFF3C2D2B),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+      };
+    } else {
+      return switch (brightness) {
+        Brightness.light => const LinearGradient(
+            colors: [
+              Color(0xFFEAF5FE),
+              Color(0xFFFDFEFF),
+              Color(0xFFFDFEFF),
+              Color(0xFFEAF5FE),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        Brightness.dark => const LinearGradient(
+            colors: [
+              Color(0xFF2D353D),
+              Color(0xFF2A2A2C),
+              Color(0xFF2A2A2C),
+              Color(0xFF2D353D),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+      };
+    }
+  }
 }
