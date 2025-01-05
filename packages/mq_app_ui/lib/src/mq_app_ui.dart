@@ -17,3 +17,4 @@ export 'components/scaffold_with_bg_image.dart';
 export 'components/quran_read_audio_progressing_widget.dart';
 export 'components/quran_audio_progressing_widget.dart';
 export 'components/my_quran_statics_info_widget.dart';
+export 'components/mq_salaah_card.dart';
