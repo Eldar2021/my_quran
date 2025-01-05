@@ -113,7 +113,13 @@ class MqSalaahCard extends StatelessWidget {
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           alignment: Alignment.centerLeft,
                         ),
-                        icon: Assets.icons.location.svg(width: 12),
+                        icon: Assets.icons.location.svg(
+                          width: 12,
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.onSurface,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -136,6 +142,7 @@ class MqSalaahCard extends StatelessWidget {
                 extendSecondHand: true,
                 dialType: DialType.numberAndDashes,
                 numberColor: colorScheme.onSurface,
+                hourDashColor: colorScheme.onSurface,
               ),
             ),
           ],
@@ -161,8 +168,13 @@ class SalaahItemTimeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color: isActive ? colorScheme.primary : colorScheme.shadow.withOpacity(0.8),
+      color: isActive
+          ? colorScheme.primary
+          : isDark
+              ? colorScheme.onSurface.withOpacity(0.9)
+              : colorScheme.shadow.withOpacity(0.8),
       margin: EdgeInsets.zero,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -173,7 +185,7 @@ class SalaahItemTimeCard extends StatelessWidget {
         child: Text(
           '$salaahName $timeOfClock',
           style: prTextTheme.bodyMedium?.copyWith(
-            color: colorScheme.onPrimary,
+            color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),

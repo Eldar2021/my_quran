@@ -64,7 +64,13 @@ class AppleSignInButton extends StatelessWidget {
         padding: const EdgeInsets.only(left: 12),
         child: Text(label),
       ),
-      icon: Assets.icons.apple.svg(width: 25),
+      icon: Assets.icons.apple.svg(
+        width: 25,
+        colorFilter: ColorFilter.mode(
+          colorScheme.onSurface,
+          BlendMode.srcIn,
+        ),
+      ),
     );
   }
 }

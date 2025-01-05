@@ -31,6 +31,7 @@ class QuranReadAudioProgressingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final isDark = colorScheme.brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Row(
@@ -66,7 +67,7 @@ class QuranReadAudioProgressingWidget extends StatelessWidget {
                 value: sliderValue,
                 max: sliderMax,
                 min: sliderMin,
-                inactiveColor: colorScheme.outline.withOpacity(0.2),
+                inactiveColor: isDark ? colorScheme.onSurface.withOpacity(0.7) : colorScheme.outline.withOpacity(0.2),
                 onChanged: onDragSliderChanged,
               ),
             ),

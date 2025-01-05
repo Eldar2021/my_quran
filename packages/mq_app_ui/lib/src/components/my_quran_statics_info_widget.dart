@@ -23,6 +23,7 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return GradientDecoratedBox(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -43,7 +44,7 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                           width: 72,
                           child: CircularProgressIndicator(
                             value: 0.7,
-                            backgroundColor: colorScheme.surface,
+                            backgroundColor: isDark ? colorScheme.inverseSurface : colorScheme.surface,
                           ),
                         ),
                         Center(
@@ -68,7 +69,7 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
               const SizedBox(width: 16),
               VerticalDivider(
                 thickness: 2,
-                color: colorScheme.surface,
+                color: isDark ? colorScheme.inverseSurface : colorScheme.surface,
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -93,7 +94,7 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                     ),
                     Divider(
                       thickness: 2,
-                      color: colorScheme.surface,
+                      color: isDark ? colorScheme.inverseSurface : colorScheme.surface,
                     ),
                     ListTile(
                       leading: Assets.icons.prayerHand.svg(

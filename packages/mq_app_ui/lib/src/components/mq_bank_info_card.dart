@@ -18,8 +18,9 @@ class MqBankInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color: colorScheme.surface,
+      color: isDark ? colorScheme.outline.withOpacity(0.3) : colorScheme.surface,
       margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -33,7 +34,12 @@ class MqBankInfoCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Assets.icons.visa.svg(),
+                        Assets.icons.visa.svg(
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.onSurface,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                         const SizedBox(width: 12),
                         Flexible(
                           child: Text(
@@ -61,7 +67,12 @@ class MqBankInfoCard extends StatelessWidget {
                         ClipboardData(text: bankAccount),
                       );
                     },
-                    icon: Assets.icons.copy.svg(),
+                    icon: Assets.icons.copy.svg(
+                      colorFilter: ColorFilter.mode(
+                        colorScheme.primary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
                   Text(copyLabel),
                 ],

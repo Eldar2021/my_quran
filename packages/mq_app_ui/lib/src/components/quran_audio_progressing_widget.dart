@@ -37,6 +37,7 @@ class QuranAudioProgressingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final isDark = colorScheme.brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
@@ -57,7 +58,8 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                     value: sliderValue,
                     max: sliderMaxValue,
                     min: sliderMinValue,
-                    inactiveColor: colorScheme.outline.withOpacity(0.2),
+                    inactiveColor:
+                        isDark ? colorScheme.onSurface.withOpacity(0.7) : colorScheme.outline.withOpacity(0.2),
                     onChanged: onDragSliderChanged,
                   ),
                 ),
@@ -74,6 +76,7 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: isLoading ? null : onFastRewind,
                 icon: const Icon(Icons.fast_rewind),
+                color: isDark ? colorScheme.inverseSurface : null,
               ),
               const SizedBox(width: 20),
               IconButton(
@@ -101,6 +104,7 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: isLoading ? null : onFastForward,
                 icon: const Icon(Icons.fast_forward),
+                color: isDark ? colorScheme.inverseSurface : null,
               ),
             ],
           ),

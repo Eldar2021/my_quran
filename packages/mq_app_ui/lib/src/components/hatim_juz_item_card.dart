@@ -33,8 +33,9 @@ class HatimJuzItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color: colorScheme.surface,
+      color: isDark ? colorScheme.outline.withOpacity(0.3) : colorScheme.surface,
       margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
@@ -57,7 +58,6 @@ class HatimJuzItemCard extends StatelessWidget {
                   Text(
                     title,
                     style: prTextTheme.titleMedium?.copyWith(
-                      color: colorScheme.primary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
