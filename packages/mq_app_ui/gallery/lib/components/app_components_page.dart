@@ -18,11 +18,11 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
   double sliderValue = 0;
   bool isLoading = false;
   bool isProgressing = false;
+  bool isOrange = true;
 
   @override
   Widget build(BuildContext context) {
-    // final colorScheme = Theme.of(context).colorScheme;
-    // final prTextTheme = Theme.of(context).primaryTextTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('App Components'),
@@ -230,6 +230,98 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
+          const MqBankInfoCard(
+            bankName: 'ALMAZBEK UULU ELDIIAR',
+            bankAccount: '4169585312345678',
+          ),
+          const SizedBox(height: 20),
+          const Divider(),
+          const SizedBox(height: 20),
+          ContactWhatsappButton(
+            onPressed: () {},
+          ),
+          const SizedBox(height: 20),
+          ContactTelegramButton(
+            onPressed: () {},
+          ),
+          const SizedBox(height: 20),
+          ContactEmailButton(
+            onPressed: () {},
+          ),
+          const SizedBox(height: 20),
+          ContactGithubButton(
+            onPressed: () {},
+          ),
+          const SizedBox(height: 20),
+          const Divider(),
+          const SizedBox(height: 20),
+          OrangeThemeCard(
+            isActive: isOrange,
+            onChanged: ({value}) {
+              setState(() {
+                isOrange = value ?? true;
+              });
+            },
+          ),
+          const SizedBox(height: 20),
+          BlueThemeCard(
+            isActive: isOrange,
+            onChanged: ({value}) {
+              setState(() {
+                isOrange = value ?? false;
+              });
+            },
+          ),
+          const SizedBox(height: 20),
+          const Divider(),
+          const SizedBox(height: 20),
+          GoogleSignInButton(
+            onPressed: () {},
+          ),
+          const SizedBox(height: 20),
+          AppleSignInButton(
+            onPressed: () {},
+          ),
+          const SizedBox(height: 20),
+          const Divider(),
+          const SizedBox(height: 20),
+          QuranItemTile(
+            index: 1,
+            title: 'Al-Fatihah',
+            subtitle: 'الفاتحة',
+            onTap: () {},
+            trailing: IconButton(
+              onPressed: () {},
+              icon: Assets.icons.bookMarkFill.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+          ),
+          QuranItemTile(
+            index: 2,
+            title: 'Al Baqarah',
+            subtitle: 'البقرة',
+            onTap: () {},
+            isSelected: true,
+            trailing: IconButton(
+              onPressed: () {},
+              icon: Assets.icons.bookMarkFill.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+          ),
+          QuranItemTile(
+            index: 114,
+            title: 'Al Imran',
+            subtitle: 'العمران',
+            onTap: () {},
+          ),
           const SizedBox(height: 300),
         ],
       ),

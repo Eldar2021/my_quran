@@ -167,9 +167,21 @@ abstract class AppColors {
   /// This is a papayaWhip color
   static const Color papayaWhip = Color(0xffFFEED6);
 
-  static LinearGradient cardGradient(ThemeData theme) {
+  /// Whatsapp figma style properties
+  /// hex: #25D366
+  /// opacity: 1
+  /// This is a whatsapp color
+  static const Color whatsapp = Color(0xff25D366);
+
+  /// Telegram figma style properties
+  /// hex: #2BABEE
+  /// opacity: 1
+  /// This is a telegram color
+  static const Color telegram = Color(0xff2BABEE);
+
+  static LinearGradient cardGradient(ThemeData theme, {bool isTomato = false, bool isBlue = false}) {
     final brightness = theme.brightness;
-    if (theme.colorScheme.primary == AppColors.tomato) {
+    if ((theme.colorScheme.primary == AppColors.tomato || isTomato) && isBlue == false) {
       return switch (brightness) {
         Brightness.light => const LinearGradient(
             colors: [

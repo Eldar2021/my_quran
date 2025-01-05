@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       listenable: themeProvider!,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-          title: 'Flutter News Example Gallery',
+          title: 'MyQuran Example Gallery',
           theme: themeProvider!.theme.themeData,
           home: const RootPage(),
         );

@@ -30,6 +30,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/a_horizontal_big.svg
   SvgGenImage get aHorizontalBig => const SvgGenImage('assets/icons/a_horizontal_big.svg');
 
+  /// File path: assets/icons/apple.svg
+  SvgGenImage get apple => const SvgGenImage('assets/icons/apple.svg');
+
   /// File path: assets/icons/arrow_right.svg
   SvgGenImage get arrowRight => const SvgGenImage('assets/icons/arrow_right.svg');
 
@@ -48,6 +51,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/cloud.svg
   SvgGenImage get cloud => const SvgGenImage('assets/icons/cloud.svg');
 
+  /// File path: assets/icons/copy.svg
+  SvgGenImage get copy => const SvgGenImage('assets/icons/copy.svg');
+
   /// File path: assets/icons/developers.svg
   SvgGenImage get developers => const SvgGenImage('assets/icons/developers.svg');
 
@@ -65,6 +71,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/github.svg
   SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
+
+  /// File path: assets/icons/google.svg
+  SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
 
   /// File path: assets/icons/heptagon.svg
   SvgGenImage get heptagon => const SvgGenImage('assets/icons/heptagon.svg');
@@ -153,6 +162,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/users.svg
   SvgGenImage get users => const SvgGenImage('assets/icons/users.svg');
 
+  /// File path: assets/icons/visa.svg
+  SvgGenImage get visa => const SvgGenImage('assets/icons/visa.svg');
+
   /// File path: assets/icons/whatsapp.svg
   SvgGenImage get whatsapp => const SvgGenImage('assets/icons/whatsapp.svg');
 
@@ -163,18 +175,21 @@ class $AssetsIconsGen {
         aDigitVerticalSmall,
         aHorizontal,
         aHorizontalBig,
+        apple,
         arrowRight,
         backIcon,
         book,
         bookMarkFill,
         check,
         cloud,
+        copy,
         developers,
         donate,
         download,
         emailSms,
         favourite,
         github,
+        google,
         heptagon,
         islamicSymbolFill,
         lightDark,
@@ -204,6 +219,7 @@ class $AssetsIconsGen {
         userFemale,
         userMale,
         users,
+        visa,
         whatsapp
       ];
 }

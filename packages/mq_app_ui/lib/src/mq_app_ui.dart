@@ -23,3 +23,8 @@ export 'components/column_info_colored_box.dart';
 export 'components/hatim_juz_item_card.dart';
 export 'components/mq_circular_chart.dart';
 export 'components/mq_half_circle_chart.dart';
+export 'components/mq_bank_info_card.dart';
+export 'components/contact_buttons.dart';
+export 'components/theme_cards.dart';
+export 'components/soccial_buttons.dart';
+export 'components/quran_item_tile.dart';
