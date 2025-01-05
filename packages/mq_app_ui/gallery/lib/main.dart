@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gallery/body/bg_image_body.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
+import 'package:gallery/components/app_components_page.dart';
 import 'package:gallery/components/ui_components_page.dart';
 import 'package:gallery/spacing/spacing_page.dart';
 import 'package:gallery/typography/app_typography_page.dart';
@@ -99,6 +100,14 @@ class RootPage extends StatelessWidget {
         subtitle: const Text('All of the predefined body'),
         onTap: () => Navigator.of(context).push<void>(
           BgImageBodyPage.route(),
+        ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.pest_control_rodent_sharp),
+        title: const Text('App Components'),
+        subtitle: const Text('All of the app components'),
+        onTap: () => Navigator.of(context).push<void>(
+          AppComponentsPage.route(),
         ),
       ),
       Wrap(
