@@ -22,3 +22,4 @@ export 'components/circle_button.dart';
 export 'components/column_info_colored_box.dart';
 export 'components/hatim_juz_item_card.dart';
 export 'components/mq_circular_chart.dart';
+export 'components/mq_half_circle_chart.dart';

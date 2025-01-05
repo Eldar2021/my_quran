@@ -127,6 +127,27 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
+          const MqHalfCircleChart(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ColumnInfoColoredBox.circular(
+                title: 'Readed',
+                value: '9',
+              ),
+              ColumnInfoColoredBox.circular(
+                boxColor: AppColors.goldenrod,
+                title: 'In progress',
+                value: '9',
+              ),
+              ColumnInfoColoredBox.circular(
+                boxColor: AppColors.mediumseagreen,
+                title: 'Not selected',
+                value: '9',
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -196,26 +217,6 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             ],
           ),
           const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ColumnInfoColoredBox.circular(
-                title: 'Readed',
-                value: '9',
-              ),
-              ColumnInfoColoredBox.circular(
-                boxColor: AppColors.goldenrod,
-                title: 'In progress',
-                value: '9',
-              ),
-              ColumnInfoColoredBox.circular(
-                boxColor: AppColors.mediumseagreen,
-                title: 'Not selected',
-                value: '9',
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
           const HatimJuzItemCard(
             total: '20',
             title: 'Juz 1',
@@ -226,6 +227,9 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             secondValue: 5,
             thirdValue: 2,
           ),
+          const SizedBox(height: 20),
+          const Divider(),
+          const SizedBox(height: 20),
           const SizedBox(height: 300),
         ],
       ),

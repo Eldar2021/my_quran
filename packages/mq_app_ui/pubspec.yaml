@@ -15,7 +15,6 @@ dependencies:
   mockingjay: ^0.6.0
   flutter_svg: ^2.0.16
   animated_analog_clock: ^0.1.0
-  syncfusion_flutter_gauges: 27.1.57
   syncfusion_flutter_charts: 27.1.57
   mq_storage:
     path: ../mq_storage
