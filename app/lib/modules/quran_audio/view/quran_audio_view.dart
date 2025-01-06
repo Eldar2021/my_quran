@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mq_analytics/mq_analytics.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 
 import 'package:my_quran/l10n/l10.dart';
@@ -13,6 +14,7 @@ class QuranAudioView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: StreamBuilder<SequenceState?>(
@@ -30,27 +32,30 @@ class QuranAudioView extends StatelessWidget {
             AppAlert.showErrorDialog(context, errorText: state.exception ?? 'Error');
           }
         },
-        child: ListView.builder(
+        child: ListView.separated(
           key: const Key(MqKeys.quranAudioView),
-          padding: const EdgeInsets.fromLTRB(14, 20, 14, 30),
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 30),
           itemCount: context.read<QuranAudioCubit>().surahs.length,
           itemBuilder: (BuildContext context, int index) {
             final item = context.read<QuranAudioCubit>().surahs[index];
-            return Card(
-              child: ListTile(
-                key: Key(MqKeys.quranAudioSurahIndex(index)),
-                minLeadingWidth: 10,
-                leading: Text('${item.id}'),
-                title: Text(item.arabic),
-                subtitle: Text(item.name),
-                onTap: () {
-                  MqAnalytic.track(
-                    AnalyticKey.selectQuranAudioBySurah,
-                    params: {'surahName': item.name},
-                  );
-                  context.read<QuranAudioCubit>().changeSurah(index);
-                },
-              ),
+            return QuranItemTile(
+              key: Key(MqKeys.quranAudioSurahIndex(index)),
+              index: item.id,
+              title: item.name,
+              subtitle: item.arabic,
+              onTap: () {
+                MqAnalytic.track(
+                  AnalyticKey.selectQuranAudioBySurah,
+                  params: {'surahName': item.name},
+                );
+                context.read<QuranAudioCubit>().changeSurah(index);
+              },
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return Divider(
+              height: 0.5,
+              color: colorScheme.onSurface.withOpacity(0.1),
             );
           },
         ),

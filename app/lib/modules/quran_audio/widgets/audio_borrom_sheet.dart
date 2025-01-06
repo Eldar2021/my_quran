@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -12,64 +11,76 @@ class AudioButtomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = colorScheme.brightness == Brightness.dark;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: context.colors.surfaceContainerHighest,
+        color: context.colors.surface,
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(35),
-          topRight: Radius.circular(35),
+          topLeft: Radius.circular(22),
+          topRight: Radius.circular(22),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: context.colors.shadow.withOpacity(0.3),
+            blurRadius: 7,
+          ),
+        ],
       ),
-      child: SizedBox(
-        height: 112,
-        child: Column(
-          children: [
-            const SizedBox(height: 4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                StreamBuilder<SequenceState?>(
-                  stream: context.read<QuranAudioCubit>().sequenceStateStream,
-                  builder: (context, snapshot) {
-                    return IconButton(
-                      iconSize: 30,
-                      icon: const Icon(Icons.skip_previous),
-                      onPressed: context.read<QuranAudioCubit>().hasPreviousSurah
-                          ? () => context.read<QuranAudioCubit>().previous()
-                          : null,
-                    );
-                  },
-                ),
-                AudioCenterButton(
-                  key: const Key(MqKeys.quranAudioPlayPause),
-                  stream: context.read<QuranAudioCubit>().playerStateStream,
-                  onPlay: context.read<QuranAudioCubit>().play,
-                  onPause: context.read<QuranAudioCubit>().pause,
-                  onReplay: () => context.read<QuranAudioCubit>().seek(0),
-                  iconSize: 40,
-                ),
-                StreamBuilder<SequenceState?>(
-                  stream: context.read<QuranAudioCubit>().sequenceStateStream,
-                  builder: (context, snapshot) {
-                    return IconButton(
-                      iconSize: 30,
-                      icon: const Icon(Icons.skip_next),
-                      onPressed: context.read<QuranAudioCubit>().hasNextSurah
-                          ? () => context.read<QuranAudioCubit>().next()
-                          : null,
-                    );
-                  },
-                ),
-              ],
-            ),
-            SeekBar(
-              sliderInActiveColor: context.colors.surface,
-              player: context.read<QuranAudioCubit>().player,
-              onChangeEnd: context.read<QuranAudioCubit>().seek,
-            ),
-            const SizedBox(height: 4),
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 20),
+          SeekBar(
+            player: context.read<QuranAudioCubit>().player,
+            onChangeEnd: context.read<QuranAudioCubit>().seek,
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              StreamBuilder<SequenceState?>(
+                stream: context.read<QuranAudioCubit>().sequenceStateStream,
+                builder: (context, snapshot) {
+                  return IconButton(
+                    iconSize: 40,
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.fast_rewind),
+                    color: isDark ? colorScheme.inverseSurface : null,
+                    onPressed: context.read<QuranAudioCubit>().hasPreviousSurah
+                        ? () => context.read<QuranAudioCubit>().previous()
+                        : null,
+                  );
+                },
+              ),
+              const SizedBox(width: 20),
+              AudioCenterButton(
+                key: const Key(MqKeys.quranAudioPlayPause),
+                stream: context.read<QuranAudioCubit>().playerStateStream,
+                onPlay: context.read<QuranAudioCubit>().play,
+                onPause: context.read<QuranAudioCubit>().pause,
+                onReplay: () => context.read<QuranAudioCubit>().seek(0),
+                iconSize: 40,
+              ),
+              const SizedBox(width: 20),
+              StreamBuilder<SequenceState?>(
+                stream: context.read<QuranAudioCubit>().sequenceStateStream,
+                builder: (context, snapshot) {
+                  return IconButton(
+                    iconSize: 40,
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.fast_forward),
+                    color: isDark ? colorScheme.inverseSurface : null,
+                    onPressed: context.read<QuranAudioCubit>().hasNextSurah
+                        ? () => context.read<QuranAudioCubit>().next()
+                        : null,
+                  );
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+        ],
       ),
     );
   }
