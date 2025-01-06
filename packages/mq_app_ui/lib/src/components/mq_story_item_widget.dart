@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_storyboard/flutter_instagram_storyboard.dart';
 
@@ -59,7 +60,7 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(e.cardImageLink),
+                  image: CachedNetworkImageProvider(e.cardImageLink),
                 ),
               ),
               child: Align(
@@ -82,7 +83,7 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
                         height: double.infinity,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(i),
+                            image: CachedNetworkImageProvider(i),
                             fit: BoxFit.cover,
                           ),
                         ),
