@@ -10,6 +10,17 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:mq_app_ui/mq_app_ui.dart' as ui;
+import 'package:my_quran/utils/show/snackbars.dart';
+
+const sources = [
+  'https://t3.ftcdn.net/jpg/05/68/99/80/360_F_568998040_m42feFA9RajqmuR5DTlWwox44fxE3MOi.jpg',
+  'https://t3.ftcdn.net/jpg/07/02/55/16/360_F_702551695_zBR0B1IrgGCJdgZbYE6dzlExKhAxD4OC.jpg',
+  'https://thumbs.dreamstime.com/b/closeup-holy-quran-captured-near-sacred-kaaba-mecca-highlighting-its-spiritual-significance-ai-generated-image-329385127.jpg',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaczS5PI_ePL2HwRhlEq1PPZjpLFw3PY3D5w&s',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-IlJBNJLlv1cdFJ7xVWMkAjfk-mSWAJFvCu2HctMMRBRRyphoZTe0wjbkUl75fR97odM&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqILNo55rnX2dLPvHPlu0Rr3_KkjM_ajDTEQ&s',
+];
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -37,44 +48,32 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final homeCubit = context.watch<HomeCubit>();
-
+    final prTextTheme = Theme.of(context).primaryTextTheme;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF5F5F5),
-        leading: Padding(
-          padding: const EdgeInsets.all(14),
-          child: GestureDetector(
-            onTap: () => Navigator.push<void>(
-              context,
+        title: const Text('Hello'),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).push<void>(
               MaterialPageRoute<void>(
                 builder: (BuildContext context) => const SettingsView(),
               ),
-            ),
-            child: Assets.icons.settingsBurger.svg(key: const Key(MqKeys.settings)),
+            );
+          },
+          icon: Assets.icons.settingsBurger.svg(
+            key: const Key(MqKeys.settings),
           ),
         ),
         actions: [
-          Text('السلام عليكم', style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(width: 15),
-          Padding(
-            padding: const EdgeInsets.all(6),
-            child: IconButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'This feature will be added in the future...',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    backgroundColor: Color(0xff1C274C),
-                    padding: EdgeInsets.only(bottom: 30, top: 10, left: 10),
-                  ),
-                );
-              },
-              icon: Assets.icons.qibla.svg(),
-            ),
+          IconButton(
+            onPressed: () {
+              AppSnackbar.showSnackbar(
+                context,
+                'This feature will be added in the future...',
+              );
+            },
+            icon: ui.Assets.icons.qyblaDirection.svg(),
           ),
         ],
       ),
@@ -83,183 +82,70 @@ class _HomeViewState extends State<HomeView> {
           MqAnalytic.track(AnalyticKey.refreshHomePage);
           await context.read<HomeCubit>().getData();
         },
-        child: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFF5F5F5),
-                  Color(0xFFFFDEEA),
-                  Colors.white,
-                ],
-                stops: [0.0, 0.5, 0.6],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+        child: ListView(
+          key: const Key(MqKeys.homeListView),
+          children: [
+            const SizedBox(height: 20),
+            ui.MqStoryItemsWidget(
+              listHeight: 142,
+              buttonWidth: 70,
+              buttonSpacing: 14,
+              items: sources.asMap().entries.map((e) {
+                final idx = e.key;
+                final v = e.value;
+                return ui.MqStoryItem(
+                  id: '$idx',
+                  cardImageLink: v,
+                  cardLabel: 'MyQuran\nNews',
+                  storyPagesImages: sources,
+                  storyPageDuration: List.generate(
+                    sources.length,
+                    (index) => const Duration(seconds: 1),
+                  ),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 20),
+            const MqSalaahTimeWidget(),
+            const SizedBox(height: 20),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+              title: Text(
+                'Select below the pages that no one has taken yet',
+                style: prTextTheme.bodyMedium,
+              ),
+              trailing: TextButton(
+                onPressed: () {},
+                child: Text(context.l10n.share),
               ),
             ),
-            child: ListView(
-              key: const Key(MqKeys.homeListView),
-              children: [
-                const PrayTimeWidget(),
-                Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(452),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Color.fromRGBO(255, 222, 234, 0.50),
-                            Color.fromRGBO(236, 242, 255, 0),
-                            Color.fromRGBO(236, 242, 255, 0),
-                            Color.fromRGBO(236, 242, 255, 0),
-                            Color.fromRGBO(255, 222, 234, 0.50),
-                          ],
-                          stops: [0.01, 0.2, 0.5, 0.85, 0.9],
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 20),
-                          Assets.icons.quranBook.svg(key: const Key(MqKeys.alQuran)),
-                          Container(
-                            padding: const EdgeInsets.all(20),
-                            margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
-                            decoration: BoxDecoration(
-                              color: const Color(0xffEDD6DE).withOpacity(0.17),
-                              borderRadius: BorderRadius.circular(23),
-                            ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        l10n.homeAllHatim,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Color(0xff1C274C),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '${homeCubit.state.homeModel?.allDoneHatims ?? 0}',
-                                      style: const TextStyle(
-                                        fontSize: 28,
-                                        color: Color(0xff1C274C),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Divider(),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        l10n.allDonePages,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Color(0xff1C274C),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Text(
-                                      '${homeCubit.state.homeModel?.allDonePages ?? 0}',
-                                      style: const TextStyle(
-                                        fontSize: 28,
-                                        color: Color(0xff1C274C),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Divider(),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        l10n.homeUserReadAllPage,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Color(0xff1C274C),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '${homeCubit.state.homeModel?.donePages ?? 0}',
-                                      style: const TextStyle(
-                                        fontSize: 28,
-                                        color: Color(0xff1C274C),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
-                            builder: (context, state) {
-                              return GestureDetector(
-                                key: const Key(MqKeys.participantToHatim),
-                                onTap: state.isHatimEnable ? _onJoinToHatim : null,
-                                child: Container(
-                                  margin: const EdgeInsets.only(bottom: 5),
-                                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(60),
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xFFF57181),
-                                        Color(0xFF9851B1),
-                                      ],
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        l10n.homeGoHatim,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Assets.icons.goRight.svg(),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: BlocBuilder<HomeCubit, HomeState>(
+                builder: (context, state) {
+                  return ui.MyQuranStaticsInfoWidget(
+                    count1: '${state.homeModel?.allDoneHatims ?? 0}',
+                    count2: '${state.homeModel?.allDonePages ?? 0}',
+                    count3: '${state.homeModel?.donePages ?? 0}',
+                  );
+                },
+              ),
             ),
-          ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    key: const Key(MqKeys.participantToHatim),
+                    onPressed: state.isHatimEnable ? _onJoinToHatim : null,
+                    child: Text(context.l10n.joinToHatim),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

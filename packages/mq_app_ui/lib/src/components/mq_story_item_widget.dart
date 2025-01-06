@@ -23,10 +23,16 @@ final class MqStoryItem {
 class MqStoryItemsWidget extends StatefulWidget {
   const MqStoryItemsWidget({
     required this.items,
+    this.listHeight = 165,
+    this.buttonWidth = 100,
+    this.buttonSpacing = 10,
     super.key,
   });
 
   final List<MqStoryItem> items;
+  final double listHeight;
+  final double buttonWidth;
+  final double buttonSpacing;
 
   @override
   State<MqStoryItemsWidget> createState() => _MqStoryItemsWidgetState();
@@ -48,7 +54,10 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return StoryListView(
-      listHeight: 165,
+      listHeight: widget.listHeight,
+      buttonWidth: widget.buttonWidth,
+      buttonSpacing: widget.buttonSpacing,
+      paddingLeft: 24,
       pageTransform: const StoryPage3DTransform(),
       buttonDatas: _items
           .map(

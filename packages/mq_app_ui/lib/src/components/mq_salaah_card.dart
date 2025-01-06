@@ -131,7 +131,7 @@ class MqSalaahCard extends StatelessWidget {
               width: 110,
               height: 100,
               child: AnimatedAnalogClock(
-                size: 130,
+                size: 120,
                 location: location,
                 hourHandColor: colorScheme.onSurface,
                 minuteHandColor: colorScheme.onSurface,
@@ -183,7 +183,7 @@ class SalaahItemTimeCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
         child: Text(
-          '$salaahName $timeOfClock',
+          salaahName,
           style: prTextTheme.bodyMedium?.copyWith(
             color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
             fontWeight: FontWeight.w700,
