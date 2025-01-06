@@ -30,6 +30,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     final homeCubit = context.read<HomeCubit>();
@@ -50,17 +52,19 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: HomeDrawer(
+        closeDrawer: () {
+          _scaffoldKey.currentState?.closeDrawer();
+        },
+      ),
       appBar: AppBar(
         title: const Text('Hello'),
         centerTitle: true,
         leading: IconButton(
           padding: const EdgeInsets.only(left: 24),
           onPressed: () {
-            Navigator.of(context).push<void>(
-              MaterialPageRoute<void>(
-                builder: (BuildContext context) => const SettingsView(),
-              ),
-            );
+            _scaffoldKey.currentState?.openDrawer();
           },
           icon: Assets.icons.settingsBurger.svg(
             key: const Key(MqKeys.settings),
