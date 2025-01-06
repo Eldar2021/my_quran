@@ -14,6 +14,7 @@ class HatimJuzItemCard extends StatelessWidget {
     this.firstBoxColor = AppColors.tomato2,
     this.secondBoxColor = AppColors.goldenrod,
     this.thirdBoxColor = AppColors.mediumseagreen,
+    this.onTap,
     super.key,
   });
 
@@ -28,6 +29,7 @@ class HatimJuzItemCard extends StatelessWidget {
   final Color firstBoxColor;
   final Color secondBoxColor;
   final Color thirdBoxColor;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -37,55 +39,58 @@ class HatimJuzItemCard extends StatelessWidget {
     return Card(
       color: isDark ? colorScheme.outline.withOpacity(0.3) : colorScheme.surface,
       margin: EdgeInsets.zero,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            MqCircularChart(
-              annotation: total,
-              colors: [firstBoxColor, secondBoxColor, thirdBoxColor],
-              dataSource: [
-                firstValue,
-                secondValue,
-                thirdValue,
-              ],
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: prTextTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ColumnInfoColoredBox(
-                        boxColor: firstBoxColor,
-                        title: firstText,
-                        value: '$firstValue',
-                      ),
-                      ColumnInfoColoredBox(
-                        boxColor: secondBoxColor,
-                        title: secondText,
-                        value: '$secondValue',
-                      ),
-                      ColumnInfoColoredBox(
-                        boxColor: thirdBoxColor,
-                        title: thirdText,
-                        value: '$thirdValue',
-                      ),
-                    ],
-                  ),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MqCircularChart(
+                annotation: total,
+                colors: [firstBoxColor, secondBoxColor, thirdBoxColor],
+                dataSource: [
+                  firstValue,
+                  secondValue,
+                  thirdValue,
                 ],
               ),
-            ),
-          ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: prTextTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ColumnInfoColoredBox(
+                          boxColor: firstBoxColor,
+                          title: firstText,
+                          value: '$firstValue',
+                        ),
+                        ColumnInfoColoredBox(
+                          boxColor: secondBoxColor,
+                          title: secondText,
+                          value: '$secondValue',
+                        ),
+                        ColumnInfoColoredBox(
+                          boxColor: thirdBoxColor,
+                          title: thirdText,
+                          value: '$thirdValue',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

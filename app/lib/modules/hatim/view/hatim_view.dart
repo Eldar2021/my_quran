@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
-
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/hatim/hatim.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -23,7 +22,9 @@ class HatimView extends StatelessWidget {
         repo: MqHatimReadRepositoryImpl(
           dataSource: context.read<AppConfig>().isMockData
               ? MqHatimRemoteDataSourceMock()
-              : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
+              : MqHatimRemoteDataSourceImpl(
+                  remoteClient: context.read<MqRemoteClient>(),
+                ),
         ),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetInitailDataEvent()),
@@ -42,19 +43,24 @@ class HatimUI extends StatefulWidget {
 class _HatimUIState extends State<HatimUI> {
   @override
   Widget build(BuildContext context) {
+    final prTextTheme = Theme.of(context).primaryTextTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       key: const Key(MqKeys.hatimPage),
       appBar: AppBar(
-        backgroundColor: const Color(0xffF5F5F5),
         title: Text(context.l10n.hatim),
+        centerTitle: true,
         actions: [
           BlocBuilder<HatimBloc, HatimState>(
             buildWhen: (p, c) => p.userPagesState != c.userPagesState,
             builder: (context, state) {
               final subState = state.userPagesState;
               return switch (subState) {
-                HatimUserPagesFetched() => Text('${subState.data.length}'),
-                _ => const Text('...'),
+                HatimUserPagesFetched() => Text(
+                    '${subState.data.length}',
+                    style: prTextTheme.titleLarge,
+                  ),
+                _ => const SizedBox.shrink(),
               };
             },
           ),
@@ -84,6 +90,13 @@ class _HatimUIState extends State<HatimUI> {
             final pages = userPagesState.data;
             if (pages.isNotEmpty) {
               return FloatingActionButton.extended(
+                extendedTextStyle: prTextTheme.titleMedium,
+                foregroundColor: colorScheme.primary,
+                backgroundColor: colorScheme.surface,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(99),
+                  side: BorderSide(color: colorScheme.primary),
+                ),
                 onPressed: () async {
                   final pageIds = pages.map((e) => e.id).toList();
                   final pageNumbers = pages.map((e) => e.number).toList();
@@ -103,21 +116,12 @@ class _HatimUIState extends State<HatimUI> {
                     context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
                   }
                 },
-                label: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    children: <Widget>[
-                      Text(context.l10n.read),
-                      const SizedBox(width: 8),
-                      Assets.icons.notebook.svg(width: 18),
-                    ],
+                label: Text(context.l10n.read),
+                icon: Assets.icons.book.svg(
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.primary,
+                    BlendMode.srcIn,
                   ),
-                ),
-                backgroundColor: Colors.white,
-                foregroundColor: const Color(0xff1C274C),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Color(0xffC992B1)),
-                  borderRadius: BorderRadius.circular(100),
                 ),
               );
             }
