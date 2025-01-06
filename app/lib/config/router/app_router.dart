@@ -37,7 +37,6 @@ final class AppRouter {
   static const verificationCode = 'verification-code';
 
   static const settingsPage = 'settings';
-  static const langSettings = 'lang-settings';
   static const genderSettings = 'gender-settings';
   static const themeSettings = 'theme-settings';
   static const aboutUs = 'about-us';
@@ -143,42 +142,10 @@ final class AppRouter {
         ],
       ),
       GoRoute(
-        path: settingsPage,
-        name: settingsPage,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const SettingsView(),
-        routes: _settingsSubRoutes,
-      ),
-    ];
-  }
-
-  static List<RouteBase> get _quranSubRoutes {
-    return [
-      GoRoute(
-        path: '$read/:isHatim/:pages',
-        name: read,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) {
-          final args = ParseParams.parseRead(state.pathParameters);
-          return ReadView(args.$1, isHatim: args.$2);
-        },
-      ),
-    ];
-  }
-
-  static List<RouteBase> get _settingsSubRoutes {
-    return [
-      GoRoute(
         path: genderSettings,
         name: genderSettings,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const GenderSettingView(),
-      ),
-      GoRoute(
-        path: langSettings,
-        name: langSettings,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const LangSettingsView(),
       ),
       GoRoute(
         path: themeSettings,
@@ -203,6 +170,20 @@ final class AppRouter {
         name: developers,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const DevelopersView(),
+      ),
+    ];
+  }
+
+  static List<RouteBase> get _quranSubRoutes {
+    return [
+      GoRoute(
+        path: '$read/:isHatim/:pages',
+        name: read,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final args = ParseParams.parseRead(state.pathParameters);
+          return ReadView(args.$1, isHatim: args.$2);
+        },
       ),
     ];
   }
