@@ -33,3 +33,4 @@ export 'components/theme_cards.dart';
 export 'components/soccial_buttons.dart';
 export 'components/quran_item_tile.dart';
 export 'components/link_text_button.dart';
+export 'components/mq_story_item_widget.dart';

@@ -3,6 +3,7 @@ import 'package:gallery/body/bg_image_body.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
 import 'package:gallery/components/app_components_page.dart';
+import 'package:gallery/components/story_view.dart';
 import 'package:gallery/components/ui_components_page.dart';
 import 'package:gallery/show/show_contents_page.dart';
 import 'package:gallery/spacing/spacing_page.dart';
@@ -117,6 +118,14 @@ class RootPage extends StatelessWidget {
         subtitle: const Text('All of the show contents'),
         onTap: () => Navigator.of(context).push<void>(
           ShowContentsPage.route(),
+        ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.storage),
+        title: const Text('Story Contents'),
+        subtitle: const Text('All of the store contents'),
+        onTap: () => Navigator.of(context).push<void>(
+          StoryView.route(),
         ),
       ),
       Wrap(
