@@ -45,6 +45,14 @@ class _SignInViewState extends State<SignInView> {
     final size = MediaQuery.sizeOf(context);
     return ScaffoldWithBgImage(
       key: const Key(MqKeys.signInView),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            context.goNamed(AppRouter.login);
+          },
+        ),
+      ),
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
@@ -63,7 +71,6 @@ class _SignInViewState extends State<SignInView> {
           child: ListView(
             padding: const EdgeInsets.all(24),
             children: [
-              SizedBox(height: size.height * 0.15),
               Center(
                 child: Text(
                   'MY QURAN',
@@ -110,7 +117,7 @@ class _SignInViewState extends State<SignInView> {
                   }
                 },
               ),
-              SizedBox(height: size.height * 0.07),
+              const SizedBox(height: 40),
               Row(
                 children: [
                   const Expanded(child: Divider()),
@@ -158,7 +165,7 @@ class _SignInViewState extends State<SignInView> {
                   AppLaunch.launchURL(apiConst.provicyPolicy);
                 },
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: size.height * 0.04),
               TextButton(
                 onPressed: () {
                   context.goNamed(AppRouter.home);
