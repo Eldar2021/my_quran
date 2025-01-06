@@ -3,7 +3,9 @@ import 'package:gallery/body/bg_image_body.dart';
 import 'package:gallery/colors/app_colors_view.dart';
 import 'package:gallery/colors/theme_colors_view.dart';
 import 'package:gallery/components/app_components_page.dart';
+import 'package:gallery/components/story_view.dart';
 import 'package:gallery/components/ui_components_page.dart';
+import 'package:gallery/show/show_contents_page.dart';
 import 'package:gallery/spacing/spacing_page.dart';
 import 'package:gallery/typography/app_typography_page.dart';
 import 'package:gallery/typography/theme_typography_page.dart';
@@ -110,6 +112,22 @@ class RootPage extends StatelessWidget {
           AppComponentsPage.route(),
         ),
       ),
+      ListItem(
+        icon: const Icon(Icons.add_reaction_outlined),
+        title: const Text('Show Contents'),
+        subtitle: const Text('All of the show contents'),
+        onTap: () => Navigator.of(context).push<void>(
+          ShowContentsPage.route(),
+        ),
+      ),
+      ListItem(
+        icon: const Icon(Icons.storage),
+        title: const Text('Story Contents'),
+        subtitle: const Text('All of the store contents'),
+        onTap: () => Navigator.of(context).push<void>(
+          StoryView.route(),
+        ),
+      ),
       Wrap(
         children: [
           TextButton(
@@ -146,6 +164,7 @@ class RootPage extends StatelessWidget {
           ),
         ],
       ),
+      const SizedBox(height: 100),
     ];
 
     return Scaffold(

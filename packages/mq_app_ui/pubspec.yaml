@@ -16,6 +16,8 @@ dependencies:
   flutter_svg: ^2.0.16
   animated_analog_clock: ^0.1.0
   syncfusion_flutter_charts: 27.1.57
+  flutter_instagram_storyboard: ^1.0.1
+  cached_network_image: ^3.4.1
   mq_storage:
     path: ../mq_storage
 
