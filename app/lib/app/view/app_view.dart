@@ -82,7 +82,14 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => LocationCubit(context.read<AppConfig>()),
+          create: (context) => LocationCubit(
+            context.read<AppConfig>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => AppThemeCubit(
+            context.read<PreferencesStorage>(),
+          )..init(),
         ),
       ],
       child: const QuranApp(),
@@ -122,7 +129,7 @@ class _QuranAppState extends State<QuranApp> {
           locale: context.watch<AuthCubit>().state.currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          theme: context.watch<AppCubit>().state.theme.themeData,
+          theme: context.watch<AppThemeCubit>().state.themeData,
           routerConfig: _router,
         ),
       ),

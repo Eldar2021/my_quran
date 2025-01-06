@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,7 +49,7 @@ final class AppRouter {
     return GoRouter(
       initialLocation: isFirstTime ? '/$login' : '/home',
       navigatorKey: rootNavigatorKey,
-      debugLogDiagnostics: kDebugMode,
+      // debugLogDiagnostics: kDebugMode,
       routes: [
         GoRoute(
           path: '/',
