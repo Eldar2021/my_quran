@@ -54,6 +54,7 @@ class _HomeViewState extends State<HomeView> {
         title: const Text('Hello'),
         centerTitle: true,
         leading: IconButton(
+          padding: const EdgeInsets.only(left: 24),
           onPressed: () {
             Navigator.of(context).push<void>(
               MaterialPageRoute<void>(
@@ -67,6 +68,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         actions: [
           IconButton(
+            padding: const EdgeInsets.only(right: 24),
             onPressed: () {
               AppSnackbar.showSnackbar(
                 context,
