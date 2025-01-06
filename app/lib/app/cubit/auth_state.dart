@@ -44,5 +44,12 @@ class AuthState extends Equatable {
     return Gender.male;
   }
 
+  AppUiGender get appUiGender {
+    return switch (gender) {
+      Gender.male => AppUiGender.male,
+      Gender.female => AppUiGender.famela,
+    };
+  }
+
   bool get isAuthedticated => user != null;
 }

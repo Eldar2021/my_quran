@@ -39,7 +39,7 @@ abstract class AppTheme {
   ElevatedButtonThemeData get elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size.fromHeight(52),
+        fixedSize: const Size(double.maxFinite, 52),
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
         shape: RoundedRectangleBorder(

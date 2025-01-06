@@ -1,3 +1,5 @@
+import 'dart:io';
+
 /// Default Spacing in App UI.
 abstract class AppSpacing {
   /// The default unit of spacing
@@ -29,4 +31,7 @@ abstract class AppSpacing {
 
   /// xxxlg pacing value (64pt)
   static const double xxxlg = 4 * spaceUnit;
+
+  /// Bottom space fot spacific platform
+  static final double bottomSpace = Platform.isIOS ? 50 : 40;
 }
