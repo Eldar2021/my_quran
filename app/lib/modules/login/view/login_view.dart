@@ -42,7 +42,8 @@ class LoginBody extends StatelessWidget {
         const Spacer(),
         Center(
           child: Text(
-            'MY QURAN',
+            context.l10n.myQuran,
+            textAlign: TextAlign.center,
             style: prTextTheme.displayMedium?.copyWith(
               color: colorScheme.primary,
               fontWeight: FontWeight.w800,
@@ -52,7 +53,8 @@ class LoginBody extends StatelessWidget {
         const Spacer(),
         Center(
           child: Text(
-            'Custom our app',
+            context.l10n.customApp,
+            textAlign: TextAlign.center,
             style: prTextTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.w600,
             ),
@@ -79,10 +81,12 @@ class LoginBody extends StatelessWidget {
           },
         ),
         const SizedBox(height: 50),
-        const Text('Please select your gender'),
+        Text(
+          context.l10n.pleaseSelectYourGender,
+        ),
         const SizedBox(height: 8),
-        const Text(
-          "Select your gender to personalize main\nsettings of the app's content for you",
+        Text(
+          context.l10n.selectGenderToPersonalize,
         ),
         GenderRedioWidget(
           gender: authCubit.state.appUiGender,
@@ -112,7 +116,7 @@ class LoginBody extends StatelessWidget {
           onPressed: () {
             context.pushNamed(AppRouter.loginWihtSoccial);
           },
-          child: const Text('Get started'),
+          child: Text(context.l10n.getStarted),
         ),
         SizedBox(height: AppSpacing.bottomSpace),
       ],

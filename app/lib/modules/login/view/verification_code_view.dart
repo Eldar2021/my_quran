@@ -6,6 +6,7 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class VerificationCodeView extends StatefulWidget {
@@ -66,7 +67,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
             children: [
               Center(
                 child: Text(
-                  'MY QURAN',
+                  context.l10n.myQuran,
                   style: prTextTheme.displayMedium?.copyWith(
                     color: colorScheme.primary,
                     fontWeight: FontWeight.w800,
@@ -76,15 +77,15 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
               const SizedBox(height: 60),
               Center(
                 child: Text(
-                  'Verification',
+                  context.l10n.verification,
                   style: prTextTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              const Text(
-                'Please enter the 4-digit code\nsent to your email',
+              Text(
+                context.l10n.enter4DigitCode,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 26),
@@ -110,7 +111,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
                     context.read<AuthCubit>().verifyOtp(verificationCodeController.text, widget.email);
                   }
                 },
-                child: const Text('Verify'),
+                child: Text(context.l10n.login),
               ),
             ],
           ),

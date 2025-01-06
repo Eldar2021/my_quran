@@ -73,7 +73,7 @@ class _SignInViewState extends State<SignInView> {
             children: [
               Center(
                 child: Text(
-                  'MY QURAN',
+                  context.l10n.myQuran,
                   style: prTextTheme.displayMedium?.copyWith(
                     color: colorScheme.primary,
                     fontWeight: FontWeight.w800,
@@ -93,23 +93,26 @@ class _SignInViewState extends State<SignInView> {
                   }
                   return null;
                 },
-                decoration: const InputDecoration(
-                  labelText: 'Enter your email',
-                  prefixIcon: Icon(Icons.email, size: 28),
-                  hintText: 'Enter email',
+                decoration: InputDecoration(
+                  labelText: context.l10n.enterYourEmail,
+                  prefixIcon: const Icon(Icons.email, size: 28),
+                  hintText: context.l10n.enterYourEmail,
                 ),
               ),
               const SizedBox(height: 30),
               ElevatedButton(
                 key: const Key(MqKeys.sendOtp),
-                child: const Text('Login'),
+                child: Text(context.l10n.login),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     MqAnalytic.track(AnalyticKey.goVerificationOtp);
                     try {
                       unawaited(AppAlert.showLoading(context));
                       context.read<AuthCubit>().loginWithEmail(emailController.text);
-                      context.goNamed(AppRouter.verificationCode, pathParameters: {'email': emailController.text});
+                      context.goNamed(
+                        AppRouter.verificationCode,
+                        pathParameters: {'email': emailController.text},
+                      );
                       if (context.mounted) context.loaderOverlay.hide();
                     } catch (e) {
                       log(e.toString());
@@ -131,7 +134,7 @@ class _SignInViewState extends State<SignInView> {
               const SizedBox(height: 20),
               GoogleSignInButton(
                 key: Key(MqKeys.loginTypeName('google')),
-                // label: 'Continue with Google',
+                label: context.l10n.google,
                 onPressed: () async {
                   MqAnalytic.track(
                     AnalyticKey.tapLogin,
@@ -146,7 +149,7 @@ class _SignInViewState extends State<SignInView> {
               if (Platform.isIOS)
                 AppleSignInButton(
                   key: Key(MqKeys.loginTypeName('apple')),
-                  // label: 'Continue with Apple',
+                  label: context.l10n.apple,
                   onPressed: () async {
                     MqAnalytic.track(
                       AnalyticKey.tapLogin,
@@ -159,7 +162,7 @@ class _SignInViewState extends State<SignInView> {
                 ),
               SizedBox(height: size.height * 0.04),
               LinkTextButton(
-                text: 'Privacy policy',
+                text: context.l10n.privacyPolicy,
                 onPressed: () {
                   MqAnalytic.track(AnalyticKey.tapPrivacyPolicy);
                   AppLaunch.launchURL(apiConst.provicyPolicy);
