@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
-enum AppUiGender {
-  male,
-  famela,
-}
-
 class GenderRedioWidget extends StatelessWidget {
   const GenderRedioWidget({
     required this.gender,

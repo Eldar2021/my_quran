@@ -69,7 +69,15 @@ abstract class AppTheme {
   }
 
   BottomSheetThemeData get bottomSheetTheme {
-    return const BottomSheetThemeData();
+    return BottomSheetThemeData(
+      backgroundColor: colorScheme.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(32),
+          topRight: Radius.circular(32),
+        ),
+      ),
+    );
   }
 
   ListTileThemeData get listTileTheme {
