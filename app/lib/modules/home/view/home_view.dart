@@ -66,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
           onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
           },
-          icon: const Icon(Icons.menu),
+          icon: Assets.icons.settingsBurger.svg(),
         ),
         actions: [
           IconButton(
