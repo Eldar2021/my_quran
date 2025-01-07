@@ -117,4 +117,7 @@ abstract class AppTheme {
   ChipThemeData get chipTheme {
     return const ChipThemeData();
   }
+
+  bool get isOrange => colorScheme.primary == AppColors.tomato;
+  bool get isDark => colorScheme.brightness == Brightness.dark;
 }
