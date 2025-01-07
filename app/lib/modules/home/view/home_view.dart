@@ -102,7 +102,7 @@ class _HomeViewState extends State<HomeView> {
           children: [
             const SizedBox(height: 20),
             MqStoryItemsWidget(
-              listHeight: 142,
+              listHeight: 132,
               buttonWidth: 70,
               buttonSpacing: 14,
               items: sources.asMap().entries.map((e) {
@@ -131,18 +131,20 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
               contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-              isThreeLine: true,
+              leading: CircleAvatar(
+                backgroundColor: colorScheme.onInverseSurface,
+                child: Assets.icons.shareFill.svg(
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              ),
               title: Text(
                 context.l10n.shareApp,
                 style: prTextTheme.bodyMedium,
               ),
-              subtitle: const SizedBox.shrink(),
-              trailing: Text(
-                context.l10n.share,
-                style: prTextTheme.titleSmall?.copyWith(
-                  color: colorScheme.primary,
-                ),
-              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
             ),
             const SizedBox(height: 20),
             Padding(

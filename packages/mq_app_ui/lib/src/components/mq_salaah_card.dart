@@ -57,7 +57,7 @@ class MqSalaahCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            Flexible(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,7 +105,11 @@ class MqSalaahCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       TextButton.icon(
                         onPressed: onLocationPressed,
-                        label: Text(locationLabel),
+                        label: Text(
+                          locationLabel,
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
+                        ),
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           minimumSize: Size.zero,
@@ -126,7 +130,7 @@ class MqSalaahCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 7),
             SizedBox(
               width: 110,
               height: 100,

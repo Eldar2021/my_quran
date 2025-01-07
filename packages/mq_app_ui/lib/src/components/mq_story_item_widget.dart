@@ -78,7 +78,7 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
                   e.cardLabel,
                   textAlign: TextAlign.center,
                   maxLines: 2,
-                  style: prTextTheme.titleSmall,
+                  style: prTextTheme.bodySmall,
                 ),
               ),
               borderDecoration: BoxDecoration(

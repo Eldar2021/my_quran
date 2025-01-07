@@ -58,7 +58,7 @@ abstract class MqBottomSheets {
                     ),
                   ],
                 ),
-                const SizedBox(height: 70),
+                const SizedBox(height: 30),
               ],
             ),
           ),
