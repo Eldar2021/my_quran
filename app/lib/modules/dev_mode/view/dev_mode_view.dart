@@ -19,7 +19,6 @@ class _DevModeViewState extends State<DevModeView> {
   @override
   void initState() {
     _controller.text = apiConst.devDomain ?? '';
-    isDevMode = apiConst.isDevmode;
     super.initState();
   }
 

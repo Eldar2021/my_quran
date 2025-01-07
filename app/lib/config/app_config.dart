@@ -32,9 +32,8 @@ final class AppConfig {
 
   void init() {
     final devDomain = storage?.readString(key: 'dev-domain');
-    final isDevmode = storage?.readBool(key: 'dev-mode') ?? false;
-    apiConst = ApiConst(isDevmode: isDevmode, devDomain: devDomain);
+    apiConst = ApiConst(devDomain: devDomain);
   }
 }
 
-ApiConst apiConst = const ApiConst(isDevmode: false);
+ApiConst apiConst = const ApiConst();

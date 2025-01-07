@@ -7,21 +7,17 @@ import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/app/cubit/auth_cubit.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/modules/modules.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldWithBgImage(
+    return const ScaffoldWithBgImage(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: 24),
         child: SafeArea(
-          child: BlocProvider(
-            create: (context) => LoginCubit(),
-            child: const LoginBody(),
-          ),
+          child: LoginBody(),
         ),
       ),
     );

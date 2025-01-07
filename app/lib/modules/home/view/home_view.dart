@@ -7,10 +7,9 @@ import 'package:my_quran/config/config.dart';
 
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/app/app.dart';
-import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:mq_app_ui/mq_app_ui.dart' as ui;
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/utils/show/snackbars.dart';
 
 const sources = [
@@ -62,13 +61,12 @@ class _HomeViewState extends State<HomeView> {
         title: const Text('Hello'),
         centerTitle: true,
         leading: IconButton(
+          key: const Key(MqKeys.settings),
           padding: const EdgeInsets.only(left: 24),
           onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
           },
-          icon: Assets.icons.settingsBurger.svg(
-            key: const Key(MqKeys.settings),
-          ),
+          icon: const Icon(Icons.menu),
         ),
         actions: [
           IconButton(
@@ -79,7 +77,7 @@ class _HomeViewState extends State<HomeView> {
                 'This feature will be added in the future...',
               );
             },
-            icon: ui.Assets.icons.qyblaDirection.svg(),
+            icon: Assets.icons.qyblaDirection.svg(),
           ),
         ],
       ),
@@ -92,14 +90,14 @@ class _HomeViewState extends State<HomeView> {
           key: const Key(MqKeys.homeListView),
           children: [
             const SizedBox(height: 20),
-            ui.MqStoryItemsWidget(
+            MqStoryItemsWidget(
               listHeight: 142,
               buttonWidth: 70,
               buttonSpacing: 14,
               items: sources.asMap().entries.map((e) {
                 final idx = e.key;
                 final v = e.value;
-                return ui.MqStoryItem(
+                return MqStoryItem(
                   id: '$idx',
                   cardImageLink: v,
                   cardLabel: 'MyQuran\nNews',
@@ -130,7 +128,7 @@ class _HomeViewState extends State<HomeView> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
-                  return ui.MyQuranStaticsInfoWidget(
+                  return MyQuranStaticsInfoWidget(
                     count1: '${state.homeModel?.allDoneHatims ?? 0}',
                     count2: '${state.homeModel?.allDonePages ?? 0}',
                     count3: '${state.homeModel?.donePages ?? 0}',
