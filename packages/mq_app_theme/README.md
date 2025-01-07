@@ -1,1 +1,0 @@
-# MyQuran App Teheme

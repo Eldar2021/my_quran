@@ -76,8 +76,6 @@ dependencies:
     path: ../packages/mq_hatim_repository
   mq_app_ui:
     path: ../packages/mq_app_ui
-  mq_app_theme:
-    path: ../packages/mq_app_theme
 
   # flutter_native_splash: ^2.4.0
 
