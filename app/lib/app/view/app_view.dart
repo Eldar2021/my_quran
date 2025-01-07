@@ -85,8 +85,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AppThemeCubit(
-            context.read<PreferencesStorage>(),
-          )..init(),
+            context.read<AppRepository>(),
+          ),
         ),
       ],
       child: const QuranApp(),

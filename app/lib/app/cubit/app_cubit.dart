@@ -1,71 +1,29 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
-import 'package:mq_storage/mq_storage.dart';
 
 class AppThemeCubit extends Cubit<AppTheme> {
-  AppThemeCubit(this.storage) : super(const AppOrangeTheme());
+  AppThemeCubit(this.appThemeRepository)
+      : super(
+          appThemeRepository.getInitialThemeState(),
+        );
 
-  final PreferencesStorage storage;
+  final AppRepository appThemeRepository;
 
-  static const _themeKey = 'theme-key';
-
-  MqAppUiType _themeType = MqAppUiType.orange;
-
-  void init() {
-    try {
-      final value = storage.readString(key: _themeKey);
-      _themeType = MqAppUiType.fromString(value);
-      emit(theme);
-    } catch (e) {
-      log(e.toString());
+  Future<void> changeColor({required bool isOrange}) async {
+    await appThemeRepository.saveThemePrimaryColor(isOrange: isOrange);
+    if (isOrange) {
+      emit(state.isDark ? const AppOrangeDarkTheme() : const AppOrangeTheme());
+    } else {
+      emit(state.isDark ? const AppBlueDarkTheme() : const AppBlueTheme());
     }
   }
 
-  Future<void> changeTheme({bool isOrange = false}) async {
-    try {
-      final brightness = theme.themeData.brightness;
-      final type = switch (brightness) {
-        Brightness.light => isOrange ? MqAppUiType.orange : MqAppUiType.blue,
-        Brightness.dark => isOrange ? MqAppUiType.orangeDark : MqAppUiType.blueDark,
-      };
-
-      _themeType = type;
-      await storage.writeString(
-        key: _themeKey,
-        value: _themeType.name,
-      );
-      emit(theme);
-    } catch (e) {
-      log(e.toString());
+  Future<void> changeMode({required bool isDark}) async {
+    await appThemeRepository.saveThemeMode(isDark: isDark);
+    if (isDark) {
+      emit(state.isOrange ? const AppOrangeDarkTheme() : const AppBlueDarkTheme());
+    } else {
+      emit(state.isOrange ? const AppOrangeTheme() : const AppBlueTheme());
     }
-  }
-
-  Future<void> changeMode({bool isDark = false}) async {
-    try {
-      final type = switch (_themeType) {
-        MqAppUiType.orange || MqAppUiType.orangeDark => isDark ? MqAppUiType.orangeDark : MqAppUiType.orange,
-        MqAppUiType.blue || MqAppUiType.blueDark => isDark ? MqAppUiType.blueDark : MqAppUiType.blue,
-      };
-      _themeType = type;
-      await storage.writeString(
-        key: _themeKey,
-        value: _themeType.name,
-      );
-      emit(theme);
-    } catch (e) {
-      log(e.toString());
-    }
-  }
-
-  AppTheme get theme {
-    return switch (_themeType) {
-      MqAppUiType.orange => const AppOrangeTheme(),
-      MqAppUiType.orangeDark => const AppOrangeDarkTheme(),
-      MqAppUiType.blue => const AppBlueTheme(),
-      MqAppUiType.blueDark => const AppBlueDarkTheme(),
-    };
   }
 }

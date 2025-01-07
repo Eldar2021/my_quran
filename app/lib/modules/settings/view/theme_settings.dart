@@ -26,7 +26,7 @@ class ThemeSettingsView extends StatelessWidget {
               key: Key(
                 colorScheme.brightness == Brightness.light ? MqKeys.settingsThemeDark : MqKeys.settingsThemeLight,
               ),
-              value: themeCubit.theme.themeData.brightness == Brightness.dark,
+              value: themeCubit.state.themeData.brightness == Brightness.dark,
               title: Text(context.l10n.darkMode),
               secondary: Assets.icons.lightDark.svg(
                 colorFilter: ColorFilter.mode(
@@ -50,7 +50,7 @@ class ThemeSettingsView extends StatelessWidget {
               key: Key(MqKeys.settingsThemeColorName('Orange')),
               isActive: colorScheme.primary == AppColors.tomato,
               onChanged: ({value}) {
-                context.read<AppThemeCubit>().changeTheme(isOrange: true);
+                context.read<AppThemeCubit>().changeColor(isOrange: true);
               },
             ),
             const SizedBox(height: 13),
@@ -59,7 +59,7 @@ class ThemeSettingsView extends StatelessWidget {
               key: Key(MqKeys.settingsThemeColorName('Blue')),
               isActive: colorScheme.primary == AppColors.tomato,
               onChanged: ({value}) {
-                context.read<AppThemeCubit>().changeTheme();
+                context.read<AppThemeCubit>().changeColor(isOrange: false);
               },
             ),
             const Spacer(),
