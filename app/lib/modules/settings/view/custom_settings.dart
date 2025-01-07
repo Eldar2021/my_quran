@@ -18,7 +18,7 @@ class CustomAppSettingView extends StatelessWidget {
     final authCubit = context.watch<AuthCubit>();
     return ScaffoldWithBgImage(
       appBar: AppBar(
-        key: const Key(MqKeys.settingsGenderPage),
+        key: const Key(MqKeys.settingsGenderLangPage),
         title: Text(context.l10n.customApp),
       ),
       body: BlocListener<AuthCubit, AuthState>(

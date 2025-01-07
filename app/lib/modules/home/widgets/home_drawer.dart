@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/config/router/app_router.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -24,6 +25,7 @@ class HomeDrawer extends StatelessWidget {
     final appRepo = context.read<AppRepository>();
     final size = MediaQuery.sizeOf(context);
     return Drawer(
+      key: const Key(MqKeys.settingsView),
       width: size.width * 0.85,
       backgroundColor: colorScheme.surface,
       shape: const RoundedRectangleBorder(

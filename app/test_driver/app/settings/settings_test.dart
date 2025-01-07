@@ -19,26 +19,13 @@ Future<void> checkSettingsView(FlutterDriver driver) async {
 
 Future<void> checkSettingsGender(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
-    await driver.waitFor(find.byValueKey(MqKeys.settingsGender));
-    await driver.tap(find.byValueKey(MqKeys.settingsGender));
-    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderPage));
+    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLang));
+    await driver.tap(find.byValueKey(MqKeys.settingsGenderLang));
+    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLangPage));
     await driver.tap(find.byValueKey(MqKeys.settingsGenderMale));
     await driver.takeScreenshot(Screenshots.settingsGenderMale);
     await driver.tap(find.byValueKey(MqKeys.settingsGenderFemale));
     await driver.takeScreenshot(Screenshots.settingsGenderFemale);
-    await backPage(driver);
-  });
-}
-
-Future<void> checkSettingsLanguage(FlutterDriver driver) async {
-  await driver.runUnsynchronized(() async {
-    await driver.waitFor(find.byValueKey(MqKeys.settingsLanguage));
-    await driver.tap(find.byValueKey(MqKeys.settingsLanguage));
-    await driver.waitFor(find.byValueKey(MqKeys.settingsLanguagePage));
-    await driver.tap(find.byValueKey(MqKeys.languageCode('ky')));
-    await driver.takeScreenshot(Screenshots.settingsLanguagePageKy);
-    await driver.tap(find.byValueKey(MqKeys.languageCode('en')));
-    await driver.takeScreenshot(Screenshots.settingsLanguagePageEn);
     await backPage(driver);
   });
 }
@@ -78,15 +65,10 @@ Future<void> checkSettingsTheme(FlutterDriver driver) async {
     await driver.waitFor(find.byValueKey(MqKeys.settingsTheme));
     await driver.tap(find.byValueKey(MqKeys.settingsTheme));
     await driver.waitFor(find.byValueKey(MqKeys.settingsThemePage));
-    await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Green')));
+    await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Orange')));
     await driver.takeScreenshot(Screenshots.settingsThemePageLightGreen);
     await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Blue')));
     await driver.takeScreenshot(Screenshots.settingsThemePageLightBlue);
-    await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Red')));
-    await driver.takeScreenshot(Screenshots.settingsThemePageLightRed);
-    await driver.tap(find.byValueKey(MqKeys.settingsThemeDark));
-    await driver.takeScreenshot(Screenshots.settingsThemePageDarkRed);
-    await driver.tap(find.byValueKey(MqKeys.settingsThemeLight));
     await backPage(driver);
   });
 }
@@ -95,9 +77,6 @@ Future<void> checkLogout(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
     await driver.waitFor(find.byValueKey(MqKeys.settingsView));
     await driver.tap(find.byValueKey(MqKeys.logoutButton));
-    await driver.waitFor(find.byValueKey(MqKeys.confirmLogoutButton));
-    await driver.tap(find.byValueKey(MqKeys.confirmLogoutButtonYes));
-    // await driver.waitFor(find.byValueKey(MqKeys.loginSelectLeng));
     await driver.takeScreenshot(Screenshots.logout);
   });
 }

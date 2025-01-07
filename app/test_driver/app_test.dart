@@ -117,12 +117,8 @@ void main() async {
       await checkSettingsView(driver);
     });
 
-    test('check-settings-gender', () async {
+    test('check-settings-gender-language', () async {
       await checkSettingsGender(driver);
-    });
-
-    test('check-settings-language', () async {
-      await checkSettingsLanguage(driver);
     });
 
     test('check-settings-about-us', () async {

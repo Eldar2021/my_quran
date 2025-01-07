@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/cubit/auth_cubit.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -28,6 +29,7 @@ class SettingActionsWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         DrawerTile(
+          key: const Key(MqKeys.settingsGenderLang),
           onTap: () {
             MqAnalytic.track(AnalyticKey.goGenderPage);
             context.pushNamed(AppRouter.customAppSettings);
@@ -40,6 +42,7 @@ class SettingActionsWidget extends StatelessWidget {
           title: context.l10n.customApp,
         ),
         DrawerTile(
+          key: const Key(MqKeys.settingsTheme),
           onTap: () {
             MqAnalytic.track(AnalyticKey.goThemePage);
             context.pushNamed(AppRouter.themeSettings);
@@ -52,6 +55,7 @@ class SettingActionsWidget extends StatelessWidget {
           title: context.l10n.theme,
         ),
         DrawerTile(
+          key: const Key(MqKeys.settingsAboutUs),
           onTap: () {
             MqAnalytic.track(AnalyticKey.goAboutUsPage);
             context.pushNamed(AppRouter.aboutUs);
@@ -65,6 +69,7 @@ class SettingActionsWidget extends StatelessWidget {
           title: context.l10n.aboutUs,
         ),
         DrawerTile(
+          key: const Key(MqKeys.settingsContactUs),
           onTap: () {
             MqAnalytic.track(AnalyticKey.goContactUsPage);
             context.pushNamed(AppRouter.contactUs);
@@ -93,6 +98,7 @@ class SettingActionsWidget extends StatelessWidget {
           title: context.l10n.share,
         ),
         DrawerTile(
+          key: const Key(MqKeys.settingsDevelopers),
           onTap: () {
             MqAnalytic.track(AnalyticKey.goDevelopersPage);
             context.pushNamed(AppRouter.developers);
@@ -113,6 +119,7 @@ class SettingActionsWidget extends StatelessWidget {
               }
             },
             child: DrawerTile(
+              key: const Key(MqKeys.logoutButton),
               onTap: () {
                 MqBottomSheets.showConfirmSheet<void>(
                   context: context,
@@ -120,6 +127,7 @@ class SettingActionsWidget extends StatelessWidget {
                   content: context.l10n.confirmLogout,
                   confirmText: context.l10n.yes,
                   cancelText: context.l10n.cancel,
+                  confirmKey: MqKeys.confirmLogoutButtonYes,
                   onConfirm: () {
                     MqAnalytic.track(AnalyticKey.tapLogout);
                     authCubit.logout();

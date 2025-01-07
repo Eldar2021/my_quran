@@ -47,12 +47,10 @@ final class MqKeys {
   // settings
   static const settings = 'settings';
   static const settingsView = 'settings-view';
-  static const settingsGender = 'settings-gender';
-  static const settingsGenderPage = 'settings-gender-page';
+  static const settingsGenderLang = 'settings-gender-lang';
+  static const settingsGenderLangPage = 'settings-gender-lang-page';
   static const settingsGenderMale = 'settings-gender-male';
   static const settingsGenderFemale = 'settings-gender-female';
-  static const settingsLanguage = 'settings-language';
-  static const settingsLanguagePage = 'settings-language-page';
   static const settingsTheme = 'settings-theme';
   static const settingsThemePage = 'settings-theme-page';
   static const settingsThemeLight = 'settings-theme-light';
