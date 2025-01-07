@@ -6,6 +6,7 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/app/cubit/auth_cubit.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/utils/urils.dart';
 
 class SettingActionsWidget extends StatelessWidget {
   const SettingActionsWidget({super.key});
@@ -77,7 +78,12 @@ class SettingActionsWidget extends StatelessWidget {
           title: context.l10n.contactUs,
         ),
         DrawerTile(
-          onTap: () {},
+          onTap: () {
+            AppSnackbar.showSnackbar(
+              context,
+              context.l10n.featureInFuture,
+            );
+          },
           icon: Assets.icons.shareFill.svg(
             colorFilter: ColorFilter.mode(
               colorScheme.primary,

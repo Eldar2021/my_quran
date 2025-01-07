@@ -67,7 +67,12 @@ class _HomeViewState extends State<HomeView> {
           onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
           },
-          icon: Assets.icons.settingsBurger.svg(),
+          icon: Assets.icons.settingsBurger.svg(
+            colorFilter: ColorFilter.mode(
+              colorScheme.onSurface,
+              BlendMode.srcIn,
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -78,7 +83,12 @@ class _HomeViewState extends State<HomeView> {
                 context.l10n.featureInFuture,
               );
             },
-            icon: Assets.icons.qyblaDirection.svg(),
+            icon: Assets.icons.qyblaDirection.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.onSurface,
+                BlendMode.srcIn,
+              ),
+            ),
           ),
         ],
       ),
@@ -114,7 +124,12 @@ class _HomeViewState extends State<HomeView> {
             const MqSalaahTimeWidget(),
             const SizedBox(height: 20),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                AppSnackbar.showSnackbar(
+                  context,
+                  context.l10n.featureInFuture,
+                );
+              },
               contentPadding: const EdgeInsets.symmetric(horizontal: 24),
               isThreeLine: true,
               title: Text(
@@ -158,6 +173,7 @@ class _HomeViewState extends State<HomeView> {
                 },
               ),
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),
