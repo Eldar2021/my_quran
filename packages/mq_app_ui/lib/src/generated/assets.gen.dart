@@ -129,6 +129,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/qybla_direction.svg
   SvgGenImage get qyblaDirection => const SvgGenImage('assets/icons/qybla_direction.svg');
 
+  /// File path: assets/icons/settings_burger.svg
+  SvgGenImage get settingsBurger => const SvgGenImage('assets/icons/settings_burger.svg');
+
   /// File path: assets/icons/settings_filter.svg
   SvgGenImage get settingsFilter => const SvgGenImage('assets/icons/settings_filter.svg');
 
@@ -208,6 +211,7 @@ class $AssetsIconsGen {
         previousFill,
         quran,
         qyblaDirection,
+        settingsBurger,
         settingsFilter,
         share,
         shareFill,
@@ -227,6 +231,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/app_icon.png
+  AssetGenImage get appIcon => const AssetGenImage('assets/images/app_icon.png');
+
   /// File path: assets/images/background_blue.png
   AssetGenImage get backgroundBlue => const AssetGenImage('assets/images/background_blue.png');
 
@@ -240,7 +247,8 @@ class $AssetsImagesGen {
   AssetGenImage get backgroundOrangeDark => const AssetGenImage('assets/images/background_orange_dark.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [backgroundBlue, backgroundBlueDark, backgroundOrange, backgroundOrangeDark];
+  List<AssetGenImage> get values =>
+      [appIcon, backgroundBlue, backgroundBlueDark, backgroundOrange, backgroundOrangeDark];
 }
 
 class Assets {
