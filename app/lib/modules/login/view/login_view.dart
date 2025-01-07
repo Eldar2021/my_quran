@@ -49,7 +49,7 @@ class LoginBody extends StatelessWidget {
         const Spacer(),
         Center(
           child: Text(
-            context.l10n.customApp,
+            context.l10n.customizingApp,
             textAlign: TextAlign.center,
             style: prTextTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.w600,

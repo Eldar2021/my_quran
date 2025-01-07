@@ -50,6 +50,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       key: _scaffoldKey,
       drawer: HomeDrawer(
@@ -113,14 +114,19 @@ class _HomeViewState extends State<HomeView> {
             const MqSalaahTimeWidget(),
             const SizedBox(height: 20),
             ListTile(
+              onTap: () {},
               contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+              isThreeLine: true,
               title: Text(
                 context.l10n.shareApp,
                 style: prTextTheme.bodyMedium,
               ),
-              trailing: TextButton(
-                onPressed: () {},
-                child: Text(context.l10n.share),
+              subtitle: const SizedBox.shrink(),
+              trailing: Text(
+                context.l10n.share,
+                style: prTextTheme.titleSmall?.copyWith(
+                  color: colorScheme.primary,
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -129,6 +135,9 @@ class _HomeViewState extends State<HomeView> {
               child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   return MyQuranStaticsInfoWidget(
+                    label1: context.l10n.totalHatims,
+                    label2: context.l10n.totalPages,
+                    label3: context.l10n.yourPages,
                     count1: '${state.homeModel?.allDoneHatims ?? 0}',
                     count2: '${state.homeModel?.allDonePages ?? 0}',
                     count3: '${state.homeModel?.donePages ?? 0}',
