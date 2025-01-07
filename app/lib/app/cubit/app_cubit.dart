@@ -56,8 +56,31 @@ class AppThemeCubit extends Cubit<AppTheme> {
     }
   }
 
-  Future<void> changeTheme(MqAppUiType type) async {
+  Future<void> changeTheme({bool isOrange = false}) async {
     try {
+      final brightness = theme.themeData.brightness;
+      final type = switch (brightness) {
+        Brightness.light => isOrange ? MqAppUiType.orange : MqAppUiType.blue,
+        Brightness.dark => isOrange ? MqAppUiType.orangeDark : MqAppUiType.blueDark,
+      };
+
+      _themeType = type;
+      await storage.writeString(
+        key: _themeKey,
+        value: _themeType.name,
+      );
+      emit(theme);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> changeMode({bool isDark = false}) async {
+    try {
+      final type = switch (_themeType) {
+        MqAppUiType.orange || MqAppUiType.orangeDark => isDark ? MqAppUiType.orangeDark : MqAppUiType.orange,
+        MqAppUiType.blue || MqAppUiType.blueDark => isDark ? MqAppUiType.blueDark : MqAppUiType.blue,
+      };
       _themeType = type;
       await storage.writeString(
         key: _themeKey,

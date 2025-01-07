@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_analytics/mq_analytics.dart';
-import 'package:mq_app_theme/mq_app_theme.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -11,75 +11,64 @@ class ThemeSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appCubit = context.watch<AppCubit>();
-    return Scaffold(
+    final themeCubit = context.watch<AppThemeCubit>();
+    final colorScheme = Theme.of(context).colorScheme;
+    return ScaffoldWithBgImage(
       appBar: AppBar(
         key: const Key(MqKeys.settingsThemePage),
-        title: Text(context.l10n.profileChangeTheme),
-        actions: [
-          IconButton(
-            key: Key(
-              appCubit.state.theme.brightness == Brightness.light
-                  ? MqKeys.settingsThemeDark
-                  : MqKeys.settingsThemeLight,
-            ),
-            onPressed: () {
-              MqAnalytic.track(
-                AnalyticKey.selectThemeMode,
-                params: {
-                  'mode': appCubit.state.theme.brightness == Brightness.light
-                      ? Brightness.light.name
-                      : Brightness.dark.name,
-                },
-              );
-              context.read<AppCubit>().changeMode(
-                    isDark: context.read<AppCubit>().state.theme.brightness == Brightness.light,
-                  );
-            },
-            icon: appCubit.state.theme.brightness == Brightness.dark
-                ? const Icon(Icons.light_mode)
-                : const Icon(Icons.dark_mode),
-          ),
-        ],
+        title: Text(context.l10n.profileTheme),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-        itemCount: TargetColor.values.length,
-        itemBuilder: (BuildContext context, int index) {
-          final targetColor = TargetColor.fromIndex(index);
-          return Card(
-            child: ListTile(
-              key: Key(MqKeys.settingsThemeColorName(targetColor.displayName(context))),
-              leading: Icon(
-                Icons.color_lens_rounded,
-                color: targetColor.color,
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          children: [
+            SwitchListTile(
+              key: Key(
+                colorScheme.brightness == Brightness.light ? MqKeys.settingsThemeDark : MqKeys.settingsThemeLight,
               ),
-              title: Text(targetColor.displayName(context)),
-              onTap: () {
+              value: themeCubit.theme.themeData.brightness == Brightness.dark,
+              title: Text(context.l10n.darkMode),
+              secondary: Assets.icons.lightDark.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.onSurface,
+                  BlendMode.srcIn,
+                ),
+              ),
+              onChanged: (v) {
                 MqAnalytic.track(
-                  AnalyticKey.selectThemeColor,
-                  params: {'color': targetColor.color},
+                  AnalyticKey.selectThemeMode,
+                  params: {
+                    'mode': v == true ? Brightness.light.name : Brightness.dark.name,
+                  },
                 );
-                context.read<AppCubit>().changeColor(targetColor.caheIindex, targetColor.color);
+                context.read<AppThemeCubit>().changeMode(isDark: v);
               },
             ),
-          );
-        },
+            const SizedBox(height: 26),
+            OrangeThemeCard(
+              key: Key(MqKeys.settingsThemeColorName('Orange')),
+              isActive: colorScheme.primary == AppColors.tomato,
+              onChanged: ({value}) {
+                context.read<AppThemeCubit>().changeTheme(isOrange: true);
+              },
+            ),
+            const SizedBox(height: 13),
+            BlueThemeCard(
+              key: Key(MqKeys.settingsThemeColorName('Blue')),
+              isActive: colorScheme.primary == AppColors.tomato,
+              onChanged: ({value}) {
+                context.read<AppThemeCubit>().changeTheme();
+              },
+            ),
+            const Spacer(),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(context.l10n.saveChanges),
+            ),
+            SizedBox(height: AppSpacing.bottomSpace),
+          ],
+        ),
       ),
     );
-  }
-}
-
-extension TargetColorDisplayeName on TargetColor {
-  String displayName(BuildContext context) {
-    return switch (this) {
-      TargetColor.red => context.l10n.colorRed,
-      TargetColor.yellow => context.l10n.colorYellow,
-      TargetColor.green => context.l10n.colorGreen,
-      TargetColor.blue => context.l10n.colorBlue,
-      TargetColor.purple => context.l10n.colorPurple,
-      TargetColor.brown => context.l10n.colorBrown,
-      TargetColor.deepOrange => context.l10n.colorOrange,
-    };
   }
 }
