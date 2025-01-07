@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:mq_app_theme/mq_app_theme.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/l10n/l10.dart';
 
@@ -18,7 +17,7 @@ class MainView extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: context.colors.shadow.withOpacity(0.1),
+              color: colorScheme.shadow.withOpacity(0.1),
               blurRadius: 2,
             ),
           ],

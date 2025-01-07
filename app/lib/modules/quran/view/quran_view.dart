@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
@@ -41,14 +40,15 @@ class QuranBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final prTextTheme = Theme.of(context).primaryTextTheme;
     return Scaffold(
       appBar: AppBar(
         key: const Key(MqKeys.quaranReadInitPage),
         title: Text(context.l10n.quran),
         bottom: TabBar.secondary(
-          labelColor: context.colors.primary,
+          labelColor: colorScheme.primary,
           indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
-          labelStyle: context.textTheme.titleMedium?.copyWith(
+          labelStyle: prTextTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),
           dividerColor: colorScheme.surfaceBright,

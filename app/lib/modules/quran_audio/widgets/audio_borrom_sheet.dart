@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:mq_app_theme/mq_app_theme.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/components/components.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -15,14 +14,14 @@ class AudioButtomSheet extends StatelessWidget {
     final isDark = colorScheme.brightness == Brightness.dark;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: context.colors.surface,
+        color: colorScheme.surface,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(22),
           topRight: Radius.circular(22),
         ),
         boxShadow: [
           BoxShadow(
-            color: context.colors.shadow.withOpacity(0.3),
+            color: colorScheme.shadow.withOpacity(0.3),
             blurRadius: 7,
           ),
         ],
