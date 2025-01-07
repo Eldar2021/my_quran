@@ -98,9 +98,9 @@ class _PaginationViewState extends State<PaginationView> {
                         MqAnalytic.track(AnalyticKey.showAmin);
                         final value = await MqAlertDialogs.showAmen<bool>(
                           context: context,
-                          title: context.l10n.amin,
-                          content: context.l10n.aminDua,
-                          buttonText: context.l10n.amin,
+                          title: context.l10n.amen,
+                          content: context.l10n.dua,
+                          buttonText: context.l10n.ameen,
                           gender: context.read<AuthCubit>().state.mqAppUiGender,
                           onPressed: () => context.pop(true),
                         );

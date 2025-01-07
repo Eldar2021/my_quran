@@ -78,11 +78,11 @@ class LoginBody extends StatelessWidget {
         ),
         const SizedBox(height: 50),
         Text(
-          context.l10n.pleaseSelectYourGender,
+          context.l10n.selectLanguage,
         ),
         const SizedBox(height: 8),
         Text(
-          context.l10n.selectGenderToPersonalize,
+          context.l10n.selectGenderForPersonalization,
         ),
         GenderRedioWidget(
           gender: authCubit.state.appUiGender,

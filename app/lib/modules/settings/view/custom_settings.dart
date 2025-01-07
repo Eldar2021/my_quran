@@ -64,11 +64,11 @@ class CustomAppSettingView extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               Text(
-                context.l10n.pleaseSelectYourGender,
+                context.l10n.pleaseSelectGender,
               ),
               const SizedBox(height: 8),
               Text(
-                context.l10n.selectGenderToPersonalize,
+                context.l10n.selectGenderForPersonalization,
               ),
               GenderRedioWidget(
                 key: const Key(MqKeys.settingsGenderMale),

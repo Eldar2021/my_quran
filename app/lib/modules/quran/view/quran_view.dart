@@ -56,7 +56,7 @@ class QuranBody extends StatelessWidget {
           tabs: [
             Tab(
               key: const Key(MqKeys.quaranReadJuzs),
-              text: context.l10n.juzs,
+              text: context.l10n.juzas,
             ),
             Tab(
               key: const Key(MqKeys.quaranReadSurahs),

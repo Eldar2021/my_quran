@@ -24,7 +24,7 @@ class MqSalaahTimeWidget extends StatelessWidget {
               zuhrLabel: context.l10n.zuhr,
               asrLabel: context.l10n.asr,
               maghribLabel: context.l10n.maghrib,
-              ishaLabel: context.l10n.isha,
+              ishaLabel: context.l10n.isya,
               fajrTime: '',
               zuhrTime: '',
               asrTime: '',

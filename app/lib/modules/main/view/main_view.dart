@@ -39,7 +39,7 @@ class MainView extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              label: context.l10n.quran,
+              label: context.l10n.reading,
             ),
             BottomNavigationBarItem(
               activeIcon: Assets.icons.prayingMan.svg(
@@ -56,7 +56,7 @@ class MainView extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              label: 'Home',
+              label: context.l10n.home,
             ),
             BottomNavigationBarItem(
               activeIcon: Assets.icons.listenQuran.svg(
@@ -71,7 +71,7 @@ class MainView extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              label: context.l10n.audioQuran,
+              label: context.l10n.listening,
             ),
           ],
           onTap: _onTap,

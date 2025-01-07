@@ -18,7 +18,12 @@ class AboutUsVuew extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           Text(
-            context.l10n.aboutUsDevsDesc,
+            context.l10n.prophetLegacy,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            context.l10n.alImran,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             textAlign: TextAlign.center,
           ),

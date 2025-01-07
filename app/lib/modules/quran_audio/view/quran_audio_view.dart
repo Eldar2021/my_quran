@@ -22,7 +22,7 @@ class QuranAudioView extends StatelessWidget {
           builder: (context, snapshot) {
             final index = snapshot.data?.currentIndex;
             final surah = index != null ? context.read<QuranAudioCubit>().surahs[index] : null;
-            return Text('${surah?.name ?? context.l10n.audioQuran} (${surah?.arabic ?? ''})');
+            return Text('${surah?.name ?? context.l10n.listening} (${surah?.arabic ?? ''})');
           },
         ),
       ),

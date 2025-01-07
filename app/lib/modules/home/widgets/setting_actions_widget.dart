@@ -48,7 +48,7 @@ class SettingActionsWidget extends StatelessWidget {
             size: 17,
             color: colorScheme.primary,
           ),
-          title: context.l10n.profileTheme,
+          title: context.l10n.theme,
         ),
         DrawerTile(
           onTap: () {
@@ -97,7 +97,7 @@ class SettingActionsWidget extends StatelessWidget {
               BlendMode.srcIn,
             ),
           ),
-          title: context.l10n.profileForDevelopers,
+          title: context.l10n.forDevelopers,
         ),
         if (authCubit.state.isAuthedticated)
           BlocListener<AuthCubit, AuthState>(
@@ -111,7 +111,7 @@ class SettingActionsWidget extends StatelessWidget {
                 MqBottomSheets.showConfirmSheet<void>(
                   context: context,
                   title: context.l10n.logout,
-                  content: context.l10n.signOutContext,
+                  content: context.l10n.confirmLogout,
                   confirmText: context.l10n.yes,
                   cancelText: context.l10n.cancel,
                   onConfirm: () {

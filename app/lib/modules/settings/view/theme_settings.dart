@@ -16,7 +16,7 @@ class ThemeSettingsView extends StatelessWidget {
     return ScaffoldWithBgImage(
       appBar: AppBar(
         key: const Key(MqKeys.settingsThemePage),
-        title: Text(context.l10n.profileTheme),
+        title: Text(context.l10n.theme),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
@@ -46,6 +46,7 @@ class ThemeSettingsView extends StatelessWidget {
             ),
             const SizedBox(height: 26),
             OrangeThemeCard(
+              title: context.l10n.orange,
               key: Key(MqKeys.settingsThemeColorName('Orange')),
               isActive: colorScheme.primary == AppColors.tomato,
               onChanged: ({value}) {
@@ -54,6 +55,7 @@ class ThemeSettingsView extends StatelessWidget {
             ),
             const SizedBox(height: 13),
             BlueThemeCard(
+              title: context.l10n.blue,
               key: Key(MqKeys.settingsThemeColorName('Blue')),
               isActive: colorScheme.primary == AppColors.tomato,
               onChanged: ({value}) {

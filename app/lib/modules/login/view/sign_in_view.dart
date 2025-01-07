@@ -87,17 +87,17 @@ class _SignInViewState extends State<SignInView> {
                 controller: emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return context.l10n.emailRequired;
+                    return context.l10n.enterEmail;
                   }
                   if (!AppRegExp.email.hasMatch(value)) {
-                    return context.l10n.invalidEmail;
+                    return context.l10n.enterEmail;
                   }
                   return null;
                 },
                 decoration: InputDecoration(
-                  labelText: context.l10n.enterYourEmail,
+                  labelText: context.l10n.enterEmail,
                   prefixIcon: const Icon(Icons.email, size: 28),
-                  hintText: context.l10n.enterYourEmail,
+                  hintText: context.l10n.enterEmail,
                 ),
               ),
               const SizedBox(height: 30),
@@ -135,7 +135,7 @@ class _SignInViewState extends State<SignInView> {
               const SizedBox(height: 20),
               GoogleSignInButton(
                 key: Key(MqKeys.loginTypeName('google')),
-                label: context.l10n.google,
+                label: context.l10n.continueWithGoogle,
                 onPressed: () async {
                   MqAnalytic.track(
                     AnalyticKey.tapLogin,
@@ -150,7 +150,7 @@ class _SignInViewState extends State<SignInView> {
               if (Platform.isIOS)
                 AppleSignInButton(
                   key: Key(MqKeys.loginTypeName('apple')),
-                  label: context.l10n.apple,
+                  label: context.l10n.continueWithApple,
                   onPressed: () async {
                     MqAnalytic.track(
                       AnalyticKey.tapLogin,

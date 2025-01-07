@@ -144,7 +144,7 @@ class ChangeReadTheme extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            l10n.readTextSize,
+            l10n.textSize,
             style: const TextStyle(fontSize: 18),
           ),
         ),
@@ -157,7 +157,7 @@ class ChangeReadTheme extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            l10n.readVerticalSpace,
+            l10n.verticalSpace,
             style: const TextStyle(fontSize: 18),
           ),
         ),
@@ -169,7 +169,7 @@ class ChangeReadTheme extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            l10n.readHorizontallSpace,
+            l10n.horizontalSpace,
             style: const TextStyle(fontSize: 18),
           ),
         ),
@@ -181,7 +181,7 @@ class ChangeReadTheme extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Text(
-            l10n.readScreenMode,
+            l10n.screenTheme,
             style: const TextStyle(fontSize: 18),
           ),
         ),

@@ -9,7 +9,10 @@ import 'package:my_quran/l10n/l10.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.authRepository) : super(AuthState(user: authRepository.init));
+  AuthCubit(this.authRepository)
+      : super(
+          AuthState(user: authRepository.init),
+        );
 
   final AuthRepository authRepository;
 

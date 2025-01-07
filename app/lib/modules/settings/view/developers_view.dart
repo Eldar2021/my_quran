@@ -13,7 +13,7 @@ class DevelopersView extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return ScaffoldWithBgImage(
       appBar: AppBar(
-        title: Text(context.l10n.profileForDevelopers),
+        title: Text(context.l10n.forDevelopers),
         key: const Key(MqKeys.settingsDevelopersPage),
       ),
       body: Padding(
@@ -21,13 +21,13 @@ class DevelopersView extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              context.l10n.profileDevsDesc,
+              context.l10n.githubMessage,
               style: prTextTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
             const Spacer(),
             ContactGithubButton(
-              // labelText: context.l10n.gi,
+              labelText: context.l10n.github,
               onPressed: () {
                 AppLaunch.launchURL(apiConst.urlGitHub);
               },

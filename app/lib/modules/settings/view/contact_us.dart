@@ -21,27 +21,27 @@ class ContactUsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Assalamu Alaikum, dear user!',
+              context.l10n.assalamuAlaikum,
               style: prTextTheme.titleMedium,
             ),
             const SizedBox(height: 10),
             Text(
-              'If you have any questions about this application you are using or if you have any suggestions to improve this application, please feel free to write your opinion about one of the following contacts below. We greatly appreciate your valuable feedback!',
+              context.l10n.feedbackMessage,
               style: prTextTheme.bodyMedium,
             ),
             const SizedBox(height: 15),
             Text(
-              'With deep respect\nMy Quran team!',
+              context.l10n.withRespect,
               style: prTextTheme.bodyMedium,
             ),
             const Spacer(),
             const SizedBox(height: 16),
             ContactWhatsappButton(
-              labelText: context.l10n.chatOnWhatsapp,
+              labelText: context.l10n.chatOnWhatsApp,
               onPressed: () {
                 AppLaunch.sendWhatsApp(
                   '996990039301',
-                  snackBarText: context.l10n.feedBackSms,
+                  snackBarText: context.l10n.errorOccurred,
                   context: context,
                 );
               },
@@ -52,7 +52,7 @@ class ContactUsView extends StatelessWidget {
               onPressed: () {
                 AppLaunch.sendTelegram(
                   'ak_bulak',
-                  snackBarText: context.l10n.feedBackSms,
+                  snackBarText: context.l10n.errorOccurred,
                   context: context,
                 );
               },
@@ -63,7 +63,7 @@ class ContactUsView extends StatelessWidget {
               onPressed: () {
                 AppLaunch.sendEmail(
                   'eldiiaralmazbekov@gmail.com',
-                  snackBarText: context.l10n.feedBackSms,
+                  snackBarText: context.l10n.errorOccurred,
                   context: context,
                 );
               },
