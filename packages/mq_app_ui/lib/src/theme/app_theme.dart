@@ -83,11 +83,7 @@ abstract class AppTheme {
   }
 
   ListTileThemeData get listTileTheme {
-    return ListTileThemeData(
-      titleTextStyle: primaryTextTheme.titleMedium?.copyWith(
-        fontSize: 18,
-      ),
-    );
+    return const ListTileThemeData();
   }
 
   SwitchThemeData get switchTheme {
