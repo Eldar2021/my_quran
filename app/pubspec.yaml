@@ -95,11 +95,6 @@ flutter:
   uses-material-design: true
   generate: true
 
-  fonts:
-    - family: qpc_uthmanic_hafs
-      fonts:
-        - asset: assets/fonts/qpc_uthmanic_hafs/qpc_uthmanic_hafs.otf
-
 flutter_icons:
   android: "launcher_icon"
   ios: true
