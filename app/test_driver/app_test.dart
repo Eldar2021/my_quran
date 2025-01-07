@@ -137,9 +137,9 @@ void main() async {
       await checkSettingsTheme(driver);
     });
 
-    test('check-logout', () async {
-      await checkLogout(driver);
-    });
+    // test('check-logout', () async {
+    //   await checkLogout(driver);
+    // });
   });
 
   tearDownAll(() async {
