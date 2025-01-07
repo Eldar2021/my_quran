@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:mq_app_theme/mq_app_theme.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
@@ -33,9 +33,6 @@ class MyApp extends StatelessWidget {
                     storage: context.read<PreferencesStorage>(),
                   ),
           ),
-        ),
-        BlocProvider(
-          create: (context) => AppCubit(context.read<AppRepository>()),
         ),
         RepositoryProvider<AuthRepository>(
           create: (context) {
@@ -82,7 +79,14 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => LocationCubit(context.read<AppConfig>()),
+          create: (context) => LocationCubit(
+            context.read<AppConfig>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => AppThemeCubit(
+            context.read<AppRepository>(),
+          ),
         ),
       ],
       child: const QuranApp(),
@@ -117,12 +121,12 @@ class _QuranAppState extends State<QuranApp> {
       child: AppListener(
         navigationKey: rootNavigatorKey,
         child: MaterialApp.router(
-          title: 'MyQuranKhatm',
+          title: 'My Quran',
           debugShowCheckedModeBanner: false,
           locale: context.watch<AuthCubit>().state.currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          theme: context.watch<AppCubit>().state.theme.themeData,
+          theme: context.watch<AppThemeCubit>().state.themeData,
           routerConfig: _router,
         ),
       ),

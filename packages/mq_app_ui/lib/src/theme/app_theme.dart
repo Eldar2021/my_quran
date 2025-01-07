@@ -13,7 +13,9 @@ abstract class AppTheme {
   TextTheme get primaryTextTheme;
 
   AppBarTheme get appBarTheme {
-    return const AppBarTheme();
+    return const AppBarTheme(
+      centerTitle: true,
+    );
   }
 
   SnackBarThemeData get snackBarTheme {
@@ -39,7 +41,7 @@ abstract class AppTheme {
   ElevatedButtonThemeData get elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size.fromHeight(52),
+        fixedSize: const Size(double.maxFinite, 52),
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
         shape: RoundedRectangleBorder(
@@ -81,11 +83,7 @@ abstract class AppTheme {
   }
 
   ListTileThemeData get listTileTheme {
-    return ListTileThemeData(
-      titleTextStyle: primaryTextTheme.titleMedium?.copyWith(
-        fontSize: 18,
-      ),
-    );
+    return const ListTileThemeData();
   }
 
   SwitchThemeData get switchTheme {
@@ -115,4 +113,7 @@ abstract class AppTheme {
   ChipThemeData get chipTheme {
     return const ChipThemeData();
   }
+
+  bool get isOrange => colorScheme.primary == AppColors.tomato;
+  bool get isDark => colorScheme.brightness == Brightness.dark;
 }

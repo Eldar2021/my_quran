@@ -2,13 +2,17 @@ import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.authRepository) : super(AuthState(user: authRepository.init));
+  AuthCubit(this.authRepository)
+      : super(
+          AuthState(user: authRepository.init),
+        );
 
   final AuthRepository authRepository;
 

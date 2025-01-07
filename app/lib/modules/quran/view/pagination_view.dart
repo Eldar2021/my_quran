@@ -3,13 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mq_analytics/mq_analytics.dart';
-import 'package:mq_app_theme/mq_app_theme.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
-import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/utils/urils.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 
@@ -97,12 +95,15 @@ class _PaginationViewState extends State<PaginationView> {
                       ),
                       onPressed: () async {
                         MqAnalytic.track(AnalyticKey.showAmin);
-                        final value = await AppAlert.showAmin<bool>(
-                          context,
-                          context.read<AuthCubit>().state.gender,
-                          totalPages: widget.pages.length,
-                          isHatim: widget.isHatim,
+                        final value = await MqAlertDialogs.showAmen<bool>(
+                          context: context,
+                          title: context.l10n.amen,
+                          content: context.l10n.dua,
+                          buttonText: context.l10n.ameen,
+                          gender: context.read<AuthCubit>().state.mqAppUiGender,
+                          onPressed: () => context.pop(true),
                         );
+
                         if (value != null && value && context.mounted) {
                           context.pop(true);
                         }

@@ -10,6 +10,8 @@ abstract class MqBottomSheets {
     void Function()? onConfirm,
     void Function()? onCancel,
     String? content,
+    String? confirmKey,
+    String? cancelKey,
   }) {
     return showModalBottomSheet<T>(
       context: context,
@@ -45,6 +47,7 @@ abstract class MqBottomSheets {
                   children: [
                     Expanded(
                       child: OutlinedButton(
+                        key: cancelKey != null ? Key(cancelKey) : null,
                         onPressed: onCancel,
                         child: Text(cancelText),
                       ),
@@ -52,13 +55,14 @@ abstract class MqBottomSheets {
                     const SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
+                        key: confirmKey != null ? Key(confirmKey) : null,
                         onPressed: onConfirm,
                         child: Text(confirmText),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 70),
+                const SizedBox(height: 30),
               ],
             ),
           ),

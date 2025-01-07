@@ -1,10 +1,6 @@
 class ApiConst {
-  const ApiConst({
-    required this.isDevmode,
-    this.devDomain,
-  });
+  const ApiConst({this.devDomain});
 
-  final bool isDevmode;
   final String? devDomain;
 
   static const domain = 'https://myquran.life';

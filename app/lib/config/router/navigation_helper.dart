@@ -23,23 +23,4 @@ extension NavigationHelper on BuildContext {
       pushNamed(AppRouter.loginWihtSoccial);
     }
   }
-
-  Future<void> pushNamedIfAuthenticated(
-    String name, {
-    Map<String, String> pathParameters = const <String, String>{},
-    Map<String, dynamic> queryParameters = const <String, dynamic>{},
-    Object? extra,
-  }) {
-    final isAuthedticated = read<AuthCubit>().isAuthedticated;
-    if (isAuthedticated) {
-      return pushNamed(
-        name,
-        pathParameters: pathParameters,
-        queryParameters: queryParameters,
-        extra: extra,
-      );
-    } else {
-      return pushNamed(AppRouter.loginWihtSoccial);
-    }
-  }
 }

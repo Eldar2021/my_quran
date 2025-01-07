@@ -22,4 +22,5 @@ final class MqHatimJusEntity implements MqHatimBaseEntity {
   double get toDoPercent => (toDo * 100) / (toDo + inProgress + done);
   double get inProgressPercent => (inProgress * 100) / (toDo + inProgress + done);
   double get donePercent => (done * 100) / (toDo + inProgress + done);
+  int get total => toDo + inProgress + done;
 }

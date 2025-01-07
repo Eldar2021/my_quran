@@ -26,6 +26,8 @@ class CircleButton extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        fixedSize: const Size.fromHeight(55),
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
         disabledForegroundColor: disabledForegroundColor,
@@ -34,7 +36,7 @@ class CircleButton extends StatelessWidget {
           width: boderWidth,
         ),
         shape: const CircleBorder(),
-        textStyle: prTextTheme.titleLarge?.copyWith(
+        textStyle: prTextTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w600,
         ),
       ),

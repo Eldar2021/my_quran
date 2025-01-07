@@ -1,8 +1,7 @@
 final class MqKeys {
   // login
-  static const loginSelectLeng = 'login-select-lang';
+  static const loginInitial = 'login-initial';
   static const loginNext = 'login-next';
-  static const loginSelectGender = 'login-select-gender';
   static const signInView = 'sign-in-view';
   static const sendOtp = 'send-otp';
   static const verifyOtpView = 'verify-otp-view';
@@ -12,7 +11,7 @@ final class MqKeys {
   // home
   static const home = 'home';
   static const homeListView = 'home-list-view';
-  static const alQuran = 'all-quran';
+  static const homeView = 'home-view';
   static const allHatimCount = 'all-hatim-count';
   static const allReadedPageCount = 'all-readed-page-count';
   static const participantToHatim = 'participant-to-hatim';
@@ -48,12 +47,10 @@ final class MqKeys {
   // settings
   static const settings = 'settings';
   static const settingsView = 'settings-view';
-  static const settingsGender = 'settings-gender';
-  static const settingsGenderPage = 'settings-gender-page';
+  static const settingsGenderLang = 'settings-gender-lang';
+  static const settingsGenderLangPage = 'settings-gender-lang-page';
   static const settingsGenderMale = 'settings-gender-male';
   static const settingsGenderFemale = 'settings-gender-female';
-  static const settingsLanguage = 'settings-language';
-  static const settingsLanguagePage = 'settings-language-page';
   static const settingsTheme = 'settings-theme';
   static const settingsThemePage = 'settings-theme-page';
   static const settingsThemeLight = 'settings-theme-light';

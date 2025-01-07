@@ -1,8 +1,8 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class MainView extends StatelessWidget {
   const MainView(this.navigationShell, {super.key});
@@ -11,38 +11,74 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: navigationShell,
-      bottomNavigationBar: CurvedNavigationBar(
-        index: 1,
-        backgroundColor: Colors.transparent,
-        items: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Assets.icons.notebook.svg(
+      bottomNavigationBar: DecoratedBox(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: colorScheme.shadow.withOpacity(0.1),
+              blurRadius: 2,
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: navigationShell.currentIndex,
+          items: [
+            BottomNavigationBarItem(
               key: const Key(MqKeys.quaranRead),
-              height: 28,
-              width: 28,
+              activeIcon: Assets.icons.quran.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: Assets.icons.quran.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: context.l10n.reading,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Assets.icons.home.svg(
+            BottomNavigationBarItem(
               key: const Key(MqKeys.home),
-              height: 28,
-              width: 28,
+              activeIcon: Assets.icons.prayingMan.svg(
+                width: 27,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: Assets.icons.prayingMan.svg(
+                width: 27,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: context.l10n.home,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Assets.icons.headphones.svg(
+            BottomNavigationBarItem(
               key: const Key(MqKeys.quranAudio),
-              width: 28,
-              height: 28,
+              activeIcon: Assets.icons.listenQuran.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: Assets.icons.listenQuran.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: context.l10n.listening,
             ),
-          ),
-        ],
-        onTap: _onTap,
+          ],
+          onTap: _onTap,
+        ),
       ),
     );
   }

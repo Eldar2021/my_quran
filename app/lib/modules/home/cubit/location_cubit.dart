@@ -1,8 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:my_quran/config/config.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 part 'location_state.dart';
 
@@ -30,7 +33,7 @@ class LocationCubit extends Cubit<LocationState> {
           heading: 1,
         );
         final city = await _getCityFromCoordinates(defaultLatitude, defaultLongitude);
-        emit(LocationLoaded(city: city, position: position));
+        emit(LocationLoaded(city: city, position: position, location: 'Asia/Bishkek'));
         return;
       }
 
@@ -48,8 +51,11 @@ class LocationCubit extends Cubit<LocationState> {
         locationSettings: locationSettings,
       );
       final city = await _getCityFromCoordinates(position.latitude, position.longitude);
-
-      emit(LocationLoaded(city: city, position: position));
+      tz.initializeTimeZones();
+      final timeZoneName = await FlutterTimezone.getLocalTimezone();
+      final location = tz.getLocation(timeZoneName);
+      tz.setLocalLocation(tz.getLocation(timeZoneName));
+      emit(LocationLoaded(city: city, position: position, location: location.name));
     } catch (e) {
       emit(LocationError('Failed to get location: $e'));
     }

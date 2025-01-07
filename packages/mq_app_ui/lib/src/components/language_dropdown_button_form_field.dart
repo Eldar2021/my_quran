@@ -6,6 +6,7 @@ class LanguageDropdownButtonFormField<T> extends StatelessWidget {
     required this.itemBuilder,
     this.value,
     this.labelText,
+    this.onChanged,
     super.key,
   });
 
@@ -13,6 +14,7 @@ class LanguageDropdownButtonFormField<T> extends StatelessWidget {
   final List<T> items;
   final DropdownMenuItem<T> Function(T?) itemBuilder;
   final String? labelText;
+  final void Function(T?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class LanguageDropdownButtonFormField<T> extends StatelessWidget {
         prefixIcon: const Icon(Icons.translate),
       ),
       items: items.map(itemBuilder).toList(),
-      onChanged: (Object? value) {},
+      onChanged: onChanged,
     );
   }
 }

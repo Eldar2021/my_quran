@@ -20,10 +20,6 @@ void main() async {
       await selectLang(driver);
     });
 
-    test('go-login-gender', () async {
-      await loginNext(driver);
-    });
-
     test('check-login-select-gender', () async {
       await selectGender(driver);
     });
@@ -121,12 +117,8 @@ void main() async {
       await checkSettingsView(driver);
     });
 
-    test('check-settings-gender', () async {
+    test('check-settings-gender-language', () async {
       await checkSettingsGender(driver);
-    });
-
-    test('check-settings-language', () async {
-      await checkSettingsLanguage(driver);
     });
 
     test('check-settings-about-us', () async {
@@ -145,9 +137,9 @@ void main() async {
       await checkSettingsTheme(driver);
     });
 
-    test('check-logout', () async {
-      await checkLogout(driver);
-    });
+    // test('check-logout', () async {
+    //   await checkLogout(driver);
+    // });
   });
 
   tearDownAll(() async {

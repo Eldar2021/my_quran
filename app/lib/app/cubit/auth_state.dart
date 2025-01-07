@@ -14,7 +14,12 @@ class AuthState extends Equatable {
   final Gender? genderForNow;
 
   @override
-  List<Object?> get props => [user, exception, localeForNow, genderForNow];
+  List<Object?> get props => [
+        user,
+        exception,
+        localeForNow,
+        genderForNow,
+      ];
 
   AuthState copyWith({
     UserEntity? user,
@@ -42,6 +47,20 @@ class AuthState extends Equatable {
     if (user != null) return user!.gender;
     if (genderForNow != null) return genderForNow!;
     return Gender.male;
+  }
+
+  AppUiGender get appUiGender {
+    return switch (gender) {
+      Gender.male => AppUiGender.male,
+      Gender.female => AppUiGender.famela,
+    };
+  }
+
+  MqAppUiGender get mqAppUiGender {
+    return switch (gender) {
+      Gender.male => MqAppUiGender.male,
+      Gender.female => MqAppUiGender.famale,
+    };
   }
 
   bool get isAuthedticated => user != null;

@@ -83,8 +83,8 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                           BlendMode.srcIn,
                         ),
                       ),
-                      title: Text(label2),
-                      subtitle: Text(count2),
+                      title: Text(label2, maxLines: 1),
+                      subtitle: Text(count2, maxLines: 1),
                       titleTextStyle: prTextTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
@@ -104,8 +104,8 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                           BlendMode.srcIn,
                         ),
                       ),
-                      title: Text(label3),
-                      subtitle: Text(count3),
+                      title: Text(label3, maxLines: 1),
+                      subtitle: Text(count3, maxLines: 1),
                       titleTextStyle: prTextTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
                       ),

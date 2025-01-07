@@ -5,11 +5,11 @@ import 'package:gallery/colors/theme_colors_view.dart';
 import 'package:gallery/components/app_components_page.dart';
 import 'package:gallery/components/story_view.dart';
 import 'package:gallery/components/ui_components_page.dart';
+import 'package:gallery/notifier/natifier.dart';
 import 'package:gallery/show/show_contents_page.dart';
 import 'package:gallery/spacing/spacing_page.dart';
 import 'package:gallery/typography/app_typography_page.dart';
 import 'package:gallery/typography/theme_typography_page.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_storage/mq_storage.dart';
 
 MqAppUiNotifier? themeProvider;

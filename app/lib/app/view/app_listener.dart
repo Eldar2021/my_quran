@@ -45,7 +45,7 @@ class AppListener extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             content: Text(
-              forceUpdate ? ctx.l10n.requiredVersionDescription : ctx.l10n.recommendedVersionDescription,
+              forceUpdate ? ctx.l10n.newVersionRequired : ctx.l10n.newVersionAvailable,
             ),
             actions: [
               if (!forceUpdate)

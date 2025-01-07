@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.19.0
+  package_info_plus: ^8.1.0
   pinput: ^5.0.0
   mockingjay: ^0.6.0
   flutter_svg: ^2.0.16

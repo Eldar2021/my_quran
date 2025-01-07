@@ -12,10 +12,15 @@ class LocationInitial extends LocationState {}
 class LocationLoading extends LocationState {}
 
 class LocationLoaded extends LocationState {
-  const LocationLoaded({required this.city, required this.position});
+  const LocationLoaded({
+    required this.city,
+    required this.position,
+    required this.location,
+  });
 
   final String city;
   final Position position;
+  final String location;
 
   @override
   List<Object> get props => [city, position];
