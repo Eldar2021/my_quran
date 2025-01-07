@@ -59,6 +59,7 @@ class _HomeViewState extends State<HomeView> {
         },
       ),
       appBar: AppBar(
+        key: const Key(MqKeys.homeView),
         title: Text(context.l10n.hello),
         centerTitle: true,
         leading: IconButton(

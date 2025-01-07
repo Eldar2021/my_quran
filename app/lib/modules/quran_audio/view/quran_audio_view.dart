@@ -60,7 +60,9 @@ class QuranAudioView extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: const AudioButtomSheet(key: Key(MqKeys.quranAudioBottomSheet)),
+      bottomNavigationBar: const AudioButtomSheet(
+        key: Key(MqKeys.quranAudioBottomSheet),
+      ),
     );
   }
 }

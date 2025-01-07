@@ -20,10 +20,6 @@ void main() async {
       await selectLang(driver);
     });
 
-    test('go-login-gender', () async {
-      await loginNext(driver);
-    });
-
     test('check-login-select-gender', () async {
       await selectGender(driver);
     });

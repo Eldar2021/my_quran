@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/cubit/auth_cubit.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -14,6 +15,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ScaffoldWithBgImage(
+      key: Key(MqKeys.loginInitial),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: SafeArea(
@@ -58,6 +60,7 @@ class LoginBody extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         LanguageDropdownButtonFormField<Locale>(
+          key: const Key(MqKeys.language),
           value: authCubit.state.currentLocale,
           items: AppLocalizationHelper.locales,
           onChanged: (v) async {
@@ -71,6 +74,7 @@ class LoginBody extends StatelessWidget {
               value?.toLanguageTag() ?? 'en',
             );
             return DropdownMenuItem(
+              key: Key(MqKeys.languageCode(value?.languageCode ?? 'en')),
               value: value,
               child: Text(name),
             );
@@ -85,6 +89,7 @@ class LoginBody extends StatelessWidget {
           context.l10n.selectGenderForPersonalization,
         ),
         GenderRedioWidget(
+          key: Key(MqKeys.genderName('male')),
           gender: authCubit.state.appUiGender,
           title: context.l10n.male,
           onChanged: (p0) {
@@ -96,6 +101,7 @@ class LoginBody extends StatelessWidget {
           },
         ),
         GenderRedioWidget(
+          key: Key(MqKeys.genderName('female')),
           gender: authCubit.state.appUiGender,
           itemIsMale: false,
           title: context.l10n.female,
@@ -109,6 +115,7 @@ class LoginBody extends StatelessWidget {
         ),
         const Spacer(flex: 3),
         ElevatedButton(
+          key: const Key(MqKeys.loginNext),
           onPressed: () {
             context.pushNamed(AppRouter.loginWihtSoccial);
           },

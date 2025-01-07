@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class MainView extends StatelessWidget {
@@ -26,6 +27,7 @@ class MainView extends StatelessWidget {
           currentIndex: navigationShell.currentIndex,
           items: [
             BottomNavigationBarItem(
+              key: const Key(MqKeys.quaranRead),
               activeIcon: Assets.icons.quran.svg(
                 colorFilter: ColorFilter.mode(
                   colorScheme.primary,
@@ -41,6 +43,7 @@ class MainView extends StatelessWidget {
               label: context.l10n.reading,
             ),
             BottomNavigationBarItem(
+              key: const Key(MqKeys.home),
               activeIcon: Assets.icons.prayingMan.svg(
                 width: 27,
                 colorFilter: ColorFilter.mode(
@@ -58,6 +61,7 @@ class MainView extends StatelessWidget {
               label: context.l10n.home,
             ),
             BottomNavigationBarItem(
+              key: const Key(MqKeys.quranAudio),
               activeIcon: Assets.icons.listenQuran.svg(
                 colorFilter: ColorFilter.mode(
                   colorScheme.primary,
