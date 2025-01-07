@@ -26,9 +26,9 @@ extension PumpApp on WidgetTester {
         ],
         child: MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (context) => AppCubit(appRepository),
-            ),
+            // BlocProvider(
+            //   create: (context) => AppCubit(appRepository),
+            // ),
             BlocProvider(
               create: (context) => AuthCubit(authRepository),
             ),

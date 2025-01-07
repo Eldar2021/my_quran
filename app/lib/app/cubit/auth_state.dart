@@ -51,5 +51,12 @@ class AuthState extends Equatable {
     };
   }
 
+  MqAppUiGender get mqAppUiGender {
+    return switch (gender) {
+      Gender.male => MqAppUiGender.male,
+      Gender.female => MqAppUiGender.famale,
+    };
+  }
+
   bool get isAuthedticated => user != null;
 }

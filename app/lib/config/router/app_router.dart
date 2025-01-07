@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -37,7 +38,7 @@ final class AppRouter {
   static const verificationCode = 'verification-code';
 
   static const settingsPage = 'settings';
-  static const genderSettings = 'gender-settings';
+  static const customAppSettings = 'custom-settings';
   static const themeSettings = 'theme-settings';
   static const aboutUs = 'about-us';
   static const contactUs = 'contect-us';
@@ -48,7 +49,7 @@ final class AppRouter {
     return GoRouter(
       initialLocation: isFirstTime ? '/$login' : '/home',
       navigatorKey: rootNavigatorKey,
-      // debugLogDiagnostics: kDebugMode,
+      debugLogDiagnostics: kDebugMode,
       routes: [
         GoRoute(
           path: '/',
@@ -142,10 +143,10 @@ final class AppRouter {
         ],
       ),
       GoRoute(
-        path: genderSettings,
-        name: genderSettings,
+        path: customAppSettings,
+        name: customAppSettings,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const GenderSettingView(),
+        builder: (context, state) => const CustomAppSettingView(),
       ),
       GoRoute(
         path: themeSettings,

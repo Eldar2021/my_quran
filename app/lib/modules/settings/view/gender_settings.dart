@@ -10,8 +10,8 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/urils.dart';
 
-class GenderSettingView extends StatelessWidget {
-  const GenderSettingView({super.key});
+class CustomAppSettingView extends StatelessWidget {
+  const CustomAppSettingView({super.key});
 
   @override
   Widget build(BuildContext context) {

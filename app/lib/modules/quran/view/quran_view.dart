@@ -5,7 +5,6 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -55,13 +54,13 @@ class QuranBody extends StatelessWidget {
           dividerColor: colorScheme.surfaceBright,
           dividerHeight: 3,
           tabs: [
-            PageViewCard(
-              page: context.l10n.juzs,
+            Tab(
               key: const Key(MqKeys.quaranReadJuzs),
+              text: context.l10n.juzs,
             ),
-            PageViewCard(
-              page: context.l10n.surahs,
+            Tab(
               key: const Key(MqKeys.quaranReadSurahs),
+              text: context.l10n.surahs,
             ),
           ],
         ),

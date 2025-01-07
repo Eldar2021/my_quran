@@ -35,7 +35,7 @@ class SettingActionsWidget extends StatelessWidget {
           DrawerTile(
             onTap: () {
               MqAnalytic.track(AnalyticKey.goGenderPage);
-              context.pushNamed(AppRouter.genderSettings);
+              context.pushNamed(AppRouter.customAppSettings);
             },
             icon: Icon(
               Icons.translate,
