@@ -110,5 +110,14 @@
     "pleaseWait": "Күте тұрыңыз",
     "error": "Қате",
     "errorOccurred": "Қате орын алды",
-    "tryAgainLater": "Кейінірек қайталап көріңіз"
+    "tryAgainLater": "Кейінірек қайталап көріңіз",
+    "enableDevMode": "Даму режимін қосу",
+    "disableDevMode": "Даму режимін өшіру",
+    "save": "Сақтау",
+    "testCrashlyticsAnalytics": "Crashlytics және Analytics тестілеу",
+    "shareApp": "Егер біздің қосымшамызды пайдалы деп тапсаңыз, оны басқалармен бөлісу арқылы хабарласыңыз",
+    "enterVerificationCodeValidation": "Толық тексеру кодын енгізіңіз.",
+    "restartApp": "Қосымшаны қайта іске қосу қажет",
+    "restartForDevMode": "Даму режимін қосу/өшіру үшін қосымшаны қайта іске қосыңыз",
+    "restart": "Қайта іске қосу"
 }

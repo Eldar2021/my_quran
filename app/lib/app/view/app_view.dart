@@ -121,7 +121,7 @@ class _QuranAppState extends State<QuranApp> {
       child: AppListener(
         navigationKey: rootNavigatorKey,
         child: MaterialApp.router(
-          title: 'MyQuranKhatm',
+          title: 'My Quran',
           debugShowCheckedModeBanner: false,
           locale: context.watch<AuthCubit>().state.currentLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

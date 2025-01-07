@@ -20,7 +20,7 @@ class SettingActionsWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 20),
         Text(
-          'General menu',
+          context.l10n.generalMenu,
           style: prTextTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w700,
           ),

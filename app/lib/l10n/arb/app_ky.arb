@@ -110,5 +110,14 @@
     "pleaseWait": "Күтүңүз",
     "error": "Ката",
     "errorOccurred": "Ката кетти",
-    "tryAgainLater": "Кийинчерээк кайра аракет кылып көрүңүз"
+    "tryAgainLater": "Кийинчерээк кайра аракет кылып көрүңүз",
+    "enableDevMode": "Даму режимин күйгө келтирүү",
+    "disableDevMode": "Даму режимин өчүрүү",
+    "save": "Сактоо",
+    "testCrashlyticsAnalytics": "Crashlytics жана Analytics текшерүү",
+    "shareApp": "Эгер биздин тиркемени пайдалуу деп тапсаңыз, башкаларга бөлүшүп айтып коюңуз",
+    "enterVerificationCodeValidation": "Толук текшерүү кодун киргизиңиз.",
+    "restartApp": "Программаны кайра баштоо керек",
+    "restartForDevMode": "Даму режимин күйгө келтирүү/өчүрүү үчүн тиркемени кайра баштаңыз",
+    "restart": "Кайра баштоо"
 }

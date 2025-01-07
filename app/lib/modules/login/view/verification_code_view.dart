@@ -95,7 +95,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
                 controller: verificationCodeController,
                 validator: (value) {
                   if (value == null || value.length < 4) {
-                    return 'Please enter the full verification code.';
+                    return context.l10n.enterVerificationCode;
                   }
                   return null;
                 },

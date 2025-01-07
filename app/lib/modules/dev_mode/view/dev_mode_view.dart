@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/app_config.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/show/alerts.dart';
 
 class DevModeView extends StatefulWidget {
@@ -26,7 +27,7 @@ class _DevModeViewState extends State<DevModeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Enable/Disable dev-mode'),
+        title: const Text('DevMode'),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -64,7 +65,7 @@ class _DevModeViewState extends State<DevModeView> {
                 AppAlert.showRestartDialog(context);
               }
             },
-            child: const Text('Save'),
+            child: Text(context.l10n.save),
           ),
           const SizedBox(height: 20),
           TextButton(
@@ -81,7 +82,7 @@ class _DevModeViewState extends State<DevModeView> {
               await MqCrashlytics.setUserIdentifier('Test Eldiiar');
               MqAnalytic.track(AnalyticKey.test, params: {'Tested By': 'Eldiiar'});
             },
-            child: const Text('Test Crashlytics and Analytics'),
+            child: Text(context.l10n.testCrashlyticsAnalytics),
           ),
         ],
       ),

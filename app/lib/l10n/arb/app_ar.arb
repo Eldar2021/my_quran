@@ -110,5 +110,14 @@
     "pleaseWait": "يرجى الانتظار",
     "error": "خطأ",
     "errorOccurred": "حدث خطأ",
-    "tryAgainLater": "يرجى المحاولة لاحقاً"
+    "tryAgainLater": "يرجى المحاولة لاحقاً",
+    "enableDevMode": "تمكين وضع المطور",
+    "disableDevMode": "تعطيل وضع المطور",
+    "save": "حفظ",
+    "testCrashlyticsAnalytics": "اختبار Crashlytics و Analytics",
+    "shareApp": "إذا وجدت تطبيقنا مفيدًا، يرجى إعلام الآخرين بمشاركته",
+    "enterVerificationCodeValidation": "يرجى إدخال رمز التحقق الكامل.",
+    "restartApp": "يجب عليك إعادة تشغيل التطبيق",
+    "restartForDevMode": "أعد تشغيل التطبيق لتمكين/تعطيل وضع المطور",
+    "restart": "إعادة تشغيل"
 }

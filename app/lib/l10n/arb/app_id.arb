@@ -110,5 +110,14 @@
     "pleaseWait": "Harap tunggu",
     "error": "Kesalahan",
     "errorOccurred": "Terjadi kesalahan",
-    "tryAgainLater": "Silakan coba lagi nanti"
+    "tryAgainLater": "Silakan coba lagi nanti",
+    "enableDevMode": "Aktifkan mode pengembang",
+    "disableDevMode": "Nonaktifkan mode pengembang",
+    "save": "Simpan",
+    "testCrashlyticsAnalytics": "Uji Crashlytics dan Analytics",
+    "shareApp": "Jika Anda merasa aplikasi kami berguna, beri tahu orang lain dengan membagikannya",
+    "enterVerificationCodeValidation": "Harap masukkan kode verifikasi lengkap.",
+    "restartApp": "Anda perlu memulai ulang aplikasi",
+    "restartForDevMode": "Mulai ulang aplikasi untuk mengaktifkan/nonaktifkan mode pengembang",
+    "restart": "Mulai ulang"
 }

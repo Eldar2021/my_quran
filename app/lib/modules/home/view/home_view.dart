@@ -58,7 +58,7 @@ class _HomeViewState extends State<HomeView> {
         },
       ),
       appBar: AppBar(
-        title: const Text('Hello'),
+        title: Text(context.l10n.hello),
         centerTitle: true,
         leading: IconButton(
           key: const Key(MqKeys.settings),
@@ -74,7 +74,7 @@ class _HomeViewState extends State<HomeView> {
             onPressed: () {
               AppSnackbar.showSnackbar(
                 context,
-                'This feature will be added in the future...',
+                context.l10n.featureInFuture,
               );
             },
             icon: Assets.icons.qyblaDirection.svg(),
@@ -100,7 +100,7 @@ class _HomeViewState extends State<HomeView> {
                 return MqStoryItem(
                   id: '$idx',
                   cardImageLink: v,
-                  cardLabel: 'MyQuran\nNews',
+                  cardLabel: context.l10n.newUpdates,
                   storyPagesImages: sources,
                   storyPageDuration: List.generate(
                     sources.length,
@@ -115,7 +115,7 @@ class _HomeViewState extends State<HomeView> {
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 24),
               title: Text(
-                'Select below the pages that no one has taken yet',
+                context.l10n.shareApp,
                 style: prTextTheme.bodyMedium,
               ),
               trailing: TextButton(

@@ -110,5 +110,14 @@
     "pleaseWait": "Please wait",
     "error": "Error",
     "errorOccurred": "Error occurred",
-    "tryAgainLater": "Please try again later"
+    "tryAgainLater": "Please try again later",
+    "enableDevMode": "Enable dev-mode",
+    "disableDevMode": "Disable dev-mode",
+    "save": "Save",
+    "testCrashlyticsAnalytics": "Test Crashlytics and Analytics",
+    "shareApp": "If you find our app useful, let others know by sharing it",
+    "enterVerificationCodeValidation": "Please enter the full verification code.",
+    "restartApp": "You need to restart the app",
+    "restartForDevMode": "Restart application for enabling/disabling dev-mode",
+    "restart": "Restart"
 }

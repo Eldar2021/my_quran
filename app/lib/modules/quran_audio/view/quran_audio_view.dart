@@ -29,7 +29,7 @@ class QuranAudioView extends StatelessWidget {
       body: BlocListener<QuranAudioCubit, QuranAudioState>(
         listener: (context, state) {
           if (state.exception != null) {
-            AppAlert.showErrorDialog(context, errorText: state.exception ?? 'Error');
+            AppAlert.showErrorDialog(context, errorText: state.exception ?? context.l10n.error);
           }
         },
         child: ListView.separated(

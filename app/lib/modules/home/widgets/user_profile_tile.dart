@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class UserProfileTile extends StatelessWidget {
   const UserProfileTile({super.key});
@@ -14,7 +15,7 @@ class UserProfileTile extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return ListTile(
       title: Text(
-        user?.username ?? 'Hello',
+        user?.username ?? context.l10n.hello,
         maxLines: 1,
       ),
       leading: CircleAvatar(

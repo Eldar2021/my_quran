@@ -110,5 +110,14 @@
     "pleaseWait": "Lütfen bekleyin",
     "error": "Hata",
     "errorOccurred": "Bir hata oluştu",
-    "tryAgainLater": "Lütfen daha sonra tekrar deneyin"
+    "tryAgainLater": "Lütfen daha sonra tekrar deneyin",
+    "enableDevMode": "Geliştirici modunu etkinleştir",
+    "disableDevMode": "Geliştirici modunu devre dışı bırak",
+    "save": "Kaydet",
+    "testCrashlyticsAnalytics": "Crashlytics ve Analytics'i test et",
+    "shareApp": "Uygulamamızı faydalı buluyorsanız, başkalarına paylaşarak bildirin",
+    "enterVerificationCodeValidation": "Lütfen tam doğrulama kodunu girin.",
+    "restartApp": "Uygulamayı yeniden başlatmalısınız",
+    "restartForDevMode": "Geliştirici modunu etkinleştirmek/devre dışı bırakmak için uygulamayı yeniden başlatın",
+    "restart": "Yeniden başlat"
 }

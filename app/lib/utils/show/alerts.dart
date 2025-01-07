@@ -61,12 +61,12 @@ final class AppAlert {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: const Text('Yuo Need to restart App'),
-          content: const Text('Restart application for enabling/disabling dev-mode'),
+          title: Text(context.l10n.restartApp),
+          content: Text(context.l10n.restartForDevMode),
           actions: <Widget>[
             CupertinoButton(
               onPressed: () => exit(0),
-              child: const Text('Restart'),
+              child: Text(context.l10n.restart),
             ),
           ],
         );
