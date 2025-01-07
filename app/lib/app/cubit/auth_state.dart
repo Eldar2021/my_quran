@@ -14,7 +14,12 @@ class AuthState extends Equatable {
   final Gender? genderForNow;
 
   @override
-  List<Object?> get props => [user, exception, localeForNow, genderForNow];
+  List<Object?> get props => [
+        user,
+        exception,
+        localeForNow,
+        genderForNow,
+      ];
 
   AuthState copyWith({
     UserEntity? user,

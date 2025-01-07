@@ -50,8 +50,8 @@ class PageViewItem<T> extends StatelessWidget {
           return QuranItemTile(
             key: Key(MqKeys.quranReadSurah(index)),
             index: item.id,
-            title: item.arabic,
-            subtitle: item.name,
+            title: item.name,
+            subtitle: item.arabic,
             onTap: () async {
               MqAnalytic.track(
                 AnalyticKey.goQuranReadBySurah,

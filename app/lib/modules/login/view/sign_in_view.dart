@@ -74,6 +74,7 @@ class _SignInViewState extends State<SignInView> {
               Center(
                 child: Text(
                   context.l10n.myQuran,
+                  textAlign: TextAlign.center,
                   style: prTextTheme.displayMedium?.copyWith(
                     color: colorScheme.primary,
                     fontWeight: FontWeight.w800,

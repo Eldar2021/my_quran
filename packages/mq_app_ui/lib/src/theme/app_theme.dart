@@ -13,7 +13,9 @@ abstract class AppTheme {
   TextTheme get primaryTextTheme;
 
   AppBarTheme get appBarTheme {
-    return const AppBarTheme();
+    return const AppBarTheme(
+      centerTitle: true,
+    );
   }
 
   SnackBarThemeData get snackBarTheme {
