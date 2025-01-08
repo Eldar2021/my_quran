@@ -131,4 +131,4 @@
 
 ## [UX]
 
-- Implement new design
+- Implemented new design
