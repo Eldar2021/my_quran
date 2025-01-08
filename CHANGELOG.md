@@ -124,3 +124,11 @@
 - Extracted MqAuthRepository package
 - Removed presentation layers
 - Added App links to readme file
+
+---
+
+# What's Changed v1.3.8+18
+
+## [UX]
+
+- Implement new design
