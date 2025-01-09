@@ -4,6 +4,7 @@ import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/constants/contants.dart';
 
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/app/app.dart';
@@ -125,12 +126,7 @@ class _HomeViewState extends State<HomeView> {
             const MqSalaahTimeWidget(),
             const SizedBox(height: 20),
             ListTile(
-              onTap: () {
-                AppSnackbar.showSnackbar(
-                  context,
-                  context.l10n.featureInFuture,
-                );
-              },
+              onTap: () => AppShare.shareUri(ApiConst.oneLink),
               contentPadding: const EdgeInsets.symmetric(horizontal: 24),
               leading: CircleAvatar(
                 backgroundColor: colorScheme.onInverseSurface,

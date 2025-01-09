@@ -35,6 +35,7 @@ dependencies:
 
   # Utilities & Helpers
   url_launcher: ^6.3.1
+  share_plus: ^10.1.2
   infinite_scroll_pagination: ^4.0.0
   just_audio: ^0.9.41
   just_audio_background: ^0.0.1-beta.13
