@@ -82,7 +82,7 @@ class LoginBody extends StatelessWidget {
         ),
         const SizedBox(height: 50),
         Text(
-          context.l10n.selectLanguage,
+          context.l10n.pleaseSelectGender,
         ),
         const SizedBox(height: 8),
         Text(
