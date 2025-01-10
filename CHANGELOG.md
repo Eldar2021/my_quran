@@ -132,3 +132,19 @@
 ## [UX]
 
 - Implemented new design
+
+---
+
+# What's Changed v1.3.9+19
+
+## [UX]
+
+- Implement share feature
+
+## [Bug Fixes]
+
+- Fixed audio background icon
+
+## [Technical]
+
+- Updated screenshots
