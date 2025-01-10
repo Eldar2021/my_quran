@@ -29,8 +29,8 @@ Regardless of your nationality, place of residence, gender, or social status, yo
 <p align="center">
   <img src="doc/iPhone 16 Pro Max/101-settings-init.png" width="22%" />
   <img src="doc/iPhone 16 Pro Max/102-settings-gender-male.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/104-settings-language-page-en.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/109-settings-theme-page-light-red.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/111-settings-theme-page-light-blue.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/113-logout.png" width="22%" />
 </p>
 
 ## Requirements
