@@ -59,6 +59,7 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 8),
                   Text(
                     label1,
                     textAlign: TextAlign.center,
@@ -74,44 +75,75 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ListTile(
-                      leading: Assets.icons.quran.svg(
-                        height: 28,
-                        colorFilter: ColorFilter.mode(
-                          colorScheme.onSurface,
-                          BlendMode.srcIn,
+                    Row(
+                      children: [
+                        Assets.icons.quran.svg(
+                          height: 28,
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.onSurface,
+                            BlendMode.srcIn,
+                          ),
                         ),
-                      ),
-                      title: Text(label2, maxLines: 1),
-                      subtitle: Text(count2, maxLines: 1),
-                      titleTextStyle: prTextTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
-                      subtitleTextStyle: prTextTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              label2,
+                              maxLines: 1,
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              count2,
+                              maxLines: 1,
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
+                    const Spacer(),
                     Divider(
                       thickness: 2,
                       color: isDark ? colorScheme.inverseSurface : colorScheme.surface,
                     ),
-                    ListTile(
-                      leading: Assets.icons.prayerHand.svg(
-                        height: 28,
-                        colorFilter: ColorFilter.mode(
-                          colorScheme.onSurface,
-                          BlendMode.srcIn,
+                    const Spacer(),
+                    Row(
+                      children: [
+                        Assets.icons.prayerHand.svg(
+                          height: 28,
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.onSurface,
+                            BlendMode.srcIn,
+                          ),
                         ),
-                      ),
-                      title: Text(label3, maxLines: 1),
-                      subtitle: Text(count3, maxLines: 1),
-                      titleTextStyle: prTextTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
-                      subtitleTextStyle: prTextTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              label3,
+                              maxLines: 1,
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              count3,
+                              maxLines: 1,
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
