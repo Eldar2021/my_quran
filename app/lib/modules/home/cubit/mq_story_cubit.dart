@@ -14,8 +14,12 @@ class MqStoryCubit extends Cubit<MqStoryState> {
 
   Future<void> getStories(String language) async {
     try {
+      final localeCode = switch (language) {
+        'en' || 'ky' || 'ru' || 'tr' => language,
+        _ => 'en',
+      };
       emit(const MqStoryState());
-      final stories = await homeRepository.getStories(language);
+      final stories = await homeRepository.getStories(localeCode);
       emit(MqStoryState(status: FetchStatus.success, stories: stories));
     } catch (e, s) {
       MqCrashlytics.report(e, s);
