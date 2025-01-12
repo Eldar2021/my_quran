@@ -13,4 +13,13 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
       donePages: 0,
     );
   }
+
+  @override
+  Future<List<MqStoryModelResponse>> getStories(String language) async {
+    return mqStoriesMock
+        .map(
+          (e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>),
+        )
+        .toList();
+  }
 }

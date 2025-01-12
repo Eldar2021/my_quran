@@ -1,7 +1,9 @@
 // entities
 export 'entity/mq_home_entity.dart';
+export 'entity/mq_story_entity.dart';
 // models
 export 'model/mq_home_model_response.dart';
+export 'model/mq_story_model_response.dart';
 // repositories
 export 'repository/mq_home_repository.dart';
 export 'repository/mq_home_repository_impl.dart';

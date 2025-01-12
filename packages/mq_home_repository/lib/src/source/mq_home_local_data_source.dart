@@ -4,4 +4,11 @@ abstract class MqHomeLocalDataSource {
   MqHomeModelResponse getLocalData();
 
   Future<void> saveLocalData(MqHomeModelResponse data);
+
+  List<MqStoryModelResponse> getStories(String language);
+
+  Future<void> saveStories(
+    List<MqStoryModelResponse> data,
+    String language,
+  );
 }

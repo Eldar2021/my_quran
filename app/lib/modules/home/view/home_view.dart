@@ -13,15 +13,6 @@ import 'package:my_quran/modules/modules.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/utils/show/snackbars.dart';
 
-const sources = [
-  'https://t3.ftcdn.net/jpg/05/68/99/80/360_F_568998040_m42feFA9RajqmuR5DTlWwox44fxE3MOi.jpg',
-  'https://t3.ftcdn.net/jpg/07/02/55/16/360_F_702551695_zBR0B1IrgGCJdgZbYE6dzlExKhAxD4OC.jpg',
-  'https://thumbs.dreamstime.com/b/closeup-holy-quran-captured-near-sacred-kaaba-mecca-highlighting-its-spiritual-significance-ai-generated-image-329385127.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaczS5PI_ePL2HwRhlEq1PPZjpLFw3PY3D5w&s',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-IlJBNJLlv1cdFJ7xVWMkAjfk-mSWAJFvCu2HctMMRBRRyphoZTe0wjbkUl75fR97odM&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqILNo55rnX2dLPvHPlu0Rr3_KkjM_ajDTEQ&s',
-];
-
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -34,14 +25,12 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    final homeCubit = context.read<HomeCubit>();
-    final authCubit = context.read<AuthCubit>();
-    final user = authCubit.state.user;
+    _getHomeData();
+    final user = context.read<AuthCubit>().state.user;
     final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
-    if (homeCubit.state.status != FetchStatus.success && user != null) {
+    if (user != null) {
       MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
-      homeCubit.getData();
     }
     context.read<LocationCubit>().fetchLocation();
 
@@ -97,30 +86,38 @@ class _HomeViewState extends State<HomeView> {
       body: RefreshIndicator(
         onRefresh: () async {
           MqAnalytic.track(AnalyticKey.refreshHomePage);
-          await context.read<HomeCubit>().getData();
+          await _getHomeData();
         },
         child: ListView(
           key: const Key(MqKeys.homeListView),
           children: [
             const SizedBox(height: 20),
-            MqStoryItemsWidget(
-              listHeight: 132,
-              buttonWidth: 70,
-              buttonSpacing: 14,
-              items: sources.asMap().entries.map((e) {
-                final idx = e.key;
-                final v = e.value;
-                return MqStoryItem(
-                  id: '$idx',
-                  cardImageLink: v,
-                  cardLabel: context.l10n.newUpdates,
-                  storyPagesImages: sources,
-                  storyPageDuration: List.generate(
-                    sources.length,
-                    (index) => const Duration(seconds: 1),
-                  ),
-                );
-              }).toList(),
+            BlocBuilder<MqStoryCubit, MqStoryState>(
+              builder: (context, state) {
+                final status = state.status;
+                return switch (status) {
+                  FetchStatus.loading || FetchStatus.error => const SizedBox.shrink(),
+                  FetchStatus.success => MqStoryItemsWidget(
+                      listHeight: 132,
+                      buttonWidth: 70,
+                      buttonSpacing: 14,
+                      items: state.getStories.asMap().entries.map((e) {
+                        final idIndex = e.key;
+                        final item = e.value;
+                        return MqStoryItem(
+                          id: '$idIndex',
+                          cardImageLink: item.cardImageUrl,
+                          cardLabel: item.cardLabel,
+                          storyPagesImages: item.screens.map((e) => e.imageUrl).toList(),
+                          storyPageDuration: List.generate(
+                            item.screens.length,
+                            (index) => Duration(milliseconds: item.screens[index].durationByMilliseconds),
+                          ),
+                        );
+                      }).toList(),
+                    )
+                };
+              },
             ),
             const SizedBox(height: 20),
             const MqSalaahTimeWidget(),
@@ -182,5 +179,15 @@ class _HomeViewState extends State<HomeView> {
   void _onJoinToHatim() {
     MqAnalytic.track(AnalyticKey.goHatim);
     context.goNamedIfAuthenticated(AppRouter.hatim);
+  }
+
+  Future<void> _getHomeData() async {
+    final homeCubit = context.read<HomeCubit>();
+    final storyCubit = context.read<MqStoryCubit>();
+    final authCubit = context.read<AuthCubit>();
+    await Future.wait([
+      homeCubit.getData(),
+      storyCubit.getStories(authCubit.state.currentLocale.languageCode),
+    ]);
   }
 }

@@ -74,11 +74,13 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
               ),
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Text(
-                  e.cardLabel,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: prTextTheme.bodySmall,
+                child: FittedBox(
+                  child: Text(
+                    e.cardLabel,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: prTextTheme.bodySmall,
+                  ),
                 ),
               ),
               borderDecoration: BoxDecoration(
