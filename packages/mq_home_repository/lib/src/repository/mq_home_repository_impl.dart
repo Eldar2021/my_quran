@@ -34,4 +34,18 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
       donePages: response.donePages,
     );
   }
+
+  @override
+  Future<List<MqStoryEntity>> getStories(String language) async {
+    try {
+      final remoteData = await remoteDataSource.getStories(language);
+      await localDataSource.saveStories(remoteData, language);
+      return remoteData.map((e) => e.toEntity()).toList();
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('HomeRepositoryImpl, getStories error: $e');
+      final localData = localDataSource.getStories(language);
+      return localData.map((e) => e.toEntity()).toList();
+    }
+  }
 }

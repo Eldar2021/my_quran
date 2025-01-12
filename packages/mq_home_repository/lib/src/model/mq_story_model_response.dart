@@ -25,8 +25,8 @@ final class MqStoryModelResponse {
   final MqStoryButtonResponse button;
   final List<MqStoryScreenResponse> screens;
 
-  MqStoryModelEntity toEntity() {
-    return MqStoryModelEntity(
+  MqStoryEntity toEntity() {
+    return MqStoryEntity(
       cardImageUrl: cardImageUrl,
       cardLabel: cardLabel,
       isViewed: isViewed,

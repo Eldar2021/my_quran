@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 @immutable
-final class MqStoryModelEntity {
-  const MqStoryModelEntity({
+final class MqStoryEntity {
+  const MqStoryEntity({
     required this.cardImageUrl,
     required this.cardLabel,
     required this.isViewed,
