@@ -12,4 +12,6 @@ final class MqStoryState extends Equatable {
 
   @override
   List<Object?> get props => [stories, status];
+
+  List<MqStoryEntity> get getStories => stories ?? [];
 }

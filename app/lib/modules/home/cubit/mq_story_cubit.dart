@@ -14,6 +14,7 @@ class MqStoryCubit extends Cubit<MqStoryState> {
 
   Future<void> getStories(String language) async {
     try {
+      emit(const MqStoryState());
       final stories = await homeRepository.getStories(language);
       emit(MqStoryState(status: FetchStatus.success, stories: stories));
     } catch (e, s) {

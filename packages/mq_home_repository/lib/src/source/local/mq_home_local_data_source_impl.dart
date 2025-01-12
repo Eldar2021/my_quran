@@ -50,7 +50,7 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
   ) async {
     await storage.writeString(
       key: '$_storiesCacheKey-$language',
-      value: jsonEncode(data.map((e) => e.toJson()).toList),
+      value: jsonEncode(data.map((e) => e.toJson()).toList()),
     );
   }
 }

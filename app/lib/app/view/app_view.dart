@@ -67,6 +67,18 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
+          create: (context) => MqStoryCubit(
+            MqHomeRepositoryImpl(
+              isMockData
+                  ? const MqHomeLocalDataSourceMock()
+                  : MqHomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
+              isMockData
+                  ? const MqHomeRemoteDataSourceMock()
+                  : MqHomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+            ),
+          ),
+        ),
+        BlocProvider(
           create: (context) => QuranAudioCubit(
             AudioPlayer(),
             context.read<NetworkClient>(),
