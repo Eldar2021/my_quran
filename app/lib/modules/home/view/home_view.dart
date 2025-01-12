@@ -25,14 +25,12 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    final homeCubit = context.read<HomeCubit>();
-    final authCubit = context.read<AuthCubit>();
-    final user = authCubit.state.user;
+    _getHomeData();
+    final user = context.read<AuthCubit>().state.user;
     final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
-    if (homeCubit.state.status != FetchStatus.success && user != null) {
+    if (user != null) {
       MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
-      _getHomeData();
     }
     context.read<LocationCubit>().fetchLocation();
 
@@ -187,10 +185,9 @@ class _HomeViewState extends State<HomeView> {
     final homeCubit = context.read<HomeCubit>();
     final storyCubit = context.read<MqStoryCubit>();
     final authCubit = context.read<AuthCubit>();
-    final user = authCubit.state.user;
     await Future.wait([
       homeCubit.getData(),
-      storyCubit.getStories(user?.localeCode ?? 'en'),
+      storyCubit.getStories(authCubit.state.currentLocale.languageCode),
     ]);
   }
 }
