@@ -103,25 +103,27 @@ class MqSalaahCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      TextButton.icon(
-                        onPressed: onLocationPressed,
-                        label: Text(
-                          locationLabel,
-                          maxLines: 2,
-                          overflow: TextOverflow.fade,
-                        ),
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: Size.zero,
-                          foregroundColor: colorScheme.onSurface,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          alignment: Alignment.centerLeft,
-                        ),
-                        icon: Assets.icons.location.svg(
-                          width: 12,
-                          colorFilter: ColorFilter.mode(
-                            colorScheme.onSurface,
-                            BlendMode.srcIn,
+                      Flexible(
+                        child: TextButton.icon(
+                          onPressed: onLocationPressed,
+                          label: Text(
+                            locationLabel,
+                            maxLines: 2,
+                            overflow: TextOverflow.fade,
+                          ),
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            minimumSize: Size.zero,
+                            foregroundColor: colorScheme.onSurface,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            alignment: Alignment.centerLeft,
+                          ),
+                          icon: Assets.icons.location.svg(
+                            width: 12,
+                            colorFilter: ColorFilter.mode(
+                              colorScheme.onSurface,
+                              BlendMode.srcIn,
+                            ),
                           ),
                         ),
                       ),
