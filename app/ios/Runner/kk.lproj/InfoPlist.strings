@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Eldiiar Almazbek on 13/1/25.
+  
+*/
+
+"NSLocationWhenInUseUsageDescription" = "Біз сіздің нақты намаз уақытын ағымдағы орналасқан жеріңізге байланысты анықтау үшін орныңызды пайдаланамыз.";

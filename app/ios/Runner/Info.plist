@@ -24,6 +24,8 @@
 	<!-- Geolocation -->
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location to determine the exact prayer time based on your current location.</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleDisplayName</key>
 	<string>MyQuran</string>
 	<key>CFBundleExecutable</key>

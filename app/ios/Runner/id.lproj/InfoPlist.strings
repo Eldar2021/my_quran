@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Eldiiar Almazbek on 13/1/25.
+  
+*/
+
+"NSLocationWhenInUseUsageDescription" = "Kami menggunakan lokasi Anda untuk menentukan waktu salat yang tepat berdasarkan lokasi Anda saat ini.";

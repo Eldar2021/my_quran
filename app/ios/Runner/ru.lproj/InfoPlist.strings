@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Eldiiar Almazbek on 13/1/25.
+  
+*/
+
+"NSLocationWhenInUseUsageDescription" = "Мы используем ваше местоположение для определения точного времени молитвы на основе вашего текущего местоположения.";
