@@ -48,4 +48,16 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
       return localData.map((e) => e.toEntity()).toList();
     }
   }
+
+  @override
+  Future<MqDonationPageEntity> getDonationPageData() async {
+    try {
+      final remoteData = await remoteDataSource.getDonationPageData();
+      return remoteData.toEntity();
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('HomeRepositoryImpl, getData error: $e');
+      throw Exception(e);
+    }
+  }
 }

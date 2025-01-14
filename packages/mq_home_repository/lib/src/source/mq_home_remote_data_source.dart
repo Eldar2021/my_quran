@@ -4,4 +4,6 @@ abstract class MqHomeRemoteDataSource {
   Future<MqHomeModelResponse> getRemoteData();
 
   Future<List<MqStoryModelResponse>> getStories(String language);
+
+  Future<MqDonationPageResponse> getDonationPageData();
 }

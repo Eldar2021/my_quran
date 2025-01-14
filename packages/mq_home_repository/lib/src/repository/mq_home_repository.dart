@@ -4,4 +4,6 @@ abstract interface class MqHomeRepository {
   Future<MqHomeEntity> getData();
 
   Future<List<MqStoryEntity>> getStories(String language);
+
+  Future<MqDonationPageEntity> getDonationPageData();
 }
