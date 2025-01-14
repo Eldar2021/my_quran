@@ -33,4 +33,17 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
       (right) => right,
     );
   }
+
+  @override
+  Future<MqDonationPageResponse> getDonationPageData() async {
+    final remoteValue = await remoteClient.getType<MqDonationPageResponse>(
+      'https://eldar2021.github.io/my-quran/donation-requisites/requisites.json',
+      fromJson: MqDonationPageResponse.fromJson,
+    );
+
+    return remoteValue.fold(
+      (left) => throw Exception('Failed to fetch remote data $left'),
+      (right) => right,
+    );
+  }
 }

@@ -44,6 +44,7 @@ final class AppRouter {
   static const contactUs = 'contect-us';
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
+  static const donation = 'donation';
 
   GoRouter router() {
     return GoRouter(
@@ -165,6 +166,12 @@ final class AppRouter {
         name: contactUs,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const ContactUsView(),
+      ),
+      GoRoute(
+        path: donation,
+        name: donation,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const MqDonationView(),
       ),
       GoRoute(
         path: developers,

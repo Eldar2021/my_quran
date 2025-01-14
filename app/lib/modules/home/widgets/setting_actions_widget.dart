@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/app/cubit/auth_cubit.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
@@ -92,6 +92,24 @@ class SettingActionsWidget extends StatelessWidget {
             ),
           ),
           title: context.l10n.share,
+        ),
+        BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+          builder: (context, state) {
+            if (state.isDonaitonEnable) {
+              return DrawerTile(
+                onTap: () => context.pushNamed(AppRouter.donation),
+                icon: Assets.icons.donate.svg(
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                title: context.l10n.donate,
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
         ),
         DrawerTile(
           key: const Key(MqKeys.settingsDevelopers),
