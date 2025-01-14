@@ -6,13 +6,17 @@ class MqBankInfoCard extends StatelessWidget {
   const MqBankInfoCard({
     required this.bankName,
     required this.bankAccount,
+    required this.accountName,
     this.copyLabel = 'Copy',
+    this.copyText,
     super.key,
   });
 
   final String bankName;
   final String bankAccount;
+  final String accountName;
   final String copyLabel;
+  final String? copyText;
 
   @override
   Widget build(BuildContext context) {
@@ -32,29 +36,19 @@ class MqBankInfoCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Row(
-                      children: [
-                        Assets.icons.visa.svg(
-                          colorFilter: ColorFilter.mode(
-                            colorScheme.onSurface,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Flexible(
-                          child: Text(
-                            bankName,
-                            style: prTextTheme.titleMedium,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      bankName,
+                      style: prTextTheme.titleLarge,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        bankAccount,
-                        style: prTextTheme.titleMedium,
-                      ),
+                    const SizedBox(height: 8),
+                    Text(
+                      bankAccount,
+                      style: prTextTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      accountName,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
                 ),
@@ -64,7 +58,7 @@ class MqBankInfoCard extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       Clipboard.setData(
-                        ClipboardData(text: bankAccount),
+                        ClipboardData(text: copyText ?? bankAccount),
                       );
                     },
                     icon: Assets.icons.copy.svg(

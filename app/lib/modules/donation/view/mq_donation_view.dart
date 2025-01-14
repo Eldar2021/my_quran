@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -9,15 +10,20 @@ class MqDonationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.donate),
-      ),
-      body: BlocProvider(
-        create: (context) => DonationCubit(
-          context.read<MqHomeRepository>(),
-        )..getDonation(),
-        child: const _Body(),
+    return BlocListener<RemoteConfigCubit, RemoteConfigState>(
+      listener: (context, state) {
+        if (!state.isDonaitonEnable) Navigator.pop(context);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(context.l10n.donate),
+        ),
+        body: BlocProvider(
+          create: (context) => DonationCubit(
+            context.read<MqHomeRepository>(),
+          )..getDonation(),
+          child: const _Body(),
+        ),
       ),
     );
   }

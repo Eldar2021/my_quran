@@ -35,6 +35,32 @@ final class MqDonationPageEntity {
   final String pageDescriptionRu;
   final String pageDescriptionTr;
   final List<MqDonationRequisiteEntity> requisites;
+
+  String getTitle(String language) {
+    return switch (language) {
+      'ar' => pageTitleAr,
+      'en' => pageTitleEn,
+      'id' => pageTitleId,
+      'kk' => pageTitleKk,
+      'ky' => pageTitleKy,
+      'ru' => pageTitleRu,
+      'tr' => pageTitleTr,
+      _ => pageTitleEn,
+    };
+  }
+
+  String getDescription(String language) {
+    return switch (language) {
+      'ar' => pageDescriptionAr,
+      'en' => pageDescriptionEn,
+      'id' => pageDescriptionId,
+      'kk' => pageDescriptionKk,
+      'ky' => pageDescriptionKy,
+      'ru' => pageDescriptionRu,
+      'tr' => pageDescriptionTr,
+      _ => pageDescriptionEn,
+    };
+  }
 }
 
 @immutable

@@ -231,8 +231,9 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const Divider(),
           const SizedBox(height: 20),
           const MqBankInfoCard(
-            bankName: 'ALMAZBEK UULU ELDIIAR',
+            bankName: 'Viza',
             bankAccount: '4169585312345678',
+            accountName: 'Almazbek Uulu Eldiayar',
           ),
           const SizedBox(height: 20),
           const Divider(),
