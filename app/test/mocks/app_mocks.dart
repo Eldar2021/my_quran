@@ -49,4 +49,7 @@ class MockMqRemoteConfig implements MqRemoteConfig {
       cancelOnError: cancelOnError,
     );
   }
+
+  @override
+  bool get donaitonIsEnable => false;
 }

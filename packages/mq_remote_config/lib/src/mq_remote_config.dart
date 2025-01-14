@@ -39,6 +39,7 @@ class MqRemoteConfig {
   }
 
   static const _hatimIsEnable = 'hatimIsEnable';
+  static const _donationIsEnable = 'donationIsEnable';
   static const _appVersion = 'appVersion';
 
   static Map<String, dynamic> _defaultAppVersionValue(int currentBuildNumber) {
@@ -57,11 +58,14 @@ class MqRemoteConfig {
   static Map<String, dynamic> _defaultParams(int currentBuildNumber) {
     return {
       _hatimIsEnable: true,
+      _donationIsEnable: false,
       _appVersion: jsonEncode(_defaultAppVersionValue(currentBuildNumber)),
     };
   }
 
   bool get hatimIsEnable => _firebaseRemoteConfig.getBool(_hatimIsEnable);
+
+  bool get donaitonIsEnable => _firebaseRemoteConfig.getBool(_donationIsEnable);
 
   StreamSubscription<void> listen(
     void Function() onData, {

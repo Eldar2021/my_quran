@@ -34,6 +34,16 @@ class MyApp extends StatelessWidget {
                   ),
           ),
         ),
+        RepositoryProvider<MqHomeRepository>(
+          create: (context) => MqHomeRepositoryImpl(
+            isMockData
+                ? const MqHomeLocalDataSourceMock()
+                : MqHomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
+            isMockData
+                ? const MqHomeRemoteDataSourceMock()
+                : MqHomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+          ),
+        ),
         RepositoryProvider<AuthRepository>(
           create: (context) {
             return AuthRepositoryImpl(
@@ -55,28 +65,10 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
-          create: (context) => HomeCubit(
-            MqHomeRepositoryImpl(
-              isMockData
-                  ? const MqHomeLocalDataSourceMock()
-                  : MqHomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
-              isMockData
-                  ? const MqHomeRemoteDataSourceMock()
-                  : MqHomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
-            ),
-          ),
+          create: (context) => HomeCubit(context.read<MqHomeRepository>()),
         ),
         BlocProvider(
-          create: (context) => MqStoryCubit(
-            MqHomeRepositoryImpl(
-              isMockData
-                  ? const MqHomeLocalDataSourceMock()
-                  : MqHomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
-              isMockData
-                  ? const MqHomeRemoteDataSourceMock()
-                  : MqHomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
-            ),
-          ),
+          create: (context) => MqStoryCubit(context.read<MqHomeRepository>()),
         ),
         BlocProvider(
           create: (context) => QuranAudioCubit(

@@ -25,11 +25,14 @@ class RemoteConfigCubit extends Cubit<RemoteConfigState> {
     final newState = state.copyWith(
       appVersionStatus: _getAppVersionStatus,
       isHatimEnable: _hatimIsEnable,
+      isDonaitonEnable: _isDonaitonEnable,
     );
     emit(newState);
   }
 
   bool get _hatimIsEnable => remoteConfig.hatimIsEnable;
+
+  bool get _isDonaitonEnable => remoteConfig.donaitonIsEnable;
 
   AppVersionStatus get _getAppVersionStatus {
     final currentBuildNumber = int.parse(packageInfo.buildNumber);
