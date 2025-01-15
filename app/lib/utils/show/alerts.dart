@@ -77,12 +77,12 @@ final class AppAlert {
   static void showUpdateLocation({
     required BuildContext context,
     required String newLocation,
-    void Function()? onConfirm,
-    void Function()? onCancel,
+    required void Function(BuildContext ctx) onConfirm,
+    required void Function(BuildContext ctx) onCancel,
   }) {
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (BuildContext ctx) {
         return CupertinoAlertDialog(
           title: Text(
             context.l10n.newLocationDetected,
@@ -102,11 +102,11 @@ final class AppAlert {
           ),
           actions: <Widget>[
             CupertinoButton(
-              onPressed: onCancel,
+              onPressed: () => onCancel(ctx),
               child: Text(context.l10n.cancel),
             ),
             CupertinoButton(
-              onPressed: onConfirm,
+              onPressed: () => onConfirm(ctx),
               child: Text(context.l10n.yes),
             ),
           ],

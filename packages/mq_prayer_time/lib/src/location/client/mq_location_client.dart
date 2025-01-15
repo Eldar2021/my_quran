@@ -31,6 +31,11 @@ final class MqLocationClient {
       Position position,
       String locationName,
       String timeZoneLocation,
+    ) onInitailLocation,
+    required void Function(
+      Position position,
+      String locationName,
+      String timeZoneLocation,
     ) onKeepLocation,
     required void Function(
       Position position,
@@ -40,12 +45,17 @@ final class MqLocationClient {
   }) async {
     final position = await locationService.getCurrentLocation();
     final cashedPosition = locationStorage.getCashedLocation();
-    if (position != cashedPosition &&
+    if (position.latitude != cashedPosition?.latitude &&
+        position.longitude != cashedPosition?.longitude &&
         position.latitude != MqLocationStatic.makkahPosition.latitude &&
         position.longitude != MqLocationStatic.makkahPosition.longitude) {
       final locationName = await locationService.getLocationName(position);
       final timeZoneLocation = await locationService.timeZoneLocation();
-      onNewLocation(position, locationName, timeZoneLocation);
+      if (cashedPosition == null) {
+        onInitailLocation(position, locationName, timeZoneLocation);
+      } else {
+        onNewLocation(position, locationName, timeZoneLocation);
+      }
     } else {
       final locationName = await locationService.getLocationName(position);
       final timeZoneLocation = await locationService.timeZoneLocation();

@@ -23,8 +23,9 @@ class LocationCubit extends Cubit<LocationState> {
 
   Future<void> init() async {
     await client.init(
-      onKeepLocation: _updateLocation,
-      onNewLocation: _keepLocation,
+      onInitailLocation: _onInitailLocation,
+      onNewLocation: _updateLocation,
+      onKeepLocation: _keepLocation,
     );
   }
 
@@ -43,6 +44,17 @@ class LocationCubit extends Cubit<LocationState> {
       locationName: locationName,
       timeZoneLocation: timeZoneLocation,
     );
+  }
+
+  void _onInitailLocation(
+    Position mewPosition,
+    String newLocationName,
+    String newTimeZoneLocation,
+  ) {
+    position = mewPosition;
+    locationName = newLocationName;
+    timeZoneLocation = newTimeZoneLocation;
+    updateLocation();
   }
 
   void _updateLocation(
