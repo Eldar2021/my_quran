@@ -12,37 +12,30 @@ class MqSalaahTimeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: BlocBuilder<LocationCubit, LocationState>(
+      child: BlocConsumer<LocationCubit, LocationState>(
+        listener: (BuildContext context, LocationState state) {},
         builder: (context, state) {
-          if (state is LocationLoading || state is LocationInitial) {
-            return const GradientDecoratedBox(
-              child: SizedBox(height: 120, width: double.infinity),
-            );
-          } else if (state is LocationLoaded) {
-            return MqSalaahCard(
-              fajrLabel: context.l10n.fajr,
-              zuhrLabel: context.l10n.zuhr,
-              asrLabel: context.l10n.asr,
-              maghribLabel: context.l10n.maghrib,
-              ishaLabel: context.l10n.isya,
-              fajrTime: '',
-              zuhrTime: '',
-              asrTime: '',
-              maghribTime: '',
-              ishaTime: '',
-              fajrActive: true,
-              zuhrActive: true,
-              asrActive: true,
-              maghribActive: true,
-              ishaActive: true,
-              currentTime: DateFormat('HH:mm').format(DateTime.now()),
-              locationLabel: state.city,
-              location: state.location,
-              onLocationPressed: () {},
-            );
-          } else {
-            return const SizedBox.shrink();
-          }
+          return MqSalaahCard(
+            fajrLabel: context.l10n.fajr,
+            zuhrLabel: context.l10n.zuhr,
+            asrLabel: context.l10n.asr,
+            maghribLabel: context.l10n.maghrib,
+            ishaLabel: context.l10n.isya,
+            fajrTime: '',
+            zuhrTime: '',
+            asrTime: '',
+            maghribTime: '',
+            ishaTime: '',
+            fajrActive: true,
+            zuhrActive: true,
+            asrActive: true,
+            maghribActive: true,
+            ishaActive: true,
+            currentTime: DateFormat('HH:mm').format(DateTime.now()),
+            locationLabel: state.locationName,
+            location: state.timeZoneLocation,
+            onLocationPressed: () {},
+          );
         },
       ),
     );

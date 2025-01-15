@@ -1,36 +1,33 @@
 part of 'location_cubit.dart';
 
-abstract class LocationState extends Equatable {
-  const LocationState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class LocationInitial extends LocationState {}
-
-class LocationLoading extends LocationState {}
-
-class LocationLoaded extends LocationState {
-  const LocationLoaded({
-    required this.city,
+@immutable
+final class LocationState extends Equatable {
+  const LocationState({
     required this.position,
-    required this.location,
+    required this.locationName,
+    required this.timeZoneLocation,
   });
 
-  final String city;
   final Position position;
-  final String location;
+  final String locationName;
+  final String timeZoneLocation;
 
   @override
-  List<Object> get props => [city, position];
-}
+  List<Object> get props => [
+        position,
+        locationName,
+        timeZoneLocation,
+      ];
 
-class LocationError extends LocationState {
-  const LocationError(this.message);
-
-  final String message;
-
-  @override
-  List<Object> get props => [message];
+  LocationState copyWith({
+    Position? position,
+    String? locationName,
+    String? timeZoneLocation,
+  }) {
+    return LocationState(
+      position: position ?? this.position,
+      locationName: locationName ?? this.locationName,
+      timeZoneLocation: timeZoneLocation ?? this.timeZoneLocation,
+    );
+  }
 }

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
 import 'package:mq_storage/mq_storage.dart';
 

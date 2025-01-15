@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
 
 @immutable
@@ -28,16 +27,16 @@ final class MqLocationClient {
   }
 
   Future<void> init({
-    required void Function({
-      required Position position,
-      required String locationName,
-      required String timeZoneLocation,
-    }) onKeepLocation,
-    required void Function({
-      required Position position,
-      required String locationName,
-      required String timeZoneLocation,
-    }) onNewLocation,
+    required void Function(
+      Position position,
+      String locationName,
+      String timeZoneLocation,
+    ) onKeepLocation,
+    required void Function(
+      Position position,
+      String locationName,
+      String timeZoneLocation,
+    ) onNewLocation,
   }) async {
     final position = await locationService.getCurrentLocation();
     final cashedPosition = locationStorage.getCashedLocation();
@@ -46,19 +45,11 @@ final class MqLocationClient {
         position.longitude != MqLocationStatic.makkahPosition.longitude) {
       final locationName = await locationService.getLocationName(position);
       final timeZoneLocation = await locationService.timeZoneLocation();
-      onNewLocation(
-        position: position,
-        locationName: locationName,
-        timeZoneLocation: timeZoneLocation,
-      );
+      onNewLocation(position, locationName, timeZoneLocation);
     } else {
       final locationName = await locationService.getLocationName(position);
       final timeZoneLocation = await locationService.timeZoneLocation();
-      onKeepLocation(
-        position: position,
-        locationName: locationName,
-        timeZoneLocation: timeZoneLocation,
-      );
+      onKeepLocation(position, locationName, timeZoneLocation);
     }
   }
 

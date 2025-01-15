@@ -7,6 +7,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
+import 'package:mq_prayer_time/mq_prayer_time.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMockData = context.read<AppConfig>().isMockData;
+    final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
     return MultiBlocProvider(
       providers: [
         RepositoryProvider<AppRepository>(
@@ -42,6 +44,17 @@ class MyApp extends StatelessWidget {
             isMockData
                 ? const MqHomeRemoteDataSourceMock()
                 : MqHomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+          ),
+        ),
+        RepositoryProvider<MqLocationClient>(
+          create: (context) => MqLocationClient(
+            locationService:
+                (isMockData || isIntegrationTest) ? const MqLocationMockService() : const MqLocationServiceImpl(),
+            locationStorage: (isMockData || isIntegrationTest)
+                ? const MqLocationStorageMock()
+                : MqLocationStorageImpl(
+                    context.read<PreferencesStorage>(),
+                  ),
           ),
         ),
         RepositoryProvider<AuthRepository>(
@@ -84,7 +97,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LocationCubit(
-            context.read<AppConfig>(),
+            context.read<MqLocationClient>(),
           ),
         ),
         BlocProvider(

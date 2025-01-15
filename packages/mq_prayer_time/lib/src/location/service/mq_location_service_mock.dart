@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
 
 @immutable
-final class MqLocationServiceMock implements MqLocationService {
-  const MqLocationServiceMock();
+final class MqLocationMockService implements MqLocationService {
+  const MqLocationMockService();
 
   @override
   Future<Position> getCurrentLocation() async {
