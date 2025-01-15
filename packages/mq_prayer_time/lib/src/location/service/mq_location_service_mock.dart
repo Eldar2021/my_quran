@@ -8,23 +8,12 @@ final class MqLocationServiceMock implements MqLocationService {
 
   @override
   Future<Position> getCurrentLocation() async {
-    return Position(
-      latitude: 21.422510,
-      longitude: 39.826168,
-      timestamp: DateTime.now(),
-      altitudeAccuracy: 0,
-      accuracy: 0,
-      altitude: 0,
-      heading: 0,
-      speed: 0,
-      speedAccuracy: 0,
-      headingAccuracy: 0,
-    );
+    return MqLocationStatic.makkahPosition;
   }
 
   @override
   Future<String> getLocationName(Position position) async {
-    return Future.value('Makkah');
+    return Future.value(MqLocationStatic.makkahName);
   }
 
   @override

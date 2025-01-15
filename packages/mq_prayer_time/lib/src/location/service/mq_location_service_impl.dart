@@ -21,11 +21,11 @@ final class MqLocationServiceImpl implements MqLocationService {
         );
         return location;
       } else {
-        return defaultLocation;
+        return MqLocationStatic.makkahPosition;
       }
     } catch (e, s) {
       log('getCurrentLocation error: $e \n $s');
-      return defaultLocation;
+      return MqLocationStatic.makkahPosition;
     }
   }
 
@@ -69,20 +69,5 @@ final class MqLocationServiceImpl implements MqLocationService {
       log('getLocationName error: $e \n $s');
       return 'Unknown';
     }
-  }
-
-  Position get defaultLocation {
-    return Position(
-      latitude: 21.422510,
-      longitude: 39.826168,
-      timestamp: DateTime.now(),
-      altitudeAccuracy: 0,
-      accuracy: 0,
-      altitude: 0,
-      heading: 0,
-      speed: 0,
-      speedAccuracy: 0,
-      headingAccuracy: 0,
-    );
   }
 }

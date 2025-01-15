@@ -8,23 +8,12 @@ final class MqLocationStorageMock implements MqLocationStorage {
 
   @override
   Position? getCashedLocation() {
-    return Position(
-      latitude: 21.422510,
-      longitude: 39.826168,
-      timestamp: DateTime.now(),
-      altitudeAccuracy: 0,
-      accuracy: 0,
-      altitude: 0,
-      heading: 0,
-      speed: 0,
-      speedAccuracy: 0,
-      headingAccuracy: 0,
-    );
+    return MqLocationStatic.makkahPosition;
   }
 
   @override
   String? getLocationName() {
-    return 'Makkah';
+    return MqLocationStatic.makkahName;
   }
 
   @override
