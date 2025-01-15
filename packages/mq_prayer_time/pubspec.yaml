@@ -10,6 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  geocoding: ^3.0.0
+  geolocator: ^13.0.1
+  timezone: ^0.9.3
+  flutter_timezone: ^2.1.0
+
+  mq_remote_client:
+    path: ../mq_remote_client
+  mq_storage:
+    path: ../mq_storage
 
 dev_dependencies:
   flutter_test:
