@@ -30,8 +30,8 @@ dependencies:
 
   # Localization
   intl: ^0.19.0
-  timezone: ^0.9.3
-  flutter_timezone: ^2.1.0
+  # timezone: ^0.9.3
+  # flutter_timezone: ^2.1.0
 
   # Utilities & Helpers
   url_launcher: ^6.3.1
@@ -49,8 +49,8 @@ dependencies:
   package_info_plus: ^8.1.0
 
   # Location
-  geocoding: ^3.0.0
-  geolocator: ^13.0.1
+  # geocoding: ^3.0.0
+  # geolocator: ^13.0.1
 
   # Packages
   mq_ci_keys:
@@ -77,6 +77,8 @@ dependencies:
     path: ../packages/mq_hatim_repository
   mq_app_ui:
     path: ../packages/mq_app_ui
+  mq_prayer_time:
+    path: ../packages/mq_prayer_time
 
   # flutter_native_splash: ^2.4.0
 
