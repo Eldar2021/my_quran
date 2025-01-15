@@ -119,5 +119,7 @@
     "enterVerificationCodeValidation": "Please enter the full verification code.",
     "restartApp": "You need to restart the app",
     "restartForDevMode": "Restart application for enabling/disabling dev-mode",
-    "restart": "Restart"
+    "restart": "Restart",
+    "newLocationDetected": "New location detected!",
+    "doYouWantToChange": "Do you want to change?"
 }

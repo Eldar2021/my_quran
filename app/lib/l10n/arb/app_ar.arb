@@ -119,5 +119,7 @@
     "enterVerificationCodeValidation": "يرجى إدخال رمز التحقق الكامل.",
     "restartApp": "يجب عليك إعادة تشغيل التطبيق",
     "restartForDevMode": "أعد تشغيل التطبيق لتمكين/تعطيل وضع المطور",
-    "restart": "إعادة تشغيل"
+    "restart": "إعادة تشغيل",
+    "newLocationDetected": "تم اكتشاف موقع جديد!",
+    "doYouWantToChange": "هل تريد التغيير؟"
 }

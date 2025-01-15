@@ -1,36 +1,74 @@
 part of 'location_cubit.dart';
 
-abstract class LocationState extends Equatable {
-  const LocationState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class LocationInitial extends LocationState {}
-
-class LocationLoading extends LocationState {}
-
-class LocationLoaded extends LocationState {
-  const LocationLoaded({
-    required this.city,
+@immutable
+final class LocationState extends Equatable {
+  const LocationState({
     required this.position,
-    required this.location,
+    required this.locationName,
+    required this.timeZoneLocation,
+    this.eventState = const LocationEventInitial(),
   });
 
-  final String city;
   final Position position;
-  final String location;
+  final String locationName;
+  final String timeZoneLocation;
+  final LocationEventState eventState;
 
   @override
-  List<Object> get props => [city, position];
+  List<Object> get props => [
+        position,
+        locationName,
+        timeZoneLocation,
+        eventState,
+      ];
+
+  LocationState copyWith({
+    Position? position,
+    String? locationName,
+    String? timeZoneLocation,
+    LocationEventState? eventState,
+  }) {
+    return LocationState(
+      position: position ?? this.position,
+      locationName: locationName ?? this.locationName,
+      timeZoneLocation: timeZoneLocation ?? this.timeZoneLocation,
+      eventState: eventState ?? this.eventState,
+    );
+  }
 }
 
-class LocationError extends LocationState {
-  const LocationError(this.message);
+@immutable
+sealed class LocationEventState {
+  const LocationEventState();
+}
 
-  final String message;
+@immutable
+final class LocationEventInitial extends LocationEventState {
+  const LocationEventInitial();
+}
 
-  @override
-  List<Object> get props => [message];
+@immutable
+final class LocationEventKeepLocation extends LocationEventState {
+  const LocationEventKeepLocation({
+    required this.keepPosition,
+    required this.keepLocationName,
+    required this.keepTimeZoneLocation,
+  });
+
+  final Position keepPosition;
+  final String keepLocationName;
+  final String keepTimeZoneLocation;
+}
+
+@immutable
+final class LocationEventNewLocation extends LocationEventState {
+  const LocationEventNewLocation({
+    required this.mewPosition,
+    required this.newLocationName,
+    required this.newTimeZoneLocation,
+  });
+
+  final Position mewPosition;
+  final String newLocationName;
+  final String newTimeZoneLocation;
 }

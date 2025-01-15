@@ -1,85 +1,91 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_timezone/flutter_timezone.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:my_quran/config/config.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
+import 'package:meta/meta.dart';
+import 'package:mq_prayer_time/mq_prayer_time.dart';
 
 part 'location_state.dart';
 
 class LocationCubit extends Cubit<LocationState> {
-  LocationCubit(this.appConfig) : super(LocationInitial());
-  final AppConfig appConfig;
-
-  Future<void> fetchLocation() async {
-    emit(LocationLoading());
-
-    try {
-      if (appConfig.isIntegrationTest) {
-        const defaultLatitude = 21.1959;
-        const defaultLongitude = 72.7933;
-        final position = Position(
-          latitude: defaultLatitude,
-          longitude: defaultLongitude,
-          altitudeAccuracy: 1,
-          timestamp: DateTime.now(),
-          accuracy: 1,
-          headingAccuracy: 1,
-          speed: 1,
-          speedAccuracy: 1,
-          altitude: 1,
-          heading: 1,
+  LocationCubit(this.client)
+      : super(
+          LocationState(
+            position: client.initialPosition,
+            locationName: client.initialLocationName,
+            timeZoneLocation: client.initialTimeZoneLocation,
+          ),
         );
-        final city = await _getCityFromCoordinates(defaultLatitude, defaultLongitude);
-        emit(LocationLoaded(city: city, position: position, location: 'Asia/Bishkek'));
-        return;
-      }
 
-      final hasPermission = await _handleLocationPermission();
-      if (!hasPermission) {
-        emit(const LocationError('Location permission denied'));
-        return;
-      }
+  final MqLocationClient client;
 
-      const locationSettings = LocationSettings(
-        accuracy: LocationAccuracy.high,
-      );
+  Position position = MqLocationStatic.makkahPosition;
+  String locationName = MqLocationStatic.makkahName;
+  String timeZoneLocation = MqLocationStatic.makkahTimezone;
 
-      final position = await Geolocator.getCurrentPosition(
-        locationSettings: locationSettings,
-      );
-      final city = await _getCityFromCoordinates(position.latitude, position.longitude);
-      tz.initializeTimeZones();
-      final timeZoneName = await FlutterTimezone.getLocalTimezone();
-      final location = tz.getLocation(timeZoneName);
-      tz.setLocalLocation(tz.getLocation(timeZoneName));
-      emit(LocationLoaded(city: city, position: position, location: location.name));
-    } catch (e) {
-      emit(LocationError('Failed to get location: $e'));
-    }
+  Future<void> init() async {
+    await client.init(
+      onInitailLocation: _onInitailLocation,
+      onNewLocation: _updateLocation,
+      onKeepLocation: _keepLocation,
+    );
   }
 
-  Future<bool> _handleLocationPermission() async {
-    var permission = await Geolocator.checkPermission();
+  Future<void> updateLocation() async {
+    final newState = state.copyWith(
+      position: position,
+      locationName: locationName,
+      timeZoneLocation: timeZoneLocation,
+      eventState: const LocationEventInitial(),
+    );
 
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return false;
-      }
-    }
+    emit(newState);
 
-    if (permission == LocationPermission.deniedForever) {
-      return false;
-    }
-
-    return true;
+    await client.saveData(
+      position: position,
+      locationName: locationName,
+      timeZoneLocation: timeZoneLocation,
+    );
   }
 
-  Future<String> _getCityFromCoordinates(double latitude, double longitude) async {
-    final placemarks = await placemarkFromCoordinates(latitude, longitude);
-    return placemarks.first.locality ?? 'Unknown';
+  void _onInitailLocation(
+    Position mewPosition,
+    String newLocationName,
+    String newTimeZoneLocation,
+  ) {
+    position = mewPosition;
+    locationName = newLocationName;
+    timeZoneLocation = newTimeZoneLocation;
+    updateLocation();
+  }
+
+  void _updateLocation(
+    Position mewPosition,
+    String newLocationName,
+    String newTimeZoneLocation,
+  ) {
+    position = mewPosition;
+    locationName = newLocationName;
+    timeZoneLocation = newTimeZoneLocation;
+    final newEventState = LocationEventNewLocation(
+      mewPosition: mewPosition,
+      newLocationName: newLocationName,
+      newTimeZoneLocation: newTimeZoneLocation,
+    );
+    emit(state.copyWith(eventState: newEventState));
+  }
+
+  void _keepLocation(
+    Position keepPosition,
+    String keepLocationName,
+    String keepTimeZoneLocation,
+  ) {
+    position = keepPosition;
+    locationName = keepLocationName;
+    timeZoneLocation = keepTimeZoneLocation;
+    final newEventState = LocationEventKeepLocation(
+      keepPosition: keepPosition,
+      keepLocationName: keepLocationName,
+      keepTimeZoneLocation: keepTimeZoneLocation,
+    );
+    emit(state.copyWith(eventState: newEventState));
   }
 }

@@ -32,8 +32,7 @@ class _HomeViewState extends State<HomeView> {
       MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
     }
-    context.read<LocationCubit>().fetchLocation();
-
+    context.read<LocationCubit>().init();
     super.initState();
   }
 
