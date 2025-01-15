@@ -119,5 +119,7 @@
     "enterVerificationCodeValidation": "Толық тексеру кодын енгізіңіз.",
     "restartApp": "Қосымшаны қайта іске қосу қажет",
     "restartForDevMode": "Даму режимін қосу/өшіру үшін қосымшаны қайта іске қосыңыз",
-    "restart": "Қайта іске қосу"
+    "restart": "Қайта іске қосу",
+    "newLocationDetected": "Жаңа орын анықталды!",
+    "doYouWantToChange": "Өзгерткіңіз келе ме?"
 }

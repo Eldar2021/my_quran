@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/utils/show/alerts.dart';
 
 class MqSalaahTimeWidget extends StatelessWidget {
   const MqSalaahTimeWidget({super.key});
@@ -13,7 +14,12 @@ class MqSalaahTimeWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: BlocConsumer<LocationCubit, LocationState>(
-        listener: (BuildContext context, LocationState state) {},
+        listener: (BuildContext context, LocationState state) {
+          final eventState = state.eventState;
+          if (eventState is LocationEventNewLocation) {
+            _onEventNewLocation(context, eventState.newLocationName);
+          }
+        },
         builder: (context, state) {
           return MqSalaahCard(
             fajrLabel: context.l10n.fajr,
@@ -38,6 +44,15 @@ class MqSalaahTimeWidget extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  void _onEventNewLocation(BuildContext context, String newLocation) {
+    AppAlert.showUpdateLocation(
+      context: context,
+      newLocation: newLocation,
+      onConfirm: () => context.read<LocationCubit>().updateLocation(),
+      onCancel: () => Navigator.pop(context),
     );
   }
 }

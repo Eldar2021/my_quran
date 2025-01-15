@@ -23,12 +23,29 @@ class LocationCubit extends Cubit<LocationState> {
 
   Future<void> init() async {
     await client.init(
-      onKeepLocation: updateLocation,
-      onNewLocation: keepLocation,
+      onKeepLocation: _updateLocation,
+      onNewLocation: _keepLocation,
     );
   }
 
-  void updateLocation(
+  Future<void> updateLocation() async {
+    final newState = state.copyWith(
+      position: position,
+      locationName: locationName,
+      timeZoneLocation: timeZoneLocation,
+      eventState: const LocationEventInitial(),
+    );
+
+    emit(newState);
+
+    await client.saveData(
+      position: position,
+      locationName: locationName,
+      timeZoneLocation: timeZoneLocation,
+    );
+  }
+
+  void _updateLocation(
     Position mewPosition,
     String newLocationName,
     String newTimeZoneLocation,
@@ -36,9 +53,15 @@ class LocationCubit extends Cubit<LocationState> {
     position = mewPosition;
     locationName = newLocationName;
     timeZoneLocation = newTimeZoneLocation;
+    final newEventState = LocationEventNewLocation(
+      mewPosition: mewPosition,
+      newLocationName: newLocationName,
+      newTimeZoneLocation: newTimeZoneLocation,
+    );
+    emit(state.copyWith(eventState: newEventState));
   }
 
-  void keepLocation(
+  void _keepLocation(
     Position keepPosition,
     String keepLocationName,
     String keepTimeZoneLocation,
@@ -46,5 +69,11 @@ class LocationCubit extends Cubit<LocationState> {
     position = keepPosition;
     locationName = keepLocationName;
     timeZoneLocation = keepTimeZoneLocation;
+    final newEventState = LocationEventKeepLocation(
+      keepPosition: keepPosition,
+      keepLocationName: keepLocationName,
+      keepTimeZoneLocation: keepTimeZoneLocation,
+    );
+    emit(state.copyWith(eventState: newEventState));
   }
 }

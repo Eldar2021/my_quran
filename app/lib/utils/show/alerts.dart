@@ -73,4 +73,45 @@ final class AppAlert {
       },
     );
   }
+
+  static void showUpdateLocation({
+    required BuildContext context,
+    required String newLocation,
+    void Function()? onConfirm,
+    void Function()? onCancel,
+  }) {
+    showCupertinoDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text(
+            context.l10n.newLocationDetected,
+            textAlign: TextAlign.center,
+          ),
+          content: Column(
+            children: [
+              Text(
+                newLocation,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                context.l10n.doYouWantToChange,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            CupertinoButton(
+              onPressed: onCancel,
+              child: Text(context.l10n.cancel),
+            ),
+            CupertinoButton(
+              onPressed: onConfirm,
+              child: Text(context.l10n.yes),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

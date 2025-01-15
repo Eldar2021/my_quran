@@ -119,5 +119,7 @@
     "enterVerificationCodeValidation": "Lütfen tam doğrulama kodunu girin.",
     "restartApp": "Uygulamayı yeniden başlatmalısınız",
     "restartForDevMode": "Geliştirici modunu etkinleştirmek/devre dışı bırakmak için uygulamayı yeniden başlatın",
-    "restart": "Yeniden başlat"
+    "restart": "Yeniden başlat",
+    "newLocationDetected": "Yeni bir konum tespit edildi!",
+    "doYouWantToChange": "Değiştirmek ister misiniz?"
 }

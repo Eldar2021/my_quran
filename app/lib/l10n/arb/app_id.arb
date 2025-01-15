@@ -119,5 +119,7 @@
     "enterVerificationCodeValidation": "Harap masukkan kode verifikasi lengkap.",
     "restartApp": "Anda perlu memulai ulang aplikasi",
     "restartForDevMode": "Mulai ulang aplikasi untuk mengaktifkan/nonaktifkan mode pengembang",
-    "restart": "Mulai ulang"
+    "restart": "Mulai ulang",
+    "newLocationDetected": "Lokasi baru terdeteksi!",
+    "doYouWantToChange": "Apakah Anda ingin mengganti?"
 }

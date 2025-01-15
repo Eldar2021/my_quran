@@ -119,5 +119,7 @@
     "enterVerificationCodeValidation": "Верификациялоо үчүн кодду жазыңыз",
     "restartApp": "Тиркемени өчүрүп кайрадан жандырыңыз.",
     "restartForDevMode": "Тест режимин өчүрүп-жандыруу үчүн тиркемени кайрадан ачыңыз",
-    "restart": "Кайрадан баштоо"
+    "restart": "Кайрадан баштоо",
+    "newLocationDetected": "Жаңы локация аныкталды!",
+    "doYouWantToChange": "Өзгөртүүнү каалайсызбы?"
 }
