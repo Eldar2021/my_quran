@@ -25,4 +25,14 @@ final class MqLocationStorageMock implements MqLocationStorage {
   Future<void> setLocationName(String locationName) {
     return Future.value();
   }
+
+  @override
+  String? getTimeZoneLocation() {
+    return MqLocationStatic.makkahTimezone;
+  }
+
+  @override
+  Future<void> setTimeZoneLocation(String timeZoneLocation) {
+    return Future.value();
+  }
 }

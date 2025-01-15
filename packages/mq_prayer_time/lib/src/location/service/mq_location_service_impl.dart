@@ -1,9 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 @immutable
 final class MqLocationServiceImpl implements MqLocationService {
@@ -68,6 +71,20 @@ final class MqLocationServiceImpl implements MqLocationService {
     } catch (e, s) {
       log('getLocationName error: $e \n $s');
       return 'Unknown';
+    }
+  }
+
+  @override
+  Future<String> timeZoneLocation() async {
+    try {
+      tz.initializeTimeZones();
+      final timeZoneName = await FlutterTimezone.getLocalTimezone();
+      final location = tz.getLocation(timeZoneName);
+      tz.setLocalLocation(tz.getLocation(timeZoneName));
+      return location.name;
+    } catch (e, s) {
+      log('timeZoneLocation error: $e \n $s');
+      return MqLocationStatic.makkahTimezone;
     }
   }
 }

@@ -20,4 +20,9 @@ final class MqLocationServiceMock implements MqLocationService {
   Future<bool> getLocationPermission() {
     return Future.value(true);
   }
+
+  @override
+  Future<String> timeZoneLocation() {
+    return Future.value(MqLocationStatic.makkahTimezone);
+  }
 }

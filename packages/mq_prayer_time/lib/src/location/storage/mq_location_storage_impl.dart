@@ -13,6 +13,7 @@ final class MqLocationStorageImpl implements MqLocationStorage {
 
   static const _locationKey = 'location';
   static const _locationNameKey = 'location-name';
+  static const _timeZoneLocationKey = 'time-zone-location';
 
   @override
   Position? getCashedLocation() {
@@ -25,8 +26,7 @@ final class MqLocationStorageImpl implements MqLocationStorage {
 
   @override
   String? getLocationName() {
-    final location = storage.readString(key: _locationNameKey);
-    return location;
+    return storage.readString(key: _locationNameKey);
   }
 
   @override
@@ -41,6 +41,19 @@ final class MqLocationStorageImpl implements MqLocationStorage {
     await storage.writeString(
       key: _locationNameKey,
       value: locationName,
+    );
+  }
+
+  @override
+  String? getTimeZoneLocation() {
+    return storage.readString(key: _timeZoneLocationKey);
+  }
+
+  @override
+  Future<void> setTimeZoneLocation(String timeZoneLocation) async {
+    await storage.writeString(
+      key: _timeZoneLocationKey,
+      value: timeZoneLocation,
     );
   }
 }

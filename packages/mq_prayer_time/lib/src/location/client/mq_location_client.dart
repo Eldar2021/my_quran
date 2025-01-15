@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
 
 @immutable
@@ -10,4 +11,66 @@ final class MqLocationClient {
 
   final MqLocationService locationService;
   final MqLocationStorage locationStorage;
+
+  Position get initialPosition {
+    final position = locationStorage.getCashedLocation();
+    return position ?? MqLocationStatic.makkahPosition;
+  }
+
+  String get initialLocationName {
+    final name = locationStorage.getLocationName();
+    return name ?? MqLocationStatic.makkahName;
+  }
+
+  String get initialTimeZoneLocation {
+    final name = locationStorage.getTimeZoneLocation();
+    return name ?? MqLocationStatic.makkahTimezone;
+  }
+
+  Future<void> init({
+    required void Function({
+      required Position position,
+      required String locationName,
+      required String timeZoneLocation,
+    }) onKeepLocation,
+    required void Function({
+      required Position position,
+      required String locationName,
+      required String timeZoneLocation,
+    }) onNewLocation,
+  }) async {
+    final position = await locationService.getCurrentLocation();
+    final cashedPosition = locationStorage.getCashedLocation();
+    if (position != cashedPosition &&
+        position.latitude != MqLocationStatic.makkahPosition.latitude &&
+        position.longitude != MqLocationStatic.makkahPosition.longitude) {
+      final locationName = await locationService.getLocationName(position);
+      final timeZoneLocation = await locationService.timeZoneLocation();
+      onNewLocation(
+        position: position,
+        locationName: locationName,
+        timeZoneLocation: timeZoneLocation,
+      );
+    } else {
+      final locationName = await locationService.getLocationName(position);
+      final timeZoneLocation = await locationService.timeZoneLocation();
+      onKeepLocation(
+        position: position,
+        locationName: locationName,
+        timeZoneLocation: timeZoneLocation,
+      );
+    }
+  }
+
+  Future<void> saveData({
+    required Position position,
+    required String locationName,
+    required String timeZoneLocation,
+  }) {
+    return Future.wait([
+      locationStorage.setLocation(position),
+      locationStorage.setLocationName(locationName),
+      locationStorage.setTimeZoneLocation(timeZoneLocation),
+    ]);
+  }
 }

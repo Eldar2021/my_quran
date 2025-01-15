@@ -6,4 +6,7 @@ abstract class MqLocationStorage {
 
   String? getLocationName();
   Future<void> setLocationName(String locationName);
+
+  String? getTimeZoneLocation();
+  Future<void> setTimeZoneLocation(String timeZoneLocation);
 }

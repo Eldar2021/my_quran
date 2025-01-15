@@ -6,4 +6,6 @@ abstract interface class MqLocationService {
   Future<String> getLocationName(Position position);
 
   Future<bool> getLocationPermission();
+
+  Future<String> timeZoneLocation();
 }

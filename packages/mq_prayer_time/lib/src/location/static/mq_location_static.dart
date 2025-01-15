@@ -4,6 +4,8 @@ import 'package:geolocator/geolocator.dart';
 abstract class MqLocationStatic {
   static const makkahName = 'Makkah';
 
+  static const makkahTimezone = 'Asia/Riyadh';
+
   static final makkahPosition = Position(
     latitude: 21.422510,
     longitude: 39.826168,
