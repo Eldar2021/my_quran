@@ -148,3 +148,23 @@
 ## [Technical]
 
 - Updated screenshots
+
+---
+
+# What's Changed v1.3.10+20
+
+## [UX]
+
+- News stories connected to backend
+- Refactor Hatim total, User pages, Total pages card
+- Add feature Donation
+- Set default location (Makkah)
+- Improve Localization #316
+
+## [Bug Fixes]
+
+- Fixed IOS NSLocationWhenInUseUsageDescription localizations
+
+## [Technical]
+
+- Improve Release testing issue template
