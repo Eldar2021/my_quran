@@ -61,7 +61,7 @@ final class MqLocationServiceImpl implements MqLocationService {
 
       if (placemarks.isNotEmpty) {
         final place = placemarks.first;
-        final city = place.locality;
+        final city = place.subAdministrativeArea;
         final district = place.administrativeArea;
         if (city != null && city.isNotEmpty) return city;
         if (district != null && district.isNotEmpty) return district;
