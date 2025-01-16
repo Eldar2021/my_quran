@@ -23,7 +23,7 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<!-- Geolocation -->
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We use your location to determine the exact prayer time based on your current location.</string>
+	<string>We use your location to determine the exact prayer time based on current data. If you disable location access, the city of Mecca will be selected by default.</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>CFBundleDisplayName</key>

@@ -6,4 +6,4 @@
   
 */
 
-"NSLocationWhenInUseUsageDescription" = "Bulunduğunuz yere göre tam namaz vaktini belirlemek için konumunuzu kullanıyoruz.";
+"NSLocationWhenInUseUsageDescription" = "Namaz vaktini mevcut verilere göre belirlemek için konumunuzu kullanıyoruz. Eğer konum erişimini devre dışı bırakırsanız, varsayılan olarak Mekke şehri seçilir.";
