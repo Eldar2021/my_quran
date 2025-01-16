@@ -90,7 +90,7 @@ class _HomeViewState extends State<HomeView> {
         child: ListView(
           key: const Key(MqKeys.homeListView),
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             BlocBuilder<MqStoryCubit, MqStoryState>(
               builder: (context, state) {
                 final status = state.status;
