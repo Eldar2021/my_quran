@@ -51,10 +51,13 @@ final class MqLocationClient {
         position.longitude != MqLocationStatic.makkahPosition.longitude) {
       final locationName = await locationService.getLocationName(position);
       final timeZoneLocation = await locationService.timeZoneLocation();
+      final cachedLocationName = locationStorage.getLocationName();
       if (cashedPosition == null) {
         onInitailLocation(position, locationName, timeZoneLocation);
       } else {
-        onNewLocation(position, locationName, timeZoneLocation);
+        if (locationName != cachedLocationName) {
+          onNewLocation(position, locationName, timeZoneLocation);
+        }
       }
     } else {
       final locationName = await locationService.getLocationName(position);

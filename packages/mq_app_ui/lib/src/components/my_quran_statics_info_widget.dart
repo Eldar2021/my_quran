@@ -35,15 +35,15 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                    height: 72,
-                    width: 72,
+                    height: 50,
+                    width: 50,
                     child: Stack(
                       children: [
                         SizedBox(
-                          height: 72,
-                          width: 72,
+                          height: 55,
+                          width: 55,
                           child: CircularProgressIndicator(
-                            value: 0.7,
+                            value: 0.6,
                             backgroundColor: isDark ? colorScheme.inverseSurface : colorScheme.surface,
                           ),
                         ),
@@ -51,7 +51,6 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                           child: Text(
                             count1,
                             style: prTextTheme.titleMedium?.copyWith(
-                              fontSize: 18,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -59,7 +58,7 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 12),
                   Text(
                     label1,
                     textAlign: TextAlign.center,
