@@ -6,4 +6,4 @@
   
 */
 
-"NSLocationWhenInUseUsageDescription" = "We use your location to determine the exact prayer time based on your current location.";
+"NSLocationWhenInUseUsageDescription" = "We use your location to determine the exact prayer time based on current data. If you disable location access, the city of Mecca will be selected by default.";
