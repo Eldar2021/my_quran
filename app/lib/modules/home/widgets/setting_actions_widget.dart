@@ -83,15 +83,22 @@ class SettingActionsWidget extends StatelessWidget {
           ),
           title: context.l10n.contactUs,
         ),
-        DrawerTile(
-          onTap: () => AppShare.shareUri(ApiConst.oneLink),
-          icon: Assets.icons.shareFill.svg(
-            colorFilter: ColorFilter.mode(
-              colorScheme.primary,
-              BlendMode.srcIn,
-            ),
-          ),
-          title: context.l10n.share,
+        Builder(
+          builder: (ctx) {
+            return DrawerTile(
+              onTap: () => AppShare.shareUri(
+                context: ctx,
+                url: ApiConst.oneLink,
+              ),
+              icon: Assets.icons.shareFill.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              title: context.l10n.share,
+            );
+          },
         ),
         BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
           builder: (context, state) {

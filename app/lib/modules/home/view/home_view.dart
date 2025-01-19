@@ -121,23 +121,30 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(height: 20),
             const MqSalaahTimeWidget(),
             const SizedBox(height: 20),
-            ListTile(
-              onTap: () => AppShare.shareUri(ApiConst.oneLink),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-              leading: CircleAvatar(
-                backgroundColor: colorScheme.onInverseSurface,
-                child: Assets.icons.shareFill.svg(
-                  colorFilter: ColorFilter.mode(
-                    colorScheme.primary,
-                    BlendMode.srcIn,
+            Builder(
+              builder: (ctx) {
+                return ListTile(
+                  onTap: () => AppShare.shareUri(
+                    context: ctx,
+                    url: ApiConst.oneLink,
                   ),
-                ),
-              ),
-              title: Text(
-                context.l10n.shareApp,
-                style: prTextTheme.bodyMedium,
-              ),
-              trailing: const Icon(Icons.arrow_forward_ios),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+                  leading: CircleAvatar(
+                    backgroundColor: colorScheme.onInverseSurface,
+                    child: Assets.icons.shareFill.svg(
+                      colorFilter: ColorFilter.mode(
+                        colorScheme.primary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    context.l10n.shareApp,
+                    style: prTextTheme.bodyMedium,
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                );
+              },
             ),
             const SizedBox(height: 20),
             Padding(
