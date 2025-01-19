@@ -72,15 +72,15 @@ class ReadUI extends StatelessWidget {
   Widget build(BuildContext context) {
     final readThemeCubit = context.watch<ReadThemeCubit>();
     return Scaffold(
-      backgroundColor: ReadThemeData.bgReadThemeColor[readThemeCubit.state.modeIndex],
+      backgroundColor: readThemeCubit.state.bgColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: true,
             stretch: true,
             centerTitle: true,
-            backgroundColor: ReadThemeData.bgReadThemeColor[readThemeCubit.state.modeIndex],
-            foregroundColor: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
+            backgroundColor: readThemeCubit.state.bgColor,
+            foregroundColor: readThemeCubit.state.frColor,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: FittedBox(
@@ -91,7 +91,7 @@ class ReadUI extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: FontFamily.qpcUthmanicHafs,
                     fontSize: 26,
-                    color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
+                    color: readThemeCubit.state.frColor,
                   ),
                 ),
               ),
@@ -112,7 +112,7 @@ class ReadUI extends StatelessWidget {
                 },
                 icon: Assets.icons.settingsFilter.svg(
                   colorFilter: ColorFilter.mode(
-                    ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex].withOpacity(0.8),
+                    readThemeCubit.state.frColor.withOpacity(0.8),
                     BlendMode.srcIn,
                   ),
                 ),

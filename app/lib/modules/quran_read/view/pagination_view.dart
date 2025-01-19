@@ -12,7 +12,12 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class PaginationView extends StatefulWidget {
-  const PaginationView(this.pages, {required this.isHatim, super.key});
+  const PaginationView(
+    this.pages, {
+    required this.isHatim,
+    super.key,
+  });
+
   final List<int> pages;
   final bool isHatim;
 
@@ -61,7 +66,7 @@ class _PaginationViewState extends State<PaginationView> {
           widget.pages[index].toArabicDigits,
           style: TextStyle(
             fontSize: readThemeCubit.state.textSize,
-            color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
+            color: readThemeCubit.state.bgColor,
           ),
         ),
       ),
@@ -83,32 +88,35 @@ class _PaginationViewState extends State<PaginationView> {
                     style: TextStyle(
                       fontFamily: FontFamily.qpcUthmanicHafs,
                       fontSize: readThemeCubit.state.textSize,
-                      color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
+                      color: readThemeCubit.state.frColor,
                       height: 2.5,
                     ),
                     textDirection: TextDirection.rtl,
                   ),
                   if (widget.pages[index] == widget.pages.last)
-                    OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
-                      ),
-                      onPressed: () async {
-                        MqAnalytic.track(AnalyticKey.showAmin);
-                        final value = await MqAlertDialogs.showAmen<bool>(
-                          context: context,
-                          title: context.l10n.amen,
-                          content: context.l10n.dua,
-                          buttonText: context.l10n.ameen,
-                          gender: context.read<AuthCubit>().state.mqAppUiGender,
-                          onPressed: () => context.pop(true),
-                        );
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50, bottom: 50),
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: readThemeCubit.state.frColor,
+                        ),
+                        onPressed: () async {
+                          MqAnalytic.track(AnalyticKey.showAmin);
+                          final value = await MqAlertDialogs.showAmen<bool>(
+                            context: context,
+                            title: context.l10n.amen,
+                            content: context.l10n.dua,
+                            buttonText: context.l10n.ameen,
+                            gender: context.read<AuthCubit>().state.mqAppUiGender,
+                            onPressed: () => context.pop(true),
+                          );
 
-                        if (value != null && value && context.mounted) {
-                          context.pop(true);
-                        }
-                      },
-                      child: Text(context.l10n.readed),
+                          if (value != null && value && context.mounted) {
+                            context.pop(true);
+                          }
+                        },
+                        child: Text(context.l10n.readed),
+                      ),
                     ),
                 ],
               ),
