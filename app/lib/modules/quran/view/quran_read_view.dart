@@ -110,11 +110,14 @@ class ReadUI extends StatelessWidget {
                     initialChildSize: 0.7,
                   );
                 },
-                icon: Icon(
-                  Icons.settings,
-                  color: ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex],
+                icon: Assets.icons.settingsFilter.svg(
+                  colorFilter: ColorFilter.mode(
+                    ReadThemeData.frReadThemeColor[readThemeCubit.state.modeIndex].withOpacity(0.8),
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
+              const SizedBox(width: 16),
             ],
           ),
           SliverPadding(

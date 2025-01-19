@@ -76,10 +76,10 @@ class _PaginationViewState extends State<PaginationView> {
               locale: const Locale('ar'),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     text,
-                    locale: const Locale('ar'),
                     style: TextStyle(
                       fontFamily: FontFamily.qpcUthmanicHafs,
                       fontSize: readThemeCubit.state.textSize,
