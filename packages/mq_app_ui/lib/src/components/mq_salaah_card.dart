@@ -1,8 +1,9 @@
 import 'package:animated_analog_clock/animated_analog_clock.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
-class MqSalaahCard extends StatelessWidget {
+class MqSalaahCard extends StatefulWidget {
   const MqSalaahCard({
     required this.fajrLabel,
     required this.zuhrLabel,
@@ -19,7 +20,6 @@ class MqSalaahCard extends StatelessWidget {
     required this.asrActive,
     required this.maghribActive,
     required this.ishaActive,
-    required this.currentTime,
     required this.locationLabel,
     required this.onLocationPressed,
     this.location,
@@ -41,12 +41,26 @@ class MqSalaahCard extends StatelessWidget {
   final bool asrActive;
   final bool maghribActive;
   final bool ishaActive;
-
-  final String currentTime;
   final String locationLabel;
   final String? location;
 
   final void Function() onLocationPressed;
+
+  @override
+  State<MqSalaahCard> createState() => _MqSalaahCardState();
+}
+
+class _MqSalaahCardState extends State<MqSalaahCard> {
+  late final Stream<DateTime> _minuteStream;
+
+  @override
+  void initState() {
+    _minuteStream = Stream.periodic(
+      const Duration(seconds: 1),
+      (_) => DateTime.now(),
+    ).distinct((p, c) => p.minute == c.minute);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,47 +81,52 @@ class MqSalaahCard extends StatelessWidget {
                     runSpacing: 6,
                     children: [
                       SalaahItemTimeCard(
-                        salaahName: fajrLabel,
-                        timeOfClock: fajrTime,
-                        isActive: fajrActive,
+                        salaahName: widget.fajrLabel,
+                        timeOfClock: widget.fajrTime,
+                        isActive: widget.fajrActive,
                       ),
                       SalaahItemTimeCard(
-                        salaahName: zuhrLabel,
-                        timeOfClock: zuhrTime,
-                        isActive: zuhrActive,
+                        salaahName: widget.zuhrLabel,
+                        timeOfClock: widget.zuhrTime,
+                        isActive: widget.zuhrActive,
                       ),
                       SalaahItemTimeCard(
-                        salaahName: asrLabel,
-                        timeOfClock: asrTime,
-                        isActive: asrActive,
+                        salaahName: widget.asrLabel,
+                        timeOfClock: widget.asrTime,
+                        isActive: widget.asrActive,
                       ),
                       SalaahItemTimeCard(
-                        salaahName: maghribLabel,
-                        timeOfClock: maghribTime,
-                        isActive: maghribActive,
+                        salaahName: widget.maghribLabel,
+                        timeOfClock: widget.maghribTime,
+                        isActive: widget.maghribActive,
                       ),
                       SalaahItemTimeCard(
-                        salaahName: ishaLabel,
-                        timeOfClock: ishaLabel,
-                        isActive: ishaActive,
+                        salaahName: widget.ishaLabel,
+                        timeOfClock: widget.ishaLabel,
+                        isActive: widget.ishaActive,
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      Text(
-                        currentTime,
-                        style: prTextTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w900,
-                        ),
+                      StreamBuilder<DateTime>(
+                        stream: _minuteStream,
+                        builder: (context, snapshot) {
+                          return Text(
+                            DateFormat('HH:mm').format(DateTime.now()),
+                            style: prTextTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w900,
+                            ),
+                          );
+                        },
                       ),
                       const SizedBox(width: 8),
                       Flexible(
                         child: TextButton.icon(
-                          onPressed: onLocationPressed,
+                          onPressed: widget.onLocationPressed,
                           label: Text(
-                            locationLabel,
+                            widget.locationLabel,
                             maxLines: 2,
                             overflow: TextOverflow.fade,
                           ),
@@ -138,7 +157,7 @@ class MqSalaahCard extends StatelessWidget {
               height: 100,
               child: AnimatedAnalogClock(
                 size: 120,
-                location: location,
+                location: widget.location,
                 hourHandColor: colorScheme.onSurface,
                 minuteHandColor: colorScheme.onSurface,
                 secondHandColor: colorScheme.primary,

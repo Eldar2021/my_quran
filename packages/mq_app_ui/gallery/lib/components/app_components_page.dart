@@ -119,7 +119,6 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             asrActive: true,
             maghribActive: false,
             ishaActive: false,
-            currentTime: '17:02',
             locationLabel: 'Bishkek',
             location: 'Asia/Bishkek',
             onLocationPressed: () {},
