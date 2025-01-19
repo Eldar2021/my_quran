@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -37,7 +36,6 @@ class MqSalaahTimeWidget extends StatelessWidget {
             asrActive: true,
             maghribActive: true,
             ishaActive: true,
-            currentTime: DateFormat('HH:mm').format(DateTime.now()),
             locationLabel: state.locationName,
             location: state.timeZoneLocation,
             onLocationPressed: () {},
