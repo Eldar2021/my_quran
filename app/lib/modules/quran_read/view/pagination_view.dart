@@ -86,7 +86,7 @@ class _PaginationViewState extends State<PaginationView> {
                   Text(
                     text,
                     style: TextStyle(
-                      fontFamily: FontFamily.uthmanicHafs,
+                      fontFamily: FontFamily.qpcUthmanicHafs,
                       fontSize: readThemeCubit.state.textSize,
                       color: readThemeCubit.state.frColor,
                       height: 2.5,

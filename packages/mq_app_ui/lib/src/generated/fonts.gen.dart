@@ -10,6 +10,9 @@
 class FontFamily {
   FontFamily._();
 
+  /// Font family: amiri
+  static const String amiri = 'amiri';
+
   /// Font family: amiri_quran
   static const String amiriQuran = 'amiri_quran';
 

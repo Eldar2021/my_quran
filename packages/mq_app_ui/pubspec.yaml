@@ -59,6 +59,9 @@ flutter:
     - family: hafs_arabic_font
       fonts:
         - asset: assets/fonts/hafs_arabic_font/Hafs.ttf
+    - family: amiri
+      fonts:
+        - asset: assets/fonts/hafs_arabic_font/Hafs.ttf
 
 flutter_gen:
   assets:
