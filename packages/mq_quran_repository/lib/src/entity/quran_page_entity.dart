@@ -19,7 +19,7 @@ final class QuranPageEntity {
             final a = e.textUthmani.replaceAll('\u{06DF}', '\u{0652}');
             final bismillahCentered = e.isFirst ? '\n\n${centerText(MqQuranStatic.bismallah)}\n' : '';
             final sajdaSymbol = e.hasSajda ? MqQuranStatic.sajdaSymbol : '';
-            return '$bismillahCentered $a $sajdaSymbol ${e.ayatNumber.toArabicDigits}';
+            return '$bismillahCentered $a $sajdaSymbol \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E';
           },
         ),
         '  ',
