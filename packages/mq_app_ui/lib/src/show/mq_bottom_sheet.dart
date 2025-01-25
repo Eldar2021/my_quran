@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 
 abstract class MqBottomSheets {
   static Future<T?> showConfirmSheet<T>({
@@ -74,132 +73,15 @@ abstract class MqBottomSheets {
 
   static Future<T?> showReadSettingsSheet<T>({
     required BuildContext context,
-    String title = 'Title',
-    String confirmText = 'Confirm',
-    String cancelText = 'Cancel',
+    required Widget child,
     bool isDismissible = true,
-    void Function()? onConfirm,
-    void Function()? onCancel,
-    String? content,
-    String? confirmKey,
-    String? cancelKey,
+    Color? backgroundColor,
   }) {
     return showModalBottomSheet<T>(
       context: context,
       isDismissible: isDismissible,
-      // enableDrag: true,
-      showDragHandle: true,
-      builder: (context) {
-        // final prTextTheme = Theme.of(context).primaryTextTheme;
-        // final colorScheme = Theme.of(context).colorScheme;
-        return SizedBox.fromSize(
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
-            child: _Body(),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _Body extends StatefulWidget {
-  const _Body();
-
-  @override
-  State<_Body> createState() => _BodyState();
-}
-
-class _BodyState extends State<_Body> {
-  double textSize = 0.3;
-
-  @override
-  Widget build(BuildContext context) {
-    final prTextTheme = Theme.of(context).primaryTextTheme;
-    // final textTheme = Theme.of(context).textTheme;
-    // final colorScheme = Theme.of(context).colorScheme;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SwitchListTile(
-          contentPadding: EdgeInsets.zero,
-          title: Text(
-            'Translation',
-            style: prTextTheme.titleMedium,
-          ),
-          value: true,
-          onChanged: (v) {},
-        ),
-        const SizedBox(height: 10),
-        Text(
-          'Text size',
-          style: prTextTheme.titleMedium,
-        ),
-        Row(
-          children: [
-            Assets.icons.aDigit.svg(
-              width: 12,
-            ),
-            Expanded(
-              child: Slider.adaptive(
-                value: textSize,
-                onChanged: (v) {
-                  setState(() {
-                    textSize = v;
-                  });
-                },
-              ),
-            ),
-            Assets.icons.aDigit.svg(),
-          ],
-        ),
-        const SizedBox(height: 20),
-        Text(
-          'Vertical space',
-          style: prTextTheme.titleMedium,
-        ),
-        Row(
-          children: [
-            Assets.icons.aDigitVerticalSmall.svg(),
-            Expanded(
-              child: Slider.adaptive(
-                value: textSize,
-                onChanged: (v) {
-                  setState(() {
-                    textSize = v;
-                  });
-                },
-              ),
-            ),
-            Assets.icons.aDigitVertical.svg(),
-          ],
-        ),
-        const SizedBox(height: 20),
-        Text(
-          'Horizontal space',
-          style: prTextTheme.titleMedium,
-        ),
-        Row(
-          children: [
-            // Icon(Icons.format_l),
-            // FaIcon(FontAwesomeIcons.letterboxd),
-            Assets.icons.aHorizontal.svg(),
-            Expanded(
-              child: Slider.adaptive(
-                value: textSize,
-                onChanged: (v) {
-                  setState(() {
-                    textSize = v;
-                  });
-                },
-              ),
-            ),
-            Assets.icons.aHorizontalBig.svg(),
-          ],
-        ),
-        const SizedBox(height: 50),
-      ],
+      isScrollControlled: true,
+      builder: (context) => child,
     );
   }
 }
