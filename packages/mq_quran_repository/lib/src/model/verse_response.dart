@@ -18,6 +18,6 @@ final class VerseResponse {
   final int id;
   @JsonKey(name: 'verse_key')
   final String verseKey;
-  @JsonKey(name: 'text_imlaei')
+  @JsonKey(name: 'text_uthmani')
   final String textUthmani;
 }
