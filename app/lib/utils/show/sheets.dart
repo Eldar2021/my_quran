@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 final class AppBottomSheet {
-  static Future<T?> showBottomSheet<T>(
+  static Future<T?> showScrollBottomSheet<T>(
     BuildContext context,
     Widget child, {
     double initialChildSize = 0.6,

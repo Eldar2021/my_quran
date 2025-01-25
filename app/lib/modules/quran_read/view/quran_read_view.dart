@@ -10,7 +10,6 @@ import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:my_quran/utils/urils.dart';
 
 class ReadView extends StatelessWidget {
   const ReadView(
@@ -101,14 +100,17 @@ class ReadUI extends StatelessWidget {
                 key: const Key(MqKeys.quranReadSettings),
                 onPressed: () {
                   MqAnalytic.track(AnalyticKey.tapQuranReadSettings);
-                  AppBottomSheet.showBottomSheet<void>(
-                    context,
-                    BlocProvider.value(
-                      value: context.read<ReadThemeCubit>(),
-                      child: const ChangeReadTheme(),
-                    ),
-                    initialChildSize: 0.7,
+                  MqBottomSheets.showReadSettingsSheet<void>(
+                    context: context,
                   );
+                  // AppBottomSheet.<void>(
+                  //   context,
+                  //   BlocProvider.value(
+                  //     value: context.read<ReadThemeCubit>(),
+                  //     child: const ChangeReadTheme(),
+                  //   ),
+                  //   initialChildSize: 0.7,
+                  // );
                 },
                 icon: const Icon(Icons.tune),
               ),
