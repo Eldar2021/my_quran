@@ -73,6 +73,7 @@ abstract class AppTheme {
   BottomSheetThemeData get bottomSheetTheme {
     return BottomSheetThemeData(
       backgroundColor: colorScheme.surface,
+      dragHandleSize: const Size(58, 6),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(32),

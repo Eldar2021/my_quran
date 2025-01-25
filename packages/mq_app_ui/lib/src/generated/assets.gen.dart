@@ -18,6 +18,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/a_digit.svg
   SvgGenImage get aDigit => const SvgGenImage('assets/icons/a_digit.svg');
 
+  /// File path: assets/icons/a_digit_big.svg
+  SvgGenImage get aDigitBig => const SvgGenImage('assets/icons/a_digit_big.svg');
+
   /// File path: assets/icons/a_digit_vertical.svg
   SvgGenImage get aDigitVertical => const SvgGenImage('assets/icons/a_digit_vertical.svg');
 
@@ -174,6 +177,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         aDigit,
+        aDigitBig,
         aDigitVertical,
         aDigitVerticalSmall,
         aHorizontal,

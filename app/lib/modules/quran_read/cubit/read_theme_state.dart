@@ -35,4 +35,12 @@ final class ReadThemeState extends Equatable {
       textSize: textSize ?? this.textSize,
     );
   }
+
+  Color get frColor {
+    return ReadThemeData.frReadThemeColor[modeIndex];
+  }
+
+  Color get bgColor {
+    return ReadThemeData.bgReadThemeColor[modeIndex];
+  }
 }

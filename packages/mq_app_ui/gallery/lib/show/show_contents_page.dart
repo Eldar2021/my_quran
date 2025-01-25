@@ -18,7 +18,7 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
-    // final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Show Contents'),
@@ -37,6 +37,8 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
                 onPressed: () {
                   MqAlertDialogs.showAmen<void>(
                     context: context,
+                    backgroundColor: colorScheme.surface,
+                    foregroundColor: colorScheme.onSurface,
                     onPressed: () {},
                   );
                 },
@@ -46,6 +48,8 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
                 onPressed: () {
                   MqAlertDialogs.showAmen<void>(
                     context: context,
+                    backgroundColor: colorScheme.surface,
+                    foregroundColor: colorScheme.onSurface,
                     gender: MqAppUiGender.famale,
                     onPressed: () {},
                   );
@@ -56,6 +60,8 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
                 onPressed: () {
                   MqAlertDialogs.showAmen<void>(
                     context: context,
+                    backgroundColor: colorScheme.surface,
+                    foregroundColor: colorScheme.onSurface,
                     gender: MqAppUiGender.unknown,
                     onPressed: () {},
                   );

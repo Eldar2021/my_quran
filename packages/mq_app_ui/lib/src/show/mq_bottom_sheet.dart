@@ -70,4 +70,18 @@ abstract class MqBottomSheets {
       },
     );
   }
+
+  static Future<T?> showReadSettingsSheet<T>({
+    required BuildContext context,
+    required Widget child,
+    bool isDismissible = true,
+    Color? backgroundColor,
+  }) {
+    return showModalBottomSheet<T>(
+      context: context,
+      isDismissible: isDismissible,
+      isScrollControlled: true,
+      builder: (context) => child,
+    );
+  }
 }

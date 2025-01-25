@@ -56,9 +56,9 @@ final class ReadThemeData {
 
   static const bgReadThemeColor = [
     Color(0xffFFFFFF),
-    Color(0xffFFEBD0),
-    Color(0xff363636),
-    Color(0xff000000),
+    Color(0xffFFEED6),
+    Color(0xff1C1C1E),
+    Color(0xff0E0E0F),
   ];
 
   Color get backgroundColor => bgReadThemeColor[modeIndex];

@@ -15,11 +15,24 @@ final class QuranPageEntity {
     return StringBuffer()
       ..writeAll(
         verses.map(
-          (e) =>
-              '${e.isFirst ? '\n\n${MqQuranStatic.bismallah.padLeft(50).padRight(50)}\n' : ''} ${e.textUthmani} ${e.hasSajda ? MqQuranStatic.sajdaSymbol : ''} \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E',
+          (e) {
+            final bismillahCentered = e.isFirst ? '\n\n${centerText(MqQuranStatic.bismallah)}\n' : '';
+            final sajdaSymbol = e.hasSajda ? MqQuranStatic.sajdaSymbol : '';
+            return '$bismillahCentered ${e.textUthmani} $sajdaSymbol \uFD3F${e.ayatNumber.toArabicDigits}\uFD3E';
+          },
         ),
         '  ',
       );
+  }
+
+  String centerText(String text, {int lineWidth = 50}) {
+    final totalPadding = lineWidth - text.length;
+    if (totalPadding <= 0) return text;
+
+    final leftPadding = totalPadding ~/ 1;
+    final rightPadding = totalPadding - leftPadding;
+
+    return ' ' * leftPadding + text + ' ' * rightPadding;
   }
 }
 
