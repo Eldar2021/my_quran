@@ -27,8 +27,8 @@ final class MqQuranRepositoryImpl implements MqQuranRepository {
 
   @override
   Future<QuranPageEntity?> getPage(int page, String quranFmt) async {
-    // final cachedData = localDataSource.getPage(page, quranFmt);
-    // if (cachedData != null) return _convertData(cachedData);
+    final cachedData = localDataSource.getPage(page, quranFmt);
+    if (cachedData != null) return _convertData(cachedData);
 
     final data = await remoteDataSource.fetchPage(page, quranFmt);
     if (data != null) {
