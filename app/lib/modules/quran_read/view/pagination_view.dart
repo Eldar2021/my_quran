@@ -95,15 +95,20 @@ class _PaginationViewState extends State<PaginationView> {
                   ),
                   if (widget.pages[index] == widget.pages.last)
                     Padding(
-                      padding: const EdgeInsets.only(top: 50, bottom: 50),
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: readThemeCubit.state.frColor,
-                        ),
+                      padding: const EdgeInsets.only(
+                        top: 50,
+                        bottom: 50,
+                        left: 24,
+                        right: 24,
+                      ),
+                      child: ElevatedButton(
                         onPressed: () async {
+                          final readThemeState = context.read<ReadThemeCubit>().state;
                           MqAnalytic.track(AnalyticKey.showAmin);
                           final value = await MqAlertDialogs.showAmen<bool>(
                             context: context,
+                            backgroundColor: readThemeState.bgColor,
+                            foregroundColor: readThemeState.frColor,
                             title: context.l10n.amen,
                             content: context.l10n.dua,
                             buttonText: context.l10n.ameen,

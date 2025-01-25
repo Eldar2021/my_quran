@@ -46,8 +46,8 @@ final class ReadThemeData {
   }
 
   static const frReadThemeColor = [
-    Color(0xff2A2B30),
-    Color(0xff2A2B30),
+    Color(0xff000000),
+    Color(0xff000000),
     Color(0xffFFFFFF),
     Color(0xffFFFFFF),
   ];

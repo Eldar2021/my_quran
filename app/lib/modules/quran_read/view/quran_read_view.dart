@@ -110,12 +110,7 @@ class ReadUI extends StatelessWidget {
                     initialChildSize: 0.7,
                   );
                 },
-                icon: Assets.icons.settingsFilter.svg(
-                  colorFilter: ColorFilter.mode(
-                    readThemeCubit.state.frColor.withOpacity(0.8),
-                    BlendMode.srcIn,
-                  ),
-                ),
+                icon: const Icon(Icons.tune),
               ),
               const SizedBox(width: 16),
             ],
