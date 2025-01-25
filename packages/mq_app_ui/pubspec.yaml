@@ -40,6 +40,28 @@ flutter:
     - family: qpc_uthmanic_hafs
       fonts:
         - asset: assets/fonts/qpc_uthmanic_hafs/qpc_uthmanic_hafs.otf
+    - family: uthmanic_hafs
+      fonts:
+        - asset: assets/fonts/uthmanic_hafs/UthmanicHafs1Ver18.ttf
+    - family: uthmanic_hafs_ver12
+      fonts:
+        - asset: assets/fonts/uthmanic_hafs_ver12/uthmanic_hafs_ver12.otf
+    - family: uthmanic_script
+      fonts:
+        - asset: assets/fonts/uthmanic_script/kfgqpchafsuthmanicscript_regula.otf
+    - family: osman_taha
+      fonts:
+        - asset: assets/fonts/osman_taha/osman_taha.ttf
+        - asset: assets/fonts/osman_taha/osman_taha_bold.ttf
+    - family: amiri_quran
+      fonts:
+        - asset: assets/fonts/amiri_quran/AmiriQuran-Regular.ttf
+    - family: hafs_arabic_font
+      fonts:
+        - asset: assets/fonts/hafs_arabic_font/Hafs.ttf
+    - family: amiri
+      fonts:
+        - asset: assets/fonts/hafs_arabic_font/Hafs.ttf
 
 flutter_gen:
   assets:

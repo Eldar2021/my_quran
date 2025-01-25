@@ -11,7 +11,7 @@ final class MqQuranRemoteDataSourceImpl implements MqQuranRemoteDataSource {
   @override
   Future<QuranPageResponse?> fetchPage(int page, String quranFmt) async {
     final remoteValue = await remoteClient.getType<QuranPageResponse>(
-      'https://api.quran.com/api/v4/quran/verses/$quranFmt?page_number=$page',
+      'https://api.quran.com/api/v4/quran/verses/uthmanic?page_number=$page',
       fromJson: QuranPageResponse.fromJson,
     );
 

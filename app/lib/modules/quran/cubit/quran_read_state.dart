@@ -2,7 +2,7 @@ part of 'quran_read_cubit.dart';
 
 @immutable
 final class ReadState extends Equatable {
-  const ReadState({this.fmt = QuranTextFmt.imlaei});
+  const ReadState({this.fmt = QuranTextFmt.uthmani});
 
   final QuranTextFmt fmt;
 
