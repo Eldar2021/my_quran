@@ -52,7 +52,6 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final prTextTheme = Theme.of(context).primaryTextTheme;
     return StoryListView(
       listHeight: widget.listHeight,
       buttonWidth: widget.buttonWidth,
@@ -74,13 +73,7 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
               ),
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Text(
-                  e.cardLabel,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: prTextTheme.bodySmall,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                child: _CradLabelText(e.cardLabel),
               ),
               borderDecoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -106,6 +99,36 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
             ),
           )
           .toList(),
+    );
+  }
+}
+
+class _CradLabelText extends StatelessWidget {
+  const _CradLabelText(this.label);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final prTextTheme = Theme.of(context).primaryTextTheme;
+    final firstText = label.split('\n').first;
+    final secondText = label.split('\n').last;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          firstText.isEmpty ? label : firstText,
+          textAlign: TextAlign.center,
+          style: prTextTheme.bodySmall,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Text(
+          secondText,
+          textAlign: TextAlign.center,
+          style: prTextTheme.bodySmall,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
     );
   }
 }
