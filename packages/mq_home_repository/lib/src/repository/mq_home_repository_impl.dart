@@ -39,13 +39,16 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
   Future<List<MqStoryEntity>> getStories(String language) async {
     try {
       final remoteData = await remoteDataSource.getStories(language);
-      await localDataSource.saveStories(remoteData, language);
       return remoteData.map((e) => e.toEntity()).toList();
     } catch (e, s) {
       MqCrashlytics.report(e, s);
       log('HomeRepositoryImpl, getStories error: $e');
-      final localData = localDataSource.getStories(language);
-      return localData.map((e) => e.toEntity()).toList();
+      final items = mqStoriesMock
+          .map(
+            (e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+      return items.map((e) => e.toEntity()).toList();
     }
   }
 

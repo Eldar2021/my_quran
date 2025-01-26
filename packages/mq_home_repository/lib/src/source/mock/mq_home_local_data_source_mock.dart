@@ -18,23 +18,6 @@ final class MqHomeLocalDataSourceMock implements MqHomeLocalDataSource {
   Future<void> saveLocalData(MqHomeModelResponse data) {
     return Future.value();
   }
-
-  @override
-  List<MqStoryModelResponse> getStories(String language) {
-    return mqStoriesMock
-        .map(
-          (e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>),
-        )
-        .toList();
-  }
-
-  @override
-  Future<void> saveStories(
-    List<MqStoryModelResponse> data,
-    String language,
-  ) {
-    return Future.value();
-  }
 }
 
 const mqStoriesMock = [
