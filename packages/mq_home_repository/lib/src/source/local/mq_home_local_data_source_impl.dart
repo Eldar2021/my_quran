@@ -11,8 +11,6 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
 
   static const _homeDataCacheKey = 'home-model';
 
-  static const _storiesCacheKey = 'stories';
-
   @override
   MqHomeModelResponse getLocalData() {
     final localValue = storage.readString(key: _homeDataCacheKey);
@@ -33,24 +31,6 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
     await storage.writeString(
       key: _homeDataCacheKey,
       value: jsonEncode(data.toJson()),
-    );
-  }
-
-  @override
-  List<MqStoryModelResponse> getStories(String language) {
-    final localValue = storage.readString(key: '$_storiesCacheKey-$language');
-    final data = localValue != null ? jsonDecode(localValue) as List<dynamic> : mqStoriesMock;
-    return data.map((e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>)).toList();
-  }
-
-  @override
-  Future<void> saveStories(
-    List<MqStoryModelResponse> data,
-    String language,
-  ) async {
-    await storage.writeString(
-      key: '$_storiesCacheKey-$language',
-      value: jsonEncode(data.map((e) => e.toJson()).toList()),
     );
   }
 }
