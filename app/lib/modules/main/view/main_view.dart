@@ -40,7 +40,7 @@ class MainView extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              label: context.l10n.reading,
+              label: context.l10n.quran,
             ),
             BottomNavigationBarItem(
               key: const Key(MqKeys.home),
