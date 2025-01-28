@@ -67,8 +67,6 @@ final class PrayerTimesService {
       asr: asrTime,
       maghrib: maghribTime,
       isha: ishaTime,
-      nextPrayer: fajrTime,
-      nextPrayerName: '',
     );
   }
 }

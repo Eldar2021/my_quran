@@ -36,22 +36,31 @@ class MqSalaahCard extends StatefulWidget {
 class _MqSalaahCardState extends State<MqSalaahCard> {
   late final PrayerTimesService _prayerTimesService;
   late MqPrayerTime _prayerTimes;
+  late Stream<(int, Duration)> _nextPrayerTime;
 
   @override
   void initState() {
     _prayerTimesService = const PrayerTimesService();
+    _setPrayersTime();
+    super.initState();
+  }
+
+  void _setPrayersTime() {
     _prayerTimes = _prayerTimesService.getPrayerTimes(
       latitude: widget.lat,
       longitude: widget.lon,
       location: widget.location,
     );
-    super.initState();
+    _nextPrayerTime = Stream.periodic(
+      const Duration(seconds: 1),
+      (_) => _nextPrayer,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    // final prTextTheme = Theme.of(context).primaryTextTheme;
+    final prTextTheme = Theme.of(context).primaryTextTheme;
     return GradientDecoratedBox(
       child: Padding(
         padding: EdgeInsets.all(context.withWidth(10)),
@@ -85,12 +94,12 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                       SalaahItemTimeCard(
                         salaahName: widget.maghribLabel,
                         timeOfClock: _prayerTimes.maghribTime,
-                        isActive: _prayerTimes.maghribActive,
+                        isActive: !_prayerTimes.maghribActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.ishaLabel,
                         timeOfClock: _prayerTimes.ishaTime,
-                        isActive: _prayerTimes.ishaActive,
+                        isActive: !_prayerTimes.ishaActive,
                       ),
                     ],
                   ),
@@ -99,6 +108,37 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      StreamBuilder<(int, Duration)>(
+                        stream: _nextPrayerTime,
+                        builder: (context, snapshot) {
+                          return snapshot.data?.$1 != 0
+                              ? Row(
+                                  children: [
+                                    Text(
+                                      switch (snapshot.data?.$1) {
+                                        1 => widget.fajrLabel,
+                                        2 => widget.zuhrLabel,
+                                        3 => widget.asrLabel,
+                                        4 => widget.maghribLabel,
+                                        5 => widget.ishaLabel,
+                                        _ => '',
+                                      },
+                                      style: prTextTheme.bodyLarge,
+                                    ),
+                                    SizedBox(
+                                      width: context.withWidth(7),
+                                    ),
+                                    Text(
+                                      _printDuration(snapshot.data?.$2 ?? Duration.zero),
+                                      style: prTextTheme.bodyLarge?.copyWith(
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : const SizedBox.shrink();
+                        },
+                      ),
                       SizedBox(width: context.withWidth(8)),
                       Flexible(
                         child: TextButton.icon(
@@ -149,6 +189,29 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
       ),
     );
   }
+
+  (int, Duration) get _nextPrayer {
+    final now = DateTime.now();
+    if (now.isBefore(_prayerTimes.fajr)) {
+      return (1, _prayerTimes.fajr.difference(now));
+    } else if (now.isBefore(_prayerTimes.dhuhr)) {
+      return (2, _prayerTimes.dhuhr.difference(now));
+    } else if (now.isBefore(_prayerTimes.asr)) {
+      return (3, _prayerTimes.asr.difference(now));
+    } else if (now.isBefore(_prayerTimes.maghrib)) {
+      return (4, _prayerTimes.maghrib.difference(now));
+    } else if (now.isBefore(_prayerTimes.isha)) {
+      return (4, _prayerTimes.isha.difference(now));
+    }
+    return (0, Duration.zero);
+  }
+
+  String _printDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60).abs());
+    final twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60).abs());
+    return '${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds';
+  }
 }
 
 class SalaahItemTimeCard extends StatelessWidget {
@@ -172,8 +235,8 @@ class SalaahItemTimeCard extends StatelessWidget {
       color: isActive
           ? colorScheme.primary
           : isDark
-              ? colorScheme.onSurface.withOpacity(0.9)
-              : colorScheme.shadow.withOpacity(0.8),
+              ? colorScheme.surface.withOpacity(0.5)
+              : colorScheme.shadow.withOpacity(0.5),
       margin: EdgeInsets.zero,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -192,7 +255,7 @@ class SalaahItemTimeCard extends StatelessWidget {
             Text(
               salaahName,
               style: prTextTheme.bodyMedium?.copyWith(
-                color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
+                color: (!isActive && isDark) ? colorScheme.onSurface : colorScheme.onPrimary,
                 fontWeight: FontWeight.w700,
                 fontSize: context.withWidth(14),
               ),
@@ -200,7 +263,7 @@ class SalaahItemTimeCard extends StatelessWidget {
             Text(
               timeOfClock,
               style: prTextTheme.bodyMedium?.copyWith(
-                color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
+                color: (!isActive && isDark) ? colorScheme.onSurface : colorScheme.onPrimary,
                 fontWeight: FontWeight.w700,
                 fontSize: context.withWidth(10),
               ),

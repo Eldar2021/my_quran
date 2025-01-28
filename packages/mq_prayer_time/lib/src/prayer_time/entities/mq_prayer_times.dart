@@ -10,8 +10,6 @@ final class MqPrayerTime {
     required this.asr,
     required this.maghrib,
     required this.isha,
-    required this.nextPrayer,
-    required this.nextPrayerName,
   });
 
   final DateTime fajr;
@@ -20,8 +18,6 @@ final class MqPrayerTime {
   final DateTime asr;
   final DateTime maghrib;
   final DateTime isha;
-  final DateTime nextPrayer;
-  final String nextPrayerName;
 
   String get fajrTime => DateFormat.Hm().format(fajr);
   String get sunriseTime => DateFormat.Hm().format(sunrise);
