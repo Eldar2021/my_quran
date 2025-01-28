@@ -30,6 +30,10 @@ assignees: ""
 - [ ] Create a tag: `git tag -a v<version> -m "release v<version>"`
 - [ ] Push tag: `git push origin v<version>`
 
+### Donation Feature disable
+
+- [ ] Firebase Remote Config Set `false` to `donationIsEnable`
+
 ## Deploy Android
 
 - [ ] **Check Keys:**
