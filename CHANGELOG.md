@@ -168,3 +168,22 @@
 ## [Technical]
 
 - Improve Release testing issue template
+
+---
+
+# What's Changed v1.3.11+21
+
+## [UX]
+
+- Updated stories data
+- Changed Quran font
+- Redesigned Quran read pages
+
+## [Bug Fixes]
+
+- Fixed share plus action on iPads
+- Fixed Current time show
+
+## [Technical]
+
+- Fixed dependency conflicts
