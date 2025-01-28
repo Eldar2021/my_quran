@@ -1,60 +1,57 @@
 import 'package:animated_analog_clock/animated_analog_clock.dart';
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_prayer_time/mq_prayer_time.dart';
 
 class MqSalaahCard extends StatefulWidget {
   const MqSalaahCard({
-    required this.nexPreyer,
+    required this.lat,
+    required this.lon,
     required this.fajrLabel,
     required this.zuhrLabel,
     required this.asrLabel,
     required this.maghribLabel,
     required this.ishaLabel,
-    required this.fajrTime,
-    required this.zuhrTime,
-    required this.asrTime,
-    required this.maghribTime,
-    required this.ishaTime,
-    required this.fajrActive,
-    required this.zuhrActive,
-    required this.asrActive,
-    required this.maghribActive,
-    required this.ishaActive,
     required this.locationLabel,
     required this.onLocationPressed,
-    this.location,
+    required this.location,
     super.key,
   });
 
+  final double lat;
+  final double lon;
   final String fajrLabel;
   final String zuhrLabel;
   final String asrLabel;
   final String maghribLabel;
   final String ishaLabel;
-  final String fajrTime;
-  final String zuhrTime;
-  final String asrTime;
-  final String maghribTime;
-  final String ishaTime;
-  final bool fajrActive;
-  final bool zuhrActive;
-  final bool asrActive;
-  final bool maghribActive;
-  final bool ishaActive;
   final String locationLabel;
-  final String? location;
+  final String location;
   final void Function() onLocationPressed;
-  final Stream<(String, String)> nexPreyer;
 
   @override
   State<MqSalaahCard> createState() => _MqSalaahCardState();
 }
 
 class _MqSalaahCardState extends State<MqSalaahCard> {
+  late final PrayerTimesService _prayerTimesService;
+  late MqPrayerTime _prayerTimes;
+
+  @override
+  void initState() {
+    _prayerTimesService = const PrayerTimesService();
+    _prayerTimes = _prayerTimesService.getPrayerTimes(
+      latitude: widget.lat,
+      longitude: widget.lon,
+      location: widget.location,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final prTextTheme = Theme.of(context).primaryTextTheme;
+    // final prTextTheme = Theme.of(context).primaryTextTheme;
     return GradientDecoratedBox(
       child: Padding(
         padding: EdgeInsets.all(context.withWidth(10)),
@@ -72,28 +69,28 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                     children: [
                       SalaahItemTimeCard(
                         salaahName: widget.fajrLabel,
-                        timeOfClock: widget.fajrTime,
-                        isActive: widget.fajrActive,
+                        timeOfClock: _prayerTimes.fajrTime,
+                        isActive: _prayerTimes.fajrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.zuhrLabel,
-                        timeOfClock: widget.zuhrTime,
-                        isActive: widget.zuhrActive,
+                        timeOfClock: _prayerTimes.dhuhrTime,
+                        isActive: _prayerTimes.dhuhrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.asrLabel,
-                        timeOfClock: widget.asrTime,
-                        isActive: widget.asrActive,
+                        timeOfClock: _prayerTimes.asrTime,
+                        isActive: _prayerTimes.asrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.maghribLabel,
-                        timeOfClock: widget.maghribTime,
-                        isActive: widget.maghribActive,
+                        timeOfClock: _prayerTimes.maghribTime,
+                        isActive: _prayerTimes.maghribActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.ishaLabel,
-                        timeOfClock: widget.ishaTime,
-                        isActive: widget.ishaActive,
+                        timeOfClock: _prayerTimes.ishaTime,
+                        isActive: _prayerTimes.ishaActive,
                       ),
                     ],
                   ),
@@ -102,27 +99,6 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      StreamBuilder<(String, String)>(
-                        stream: widget.nexPreyer,
-                        builder: (context, snapshot) {
-                          return Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                snapshot.data?.$1 ?? '',
-                                style: prTextTheme.bodyLarge,
-                              ),
-                              SizedBox(width: context.withWidth(4)),
-                              Text(
-                                snapshot.data?.$2 ?? '',
-                                style: prTextTheme.bodyLarge?.copyWith(
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
                       SizedBox(width: context.withWidth(8)),
                       Flexible(
                         child: TextButton.icon(

@@ -13,17 +13,6 @@ class MqSalaahTimeWidget extends StatefulWidget {
 }
 
 class _MqSalaahTimeWidgetState extends State<MqSalaahTimeWidget> {
-  late final Stream<(String, String)> _nexPreyer;
-
-  @override
-  void initState() {
-    _nexPreyer = Stream.periodic(
-      const Duration(seconds: 1),
-      (x) => ('Куптанга', '11саат : 10 мин'),
-    );
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,25 +26,16 @@ class _MqSalaahTimeWidgetState extends State<MqSalaahTimeWidget> {
         },
         builder: (context, state) {
           return MqSalaahCard(
-            nexPreyer: _nexPreyer,
             fajrLabel: context.l10n.fajr,
             zuhrLabel: context.l10n.zuhr,
             asrLabel: context.l10n.asr,
             maghribLabel: context.l10n.maghrib,
             ishaLabel: context.l10n.isya,
-            fajrTime: '6:48',
-            zuhrTime: '6:48',
-            asrTime: '6:48',
-            maghribTime: '6:48',
-            ishaTime: '6:48',
-            fajrActive: true,
-            zuhrActive: true,
-            asrActive: true,
-            maghribActive: true,
-            ishaActive: true,
             locationLabel: state.locationName,
             location: state.timeZoneLocation,
             onLocationPressed: () {},
+            lat: state.position.latitude,
+            lon: state.position.longitude,
           );
         },
       ),
