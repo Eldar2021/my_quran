@@ -104,6 +104,10 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const Divider(),
           const SizedBox(height: 20),
           MqSalaahCard(
+            nexPreyer: Stream.periodic(
+              const Duration(seconds: 1),
+              (x) => ('Куптанга', '11саат : 10 мин'),
+            ),
             fajrLabel: 'Fajr',
             zuhrLabel: 'Zuhr',
             asrLabel: 'Asr',

@@ -5,8 +5,24 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/show/alerts.dart';
 
-class MqSalaahTimeWidget extends StatelessWidget {
+class MqSalaahTimeWidget extends StatefulWidget {
   const MqSalaahTimeWidget({super.key});
+
+  @override
+  State<MqSalaahTimeWidget> createState() => _MqSalaahTimeWidgetState();
+}
+
+class _MqSalaahTimeWidgetState extends State<MqSalaahTimeWidget> {
+  late final Stream<(String, String)> _nexPreyer;
+
+  @override
+  void initState() {
+    _nexPreyer = Stream.periodic(
+      const Duration(seconds: 1),
+      (x) => ('Куптанга', '11саат : 10 мин'),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +37,17 @@ class MqSalaahTimeWidget extends StatelessWidget {
         },
         builder: (context, state) {
           return MqSalaahCard(
+            nexPreyer: _nexPreyer,
             fajrLabel: context.l10n.fajr,
             zuhrLabel: context.l10n.zuhr,
             asrLabel: context.l10n.asr,
             maghribLabel: context.l10n.maghrib,
             ishaLabel: context.l10n.isya,
-            fajrTime: '',
-            zuhrTime: '',
-            asrTime: '',
-            maghribTime: '',
-            ishaTime: '',
+            fajrTime: '6:48',
+            zuhrTime: '6:48',
+            asrTime: '6:48',
+            maghribTime: '6:48',
+            ishaTime: '6:48',
             fajrActive: true,
             zuhrActive: true,
             asrActive: true,

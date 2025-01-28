@@ -1,10 +1,10 @@
 import 'package:animated_analog_clock/animated_analog_clock.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 class MqSalaahCard extends StatefulWidget {
   const MqSalaahCard({
+    required this.nexPreyer,
     required this.fajrLabel,
     required this.zuhrLabel,
     required this.asrLabel,
@@ -43,42 +43,32 @@ class MqSalaahCard extends StatefulWidget {
   final bool ishaActive;
   final String locationLabel;
   final String? location;
-
   final void Function() onLocationPressed;
+  final Stream<(String, String)> nexPreyer;
 
   @override
   State<MqSalaahCard> createState() => _MqSalaahCardState();
 }
 
 class _MqSalaahCardState extends State<MqSalaahCard> {
-  late final Stream<DateTime> _minuteStream;
-
-  @override
-  void initState() {
-    _minuteStream = Stream.periodic(
-      const Duration(seconds: 1),
-      (_) => DateTime.now(),
-    ).distinct((p, c) => p.minute == c.minute);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return GradientDecoratedBox(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(context.withWidth(10)),
         child: Row(
           children: [
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Wrap(
-                    spacing: 6,
-                    runSpacing: 6,
+                    spacing: context.withWidth(7),
+                    runSpacing: context.withWidth(6),
                     children: [
                       SalaahItemTimeCard(
                         salaahName: widget.fajrLabel,
@@ -102,26 +92,38 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.ishaLabel,
-                        timeOfClock: widget.ishaLabel,
+                        timeOfClock: widget.ishaTime,
                         isActive: widget.ishaActive,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Row(
+                  SizedBox(height: context.withWidth(8)),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      StreamBuilder<DateTime>(
-                        stream: _minuteStream,
+                      StreamBuilder<(String, String)>(
+                        stream: widget.nexPreyer,
                         builder: (context, snapshot) {
-                          return Text(
-                            DateFormat('HH:mm').format(DateTime.now()),
-                            style: prTextTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w900,
-                            ),
+                          return Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                snapshot.data?.$1 ?? '',
+                                style: prTextTheme.bodyLarge,
+                              ),
+                              SizedBox(width: context.withWidth(4)),
+                              Text(
+                                snapshot.data?.$2 ?? '',
+                                style: prTextTheme.bodyLarge?.copyWith(
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
                           );
                         },
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: context.withWidth(8)),
                       Flexible(
                         child: TextButton.icon(
                           onPressed: widget.onLocationPressed,
@@ -151,24 +153,20 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                 ],
               ),
             ),
-            const SizedBox(width: 7),
-            SizedBox(
-              width: 110,
-              height: 100,
-              child: AnimatedAnalogClock(
-                size: 120,
-                location: widget.location,
-                hourHandColor: colorScheme.onSurface,
-                minuteHandColor: colorScheme.onSurface,
-                secondHandColor: colorScheme.primary,
-                centerDotColor: colorScheme.primary,
-                extendHourHand: true,
-                extendMinuteHand: true,
-                extendSecondHand: true,
-                dialType: DialType.numberAndDashes,
-                numberColor: colorScheme.onSurface,
-                hourDashColor: colorScheme.onSurface,
-              ),
+            SizedBox(width: context.withWidth(7)),
+            AnimatedAnalogClock(
+              size: context.withWidth(99),
+              location: widget.location,
+              hourHandColor: colorScheme.onSurface,
+              minuteHandColor: colorScheme.onSurface,
+              secondHandColor: colorScheme.primary,
+              centerDotColor: colorScheme.primary,
+              extendHourHand: true,
+              extendMinuteHand: true,
+              extendSecondHand: true,
+              dialType: DialType.numberAndDashes,
+              numberColor: colorScheme.onSurface,
+              hourDashColor: colorScheme.onSurface,
             ),
           ],
         ),
@@ -203,16 +201,35 @@ class SalaahItemTimeCard extends StatelessWidget {
       margin: EdgeInsets.zero,
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(
+          context.withWidth(8),
+        ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-        child: Text(
-          salaahName,
-          style: prTextTheme.bodyMedium?.copyWith(
-            color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
-            fontWeight: FontWeight.w700,
-          ),
+        padding: EdgeInsets.symmetric(
+          vertical: context.withWidth(5),
+          horizontal: context.withWidth(7),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              salaahName,
+              style: prTextTheme.bodyMedium?.copyWith(
+                color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
+                fontWeight: FontWeight.w700,
+                fontSize: context.withWidth(14),
+              ),
+            ),
+            Text(
+              timeOfClock,
+              style: prTextTheme.bodyMedium?.copyWith(
+                color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
+                fontWeight: FontWeight.w700,
+                fontSize: context.withWidth(10),
+              ),
+            ),
+          ],
         ),
       ),
     );
