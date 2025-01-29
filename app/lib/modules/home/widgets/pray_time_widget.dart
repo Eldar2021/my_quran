@@ -5,14 +5,9 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/show/alerts.dart';
 
-class MqSalaahTimeWidget extends StatefulWidget {
+class MqSalaahTimeWidget extends StatelessWidget {
   const MqSalaahTimeWidget({super.key});
 
-  @override
-  State<MqSalaahTimeWidget> createState() => _MqSalaahTimeWidgetState();
-}
-
-class _MqSalaahTimeWidgetState extends State<MqSalaahTimeWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(

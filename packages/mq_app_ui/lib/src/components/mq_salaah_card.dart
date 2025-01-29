@@ -79,17 +79,17 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                       SalaahItemTimeCard(
                         salaahName: widget.fajrLabel,
                         timeOfClock: _prayerTimes.fajrTime,
-                        isActive: _prayerTimes.fajrActive,
+                        isActive: !_prayerTimes.fajrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.zuhrLabel,
                         timeOfClock: _prayerTimes.dhuhrTime,
-                        isActive: _prayerTimes.dhuhrActive,
+                        isActive: !_prayerTimes.dhuhrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.asrLabel,
                         timeOfClock: _prayerTimes.asrTime,
-                        isActive: _prayerTimes.asrActive,
+                        isActive: !_prayerTimes.asrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.maghribLabel,
