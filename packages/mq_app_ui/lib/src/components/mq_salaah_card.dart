@@ -45,6 +45,13 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant MqSalaahCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _setPrayersTime();
+    setState(() {});
+  }
+
   void _setPrayersTime() {
     _prayerTimes = _prayerTimesService.getPrayerTimes(
       latitude: widget.lat,
