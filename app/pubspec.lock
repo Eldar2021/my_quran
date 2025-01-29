@@ -22,6 +22,14 @@ packages:
     description: dart
     source: sdk
     version: "0.3.2"
+  adhan_dart:
+    dependency: transitive
+    description:
+      name: adhan_dart
+      sha256: "3510e87a81acd816dfe11df458d236cb33f64a9132d2f5becc57ef6cbfefb565"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   analyzer:
     dependency: transitive
     description:

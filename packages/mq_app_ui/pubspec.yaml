@@ -21,6 +21,8 @@ dependencies:
   cached_network_image: ^3.4.1
   mq_storage:
     path: ../mq_storage
+  mq_prayer_time:
+    path: ../mq_prayer_time
 
 dev_dependencies:
   flutter_test:

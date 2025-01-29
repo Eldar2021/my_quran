@@ -1,49 +1,32 @@
 import 'package:animated_analog_clock/animated_analog_clock.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_prayer_time/mq_prayer_time.dart';
 
 class MqSalaahCard extends StatefulWidget {
   const MqSalaahCard({
+    required this.lat,
+    required this.lon,
     required this.fajrLabel,
     required this.zuhrLabel,
     required this.asrLabel,
     required this.maghribLabel,
     required this.ishaLabel,
-    required this.fajrTime,
-    required this.zuhrTime,
-    required this.asrTime,
-    required this.maghribTime,
-    required this.ishaTime,
-    required this.fajrActive,
-    required this.zuhrActive,
-    required this.asrActive,
-    required this.maghribActive,
-    required this.ishaActive,
     required this.locationLabel,
     required this.onLocationPressed,
-    this.location,
+    required this.location,
     super.key,
   });
 
+  final double lat;
+  final double lon;
   final String fajrLabel;
   final String zuhrLabel;
   final String asrLabel;
   final String maghribLabel;
   final String ishaLabel;
-  final String fajrTime;
-  final String zuhrTime;
-  final String asrTime;
-  final String maghribTime;
-  final String ishaTime;
-  final bool fajrActive;
-  final bool zuhrActive;
-  final bool asrActive;
-  final bool maghribActive;
-  final bool ishaActive;
   final String locationLabel;
-  final String? location;
-
+  final String location;
   final void Function() onLocationPressed;
 
   @override
@@ -51,15 +34,34 @@ class MqSalaahCard extends StatefulWidget {
 }
 
 class _MqSalaahCardState extends State<MqSalaahCard> {
-  late final Stream<DateTime> _minuteStream;
+  late final PrayerTimesService _prayerTimesService;
+  late MqPrayerTime _prayerTimes;
+  late Stream<(int, Duration)> _nextPrayerTime;
 
   @override
   void initState() {
-    _minuteStream = Stream.periodic(
-      const Duration(seconds: 1),
-      (_) => DateTime.now(),
-    ).distinct((p, c) => p.minute == c.minute);
+    _prayerTimesService = const PrayerTimesService();
+    _setPrayersTime();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant MqSalaahCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _setPrayersTime();
+    setState(() {});
+  }
+
+  void _setPrayersTime() {
+    _prayerTimes = _prayerTimesService.getPrayerTimes(
+      latitude: widget.lat,
+      longitude: widget.lon,
+      location: widget.location,
+    );
+    _nextPrayerTime = Stream.periodic(
+      const Duration(seconds: 1),
+      (_) => _nextPrayer,
+    );
   }
 
   @override
@@ -68,60 +70,83 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return GradientDecoratedBox(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(context.withWidth(10)),
         child: Row(
           children: [
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Wrap(
-                    spacing: 6,
-                    runSpacing: 6,
+                    spacing: context.withWidth(7),
+                    runSpacing: context.withWidth(6),
                     children: [
                       SalaahItemTimeCard(
                         salaahName: widget.fajrLabel,
-                        timeOfClock: widget.fajrTime,
-                        isActive: widget.fajrActive,
+                        timeOfClock: _prayerTimes.fajrTime,
+                        isActive: !_prayerTimes.fajrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.zuhrLabel,
-                        timeOfClock: widget.zuhrTime,
-                        isActive: widget.zuhrActive,
+                        timeOfClock: _prayerTimes.dhuhrTime,
+                        isActive: !_prayerTimes.dhuhrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.asrLabel,
-                        timeOfClock: widget.asrTime,
-                        isActive: widget.asrActive,
+                        timeOfClock: _prayerTimes.asrTime,
+                        isActive: !_prayerTimes.asrActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.maghribLabel,
-                        timeOfClock: widget.maghribTime,
-                        isActive: widget.maghribActive,
+                        timeOfClock: _prayerTimes.maghribTime,
+                        isActive: !_prayerTimes.maghribActive,
                       ),
                       SalaahItemTimeCard(
                         salaahName: widget.ishaLabel,
-                        timeOfClock: widget.ishaLabel,
-                        isActive: widget.ishaActive,
+                        timeOfClock: _prayerTimes.ishaTime,
+                        isActive: !_prayerTimes.ishaActive,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Row(
+                  SizedBox(height: context.withWidth(8)),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      StreamBuilder<DateTime>(
-                        stream: _minuteStream,
+                      StreamBuilder<(int, Duration)>(
+                        stream: _nextPrayerTime,
                         builder: (context, snapshot) {
-                          return Text(
-                            DateFormat('HH:mm').format(DateTime.now()),
-                            style: prTextTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w900,
-                            ),
-                          );
+                          return snapshot.data?.$1 != 0
+                              ? Row(
+                                  children: [
+                                    Text(
+                                      switch (snapshot.data?.$1) {
+                                        1 => widget.fajrLabel,
+                                        2 => widget.zuhrLabel,
+                                        3 => widget.asrLabel,
+                                        4 => widget.maghribLabel,
+                                        5 => widget.ishaLabel,
+                                        _ => '',
+                                      },
+                                      style: prTextTheme.bodyLarge,
+                                    ),
+                                    SizedBox(
+                                      width: context.withWidth(7),
+                                    ),
+                                    Text(
+                                      _printDuration(snapshot.data?.$2 ?? Duration.zero),
+                                      style: prTextTheme.bodyLarge?.copyWith(
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : const SizedBox.shrink();
                         },
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: context.withWidth(8)),
                       Flexible(
                         child: TextButton.icon(
                           onPressed: widget.onLocationPressed,
@@ -151,29 +176,48 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                 ],
               ),
             ),
-            const SizedBox(width: 7),
-            SizedBox(
-              width: 110,
-              height: 100,
-              child: AnimatedAnalogClock(
-                size: 120,
-                location: widget.location,
-                hourHandColor: colorScheme.onSurface,
-                minuteHandColor: colorScheme.onSurface,
-                secondHandColor: colorScheme.primary,
-                centerDotColor: colorScheme.primary,
-                extendHourHand: true,
-                extendMinuteHand: true,
-                extendSecondHand: true,
-                dialType: DialType.numberAndDashes,
-                numberColor: colorScheme.onSurface,
-                hourDashColor: colorScheme.onSurface,
-              ),
+            SizedBox(width: context.withWidth(7)),
+            AnimatedAnalogClock(
+              size: context.withWidth(99),
+              location: widget.location,
+              hourHandColor: colorScheme.onSurface,
+              minuteHandColor: colorScheme.onSurface,
+              secondHandColor: colorScheme.primary,
+              centerDotColor: colorScheme.primary,
+              extendHourHand: true,
+              extendMinuteHand: true,
+              extendSecondHand: true,
+              dialType: DialType.numberAndDashes,
+              numberColor: colorScheme.onSurface,
+              hourDashColor: colorScheme.onSurface,
             ),
           ],
         ),
       ),
     );
+  }
+
+  (int, Duration) get _nextPrayer {
+    final now = DateTime.now();
+    if (now.isBefore(_prayerTimes.fajr)) {
+      return (1, _prayerTimes.fajr.difference(now));
+    } else if (now.isBefore(_prayerTimes.dhuhr)) {
+      return (2, _prayerTimes.dhuhr.difference(now));
+    } else if (now.isBefore(_prayerTimes.asr)) {
+      return (3, _prayerTimes.asr.difference(now));
+    } else if (now.isBefore(_prayerTimes.maghrib)) {
+      return (4, _prayerTimes.maghrib.difference(now));
+    } else if (now.isBefore(_prayerTimes.isha)) {
+      return (4, _prayerTimes.isha.difference(now));
+    }
+    return (0, Duration.zero);
+  }
+
+  String _printDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60).abs());
+    final twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60).abs());
+    return '${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds';
   }
 }
 
@@ -198,21 +242,40 @@ class SalaahItemTimeCard extends StatelessWidget {
       color: isActive
           ? colorScheme.primary
           : isDark
-              ? colorScheme.onSurface.withOpacity(0.9)
-              : colorScheme.shadow.withOpacity(0.8),
+              ? colorScheme.surface.withOpacity(0.5)
+              : colorScheme.shadow.withOpacity(0.5),
       margin: EdgeInsets.zero,
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(
+          context.withWidth(8),
+        ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-        child: Text(
-          salaahName,
-          style: prTextTheme.bodyMedium?.copyWith(
-            color: (!isActive && isDark) ? colorScheme.surface : colorScheme.onPrimary,
-            fontWeight: FontWeight.w700,
-          ),
+        padding: EdgeInsets.symmetric(
+          vertical: context.withWidth(5),
+          horizontal: context.withWidth(7),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              salaahName,
+              style: prTextTheme.bodyMedium?.copyWith(
+                color: (!isActive && isDark) ? colorScheme.onSurface : colorScheme.onPrimary,
+                fontWeight: FontWeight.w700,
+                fontSize: context.withWidth(14),
+              ),
+            ),
+            Text(
+              timeOfClock,
+              style: prTextTheme.bodyMedium?.copyWith(
+                color: (!isActive && isDark) ? colorScheme.onSurface : colorScheme.onPrimary,
+                fontWeight: FontWeight.w700,
+                fontSize: context.withWidth(10),
+              ),
+            ),
+          ],
         ),
       ),
     );
