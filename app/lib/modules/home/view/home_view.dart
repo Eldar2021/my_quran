@@ -118,9 +118,9 @@ class _HomeViewState extends State<HomeView> {
                 };
               },
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
             const MqSalaahTimeWidget(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Builder(
               builder: (ctx) {
                 return ListTile(
@@ -146,7 +146,26 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+            const HomeBannerWidget(),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 26),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    context.l10n.progress,
+                    style: prTextTheme.titleMedium,
+                  ),
+                  Text(
+                    context.l10n.joinChallenge,
+                    style: prTextTheme.titleMedium,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: BlocBuilder<HomeCubit, HomeState>(

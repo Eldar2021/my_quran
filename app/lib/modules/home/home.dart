@@ -7,3 +7,4 @@ export 'widgets/pray_time_widget.dart';
 export 'widgets/home_drawer.dart';
 export 'widgets/setting_actions_widget.dart';
 export 'widgets/user_profile_tile.dart';
+export 'widgets/home_banner.dart';

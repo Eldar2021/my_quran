@@ -36,12 +36,24 @@ final class MqHomeLocalDataSourceMock implements MqHomeLocalDataSource {
 
 const mqMockHomeBanners = [
   {
-    'image_ru': '',
-    'image_en': '',
-    'image_ky': '',
-    'image_tr': '',
-    'has_condition': true,
-    'date': '',
+    'imageRu': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageEn': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageKy': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageTr': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'hasCondition': true,
+    'date': '2025-01-31',
+  },
+  {
+    'imageRu':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'imageEn':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'imageKy':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'imageTr':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'hasCondition': false,
+    'date': null,
   },
 ];
 
