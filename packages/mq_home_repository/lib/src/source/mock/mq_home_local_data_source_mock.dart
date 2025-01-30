@@ -18,7 +18,52 @@ final class MqHomeLocalDataSourceMock implements MqHomeLocalDataSource {
   Future<void> saveLocalData(MqHomeModelResponse data) {
     return Future.value();
   }
+
+  @override
+  List<MqHomeBannerResponse> getHomeBanners() {
+    return mqMockHomeBanners
+        .map(
+          (e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>),
+        )
+        .toList();
+  }
+
+  @override
+  Future<void> setHomeBanners(List<MqHomeBannerResponse> banners) {
+    return Future.value();
+  }
 }
+
+const mqMockHomeBanners = [
+  {
+    'imageRu': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageEn': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageKy': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageTr': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'hasCondition': true,
+    'date': '2025-01-31',
+  },
+  {
+    'imageRu':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'imageEn':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'imageKy':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'imageTr':
+        'https://diyanethabercomtr.teimg.com/crop/1280x720/diyanethaber-com-tr/uploads/2024/03/ramazan-basliyor-diyanet-tv.jpg',
+    'hasCondition': false,
+    'date': null,
+  },
+  {
+    'imageRu': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageEn': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageKy': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageTr': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'hasCondition': true,
+    'date': '2025-02-27',
+  },
+];
 
 const mqStoriesMock = [
   {

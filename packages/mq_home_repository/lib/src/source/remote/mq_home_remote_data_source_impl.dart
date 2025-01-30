@@ -46,4 +46,17 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
       (right) => right,
     );
   }
+
+  @override
+  Future<List<MqHomeBannerResponse>> getHomeBanners() async {
+    final remoteValue = await remoteClient.getListOfType<MqHomeBannerResponse>(
+      'https://eldar2021.github.io/my-quran/banners/home_banners.json',
+      fromJson: MqHomeBannerResponse.fromJson,
+    );
+
+    return remoteValue.fold(
+      (left) => throw Exception('Failed to fetch remote data $left'),
+      (right) => right,
+    );
+  }
 }

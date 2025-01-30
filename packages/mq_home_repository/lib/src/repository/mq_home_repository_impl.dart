@@ -63,4 +63,36 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<List<MqHomeBannerEntity>> getHomeBanners() async {
+    try {
+      final now = DateTime.now();
+      final remoteData = await remoteDataSource.getHomeBanners();
+      await localDataSource.setHomeBanners(remoteData);
+      final data = remoteData.map((e) => e.toEntity()).toList();
+      final list = List<MqHomeBannerEntity>.from(
+        data
+          ..removeWhere((e) {
+            if (e.hasCondition && e.date != null) {
+              final date = DateTime.parse(e.date ?? '2012-02-27');
+              return !_isSameDate(now, date);
+            } else {
+              return false;
+            }
+          }),
+      );
+
+      return list;
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('HomeRepositoryImpl, getData error: $e');
+      final banners = localDataSource.getHomeBanners();
+      return banners.map((e) => e.toEntity()).toList();
+    }
+  }
+
+  bool _isSameDate(DateTime now, DateTime date) {
+    return now.year == date.year && now.month == date.month && now.day == date.day;
+  }
 }
