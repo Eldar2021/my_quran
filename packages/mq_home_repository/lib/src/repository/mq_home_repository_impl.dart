@@ -63,4 +63,18 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<List<MqHomeBannerEntity>> getHomeBanners() async {
+    try {
+      final remoteData = await remoteDataSource.getHomeBanners();
+      await localDataSource.setHomeBanners(remoteData);
+      return remoteData.map((e) => e.toEntity()).toList();
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      log('HomeRepositoryImpl, getData error: $e');
+      final banners = localDataSource.getHomeBanners();
+      return banners.map((e) => e.toEntity()).toList();
+    }
+  }
 }

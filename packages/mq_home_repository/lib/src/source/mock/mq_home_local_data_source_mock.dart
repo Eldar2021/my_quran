@@ -18,7 +18,32 @@ final class MqHomeLocalDataSourceMock implements MqHomeLocalDataSource {
   Future<void> saveLocalData(MqHomeModelResponse data) {
     return Future.value();
   }
+
+  @override
+  List<MqHomeBannerResponse> getHomeBanners() {
+    return mqMockHomeBanners
+        .map(
+          (e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>),
+        )
+        .toList();
+  }
+
+  @override
+  Future<void> setHomeBanners(List<MqHomeBannerResponse> banners) {
+    return Future.value();
+  }
 }
+
+const mqMockHomeBanners = [
+  {
+    'image_ru': '',
+    'image_en': '',
+    'image_ky': '',
+    'image_tr': '',
+    'has_condition': true,
+    'date': '',
+  },
+];
 
 const mqStoriesMock = [
   {

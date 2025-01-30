@@ -60,4 +60,14 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
 
     return MqDonationPageResponse.fromJson(mockDonationPageData);
   }
+
+  @override
+  Future<List<MqHomeBannerResponse>> getHomeBanners() async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    return mqMockHomeBanners
+        .map(
+          (e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>),
+        )
+        .toList();
+  }
 }
