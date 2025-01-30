@@ -29,14 +29,18 @@ class _BannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: SizedBox(
-        height: context.withWidth(125),
-        child: CarouselView(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: SizedBox(
+          height: context.withWidth(125),
+          child: CarouselView(
+            itemSnapping: true,
+            itemExtent: context.width - 90,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            children: banners.map((e) => HeroLayoutCard(imageUrl: e.imageEn)).toList(),
           ),
-          itemExtent: double.infinity,
-          children: banners.map((e) => BannerCard(imageUrl: e.imageEn)).toList(),
         ),
       ),
     );

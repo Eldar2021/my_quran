@@ -18,3 +18,31 @@ class BannerCard extends StatelessWidget {
     );
   }
 }
+
+class HeroLayoutCard extends StatefulWidget {
+  const HeroLayoutCard({
+    required this.imageUrl,
+    super.key,
+  });
+
+  final String imageUrl;
+
+  @override
+  State<HeroLayoutCard> createState() => _HeroLayoutCardState();
+}
+
+class _HeroLayoutCardState extends State<HeroLayoutCard> {
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    return OverflowBox(
+      maxWidth: width * 7 / 8,
+      minWidth: width * 7 / 8,
+      child: CachedNetworkImage(
+        imageUrl: widget.imageUrl,
+        width: double.infinity,
+        fit: BoxFit.fitWidth,
+      ),
+    );
+  }
+}

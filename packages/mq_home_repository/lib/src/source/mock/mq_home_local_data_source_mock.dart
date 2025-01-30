@@ -55,6 +55,14 @@ const mqMockHomeBanners = [
     'hasCondition': false,
     'date': null,
   },
+  {
+    'imageRu': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageEn': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageKy': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'imageTr': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
+    'hasCondition': true,
+    'date': '2025-01-31',
+  },
 ];
 
 const mqStoriesMock = [
