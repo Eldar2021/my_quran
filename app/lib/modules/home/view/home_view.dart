@@ -181,21 +181,21 @@ class _HomeViewState extends State<HomeView> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
-                builder: (context, state) {
-                  return ElevatedButton(
-                    key: const Key(MqKeys.participantToHatim),
-                    onPressed: state.isHatimEnable ? _onJoinToHatim : null,
-                    child: Text(context.l10n.joinToHatim),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 100),
           ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+          builder: (context, state) {
+            return ElevatedButton(
+              key: const Key(MqKeys.participantToHatim),
+              onPressed: state.isHatimEnable ? _onJoinToHatim : null,
+              child: Text(context.l10n.joinToHatim),
+            );
+          },
         ),
       ),
     );
