@@ -191,9 +191,11 @@ class _HomeViewState extends State<HomeView> {
     final homeCubit = context.read<HomeCubit>();
     final storyCubit = context.read<MqStoryCubit>();
     final authCubit = context.read<AuthCubit>();
+    final bannerCubit = context.read<HomeBannersCubit>();
     await Future.wait([
       homeCubit.getData(),
       storyCubit.getStories(authCubit.state.currentLocale.languageCode),
+      bannerCubit.getBanners(),
     ]);
   }
 }
