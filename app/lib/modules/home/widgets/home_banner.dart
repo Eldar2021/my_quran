@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
+import 'package:my_quran/app/cubit/auth_cubit.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class HomeBannerWidget extends StatelessWidget {
@@ -39,10 +40,27 @@ class _BannerWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
-            children: banners.map((e) => HeroLayoutCard(imageUrl: e.imageEn)).toList(),
+            children: banners
+                .map(
+                  (e) => HeroLayoutCard(
+                    imageUrl: _getUrl(e, context),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),
     );
+  }
+
+  String _getUrl(MqHomeBannerEntity e, BuildContext context) {
+    final locale = context.read<AuthCubit>().state.currentLocale.languageCode;
+    return switch (locale) {
+      'en' => e.imageEn,
+      'ru' => e.imageRu,
+      'ky' => e.imageKy,
+      'tr' => e.imageTr,
+      _ => e.imageEn,
+    };
   }
 }
