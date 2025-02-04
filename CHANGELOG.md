@@ -187,3 +187,20 @@
 ## [Technical]
 
 - Fixed dependency conflicts
+
+---
+
+# What's Changed v1.3.12+22
+
+## [UX]
+
+- Implement Prayer times
+- Add Banner
+
+## [Bug Fixes]
+
+- Fixed join to hatim button float
+
+## [Technical]
+
+- Fixed release testing template
