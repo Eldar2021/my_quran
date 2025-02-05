@@ -11,6 +11,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/constants/api/api_const.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/urils.dart';
@@ -166,7 +167,7 @@ class _SignInViewState extends State<SignInView> {
                 text: context.l10n.privacyPolicy,
                 onPressed: () {
                   MqAnalytic.track(AnalyticKey.tapPrivacyPolicy);
-                  AppLaunch.launchURL(apiConst.provicyPolicy);
+                  AppLaunch.launchURL(ApiConst.provicyPolicy);
                 },
               ),
               SizedBox(height: size.height * 0.04),

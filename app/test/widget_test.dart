@@ -25,12 +25,15 @@ void main() {
       remoteDataSource: AuthRemoteDataSourceMock(),
     );
 
+    final storage = MockStorage();
+
     await tester.pumpApp(
       appRepository,
       authRepository,
       homeRepo,
       remoteConfig,
       packageInfo,
+      storage,
     );
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);

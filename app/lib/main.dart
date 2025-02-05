@@ -18,7 +18,7 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/firebase_options.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-Future<void> main({AppConfig? appConfig}) async {
+Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
@@ -55,21 +55,25 @@ Future<void> main({AppConfig? appConfig}) async {
   final remoteConfig = MqRemoteConfig(buildNumber: packageInfo.buildNumber);
 
   await remoteConfig.initialise();
-  appConfig ??= AppConfig(storage: storage);
 
-  appConfig.init();
+  final appConfig = AppConfig(
+    isIntegrationTest: isIntegrationTest,
+    storage: storage,
+  );
+
+  final domain = appConfig.isDevMode ? appConfig.devDomain : ApiConst.domain;
 
   runApp(
     MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AppConfig>(create: (context) => appConfig!),
+        RepositoryProvider<AppConfig>(create: (context) => appConfig),
         RepositoryProvider<PreferencesStorage>(create: (context) => storage),
         RepositoryProvider<PackageInfo>(create: (context) => packageInfo),
         RepositoryProvider<NetworkClient>(create: (context) => NetworkClient()),
         RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => MqRemoteClient(
-            dio: Dio(BaseOptions(baseUrl: ApiConst.domain)),
+            dio: Dio(BaseOptions(baseUrl: domain)),
             network: context.read<NetworkClient>(),
             language: () => storage.readString(key: StorageKeys.localeKey),
             token: () => storage.readString(key: StorageKeys.tokenKey),

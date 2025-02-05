@@ -4,7 +4,6 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
-import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 
 part 'quran_audio_state.dart';
@@ -41,7 +40,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
         children: surahs
             .map(
               (s) => AudioSource.uri(
-                Uri.parse(apiConst.audio(s.surahPath)),
+                Uri.parse(ApiConst.audio(s.surahPath)),
                 tag: MediaItem(
                   id: '${s.id}',
                   album: 'Quran',

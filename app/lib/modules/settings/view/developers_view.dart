@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:my_quran/config/config.dart';
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 
@@ -29,7 +29,7 @@ class DevelopersView extends StatelessWidget {
             ContactGithubButton(
               labelText: context.l10n.github,
               onPressed: () {
-                AppLaunch.launchURL(apiConst.urlGitHub);
+                AppLaunch.launchURL(ApiConst.urlGitHub);
               },
             ),
             const SizedBox(height: 20),
