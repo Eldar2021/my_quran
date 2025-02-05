@@ -39,12 +39,17 @@ class LoginBody extends StatelessWidget {
       children: [
         const Spacer(),
         Center(
-          child: Text(
-            context.l10n.myQuran,
-            textAlign: TextAlign.center,
-            style: prTextTheme.displayMedium?.copyWith(
-              color: colorScheme.primary,
-              fontWeight: FontWeight.w800,
+          child: InkWell(
+            onLongPress: () {
+              context.pushNamed(AppRouter.devModeView);
+            },
+            child: Text(
+              context.l10n.myQuran,
+              textAlign: TextAlign.center,
+              style: prTextTheme.displayMedium?.copyWith(
+                color: colorScheme.primary,
+                fontWeight: FontWeight.w800,
+              ),
             ),
           ),
         ),

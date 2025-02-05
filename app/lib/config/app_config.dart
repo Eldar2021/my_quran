@@ -15,24 +15,11 @@ final class AppConfig {
   final PreferencesStorage storage;
 
   Future<void> setDevMode({required String devDomain, required bool isDevmode}) async {
-    await storage.writeString(key: 'dev-domain', value: devDomain);
-    await storage.writeBool(key: 'dev-mode', value: isDevmode);
-
+    await storage.clear();
     await Future.wait<bool>([
       storage.writeString(key: 'dev-domain', value: devDomain),
       storage.writeBool(key: 'dev-mode', value: isDevmode),
     ]);
-  }
-
-  Future<void> clearDevMode() async {
-    await Future.wait([
-      storage.delete(key: 'dev-domain'),
-      storage.delete(key: 'dev-mode'),
-    ]);
-  }
-
-  Future<void> changeJustDevMode({required bool isDevmode}) async {
-    await storage.writeBool(key: 'dev-mode', value: isDevmode);
   }
 
   bool get isDevMode {

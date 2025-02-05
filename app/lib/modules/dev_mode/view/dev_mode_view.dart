@@ -20,6 +20,7 @@ class _DevModeViewState extends State<DevModeView> {
   @override
   void initState() {
     _controller.text = context.read<AppConfig>().devDomain;
+    isDevMode = context.read<AppConfig>().isDevMode;
     super.initState();
   }
 
