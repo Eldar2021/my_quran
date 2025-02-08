@@ -20,6 +20,19 @@ Map<String, dynamic> _$QuranDataVerseUthmaniSimpleResponseToJson(QuranDataVerseU
       'text_uthmani_simple': instance.textUtmaniSimple,
     };
 
+QuranDataVerseUthmaniResponse _$QuranDataVerseUthmaniResponseFromJson(Map<String, dynamic> json) =>
+    QuranDataVerseUthmaniResponse(
+      id: (json['id'] as num).toInt(),
+      verseKey: json['verse_key'] as String,
+      textUtmani: json['text_uthmani'] as String,
+    );
+
+Map<String, dynamic> _$QuranDataVerseUthmaniResponseToJson(QuranDataVerseUthmaniResponse instance) => <String, dynamic>{
+      'id': instance.id,
+      'verse_key': instance.verseKey,
+      'text_uthmani': instance.textUtmani,
+    };
+
 QuranDataVerseImlaeiResponse _$QuranDataVerseImlaeiResponseFromJson(Map<String, dynamic> json) =>
     QuranDataVerseImlaeiResponse(
       id: (json['id'] as num).toInt(),

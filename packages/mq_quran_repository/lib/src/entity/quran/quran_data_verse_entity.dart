@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 sealed class QuranDataVerseEntity {
   const QuranDataVerseEntity({
@@ -10,6 +11,11 @@ sealed class QuranDataVerseEntity {
   final int id;
   final String verseKey;
   final String text;
+
+  int get juzNumber => int.parse(verseKey.split(':').first);
+  int get ayatNumber => int.parse(verseKey.split(':').last);
+  bool get isFirst => ayatNumber == 1;
+  bool get hasSajda => MqQuranStatic.sajdaAyats.contains(id);
 }
 
 @immutable
@@ -32,4 +38,15 @@ final class QuranDataVerseImlaeiEntity extends QuranDataVerseEntity {
   }) : super(text: textImlaei);
 
   final String textImlaei;
+}
+
+@immutable
+final class QuranDataVerseUthmaniEntity extends QuranDataVerseEntity {
+  const QuranDataVerseUthmaniEntity({
+    required super.id,
+    required super.verseKey,
+    required this.textUtmani,
+  }) : super(text: textUtmani);
+
+  final String textUtmani;
 }

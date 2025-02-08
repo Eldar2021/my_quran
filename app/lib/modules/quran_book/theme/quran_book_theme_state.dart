@@ -4,7 +4,7 @@ part of 'quran_book_theme_cubit.dart';
 final class QuranBookThemeState extends Equatable {
   const QuranBookThemeState({
     this.verticalSpaceSize = 0,
-    this.horizontalSpaceSize = 14,
+    this.horizontalSpaceSize = 24,
     this.modeIndex = 1,
     this.textSize = 28,
   });

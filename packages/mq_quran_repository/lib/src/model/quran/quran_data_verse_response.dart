@@ -12,7 +12,9 @@ sealed class QuranDataVerseResponse {
   });
 
   factory QuranDataVerseResponse.fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('text_uthmani_simple')) {
+    if (json.containsKey('text_uthmani')) {
+      return QuranDataVerseUthmaniResponse.fromJson(json);
+    } else if (json.containsKey('text_uthmani_simple')) {
       return QuranDataVerseUthmaniSimpleResponse.fromJson(json);
     } else if (json.containsKey('text_imlaei')) {
       return QuranDataVerseImlaeiResponse.fromJson(json);
@@ -31,6 +33,11 @@ sealed class QuranDataVerseResponse {
 
   QuranDataVerseEntity toEntity() {
     return switch (this) {
+      QuranDataVerseUthmaniResponse() => QuranDataVerseUthmaniEntity(
+          id: id,
+          verseKey: verseKey,
+          textUtmani: text,
+        ),
       QuranDataVerseUthmaniSimpleResponse() => QuranDataVerseUthmaniSimpleEntity(
           id: id,
           verseKey: verseKey,
@@ -43,6 +50,25 @@ sealed class QuranDataVerseResponse {
         ),
     };
   }
+}
+
+@JsonSerializable()
+@immutable
+final class QuranDataVerseUthmaniResponse extends QuranDataVerseResponse {
+  const QuranDataVerseUthmaniResponse({
+    required super.id,
+    required super.verseKey,
+    required this.textUtmani,
+  }) : super(text: textUtmani);
+
+  factory QuranDataVerseUthmaniResponse.fromJson(Map<String, dynamic> json) =>
+      _$QuranDataVerseUthmaniResponseFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$QuranDataVerseUthmaniResponseToJson(this);
+
+  @JsonKey(name: 'text_uthmani')
+  final String textUtmani;
 }
 
 @JsonSerializable()

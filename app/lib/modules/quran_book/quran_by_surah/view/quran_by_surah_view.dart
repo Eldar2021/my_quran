@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
-import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -45,7 +43,7 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
   @override
   void initState() {
     _surahEntity = context.read<QuranBookBySurahCubit>().getSurahData();
-    context.read<QuranBookBySurahCubit>().getData('uthmanic');
+    context.read<QuranBookBySurahCubit>().getData('uthmani');
     super.initState();
   }
 
@@ -56,51 +54,41 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
       backgroundColor: themeCubit.state.bgColor,
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            floating: true,
-            stretch: true,
-            centerTitle: true,
-            backgroundColor: themeCubit.state.bgColor,
-            foregroundColor: themeCubit.state.frColor,
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              title: FittedBox(
-                child: Text(
-                  _surahEntity.nameSimple,
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: FontFamily.qpcUthmanicHafs,
-                    fontSize: 26,
-                    color: themeCubit.state.frColor,
-                  ),
-                ),
-              ),
-            ),
-            actions: [
-              IconButton(
-                key: const Key(MqKeys.quranReadSettings),
-                onPressed: () {
-                  MqAnalytic.track(AnalyticKey.tapQuranReadSettings);
-                  MqBottomSheets.showReadSettingsSheet<void>(
-                    context: context,
-                    backgroundColor: themeCubit.state.bgColor,
-                    child: BlocProvider.value(
-                      value: context.read<ReadThemeCubit>(),
-                      child: const ChangeReadThemeSheetContent(),
+          QuranBookSliverAppBar(
+            title: _surahEntity.nameArabic,
+          ),
+          BlocBuilder<QuranBookBySurahCubit, QuranBookBySurahState>(
+            builder: (context, state) {
+              return switch (state) {
+                QuranBookBySurahInitial() => const QuranBookSliverProgressingIndicator(),
+                QuranBookBySurahLoading() => const QuranBookSliverProgressingIndicator(),
+                QuranBookBySurahError() => QuranBookSliverErrorWidget(state.error.toString()),
+                QuranBookBySurahLoaded() => SliverPadding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: themeCubit.state.verticalSpaceSize,
+                      horizontal: themeCubit.state.horizontalSpaceSize,
                     ),
-                  );
-                },
-                icon: const Icon(Icons.tune),
-              ),
-              const SizedBox(width: 16),
-            ],
+                    sliver: SliverToBoxAdapter(
+                      child: Localizations.override(
+                        context: context,
+                        locale: const Locale('ar'),
+                        child: Text(
+                          '${state.dataEntity.samePage}',
+                          style: TextStyle(
+                            fontFamily: FontFamily.qpcUthmanicHafs,
+                            fontSize: themeCubit.state.textSize,
+                            color: themeCubit.state.frColor,
+                            height: 2.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              };
+            },
           ),
         ],
       ),
-      // appBar: AppBar(
-      //   title: Text(_surahEntity.name),
-      // ),
     );
   }
 }
