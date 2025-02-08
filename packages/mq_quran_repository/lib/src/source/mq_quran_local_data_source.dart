@@ -5,4 +5,7 @@ abstract class MqQuranLocalDataSource {
   Future<void> cachePage(int page, String quranFmt, QuranPageResponse pageData);
   List<JuzResponse> getJuzsFromLocal();
   List<SurahResponse> getSurahsFromLocal();
+
+  List<JuzModelResponse> getJuzsData();
+  List<SurahModelResponse> getSurahsData();
 }

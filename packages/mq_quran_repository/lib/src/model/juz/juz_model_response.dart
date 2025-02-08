@@ -8,23 +8,23 @@ part 'juz_model_response.g.dart';
 @immutable
 final class JuzModelResponse {
   const JuzModelResponse({
-    this.id,
-    this.juzNumber,
-    this.firstVerseId,
-    this.lastVerseId,
-    this.versesCount,
-    this.verseMapping,
+    required this.id,
+    required this.juzNumber,
+    required this.firstVerseId,
+    required this.lastVerseId,
+    required this.versesCount,
+    required this.verseMapping,
   });
 
   factory JuzModelResponse.fromJson(Map<String, dynamic> json) => _$JuzModelResponseFromJson(json);
   Map<String, dynamic> toJson() => _$JuzModelResponseToJson(this);
 
-  final int? id;
-  final int? juzNumber;
-  final int? firstVerseId;
-  final int? lastVerseId;
-  final int? versesCount;
-  final Map<String, String>? verseMapping;
+  final int id;
+  final int juzNumber;
+  final int firstVerseId;
+  final int lastVerseId;
+  final int versesCount;
+  final Map<String, String> verseMapping;
 
   MqJuzEntity toEntity() {
     return MqJuzEntity(

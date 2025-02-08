@@ -82,4 +82,18 @@ final class MqQuranRepositoryImpl implements MqQuranRepository {
           .toList(),
     );
   }
+
+  @override
+  List<MqJuzEntity> getJuzsData() {
+    final juzResponses = localDataSource.getJuzsData();
+    final juzEntities = juzResponses.map((e) => e.toEntity()).toList();
+    return juzEntities;
+  }
+
+  @override
+  List<MqSurahEntity> getSurahsData() {
+    final surahResponses = localDataSource.getSurahsData();
+    final surahEntities = surahResponses.map((e) => e.toEntity()).toList();
+    return surahEntities;
+  }
 }

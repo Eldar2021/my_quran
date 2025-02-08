@@ -16,4 +16,16 @@ final class MqQuranLocalDataSourceMock implements MqQuranLocalDataSource {
 
   @override
   List<SurahResponse> getSurahsFromLocal() => [];
+
+  @override
+  List<JuzModelResponse> getJuzsData() {
+    final surahs = mqQuranJuzsData.map(JuzModelResponse.fromJson).toList();
+    return surahs;
+  }
+
+  @override
+  List<SurahModelResponse> getSurahsData() {
+    final surahs = mqQuranSurahsData.map(SurahModelResponse.fromJson).toList();
+    return surahs;
+  }
 }
