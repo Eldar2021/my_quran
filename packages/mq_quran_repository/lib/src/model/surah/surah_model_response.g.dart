@@ -16,7 +16,6 @@ SurahModelResponse _$SurahModelResponseFromJson(Map<String, dynamic> json) => Su
       nameComplex: json['name_complex'] as String,
       nameArabic: json['name_arabic'] as String,
       pages: (json['pages'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
-      translatedName: TranslatedName.fromJson(json['translated_mame'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SurahModelResponseToJson(SurahModelResponse instance) => <String, dynamic>{
@@ -29,7 +28,6 @@ Map<String, dynamic> _$SurahModelResponseToJson(SurahModelResponse instance) => 
       'name_arabic': instance.nameArabic,
       'verses_count': instance.versesCount,
       'pages': instance.pages,
-      'translated_mame': instance.translatedName,
     };
 
 TranslatedName _$TranslatedNameFromJson(Map<String, dynamic> json) => TranslatedName(

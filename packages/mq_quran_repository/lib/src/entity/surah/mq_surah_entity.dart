@@ -12,7 +12,6 @@ final class MqSurahEntity {
     required this.nameComplex,
     required this.nameArabic,
     required this.pages,
-    required this.translatedName,
   });
 
   final int id;
@@ -24,7 +23,6 @@ final class MqSurahEntity {
   final String nameArabic;
   final int versesCount;
   final List<int> pages;
-  final MqSurahTranslatedNameEntity translatedName;
 }
 
 @immutable

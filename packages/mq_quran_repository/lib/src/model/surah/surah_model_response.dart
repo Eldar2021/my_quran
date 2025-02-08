@@ -17,7 +17,6 @@ final class SurahModelResponse {
     required this.nameComplex,
     required this.nameArabic,
     required this.pages,
-    required this.translatedName,
   });
 
   factory SurahModelResponse.fromJson(Map<String, dynamic> json) => _$SurahModelResponseFromJson(json);
@@ -41,8 +40,6 @@ final class SurahModelResponse {
   final int versesCount;
   @JsonKey(name: 'pages')
   final List<int> pages;
-  @JsonKey(name: 'translated_mame')
-  final TranslatedName translatedName;
 
   MqSurahEntity toEntity() {
     return MqSurahEntity(
@@ -55,7 +52,6 @@ final class SurahModelResponse {
       nameArabic: nameArabic,
       versesCount: versesCount,
       pages: pages,
-      translatedName: translatedName.toEntity(),
     );
   }
 }
