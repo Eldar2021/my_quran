@@ -1,11 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:my_quran/constants/contants.dart';
 
 @immutable
 final class AppConfig {
   const AppConfig({
-    this.storage,
+    required this.storage,
     this.isIntegrationTest = false,
     this.isMockData = false,
   });
@@ -13,27 +12,21 @@ final class AppConfig {
   final bool isIntegrationTest;
   final bool isMockData;
 
-  final PreferencesStorage? storage;
+  final PreferencesStorage storage;
 
   Future<void> setDevMode({required String devDomain, required bool isDevmode}) async {
-    await storage?.writeString(key: 'dev-domain', value: devDomain);
-    await storage?.writeBool(key: 'dev-mode', value: isDevmode);
+    await storage.clear();
+    await Future.wait<bool>([
+      storage.writeString(key: 'dev-domain', value: devDomain),
+      storage.writeBool(key: 'dev-mode', value: isDevmode),
+    ]);
   }
 
-  Future<void> clearDevMode() async {
-    await storage?.delete(key: 'dev-domain');
-    await storage?.delete(key: 'dev-mode');
+  bool get isDevMode {
+    return storage.readBool(key: 'dev-mode') ?? false;
   }
 
-  Future<void> changeJustDevMode({required bool isDevmode}) async {
-    await storage?.writeBool(key: 'dev-mode', value: isDevmode);
-    init();
-  }
-
-  void init() {
-    final devDomain = storage?.readString(key: 'dev-domain');
-    apiConst = ApiConst(devDomain: devDomain);
+  String get devDomain {
+    return storage.readString(key: 'dev-domain') ?? '';
   }
 }
-
-ApiConst apiConst = const ApiConst();
