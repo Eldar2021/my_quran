@@ -8,10 +8,15 @@ export 'entity/surah_entity.dart';
 export 'entity/verse_entity.dart';
 // models
 export 'model/filters_response.dart';
+export 'model/juz/juz_model_response.dart';
 export 'model/juz_model.dart';
 export 'model/juz_surah_model.dart';
 export 'model/meta_response.dart';
+export 'model/quran/quran_data_filter_response.dart';
+export 'model/quran/quran_data_response.dart';
+export 'model/quran/quran_data_verse_response.dart';
 export 'model/quran_page_response.dart';
+export 'model/surah/surah_model_response.dart';
 export 'model/surah_model.dart';
 export 'model/verse_response.dart';
 // repositories
