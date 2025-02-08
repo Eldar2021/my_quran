@@ -1,9 +1,14 @@
 // entities
 export 'entity/filters_entity.dart';
+export 'entity/juz/mq_juz_entity.dart';
 export 'entity/juz_entity.dart';
 export 'entity/juz_surah_entity.dart';
 export 'entity/meta_entity.dart';
+export 'entity/quran/quran_data_entity.dart';
+export 'entity/quran/quran_data_filter_entity.dart';
+export 'entity/quran/quran_data_verse_entity.dart';
 export 'entity/quran_page_entity.dart';
+export 'entity/surah/mq_surah_entity.dart';
 export 'entity/surah_entity.dart';
 export 'entity/verse_entity.dart';
 // models
