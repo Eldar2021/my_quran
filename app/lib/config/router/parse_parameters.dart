@@ -19,4 +19,13 @@ final class ParseParams {
       return ([1], false);
     }
   }
+
+  static int parseSurahNumber(Map<String, String> args) {
+    try {
+      return int.parse(args['surahNumber'] ?? '1');
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      return 1;
+    }
+  }
 }

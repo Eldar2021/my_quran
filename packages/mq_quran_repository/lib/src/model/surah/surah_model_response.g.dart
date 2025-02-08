@@ -7,18 +7,16 @@ part of 'surah_model_response.dart';
 // **************************************************************************
 
 SurahModelResponse _$SurahModelResponseFromJson(Map<String, dynamic> json) => SurahModelResponse(
-      id: (json['id'] as num?)?.toInt(),
-      versesCount: (json['versesCount'] as num?)?.toInt(),
-      revelationPlace: json['revelationPlace'] as String?,
-      revelationOrder: (json['revelationOrder'] as num?)?.toInt(),
-      bismillahPre: json['bismillahPre'] as bool?,
-      nameSimple: json['nameSimple'] as String?,
-      nameComplex: json['nameComplex'] as String?,
-      nameArabic: json['nameArabic'] as String?,
-      pages: (json['pages'] as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
-      translatedName: json['translatedName'] == null
-          ? null
-          : TranslatedName.fromJson(json['translatedName'] as Map<String, dynamic>),
+      id: (json['id'] as num).toInt(),
+      versesCount: (json['versesCount'] as num).toInt(),
+      revelationPlace: json['revelationPlace'] as String,
+      revelationOrder: (json['revelationOrder'] as num).toInt(),
+      bismillahPre: json['bismillahPre'] as bool,
+      nameSimple: json['nameSimple'] as String,
+      nameComplex: json['nameComplex'] as String,
+      nameArabic: json['nameArabic'] as String,
+      pages: (json['pages'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
+      translatedName: TranslatedName.fromJson(json['translatedName'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SurahModelResponseToJson(SurahModelResponse instance) => <String, dynamic>{
@@ -35,8 +33,8 @@ Map<String, dynamic> _$SurahModelResponseToJson(SurahModelResponse instance) => 
     };
 
 TranslatedName _$TranslatedNameFromJson(Map<String, dynamic> json) => TranslatedName(
-      languageName: json['languageName'] as String?,
-      name: json['name'] as String?,
+      languageName: json['languageName'] as String,
+      name: json['name'] as String,
     );
 
 Map<String, dynamic> _$TranslatedNameToJson(TranslatedName instance) => <String, dynamic>{

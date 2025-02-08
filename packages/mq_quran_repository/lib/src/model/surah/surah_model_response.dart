@@ -58,6 +58,9 @@ final class TranslatedName {
     required this.name,
   });
 
+  factory TranslatedName.fromJson(Map<String, dynamic> json) => _$TranslatedNameFromJson(json);
+  Map<String, dynamic> toJson() => _$TranslatedNameToJson(this);
+
   final String languageName;
   final String name;
 

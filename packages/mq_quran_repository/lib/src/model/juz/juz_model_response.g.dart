@@ -7,14 +7,12 @@ part of 'juz_model_response.dart';
 // **************************************************************************
 
 JuzModelResponse _$JuzModelResponseFromJson(Map<String, dynamic> json) => JuzModelResponse(
-      id: (json['id'] as num?)?.toInt(),
-      juzNumber: (json['juzNumber'] as num?)?.toInt(),
-      firstVerseId: (json['firstVerseId'] as num?)?.toInt(),
-      lastVerseId: (json['lastVerseId'] as num?)?.toInt(),
-      versesCount: (json['versesCount'] as num?)?.toInt(),
-      verseMapping: (json['verseMapping'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
+      id: (json['id'] as num).toInt(),
+      juzNumber: (json['juzNumber'] as num).toInt(),
+      firstVerseId: (json['firstVerseId'] as num).toInt(),
+      lastVerseId: (json['lastVerseId'] as num).toInt(),
+      versesCount: (json['versesCount'] as num).toInt(),
+      verseMapping: Map<String, String>.from(json['verseMapping'] as Map),
     );
 
 Map<String, dynamic> _$JuzModelResponseToJson(JuzModelResponse instance) => <String, dynamic>{

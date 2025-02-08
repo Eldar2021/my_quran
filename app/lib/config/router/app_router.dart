@@ -30,6 +30,7 @@ final class AppRouter {
   static const hatim = 'hatim';
   static const quran = 'quran';
   static const quranAudio = 'quran-audio';
+  static const quranBySurah = 'quran-by-surah';
 
   static const read = 'read';
   static const hatimRead = 'hatim-read';
@@ -191,6 +192,15 @@ final class AppRouter {
         builder: (context, state) {
           final args = ParseParams.parseRead(state.pathParameters);
           return ReadView(args.$1, isHatim: args.$2);
+        },
+      ),
+      GoRoute(
+        path: '$quranBySurah/:surahNumber',
+        name: quranBySurah,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final args = ParseParams.parseSurahNumber(state.pathParameters);
+          return QuranBySurahView(args);
         },
       ),
     ];

@@ -8,6 +8,7 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
+import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
@@ -77,6 +78,17 @@ class MyApp extends StatelessWidget {
                     ),
             );
           },
+        ),
+        RepositoryProvider<ReadThemeRepository>(
+          create: (context) => ReadThemeRepositoryImpl(
+            LocalThemeDataSourceImpl(context.read<PreferencesStorage>()),
+          ),
+        ),
+        RepositoryProvider<MqQuranRepository>(
+          create: (context) => MqQuranRepositoryImpl(
+            MqQuranLocalDataSourceImpl(context.read<PreferencesStorage>()),
+            MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+          ),
         ),
         BlocProvider(
           create: (context) => AuthCubit(
