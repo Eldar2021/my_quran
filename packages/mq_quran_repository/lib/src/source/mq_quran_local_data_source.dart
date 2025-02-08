@@ -6,6 +6,8 @@ abstract class MqQuranLocalDataSource {
   List<JuzResponse> getJuzsFromLocal();
   List<SurahResponse> getSurahsFromLocal();
 
+  /// New
+
   List<JuzModelResponse> getJuzsData();
   List<SurahModelResponse> getSurahsData();
 

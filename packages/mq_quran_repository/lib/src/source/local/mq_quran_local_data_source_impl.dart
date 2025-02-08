@@ -40,6 +40,8 @@ final class MqQuranLocalDataSourceImpl implements MqQuranLocalDataSource {
     return surahs;
   }
 
+  /// New
+
   @override
   List<JuzModelResponse> getJuzsData() {
     final surahs = mqQuranJuzsData.map(JuzModelResponse.fromJson).toList();

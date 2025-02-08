@@ -9,6 +9,8 @@ class MqQuranRemoteDataSourceMock implements MqQuranRemoteDataSource {
     );
   }
 
+  /// New
+
   @override
   Future<QuranDataResponse> fetchQuranByJuz(
     int juzNumber,
