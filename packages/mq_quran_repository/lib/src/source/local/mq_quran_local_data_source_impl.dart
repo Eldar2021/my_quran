@@ -51,4 +51,100 @@ final class MqQuranLocalDataSourceImpl implements MqQuranLocalDataSource {
     final surahs = mqQuranSurahsData.map(SurahModelResponse.fromJson).toList();
     return surahs;
   }
+
+  @override
+  QuranDataResponse? getQuranByJuz(
+    int juzNumber,
+    String quranFmt,
+  ) {
+    final localValue = storage.readString(
+      key: _juzKey(juzNumber, quranFmt),
+    );
+
+    if (localValue != null) {
+      final data = jsonDecode(localValue);
+      return QuranDataResponse.fromJson(data as Map<String, dynamic>);
+    }
+    return null;
+  }
+
+  @override
+  QuranDataResponse? getQuranByPage(
+    int pageNumber,
+    String quranFmt,
+  ) {
+    final localValue = storage.readString(
+      key: _pageKey(pageNumber, quranFmt),
+    );
+
+    if (localValue != null) {
+      final data = jsonDecode(localValue);
+      return QuranDataResponse.fromJson(data as Map<String, dynamic>);
+    }
+    return null;
+  }
+
+  @override
+  QuranDataResponse? getQuranBySurah(
+    int surahNumber,
+    String quranFmt,
+  ) {
+    final localValue = storage.readString(
+      key: _surahKey(surahNumber, quranFmt),
+    );
+
+    if (localValue != null) {
+      final data = jsonDecode(localValue);
+      return QuranDataResponse.fromJson(data as Map<String, dynamic>);
+    }
+    return null;
+  }
+
+  @override
+  Future<void> setQuranByJuz(
+    int juzNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) async {
+    await storage.writeString(
+      key: _juzKey(juzNumber, quranFmt),
+      value: jsonEncode(data.toJson()),
+    );
+  }
+
+  @override
+  Future<void> setQuranByPage(
+    int pageNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) async {
+    await storage.writeString(
+      key: _pageKey(pageNumber, quranFmt),
+      value: jsonEncode(data.toJson()),
+    );
+  }
+
+  @override
+  Future<void> setQuranBySurah(
+    int surahNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) async {
+    await storage.writeString(
+      key: _surahKey(surahNumber, quranFmt),
+      value: jsonEncode(data.toJson()),
+    );
+  }
+
+  String _surahKey(int surahNumber, String quranFmt) {
+    return 'quran-by-surah-$quranFmt-$surahNumber';
+  }
+
+  String _juzKey(int juzNumber, String quranFmt) {
+    return 'quran-by-juz-$quranFmt-$juzNumber';
+  }
+
+  String _pageKey(int pageNumber, String quranFmt) {
+    return 'quran-by-page-$quranFmt-$pageNumber';
+  }
 }

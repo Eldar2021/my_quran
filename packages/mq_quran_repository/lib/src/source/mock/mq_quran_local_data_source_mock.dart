@@ -28,4 +28,55 @@ final class MqQuranLocalDataSourceMock implements MqQuranLocalDataSource {
     final surahs = mqQuranSurahsData.map(SurahModelResponse.fromJson).toList();
     return surahs;
   }
+
+  @override
+  QuranDataResponse? getQuranByJuz(
+    int juzNumber,
+    String quranFmt,
+  ) {
+    return null;
+  }
+
+  @override
+  QuranDataResponse? getQuranByPage(
+    int pageNumber,
+    String quranFmt,
+  ) {
+    return null;
+  }
+
+  @override
+  QuranDataResponse? getQuranBySurah(
+    int surahNumber,
+    String quranFmt,
+  ) {
+    return null;
+  }
+
+  @override
+  Future<void> setQuranByJuz(
+    int juzNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) {
+    return Future.value();
+  }
+
+  @override
+  Future<void> setQuranByPage(
+    int pageNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) {
+    return Future.value();
+  }
+
+  @override
+  Future<void> setQuranBySurah(
+    int surahNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) {
+    return Future.value();
+  }
 }
