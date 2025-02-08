@@ -23,15 +23,25 @@ final class SurahModelResponse {
   factory SurahModelResponse.fromJson(Map<String, dynamic> json) => _$SurahModelResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SurahModelResponseToJson(this);
 
+  @JsonKey(name: 'id')
   final int id;
+  @JsonKey(name: 'revelation_place')
   final String revelationPlace;
+  @JsonKey(name: 'revelation_order')
   final int revelationOrder;
+  @JsonKey(name: 'bismillah_pre')
   final bool bismillahPre;
+  @JsonKey(name: 'name_simple')
   final String nameSimple;
+  @JsonKey(name: 'name_complex')
   final String nameComplex;
+  @JsonKey(name: 'name_arabic')
   final String nameArabic;
+  @JsonKey(name: 'verses_count')
   final int versesCount;
+  @JsonKey(name: 'pages')
   final List<int> pages;
+  @JsonKey(name: 'translated_mame')
   final TranslatedName translatedName;
 
   MqSurahEntity toEntity() {
@@ -61,7 +71,9 @@ final class TranslatedName {
   factory TranslatedName.fromJson(Map<String, dynamic> json) => _$TranslatedNameFromJson(json);
   Map<String, dynamic> toJson() => _$TranslatedNameToJson(this);
 
+  @JsonKey(name: 'language_name')
   final String languageName;
+  @JsonKey(name: 'name')
   final String name;
 
   MqSurahTranslatedNameEntity toEntity() {

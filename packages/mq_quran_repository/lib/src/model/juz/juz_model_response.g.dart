@@ -8,18 +8,18 @@ part of 'juz_model_response.dart';
 
 JuzModelResponse _$JuzModelResponseFromJson(Map<String, dynamic> json) => JuzModelResponse(
       id: (json['id'] as num).toInt(),
-      juzNumber: (json['juzNumber'] as num).toInt(),
-      firstVerseId: (json['firstVerseId'] as num).toInt(),
-      lastVerseId: (json['lastVerseId'] as num).toInt(),
-      versesCount: (json['versesCount'] as num).toInt(),
-      verseMapping: Map<String, String>.from(json['verseMapping'] as Map),
+      juzNumber: (json['juz_number'] as num).toInt(),
+      firstVerseId: (json['first_verse_id'] as num).toInt(),
+      lastVerseId: (json['last_verse_id'] as num).toInt(),
+      versesCount: (json['verses_count'] as num).toInt(),
+      verseMapping: Map<String, String>.from(json['verse_mapping'] as Map),
     );
 
 Map<String, dynamic> _$JuzModelResponseToJson(JuzModelResponse instance) => <String, dynamic>{
       'id': instance.id,
-      'juzNumber': instance.juzNumber,
-      'firstVerseId': instance.firstVerseId,
-      'lastVerseId': instance.lastVerseId,
-      'versesCount': instance.versesCount,
-      'verseMapping': instance.verseMapping,
+      'juz_number': instance.juzNumber,
+      'first_verse_id': instance.firstVerseId,
+      'last_verse_id': instance.lastVerseId,
+      'verses_count': instance.versesCount,
+      'verse_mapping': instance.verseMapping,
     };

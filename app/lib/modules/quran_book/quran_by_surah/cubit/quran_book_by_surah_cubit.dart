@@ -24,8 +24,8 @@ class QuranBookBySurahCubit extends Cubit<QuranBookBySurahState> {
     }
   }
 
-  SurahEntity getSurahData() {
-    final list = repository.getSurahs();
+  MqSurahEntity getSurahData() {
+    final list = repository.getSurahsData();
     final surah = list.firstWhere((e) => e.id == surahNumber);
     return surah;
   }

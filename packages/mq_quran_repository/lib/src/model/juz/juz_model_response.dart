@@ -19,11 +19,17 @@ final class JuzModelResponse {
   factory JuzModelResponse.fromJson(Map<String, dynamic> json) => _$JuzModelResponseFromJson(json);
   Map<String, dynamic> toJson() => _$JuzModelResponseToJson(this);
 
+  @JsonKey(name: 'id')
   final int id;
+  @JsonKey(name: 'juz_number')
   final int juzNumber;
+  @JsonKey(name: 'first_verse_id')
   final int firstVerseId;
+  @JsonKey(name: 'last_verse_id')
   final int lastVerseId;
+  @JsonKey(name: 'verses_count')
   final int versesCount;
+  @JsonKey(name: 'verse_mapping')
   final Map<String, String> verseMapping;
 
   MqJuzEntity toEntity() {

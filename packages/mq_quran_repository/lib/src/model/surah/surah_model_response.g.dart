@@ -8,36 +8,36 @@ part of 'surah_model_response.dart';
 
 SurahModelResponse _$SurahModelResponseFromJson(Map<String, dynamic> json) => SurahModelResponse(
       id: (json['id'] as num).toInt(),
-      versesCount: (json['versesCount'] as num).toInt(),
-      revelationPlace: json['revelationPlace'] as String,
-      revelationOrder: (json['revelationOrder'] as num).toInt(),
-      bismillahPre: json['bismillahPre'] as bool,
-      nameSimple: json['nameSimple'] as String,
-      nameComplex: json['nameComplex'] as String,
-      nameArabic: json['nameArabic'] as String,
+      versesCount: (json['verses_count'] as num).toInt(),
+      revelationPlace: json['revelation_place'] as String,
+      revelationOrder: (json['revelation_order'] as num).toInt(),
+      bismillahPre: json['bismillah_pre'] as bool,
+      nameSimple: json['name_simple'] as String,
+      nameComplex: json['name_complex'] as String,
+      nameArabic: json['name_arabic'] as String,
       pages: (json['pages'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
-      translatedName: TranslatedName.fromJson(json['translatedName'] as Map<String, dynamic>),
+      translatedName: TranslatedName.fromJson(json['translated_mame'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SurahModelResponseToJson(SurahModelResponse instance) => <String, dynamic>{
       'id': instance.id,
-      'revelationPlace': instance.revelationPlace,
-      'revelationOrder': instance.revelationOrder,
-      'bismillahPre': instance.bismillahPre,
-      'nameSimple': instance.nameSimple,
-      'nameComplex': instance.nameComplex,
-      'nameArabic': instance.nameArabic,
-      'versesCount': instance.versesCount,
+      'revelation_place': instance.revelationPlace,
+      'revelation_order': instance.revelationOrder,
+      'bismillah_pre': instance.bismillahPre,
+      'name_simple': instance.nameSimple,
+      'name_complex': instance.nameComplex,
+      'name_arabic': instance.nameArabic,
+      'verses_count': instance.versesCount,
       'pages': instance.pages,
-      'translatedName': instance.translatedName,
+      'translated_mame': instance.translatedName,
     };
 
 TranslatedName _$TranslatedNameFromJson(Map<String, dynamic> json) => TranslatedName(
-      languageName: json['languageName'] as String,
+      languageName: json['language_name'] as String,
       name: json['name'] as String,
     );
 
 Map<String, dynamic> _$TranslatedNameToJson(TranslatedName instance) => <String, dynamic>{
-      'languageName': instance.languageName,
+      'language_name': instance.languageName,
       'name': instance.name,
     };
