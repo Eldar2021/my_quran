@@ -30,7 +30,7 @@ class QuranBookSliverAppBar extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: FontFamily.qpcUthmanicHafs,
-              fontSize: 26,
+              fontSize: 32,
               color: themeCubit.state.frColor,
             ),
           ),

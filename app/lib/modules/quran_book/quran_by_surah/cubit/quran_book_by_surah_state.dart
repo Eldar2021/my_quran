@@ -20,6 +20,8 @@ final class QuranBookBySurahLoaded extends QuranBookBySurahState {
   const QuranBookBySurahLoaded(this.dataEntity);
 
   final QuranDataEntity dataEntity;
+
+  List<QuranDataSamePage> get items => dataEntity.dataDatePage();
 }
 
 @immutable

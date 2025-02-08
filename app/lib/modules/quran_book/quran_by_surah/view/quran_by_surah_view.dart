@@ -63,26 +63,19 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
                 QuranBookBySurahInitial() => const QuranBookSliverProgressingIndicator(),
                 QuranBookBySurahLoading() => const QuranBookSliverProgressingIndicator(),
                 QuranBookBySurahError() => QuranBookSliverErrorWidget(state.error.toString()),
-                QuranBookBySurahLoaded() => SliverPadding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: themeCubit.state.verticalSpaceSize,
-                      horizontal: themeCubit.state.horizontalSpaceSize,
-                    ),
-                    sliver: SliverToBoxAdapter(
-                      child: Localizations.override(
-                        context: context,
-                        locale: const Locale('ar'),
-                        child: Text(
-                          '${state.dataEntity.samePage}',
-                          style: TextStyle(
-                            fontFamily: FontFamily.qpcUthmanicHafs,
-                            fontSize: themeCubit.state.textSize,
-                            color: themeCubit.state.frColor,
-                            height: 2.5,
-                          ),
-                        ),
-                      ),
-                    ),
+                QuranBookBySurahLoaded() => QuranBookSurahSuccessWidget(state.items),
+              };
+            },
+          ),
+          BlocBuilder<QuranBookBySurahCubit, QuranBookBySurahState>(
+            builder: (context, state) {
+              return switch (state) {
+                QuranBookBySurahInitial() => const QuranBookSliverSizedBoxShrink(),
+                QuranBookBySurahLoading() => const QuranBookSliverSizedBoxShrink(),
+                QuranBookBySurahError() => const QuranBookSliverSizedBoxShrink(),
+                QuranBookBySurahLoaded() => QuranBookSliverAmenButton(
+                    onAmenPressed: () => Navigator.pop(context),
+                    afterAmenPressed: () => Navigator.pop(context),
                   ),
               };
             },

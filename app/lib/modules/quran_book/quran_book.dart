@@ -5,3 +5,6 @@ export 'theme/quran_book_theme_cubit.dart';
 export 'widgets/quran_book_sliver_app_bar.dart';
 export 'widgets/quran_book_sliver_progressing_indicator.dart';
 export 'widgets/quran_book_sliver_error_widget.dart';
+export 'widgets/quran_book_surah_success_widget.dart';
+export 'widgets/quran_book_sliver_sized_box_shrink.dart';
+export 'widgets/quran_book_sliver_amen_button.dart';
