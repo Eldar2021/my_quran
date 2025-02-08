@@ -20,6 +20,13 @@ final class QuranDataResponse {
   final List<QuranDataVerseResponse> verses;
   @JsonKey(name: 'meta')
   final QuranDataMetaResponse meta;
+
+  QuranDataEntity toEntity() {
+    return QuranDataEntity(
+      verses: verses.map((e) => e.toEntity()).toList(),
+      meta: meta.toEntity(),
+    );
+  }
 }
 
 @JsonSerializable()
@@ -35,4 +42,10 @@ final class QuranDataMetaResponse {
 
   @JsonKey(name: 'filters')
   final QuranDataFilterResponse filters;
+
+  QuranDataMetaEntity toEntity() {
+    return QuranDataMetaEntity(
+      filters: filters.toEntity(),
+    );
+  }
 }

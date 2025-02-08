@@ -18,5 +18,5 @@ final class QuranDataMetaEntity {
     required this.filters,
   });
 
-  final QuranDataFilterPageNumberEntity filters;
+  final QuranDataFilterEntity filters;
 }

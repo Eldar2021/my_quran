@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 part 'juz_model_response.g.dart';
 
@@ -24,4 +25,15 @@ final class JuzModelResponse {
   final int? lastVerseId;
   final int? versesCount;
   final Map<String, String>? verseMapping;
+
+  MqJuzEntity toEntity() {
+    return MqJuzEntity(
+      id: id,
+      juzNumber: juzNumber,
+      firstVerseId: firstVerseId,
+      lastVerseId: lastVerseId,
+      versesCount: versesCount,
+      verseMapping: verseMapping,
+    );
+  }
 }

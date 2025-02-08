@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 part 'quran_data_filter_response.g.dart';
 
-abstract interface class QuranDataFilterResponse {
+sealed class QuranDataFilterResponse {
   const QuranDataFilterResponse({
     required this.value,
   });
@@ -20,16 +21,14 @@ abstract interface class QuranDataFilterResponse {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    if (this is QuranDataFilterPageNumber) {
-      return (this as QuranDataFilterPageNumber).toJson();
-    } else if (this is QuranDataFilterJuzNumber) {
-      return (this as QuranDataFilterJuzNumber).toJson();
-    } else if (this is QuranDataFilterSurahNumber) {
-      return (this as QuranDataFilterSurahNumber).toJson();
-    } else {
-      throw Exception('Unknown QuranDataFilterResponse');
-    }
+  Map<String, dynamic> toJson();
+
+  QuranDataFilterEntity toEntity() {
+    return switch (this) {
+      QuranDataFilterPageNumber() => QuranDataFilterPageNumberEntity(pageNumber: value),
+      QuranDataFilterJuzNumber() => QuranDataFilterJuzNumberEntity(juzNumber: value),
+      QuranDataFilterSurahNumber() => QuranDataFilterSurahNumberEntity(surahNumber: value),
+    };
   }
 
   final String value;

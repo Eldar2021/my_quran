@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 part 'quran_data_verse_response.g.dart';
 
-abstract interface class QuranDataVerseResponse {
+sealed class QuranDataVerseResponse {
   const QuranDataVerseResponse({
     required this.id,
     required this.verseKey,
@@ -20,21 +21,28 @@ abstract interface class QuranDataVerseResponse {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    if (this is QuranDataVerseUthmaniSimpleResponse) {
-      return (this as QuranDataVerseUthmaniSimpleResponse).toJson();
-    } else if (this is QuranDataVerseImlaeiResponse) {
-      return (this as QuranDataVerseImlaeiResponse).toJson();
-    } else {
-      throw Exception('Unknown QuranDataFilterResponse');
-    }
-  }
+  Map<String, dynamic> toJson();
 
   @JsonKey(name: 'id')
   final int id;
   @JsonKey(name: 'verse_key')
   final String verseKey;
   final String text;
+
+  QuranDataVerseEntity toEntity() {
+    return switch (this) {
+      QuranDataVerseUthmaniSimpleResponse() => QuranDataVerseUthmaniSimpleEntity(
+          id: id,
+          verseKey: verseKey,
+          textUtmaniSimple: text,
+        ),
+      QuranDataVerseImlaeiResponse() => QuranDataVerseImlaeiEntity(
+          id: id,
+          verseKey: verseKey,
+          textImlaei: text,
+        ),
+    };
+  }
 }
 
 @JsonSerializable()
