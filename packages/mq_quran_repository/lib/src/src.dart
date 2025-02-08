@@ -28,3 +28,5 @@ export 'source/mq_quran_remote_data_source.dart';
 export 'source/remote/mq_quran_remote_data_source_impl.dart';
 // static
 export 'static/mq_quran_static.dart';
+export 'static/quran_juzs.dart';
+export 'static/quran_surahs.dart';
