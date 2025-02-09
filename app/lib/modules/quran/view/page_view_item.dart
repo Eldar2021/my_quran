@@ -21,12 +21,12 @@ class PageViewItem<T> extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
-        if (item is JuzEntity) {
+        if (item is MqJuzEntity) {
           return QuranItemTile(
             key: Key(MqKeys.quranReadJus(index)),
             index: item.id,
             title: '${item.id}-${context.l10n.juz}',
-            subtitle: item.name,
+            subtitle: '${item.firstVerseId}-${item.lastVerseId}',
             onTap: () async {
               MqAnalytic.track(
                 AnalyticKey.goQuranReadByJuz,
@@ -34,20 +34,20 @@ class PageViewItem<T> extends StatelessWidget {
               );
               context.goNamed(
                 AppRouter.quranByJuz,
-                pathParameters: {'juzNumber': item.id.toString()},
+                pathParameters: {'juzNumber': item.juzNumber.toString()},
               );
             },
           );
-        } else if (item is SurahEntity) {
+        } else if (item is MqSurahEntity) {
           return QuranItemTile(
             key: Key(MqKeys.quranReadSurah(index)),
             index: item.id,
-            title: item.name,
-            subtitle: item.arabic,
+            title: item.nameSimple,
+            subtitle: item.nameArabic,
             onTap: () async {
               MqAnalytic.track(
                 AnalyticKey.goQuranReadBySurah,
-                params: {'surahId': item.id, 'surahName': item.name},
+                params: {'surahId': item.id, 'surahName': item.nameSimple},
               );
               context.goNamed(
                 AppRouter.quranBySurah,

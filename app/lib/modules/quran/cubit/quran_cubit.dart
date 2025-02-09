@@ -8,11 +8,11 @@ class QuranCubit extends Cubit<int> {
 
   void change(int? val) => emit(val ?? 0);
 
-  List<JuzEntity> getJuz() {
-    return mqQuranRepository.getJuzs();
+  List<MqJuzEntity> getJuz() {
+    return mqQuranRepository.getJuzsData();
   }
 
-  List<SurahEntity> getSurah() {
-    return mqQuranRepository.getSurahs();
+  List<MqSurahEntity> getSurah() {
+    return mqQuranRepository.getSurahsData();
   }
 }

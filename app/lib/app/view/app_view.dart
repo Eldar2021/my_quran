@@ -114,6 +114,7 @@ class MyApp extends StatelessWidget {
           create: (context) => QuranAudioCubit(
             AudioPlayer(),
             context.read<NetworkClient>(),
+            context.read<MqQuranRepository>(),
           )..init(),
         ),
         BlocProvider(

@@ -6,20 +6,6 @@ final class MqQuranLocalDataSourceMock implements MqQuranLocalDataSource {
   const MqQuranLocalDataSourceMock();
 
   @override
-  QuranPageResponse? getPage(int page, String quranFmt) => null;
-
-  @override
-  Future<void> cachePage(int page, String quranFmt, QuranPageResponse pageData) => Future.value();
-
-  @override
-  List<JuzResponse> getJuzsFromLocal() => [];
-
-  @override
-  List<SurahResponse> getSurahsFromLocal() => [];
-
-  /// New
-
-  @override
   List<JuzModelResponse> getJuzsData() {
     final surahs = mqQuranJuzsData.map(JuzModelResponse.fromJson).toList();
     return surahs;

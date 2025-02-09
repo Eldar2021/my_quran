@@ -11,38 +11,6 @@ final class MqQuranLocalDataSourceImpl implements MqQuranLocalDataSource {
   final PreferencesStorage storage;
 
   @override
-  QuranPageResponse? getPage(int page, String quranFmt) {
-    final key = 'quran-$quranFmt-$page';
-    final localValue = storage.readString(key: key);
-
-    if (localValue != null) {
-      final data = jsonDecode(localValue);
-      return QuranPageResponse.fromJson(data as Map<String, dynamic>);
-    }
-    return null;
-  }
-
-  @override
-  Future<void> cachePage(int page, String quranFmt, QuranPageResponse pageData) async {
-    final key = 'quran-$quranFmt-$page';
-    await storage.writeString(key: key, value: jsonEncode(pageData.toJson()));
-  }
-
-  @override
-  List<JuzResponse> getJuzsFromLocal() {
-    final juzs = juzData.map(JuzResponse.fromJson).toList();
-    return juzs;
-  }
-
-  @override
-  List<SurahResponse> getSurahsFromLocal() {
-    final surahs = surahData.map(SurahResponse.fromJson).toList();
-    return surahs;
-  }
-
-  /// New
-
-  @override
   List<JuzModelResponse> getJuzsData() {
     final surahs = mqQuranJuzsData.map(JuzModelResponse.fromJson).toList();
     return surahs;

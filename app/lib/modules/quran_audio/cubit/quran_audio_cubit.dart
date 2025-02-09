@@ -12,27 +12,20 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   QuranAudioCubit(
     this.player,
     this.networkClient,
+    this.quranRepository,
   ) : super(QuranAudioState());
 
   final AudioPlayer player;
   final NetworkClient networkClient;
+  final MqQuranRepository quranRepository;
+
   late final Stream<SequenceState?> sequenceStateStream;
   late final Stream<PlayerState> playerStateStream;
-  late final List<SurahEntity> surahs;
-
-  SurahEntity _convertData(SurahResponse response) {
-    return SurahEntity(
-      id: response.id,
-      name: response.name,
-      aya: response.aya,
-      pages: response.pages,
-      arabic: response.arabic,
-    );
-  }
+  late final List<MqSurahEntity> surahs;
 
   Future<void> init() async {
     try {
-      surahs = surahData.map((surahResponse) => _convertData(SurahResponse.fromJson(surahResponse))).toList();
+      surahs = quranRepository.getSurahsData();
       sequenceStateStream = player.sequenceStateStream;
       playerStateStream = player.playerStateStream;
       final playList = ConcatenatingAudioSource(
@@ -44,7 +37,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
                 tag: MediaItem(
                   id: '${s.id}',
                   album: 'Quran',
-                  title: s.name,
+                  title: s.nameSimple,
                   artUri: Uri.parse(ApiConst.appLogoLink),
                 ),
               ),

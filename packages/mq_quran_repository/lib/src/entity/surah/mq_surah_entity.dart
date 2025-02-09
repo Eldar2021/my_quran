@@ -23,6 +23,12 @@ final class MqSurahEntity {
   final String nameArabic;
   final int versesCount;
   final List<int> pages;
+
+  String get surahPath {
+    if (id < 10) return '00$id';
+    if (id < 100) return '0$id';
+    return '$id';
+  }
 }
 
 @immutable
