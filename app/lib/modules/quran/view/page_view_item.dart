@@ -24,8 +24,8 @@ class PageViewItem<T> extends StatelessWidget {
         if (item is MqJuzEntity) {
           return QuranItemTile(
             key: Key(MqKeys.quranReadJus(index)),
-            index: item.id,
-            title: '${item.id}-${context.l10n.juz}',
+            index: item.juzNumber,
+            title: '${item.juzNumber}-${context.l10n.juz}',
             subtitle: '${item.firstVerseId}-${item.lastVerseId}',
             onTap: () async {
               MqAnalytic.track(
