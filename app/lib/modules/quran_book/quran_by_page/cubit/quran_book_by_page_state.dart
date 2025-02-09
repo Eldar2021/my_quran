@@ -18,11 +18,13 @@ final class QuranBookByPageLoading extends QuranBookByPageState {
 @immutable
 final class QuranBookByPageLoaded extends QuranBookByPageState {
   const QuranBookByPageLoaded(this.data);
+
   final QuranDataEntity data;
 }
 
 @immutable
 final class QuranBookByPageError extends QuranBookByPageState {
   const QuranBookByPageError(this.error);
+
   final Object error;
 }

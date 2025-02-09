@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class QuranBySurahView extends StatelessWidget {
-  const QuranBySurahView(this.surahNumber, {super.key});
+class QuranByJuzView extends StatelessWidget {
+  const QuranByJuzView(this.juzNumber, {super.key});
 
-  final int surahNumber;
+  final int juzNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +20,30 @@ class QuranBySurahView extends StatelessWidget {
           )..initializeTheme(),
         ),
         BlocProvider(
-          create: (context) => QuranBookBySurahCubit(
+          create: (context) => QuranBookByJuzCubit(
             repository: context.read<MqQuranRepository>(),
-            surahNumber: surahNumber,
+            juzNumber: juzNumber,
           ),
         ),
       ],
-      child: const _QuranBySurahView(),
+      child: const _QuranByJuzView(),
     );
   }
 }
 
-class _QuranBySurahView extends StatefulWidget {
-  const _QuranBySurahView();
+class _QuranByJuzView extends StatefulWidget {
+  const _QuranByJuzView();
 
   @override
-  State<_QuranBySurahView> createState() => __QuranBySurahViewState();
+  State<_QuranByJuzView> createState() => __QuranByJuzViewState();
 }
 
-class __QuranBySurahViewState extends State<_QuranBySurahView> {
-  late final MqSurahEntity _surahEntity;
-
+class __QuranByJuzViewState extends State<_QuranByJuzView> {
+  late final int _juzNumber;
   @override
   void initState() {
-    _surahEntity = context.read<QuranBookBySurahCubit>().getSurahData();
-    context.read<QuranBookBySurahCubit>().getData('uthmani');
+    _juzNumber = context.read<QuranBookByJuzCubit>().juzNumber;
+    context.read<QuranBookByJuzCubit>().getData('uthmani');
     super.initState();
   }
 
@@ -56,33 +56,31 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
         slivers: [
           QuranBookSliverAppBar(
             title: Text(
-              _surahEntity.nameArabic,
+              '$_juzNumber-${context.l10n.juz}',
               maxLines: 2,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: FontFamily.qpcUthmanicHafs,
-                fontSize: 32,
                 color: themeCubit.state.frColor,
               ),
             ),
           ),
-          BlocBuilder<QuranBookBySurahCubit, QuranBookBySurahState>(
+          BlocBuilder<QuranBookByJuzCubit, QuranBookByJuzState>(
             builder: (context, state) {
               return switch (state) {
-                QuranBookBySurahInitial() => const QuranBookSliverProgressingIndicator(),
-                QuranBookBySurahLoading() => const QuranBookSliverProgressingIndicator(),
-                QuranBookBySurahError() => QuranBookSliverErrorWidget(state.error.toString()),
-                QuranBookBySurahLoaded() => QuranBookSurahSuccessWidget(state.items),
+                QuranBookByJuzInitial() => const QuranBookSliverProgressingIndicator(),
+                QuranBookByJuzLoading() => const QuranBookSliverProgressingIndicator(),
+                QuranBookByJuzError() => QuranBookSliverErrorWidget(state.error.toString()),
+                QuranBookByJuzLoaded() => QuranBookSurahSuccessWidget(state.items),
               };
             },
           ),
-          BlocBuilder<QuranBookBySurahCubit, QuranBookBySurahState>(
+          BlocBuilder<QuranBookByJuzCubit, QuranBookByJuzState>(
             builder: (context, state) {
               return switch (state) {
-                QuranBookBySurahInitial() => const QuranBookSliverSizedBoxShrink(),
-                QuranBookBySurahLoading() => const QuranBookSliverSizedBoxShrink(),
-                QuranBookBySurahError() => const QuranBookSliverSizedBoxShrink(),
-                QuranBookBySurahLoaded() => QuranBookSliverAmenButton(
+                QuranBookByJuzInitial() => const QuranBookSliverSizedBoxShrink(),
+                QuranBookByJuzLoading() => const QuranBookSliverSizedBoxShrink(),
+                QuranBookByJuzError() => const QuranBookSliverSizedBoxShrink(),
+                QuranBookByJuzLoaded() => QuranBookSliverAmenButton(
                     onAmenPressed: () => Navigator.pop(context),
                     afterAmenPressed: () => Navigator.pop(context),
                   ),

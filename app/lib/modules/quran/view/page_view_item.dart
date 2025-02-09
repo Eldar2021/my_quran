@@ -32,17 +32,9 @@ class PageViewItem<T> extends StatelessWidget {
                 AnalyticKey.goQuranReadByJuz,
                 params: {'juzId': item.id},
               );
-              final pages = <int>[];
-              for (var i = item.pages.first; i <= item.pages.last; i++) {
-                pages.add(i);
-              }
-              pages.sort();
               context.goNamed(
-                AppRouter.read,
-                pathParameters: {
-                  'pages': pages.toString(),
-                  'isHatim': true.toString(),
-                },
+                AppRouter.quranByJuz,
+                pathParameters: {'juzNumber': item.id.toString()},
               );
             },
           );

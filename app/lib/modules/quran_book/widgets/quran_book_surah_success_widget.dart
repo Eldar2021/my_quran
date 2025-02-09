@@ -25,7 +25,7 @@ class QuranBookSurahSuccessWidget extends StatelessWidget {
             context: context,
             locale: const Locale('ar'),
             child: Text(
-              '${item.samePage}',
+              '${item.samePage(context)}',
               style: TextStyle(
                 fontFamily: FontFamily.qpcUthmanicHafs,
                 fontSize: themeCubit.state.textSize,

@@ -28,4 +28,13 @@ final class ParseParams {
       return 1;
     }
   }
+
+  static int parseJuzNumber(Map<String, String> args) {
+    try {
+      return int.parse(args['juzNumber'] ?? '1');
+    } catch (e, s) {
+      MqCrashlytics.report(e, s);
+      return 1;
+    }
+  }
 }

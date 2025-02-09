@@ -68,16 +68,33 @@ final class QuranDataSamePage {
   final int pageNumber;
   final List<QuranDataVerseEntity> verses;
 
-  StringBuffer get samePage {
+  StringBuffer samePage(BuildContext context) {
     return StringBuffer()
       ..writeAll(
         verses.map(
           (e) {
             final a = e.text.replaceAll('\u{06DF}', '\u{0652}');
+            final String bismillahCentered;
+            if (e.isFirst && e.verseKey != '1:1') {
+              bismillahCentered =
+                  '${e.verseKey == verses.first.verseKey ? '' : '\n\n'}${_centerText(MqQuranStatic.bismallah)}\n';
+            } else {
+              bismillahCentered = '';
+            }
             final sajdaSymbol = e.hasSajda ? MqQuranStatic.sajdaSymbol : '';
-            return '$a $sajdaSymbol\uFD3F${e.ayatNumber.toArabicDigits}\uFD3E  ';
+            return '$bismillahCentered$a$sajdaSymbol\uFD3F${e.ayatNumber.toArabicDigits}\uFD3E  ';
           },
         ),
       );
+  }
+
+  String _centerText(String text, {int lineWidth = 50}) {
+    final totalPadding = lineWidth - text.length;
+    if (totalPadding <= 0) return text;
+
+    final leftPadding = totalPadding ~/ 1;
+    final rightPadding = totalPadding - leftPadding;
+
+    return ' ' * leftPadding + text + ' ' * rightPadding;
   }
 }
