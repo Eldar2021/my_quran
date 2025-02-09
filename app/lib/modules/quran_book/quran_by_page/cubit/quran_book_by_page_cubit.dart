@@ -5,18 +5,20 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 part 'quran_book_by_page_state.dart';
 
 class QuranBookByPageCubit extends Cubit<QuranBookByPageState> {
-  QuranBookByPageCubit(this.repository) : super(const QuranBookByPageInitial());
+  QuranBookByPageCubit({
+    required this.repository,
+    required this.pagesNumber,
+  }) : super(const QuranBookByPageInitial());
 
   final MqQuranRepository repository;
+  final List<int> pagesNumber;
 
-  Future<void> getData(int pageNumber, String quranFmt) async {
+  Future<QuranDataEntity?> getData(int pageNumber, String quranFmt) async {
     try {
-      if (state is QuranBookByPageLoading) return;
-      emit(const QuranBookByPageLoading());
       final response = await repository.fetchQuranByPage(pageNumber, quranFmt);
-      emit(QuranBookByPageLoaded(response));
+      return response;
     } catch (e) {
-      emit(QuranBookByPageError(e.toString()));
+      return null;
     }
   }
 }

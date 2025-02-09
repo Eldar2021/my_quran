@@ -140,7 +140,7 @@ final class AppRouter {
             parentNavigatorKey: rootNavigatorKey,
             builder: (context, state) {
               final args = ParseParams.parseRead(state.pathParameters);
-              return ReadView(args.$1, isHatim: args.$2);
+              return QuranByPagesView(args.$1);
             },
           ),
         ],
@@ -192,7 +192,7 @@ final class AppRouter {
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseRead(state.pathParameters);
-          return ReadView(args.$1, isHatim: args.$2);
+          return QuranByPagesView(args.$1);
         },
       ),
       GoRoute(
