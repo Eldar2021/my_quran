@@ -99,7 +99,7 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
                       ),
                       child: ElevatedButton(
                         onPressed: () async {
-                          final readThemeState = context.read<ReadThemeCubit>().state;
+                          final readThemeState = context.read<QuranBookThemeCubit>().state;
                           MqAnalytic.track(AnalyticKey.showAmin);
                           final value = await MqAlertDialogs.showAmen<bool>(
                             context: context,

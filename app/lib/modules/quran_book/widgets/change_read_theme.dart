@@ -10,10 +10,10 @@ class ChangeReadThemeSheetContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final readThemeCubit = context.watch<ReadThemeCubit>();
+    final themeCubit = context.watch<QuranBookThemeCubit>();
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: readThemeCubit.state.bgColor,
+        color: themeCubit.state.bgColor,
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
         ),
@@ -33,7 +33,7 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final readThemeCubit = context.watch<ReadThemeCubit>();
+    final themeCubit = context.watch<QuranBookThemeCubit>();
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -43,7 +43,7 @@ class _Body extends StatelessWidget {
         Center(
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: readThemeCubit.state.frColor.withOpacity(0.7),
+              color: themeCubit.state.frColor.withOpacity(0.7),
               borderRadius: BorderRadius.circular(99),
             ),
             child: const SizedBox(height: 6, width: 58),
@@ -53,29 +53,29 @@ class _Body extends StatelessWidget {
         Text(
           context.l10n.textSize,
           style: prTextTheme.titleMedium?.copyWith(
-            color: readThemeCubit.state.frColor,
+            color: themeCubit.state.frColor,
           ),
         ),
         Row(
           children: [
             Assets.icons.aDigit.svg(
               colorFilter: _colorFilter(
-                readThemeCubit.state.frColor,
+                themeCubit.state.frColor,
               ),
             ),
             Expanded(
               child: Slider.adaptive(
-                value: readThemeCubit.state.textSize,
+                value: themeCubit.state.textSize,
                 max: 40,
                 min: 8,
                 onChanged: (v) {
-                  context.read<ReadThemeCubit>().changeTextSize(v);
+                  context.read<QuranBookThemeCubit>().changeTextSize(v);
                 },
               ),
             ),
             Assets.icons.aDigitBig.svg(
               colorFilter: _colorFilter(
-                readThemeCubit.state.frColor,
+                themeCubit.state.frColor,
               ),
             ),
           ],
@@ -84,28 +84,28 @@ class _Body extends StatelessWidget {
         Text(
           context.l10n.verticalSpace,
           style: prTextTheme.titleMedium?.copyWith(
-            color: readThemeCubit.state.frColor,
+            color: themeCubit.state.frColor,
           ),
         ),
         Row(
           children: [
             Assets.icons.aDigitVerticalSmall.svg(
               colorFilter: _colorFilter(
-                readThemeCubit.state.frColor,
+                themeCubit.state.frColor,
               ),
             ),
             Expanded(
               child: Slider.adaptive(
-                value: readThemeCubit.state.verticalSpaceSize,
+                value: themeCubit.state.verticalSpaceSize,
                 max: 140,
                 onChanged: (v) {
-                  context.read<ReadThemeCubit>().changeVerticalSpace(v);
+                  context.read<QuranBookThemeCubit>().changeVerticalSpace(v);
                 },
               ),
             ),
             Assets.icons.aDigitVertical.svg(
               colorFilter: _colorFilter(
-                readThemeCubit.state.frColor,
+                themeCubit.state.frColor,
               ),
             ),
           ],
@@ -114,28 +114,28 @@ class _Body extends StatelessWidget {
         Text(
           context.l10n.horizontalSpace,
           style: prTextTheme.titleMedium?.copyWith(
-            color: readThemeCubit.state.frColor,
+            color: themeCubit.state.frColor,
           ),
         ),
         Row(
           children: [
             Assets.icons.aHorizontal.svg(
               colorFilter: _colorFilter(
-                readThemeCubit.state.frColor,
+                themeCubit.state.frColor,
               ),
             ),
             Expanded(
               child: Slider.adaptive(
-                value: readThemeCubit.state.horizontalSpaceSize,
+                value: themeCubit.state.horizontalSpaceSize,
                 max: 140,
                 onChanged: (v) {
-                  context.read<ReadThemeCubit>().changeHorizontalSpace(v);
+                  context.read<QuranBookThemeCubit>().changeHorizontalSpace(v);
                 },
               ),
             ),
             Assets.icons.aHorizontalBig.svg(
               colorFilter: _colorFilter(
-                readThemeCubit.state.frColor,
+                themeCubit.state.frColor,
               ),
             ),
           ],
@@ -144,7 +144,7 @@ class _Body extends StatelessWidget {
         Text(
           context.l10n.screenTheme,
           style: prTextTheme.titleMedium?.copyWith(
-            color: readThemeCubit.state.frColor,
+            color: themeCubit.state.frColor,
           ),
         ),
         const SizedBox(height: 10),
@@ -156,7 +156,7 @@ class _Body extends StatelessWidget {
                 backgroundColor: ReadThemeData.bgReadThemeColor[0],
                 foregroundColor: ReadThemeData.frReadThemeColor[0],
                 onPressed: () {
-                  context.read<ReadThemeCubit>().changeMode(0);
+                  context.read<QuranBookThemeCubit>().changeMode(0);
                 },
               ),
             ),
@@ -166,7 +166,7 @@ class _Body extends StatelessWidget {
                 backgroundColor: ReadThemeData.bgReadThemeColor[1],
                 foregroundColor: ReadThemeData.frReadThemeColor[1],
                 onPressed: () {
-                  context.read<ReadThemeCubit>().changeMode(1);
+                  context.read<QuranBookThemeCubit>().changeMode(1);
                 },
               ),
             ),
@@ -176,7 +176,7 @@ class _Body extends StatelessWidget {
                 backgroundColor: ReadThemeData.bgReadThemeColor[2],
                 foregroundColor: ReadThemeData.frReadThemeColor[2],
                 onPressed: () {
-                  context.read<ReadThemeCubit>().changeMode(2);
+                  context.read<QuranBookThemeCubit>().changeMode(2);
                 },
               ),
             ),
@@ -186,7 +186,7 @@ class _Body extends StatelessWidget {
                 backgroundColor: ReadThemeData.bgReadThemeColor[3],
                 foregroundColor: ReadThemeData.frReadThemeColor[3],
                 onPressed: () {
-                  context.read<ReadThemeCubit>().changeMode(3);
+                  context.read<QuranBookThemeCubit>().changeMode(3);
                 },
               ),
             ),
@@ -208,7 +208,7 @@ class _Body extends StatelessWidget {
               child: ElevatedButton(
                 key: const Key(MqKeys.quranReadSettingsSave),
                 onPressed: () async {
-                  await context.read<ReadThemeCubit>().saveChanges();
+                  await context.read<QuranBookThemeCubit>().saveChanges();
                   if (context.mounted) Navigator.pop(context);
                 },
                 child: Text(context.l10n.save),

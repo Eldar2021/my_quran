@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_analytics/mq_analytics.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -27,7 +29,17 @@ class QuranBookSliverAppBar extends StatelessWidget {
       actions: [
         IconButton(
           key: const Key(MqKeys.quranReadSettings),
-          onPressed: () {},
+          onPressed: () {
+            MqAnalytic.track(AnalyticKey.tapQuranReadSettings);
+            MqBottomSheets.showReadSettingsSheet<void>(
+              context: context,
+              backgroundColor: themeCubit.state.bgColor,
+              child: BlocProvider.value(
+                value: context.read<QuranBookThemeCubit>(),
+                child: const ChangeReadThemeSheetContent(),
+              ),
+            );
+          },
           icon: const Icon(Icons.tune),
         ),
         const SizedBox(width: 16),
