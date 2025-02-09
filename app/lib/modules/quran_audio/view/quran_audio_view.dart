@@ -22,7 +22,7 @@ class QuranAudioView extends StatelessWidget {
           builder: (context, snapshot) {
             final index = snapshot.data?.currentIndex;
             final surah = index != null ? context.read<QuranAudioCubit>().surahs[index] : null;
-            return Text('${surah?.name ?? context.l10n.listening} (${surah?.arabic ?? ''})');
+            return Text('${surah?.nameSimple ?? context.l10n.listening} (${surah?.nameArabic ?? ''})');
           },
         ),
       ),
@@ -41,12 +41,12 @@ class QuranAudioView extends StatelessWidget {
             return QuranItemTile(
               key: Key(MqKeys.quranAudioSurahIndex(index)),
               index: item.id,
-              title: item.name,
-              subtitle: item.arabic,
+              title: item.nameSimple,
+              subtitle: item.nameArabic,
               onTap: () {
                 MqAnalytic.track(
                   AnalyticKey.selectQuranAudioBySurah,
-                  params: {'surahName': item.name},
+                  params: {'surahName': item.nameSimple},
                 );
                 context.read<QuranAudioCubit>().changeSurah(index);
               },

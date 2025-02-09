@@ -6,14 +6,65 @@ final class MqQuranLocalDataSourceMock implements MqQuranLocalDataSource {
   const MqQuranLocalDataSourceMock();
 
   @override
-  QuranPageResponse? getPage(int page, String quranFmt) => null;
+  List<JuzModelResponse> getJuzsData() {
+    final surahs = mqQuranJuzsData.map(JuzModelResponse.fromJson).toList();
+    return surahs;
+  }
 
   @override
-  Future<void> cachePage(int page, String quranFmt, QuranPageResponse pageData) => Future.value();
+  List<SurahModelResponse> getSurahsData() {
+    final surahs = mqQuranSurahsData.map(SurahModelResponse.fromJson).toList();
+    return surahs;
+  }
 
   @override
-  List<JuzResponse> getJuzsFromLocal() => [];
+  QuranDataResponse? getQuranByJuz(
+    int juzNumber,
+    String quranFmt,
+  ) {
+    return null;
+  }
 
   @override
-  List<SurahResponse> getSurahsFromLocal() => [];
+  QuranDataResponse? getQuranByPage(
+    int pageNumber,
+    String quranFmt,
+  ) {
+    return null;
+  }
+
+  @override
+  QuranDataResponse? getQuranBySurah(
+    int surahNumber,
+    String quranFmt,
+  ) {
+    return null;
+  }
+
+  @override
+  Future<void> setQuranByJuz(
+    int juzNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) {
+    return Future.value();
+  }
+
+  @override
+  Future<void> setQuranByPage(
+    int pageNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) {
+    return Future.value();
+  }
+
+  @override
+  Future<void> setQuranBySurah(
+    int surahNumber,
+    String quranFmt,
+    QuranDataResponse data,
+  ) {
+    return Future.value();
+  }
 }

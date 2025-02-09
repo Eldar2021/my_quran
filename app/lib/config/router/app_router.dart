@@ -30,9 +30,11 @@ final class AppRouter {
   static const hatim = 'hatim';
   static const quran = 'quran';
   static const quranAudio = 'quran-audio';
-
-  static const read = 'read';
+  static const quranBySurah = 'quran-by-surah';
+  static const quranByJuz = 'quran-by-juz';
+  static const quranByPages = 'quran-by-pages';
   static const hatimRead = 'hatim-read';
+
   static const login = 'login';
   static const loginWihtSoccial = 'login-with-soccial';
   static const verificationCode = 'verification-code';
@@ -133,12 +135,12 @@ final class AppRouter {
         builder: (context, state) => const HatimView(),
         routes: [
           GoRoute(
-            path: '$hatimRead/:isHatim/:pages',
+            path: '$hatimRead/:pages',
             name: hatimRead,
             parentNavigatorKey: rootNavigatorKey,
             builder: (context, state) {
               final args = ParseParams.parseRead(state.pathParameters);
-              return ReadView(args.$1, isHatim: args.$2);
+              return QuranByPagesView(args);
             },
           ),
         ],
@@ -185,12 +187,30 @@ final class AppRouter {
   static List<RouteBase> get _quranSubRoutes {
     return [
       GoRoute(
-        path: '$read/:isHatim/:pages',
-        name: read,
+        path: '$quranByPages/:pages',
+        name: quranByPages,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseRead(state.pathParameters);
-          return ReadView(args.$1, isHatim: args.$2);
+          return QuranByPagesView(args);
+        },
+      ),
+      GoRoute(
+        path: '$quranBySurah/:surahNumber',
+        name: quranBySurah,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final args = ParseParams.parseSurahNumber(state.pathParameters);
+          return QuranBySurahView(args);
+        },
+      ),
+      GoRoute(
+        path: '$quranByJuz/:juzNumber',
+        name: quranByJuz,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final args = ParseParams.parseJuzNumber(state.pathParameters);
+          return QuranByJuzView(args);
         },
       ),
     ];

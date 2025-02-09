@@ -21,53 +21,37 @@ class PageViewItem<T> extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
-        if (item is JuzEntity) {
+        if (item is MqJuzEntity) {
           return QuranItemTile(
             key: Key(MqKeys.quranReadJus(index)),
-            index: item.id,
-            title: '${item.id}-${context.l10n.juz}',
-            subtitle: item.name,
+            index: item.juzNumber,
+            title: '${item.juzNumber}-${context.l10n.juz}',
+            subtitle: '${item.firstVerseId}-${item.lastVerseId}',
             onTap: () async {
               MqAnalytic.track(
                 AnalyticKey.goQuranReadByJuz,
                 params: {'juzId': item.id},
               );
-              final pages = <int>[];
-              for (var i = item.pages.first; i <= item.pages.last; i++) {
-                pages.add(i);
-              }
-              pages.sort();
               context.goNamed(
-                AppRouter.read,
-                pathParameters: {
-                  'pages': pages.toString(),
-                  'isHatim': true.toString(),
-                },
+                AppRouter.quranByJuz,
+                pathParameters: {'juzNumber': item.juzNumber.toString()},
               );
             },
           );
-        } else if (item is SurahEntity) {
+        } else if (item is MqSurahEntity) {
           return QuranItemTile(
             key: Key(MqKeys.quranReadSurah(index)),
             index: item.id,
-            title: item.name,
-            subtitle: item.arabic,
+            title: item.nameSimple,
+            subtitle: item.nameArabic,
             onTap: () async {
               MqAnalytic.track(
                 AnalyticKey.goQuranReadBySurah,
-                params: {'surahId': item.id, 'surahName': item.name},
+                params: {'surahId': item.id, 'surahName': item.nameSimple},
               );
-              final pages = <int>[];
-              for (var i = item.pages.first; i <= item.pages.last; i++) {
-                pages.add(i);
-              }
-              pages.sort();
               context.goNamed(
-                AppRouter.read,
-                pathParameters: {
-                  'pages': pages.toString(),
-                  'isHatim': true.toString(),
-                },
+                AppRouter.quranBySurah,
+                pathParameters: {'surahNumber': item.id.toString()},
               );
             },
           );

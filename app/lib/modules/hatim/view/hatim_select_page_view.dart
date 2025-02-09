@@ -105,7 +105,6 @@ class HatimJusSelectPagesView extends StatelessWidget {
                         AppRouter.hatimRead,
                         pathParameters: {
                           'pages': pageNumbers.toString(),
-                          'isHatim': true.toString(),
                         },
                       );
                       if (value != null && value && context.mounted) {
