@@ -204,3 +204,16 @@
 ## [Technical]
 
 - Fixed release testing template
+
+---
+
+# What's Changed v1.3.13+23
+
+## [UX]
+
+- Implemented get Quran data by Juz
+- Implemented get Quran data by Surah
+
+## [Technical]
+
+- Implemented dev mode for back
