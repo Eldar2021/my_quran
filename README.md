@@ -36,7 +36,7 @@ Regardless of your nationality, place of residence, gender, or social status, yo
 ## Requirements
 
 - Dart sdk: ">=3.5.0 <4.0.0"
-- Flutter: "3.24.3"
+- Flutter: "3.29.0"
 - Android: minSdkVersion 23
 - iOS: --ios-language swift, Xcode version >= 15.4.0
 
