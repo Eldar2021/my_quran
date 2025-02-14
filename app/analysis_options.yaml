@@ -11,9 +11,10 @@ linter:
 analyzer:
   exclude:
     - "**/*.g.dart"
+    - "lib/l10n/generated/**"
     - "**/*.freezed.dart"
     - "bin/cache/**"
 
   errors:
-   todo: false
-   fixme: false
+    todo: false
+    fixme: false

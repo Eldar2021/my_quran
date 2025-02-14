@@ -243,8 +243,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get blue => 'Mavi';
 
   @override
-  String get prophetLegacy =>
-      'Kuran-ı Kerim, Peygamber Efendimiz Muhammed Mustafa’dan (sallallahu aleyhi ve sellem) bize kalan en büyük emanettir. Müslümanların bir vadide, Kuran’ın başka bir vadide kaldığı bir dönemde bütün dünyadaki Müslüman din kardeşlerimizi Kuran’ın kutlu dünyasına davet etmeyi uygun gördük. Ulusunuz, yaşadığınız yer, cinsiyetiniz ve sosyal statünüz ne olursa olsun, dünya çapında yürütülmekte olan Kuran hatim kampanyasına katılarak, cemaatteki bereketli sevaba siz de nail olunuz. ‘Hepiniz toptan, Allah\'ın ipine (dinine) sımsıkı sarılın, bölünüp ayrılmayın.’';
+  String get prophetLegacy => 'Kuran-ı Kerim, Peygamber Efendimiz Muhammed Mustafa’dan (sallallahu aleyhi ve sellem) bize kalan en büyük emanettir. Müslümanların bir vadide, Kuran’ın başka bir vadide kaldığı bir dönemde bütün dünyadaki Müslüman din kardeşlerimizi Kuran’ın kutlu dünyasına davet etmeyi uygun gördük. Ulusunuz, yaşadığınız yer, cinsiyetiniz ve sosyal statünüz ne olursa olsun, dünya çapında yürütülmekte olan Kuran hatim kampanyasına katılarak, cemaatteki bereketli sevaba siz de nail olunuz. ‘Hepiniz toptan, Allah\'ın ipine (dinine) sımsıkı sarılın, bölünüp ayrılmayın.’';
 
   @override
   String get alImran => '(Al-i İmran 103)';
@@ -316,8 +315,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appUpdateAvailable => 'Uygulama güncellemesi mevcut';
 
   @override
-  String get newVersionRequired =>
-      'Uygulamanın yeni bir sürümü mevcut. Devam etmek için güncelleme yapmanız gerekiyor.';
+  String get newVersionRequired => 'Uygulamanın yeni bir sürümü mevcut. Devam etmek için güncelleme yapmanız gerekiyor.';
 
   @override
   String get newVersionAvailable => 'Uygulamanın yeni bir sürümü mevcut.';
@@ -365,8 +363,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get restartApp => 'Uygulamayı yeniden başlatmalısınız';
 
   @override
-  String get restartForDevMode =>
-      'Geliştirici modunu etkinleştirmek/devre dışı bırakmak için uygulamayı yeniden başlatın';
+  String get restartForDevMode => 'Geliştirici modunu etkinleştirmek/devre dışı bırakmak için uygulamayı yeniden başlatın';
 
   @override
   String get restart => 'Yeniden başlat';
