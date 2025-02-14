@@ -44,25 +44,17 @@ class QuranAudioView extends StatelessWidget {
               title: item.nameSimple,
               subtitle: item.nameArabic,
               onTap: () {
-                MqAnalytic.track(
-                  AnalyticKey.selectQuranAudioBySurah,
-                  params: {'surahName': item.nameSimple},
-                );
+                MqAnalytic.track(AnalyticKey.selectQuranAudioBySurah, params: {'surahName': item.nameSimple});
                 context.read<QuranAudioCubit>().changeSurah(index);
               },
             );
           },
           separatorBuilder: (BuildContext context, int index) {
-            return Divider(
-              height: 0.5,
-              color: colorScheme.onSurface.withOpacity(0.1),
-            );
+            return Divider(height: 0.5, color: colorScheme.onSurface.withValues(alpha: 0.1));
           },
         ),
       ),
-      bottomNavigationBar: const AudioButtomSheet(
-        key: Key(MqKeys.quranAudioBottomSheet),
-      ),
+      bottomNavigationBar: const AudioButtomSheet(key: Key(MqKeys.quranAudioBottomSheet)),
     );
   }
 }

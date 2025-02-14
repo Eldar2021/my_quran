@@ -24,7 +24,7 @@ class MqBankInfoCard extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color: isDark ? colorScheme.outline.withOpacity(0.3) : colorScheme.surface,
+      color: isDark ? colorScheme.outline.withValues(alpha: 0.3) : colorScheme.surface,
       margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -36,20 +36,11 @@ class MqBankInfoCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
-                      bankName,
-                      style: prTextTheme.titleLarge,
-                    ),
+                    Text(bankName, style: prTextTheme.titleLarge),
                     const SizedBox(height: 8),
-                    Text(
-                      bankAccount,
-                      style: prTextTheme.titleMedium,
-                    ),
+                    Text(bankAccount, style: prTextTheme.titleMedium),
                     const SizedBox(height: 4),
-                    Text(
-                      accountName,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    Text(accountName, style: Theme.of(context).textTheme.bodyMedium),
                   ],
                 ),
               ),
@@ -57,16 +48,9 @@ class MqBankInfoCard extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Clipboard.setData(
-                        ClipboardData(text: copyText ?? bankAccount),
-                      );
+                      Clipboard.setData(ClipboardData(text: copyText ?? bankAccount));
                     },
-                    icon: Assets.icons.copy.svg(
-                      colorFilter: ColorFilter.mode(
-                        colorScheme.primary,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                    icon: Assets.icons.copy.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
                   ),
                   Text(copyLabel),
                 ],

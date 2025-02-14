@@ -37,7 +37,7 @@ class HatimJuzItemCard extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color: isDark ? colorScheme.outline.withOpacity(0.3) : colorScheme.surface,
+      color: isDark ? colorScheme.outline.withValues(alpha: 0.3) : colorScheme.surface,
       margin: EdgeInsets.zero,
       child: InkWell(
         onTap: onTap,
@@ -49,41 +49,20 @@ class HatimJuzItemCard extends StatelessWidget {
               MqCircularChart(
                 annotation: total,
                 colors: [firstBoxColor, secondBoxColor, thirdBoxColor],
-                dataSource: [
-                  firstValue,
-                  secondValue,
-                  thirdValue,
-                ],
+                dataSource: [firstValue, secondValue, thirdValue],
               ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
-                      style: prTextTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    Text(title, style: prTextTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ColumnInfoColoredBox(
-                          boxColor: firstBoxColor,
-                          title: firstText,
-                          value: '$firstValue',
-                        ),
-                        ColumnInfoColoredBox(
-                          boxColor: secondBoxColor,
-                          title: secondText,
-                          value: '$secondValue',
-                        ),
-                        ColumnInfoColoredBox(
-                          boxColor: thirdBoxColor,
-                          title: thirdText,
-                          value: '$thirdValue',
-                        ),
+                        ColumnInfoColoredBox(boxColor: firstBoxColor, title: firstText, value: '$firstValue'),
+                        ColumnInfoColoredBox(boxColor: secondBoxColor, title: secondText, value: '$secondValue'),
+                        ColumnInfoColoredBox(boxColor: thirdBoxColor, title: thirdText, value: '$thirdValue'),
                       ],
                     ),
                   ],

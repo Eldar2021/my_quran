@@ -9,11 +9,7 @@ import 'package:my_quran/constants/contants.dart';
 part 'quran_audio_state.dart';
 
 class QuranAudioCubit extends Cubit<QuranAudioState> {
-  QuranAudioCubit(
-    this.player,
-    this.networkClient,
-    this.quranRepository,
-  ) : super(QuranAudioState());
+  QuranAudioCubit(this.player, this.networkClient, this.quranRepository) : super(QuranAudioState());
 
   final AudioPlayer player;
   final NetworkClient networkClient;
@@ -30,22 +26,23 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
       playerStateStream = player.playerStateStream;
       final playList = ConcatenatingAudioSource(
         shuffleOrder: DefaultShuffleOrder(),
-        children: surahs
-            .map(
-              (s) => AudioSource.uri(
-                Uri.parse(ApiConst.audio(s.surahPath)),
-                tag: MediaItem(
-                  id: '${s.id}',
-                  album: 'Quran',
-                  title: s.nameSimple,
-                  artUri: Uri.parse(ApiConst.appLogoLink),
-                ),
-              ),
-            )
-            .toList(),
+        children:
+            surahs
+                .map(
+                  (s) => AudioSource.uri(
+                    Uri.parse(ApiConst.audio(s.surahPath)),
+                    tag: MediaItem(
+                      id: '${s.id}',
+                      album: 'Quran',
+                      title: s.nameSimple,
+                      artUri: Uri.parse(ApiConst.appLogoLink),
+                    ),
+                  ),
+                )
+                .toList(),
       );
       await player.setAudioSource(playList, initialIndex: 0, preload: false);
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       emit(QuranAudioState(exception: e.toString()));
     }

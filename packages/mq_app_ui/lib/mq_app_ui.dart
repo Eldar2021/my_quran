@@ -1,4 +1,4 @@
 /// My Quran App UI package
-library mq_app_ui;
+library;
 
 export 'src/mq_app_ui.dart';

@@ -28,14 +28,8 @@ class PageViewItem<T> extends StatelessWidget {
             title: '${item.juzNumber}-${context.l10n.juz}',
             subtitle: '${item.firstVerseId}-${item.lastVerseId}',
             onTap: () async {
-              MqAnalytic.track(
-                AnalyticKey.goQuranReadByJuz,
-                params: {'juzId': item.id},
-              );
-              context.goNamed(
-                AppRouter.quranByJuz,
-                pathParameters: {'juzNumber': item.juzNumber.toString()},
-              );
+              MqAnalytic.track(AnalyticKey.goQuranReadByJuz, params: {'juzId': item.id});
+              context.goNamed(AppRouter.quranByJuz, pathParameters: {'juzNumber': item.juzNumber.toString()});
             },
           );
         } else if (item is MqSurahEntity) {
@@ -49,20 +43,14 @@ class PageViewItem<T> extends StatelessWidget {
                 AnalyticKey.goQuranReadBySurah,
                 params: {'surahId': item.id, 'surahName': item.nameSimple},
               );
-              context.goNamed(
-                AppRouter.quranBySurah,
-                pathParameters: {'surahNumber': item.id.toString()},
-              );
+              context.goNamed(AppRouter.quranBySurah, pathParameters: {'surahNumber': item.id.toString()});
             },
           );
         }
         return const SizedBox();
       },
       separatorBuilder: (BuildContext context, int index) {
-        return Divider(
-          height: 0.5,
-          color: colorScheme.onSurface.withOpacity(0.1),
-        );
+        return Divider(height: 0.5, color: colorScheme.onSurface.withValues(alpha: 0.1));
       },
     );
   }

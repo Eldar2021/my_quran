@@ -9,17 +9,14 @@ import 'package:my_quran/l10n/l10.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.authRepository)
-      : super(
-          AuthState(user: authRepository.init),
-        );
+  AuthCubit(this.authRepository) : super(AuthState(user: authRepository.init));
 
   final AuthRepository authRepository;
 
   Future<void> loginWithEmail(String email) async {
     try {
       await authRepository.loginWithEmail(email);
-    } catch (e) {
+    } on Exception catch (e) {
       emit(state.copyWith(exception: Exception(e)));
     }
   }
@@ -75,13 +72,10 @@ class AuthCubit extends Cubit<AuthState> {
         localeCode: localeCode,
       );
 
-      res.fold(
-        (l) => emit(state.copyWith(exception: l)),
-        (r) {
-          final newUser = state.user!.copyWith(localeCode: r.localeValue);
-          emit(state.copyWith(user: newUser));
-        },
-      );
+      res.fold((l) => emit(state.copyWith(exception: l)), (r) {
+        final newUser = state.user!.copyWith(localeCode: r.localeValue);
+        emit(state.copyWith(user: newUser));
+      });
     } else {
       emit(state.copyWith(localeForNow: localeCode));
     }
@@ -94,13 +88,10 @@ class AuthCubit extends Cubit<AuthState> {
         gender: gender,
       );
 
-      res.fold(
-        (l) => emit(state.copyWith(exception: l)),
-        (r) {
-          final newUser = state.user!.copyWith(gender: r.genderValue);
-          emit(state.copyWith(user: newUser));
-        },
-      );
+      res.fold((l) => emit(state.copyWith(exception: l)), (r) {
+        final newUser = state.user!.copyWith(gender: r.genderValue);
+        emit(state.copyWith(user: newUser));
+      });
     } else {
       emit(state.copyWith(genderForNow: gender));
     }
@@ -110,7 +101,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await authRepository.deleteAccount();
       emit(const AuthState());
-    } catch (e) {
+    } on Exception catch (e) {
       emit(state.copyWith(exception: Exception(e)));
     }
   }
@@ -119,7 +110,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await authRepository.logout();
       emit(const AuthState());
-    } catch (e) {
+    } on Exception catch (e) {
       emit(state.copyWith(exception: Exception(e)));
     }
   }

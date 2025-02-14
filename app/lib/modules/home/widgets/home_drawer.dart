@@ -9,10 +9,7 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({
-    this.closeDrawer,
-    super.key,
-  });
+  const HomeDrawer({this.closeDrawer, super.key});
 
   final void Function()? closeDrawer;
 
@@ -28,11 +25,7 @@ class HomeDrawer extends StatelessWidget {
       key: const Key(MqKeys.settingsView),
       width: size.width * 0.85,
       backgroundColor: colorScheme.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(40),
-        ),
-      ),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(40))),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,16 +33,14 @@ class HomeDrawer extends StatelessWidget {
             const SizedBox(height: 20),
             IconButton(
               iconSize: 30,
-              color: colorScheme.onSurface.withOpacity(0.5),
+              color: colorScheme.onSurface.withValues(alpha: 0.5),
               padding: const EdgeInsets.only(left: 20),
               onPressed: closeDrawer,
               icon: const Icon(Icons.close),
             ),
             const SizedBox(height: 10),
             const UserProfileTile(),
-            const Expanded(
-              child: SettingActionsWidget(),
-            ),
+            const Expanded(child: SettingActionsWidget()),
             Center(
               child: InkWell(
                 onLongPress: () {
@@ -58,9 +49,7 @@ class HomeDrawer extends StatelessWidget {
                 },
                 child: Text(
                   '${context.l10n.version} ${appRepo.appVersion()}',
-                  style: prTextTheme.bodyLarge?.copyWith(
-                    color: colorScheme.onSurface.withOpacity(0.6),
-                  ),
+                  style: prTextTheme.bodyLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: 0.6)),
                 ),
               ),
             ),

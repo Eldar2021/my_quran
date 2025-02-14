@@ -15,7 +15,7 @@ class HomeBannersCubit extends Cubit<HomeBannersState> {
       emit(const HomeBannersLoading());
       final banners = await repository.getHomeBanners();
       emit(HomeBannersLoaded(banners));
-    } catch (e) {
+    } on Exception catch (e) {
       emit(HomeBannersError(e.toString()));
     }
   }

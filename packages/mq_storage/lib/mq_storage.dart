@@ -1,5 +1,5 @@
 /// My Quran Storage
-library mq_storage;
+library;
 
 export 'src/interface/storage_exception.dart';
 export 'src/interface/storage_interface.dart';

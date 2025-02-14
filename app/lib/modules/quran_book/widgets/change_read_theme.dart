@@ -14,16 +14,9 @@ class ChangeReadThemeSheetContent extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: themeCubit.state.bgColor,
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(30),
-        ),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      child: const FractionallySizedBox(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 32),
-          child: _Body(),
-        ),
-      ),
+      child: const FractionallySizedBox(child: Padding(padding: EdgeInsets.symmetric(horizontal: 32), child: _Body())),
     );
   }
 }
@@ -43,26 +36,17 @@ class _Body extends StatelessWidget {
         Center(
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: themeCubit.state.frColor.withOpacity(0.7),
+              color: themeCubit.state.frColor.withValues(alpha: 0.7),
               borderRadius: BorderRadius.circular(99),
             ),
             child: const SizedBox(height: 6, width: 58),
           ),
         ),
         const SizedBox(height: 20),
-        Text(
-          context.l10n.textSize,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
-        ),
+        Text(context.l10n.textSize, style: prTextTheme.titleMedium?.copyWith(color: themeCubit.state.frColor)),
         Row(
           children: [
-            Assets.icons.aDigit.svg(
-              colorFilter: _colorFilter(
-                themeCubit.state.frColor,
-              ),
-            ),
+            Assets.icons.aDigit.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
             Expanded(
               child: Slider.adaptive(
                 value: themeCubit.state.textSize,
@@ -73,27 +57,14 @@ class _Body extends StatelessWidget {
                 },
               ),
             ),
-            Assets.icons.aDigitBig.svg(
-              colorFilter: _colorFilter(
-                themeCubit.state.frColor,
-              ),
-            ),
+            Assets.icons.aDigitBig.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
           ],
         ),
         const SizedBox(height: 20),
-        Text(
-          context.l10n.verticalSpace,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
-        ),
+        Text(context.l10n.verticalSpace, style: prTextTheme.titleMedium?.copyWith(color: themeCubit.state.frColor)),
         Row(
           children: [
-            Assets.icons.aDigitVerticalSmall.svg(
-              colorFilter: _colorFilter(
-                themeCubit.state.frColor,
-              ),
-            ),
+            Assets.icons.aDigitVerticalSmall.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
             Expanded(
               child: Slider.adaptive(
                 value: themeCubit.state.verticalSpaceSize,
@@ -103,27 +74,14 @@ class _Body extends StatelessWidget {
                 },
               ),
             ),
-            Assets.icons.aDigitVertical.svg(
-              colorFilter: _colorFilter(
-                themeCubit.state.frColor,
-              ),
-            ),
+            Assets.icons.aDigitVertical.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
           ],
         ),
         const SizedBox(height: 20),
-        Text(
-          context.l10n.horizontalSpace,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
-        ),
+        Text(context.l10n.horizontalSpace, style: prTextTheme.titleMedium?.copyWith(color: themeCubit.state.frColor)),
         Row(
           children: [
-            Assets.icons.aHorizontal.svg(
-              colorFilter: _colorFilter(
-                themeCubit.state.frColor,
-              ),
-            ),
+            Assets.icons.aHorizontal.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
             Expanded(
               child: Slider.adaptive(
                 value: themeCubit.state.horizontalSpaceSize,
@@ -133,20 +91,11 @@ class _Body extends StatelessWidget {
                 },
               ),
             ),
-            Assets.icons.aHorizontalBig.svg(
-              colorFilter: _colorFilter(
-                themeCubit.state.frColor,
-              ),
-            ),
+            Assets.icons.aHorizontalBig.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
           ],
         ),
         const SizedBox(height: 20),
-        Text(
-          context.l10n.screenTheme,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
-        ),
+        Text(context.l10n.screenTheme, style: prTextTheme.titleMedium?.copyWith(color: themeCubit.state.frColor)),
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -222,9 +171,6 @@ class _Body extends StatelessWidget {
   }
 
   ColorFilter _colorFilter(Color color) {
-    return ColorFilter.mode(
-      color,
-      BlendMode.srcIn,
-    );
+    return ColorFilter.mode(color, BlendMode.srcIn);
   }
 }

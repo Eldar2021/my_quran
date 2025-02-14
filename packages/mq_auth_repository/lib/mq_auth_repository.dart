@@ -1,4 +1,4 @@
 /// MyQuran Auth Repository
-library mq_auth_repository;
+library;
 
 export 'src/mq_auth_repository.dart';

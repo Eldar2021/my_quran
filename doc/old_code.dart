@@ -18,7 +18,7 @@
       //     backgroundColor: Colors.transparent,
       //     selectedItemColor: colorScheme.onPrimary,
       //     selectedFontSize: 12,
-      //     unselectedItemColor: colorScheme.onPrimary.withOpacity(0.7),
+      //     unselectedItemColor: colorScheme.onPrimary.withValues(alpha:0.7),
       //     onTap: context.read<MainCubit>().change,
       //     currentIndex: context.watch<MainCubit>().state,
       //     items: const [
@@ -70,7 +70,7 @@ class HomeCard extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return Card(
       margin: EdgeInsets.symmetric(horizontal: horizontalSpace, vertical: verticalSpace),
-      color: colorScheme.background.withOpacity(0.8),
+      color: colorScheme.background.withValues(alpha:0.8),
       child: Padding(
         padding: const EdgeInsets.all(17),
         child: Column(

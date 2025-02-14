@@ -49,9 +49,7 @@ class QuranAudioProgressingWidget extends StatelessWidget {
               Expanded(
                 child: SliderTheme(
                   data: SliderThemeData(
-                    thumbShape: const RoundSliderThumbShape(
-                      enabledThumbRadius: 6,
-                    ),
+                    thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
                     trackShape: CustomTrackShape(),
                   ),
                   child: Slider(
@@ -59,7 +57,9 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                     max: sliderMaxValue,
                     min: sliderMinValue,
                     inactiveColor:
-                        isDark ? colorScheme.onSurface.withOpacity(0.7) : colorScheme.outline.withOpacity(0.2),
+                        isDark
+                            ? colorScheme.onSurface.withValues(alpha: 0.7)
+                            : colorScheme.outline.withValues(alpha: 0.2),
                     onChanged: onDragSliderChanged,
                   ),
                 ),
@@ -83,20 +83,19 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                 iconSize: 66,
                 padding: EdgeInsets.zero,
                 color: colorScheme.primary,
-                onPressed: isLoading
-                    ? null
-                    : isProgressing
+                onPressed:
+                    isLoading
+                        ? null
+                        : isProgressing
                         ? onPressedPause
                         : onPressedPlay,
-                icon: isLoading
-                    ? Padding(
-                        padding: const EdgeInsets.all(13),
-                        child: CupertinoActivityIndicator(
-                          color: colorScheme.primary,
-                          radius: 20,
-                        ),
-                      )
-                    : Icon(isProgressing ? Icons.pause_circle : Icons.play_circle),
+                icon:
+                    isLoading
+                        ? Padding(
+                          padding: const EdgeInsets.all(13),
+                          child: CupertinoActivityIndicator(color: colorScheme.primary, radius: 20),
+                        )
+                        : Icon(isProgressing ? Icons.pause_circle : Icons.play_circle),
               ),
               const SizedBox(width: 20),
               IconButton(

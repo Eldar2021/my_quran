@@ -7,10 +7,7 @@ import 'package:mq_either/mq_either.dart';
 
 @immutable
 final class AuthRepositoryImpl implements AuthRepository {
-  const AuthRepositoryImpl({
-    required this.localDataSource,
-    required this.remoteDataSource,
-  });
+  const AuthRepositoryImpl({required this.localDataSource, required this.remoteDataSource});
 
   final AuthLocalDataSource localDataSource;
   final AuthRemoteDataSource remoteDataSource;
@@ -23,7 +20,7 @@ final class AuthRepositoryImpl implements AuthRepository {
     try {
       await remoteDataSource.saveUserData(userEntity);
       await localDataSource.saveUserData(userEntity);
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log('setUserData error $e,\n$s');
     }
@@ -33,7 +30,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   Future<void> loginWithEmail(String email) async {
     try {
       await remoteDataSource.loginWithEmail(email);
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log('signWithEmail: error: $e\n$s');
     }
@@ -47,26 +44,18 @@ final class AuthRepositoryImpl implements AuthRepository {
     required Gender gender,
   }) async {
     try {
-      final res = await remoteDataSource.verifyOtp(
-        email: email,
-        otp: otp,
-        languageCode: languageCode,
-        gender: gender,
-      );
+      final res = await remoteDataSource.verifyOtp(email: email, otp: otp, languageCode: languageCode, gender: gender);
 
-      return res.fold(
-        Left.new,
-        (r) {
-          final userEntity = UserEntity(
-            accessToken: r.accessToken,
-            username: r.username,
-            gender: r.gender,
-            localeCode: r.localeCode,
-          );
-          return Right(userEntity);
-        },
-      );
-    } catch (e, s) {
+      return res.fold(Left.new, (r) {
+        final userEntity = UserEntity(
+          accessToken: r.accessToken,
+          username: r.username,
+          gender: r.gender,
+          localeCode: r.localeCode,
+        );
+        return Right(userEntity);
+      });
+    } on Exception catch (e, s) {
       log('signWithemail: error: $e\n$s');
       MqCrashlytics.report(e, s);
       return Left(AuthenticationExc(message: e.toString()));
@@ -74,48 +63,29 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signWithGoogle(
-    String languageCode,
-    Gender gender,
-  ) async {
+  Future<Either<UserEntity, Exception>> signWithGoogle(String languageCode, Gender gender) async {
     final res = await remoteDataSource.signInWithGoogle(languageCode, gender);
     return res.fold(
       Left.new,
       (r) => Right(
-        UserEntity(
-          accessToken: r.accessToken,
-          username: r.username,
-          gender: r.gender,
-          localeCode: r.localeCode,
-        ),
+        UserEntity(accessToken: r.accessToken, username: r.username, gender: r.gender, localeCode: r.localeCode),
       ),
     );
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signWithApple(
-    String languageCode,
-    Gender gender,
-  ) async {
+  Future<Either<UserEntity, Exception>> signWithApple(String languageCode, Gender gender) async {
     final res = await remoteDataSource.signInWithApple(languageCode, gender);
     return res.fold(
       Left.new,
       (r) => Right(
-        UserEntity(
-          accessToken: r.accessToken,
-          username: r.username,
-          gender: r.gender,
-          localeCode: r.localeCode,
-        ),
+        UserEntity(accessToken: r.accessToken, username: r.username, gender: r.gender, localeCode: r.localeCode),
       ),
     );
   }
 
   @override
-  Future<Either<UserDataEntity, Exception>> patchGender({
-    required String userId,
-    required Gender gender,
-  }) async {
+  Future<Either<UserDataEntity, Exception>> patchGender({required String userId, required Gender gender}) async {
     final res = await remoteDataSource.pathGender(userId: userId, gender: gender);
     return res.fold(Left.new, (r) async {
       final entity = UserDataEntity(gender: r.gender, language: r.language);
@@ -142,7 +112,7 @@ final class AuthRepositoryImpl implements AuthRepository {
     try {
       await remoteDataSource.deleteAccountRemote();
       await localDataSource.deleteAccountLocal();
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log('Delete Account error: $e\n$s');
     }
@@ -153,7 +123,7 @@ final class AuthRepositoryImpl implements AuthRepository {
     try {
       await remoteDataSource.logoutRemote();
       await localDataSource.logoutLocal();
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log('logout error: $e\n$s');
     }

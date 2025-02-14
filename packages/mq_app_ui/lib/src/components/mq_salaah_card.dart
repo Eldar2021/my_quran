@@ -58,10 +58,7 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
       longitude: widget.lon,
       location: widget.location,
     );
-    _nextPrayerTime = Stream.periodic(
-      const Duration(seconds: 1),
-      (_) => _nextPrayer,
-    );
+    _nextPrayerTime = Stream.periodic(const Duration(seconds: 1), (_) => _nextPrayer);
   }
 
   @override
@@ -120,29 +117,15 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                         builder: (context, snapshot) {
                           return snapshot.data?.$1 != 0
                               ? Row(
-                                  children: [
-                                    Text(
-                                      switch (snapshot.data?.$1) {
-                                        1 => widget.fajrLabel,
-                                        2 => widget.zuhrLabel,
-                                        3 => widget.asrLabel,
-                                        4 => widget.maghribLabel,
-                                        5 => widget.ishaLabel,
-                                        _ => '',
-                                      },
-                                      style: prTextTheme.bodyLarge,
-                                    ),
-                                    SizedBox(
-                                      width: context.withWidth(7),
-                                    ),
-                                    Text(
-                                      _printDuration(snapshot.data?.$2 ?? Duration.zero),
-                                      style: prTextTheme.bodyLarge?.copyWith(
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ],
-                                )
+                                children: [
+                                  Text(_getPreyerLabel(snapshot.data?.$1), style: prTextTheme.bodyLarge),
+                                  SizedBox(width: context.withWidth(7)),
+                                  Text(
+                                    _printDuration(snapshot.data?.$2 ?? Duration.zero),
+                                    style: prTextTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w900),
+                                  ),
+                                ],
+                              )
                               : const SizedBox.shrink();
                         },
                       ),
@@ -150,11 +133,7 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                       Flexible(
                         child: TextButton.icon(
                           onPressed: widget.onLocationPressed,
-                          label: Text(
-                            widget.locationLabel,
-                            maxLines: 2,
-                            overflow: TextOverflow.fade,
-                          ),
+                          label: Text(widget.locationLabel, maxLines: 2, overflow: TextOverflow.fade),
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
                             minimumSize: Size.zero,
@@ -164,10 +143,7 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                           ),
                           icon: Assets.icons.location.svg(
                             width: 12,
-                            colorFilter: ColorFilter.mode(
-                              colorScheme.onSurface,
-                              BlendMode.srcIn,
-                            ),
+                            colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
                           ),
                         ),
                       ),
@@ -219,15 +195,21 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
     final twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60).abs());
     return '${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds';
   }
+
+  String _getPreyerLabel(int? index) {
+    return switch (index) {
+      1 => widget.fajrLabel,
+      2 => widget.zuhrLabel,
+      3 => widget.asrLabel,
+      4 => widget.maghribLabel,
+      5 => widget.ishaLabel,
+      _ => '',
+    };
+  }
 }
 
 class SalaahItemTimeCard extends StatelessWidget {
-  const SalaahItemTimeCard({
-    required this.salaahName,
-    required this.timeOfClock,
-    this.isActive = true,
-    super.key,
-  });
+  const SalaahItemTimeCard({required this.salaahName, required this.timeOfClock, this.isActive = true, super.key});
 
   final String salaahName;
   final String timeOfClock;
@@ -239,23 +221,17 @@ class SalaahItemTimeCard extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color: isActive
-          ? colorScheme.primary
-          : isDark
-              ? colorScheme.surface.withOpacity(0.5)
-              : colorScheme.shadow.withOpacity(0.5),
+      color:
+          isActive
+              ? colorScheme.primary
+              : isDark
+              ? colorScheme.surface.withValues(alpha: 0.5)
+              : colorScheme.shadow.withValues(alpha: 0.5),
       margin: EdgeInsets.zero,
       elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          context.withWidth(8),
-        ),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.withWidth(8))),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.withWidth(5),
-          horizontal: context.withWidth(7),
-        ),
+        padding: EdgeInsets.symmetric(vertical: context.withWidth(5), horizontal: context.withWidth(7)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

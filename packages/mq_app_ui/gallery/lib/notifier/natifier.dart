@@ -37,7 +37,7 @@ class MqAppUiNotifier extends ChangeNotifier {
       final value = storage.readString(key: _themeKey);
       _themeType = MqAppUiType.fromString(value);
       notifyListeners();
-    } catch (e) {
+    } on Exception catch (e) {
       log(e.toString());
     }
   }
@@ -45,12 +45,9 @@ class MqAppUiNotifier extends ChangeNotifier {
   Future<void> changeTheme(MqAppUiType type) async {
     try {
       _themeType = type;
-      await storage.writeString(
-        key: _themeKey,
-        value: _themeType.name,
-      );
+      await storage.writeString(key: _themeKey, value: _themeType.name);
       notifyListeners();
-    } catch (e) {
+    } on Exception catch (e) {
       log(e.toString());
     }
   }
