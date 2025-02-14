@@ -11,11 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
   geocoding: ^3.0.0
-  geolocator: ^13.0.1
-  timezone: ^0.9.3
-  flutter_timezone: ^2.1.0
+  geolocator: ^13.0.2
+  timezone: ^0.10.0
+  flutter_timezone: ^4.1.0
   adhan_dart: ^1.1.2
-  intl: ^0.19.0
+  intl: ^0.19.0 #0.20.2
 
   mq_remote_client:
     path: ../mq_remote_client
@@ -26,4 +26,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^7.0.0
