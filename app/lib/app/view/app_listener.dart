@@ -7,11 +7,7 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class AppListener extends StatelessWidget {
-  const AppListener({
-    required this.child,
-    required this.navigationKey,
-    super.key,
-  });
+  const AppListener({required this.child, required this.navigationKey, super.key});
 
   final Widget child;
   final GlobalKey<NavigatorState> navigationKey;
@@ -40,28 +36,17 @@ class AppListener extends StatelessWidget {
         return PopScope(
           canPop: !forceUpdate,
           child: AlertDialog.adaptive(
-            title: Text(
-              ctx.l10n.appUpdateAvailable,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            content: Text(
-              forceUpdate ? ctx.l10n.newVersionRequired : ctx.l10n.newVersionAvailable,
-            ),
+            title: Text(ctx.l10n.appUpdateAvailable, style: Theme.of(context).textTheme.titleMedium),
+            content: Text(forceUpdate ? ctx.l10n.newVersionRequired : ctx.l10n.newVersionAvailable),
             actions: [
               if (!forceUpdate)
                 TextButton(
                   onPressed: () => Navigator.pop(ctx),
-                  child: Text(
-                    ctx.l10n.remindMeLater,
-                    textAlign: TextAlign.center,
-                  ),
+                  child: Text(ctx.l10n.remindMeLater, textAlign: TextAlign.center),
                 ),
               TextButton(
                 onPressed: () => AppLaunch.launchURL(_getPlatformAppStoreLink),
-                child: Text(
-                  ctx.l10n.updateNow,
-                  textAlign: TextAlign.center,
-                ),
+                child: Text(ctx.l10n.updateNow, textAlign: TextAlign.center),
               ),
             ],
           ),

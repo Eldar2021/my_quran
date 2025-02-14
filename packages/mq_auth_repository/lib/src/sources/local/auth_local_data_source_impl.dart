@@ -37,18 +37,12 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
 
   @override
   Future<void> saveGender(Gender gender) {
-    return storage.writeString(
-      key: MqAuthStatics.genderKey,
-      value: gender.name,
-    );
+    return storage.writeString(key: MqAuthStatics.genderKey, value: gender.name);
   }
 
   @override
   Future<void> saveLocaleCode(String localeCode) {
-    return storage.writeString(
-      key: MqAuthStatics.localeKey,
-      value: localeCode,
-    );
+    return storage.writeString(key: MqAuthStatics.localeKey, value: localeCode);
   }
 
   @override

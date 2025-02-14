@@ -22,12 +22,7 @@ class SettingActionsWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       children: [
         const SizedBox(height: 20),
-        Text(
-          context.l10n.generalMenu,
-          style: prTextTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+        Text(context.l10n.generalMenu, style: prTextTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
         const SizedBox(height: 16),
         DrawerTile(
           key: const Key(MqKeys.settingsGenderLang),
@@ -35,11 +30,7 @@ class SettingActionsWidget extends StatelessWidget {
             MqAnalytic.track(AnalyticKey.goGenderPage);
             context.pushNamed(AppRouter.customAppSettings);
           },
-          icon: Icon(
-            Icons.translate,
-            size: 17,
-            color: colorScheme.primary,
-          ),
+          icon: Icon(Icons.translate, size: 17, color: colorScheme.primary),
           title: context.l10n.customApp,
         ),
         DrawerTile(
@@ -48,11 +39,7 @@ class SettingActionsWidget extends StatelessWidget {
             MqAnalytic.track(AnalyticKey.goThemePage);
             context.pushNamed(AppRouter.themeSettings);
           },
-          icon: Icon(
-            Icons.sunny,
-            size: 17,
-            color: colorScheme.primary,
-          ),
+          icon: Icon(Icons.sunny, size: 17, color: colorScheme.primary),
           title: context.l10n.theme,
         ),
         DrawerTile(
@@ -61,12 +48,7 @@ class SettingActionsWidget extends StatelessWidget {
             MqAnalytic.track(AnalyticKey.goAboutUsPage);
             context.pushNamed(AppRouter.aboutUs);
           },
-          icon: Assets.icons.users.svg(
-            colorFilter: ColorFilter.mode(
-              colorScheme.primary,
-              BlendMode.srcIn,
-            ),
-          ),
+          icon: Assets.icons.users.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
           title: context.l10n.aboutUs,
         ),
         DrawerTile(
@@ -75,27 +57,14 @@ class SettingActionsWidget extends StatelessWidget {
             MqAnalytic.track(AnalyticKey.goContactUsPage);
             context.pushNamed(AppRouter.contactUs);
           },
-          icon: Assets.icons.phone.svg(
-            colorFilter: ColorFilter.mode(
-              colorScheme.primary,
-              BlendMode.srcIn,
-            ),
-          ),
+          icon: Assets.icons.phone.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
           title: context.l10n.contactUs,
         ),
         Builder(
           builder: (ctx) {
             return DrawerTile(
-              onTap: () => AppShare.shareUri(
-                context: ctx,
-                url: ApiConst.oneLink,
-              ),
-              icon: Assets.icons.shareFill.svg(
-                colorFilter: ColorFilter.mode(
-                  colorScheme.primary,
-                  BlendMode.srcIn,
-                ),
-              ),
+              onTap: () => AppShare.shareUri(context: ctx, url: ApiConst.oneLink),
+              icon: Assets.icons.shareFill.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
               title: context.l10n.share,
             );
           },
@@ -105,12 +74,7 @@ class SettingActionsWidget extends StatelessWidget {
             if (state.isDonaitonEnable) {
               return DrawerTile(
                 onTap: () => context.pushNamed(AppRouter.donation),
-                icon: Assets.icons.donate.svg(
-                  colorFilter: ColorFilter.mode(
-                    colorScheme.primary,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                icon: Assets.icons.donate.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
                 title: context.l10n.donate,
               );
             } else {
@@ -124,12 +88,7 @@ class SettingActionsWidget extends StatelessWidget {
             MqAnalytic.track(AnalyticKey.goDevelopersPage);
             context.pushNamed(AppRouter.developers);
           },
-          icon: Assets.icons.developers.svg(
-            colorFilter: ColorFilter.mode(
-              colorScheme.primary,
-              BlendMode.srcIn,
-            ),
-          ),
+          icon: Assets.icons.developers.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
           title: context.l10n.forDevelopers,
         ),
         if (authCubit.state.isAuthedticated)
@@ -156,12 +115,7 @@ class SettingActionsWidget extends StatelessWidget {
                   onCancel: () => Navigator.pop(context),
                 );
               },
-              icon: Assets.icons.logout.svg(
-                colorFilter: ColorFilter.mode(
-                  colorScheme.primary,
-                  BlendMode.srcIn,
-                ),
-              ),
+              icon: Assets.icons.logout.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
               title: context.l10n.logout,
             ),
           ),
@@ -181,12 +135,7 @@ class SettingActionsWidget extends StatelessWidget {
                 onCancel: () => Navigator.pop(context),
               );
             },
-            icon: Assets.icons.trash.svg(
-              colorFilter: ColorFilter.mode(
-                colorScheme.primary,
-                BlendMode.srcIn,
-              ),
-            ),
+            icon: Assets.icons.trash.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
             title: context.l10n.deleteAccount,
           ),
       ],

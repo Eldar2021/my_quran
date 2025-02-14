@@ -23,13 +23,8 @@ final class MqQuranLocalDataSourceImpl implements MqQuranLocalDataSource {
   }
 
   @override
-  QuranDataResponse? getQuranByJuz(
-    int juzNumber,
-    String quranFmt,
-  ) {
-    final localValue = storage.readString(
-      key: _juzKey(juzNumber, quranFmt),
-    );
+  QuranDataResponse? getQuranByJuz(int juzNumber, String quranFmt) {
+    final localValue = storage.readString(key: _juzKey(juzNumber, quranFmt));
 
     if (localValue != null) {
       final data = jsonDecode(localValue);
@@ -39,13 +34,8 @@ final class MqQuranLocalDataSourceImpl implements MqQuranLocalDataSource {
   }
 
   @override
-  QuranDataResponse? getQuranByPage(
-    int pageNumber,
-    String quranFmt,
-  ) {
-    final localValue = storage.readString(
-      key: _pageKey(pageNumber, quranFmt),
-    );
+  QuranDataResponse? getQuranByPage(int pageNumber, String quranFmt) {
+    final localValue = storage.readString(key: _pageKey(pageNumber, quranFmt));
 
     if (localValue != null) {
       final data = jsonDecode(localValue);
@@ -55,13 +45,8 @@ final class MqQuranLocalDataSourceImpl implements MqQuranLocalDataSource {
   }
 
   @override
-  QuranDataResponse? getQuranBySurah(
-    int surahNumber,
-    String quranFmt,
-  ) {
-    final localValue = storage.readString(
-      key: _surahKey(surahNumber, quranFmt),
-    );
+  QuranDataResponse? getQuranBySurah(int surahNumber, String quranFmt) {
+    final localValue = storage.readString(key: _surahKey(surahNumber, quranFmt));
 
     if (localValue != null) {
       final data = jsonDecode(localValue);
@@ -71,39 +56,18 @@ final class MqQuranLocalDataSourceImpl implements MqQuranLocalDataSource {
   }
 
   @override
-  Future<void> setQuranByJuz(
-    int juzNumber,
-    String quranFmt,
-    QuranDataResponse data,
-  ) async {
-    await storage.writeString(
-      key: _juzKey(juzNumber, quranFmt),
-      value: jsonEncode(data.toJson()),
-    );
+  Future<void> setQuranByJuz(int juzNumber, String quranFmt, QuranDataResponse data) async {
+    await storage.writeString(key: _juzKey(juzNumber, quranFmt), value: jsonEncode(data.toJson()));
   }
 
   @override
-  Future<void> setQuranByPage(
-    int pageNumber,
-    String quranFmt,
-    QuranDataResponse data,
-  ) async {
-    await storage.writeString(
-      key: _pageKey(pageNumber, quranFmt),
-      value: jsonEncode(data.toJson()),
-    );
+  Future<void> setQuranByPage(int pageNumber, String quranFmt, QuranDataResponse data) async {
+    await storage.writeString(key: _pageKey(pageNumber, quranFmt), value: jsonEncode(data.toJson()));
   }
 
   @override
-  Future<void> setQuranBySurah(
-    int surahNumber,
-    String quranFmt,
-    QuranDataResponse data,
-  ) async {
-    await storage.writeString(
-      key: _surahKey(surahNumber, quranFmt),
-      value: jsonEncode(data.toJson()),
-    );
+  Future<void> setQuranBySurah(int surahNumber, String quranFmt, QuranDataResponse data) async {
+    await storage.writeString(key: _surahKey(surahNumber, quranFmt), value: jsonEncode(data.toJson()));
   }
 
   String _surahKey(int surahNumber, String quranFmt) {

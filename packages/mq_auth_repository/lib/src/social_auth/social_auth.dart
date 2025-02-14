@@ -6,9 +6,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
 class SoccialAuth {
-  SoccialAuth({
-    GoogleSignIn? googleSignIn,
-  }) : _googleSignIn = googleSignIn ?? GoogleSignIn();
+  SoccialAuth({GoogleSignIn? googleSignIn}) : _googleSignIn = googleSignIn ?? GoogleSignIn();
 
   final GoogleSignIn _googleSignIn;
 
@@ -20,10 +18,7 @@ class SoccialAuth {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      final respone = {
-        'name': googleUser!.displayName ?? '',
-        'accessToken': credential.accessToken,
-      };
+      final respone = {'name': googleUser!.displayName ?? '', 'accessToken': credential.accessToken};
       return respone;
     } catch (e, s) {
       MqCrashlytics.report(e, s);
@@ -34,16 +29,12 @@ class SoccialAuth {
   Future<(UserCredential, AuthorizationCredentialAppleID)> signInWithApple() async {
     try {
       final credential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
+        scopes: [AppleIDAuthorizationScopes.email, AppleIDAuthorizationScopes.fullName],
       );
 
-      final oauthCredential = OAuthProvider('apple.com').credential(
-        idToken: credential.identityToken,
-        accessToken: credential.authorizationCode,
-      );
+      final oauthCredential = OAuthProvider(
+        'apple.com',
+      ).credential(idToken: credential.identityToken, accessToken: credential.authorizationCode);
 
       final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
       return (userCredential, credential);

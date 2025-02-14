@@ -28,35 +28,20 @@ class AuthCubit extends Cubit<AuthState> {
       languageCode: state.currentLocale.languageCode,
       gender: state.gender,
     );
-    user.fold(
-      (l) => emit(state.copyWith(exception: l)),
-      (r) => emit(state.copyWith(user: r)),
-    );
+    user.fold((l) => emit(state.copyWith(exception: l)), (r) => emit(state.copyWith(user: r)));
     return state;
   }
 
   Future<AuthState> signInWithGoogle() async {
-    final user = await authRepository.signWithGoogle(
-      state.currentLocale.languageCode,
-      state.gender,
-    );
-    user.fold(
-      (l) => emit(state.copyWith(exception: l)),
-      (r) => emit(state.copyWith(user: r)),
-    );
+    final user = await authRepository.signWithGoogle(state.currentLocale.languageCode, state.gender);
+    user.fold((l) => emit(state.copyWith(exception: l)), (r) => emit(state.copyWith(user: r)));
     return state;
   }
 
   Future<AuthState> signInWithApple() async {
-    final user = await authRepository.signWithApple(
-      state.currentLocale.languageCode,
-      state.gender,
-    );
+    final user = await authRepository.signWithApple(state.currentLocale.languageCode, state.gender);
 
-    user.fold(
-      (l) => emit(state.copyWith(exception: l)),
-      (r) => emit(state.copyWith(user: r)),
-    );
+    user.fold((l) => emit(state.copyWith(exception: l)), (r) => emit(state.copyWith(user: r)));
 
     return state;
   }
@@ -67,10 +52,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> saveLocale(String localeCode) async {
     if (state.isAuthedticated) {
-      final res = await authRepository.patchLocaleCode(
-        userId: state.user!.accessToken,
-        localeCode: localeCode,
-      );
+      final res = await authRepository.patchLocaleCode(userId: state.user!.accessToken, localeCode: localeCode);
 
       res.fold((l) => emit(state.copyWith(exception: l)), (r) {
         final newUser = state.user!.copyWith(localeCode: r.localeValue);
@@ -83,10 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> saveGender(Gender gender) async {
     if (state.isAuthedticated) {
-      final res = await authRepository.patchGender(
-        userId: state.user!.accessToken,
-        gender: gender,
-      );
+      final res = await authRepository.patchGender(userId: state.user!.accessToken, gender: gender);
 
       res.fold((l) => emit(state.copyWith(exception: l)), (r) {
         final newUser = state.user!.copyWith(gender: r.genderValue);

@@ -21,9 +21,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await MqAnalytic.setAnalyticsCollectionEnabled(enabled: kReleaseMode);
 
@@ -56,10 +54,7 @@ Future<void> main({bool isIntegrationTest = false}) async {
 
   await remoteConfig.initialise();
 
-  final appConfig = AppConfig(
-    isIntegrationTest: isIntegrationTest,
-    storage: storage,
-  );
+  final appConfig = AppConfig(isIntegrationTest: isIntegrationTest, storage: storage);
 
   final domain = appConfig.isDevMode ? appConfig.devDomain : ApiConst.domain;
 
@@ -72,13 +67,14 @@ Future<void> main({bool isIntegrationTest = false}) async {
         RepositoryProvider<NetworkClient>(create: (context) => NetworkClient()),
         RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
         RepositoryProvider<MqRemoteClient>(
-          create: (context) => MqRemoteClient(
-            dio: Dio(BaseOptions(baseUrl: domain)),
-            network: context.read<NetworkClient>(),
-            language: () => storage.readString(key: StorageKeys.localeKey),
-            token: () => storage.readString(key: StorageKeys.tokenKey),
-            oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
-          )..initilize(),
+          create:
+              (context) => MqRemoteClient(
+                dio: Dio(BaseOptions(baseUrl: domain)),
+                network: context.read<NetworkClient>(),
+                language: () => storage.readString(key: StorageKeys.localeKey),
+                token: () => storage.readString(key: StorageKeys.tokenKey),
+                oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
+              )..initilize(),
         ),
       ],
       child: const MyApp(),

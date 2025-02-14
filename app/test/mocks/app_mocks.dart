@@ -107,12 +107,7 @@ class MockMqRemoteConfig implements MqRemoteConfig {
     void Function()? onDone,
     bool? cancelOnError,
   }) {
-    return Stream.value('').listen(
-      (i) => onData(),
-      onError: onError,
-      onDone: onDone,
-      cancelOnError: cancelOnError,
-    );
+    return Stream.value('').listen((i) => onData(), onError: onError, onDone: onDone, cancelOnError: cancelOnError);
   }
 
   @override

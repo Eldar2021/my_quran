@@ -14,12 +14,7 @@ class RemoteConfigState extends Equatable {
   final bool isDonaitonEnable;
 
   @override
-  List<Object?> get props => [
-        appVersionStatus,
-        deviceId,
-        isHatimEnable,
-        isDonaitonEnable,
-      ];
+  List<Object?> get props => [appVersionStatus, deviceId, isHatimEnable, isDonaitonEnable];
 
   RemoteConfigState copyWith({
     AppVersionStatus? appVersionStatus,

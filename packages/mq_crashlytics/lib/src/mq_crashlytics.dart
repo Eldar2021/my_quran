@@ -27,10 +27,7 @@ final class MqCrashlytics {
     }
   }
 
-  static void recordFlutterError(
-    FlutterErrorDetails flutterErrorDetails, {
-    bool fatal = false,
-  }) {
+  static void recordFlutterError(FlutterErrorDetails flutterErrorDetails, {bool fatal = false}) {
     if (kDebugMode) {
       debugPrint('exception: $flutterErrorDetails');
     } else {

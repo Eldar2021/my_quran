@@ -6,13 +6,7 @@ import 'package:meta/meta.dart';
 /// and [statusCode] provide additional details.
 @immutable
 final class MqRemoteException implements Exception {
-  const MqRemoteException(
-    this.failureType, {
-    this.error,
-    this.message,
-    this.stackTrace,
-    this.statusCode,
-  });
+  const MqRemoteException(this.failureType, {this.error, this.message, this.stackTrace, this.statusCode});
 
   final dynamic error;
   final FailureType failureType;

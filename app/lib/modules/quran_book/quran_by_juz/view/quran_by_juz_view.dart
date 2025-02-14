@@ -15,15 +15,12 @@ class QuranByJuzView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => QuranBookThemeCubit(
-            readThemeRepository: context.read<ReadThemeRepository>(),
-          )..initializeTheme(),
+          create:
+              (context) =>
+                  QuranBookThemeCubit(readThemeRepository: context.read<ReadThemeRepository>())..initializeTheme(),
         ),
         BlocProvider(
-          create: (context) => QuranBookByJuzCubit(
-            repository: context.read<MqQuranRepository>(),
-            juzNumber: juzNumber,
-          ),
+          create: (context) => QuranBookByJuzCubit(repository: context.read<MqQuranRepository>(), juzNumber: juzNumber),
         ),
       ],
       child: const _QuranByJuzView(),
@@ -59,9 +56,7 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
               '$_juzNumber-${context.l10n.juz}',
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: themeCubit.state.frColor,
-              ),
+              style: TextStyle(color: themeCubit.state.frColor),
             ),
           ),
           BlocBuilder<QuranBookByJuzCubit, QuranBookByJuzState>(
@@ -81,9 +76,9 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
                 QuranBookByJuzLoading() => const QuranBookSliverSizedBoxShrink(),
                 QuranBookByJuzError() => const QuranBookSliverSizedBoxShrink(),
                 QuranBookByJuzLoaded() => QuranBookSliverAmenButton(
-                    onAmenPressed: () => Navigator.pop(context),
-                    afterAmenPressed: () => Navigator.pop(context),
-                  ),
+                  onAmenPressed: () => Navigator.pop(context),
+                  afterAmenPressed: () => Navigator.pop(context),
+                ),
               };
             },
           ),

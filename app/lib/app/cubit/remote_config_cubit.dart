@@ -8,10 +8,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 part 'remote_config_state.dart';
 
 class RemoteConfigCubit extends Cubit<RemoteConfigState> {
-  RemoteConfigCubit({
-    required this.packageInfo,
-    required this.remoteConfig,
-  }) : super(const RemoteConfigState());
+  RemoteConfigCubit({required this.packageInfo, required this.remoteConfig}) : super(const RemoteConfigState());
 
   final PackageInfo packageInfo;
   final MqRemoteConfig remoteConfig;

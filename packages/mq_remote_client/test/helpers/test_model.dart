@@ -1,10 +1,5 @@
 final class TestModel {
-  const TestModel({
-    required this.userId,
-    required this.id,
-    required this.title,
-    required this.body,
-  });
+  const TestModel({required this.userId, required this.id, required this.title, required this.body});
 
   factory TestModel.fromJson(Map<String, dynamic> json) {
     return TestModel(
@@ -20,11 +15,6 @@ final class TestModel {
   final String body;
 
   Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'userId': userId,
-      'id': id,
-      'title': title,
-      'body': body,
-    };
+    return <String, dynamic>{'userId': userId, 'id': id, 'title': title, 'body': body};
   }
 }

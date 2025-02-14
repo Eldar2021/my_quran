@@ -49,10 +49,7 @@ class QuranBookSurahSuccessWidget extends StatelessWidget {
                   locale: const Locale('ar'),
                   child: Text(
                     item.pageNumber.toArabicDigits,
-                    style: TextStyle(
-                      fontSize: themeCubit.state.textSize,
-                      color: themeCubit.state.frColor,
-                    ),
+                    style: TextStyle(fontSize: themeCubit.state.textSize, color: themeCubit.state.frColor),
                   ),
                 ),
                 const Expanded(child: Divider()),

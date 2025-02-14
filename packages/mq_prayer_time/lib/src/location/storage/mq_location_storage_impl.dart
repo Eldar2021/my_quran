@@ -37,10 +37,7 @@ final class MqLocationStorageImpl implements MqLocationStorage {
 
   @override
   Future<void> setLocationName(String locationName) async {
-    await storage.writeString(
-      key: _locationNameKey,
-      value: locationName,
-    );
+    await storage.writeString(key: _locationNameKey, value: locationName);
   }
 
   @override
@@ -50,9 +47,6 @@ final class MqLocationStorageImpl implements MqLocationStorage {
 
   @override
   Future<void> setTimeZoneLocation(String timeZoneLocation) async {
-    await storage.writeString(
-      key: _timeZoneLocationKey,
-      value: timeZoneLocation,
-    );
+    await storage.writeString(key: _timeZoneLocationKey, value: timeZoneLocation);
   }
 }

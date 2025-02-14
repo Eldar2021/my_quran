@@ -26,21 +26,11 @@ abstract class MqBottomSheets {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 22),
-                Text(
-                  title,
-                  style: prTextTheme.headlineSmall,
-                ),
+                Text(title, style: prTextTheme.headlineSmall),
                 const SizedBox(height: 14),
-                Divider(
-                  color: colorScheme.inversePrimary,
-                ),
+                Divider(color: colorScheme.inversePrimary),
                 const SizedBox(height: 14),
-                if (content != null)
-                  Text(
-                    content,
-                    style: prTextTheme.titleMedium,
-                    textAlign: TextAlign.center,
-                  ),
+                if (content != null) Text(content, style: prTextTheme.titleMedium, textAlign: TextAlign.center),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -6,10 +6,7 @@ part 'user_data_response.g.dart';
 @JsonSerializable()
 @immutable
 final class UserDataResponse {
-  const UserDataResponse({
-    required this.gender,
-    required this.language,
-  });
+  const UserDataResponse({required this.gender, required this.language});
 
   factory UserDataResponse.fromJson(Map<String, dynamic> json) => _$UserDataResponseFromJson(json);
 

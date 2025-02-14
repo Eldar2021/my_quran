@@ -7,10 +7,7 @@ part 'quran_data_response.g.dart';
 @JsonSerializable()
 @immutable
 final class QuranDataResponse {
-  const QuranDataResponse({
-    required this.verses,
-    required this.meta,
-  });
+  const QuranDataResponse({required this.verses, required this.meta});
 
   factory QuranDataResponse.fromJson(Map<String, dynamic> json) => _$QuranDataResponseFromJson(json);
 
@@ -22,19 +19,14 @@ final class QuranDataResponse {
   final QuranDataMetaResponse meta;
 
   QuranDataEntity toEntity() {
-    return QuranDataEntity(
-      verses: verses.map((e) => e.toEntity()).toList(),
-      meta: meta.toEntity(),
-    );
+    return QuranDataEntity(verses: verses.map((e) => e.toEntity()).toList(), meta: meta.toEntity());
   }
 }
 
 @JsonSerializable()
 @immutable
 final class QuranDataMetaResponse {
-  const QuranDataMetaResponse({
-    required this.filters,
-  });
+  const QuranDataMetaResponse({required this.filters});
 
   factory QuranDataMetaResponse.fromJson(Map<String, dynamic> json) => _$QuranDataMetaResponseFromJson(json);
 
@@ -44,8 +36,6 @@ final class QuranDataMetaResponse {
   final QuranDataFilterResponse filters;
 
   QuranDataMetaEntity toEntity() {
-    return QuranDataMetaEntity(
-      filters: filters.toEntity(),
-    );
+    return QuranDataMetaEntity(filters: filters.toEntity());
   }
 }

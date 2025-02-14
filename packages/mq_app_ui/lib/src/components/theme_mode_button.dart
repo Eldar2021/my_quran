@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeModeButton extends StatelessWidget {
-  const ThemeModeButton({
-    required this.backgroundColor,
-    required this.foregroundColor,
-    this.onPressed,
-    super.key,
-  });
+  const ThemeModeButton({required this.backgroundColor, required this.foregroundColor, this.onPressed, super.key});
 
   final Color backgroundColor;
   final Color foregroundColor;
@@ -19,9 +14,7 @@ class ThemeModeButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
         fixedSize: const Size.fromHeight(45),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       ),
       onPressed: onPressed,
       child: const Text('A'),

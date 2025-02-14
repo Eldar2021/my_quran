@@ -3,10 +3,7 @@ import 'package:mq_prayer_time/mq_prayer_time.dart';
 
 @immutable
 final class MqLocationClient {
-  const MqLocationClient({
-    required this.locationService,
-    required this.locationStorage,
-  });
+  const MqLocationClient({required this.locationService, required this.locationStorage});
 
   final MqLocationService locationService;
   final MqLocationStorage locationStorage;
@@ -27,21 +24,9 @@ final class MqLocationClient {
   }
 
   Future<void> init({
-    required void Function(
-      Position position,
-      String locationName,
-      String timeZoneLocation,
-    ) onInitailLocation,
-    required void Function(
-      Position position,
-      String locationName,
-      String timeZoneLocation,
-    ) onKeepLocation,
-    required void Function(
-      Position position,
-      String locationName,
-      String timeZoneLocation,
-    ) onNewLocation,
+    required void Function(Position position, String locationName, String timeZoneLocation) onInitailLocation,
+    required void Function(Position position, String locationName, String timeZoneLocation) onKeepLocation,
+    required void Function(Position position, String locationName, String timeZoneLocation) onNewLocation,
   }) async {
     final position = await locationService.getCurrentLocation();
     final cashedPosition = locationStorage.getCashedLocation();
@@ -66,11 +51,7 @@ final class MqLocationClient {
     }
   }
 
-  Future<void> saveData({
-    required Position position,
-    required String locationName,
-    required String timeZoneLocation,
-  }) {
+  Future<void> saveData({required Position position, required String locationName, required String timeZoneLocation}) {
     return Future.wait([
       locationStorage.setLocation(position),
       locationStorage.setLocationName(locationName),

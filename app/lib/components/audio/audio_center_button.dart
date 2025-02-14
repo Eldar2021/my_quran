@@ -34,10 +34,7 @@ class AudioCenterButton extends StatelessWidget {
             color: colorScheme.primary,
             icon: Padding(
               padding: const EdgeInsets.all(13),
-              child: CupertinoActivityIndicator(
-                color: colorScheme.primary,
-                radius: 20,
-              ),
+              child: CupertinoActivityIndicator(color: colorScheme.primary, radius: 20),
             ),
             onPressed: null,
           );

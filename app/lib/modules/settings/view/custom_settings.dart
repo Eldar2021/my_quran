@@ -17,17 +17,11 @@ class CustomAppSettingView extends StatelessWidget {
   Widget build(BuildContext context) {
     final authCubit = context.watch<AuthCubit>();
     return ScaffoldWithBgImage(
-      appBar: AppBar(
-        key: const Key(MqKeys.settingsGenderLangPage),
-        title: Text(context.l10n.customApp),
-      ),
+      appBar: AppBar(key: const Key(MqKeys.settingsGenderLangPage), title: Text(context.l10n.customApp)),
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.exception != null) {
-            AppAlert.showErrorDialog(
-              context,
-              errorText: state.exception.toString(),
-            );
+            AppAlert.showErrorDialog(context, errorText: state.exception.toString());
           }
         },
         child: Padding(
@@ -36,49 +30,32 @@ class CustomAppSettingView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              Text(
-                context.l10n.pleaseSelectLanguage,
-              ),
+              Text(context.l10n.pleaseSelectLanguage),
               const SizedBox(height: 8),
               LanguageDropdownButtonFormField<Locale>(
                 value: authCubit.state.currentLocale,
                 items: AppLocalizationHelper.locales,
                 onChanged: (v) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectLanguage,
-                    params: {'language': v?.languageCode ?? 'en'},
-                  );
+                  MqAnalytic.track(AnalyticKey.selectLanguage, params: {'language': v?.languageCode ?? 'en'});
                   context.loaderOverlay.show();
                   await context.read<AuthCubit>().saveLocale(v?.languageCode ?? 'en');
                   if (context.mounted) context.loaderOverlay.hide();
                 },
                 itemBuilder: (value) {
-                  final name = AppLocalizationHelper.getName(
-                    value?.toLanguageTag() ?? 'en',
-                  );
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(name),
-                  );
+                  final name = AppLocalizationHelper.getName(value?.toLanguageTag() ?? 'en');
+                  return DropdownMenuItem(value: value, child: Text(name));
                 },
               ),
               const SizedBox(height: 50),
-              Text(
-                context.l10n.pleaseSelectGender,
-              ),
+              Text(context.l10n.pleaseSelectGender),
               const SizedBox(height: 8),
-              Text(
-                context.l10n.selectGenderForPersonalization,
-              ),
+              Text(context.l10n.selectGenderForPersonalization),
               GenderRedioWidget(
                 key: const Key(MqKeys.settingsGenderMale),
                 gender: authCubit.state.appUiGender,
                 title: context.l10n.male,
                 onChanged: (p0) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectGender,
-                    params: {'gender': Gender.male.name},
-                  );
+                  MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
                   context.loaderOverlay.show();
                   await context.read<AuthCubit>().saveGender(Gender.male);
                   if (context.mounted) context.loaderOverlay.hide();
@@ -90,20 +67,14 @@ class CustomAppSettingView extends StatelessWidget {
                 itemIsMale: false,
                 title: context.l10n.female,
                 onChanged: (p0) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectGender,
-                    params: {'gender': Gender.female.name},
-                  );
+                  MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
                   context.loaderOverlay.show();
                   await context.read<AuthCubit>().saveGender(Gender.female);
                   if (context.mounted) context.loaderOverlay.hide();
                 },
               ),
               const Spacer(),
-              ElevatedButton(
-                onPressed: () => context.pop(),
-                child: Text(context.l10n.saveChanges),
-              ),
+              ElevatedButton(onPressed: () => context.pop(), child: Text(context.l10n.saveChanges)),
               SizedBox(height: AppSpacing.bottomSpace),
             ],
           ),

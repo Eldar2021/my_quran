@@ -3,9 +3,7 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 
 @immutable
 final class AppRepositoryImpl implements AppRepository {
-  const AppRepositoryImpl(
-    this.dataSource,
-  );
+  const AppRepositoryImpl(this.dataSource);
 
   final AppLocalDataSource dataSource;
 

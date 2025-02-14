@@ -24,7 +24,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseSelectGender => 'Please select your gender';
 
   @override
-  String get selectGenderForPersonalization => 'Select your gender to personalize main\nsettings of the app\'s content for you';
+  String get selectGenderForPersonalization =>
+      'Select your gender to personalize main\nsettings of the app\'s content for you';
 
   @override
   String get male => 'Male';
@@ -141,7 +142,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get read => 'Read';
 
   @override
-  String get selectBelowPages => 'Select below the pages that no one\nhas taken yet. Please complete\nas soon as possible';
+  String get selectBelowPages =>
+      'Select below the pages that no one\nhas taken yet. Please complete\nas soon as possible';
 
   @override
   String get juzas => 'Juzas';
@@ -243,7 +245,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get blue => 'Blue';
 
   @override
-  String get prophetLegacy => 'The greatest legacy left to us by the Prophet Muhammad Mustafa (peace and blessings be upon Him) is the Quran. In our time, when Muslims are on one side, and the Quran is on the other, we decided to invite all our brothers to the wonderful world of the Holy Quran, and earn many rewards. O Muslims! \"And hold firmly to the rope of Allah and do not be divided!\"';
+  String get prophetLegacy =>
+      'The greatest legacy left to us by the Prophet Muhammad Mustafa (peace and blessings be upon Him) is the Quran. In our time, when Muslims are on one side, and the Quran is on the other, we decided to invite all our brothers to the wonderful world of the Holy Quran, and earn many rewards. O Muslims! \"And hold firmly to the rope of Allah and do not be divided!\"';
 
   @override
   String get alImran => '( Al-Imran 103)';
@@ -252,7 +255,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get assalamuAlaikum => 'Assalamu Alaikum, dear user!';
 
   @override
-  String get feedbackMessage => 'If you have any questions about this application you are using or if you have any suggestions to improve this application, please feel free to write your opinion about one of the following contacts below. We greatly appreciate your valuable feedback!';
+  String get feedbackMessage =>
+      'If you have any questions about this application you are using or if you have any suggestions to improve this application, please feel free to write your opinion about one of the following contacts below. We greatly appreciate your valuable feedback!';
 
   @override
   String get withRespect => 'With deep respect,\nMy Quran team!';
@@ -279,7 +283,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get email => 'Email';
 
   @override
-  String get githubMessage => 'If you\'ve noticed any technical flaws in our app, or if you have interesting ideas for adding new features to the app, we\'re always happy to hear from you! Get in touch with us on GitHub. Please don\'t be shy! We are very interested in developing this app together.';
+  String get githubMessage =>
+      'If you\'ve noticed any technical flaws in our app, or if you have interesting ideas for adding new features to the app, we\'re always happy to hear from you! Get in touch with us on GitHub. Please don\'t be shy! We are very interested in developing this app together.';
 
   @override
   String get github => 'GitHub';

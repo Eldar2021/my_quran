@@ -5,9 +5,7 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 part 'quran_data_filter_response.g.dart';
 
 sealed class QuranDataFilterResponse {
-  const QuranDataFilterResponse({
-    required this.value,
-  });
+  const QuranDataFilterResponse({required this.value});
 
   factory QuranDataFilterResponse.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('page_number')) {
@@ -37,9 +35,7 @@ sealed class QuranDataFilterResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataFilterPageNumber extends QuranDataFilterResponse {
-  const QuranDataFilterPageNumber({
-    required this.pageNumber,
-  }) : super(value: pageNumber);
+  const QuranDataFilterPageNumber({required this.pageNumber}) : super(value: pageNumber);
 
   factory QuranDataFilterPageNumber.fromJson(Map<String, dynamic> json) => _$QuranDataFilterPageNumberFromJson(json);
 
@@ -53,9 +49,7 @@ final class QuranDataFilterPageNumber extends QuranDataFilterResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataFilterJuzNumber extends QuranDataFilterResponse {
-  const QuranDataFilterJuzNumber({
-    required this.juzNumber,
-  }) : super(value: juzNumber);
+  const QuranDataFilterJuzNumber({required this.juzNumber}) : super(value: juzNumber);
 
   factory QuranDataFilterJuzNumber.fromJson(Map<String, dynamic> json) => _$QuranDataFilterJuzNumberFromJson(json);
 
@@ -69,9 +63,7 @@ final class QuranDataFilterJuzNumber extends QuranDataFilterResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataFilterSurahNumber extends QuranDataFilterResponse {
-  const QuranDataFilterSurahNumber({
-    required this.surahNumber,
-  }) : super(value: surahNumber);
+  const QuranDataFilterSurahNumber({required this.surahNumber}) : super(value: surahNumber);
 
   factory QuranDataFilterSurahNumber.fromJson(Map<String, dynamic> json) => _$QuranDataFilterSurahNumberFromJson(json);
 

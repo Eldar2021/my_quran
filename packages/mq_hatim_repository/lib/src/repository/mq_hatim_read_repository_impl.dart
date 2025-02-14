@@ -24,9 +24,7 @@ final class MqHatimReadRepositoryImpl implements MqHatimRepository {
   @override
   Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {
     return dataSource.stream.map((data) {
-      final src = HatimBaseResponse.fromJson(
-        jsonDecode(data as String) as Map<String, dynamic>,
-      );
+      final src = HatimBaseResponse.fromJson(jsonDecode(data as String) as Map<String, dynamic>);
 
       return switch (src.type) {
         HatimResponseType.listOfJuz => _receidevJuzs(src.data as List<dynamic>),

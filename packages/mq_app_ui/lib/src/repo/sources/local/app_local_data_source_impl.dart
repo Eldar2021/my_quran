@@ -5,10 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 @immutable
 final class AppLocalDataSourceImpl implements AppLocalDataSource {
-  const AppLocalDataSourceImpl({
-    required this.storage,
-    required this.packageInfo,
-  });
+  const AppLocalDataSourceImpl({required this.storage, required this.packageInfo});
 
   final PreferencesStorage storage;
   final PackageInfo packageInfo;

@@ -8,11 +8,7 @@ import 'package:timezone/timezone.dart' as tz;
 final class PrayerTimesService {
   const PrayerTimesService();
 
-  MqPrayerTime getPrayerTimes({
-    required double latitude,
-    required double longitude,
-    required String location,
-  }) {
+  MqPrayerTime getPrayerTimes({required double latitude, required double longitude, required String location}) {
     tz.initializeTimeZones();
 
     final timezone = tz.getLocation(location);
@@ -30,35 +26,17 @@ final class PrayerTimesService {
       precision: true,
     );
 
-    final fajrTime = tz.TZDateTime.from(
-      prayerTimes.fajr ?? DateTime.now(),
-      timezone,
-    );
+    final fajrTime = tz.TZDateTime.from(prayerTimes.fajr ?? DateTime.now(), timezone);
 
-    final sunriseTime = tz.TZDateTime.from(
-      prayerTimes.sunrise ?? DateTime.now(),
-      timezone,
-    );
+    final sunriseTime = tz.TZDateTime.from(prayerTimes.sunrise ?? DateTime.now(), timezone);
 
-    final dhuhrTime = tz.TZDateTime.from(
-      prayerTimes.dhuhr ?? DateTime.now(),
-      timezone,
-    );
+    final dhuhrTime = tz.TZDateTime.from(prayerTimes.dhuhr ?? DateTime.now(), timezone);
 
-    final asrTime = tz.TZDateTime.from(
-      prayerTimes.asr ?? DateTime.now(),
-      timezone,
-    );
+    final asrTime = tz.TZDateTime.from(prayerTimes.asr ?? DateTime.now(), timezone);
 
-    final maghribTime = tz.TZDateTime.from(
-      prayerTimes.maghrib ?? DateTime.now(),
-      timezone,
-    );
+    final maghribTime = tz.TZDateTime.from(prayerTimes.maghrib ?? DateTime.now(), timezone);
 
-    final ishaTime = tz.TZDateTime.from(
-      prayerTimes.isha ?? DateTime.now(),
-      timezone,
-    );
+    final ishaTime = tz.TZDateTime.from(prayerTimes.isha ?? DateTime.now(), timezone);
 
     return MqPrayerTime(
       fajr: fajrTime,

@@ -19,8 +19,9 @@ class HatimPageStatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (status) {
-      HatimPageStatus.done => isMine
-          ? CircleButton(
+      HatimPageStatus.done =>
+        isMine
+            ? CircleButton(
               backgroundColor: AppColors.tomato2,
               foregroundColor: AppColors.white,
               disabledForegroundColor: AppColors.tomato2,
@@ -28,15 +29,16 @@ class HatimPageStatusCard extends StatelessWidget {
               onPressed: onTap,
               child: Text('$pageNumber'),
             )
-          : CircleButton(
+            : CircleButton(
               foregroundColor: AppColors.tomato2,
               disabledForegroundColor: AppColors.tomato2,
               borderColor: AppColors.tomato2,
               onPressed: onTap,
               child: Text('$pageNumber'),
             ),
-      HatimPageStatus.inProgress || HatimPageStatus.booked => isMine
-          ? CircleButton(
+      HatimPageStatus.inProgress || HatimPageStatus.booked =>
+        isMine
+            ? CircleButton(
               backgroundColor: AppColors.goldenrod,
               foregroundColor: AppColors.white,
               disabledForegroundColor: AppColors.goldenrod,
@@ -44,7 +46,7 @@ class HatimPageStatusCard extends StatelessWidget {
               onPressed: onTap,
               child: Text('$pageNumber'),
             )
-          : CircleButton(
+            : CircleButton(
               foregroundColor: AppColors.goldenrod,
               disabledForegroundColor: AppColors.goldenrod,
               borderColor: AppColors.goldenrod,
@@ -52,12 +54,12 @@ class HatimPageStatusCard extends StatelessWidget {
               child: Text('$pageNumber'),
             ),
       HatimPageStatus.todo => CircleButton(
-          foregroundColor: AppColors.mediumseagreen,
-          disabledForegroundColor: AppColors.mediumseagreen,
-          borderColor: AppColors.mediumseagreen,
-          onPressed: onTap,
-          child: Text('$pageNumber'),
-        ),
+        foregroundColor: AppColors.mediumseagreen,
+        disabledForegroundColor: AppColors.mediumseagreen,
+        borderColor: AppColors.mediumseagreen,
+        onPressed: onTap,
+        child: Text('$pageNumber'),
+      ),
     };
   }
 }

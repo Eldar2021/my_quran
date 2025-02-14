@@ -13,13 +13,8 @@ void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
     final packageInfo = MockPackageInfo();
     final remoteConfig = MockMqRemoteConfig();
-    const appRepository = AppRepositoryImpl(
-      AppLocalDataSourceMock(),
-    );
-    const homeRepo = MqHomeRepositoryImpl(
-      MqHomeLocalDataSourceMock(),
-      MqHomeRemoteDataSourceMock(),
-    );
+    const appRepository = AppRepositoryImpl(AppLocalDataSourceMock());
+    const homeRepo = MqHomeRepositoryImpl(MqHomeLocalDataSourceMock(), MqHomeRemoteDataSourceMock());
     const authRepository = AuthRepositoryImpl(
       localDataSource: AuthLocalDataSourceMock(),
       remoteDataSource: AuthRemoteDataSourceMock(),
@@ -27,14 +22,7 @@ void main() {
 
     final storage = MockStorage();
 
-    await tester.pumpApp(
-      appRepository,
-      authRepository,
-      homeRepo,
-      remoteConfig,
-      packageInfo,
-      storage,
-    );
+    await tester.pumpApp(appRepository, authRepository, homeRepo, remoteConfig, packageInfo, storage);
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);
   });

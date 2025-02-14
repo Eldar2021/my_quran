@@ -15,10 +15,7 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
       fromJson: MqHomeModelResponse.fromJson,
     );
 
-    return remoteValue.fold(
-      (left) => throw Exception('Failed to fetch remote data $left'),
-      (right) => right,
-    );
+    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
   }
 
   @override
@@ -28,10 +25,7 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
       fromJson: MqStoryModelResponse.fromJson,
     );
 
-    return remoteValue.fold(
-      (left) => throw Exception('Failed to fetch remote data $left'),
-      (right) => right,
-    );
+    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
   }
 
   @override
@@ -41,10 +35,7 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
       fromJson: MqDonationPageResponse.fromJson,
     );
 
-    return remoteValue.fold(
-      (left) => throw Exception('Failed to fetch remote data $left'),
-      (right) => right,
-    );
+    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
   }
 
   @override
@@ -54,9 +45,6 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
       fromJson: MqHomeBannerResponse.fromJson,
     );
 
-    return remoteValue.fold(
-      (left) => throw Exception('Failed to fetch remote data $left'),
-      (right) => right,
-    );
+    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
   }
 }

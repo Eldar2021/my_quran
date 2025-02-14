@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 class GenderRedioWidget extends StatelessWidget {
-  const GenderRedioWidget({
-    required this.gender,
-    this.itemIsMale = true,
-    this.onChanged,
-    this.title,
-    super.key,
-  });
+  const GenderRedioWidget({required this.gender, this.itemIsMale = true, this.onChanged, this.title, super.key});
 
   final AppUiGender gender;
   final void Function(AppUiGender?)? onChanged;
@@ -24,31 +18,20 @@ class GenderRedioWidget extends StatelessWidget {
       value: itemIsMale ? AppUiGender.male : AppUiGender.famela,
       groupValue: gender,
       onChanged: onChanged,
-      secondary: itemIsMale
-          ? Assets.icons.userMale.svg(
-              colorFilter: ColorFilter.mode(
-                selected ? colorScheme.primary : colorScheme.onSurface,
-                BlendMode.srcIn,
+      secondary:
+          itemIsMale
+              ? Assets.icons.userMale.svg(
+                colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
+              )
+              : Assets.icons.userFemale.svg(
+                colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
               ),
-            )
-          : Assets.icons.userFemale.svg(
-              colorFilter: ColorFilter.mode(
-                selected ? colorScheme.primary : colorScheme.onSurface,
-                BlendMode.srcIn,
-              ),
-            ),
       title: Text(
         title ?? '',
-        style: textTheme.titleMedium?.copyWith(
-          color: selected ? colorScheme.primary : colorScheme.onSurface,
-        ),
+        style: textTheme.titleMedium?.copyWith(color: selected ? colorScheme.primary : colorScheme.onSurface),
       ),
       selected: selected,
-      shape: Border(
-        bottom: BorderSide(
-          color: selected ? colorScheme.primary : colorScheme.onSurface,
-        ),
-      ),
+      shape: Border(bottom: BorderSide(color: selected ? colorScheme.primary : colorScheme.onSurface)),
     );
   }
 

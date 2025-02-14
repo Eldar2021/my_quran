@@ -16,12 +16,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const ScaffoldWithBgImage(
       key: Key(MqKeys.loginInitial),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        child: SafeArea(
-          child: LoginBody(),
-        ),
-      ),
+      body: Padding(padding: EdgeInsets.symmetric(horizontal: 24), child: SafeArea(child: LoginBody())),
     );
   }
 }
@@ -46,10 +41,7 @@ class LoginBody extends StatelessWidget {
             child: Text(
               context.l10n.myQuran,
               textAlign: TextAlign.center,
-              style: prTextTheme.displayMedium?.copyWith(
-                color: colorScheme.primary,
-                fontWeight: FontWeight.w800,
-              ),
+              style: prTextTheme.displayMedium?.copyWith(color: colorScheme.primary, fontWeight: FontWeight.w800),
             ),
           ),
         ),
@@ -58,9 +50,7 @@ class LoginBody extends StatelessWidget {
           child: Text(
             context.l10n.customizingApp,
             textAlign: TextAlign.center,
-            style: prTextTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
+            style: prTextTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
         ),
         const SizedBox(height: 30),
@@ -70,14 +60,10 @@ class LoginBody extends StatelessWidget {
           items: AppLocalizationHelper.locales,
           onChanged: (v) async {
             final authCubit = context.read<AuthCubit>();
-            await authCubit.saveLocale(
-              v?.languageCode ?? 'en',
-            );
+            await authCubit.saveLocale(v?.languageCode ?? 'en');
           },
           itemBuilder: (value) {
-            final name = AppLocalizationHelper.getName(
-              value?.toLanguageTag() ?? 'en',
-            );
+            final name = AppLocalizationHelper.getName(value?.toLanguageTag() ?? 'en');
             return DropdownMenuItem(
               key: Key(MqKeys.languageCode(value?.languageCode ?? 'en')),
               value: value,
@@ -86,22 +72,15 @@ class LoginBody extends StatelessWidget {
           },
         ),
         const SizedBox(height: 50),
-        Text(
-          context.l10n.pleaseSelectGender,
-        ),
+        Text(context.l10n.pleaseSelectGender),
         const SizedBox(height: 8),
-        Text(
-          context.l10n.selectGenderForPersonalization,
-        ),
+        Text(context.l10n.selectGenderForPersonalization),
         GenderRedioWidget(
           key: Key(MqKeys.genderName('male')),
           gender: authCubit.state.appUiGender,
           title: context.l10n.male,
           onChanged: (p0) {
-            MqAnalytic.track(
-              AnalyticKey.selectGender,
-              params: {'gender': Gender.male.name},
-            );
+            MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.male.name});
             context.read<AuthCubit>().saveGender(Gender.male);
           },
         ),
@@ -111,10 +90,7 @@ class LoginBody extends StatelessWidget {
           itemIsMale: false,
           title: context.l10n.female,
           onChanged: (p0) {
-            MqAnalytic.track(
-              AnalyticKey.selectGender,
-              params: {'gender': Gender.female.name},
-            );
+            MqAnalytic.track(AnalyticKey.selectGender, params: {'gender': Gender.female.name});
             context.read<AuthCubit>().saveGender(Gender.female);
           },
         ),

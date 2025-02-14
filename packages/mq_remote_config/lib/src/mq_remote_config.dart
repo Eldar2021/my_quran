@@ -7,20 +7,15 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class MqRemoteConfig {
-  MqRemoteConfig({
-    required this.buildNumber,
-    FirebaseRemoteConfig? firebaseRemoteConfig,
-  }) : _firebaseRemoteConfig = firebaseRemoteConfig ?? FirebaseRemoteConfig.instance;
+  MqRemoteConfig({required this.buildNumber, FirebaseRemoteConfig? firebaseRemoteConfig})
+    : _firebaseRemoteConfig = firebaseRemoteConfig ?? FirebaseRemoteConfig.instance;
 
   final FirebaseRemoteConfig _firebaseRemoteConfig;
   final String buildNumber;
 
   Future<void> initialise() async {
     await _firebaseRemoteConfig.setConfigSettings(
-      RemoteConfigSettings(
-        fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: const Duration(hours: 1),
-      ),
+      RemoteConfigSettings(fetchTimeout: const Duration(minutes: 1), minimumFetchInterval: const Duration(hours: 1)),
     );
 
     await _firebaseRemoteConfig.setDefaults(_defaultParams(currentBuildNumber));
@@ -44,14 +39,8 @@ class MqRemoteConfig {
 
   static Map<String, dynamic> _defaultAppVersionValue(int currentBuildNumber) {
     return {
-      'android': {
-        'requiredBuildNumber': currentBuildNumber,
-        'recommendedBuildNumber': currentBuildNumber,
-      },
-      'ios': {
-        'requiredBuildNumber': currentBuildNumber,
-        'recommendedBuildNumber': currentBuildNumber,
-      },
+      'android': {'requiredBuildNumber': currentBuildNumber, 'recommendedBuildNumber': currentBuildNumber},
+      'ios': {'requiredBuildNumber': currentBuildNumber, 'recommendedBuildNumber': currentBuildNumber},
     };
   }
 

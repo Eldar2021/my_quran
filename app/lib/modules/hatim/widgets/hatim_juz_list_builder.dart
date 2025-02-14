@@ -40,18 +40,16 @@ class HatimJuzListBuilder extends StatelessWidget {
   }
 
   Future<void> _onTap(MqHatimJusEntity item, BuildContext context) async {
-    MqAnalytic.track(
-      AnalyticKey.selectHatimJuz,
-      params: {'juzId': item.id},
-    );
+    MqAnalytic.track(AnalyticKey.selectHatimJuz, params: {'juzId': item.id});
     final bloc = context.read<HatimBloc>();
     await Navigator.push<void>(
       context,
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => BlocProvider.value(
-          value: bloc..add(GetHatimJuzPagesEvent(item.id)),
-          child: HatimJusSelectPagesView(hatimJusEntity: item),
-        ),
+        builder:
+            (BuildContext context) => BlocProvider.value(
+              value: bloc..add(GetHatimJuzPagesEvent(item.id)),
+              child: HatimJusSelectPagesView(hatimJusEntity: item),
+            ),
       ),
     );
     bloc.add(const ResetJuzPagesEvent());

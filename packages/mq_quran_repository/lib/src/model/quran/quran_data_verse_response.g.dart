@@ -14,10 +14,10 @@ QuranDataVerseUthmaniResponse _$QuranDataVerseUthmaniResponseFromJson(Map<String
     );
 
 Map<String, dynamic> _$QuranDataVerseUthmaniResponseToJson(QuranDataVerseUthmaniResponse instance) => <String, dynamic>{
-      'id': instance.id,
-      'verse_key': instance.verseKey,
-      'text_uthmani': instance.textUtmani,
-    };
+  'id': instance.id,
+  'verse_key': instance.verseKey,
+  'text_uthmani': instance.textUtmani,
+};
 
 QuranDataVerseUthmaniSimpleResponse _$QuranDataVerseUthmaniSimpleResponseFromJson(Map<String, dynamic> json) =>
     QuranDataVerseUthmaniSimpleResponse(
@@ -41,7 +41,7 @@ QuranDataVerseImlaeiResponse _$QuranDataVerseImlaeiResponseFromJson(Map<String, 
     );
 
 Map<String, dynamic> _$QuranDataVerseImlaeiResponseToJson(QuranDataVerseImlaeiResponse instance) => <String, dynamic>{
-      'id': instance.id,
-      'verse_key': instance.verseKey,
-      'text_imlaei': instance.textImlaei,
-    };
+  'id': instance.id,
+  'verse_key': instance.verseKey,
+  'text_imlaei': instance.textImlaei,
+};
