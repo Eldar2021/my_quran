@@ -16,7 +16,6 @@ import 'package:my_quran/app_observer.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/firebase_options.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,7 +49,7 @@ Future<void> main({bool isIntegrationTest = false}) async {
 
   final packageInfo = await PackageInfo.fromPlatform();
 
-  final remoteConfig = MqRemoteConfig(buildNumber: packageInfo.buildNumber);
+  final remoteConfig = MqRemoteConfig(packageInfo: packageInfo);
 
   await remoteConfig.initialise();
 

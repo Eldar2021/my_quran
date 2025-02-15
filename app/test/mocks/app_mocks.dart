@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:mocktail/mocktail.dart';
 
@@ -70,18 +69,7 @@ final class MockStorage extends Mock implements PreferencesStorage {
   }
 }
 
-final class MockPackageInfo extends Mock implements PackageInfo {
-  @override
-  String get version => '1.3.0';
-
-  @override
-  String get buildNumber => '10';
-}
-
 class MockMqRemoteConfig implements MqRemoteConfig {
-  @override
-  String get buildNumber => '1.3.0';
-
   @override
   int get currentBuildNumber => 10;
 
@@ -112,4 +100,10 @@ class MockMqRemoteConfig implements MqRemoteConfig {
 
   @override
   bool get donaitonIsEnable => false;
+
+  @override
+  String get appVersion => '1.3.0';
+
+  @override
+  String get buildBumber => '10';
 }

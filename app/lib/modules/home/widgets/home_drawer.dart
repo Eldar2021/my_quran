@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
+import 'package:my_quran/app/cubit/remote_config_cubit.dart';
 import 'package:my_quran/config/router/app_router.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -17,9 +17,6 @@ class HomeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
-
-    /// NOTE:
-    final appRepo = context.read<AppRepository>();
     final size = MediaQuery.sizeOf(context);
     return Drawer(
       key: const Key(MqKeys.settingsView),
@@ -47,9 +44,13 @@ class HomeDrawer extends StatelessWidget {
                   MqAnalytic.track(AnalyticKey.goDevMode);
                   context.pushNamed(AppRouter.devModeView);
                 },
-                child: Text(
-                  '${context.l10n.version} ${appRepo.appVersion()}',
-                  style: prTextTheme.bodyLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: 0.6)),
+                child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+                  builder: (context, state) {
+                    return Text(
+                      '${context.l10n.version} ${state.version}',
+                      style: prTextTheme.bodyLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: 0.6)),
+                    );
+                  },
                 ),
               ),
             ),

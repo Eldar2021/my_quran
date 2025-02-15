@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_storage/mq_storage.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 @immutable
 final class AppLocalDataSourceImpl implements AppLocalDataSource {
-  const AppLocalDataSourceImpl({required this.storage, required this.packageInfo});
+  const AppLocalDataSourceImpl(this.storage);
 
   final PreferencesStorage storage;
-  final PackageInfo packageInfo;
 
   static const _modeKey = 'mode';
   static const _colorKey = 'color';
-
-  @override
-  String appVersion() => packageInfo.version;
 
   @override
   AppTheme initialTheme() {

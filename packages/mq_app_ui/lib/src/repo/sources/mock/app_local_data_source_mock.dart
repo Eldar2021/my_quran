@@ -6,9 +6,6 @@ final class AppLocalDataSourceMock implements AppLocalDataSource {
   const AppLocalDataSourceMock();
 
   @override
-  String appVersion() => '1.1.1';
-
-  @override
   AppTheme initialTheme() => const AppOrangeTheme();
 
   @override

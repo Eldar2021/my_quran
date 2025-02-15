@@ -4,14 +4,18 @@ import 'dart:io';
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
+export 'package:package_info_plus/package_info_plus.dart';
 
 @immutable
 class MqRemoteConfig {
-  MqRemoteConfig({required this.buildNumber, FirebaseRemoteConfig? firebaseRemoteConfig})
-    : _firebaseRemoteConfig = firebaseRemoteConfig ?? FirebaseRemoteConfig.instance;
+  MqRemoteConfig({required PackageInfo packageInfo, FirebaseRemoteConfig? firebaseRemoteConfig})
+    : _firebaseRemoteConfig = firebaseRemoteConfig ?? FirebaseRemoteConfig.instance,
+      _packageInfo = packageInfo;
 
   final FirebaseRemoteConfig _firebaseRemoteConfig;
-  final String buildNumber;
+  final PackageInfo _packageInfo;
 
   Future<void> initialise() async {
     await _firebaseRemoteConfig.setConfigSettings(
@@ -22,7 +26,7 @@ class MqRemoteConfig {
     await _firebaseRemoteConfig.fetchAndActivate();
   }
 
-  int get currentBuildNumber => int.tryParse(buildNumber) ?? 100;
+  int get currentBuildNumber => int.tryParse(buildBumber) ?? 100;
   int get requiredBuildNumber => version.$1;
   int get recommendedBuildNumber => version.$2;
 
@@ -72,4 +76,7 @@ class MqRemoteConfig {
       cancelOnError: cancelOnError,
     );
   }
+
+  String get appVersion => _packageInfo.version;
+  String get buildBumber => _packageInfo.buildNumber;
 }

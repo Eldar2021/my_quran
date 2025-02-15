@@ -8,9 +8,6 @@ final class AppRepositoryImpl implements AppRepository {
   final AppLocalDataSource dataSource;
 
   @override
-  String appVersion() => dataSource.appVersion();
-
-  @override
   AppTheme getInitialThemeState() {
     return dataSource.initialTheme();
   }

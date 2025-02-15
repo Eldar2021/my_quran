@@ -16,7 +16,6 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,10 +31,7 @@ class MyApp extends StatelessWidget {
               (context) => AppRepositoryImpl(
                 isMockData
                     ? const AppLocalDataSourceMock()
-                    : AppLocalDataSourceImpl(
-                      packageInfo: context.read<PackageInfo>(),
-                      storage: context.read<PreferencesStorage>(),
-                    ),
+                    : AppLocalDataSourceImpl(context.read<PreferencesStorage>()),
               ),
         ),
         RepositoryProvider<MqHomeRepository>(
@@ -99,13 +95,7 @@ class MyApp extends StatelessWidget {
                   QuranAudioCubit(AudioPlayer(), context.read<NetworkClient>(), context.read<MqQuranRepository>())
                     ..init(),
         ),
-        BlocProvider(
-          create:
-              (context) => RemoteConfigCubit(
-                packageInfo: context.read<PackageInfo>(),
-                remoteConfig: context.read<MqRemoteConfig>(),
-              ),
-        ),
+        BlocProvider(create: (context) => RemoteConfigCubit(context.read<MqRemoteConfig>())),
         BlocProvider(create: (context) => LocationCubit(context.read<MqLocationClient>())),
         BlocProvider(create: (context) => AppThemeCubit(context.read<AppRepository>())),
       ],

@@ -8,7 +8,6 @@ import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/app_config.dart';
 import 'package:my_quran/modules/modules.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
@@ -16,7 +15,6 @@ extension PumpApp on WidgetTester {
     AuthRepository authRepository,
     MqHomeRepository homeRepo,
     MqRemoteConfig remoteConfig,
-    PackageInfo packageInfo,
     PreferencesStorage storage,
   ) {
     return pumpWidget(
@@ -30,7 +28,7 @@ extension PumpApp on WidgetTester {
             BlocProvider(create: (context) => AppThemeCubit(appRepository)),
             BlocProvider(create: (context) => AuthCubit(authRepository)),
             BlocProvider(create: (context) => HomeCubit(homeRepo)),
-            BlocProvider(create: (context) => RemoteConfigCubit(packageInfo: packageInfo, remoteConfig: remoteConfig)),
+            BlocProvider(create: (context) => RemoteConfigCubit(remoteConfig)),
           ],
           child: const QuranApp(),
         ),

@@ -11,8 +11,7 @@ import 'mocks/app_mocks.dart';
 
 void main() {
   testWidgets('Punmp app', (WidgetTester tester) async {
-    final packageInfo = MockPackageInfo();
-    final remoteConfig = MockMqRemoteConfig();
+    final mockRemoteConfig = MockMqRemoteConfig();
     const appRepository = AppRepositoryImpl(AppLocalDataSourceMock());
     const homeRepo = MqHomeRepositoryImpl(MqHomeLocalDataSourceMock(), MqHomeRemoteDataSourceMock());
     const authRepository = AuthRepositoryImpl(
@@ -22,7 +21,7 @@ void main() {
 
     final storage = MockStorage();
 
-    await tester.pumpApp(appRepository, authRepository, homeRepo, remoteConfig, packageInfo, storage);
+    await tester.pumpApp(appRepository, authRepository, homeRepo, mockRemoteConfig, storage);
     await tester.pumpAndSettle();
     expect(find.byType(MaterialApp), findsOneWidget);
   });

@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 part 'remote_config_state.dart';
 
 class RemoteConfigCubit extends Cubit<RemoteConfigState> {
-  RemoteConfigCubit({required this.packageInfo, required this.remoteConfig}) : super(const RemoteConfigState());
+  RemoteConfigCubit(this.remoteConfig) : super(const RemoteConfigState());
 
-  final PackageInfo packageInfo;
   final MqRemoteConfig remoteConfig;
 
   Future<void> init() async {
@@ -23,6 +21,7 @@ class RemoteConfigCubit extends Cubit<RemoteConfigState> {
       appVersionStatus: _getAppVersionStatus,
       isHatimEnable: _hatimIsEnable,
       isDonaitonEnable: _isDonaitonEnable,
+      version: remoteConfig.appVersion,
     );
     emit(newState);
   }
@@ -32,7 +31,7 @@ class RemoteConfigCubit extends Cubit<RemoteConfigState> {
   bool get _isDonaitonEnable => remoteConfig.donaitonIsEnable;
 
   AppVersionStatus get _getAppVersionStatus {
-    final currentBuildNumber = int.parse(packageInfo.buildNumber);
+    final currentBuildNumber = int.parse(remoteConfig.buildBumber);
     final requiredBuildNumber = remoteConfig.requiredBuildNumber;
     final recommendedBuildNumber = remoteConfig.recommendedBuildNumber;
     if (currentBuildNumber < requiredBuildNumber) {

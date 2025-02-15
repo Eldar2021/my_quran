@@ -43,9 +43,6 @@ dependencies:
   # Navigation
   go_router: ^14.8.0
 
-  # Device & System Information
-  package_info_plus: ^8.2.1
-
   # Packages
   mq_ci_keys:
     path: ../packages/mq_ci_keys
