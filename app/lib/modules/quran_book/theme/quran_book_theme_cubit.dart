@@ -6,9 +6,7 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 part 'quran_book_theme_state.dart';
 
 class QuranBookThemeCubit extends Cubit<QuranBookThemeState> {
-  QuranBookThemeCubit({
-    required this.readThemeRepository,
-  }) : super(const QuranBookThemeState());
+  QuranBookThemeCubit({required this.readThemeRepository}) : super(const QuranBookThemeState());
 
   final ReadThemeRepository readThemeRepository;
 

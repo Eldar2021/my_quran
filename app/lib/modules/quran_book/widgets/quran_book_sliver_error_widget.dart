@@ -16,16 +16,10 @@ class QuranBookSliverErrorWidget extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(24, 30, 24, 30),
         child: Column(
           children: [
-            Icon(
-              Icons.error,
-              size: 50,
-              color: themeCubit.state.frColor,
-            ),
+            Icon(Icons.error, size: 50, color: themeCubit.state.frColor),
             Text(
               error,
-              style: prTextTheme.headlineSmall?.copyWith(
-                color: themeCubit.state.frColor,
-              ),
+              style: prTextTheme.headlineSmall?.copyWith(color: themeCubit.state.frColor),
               textAlign: TextAlign.center,
             ),
           ],

@@ -15,15 +15,14 @@ class QuranByPagesView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => QuranBookThemeCubit(
-            readThemeRepository: context.read<ReadThemeRepository>(),
-          )..initializeTheme(),
+          create:
+              (context) =>
+                  QuranBookThemeCubit(readThemeRepository: context.read<ReadThemeRepository>())..initializeTheme(),
         ),
         BlocProvider(
-          create: (context) => QuranBookByPageCubit(
-            repository: context.read<MqQuranRepository>(),
-            pagesNumber: pagesNumber,
-          ),
+          create:
+              (context) =>
+                  QuranBookByPageCubit(repository: context.read<MqQuranRepository>(), pagesNumber: pagesNumber),
         ),
       ],
       child: const _QuranByPagesView(),
@@ -59,11 +58,7 @@ class __QuranByPagesViewState extends State<_QuranByPagesView> {
               context.l10n.hatim,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: FontFamily.qpcUthmanicHafs,
-                fontSize: 26,
-                color: themeCubit.state.frColor,
-              ),
+              style: TextStyle(fontFamily: FontFamily.qpcUthmanicHafs, fontSize: 26, color: themeCubit.state.frColor),
             ),
           ),
           SliverPadding(

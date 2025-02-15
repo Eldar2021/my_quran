@@ -27,9 +27,7 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
   @override
   void initState() {
     _pagesNumber = widget.pagesNumber;
-    _pagingController = PagingController<int, QuranDataEntity>(
-      firstPageKey: _pagesNumber.first,
-    );
+    _pagingController = PagingController<int, QuranDataEntity>(firstPageKey: _pagesNumber.first);
     _pagingController.addPageRequestListener(_fetchPage);
     super.initState();
   }
@@ -45,7 +43,7 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
         final nextPageKey = page;
         _pagingController.appendPage([newItems!], nextPageKey);
       }
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       _pagingController.error = e;
     }
@@ -57,15 +55,13 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
     return PagedSliverList<int, QuranDataEntity>.separated(
       key: const Key(MqKeys.quranReadView),
       pagingController: _pagingController,
-      separatorBuilder: (context, index) => Center(
-        child: Text(
-          _pagesNumber[index].toArabicDigits,
-          style: TextStyle(
-            fontSize: themeCubit.state.textSize,
-            color: themeCubit.state.frColor,
+      separatorBuilder:
+          (context, index) => Center(
+            child: Text(
+              _pagesNumber[index].toArabicDigits,
+              style: TextStyle(fontSize: themeCubit.state.textSize, color: themeCubit.state.frColor),
+            ),
           ),
-        ),
-      ),
       builderDelegate: PagedChildBuilderDelegate<QuranDataEntity>(
         itemBuilder: (context, item, index) {
           final strb = item.dataDatePage().map((e) => e.samePage(context)).toList().toString();
@@ -91,12 +87,7 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
                   ),
                   if (_pagesNumber[index] == _pagesNumber.last)
                     Padding(
-                      padding: const EdgeInsets.only(
-                        top: 50,
-                        bottom: 50,
-                        left: 24,
-                        right: 24,
-                      ),
+                      padding: const EdgeInsets.only(top: 50, bottom: 50, left: 24, right: 24),
                       child: ElevatedButton(
                         onPressed: () async {
                           final readThemeState = context.read<QuranBookThemeCubit>().state;

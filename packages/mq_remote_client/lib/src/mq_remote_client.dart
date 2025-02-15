@@ -19,13 +19,7 @@ typedef ResolveValue = String? Function();
 /// responses.
 class MqRemoteClient {
   /// {@macro mq_remote_client}
-  const MqRemoteClient({
-    required this.dio,
-    required this.network,
-    this.language,
-    this.token,
-    this.oldToken,
-  });
+  const MqRemoteClient({required this.dio, required this.network, this.language, this.token, this.oldToken});
 
   /// The Dio instance used for making HTTP requests.
   final Dio dio;
@@ -73,10 +67,7 @@ class MqRemoteClient {
   /// from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, MqRemoteException>> getType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-  }) async {
+  Future<Either<T, MqRemoteException>> getType<T>(String url, {required FromJson<T> fromJson}) async {
     final data = await _get<Map<String, dynamic>>(url);
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
@@ -85,20 +76,14 @@ class MqRemoteClient {
   /// of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, MqRemoteException>> getListOfType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-  }) async {
+  Future<Either<List<T>, MqRemoteException>> getListOfType<T>(String url, {required FromJson<T> fromJson}) async {
     final data = await _get<List<dynamic>>(url);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
 
   /// Makes a POST request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, MqRemoteException>> post<T>(
-    String url, {
-    Map<String, dynamic>? body,
-  }) {
+  Future<Either<T, MqRemoteException>> post<T>(String url, {Map<String, dynamic>? body}) {
     return _post<T>(url, body: body);
   }
 
@@ -130,10 +115,7 @@ class MqRemoteClient {
 
   /// Makes a PUT request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, MqRemoteException>> put<T>(
-    String url, {
-    Map<String, dynamic>? body,
-  }) {
+  Future<Either<T, MqRemoteException>> put<T>(String url, {Map<String, dynamic>? body}) {
     return _put<T>(url, body: body);
   }
 
@@ -204,10 +186,7 @@ class MqRemoteClient {
 
   /// Makes a DELETE request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, MqRemoteException>> delete<T>(
-    String url, {
-    Map<String, dynamic>? body,
-  }) {
+  Future<Either<T, MqRemoteException>> delete<T>(String url, {Map<String, dynamic>? body}) {
     return _delete<T>(url, body: body);
   }
 

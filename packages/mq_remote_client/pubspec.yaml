@@ -4,15 +4,15 @@ version: 0.1.0+1
 publish_to: none
 
 environment:
-  sdk: ">=3.5.0 <4.0.0"
-  flutter: ^3.24.3
+  sdk: ">=3.7.0-0 <4.0.0"
+  flutter: ^3.29.0
 
 dependencies:
   flutter:
     sdk: flutter
-  connectivity_plus: ^6.1.0
-  dio: ^5.7.0
-  meta: ^1.15.0
+  connectivity_plus: ^6.1.3
+  dio: ^5.8.0+1
+  meta: ^1.16.0
   mq_either:
     path: ../mq_either
     
@@ -20,4 +20,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^7.0.0

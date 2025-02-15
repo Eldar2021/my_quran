@@ -1,4 +1,4 @@
 /// MyQuran Crashlytics package
-library mq_crashlytics;
+library;
 
 export 'src/mq_crashlytics.dart';

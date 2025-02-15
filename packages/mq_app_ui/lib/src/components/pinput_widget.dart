@@ -34,28 +34,20 @@ class PinputWidget extends StatelessWidget {
       disabledPinTheme: pinTheme(theme),
       submittedPinTheme: pinTheme(theme).copyWith(
         decoration: BoxDecoration(
-          border: Border.all(
-            color: theme.colorScheme.primary,
-          ),
+          border: Border.all(color: theme.colorScheme.primary),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
       errorPinTheme: pinTheme(theme).copyWith(
-        textStyle: theme.textTheme.headlineMedium!.copyWith(
-          color: theme.colorScheme.error,
-        ),
+        textStyle: theme.textTheme.headlineMedium!.copyWith(color: theme.colorScheme.error),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: theme.colorScheme.error,
-          ),
+          border: Border.all(color: theme.colorScheme.error),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
       focusedPinTheme: pinTheme(theme).copyWith(
         decoration: BoxDecoration(
-          border: Border.all(
-            color: theme.colorScheme.primary,
-          ),
+          border: Border.all(color: theme.colorScheme.primary),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
@@ -66,18 +58,14 @@ class PinputWidget extends StatelessWidget {
   PinTheme pinTheme(ThemeData theme) {
     return PinTheme(
       margin: EdgeInsets.all(itemPadding),
-      textStyle: theme.textTheme.headlineMedium!.copyWith(
-        color: theme.colorScheme.primary,
-      ),
-      constraints: const BoxConstraints(
-        maxHeight: 64,
-        maxWidth: 64,
-      ),
+      textStyle: theme.textTheme.headlineMedium!.copyWith(color: theme.colorScheme.primary),
+      constraints: const BoxConstraints(maxHeight: 64, maxWidth: 64),
       decoration: BoxDecoration(
         border: Border.all(
-          color: theme.brightness == Brightness.dark
-              ? theme.colorScheme.onSurface.withOpacity(0.7)
-              : theme.colorScheme.shadow.withOpacity(0.3),
+          color:
+              theme.brightness == Brightness.dark
+                  ? theme.colorScheme.onSurface.withValues(alpha: 0.7)
+                  : theme.colorScheme.shadow.withValues(alpha: 0.3),
         ),
         borderRadius: BorderRadius.circular(10),
       ),

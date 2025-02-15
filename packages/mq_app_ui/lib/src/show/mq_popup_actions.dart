@@ -29,7 +29,7 @@ final class MqPopupActions {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -57,17 +57,13 @@ final class MqPopupActions {
 class BubbleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    final path = Path()
-      ..addRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromLTRB(0, 10, size.width, size.height),
-          const Radius.circular(16),
-        ),
-      )
-      ..moveTo(size.width / 2 - 10, 10)
-      ..lineTo(size.width / 2, 0)
-      ..lineTo(size.width / 2 + 10, 10)
-      ..close();
+    final path =
+        Path()
+          ..addRRect(RRect.fromRectAndRadius(Rect.fromLTRB(0, 10, size.width, size.height), const Radius.circular(16)))
+          ..moveTo(size.width / 2 - 10, 10)
+          ..lineTo(size.width / 2, 0)
+          ..lineTo(size.width / 2 + 10, 10)
+          ..close();
     return path;
   }
 

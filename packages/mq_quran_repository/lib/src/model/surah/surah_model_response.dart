@@ -59,10 +59,7 @@ final class SurahModelResponse {
 @JsonSerializable()
 @immutable
 final class TranslatedName {
-  const TranslatedName({
-    required this.languageName,
-    required this.name,
-  });
+  const TranslatedName({required this.languageName, required this.name});
 
   factory TranslatedName.fromJson(Map<String, dynamic> json) => _$TranslatedNameFromJson(json);
   Map<String, dynamic> toJson() => _$TranslatedNameToJson(this);
@@ -73,9 +70,6 @@ final class TranslatedName {
   final String name;
 
   MqSurahTranslatedNameEntity toEntity() {
-    return MqSurahTranslatedNameEntity(
-      languageName: languageName,
-      name: name,
-    );
+    return MqSurahTranslatedNameEntity(languageName: languageName, name: name);
   }
 }

@@ -15,12 +15,7 @@ final class LocationState extends Equatable {
   final LocationEventState eventState;
 
   @override
-  List<Object> get props => [
-        position,
-        locationName,
-        timeZoneLocation,
-        eventState,
-      ];
+  List<Object> get props => [position, locationName, timeZoneLocation, eventState];
 
   LocationState copyWith({
     Position? position,

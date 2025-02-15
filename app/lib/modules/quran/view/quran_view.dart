@@ -13,9 +13,7 @@ class QuranView extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: BlocProvider(
-        create: (context) => QuranCubit(
-          mqQuranRepository: context.read<MqQuranRepository>(),
-        ),
+        create: (context) => QuranCubit(mqQuranRepository: context.read<MqQuranRepository>()),
         child: const QuranBody(),
       ),
     );
@@ -36,20 +34,12 @@ class QuranBody extends StatelessWidget {
         bottom: TabBar.secondary(
           labelColor: colorScheme.primary,
           indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
-          labelStyle: prTextTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+          labelStyle: prTextTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           dividerColor: colorScheme.surfaceBright,
           dividerHeight: 3,
           tabs: [
-            Tab(
-              key: const Key(MqKeys.quaranReadJuzs),
-              text: context.l10n.juzas,
-            ),
-            Tab(
-              key: const Key(MqKeys.quaranReadSurahs),
-              text: context.l10n.surahs,
-            ),
+            Tab(key: const Key(MqKeys.quaranReadJuzs), text: context.l10n.juzas),
+            Tab(key: const Key(MqKeys.quaranReadSurahs), text: context.l10n.surahs),
           ],
         ),
       ),

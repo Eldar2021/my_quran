@@ -12,16 +12,10 @@ final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio
 
 @immutable
 final class AppRouter {
-  const AppRouter._({
-    required this.isFirstTime,
-  });
+  const AppRouter._({required this.isFirstTime});
 
-  factory AppRouter.intance({
-    required bool isFirstTime,
-  }) {
-    return AppRouter._(
-      isFirstTime: isFirstTime,
-    );
+  factory AppRouter.intance({required bool isFirstTime}) {
+    return AppRouter._(isFirstTime: isFirstTime);
   }
 
   final bool isFirstTime;
@@ -54,17 +48,8 @@ final class AppRouter {
       navigatorKey: rootNavigatorKey,
       debugLogDiagnostics: kDebugMode,
       routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) => const Scaffold(
-            body: Center(child: Text('Init')),
-          ),
-        ),
-        GoRoute(
-          path: '/$login',
-          name: login,
-          builder: (context, state) => const LoginView(),
-        ),
+        GoRoute(path: '/', builder: (context, state) => const Scaffold(body: Center(child: Text('Init')))),
+        GoRoute(path: '/$login', name: login, builder: (context, state) => const LoginView()),
         GoRoute(
           path: '/$verificationCode/:email',
           name: verificationCode,
@@ -73,16 +58,8 @@ final class AppRouter {
             return VerificationCodeView(email: email!);
           },
         ),
-        GoRoute(
-          path: '/$loginWihtSoccial',
-          name: loginWihtSoccial,
-          builder: (context, state) => const SignInView(),
-        ),
-        GoRoute(
-          path: '/$devModeView',
-          name: devModeView,
-          builder: (context, state) => const DevModeView(),
-        ),
+        GoRoute(path: '/$loginWihtSoccial', name: loginWihtSoccial, builder: (context, state) => const SignInView()),
+        GoRoute(path: '/$devModeView', name: devModeView, builder: (context, state) => const DevModeView()),
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return MainView(navigationShell);
@@ -113,11 +90,7 @@ final class AppRouter {
             StatefulShellBranch(
               navigatorKey: _sectionNavigatorKey3,
               routes: [
-                GoRoute(
-                  path: '/$quranAudio',
-                  name: quranAudio,
-                  builder: (context, state) => const QuranAudioView(),
-                ),
+                GoRoute(path: '/$quranAudio', name: quranAudio, builder: (context, state) => const QuranAudioView()),
               ],
             ),
           ],

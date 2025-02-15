@@ -24,10 +24,7 @@ void main() {
     test('Right value should fold correctly', () {
       const rightValue = Right<int, String>(42);
 
-      final result = rightValue.fold(
-        (error) => 'Left: $error',
-        (value) => 'Right: $value',
-      );
+      final result = rightValue.fold((error) => 'Left: $error', (value) => 'Right: $value');
 
       expect(result, 'Right: 42');
     });
@@ -35,10 +32,7 @@ void main() {
     test('Left value should fold correctly', () {
       const leftValue = Left<int, String>('Error');
 
-      final result = leftValue.fold(
-        (error) => 'Left: $error',
-        (value) => 'Right: $value',
-      );
+      final result = leftValue.fold((error) => 'Left: $error', (value) => 'Right: $value');
 
       expect(result, 'Left: Error');
     });

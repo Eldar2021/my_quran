@@ -8,11 +8,7 @@ class MqHatimRemoteDataSourceMock implements MqHatimRemoteDataSource {
 
   @override
   Future<HatimReadModel> getHatim() async {
-    return const HatimReadModel(
-      id: '1',
-      status: 'done',
-      type: 'user_pages',
-    );
+    return const HatimReadModel(id: '1', status: 'done', type: 'user_pages');
   }
 
   @override
@@ -20,63 +16,43 @@ class MqHatimRemoteDataSourceMock implements MqHatimRemoteDataSource {
 
   @override
   void sinkHatimJuzs(String hatimId) {
-    final data = {
-      'type': 'list_of_juz',
-      'hatim_id': hatimId,
-    };
+    final data = {'type': 'list_of_juz', 'hatim_id': hatimId};
     _controller.add(json.encode(data));
   }
 
   @override
   void sinkHatimUserPages() {
-    final data = {
-      'type': 'user_pages',
-    };
+    final data = {'type': 'user_pages'};
     _controller.add(jsonEncode(data));
   }
 
   @override
   void sinkHatimJuzPages(String juzId) {
-    final data = {
-      'type': 'list_of_page',
-      'juz_id': juzId,
-    };
+    final data = {'type': 'list_of_page', 'juz_id': juzId};
     _controller.add(jsonEncode(data));
   }
 
   @override
   void sinkSelectPage(String pageId) {
-    final data = {
-      'type': 'book',
-      'pageId': pageId,
-    };
+    final data = {'type': 'book', 'pageId': pageId};
     _controller.add(jsonEncode(data));
   }
 
   @override
   void sinkUnSelectPage(String pageId) {
-    final data = {
-      'type': 'to_do',
-      'pageId': pageId,
-    };
+    final data = {'type': 'to_do', 'pageId': pageId};
     _controller.add(jsonEncode(data));
   }
 
   @override
   void sinkInProgressPages(List<String> pageIds) {
-    final data = {
-      'type': 'in_progress',
-      'pageIds': pageIds,
-    };
+    final data = {'type': 'in_progress', 'pageIds': pageIds};
     _controller.add(jsonEncode(data));
   }
 
   @override
   void sinkDonePages(List<String> pageIds) {
-    final data = {
-      'type': 'done',
-      'pageIds': pageIds,
-    };
+    final data = {'type': 'done', 'pageIds': pageIds};
     _controller.add(jsonEncode(data));
   }
 

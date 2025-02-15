@@ -4,13 +4,13 @@ version: 0.1.0+1
 publish_to: none
 
 environment:
-  sdk: ^3.5.0
-  flutter: ^3.24.0
+  sdk: ">=3.7.0-0 <4.0.0"
+  flutter: ^3.29.0
 
 dependencies:
   flutter:
     sdk: flutter
-  firebase_analytics: ^11.3.3
+  firebase_analytics: ^11.4.2
   mq_crashlytics:
     path: ../mq_crashlytics
 
@@ -18,4 +18,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^7.0.0

@@ -2,10 +2,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 1,
     'juz_number': 1,
-    'verse_mapping': {
-      '1': '1-7',
-      '2': '1-141',
-    },
+    'verse_mapping': {'1': '1-7', '2': '1-141'},
     'first_verse_id': 1,
     'last_verse_id': 148,
     'verses_count': 148,
@@ -13,9 +10,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 2,
     'juz_number': 2,
-    'verse_mapping': {
-      '2': '142-252',
-    },
+    'verse_mapping': {'2': '142-252'},
     'first_verse_id': 149,
     'last_verse_id': 259,
     'verses_count': 111,
@@ -23,10 +18,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 3,
     'juz_number': 3,
-    'verse_mapping': {
-      '2': '253-286',
-      '3': '1-92',
-    },
+    'verse_mapping': {'2': '253-286', '3': '1-92'},
     'first_verse_id': 260,
     'last_verse_id': 385,
     'verses_count': 126,
@@ -34,10 +26,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 4,
     'juz_number': 4,
-    'verse_mapping': {
-      '3': '93-200',
-      '4': '1-23',
-    },
+    'verse_mapping': {'3': '93-200', '4': '1-23'},
     'first_verse_id': 386,
     'last_verse_id': 516,
     'verses_count': 131,
@@ -45,9 +34,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 5,
     'juz_number': 5,
-    'verse_mapping': {
-      '4': '24-147',
-    },
+    'verse_mapping': {'4': '24-147'},
     'first_verse_id': 517,
     'last_verse_id': 640,
     'verses_count': 124,
@@ -55,10 +42,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 6,
     'juz_number': 6,
-    'verse_mapping': {
-      '4': '148-176',
-      '5': '1-81',
-    },
+    'verse_mapping': {'4': '148-176', '5': '1-81'},
     'first_verse_id': 641,
     'last_verse_id': 750,
     'verses_count': 110,
@@ -66,10 +50,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 7,
     'juz_number': 7,
-    'verse_mapping': {
-      '5': '82-120',
-      '6': '1-110',
-    },
+    'verse_mapping': {'5': '82-120', '6': '1-110'},
     'first_verse_id': 751,
     'last_verse_id': 899,
     'verses_count': 149,
@@ -77,10 +58,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 8,
     'juz_number': 8,
-    'verse_mapping': {
-      '6': '111-165',
-      '7': '1-87',
-    },
+    'verse_mapping': {'6': '111-165', '7': '1-87'},
     'first_verse_id': 900,
     'last_verse_id': 1041,
     'verses_count': 142,
@@ -88,10 +66,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 9,
     'juz_number': 9,
-    'verse_mapping': {
-      '7': '88-206',
-      '8': '1-40',
-    },
+    'verse_mapping': {'7': '88-206', '8': '1-40'},
     'first_verse_id': 1042,
     'last_verse_id': 1200,
     'verses_count': 159,
@@ -99,10 +74,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 10,
     'juz_number': 10,
-    'verse_mapping': {
-      '8': '41-75',
-      '9': '1-92',
-    },
+    'verse_mapping': {'8': '41-75', '9': '1-92'},
     'first_verse_id': 1201,
     'last_verse_id': 1327,
     'verses_count': 127,
@@ -110,11 +82,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 11,
     'juz_number': 11,
-    'verse_mapping': {
-      '9': '93-129',
-      '10': '1-109',
-      '11': '1-5',
-    },
+    'verse_mapping': {'9': '93-129', '10': '1-109', '11': '1-5'},
     'first_verse_id': 1328,
     'last_verse_id': 1478,
     'verses_count': 151,
@@ -122,10 +90,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 12,
     'juz_number': 12,
-    'verse_mapping': {
-      '11': '6-123',
-      '12': '1-52',
-    },
+    'verse_mapping': {'11': '6-123', '12': '1-52'},
     'first_verse_id': 1479,
     'last_verse_id': 1648,
     'verses_count': 170,
@@ -133,11 +98,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 13,
     'juz_number': 13,
-    'verse_mapping': {
-      '12': '53-111',
-      '13': '1-43',
-      '14': '1-52',
-    },
+    'verse_mapping': {'12': '53-111', '13': '1-43', '14': '1-52'},
     'first_verse_id': 1649,
     'last_verse_id': 1802,
     'verses_count': 154,
@@ -145,10 +106,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 14,
     'juz_number': 14,
-    'verse_mapping': {
-      '15': '1-99',
-      '16': '1-128',
-    },
+    'verse_mapping': {'15': '1-99', '16': '1-128'},
     'first_verse_id': 1803,
     'last_verse_id': 2029,
     'verses_count': 227,
@@ -156,10 +114,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 15,
     'juz_number': 15,
-    'verse_mapping': {
-      '17': '1-111',
-      '18': '1-74',
-    },
+    'verse_mapping': {'17': '1-111', '18': '1-74'},
     'first_verse_id': 2030,
     'last_verse_id': 2214,
     'verses_count': 185,
@@ -167,11 +122,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 16,
     'juz_number': 16,
-    'verse_mapping': {
-      '18': '75-110',
-      '19': '1-98',
-      '20': '1-135',
-    },
+    'verse_mapping': {'18': '75-110', '19': '1-98', '20': '1-135'},
     'first_verse_id': 2215,
     'last_verse_id': 2483,
     'verses_count': 269,
@@ -179,10 +130,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 17,
     'juz_number': 17,
-    'verse_mapping': {
-      '21': '1-112',
-      '22': '1-78',
-    },
+    'verse_mapping': {'21': '1-112', '22': '1-78'},
     'first_verse_id': 2484,
     'last_verse_id': 2673,
     'verses_count': 190,
@@ -190,11 +138,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 18,
     'juz_number': 18,
-    'verse_mapping': {
-      '23': '1-118',
-      '24': '1-64',
-      '25': '1-20',
-    },
+    'verse_mapping': {'23': '1-118', '24': '1-64', '25': '1-20'},
     'first_verse_id': 2674,
     'last_verse_id': 2875,
     'verses_count': 202,
@@ -202,11 +146,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 19,
     'juz_number': 19,
-    'verse_mapping': {
-      '25': '21-77',
-      '26': '1-227',
-      '27': '1-55',
-    },
+    'verse_mapping': {'25': '21-77', '26': '1-227', '27': '1-55'},
     'first_verse_id': 2876,
     'last_verse_id': 3214,
     'verses_count': 339,
@@ -214,11 +154,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 20,
     'juz_number': 20,
-    'verse_mapping': {
-      '27': '56-93',
-      '28': '1-88',
-      '29': '1-45',
-    },
+    'verse_mapping': {'27': '56-93', '28': '1-88', '29': '1-45'},
     'first_verse_id': 3215,
     'last_verse_id': 3385,
     'verses_count': 171,
@@ -226,13 +162,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 21,
     'juz_number': 21,
-    'verse_mapping': {
-      '29': '46-69',
-      '30': '1-60',
-      '31': '1-34',
-      '32': '1-30',
-      '33': '1-30',
-    },
+    'verse_mapping': {'29': '46-69', '30': '1-60', '31': '1-34', '32': '1-30', '33': '1-30'},
     'first_verse_id': 3386,
     'last_verse_id': 3563,
     'verses_count': 178,
@@ -240,12 +170,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 22,
     'juz_number': 22,
-    'verse_mapping': {
-      '33': '31-73',
-      '34': '1-54',
-      '35': '1-45',
-      '36': '1-27',
-    },
+    'verse_mapping': {'33': '31-73', '34': '1-54', '35': '1-45', '36': '1-27'},
     'first_verse_id': 3564,
     'last_verse_id': 3732,
     'verses_count': 169,
@@ -253,12 +178,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 23,
     'juz_number': 23,
-    'verse_mapping': {
-      '36': '28-83',
-      '37': '1-182',
-      '38': '1-88',
-      '39': '1-31',
-    },
+    'verse_mapping': {'36': '28-83', '37': '1-182', '38': '1-88', '39': '1-31'},
     'first_verse_id': 3733,
     'last_verse_id': 4089,
     'verses_count': 357,
@@ -266,11 +186,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 24,
     'juz_number': 24,
-    'verse_mapping': {
-      '39': '32-75',
-      '40': '1-85',
-      '41': '1-46',
-    },
+    'verse_mapping': {'39': '32-75', '40': '1-85', '41': '1-46'},
     'first_verse_id': 4090,
     'last_verse_id': 4264,
     'verses_count': 175,
@@ -278,13 +194,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 25,
     'juz_number': 25,
-    'verse_mapping': {
-      '41': '47-54',
-      '42': '1-53',
-      '43': '1-89',
-      '44': '1-59',
-      '45': '1-37',
-    },
+    'verse_mapping': {'41': '47-54', '42': '1-53', '43': '1-89', '44': '1-59', '45': '1-37'},
     'first_verse_id': 4265,
     'last_verse_id': 4510,
     'verses_count': 246,
@@ -292,14 +202,7 @@ const mqQuranJuzsData = <Map<String, dynamic>>[
   {
     'id': 26,
     'juz_number': 26,
-    'verse_mapping': {
-      '46': '1-35',
-      '47': '1-38',
-      '48': '1-29',
-      '49': '1-18',
-      '50': '1-45',
-      '51': '1-30',
-    },
+    'verse_mapping': {'46': '1-35', '47': '1-38', '48': '1-29', '49': '1-18', '50': '1-45', '51': '1-30'},
     'first_verse_id': 4511,
     'last_verse_id': 4705,
     'verses_count': 195,

@@ -7,20 +7,12 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
 
   @override
   Future<MqHomeModelResponse> getRemoteData() async {
-    return const MqHomeModelResponse(
-      allDoneHatims: 0,
-      allDonePages: 0,
-      donePages: 0,
-    );
+    return const MqHomeModelResponse(allDoneHatims: 0, allDonePages: 0, donePages: 0);
   }
 
   @override
   Future<List<MqStoryModelResponse>> getStories(String language) async {
-    return mqStoriesMock
-        .map(
-          (e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>),
-        )
-        .toList();
+    return mqStoriesMock.map((e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>)).toList();
   }
 
   @override
@@ -54,7 +46,7 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
           'requisite': '1030 1202 3850 1612',
           'requisiteForCopy': '1030120238501612',
           'accountName': 'АЛМАЗБЕК УУЛУ ЭЛДИЯР',
-        }
+        },
       ],
     };
 
@@ -64,10 +56,6 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
   @override
   Future<List<MqHomeBannerResponse>> getHomeBanners() async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    return mqMockHomeBanners
-        .map(
-          (e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>),
-        )
-        .toList();
+    return mqMockHomeBanners.map((e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>)).toList();
   }
 }

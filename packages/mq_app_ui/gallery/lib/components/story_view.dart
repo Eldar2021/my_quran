@@ -14,9 +14,7 @@ class StoryView extends StatefulWidget {
   const StoryView({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(
-      builder: (_) => const StoryView(),
-    );
+    return MaterialPageRoute<void>(builder: (_) => const StoryView());
   }
 
   @override
@@ -27,30 +25,29 @@ class _StoryViewState extends State<StoryView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Story View'),
-      ),
+      appBar: AppBar(title: const Text('Story View')),
       body: ListView(
         children: [
           MqStoryItemsWidget(
-            items: sources.asMap().entries.map((e) {
-              final idx = e.key;
-              final v = e.value;
-              return MqStoryItem(
-                id: '$idx',
-                cardImageLink: v,
-                cardLabel: 'New UI My Quran Team',
-                storyPagesImages: sources,
-                storyPageDuration: const [
-                  Duration(seconds: 1),
-                  Duration(seconds: 1),
-                  Duration(seconds: 1),
-                  Duration(seconds: 1),
-                  Duration(seconds: 1),
-                  Duration(seconds: 1),
-                ],
-              );
-            }).toList(),
+            items:
+                sources.asMap().entries.map((e) {
+                  final idx = e.key;
+                  final v = e.value;
+                  return MqStoryItem(
+                    id: '$idx',
+                    cardImageLink: v,
+                    cardLabel: 'New UI My Quran Team',
+                    storyPagesImages: sources,
+                    storyPageDuration: const [
+                      Duration(seconds: 1),
+                      Duration(seconds: 1),
+                      Duration(seconds: 1),
+                      Duration(seconds: 1),
+                      Duration(seconds: 1),
+                      Duration(seconds: 1),
+                    ],
+                  );
+                }).toList(),
           ),
         ],
       ),

@@ -9,10 +9,7 @@ class AboutUsVuew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBgImage(
-      appBar: AppBar(
-        title: Text(context.l10n.aboutUs),
-        key: const Key(MqKeys.settingsAboutUsPage),
-      ),
+      appBar: AppBar(title: Text(context.l10n.aboutUs), key: const Key(MqKeys.settingsAboutUsPage)),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         children: [

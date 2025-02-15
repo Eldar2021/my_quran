@@ -28,111 +28,86 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         RepositoryProvider<AppRepository>(
-          create: (context) => AppRepositoryImpl(
-            isMockData
-                ? const AppLocalDataSourceMock()
-                : AppLocalDataSourceImpl(
-                    packageInfo: context.read<PackageInfo>(),
-                    storage: context.read<PreferencesStorage>(),
-                  ),
-          ),
+          create:
+              (context) => AppRepositoryImpl(
+                isMockData
+                    ? const AppLocalDataSourceMock()
+                    : AppLocalDataSourceImpl(
+                      packageInfo: context.read<PackageInfo>(),
+                      storage: context.read<PreferencesStorage>(),
+                    ),
+              ),
         ),
         RepositoryProvider<MqHomeRepository>(
-          create: (context) => MqHomeRepositoryImpl(
-            isMockData
-                ? const MqHomeLocalDataSourceMock()
-                : MqHomeLocalDataSourceImpl(
-                    context.read<PreferencesStorage>(),
-                  ),
-            isMockData
-                ? const MqHomeRemoteDataSourceMock()
-                : MqHomeRemoteDataSourceImpl(
-                    context.read<MqRemoteClient>(),
-                  ),
-          ),
+          create:
+              (context) => MqHomeRepositoryImpl(
+                isMockData
+                    ? const MqHomeLocalDataSourceMock()
+                    : MqHomeLocalDataSourceImpl(context.read<PreferencesStorage>()),
+                isMockData
+                    ? const MqHomeRemoteDataSourceMock()
+                    : MqHomeRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+              ),
         ),
         RepositoryProvider<MqLocationClient>(
-          create: (context) => MqLocationClient(
-            locationService:
-                (isMockData || isIntegrationTest) ? const MqLocationMockService() : const MqLocationServiceImpl(),
-            locationStorage: (isMockData || isIntegrationTest)
-                ? const MqLocationStorageMock()
-                : MqLocationStorageImpl(
-                    context.read<PreferencesStorage>(),
-                  ),
-          ),
+          create:
+              (context) => MqLocationClient(
+                locationService:
+                    (isMockData || isIntegrationTest) ? const MqLocationMockService() : const MqLocationServiceImpl(),
+                locationStorage:
+                    (isMockData || isIntegrationTest)
+                        ? const MqLocationStorageMock()
+                        : MqLocationStorageImpl(context.read<PreferencesStorage>()),
+              ),
         ),
         RepositoryProvider<AuthRepository>(
           create: (context) {
             return AuthRepositoryImpl(
-              localDataSource: isMockData
-                  ? const AuthLocalDataSourceMock()
-                  : AuthLocalDataSourceImpl(context.read<PreferencesStorage>()),
-              remoteDataSource: isMockData
-                  ? const AuthRemoteDataSourceMock()
-                  : AuthRemoteDataSourceImpl(
-                      client: context.read<MqRemoteClient>(),
-                      storage: context.read<PreferencesStorage>(),
-                      soccialAuth: SoccialAuth(),
-                      isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
-                    ),
+              localDataSource:
+                  isMockData
+                      ? const AuthLocalDataSourceMock()
+                      : AuthLocalDataSourceImpl(context.read<PreferencesStorage>()),
+              remoteDataSource:
+                  isMockData
+                      ? const AuthRemoteDataSourceMock()
+                      : AuthRemoteDataSourceImpl(
+                        client: context.read<MqRemoteClient>(),
+                        storage: context.read<PreferencesStorage>(),
+                        soccialAuth: SoccialAuth(),
+                        isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
+                      ),
             );
           },
         ),
         RepositoryProvider<ReadThemeRepository>(
-          create: (context) => ReadThemeRepositoryImpl(
-            LocalThemeDataSourceImpl(context.read<PreferencesStorage>()),
-          ),
+          create: (context) => ReadThemeRepositoryImpl(LocalThemeDataSourceImpl(context.read<PreferencesStorage>())),
         ),
         RepositoryProvider<MqQuranRepository>(
-          create: (context) => MqQuranRepositoryImpl(
-            MqQuranLocalDataSourceImpl(context.read<PreferencesStorage>()),
-            MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
-          ),
+          create:
+              (context) => MqQuranRepositoryImpl(
+                MqQuranLocalDataSourceImpl(context.read<PreferencesStorage>()),
+                MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+              ),
+        ),
+        BlocProvider(create: (context) => AuthCubit(context.read<AuthRepository>())),
+        BlocProvider(create: (context) => HomeCubit(context.read<MqHomeRepository>())),
+        BlocProvider(create: (context) => MqStoryCubit(context.read<MqHomeRepository>())),
+        BlocProvider(create: (context) => HomeBannersCubit(context.read<MqHomeRepository>())),
+        BlocProvider(
+          create:
+              (context) =>
+                  QuranAudioCubit(AudioPlayer(), context.read<NetworkClient>(), context.read<MqQuranRepository>())
+                    ..init(),
         ),
         BlocProvider(
-          create: (context) => AuthCubit(
-            context.read<AuthRepository>(),
-          ),
+          create:
+              (context) => RemoteConfigCubit(
+                packageInfo: context.read<PackageInfo>(),
+                remoteConfig: context.read<MqRemoteConfig>(),
+              ),
         ),
-        BlocProvider(
-          create: (context) => HomeCubit(
-            context.read<MqHomeRepository>(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => MqStoryCubit(
-            context.read<MqHomeRepository>(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => HomeBannersCubit(
-            context.read<MqHomeRepository>(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => QuranAudioCubit(
-            AudioPlayer(),
-            context.read<NetworkClient>(),
-            context.read<MqQuranRepository>(),
-          )..init(),
-        ),
-        BlocProvider(
-          create: (context) => RemoteConfigCubit(
-            packageInfo: context.read<PackageInfo>(),
-            remoteConfig: context.read<MqRemoteConfig>(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => LocationCubit(
-            context.read<MqLocationClient>(),
-          ),
-        ),
-        BlocProvider(
-          create: (context) => AppThemeCubit(
-            context.read<AppRepository>(),
-          ),
-        ),
+        BlocProvider(create: (context) => LocationCubit(context.read<MqLocationClient>())),
+        BlocProvider(create: (context) => AppThemeCubit(context.read<AppRepository>())),
       ],
       child: const QuranApp(),
     );
@@ -151,9 +126,7 @@ class _QuranAppState extends State<QuranApp> {
 
   @override
   void initState() {
-    _router = AppRouter.intance(
-      isFirstTime: !context.read<AuthCubit>().isAuthedticated,
-    ).router();
+    _router = AppRouter.intance(isFirstTime: !context.read<AuthCubit>().isAuthedticated).router();
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       context.read<RemoteConfigCubit>().init();

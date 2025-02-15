@@ -6,10 +6,7 @@ import 'package:mq_home_repository/mq_home_repository.dart';
 
 @immutable
 final class MqHomeRepositoryImpl implements MqHomeRepository {
-  const MqHomeRepositoryImpl(
-    this.localDataSource,
-    this.remoteDataSource,
-  );
+  const MqHomeRepositoryImpl(this.localDataSource, this.remoteDataSource);
 
   final MqHomeLocalDataSource localDataSource;
   final MqHomeRemoteDataSource remoteDataSource;
@@ -43,11 +40,7 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
     } catch (e, s) {
       MqCrashlytics.report(e, s);
       log('HomeRepositoryImpl, getStories error: $e');
-      final items = mqStoriesMock
-          .map(
-            (e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList();
+      final items = mqStoriesMock.map((e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>)).toList();
       return items.map((e) => e.toEntity()).toList();
     }
   }
@@ -72,15 +65,14 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
       await localDataSource.setHomeBanners(remoteData);
       final data = remoteData.map((e) => e.toEntity()).toList();
       final list = List<MqHomeBannerEntity>.from(
-        data
-          ..removeWhere((e) {
-            if (e.hasCondition && e.date != null) {
-              final date = DateTime.parse(e.date ?? '2012-02-27');
-              return !_isSameDate(now, date);
-            } else {
-              return false;
-            }
-          }),
+        data..removeWhere((e) {
+          if (e.hasCondition && e.date != null) {
+            final date = DateTime.parse(e.date ?? '2012-02-27');
+            return !_isSameDate(now, date);
+          } else {
+            return false;
+          }
+        }),
       );
 
       return list;

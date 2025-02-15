@@ -31,6 +31,7 @@
 .pub-cache/
 .pub/
 /build/
+app/lib/l10n/generated
 
 # Ignore all toolchain files from all sub-packages.
 **/.dart_tool/

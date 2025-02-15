@@ -22,10 +22,7 @@ class LanguageDropdownButtonFormField<T> extends StatelessWidget {
       value: value,
       icon: const Icon(Icons.keyboard_arrow_down),
       alignment: AlignmentDirectional.center,
-      decoration: InputDecoration(
-        labelText: labelText,
-        prefixIcon: const Icon(Icons.translate),
-      ),
+      decoration: InputDecoration(labelText: labelText, prefixIcon: const Icon(Icons.translate)),
       items: items.map(itemBuilder).toList(),
       onChanged: onChanged,
     );

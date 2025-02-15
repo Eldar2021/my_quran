@@ -14,7 +14,7 @@ class DonationCubit extends Cubit<DonationState> {
     try {
       final donation = await repository.getDonationPageData();
       emit(DonationSuccess(donation));
-    } catch (e) {
+    } on Exception catch (e) {
       emit(DonationError(e.toString()));
     }
   }

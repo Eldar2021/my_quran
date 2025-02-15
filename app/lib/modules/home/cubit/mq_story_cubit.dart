@@ -21,7 +21,7 @@ class MqStoryCubit extends Cubit<MqStoryState> {
       emit(const MqStoryState());
       final stories = await homeRepository.getStories(localeCode);
       emit(MqStoryState(status: FetchStatus.success, stories: stories));
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       emit(const MqStoryState(status: FetchStatus.error));
     }

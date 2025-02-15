@@ -16,29 +16,18 @@ final class AppShare {
   }) async {
     final box = context.findRenderObject() as RenderBox?;
     try {
-      await Share.share(
-        text,
-        subject: subject,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-      );
-    } catch (e, s) {
+      await Share.share(text, subject: subject, sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log('share error: $e, \n launch stack-trace: $s');
     }
   }
 
-  static Future<void> shareUri({
-    required BuildContext context,
-    required String url,
-    Rect? sharePositionOrigin,
-  }) async {
+  static Future<void> shareUri({required BuildContext context, required String url, Rect? sharePositionOrigin}) async {
     final box = context.findRenderObject() as RenderBox?;
     try {
-      await Share.shareUri(
-        Uri.parse(url),
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-      );
-    } catch (e, s) {
+      await Share.shareUri(Uri.parse(url), sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log('share error: $e, \n launch stack-trace: $s');
     }
@@ -61,7 +50,7 @@ final class AppShare {
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
         fileNameOverrides: fileNameOverrides,
       );
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log('share error: $e, \n launch stack-trace: $s');
     }

@@ -6,11 +6,7 @@ part 'mq_home_model_response.g.dart';
 @JsonSerializable()
 @immutable
 final class MqHomeModelResponse {
-  const MqHomeModelResponse({
-    required this.allDoneHatims,
-    required this.allDonePages,
-    required this.donePages,
-  });
+  const MqHomeModelResponse({required this.allDoneHatims, required this.allDonePages, required this.donePages});
 
   factory MqHomeModelResponse.fromJson(Map<String, dynamic> json) => _$MqHomeModelResponseFromJson(json);
   Map<String, dynamic> toJson() => _$MqHomeModelResponseToJson(this);

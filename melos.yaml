@@ -16,7 +16,9 @@ scripts:
     description: "Format Dart code for selected package"
 
   format-check:
-    exec: dart format . --line-length 120 --set-exit-if-changed
+    run: |
+      dart format . --line-length 120 --set-exit-if-changed
+      melos pub-get
     description: "Check format all Dart code"
 
   analyze:
@@ -48,6 +50,7 @@ scripts:
       ./scripts/delete_g_files.sh
       melos exec --depends-on="build_runner" -- flutter pub run build_runner build
       dart format . --line-length 120
+      melos pub-get
     description: "Generate code with build_runner"
 
   # Run My Quran

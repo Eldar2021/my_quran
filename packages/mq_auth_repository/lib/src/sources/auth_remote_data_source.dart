@@ -11,29 +11,15 @@ abstract class AuthRemoteDataSource {
     required Gender gender,
   });
 
-  Future<Either<UserModelResponse, Exception>> signInWithGoogle(
-    String languageCode,
-    Gender gender,
-  );
+  Future<Either<UserModelResponse, Exception>> signInWithGoogle(String languageCode, Gender gender);
 
-  Future<Either<UserModelResponse, Exception>> signInWithApple(
-    String languageCode,
-    Gender gender,
-  );
+  Future<Either<UserModelResponse, Exception>> signInWithApple(String languageCode, Gender gender);
 
-  Future<Either<UserDataResponse, Exception>> saveUserData(
-    UserEntity userEntity,
-  );
+  Future<Either<UserDataResponse, Exception>> saveUserData(UserEntity userEntity);
 
-  Future<Either<UserDataResponse, Exception>> pathGender({
-    required String userId,
-    required Gender gender,
-  });
+  Future<Either<UserDataResponse, Exception>> pathGender({required String userId, required Gender gender});
 
-  Future<Either<UserDataResponse, Exception>> pathLocaleCode({
-    required String userId,
-    required String localeCode,
-  });
+  Future<Either<UserDataResponse, Exception>> pathLocaleCode({required String userId, required String localeCode});
 
   Future<void> deleteAccountRemote();
 

@@ -11,7 +11,7 @@ final class MqAnalytic {
   static Future<void> setAnalyticsCollectionEnabled({required bool enabled}) async {
     try {
       await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(enabled);
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       MqCrashlytics.report(error, stackTrace);
       log('MqAnalytics setAnalyticsCollectionEnabled error: $error, stackTrace: $stackTrace');
     }
@@ -21,7 +21,7 @@ final class MqAnalytic {
     try {
       if (kDebugMode) return;
       await _analytics.setUserProperty(name: userName, value: null);
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       MqCrashlytics.report(error, stackTrace);
       log('MqAnalytics setUserProperty error: $error, stackTrace: $stackTrace');
     }
@@ -31,7 +31,7 @@ final class MqAnalytic {
     try {
       if (kDebugMode) return;
       _analytics.logEvent(name: event, parameters: params);
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       MqCrashlytics.report(error, stackTrace);
       log('MqAnalytics track error: $error, stackTrace: $stackTrace');
     }

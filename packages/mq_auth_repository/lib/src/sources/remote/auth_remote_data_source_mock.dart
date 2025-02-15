@@ -27,10 +27,7 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserModelResponse, Exception>> signInWithGoogle(
-    String languageCode,
-    Gender gender,
-  ) async {
+  Future<Either<UserModelResponse, Exception>> signInWithGoogle(String languageCode, Gender gender) async {
     final user = UserModelResponse(
       accessToken: 'mock_token_google',
       username: 'Mock Google User',
@@ -41,10 +38,7 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserModelResponse, Exception>> signInWithApple(
-    String languageCode,
-    Gender gender,
-  ) async {
+  Future<Either<UserModelResponse, Exception>> signInWithApple(String languageCode, Gender gender) async {
     final user = UserModelResponse(
       accessToken: 'mock_token_apple',
       username: 'Mock Apple User',
@@ -55,25 +49,14 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserDataResponse, Exception>> saveUserData(
-    UserEntity userEntity,
-  ) async {
-    final response = UserDataResponse(
-      gender: userEntity.gender.toString(),
-      language: userEntity.localeCode,
-    );
+  Future<Either<UserDataResponse, Exception>> saveUserData(UserEntity userEntity) async {
+    final response = UserDataResponse(gender: userEntity.gender.toString(), language: userEntity.localeCode);
     return Right(response);
   }
 
   @override
-  Future<Either<UserDataResponse, Exception>> pathGender({
-    required String userId,
-    required Gender gender,
-  }) async {
-    final response = UserDataResponse(
-      gender: Gender.male.toString(),
-      language: 'en',
-    );
+  Future<Either<UserDataResponse, Exception>> pathGender({required String userId, required Gender gender}) async {
+    final response = UserDataResponse(gender: Gender.male.toString(), language: 'en');
     return Right(response);
   }
 
@@ -82,10 +65,7 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
     required String userId,
     required String localeCode,
   }) async {
-    final response = UserDataResponse(
-      gender: Gender.male.toString(),
-      language: 'en',
-    );
+    final response = UserDataResponse(gender: Gender.male.toString(), language: 'en');
     return Right(response);
   }
 

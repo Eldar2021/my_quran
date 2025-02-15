@@ -2,10 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 class AppThemeCubit extends Cubit<AppTheme> {
-  AppThemeCubit(this.appThemeRepository)
-      : super(
-          appThemeRepository.getInitialThemeState(),
-        );
+  AppThemeCubit(this.appThemeRepository) : super(appThemeRepository.getInitialThemeState());
 
   final AppRepository appThemeRepository;
 

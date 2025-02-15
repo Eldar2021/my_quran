@@ -33,13 +33,7 @@ final class HatimState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        dashBoardState,
-        juzsState,
-        juzPagesState,
-        userPagesState,
-        eventState,
-      ];
+  List<Object?> get props => [dashBoardState, juzsState, juzPagesState, userPagesState, eventState];
 }
 
 @immutable

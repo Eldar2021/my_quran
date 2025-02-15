@@ -13,12 +13,7 @@ extension NavigationHelper on BuildContext {
   }) {
     final isAuthedticated = read<AuthCubit>().isAuthedticated;
     if (isAuthedticated) {
-      goNamed(
-        name,
-        pathParameters: pathParameters,
-        queryParameters: queryParameters,
-        extra: extra,
-      );
+      goNamed(name, pathParameters: pathParameters, queryParameters: queryParameters, extra: extra);
     } else {
       pushNamed(AppRouter.loginWihtSoccial);
     }

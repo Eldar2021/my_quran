@@ -22,12 +22,7 @@ final class UserModelResponse {
   final Gender gender;
   final String localeCode;
 
-  UserModelResponse copyWith({
-    String? accessToken,
-    String? username,
-    Gender? gender,
-    String? localeCode,
-  }) {
+  UserModelResponse copyWith({String? accessToken, String? username, Gender? gender, String? localeCode}) {
     return UserModelResponse(
       accessToken: accessToken ?? this.accessToken,
       username: username ?? this.username,

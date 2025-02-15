@@ -7,20 +7,17 @@ part of 'user_model.dart';
 // **************************************************************************
 
 UserModelResponse _$UserModelResponseFromJson(Map<String, dynamic> json) => UserModelResponse(
-      accessToken: json['accessToken'] as String,
-      username: json['username'] as String,
-      gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      localeCode: json['localeCode'] as String,
-    );
+  accessToken: json['accessToken'] as String,
+  username: json['username'] as String,
+  gender: $enumDecode(_$GenderEnumMap, json['gender']),
+  localeCode: json['localeCode'] as String,
+);
 
 Map<String, dynamic> _$UserModelResponseToJson(UserModelResponse instance) => <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'username': instance.username,
-      'gender': _$GenderEnumMap[instance.gender]!,
-      'localeCode': instance.localeCode,
-    };
-
-const _$GenderEnumMap = {
-  Gender.male: 'male',
-  Gender.female: 'female',
+  'accessToken': instance.accessToken,
+  'username': instance.username,
+  'gender': _$GenderEnumMap[instance.gender]!,
+  'localeCode': instance.localeCode,
 };
+
+const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};

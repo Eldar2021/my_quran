@@ -12,27 +12,15 @@ abstract class AuthRepository {
     required String languageCode,
     required Gender gender,
   });
-  Future<Either<UserEntity, Exception>> signWithGoogle(
-    String languageCode,
-    Gender gender,
-  );
+  Future<Either<UserEntity, Exception>> signWithGoogle(String languageCode, Gender gender);
 
-  Future<Either<UserEntity, Exception>> signWithApple(
-    String languageCode,
-    Gender gender,
-  );
+  Future<Either<UserEntity, Exception>> signWithApple(String languageCode, Gender gender);
 
   Future<void> setUserData(UserEntity userEntity);
 
-  Future<Either<UserDataEntity, Exception>> patchGender({
-    required String userId,
-    required Gender gender,
-  });
+  Future<Either<UserDataEntity, Exception>> patchGender({required String userId, required Gender gender});
 
-  Future<Either<UserDataEntity, Exception>> patchLocaleCode({
-    required String userId,
-    required String localeCode,
-  });
+  Future<Either<UserDataEntity, Exception>> patchLocaleCode({required String userId, required String localeCode});
 
   Future<void> deleteAccount();
 
