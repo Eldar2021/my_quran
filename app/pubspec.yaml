@@ -71,7 +71,7 @@ dependencies:
   mq_prayer_time:
     path: ../packages/mq_prayer_time
 
-  # flutter_native_splash: ^2.4.4
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_test:
