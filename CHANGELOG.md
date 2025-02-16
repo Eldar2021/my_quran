@@ -217,3 +217,19 @@
 ## [Technical]
 
 - Implemented dev mode for back
+
+---
+
+# What's Changed v1.3.14+24
+
+## [UX]
+
+- Fixed app icon on Android rounded
+- Fixed splash screen
+
+## [Technical]
+
+- Upgraded flutter v3.29.0
+- Upgrade all dependencies
+- Move PackageInfo to MqRemoteConfig
+- Upgraded Android gradle/kotlin
