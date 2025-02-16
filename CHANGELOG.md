@@ -230,6 +230,6 @@
 ## [Technical]
 
 - Upgraded flutter v3.29.0
-- Upgrade all dependencies
-- Move PackageInfo to MqRemoteConfig
+- Upgraded all dependencies
+- Moved PackageInfo to MqRemoteConfig
 - Upgraded Android gradle/kotlin
