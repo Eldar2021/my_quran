@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 
@@ -17,14 +16,7 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
 
   @override
   Future<HatimReadModel> getHatim() async {
-    try {
-      final res = await remoteClient.postType('/api/v1/hatim/join_to_hatim', fromJson: HatimReadModel.fromJson);
-
-      return res.fold((l) => throw l, (r) => r);
-    } catch (e, s) {
-      MqCrashlytics.report(e, s);
-      throw Exception(e);
-    }
+    return remoteClient.postType('/api/v1/hatim/join_to_hatim', fromJson: HatimReadModel.fromJson);
   }
 
   @override
