@@ -18,68 +18,52 @@ void main() {
 
   group('MqRemoteClient `get`, `getType`, `getListOfType`', () {
     test('Get', () async {
-      Map<String, dynamic>? mapValue;
-      List<dynamic>? listValue;
-
-      final mapResponse = await client.get<Map<String, dynamic>>(postDatas);
-      mapResponse.fold((l) => null, (r) => mapValue = r);
+      final mapValue = await client.get<Map<String, dynamic>>(postDatas);
 
       expect(mapValue, isNotNull);
       expect(mapValue, isMap);
       expect(mapValue, isA<Map<String, dynamic>>());
 
-      final listResponse = await client.get<List<dynamic>>(postList);
-      listResponse.fold((l) => null, (r) => listValue = r);
+      final listValue = await client.get<List<dynamic>>(postList);
       expect(listValue, isNotNull);
       expect(listValue, isList);
-      expect(listValue?.isNotEmpty, true);
+      expect(listValue.isNotEmpty, true);
       expect(listValue, isA<List<dynamic>>());
     });
 
     test('Get Type', () async {
-      TestModel? testModel;
-      final response = await client.getType<TestModel>(postDatas, fromJson: TestModel.fromJson);
-      response.fold((l) => null, (r) => testModel = r);
+      final testModel = await client.getType<TestModel>(postDatas, fromJson: TestModel.fromJson);
       expect(testModel, isNotNull);
       expect(testModel, isA<TestModel>());
     });
 
     test('Get List Of Type', () async {
-      List<TestModel>? testModelList;
-      final response = await client.getListOfType<TestModel>(postList, fromJson: TestModel.fromJson);
-      response.fold((l) => null, (r) => testModelList = r);
+      final testModelList = await client.getListOfType<TestModel>(postList, fromJson: TestModel.fromJson);
       expect(testModelList, isNotNull);
       expect(testModelList, isList);
       expect(testModelList, isA<List<TestModel>>());
-      expect(testModelList?[0], isA<TestModel>());
+      expect(testModelList[0], isA<TestModel>());
     });
 
     test('Get empty List', () async {
-      List<TestModel>? testModelList;
-      final response = await client.getListOfType<TestModel>(emptyList, fromJson: TestModel.fromJson);
-      response.fold((l) => null, (r) => testModelList = r);
+      final testModelList = await client.getListOfType<TestModel>(emptyList, fromJson: TestModel.fromJson);
       expect(testModelList, isNotNull);
       expect(testModelList, isList);
       expect(testModelList, isA<List<TestModel>>());
-      expect(testModelList?.isEmpty, true);
+      expect(testModelList.isEmpty, true);
     });
   });
 
   group('MqRemoteClient `post`, `postType`, `postListOfType`', () {
     test('Post', () async {
-      Map<String, dynamic>? mapValue;
-      final mapResponse = await client.post<Map<String, dynamic>>(postList, body: requestBody);
-
-      mapResponse.fold((l) => null, (r) => mapValue = r);
+      final mapValue = await client.post<Map<String, dynamic>>(postList, body: requestBody);
 
       expect(mapValue, isNotNull);
       expect(mapValue, isA<Map<String, dynamic>>());
     });
 
     test('Post Type', () async {
-      TestModel? testModel;
-      final response = await client.postType<TestModel>(postList, body: requestBody, fromJson: TestModel.fromJson);
-      response.fold((l) => null, (r) => testModel = r);
+      final testModel = await client.postType<TestModel>(postList, body: requestBody, fromJson: TestModel.fromJson);
 
       expect(testModel, isA<TestModel>());
     });
@@ -87,19 +71,14 @@ void main() {
 
   group('MqRemoteClient `put`, `putType`, `putListOfType`', () {
     test('Put', () async {
-      Map<String, dynamic>? mapValue;
-
-      final mapResponse = await client.put<Map<String, dynamic>>(postDatas, body: requestBody);
-      mapResponse.fold((l) => null, (r) => mapValue = r);
+      final mapValue = await client.put<Map<String, dynamic>>(postDatas, body: requestBody);
       expect(mapValue, isNotNull);
 
       expect(mapValue, isA<Map<String, dynamic>>());
     });
 
     test('Put Type', () async {
-      TestModel? testModel;
-      final response = await client.putType<TestModel>(postDatas, body: requestBody, fromJson: TestModel.fromJson);
-      response.fold((l) => null, (r) => testModel = r);
+      final testModel = await client.putType<TestModel>(postDatas, body: requestBody, fromJson: TestModel.fromJson);
 
       expect(testModel, isA<TestModel>());
     });
@@ -107,24 +86,14 @@ void main() {
 
   group('MqRemoteClient `patch`, `patchType`, `patchListOfType`', () {
     test('Patch', () async {
-      Map<String, dynamic>? mapValue;
+      final mapValue = await client.patch<Map<String, dynamic>>(postDatas, fromJson: (json) => json, body: requestBody);
 
-      final mapResponse = await client.patch<Map<String, dynamic>>(
-        postDatas,
-        fromJson: (json) => json,
-        body: requestBody,
-      );
-
-      mapResponse.fold((l) => null, (r) => mapValue = r);
       expect(mapValue, isNotNull);
-
       expect(mapValue, isA<Map<String, dynamic>>());
     });
 
     test('Patch Type', () async {
-      TestModel? testModel;
-      final response = await client.patchType<TestModel>(postDatas, body: requestBody, fromJson: TestModel.fromJson);
-      response.fold((l) => null, (r) => testModel = r);
+      final testModel = await client.patchType<TestModel>(postDatas, body: requestBody, fromJson: TestModel.fromJson);
 
       expect(testModel, isA<TestModel>());
     });
