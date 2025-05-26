@@ -1,9 +1,5 @@
-import 'dart:developer';
-
 import 'package:meta/meta.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
-import 'package:mq_crashlytics/mq_crashlytics.dart';
-import 'package:mq_either/mq_either.dart';
 
 @immutable
 final class AuthRepositoryImpl implements AuthRepository {
@@ -17,115 +13,77 @@ final class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> setUserData(UserEntity userEntity) async {
-    try {
-      await remoteDataSource.saveUserData(userEntity);
-      await localDataSource.saveUserData(userEntity);
-    } on Exception catch (e, s) {
-      MqCrashlytics.report(e, s);
-      log('setUserData error $e,\n$s');
-    }
+    await remoteDataSource.saveUserData(userEntity);
+    await localDataSource.saveUserData(userEntity);
   }
 
   @override
   Future<void> loginWithEmail(String email) async {
-    try {
-      await remoteDataSource.loginWithEmail(email);
-    } on Exception catch (e, s) {
-      MqCrashlytics.report(e, s);
-      log('signWithEmail: error: $e\n$s');
-    }
+    await remoteDataSource.loginWithEmail(email);
   }
 
   @override
-  Future<Either<UserEntity, Exception>> verifyOtp({
+  Future<UserEntity> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
     required Gender gender,
   }) async {
-    try {
-      final res = await remoteDataSource.verifyOtp(email: email, otp: otp, languageCode: languageCode, gender: gender);
-
-      return res.fold(Left.new, (r) {
-        final userEntity = UserEntity(
-          accessToken: r.accessToken,
-          username: r.username,
-          gender: r.gender,
-          localeCode: r.localeCode,
-        );
-        return Right(userEntity);
-      });
-    } on Exception catch (e, s) {
-      log('signWithemail: error: $e\n$s');
-      MqCrashlytics.report(e, s);
-      return Left(AuthenticationExc(message: e.toString()));
-    }
+    final res = await remoteDataSource.verifyOtp(email: email, otp: otp, languageCode: languageCode, gender: gender);
+    return UserEntity(
+      accessToken: res.accessToken,
+      username: res.username,
+      gender: res.gender,
+      localeCode: res.localeCode,
+    );
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signWithGoogle(String languageCode, Gender gender) async {
+  Future<UserEntity> signWithGoogle(String languageCode, Gender gender) async {
     final res = await remoteDataSource.signInWithGoogle(languageCode, gender);
-    return res.fold(
-      Left.new,
-      (r) => Right(
-        UserEntity(accessToken: r.accessToken, username: r.username, gender: r.gender, localeCode: r.localeCode),
-      ),
+
+    return UserEntity(
+      accessToken: res.accessToken,
+      username: res.username,
+      gender: res.gender,
+      localeCode: res.localeCode,
     );
   }
 
   @override
-  Future<Either<UserEntity, Exception>> signWithApple(String languageCode, Gender gender) async {
+  Future<UserEntity> signWithApple(String languageCode, Gender gender) async {
     final res = await remoteDataSource.signInWithApple(languageCode, gender);
-    return res.fold(
-      Left.new,
-      (r) => Right(
-        UserEntity(accessToken: r.accessToken, username: r.username, gender: r.gender, localeCode: r.localeCode),
-      ),
+    return UserEntity(
+      accessToken: res.accessToken,
+      username: res.username,
+      gender: res.gender,
+      localeCode: res.localeCode,
     );
   }
 
   @override
-  Future<Either<UserDataEntity, Exception>> patchGender({required String userId, required Gender gender}) async {
+  Future<UserDataEntity> patchGender({required String userId, required Gender gender}) async {
     final res = await remoteDataSource.pathGender(userId: userId, gender: gender);
-    return res.fold(Left.new, (r) async {
-      final entity = UserDataEntity(gender: r.gender, language: r.language);
-      await localDataSource.saveGender(gender);
-      return Right(entity);
-    });
+    await localDataSource.saveGender(gender);
+    return UserDataEntity(gender: res.gender, language: res.language);
   }
 
   @override
-  Future<Either<UserDataEntity, Exception>> patchLocaleCode({
-    required String userId,
-    required String localeCode,
-  }) async {
+  Future<UserDataEntity> patchLocaleCode({required String userId, required String localeCode}) async {
     final res = await remoteDataSource.pathLocaleCode(userId: userId, localeCode: localeCode);
-    return res.fold(Left.new, (r) async {
-      final entity = UserDataEntity(gender: r.gender, language: r.language);
-      await localDataSource.saveLocaleCode(localeCode);
-      return Right(entity);
-    });
+    await localDataSource.saveLocaleCode(localeCode);
+    return UserDataEntity(gender: res.gender, language: res.language);
   }
 
   @override
   Future<void> deleteAccount() async {
-    try {
-      await remoteDataSource.deleteAccountRemote();
-      await localDataSource.deleteAccountLocal();
-    } on Exception catch (e, s) {
-      MqCrashlytics.report(e, s);
-      log('Delete Account error: $e\n$s');
-    }
+    await remoteDataSource.deleteAccountRemote();
+    await localDataSource.deleteAccountLocal();
   }
 
   @override
   Future<void> logout() async {
-    try {
-      await remoteDataSource.logoutRemote();
-      await localDataSource.logoutLocal();
-    } on Exception catch (e, s) {
-      MqCrashlytics.report(e, s);
-      log('logout error: $e\n$s');
-    }
+    await remoteDataSource.logoutRemote();
+    await localDataSource.logoutLocal();
   }
 }
