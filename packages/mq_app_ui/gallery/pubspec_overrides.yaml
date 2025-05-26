@@ -2,8 +2,6 @@
 dependency_overrides:
   mq_app_ui:
     path: ..
-  mq_either:
-    path: ../../mq_either
   mq_prayer_time:
     path: ../../mq_prayer_time
   mq_remote_client:
