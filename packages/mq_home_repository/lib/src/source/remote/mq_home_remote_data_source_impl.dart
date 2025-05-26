@@ -9,42 +9,31 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
   final MqRemoteClient remoteClient;
 
   @override
-  Future<MqHomeModelResponse> getRemoteData() async {
-    final remoteValue = await remoteClient.getType<MqHomeModelResponse>(
-      '/api/v1/hatim/dashboard',
-      fromJson: MqHomeModelResponse.fromJson,
-    );
-
-    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
+  Future<MqHomeModelResponse> getRemoteData() {
+    return remoteClient.getType<MqHomeModelResponse>('/api/v1/hatim/dashboard', fromJson: MqHomeModelResponse.fromJson);
   }
 
   @override
   Future<List<MqStoryModelResponse>> getStories(String language) async {
-    final remoteValue = await remoteClient.getListOfType<MqStoryModelResponse>(
+    return remoteClient.getListOfType<MqStoryModelResponse>(
       'https://eldar2021.github.io/my-quran/stories/$language/my-quran-stories.json',
       fromJson: MqStoryModelResponse.fromJson,
     );
-
-    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
   }
 
   @override
   Future<MqDonationPageResponse> getDonationPageData() async {
-    final remoteValue = await remoteClient.getType<MqDonationPageResponse>(
+    return remoteClient.getType<MqDonationPageResponse>(
       'https://eldar2021.github.io/my-quran/donation-requisites/requisites.json',
       fromJson: MqDonationPageResponse.fromJson,
     );
-
-    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
   }
 
   @override
   Future<List<MqHomeBannerResponse>> getHomeBanners() async {
-    final remoteValue = await remoteClient.getListOfType<MqHomeBannerResponse>(
+    return remoteClient.getListOfType<MqHomeBannerResponse>(
       'https://eldar2021.github.io/my-quran/banners/home_banners.json',
       fromJson: MqHomeBannerResponse.fromJson,
     );
-
-    return remoteValue.fold((left) => throw Exception('Failed to fetch remote data $left'), (right) => right);
   }
 }
