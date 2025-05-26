@@ -46,8 +46,6 @@ dependencies:
   # Packages
   mq_ci_keys:
     path: ../packages/mq_ci_keys
-  mq_either:
-    path: ../packages/mq_either
   mq_remote_client:
     path: ../packages/mq_remote_client
   mq_storage:

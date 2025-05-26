@@ -842,13 +842,6 @@ packages:
       relative: true
     source: path
     version: "0.1.0+1"
-  mq_either:
-    dependency: "direct main"
-    description:
-      path: "../packages/mq_either"
-      relative: true
-    source: path
-    version: "0.1.0+1"
   mq_hatim_repository:
     dependency: "direct main"
     description:

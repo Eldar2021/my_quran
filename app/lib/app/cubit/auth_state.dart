@@ -4,14 +4,14 @@ class AuthState extends Equatable {
   const AuthState({this.user, this.exception, this.localeForNow, this.genderForNow});
 
   final UserEntity? user;
-  final Exception? exception;
+  final Object? exception;
   final String? localeForNow;
   final Gender? genderForNow;
 
   @override
   List<Object?> get props => [user, exception, localeForNow, genderForNow];
 
-  AuthState copyWith({UserEntity? user, Exception? exception, String? localeForNow, Gender? genderForNow}) {
+  AuthState copyWith({UserEntity? user, Object? exception, String? localeForNow, Gender? genderForNow}) {
     return AuthState(
       user: user ?? this.user,
       exception: exception ?? this.exception,

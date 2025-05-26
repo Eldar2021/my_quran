@@ -17,31 +17,44 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await authRepository.loginWithEmail(email);
     } on Exception catch (e) {
-      emit(state.copyWith(exception: Exception(e)));
+      emit(state.copyWith(exception: e));
     }
   }
 
   Future<AuthState> verifyOtp(String otp, String email) async {
-    final user = await authRepository.verifyOtp(
-      email: email,
-      otp: otp,
-      languageCode: state.currentLocale.languageCode,
-      gender: state.gender,
-    );
-    user.fold((l) => emit(state.copyWith(exception: l)), (r) => emit(state.copyWith(user: r)));
-    return state;
+    try {
+      final user = await authRepository.verifyOtp(
+        email: email,
+        otp: otp,
+        languageCode: state.currentLocale.languageCode,
+        gender: state.gender,
+      );
+      emit(state.copyWith(user: user));
+      return state;
+    } on Exception catch (e) {
+      emit(state.copyWith(exception: e));
+      return state;
+    }
   }
 
   Future<AuthState> signInWithGoogle() async {
-    final user = await authRepository.signWithGoogle(state.currentLocale.languageCode, state.gender);
-    user.fold((l) => emit(state.copyWith(exception: l)), (r) => emit(state.copyWith(user: r)));
-    return state;
+    try {
+      final user = await authRepository.signWithGoogle(state.currentLocale.languageCode, state.gender);
+      emit(state.copyWith(user: user));
+      return state;
+    } on Exception catch (e) {
+      emit(state.copyWith(exception: e));
+      return state;
+    }
   }
 
   Future<AuthState> signInWithApple() async {
-    final user = await authRepository.signWithApple(state.currentLocale.languageCode, state.gender);
-
-    user.fold((l) => emit(state.copyWith(exception: l)), (r) => emit(state.copyWith(user: r)));
+    try {
+      final user = await authRepository.signWithApple(state.currentLocale.languageCode, state.gender);
+      emit(state.copyWith(user: user));
+    } on Exception catch (e) {
+      emit(state.copyWith(exception: e));
+    }
 
     return state;
   }
@@ -52,12 +65,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> saveLocale(String localeCode) async {
     if (state.isAuthedticated) {
-      final res = await authRepository.patchLocaleCode(userId: state.user!.accessToken, localeCode: localeCode);
-
-      res.fold((l) => emit(state.copyWith(exception: l)), (r) {
-        final newUser = state.user!.copyWith(localeCode: r.localeValue);
+      try {
+        final res = await authRepository.patchLocaleCode(userId: state.user!.accessToken, localeCode: localeCode);
+        final newUser = state.user!.copyWith(localeCode: res.localeValue);
         emit(state.copyWith(user: newUser));
-      });
+      } on Exception catch (e) {
+        emit(state.copyWith(exception: e));
+        return;
+      }
     } else {
       emit(state.copyWith(localeForNow: localeCode));
     }
@@ -65,12 +80,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> saveGender(Gender gender) async {
     if (state.isAuthedticated) {
-      final res = await authRepository.patchGender(userId: state.user!.accessToken, gender: gender);
-
-      res.fold((l) => emit(state.copyWith(exception: l)), (r) {
-        final newUser = state.user!.copyWith(gender: r.genderValue);
+      try {
+        final res = await authRepository.patchGender(userId: state.user!.accessToken, gender: gender);
+        final newUser = state.user!.copyWith(gender: res.genderValue);
         emit(state.copyWith(user: newUser));
-      });
+      } on Exception catch (e) {
+        emit(state.copyWith(exception: e));
+        return;
+      }
     } else {
       emit(state.copyWith(genderForNow: gender));
     }
@@ -81,7 +98,7 @@ class AuthCubit extends Cubit<AuthState> {
       await authRepository.deleteAccount();
       emit(const AuthState());
     } on Exception catch (e) {
-      emit(state.copyWith(exception: Exception(e)));
+      emit(state.copyWith(exception: e));
     }
   }
 
@@ -90,7 +107,7 @@ class AuthCubit extends Cubit<AuthState> {
       await authRepository.logout();
       emit(const AuthState());
     } on Exception catch (e) {
-      emit(state.copyWith(exception: Exception(e)));
+      emit(state.copyWith(exception: e));
     }
   }
 
