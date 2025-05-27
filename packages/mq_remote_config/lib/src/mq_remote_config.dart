@@ -22,7 +22,7 @@ class MqRemoteConfig {
       RemoteConfigSettings(fetchTimeout: const Duration(minutes: 1), minimumFetchInterval: const Duration(hours: 1)),
     );
 
-    await _firebaseRemoteConfig.setDefaults(_defaultParams(currentBuildNumber));
+    await _firebaseRemoteConfig.setDefaults(defaultParams(currentBuildNumber));
     await _firebaseRemoteConfig.fetchAndActivate();
   }
 
@@ -41,18 +41,18 @@ class MqRemoteConfig {
   static const _donationIsEnable = 'donationIsEnable';
   static const _appVersion = 'appVersion';
 
-  static Map<String, dynamic> _defaultAppVersionValue(int currentBuildNumber) {
+  static Map<String, dynamic> defaultAppVersionValue(int currentBuildNumber) {
     return {
       'android': {'requiredBuildNumber': currentBuildNumber, 'recommendedBuildNumber': currentBuildNumber},
       'ios': {'requiredBuildNumber': currentBuildNumber, 'recommendedBuildNumber': currentBuildNumber},
     };
   }
 
-  static Map<String, dynamic> _defaultParams(int currentBuildNumber) {
+  static Map<String, dynamic> defaultParams(int currentBuildNumber) {
     return {
       _hatimIsEnable: true,
       _donationIsEnable: false,
-      _appVersion: jsonEncode(_defaultAppVersionValue(currentBuildNumber)),
+      _appVersion: jsonEncode(defaultAppVersionValue(currentBuildNumber)),
     };
   }
 
