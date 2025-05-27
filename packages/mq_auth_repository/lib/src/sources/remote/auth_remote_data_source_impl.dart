@@ -26,7 +26,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     final token = await client.postType(
       '/api/v1/accounts/otp/verify/',
-      fromJson: TokenResponse.fromJson,
+      fromJson: TokenModel.fromJson,
       body: {'email': email, 'opt': otp},
     );
 
@@ -52,8 +52,8 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final token = await client.postType(
       '/api/v1/accounts/google/',
-      fromJson: TokenResponse.fromJson,
-      body: {'access_token': googleAuth.accessToken},
+      fromJson: TokenModel.fromJson,
+      body: {'access_token': googleAuth.accessToken, 'gender': gender.name, 'language': languageCode},
     );
 
     final user = UserModelResponse(
@@ -85,8 +85,13 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final token = await client.postType(
       '/api/v1/accounts/apple/',
-      fromJson: TokenResponse.fromJson,
-      body: {'access_token': appleAuth.accessToken, 'id_token': appleAuth.identityToken},
+      fromJson: TokenModel.fromJson,
+      body: {
+        'access_token': appleAuth.accessToken,
+        'id_token': appleAuth.identityToken,
+        'gender': gender.name,
+        'language': languageCode,
+      },
     );
 
     final user = UserModelResponse(
@@ -115,11 +120,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserDataResponse> saveUserData(UserEntity userEntity) {
+  Future<UserDataResponse> saveUserData(UserModelResponse userModel) {
     return client.putType(
-      '/api/v1/accounts/profile/${userEntity.accessToken}/',
+      '/api/v1/accounts/profile/${userModel.accessToken}/',
       fromJson: UserDataResponse.fromJson,
-      body: {'gender': userEntity.gender.name.toUpperCase(), 'language': userEntity.localeCode.toUpperCase()},
+      body: {'gender': userModel.gender.name.toUpperCase(), 'language': userModel.localeCode.toUpperCase()},
     );
   }
 

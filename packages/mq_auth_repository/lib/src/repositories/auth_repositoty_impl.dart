@@ -9,10 +9,10 @@ final class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   @override
-  UserEntity? get init => localDataSource.init;
+  UserModelResponse? get init => localDataSource.init;
 
   @override
-  Future<void> setUserData(UserEntity userEntity) async {
+  Future<void> setUserData(UserModelResponse userEntity) async {
     await remoteDataSource.saveUserData(userEntity);
     await localDataSource.saveUserData(userEntity);
   }
@@ -23,14 +23,14 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserEntity> verifyOtp({
+  Future<UserModelResponse> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
     required Gender gender,
   }) async {
     final res = await remoteDataSource.verifyOtp(email: email, otp: otp, languageCode: languageCode, gender: gender);
-    return UserEntity(
+    return UserModelResponse(
       accessToken: res.accessToken,
       username: res.username,
       gender: res.gender,
@@ -39,10 +39,10 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserEntity> signWithGoogle(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signWithGoogle(String languageCode, Gender gender) async {
     final res = await remoteDataSource.signInWithGoogle(languageCode, gender);
 
-    return UserEntity(
+    return UserModelResponse(
       accessToken: res.accessToken,
       username: res.username,
       gender: res.gender,
@@ -51,9 +51,9 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserEntity> signWithApple(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signWithApple(String languageCode, Gender gender) async {
     final res = await remoteDataSource.signInWithApple(languageCode, gender);
-    return UserEntity(
+    return UserModelResponse(
       accessToken: res.accessToken,
       username: res.username,
       gender: res.gender,
@@ -62,17 +62,17 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserDataEntity> patchGender({required String userId, required Gender gender}) async {
+  Future<UserDataResponse> patchGender({required String userId, required Gender gender}) async {
     final res = await remoteDataSource.pathGender(userId: userId, gender: gender);
     await localDataSource.saveGender(gender);
-    return UserDataEntity(gender: res.gender, language: res.language);
+    return UserDataResponse(gender: res.gender, language: res.language);
   }
 
   @override
-  Future<UserDataEntity> patchLocaleCode({required String userId, required String localeCode}) async {
+  Future<UserDataResponse> patchLocaleCode({required String userId, required String localeCode}) async {
     final res = await remoteDataSource.pathLocaleCode(userId: userId, localeCode: localeCode);
     await localDataSource.saveLocaleCode(localeCode);
-    return UserDataEntity(gender: res.gender, language: res.language);
+    return UserDataResponse(gender: res.gender, language: res.language);
   }
 
   @override

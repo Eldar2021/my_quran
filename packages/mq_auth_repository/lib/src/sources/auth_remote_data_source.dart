@@ -14,7 +14,7 @@ abstract class AuthRemoteDataSource {
 
   Future<UserModelResponse> signInWithApple(String languageCode, Gender gender);
 
-  Future<UserDataResponse> saveUserData(UserEntity userEntity);
+  Future<UserDataResponse> saveUserData(UserModelResponse userModel);
 
   Future<UserDataResponse> pathGender({required String userId, required Gender gender});
 

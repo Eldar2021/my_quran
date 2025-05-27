@@ -9,13 +9,13 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   final PreferencesStorage storage;
 
   @override
-  UserEntity? get init {
+  UserModelResponse? get init {
     final userToken = storage.readString(key: MqAuthStatics.tokenKey);
     final userGender = storage.readString(key: MqAuthStatics.genderKey);
     final username = storage.readString(key: MqAuthStatics.usernameKey);
     final localeCode = storage.readString(key: MqAuthStatics.localeKey);
     if (userToken == null && userGender == null && username == null) return null;
-    return UserEntity(
+    return UserModelResponse(
       accessToken: userToken!,
       username: username!,
       gender: userGender == Gender.male.name ? Gender.male : Gender.female,
@@ -27,11 +27,11 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   String? getToken() => storage.readString(key: MqAuthStatics.tokenKey);
 
   @override
-  Future<void> saveUserData(UserEntity userEntity) async {
+  Future<void> saveUserData(UserModelResponse userModel) async {
     await Future.wait([
-      storage.writeString(key: MqAuthStatics.localeKey, value: userEntity.localeCode),
-      storage.writeString(key: MqAuthStatics.genderKey, value: userEntity.gender.name),
-      storage.writeString(key: MqAuthStatics.usernameKey, value: userEntity.username),
+      storage.writeString(key: MqAuthStatics.localeKey, value: userModel.localeCode),
+      storage.writeString(key: MqAuthStatics.genderKey, value: userModel.gender.name),
+      storage.writeString(key: MqAuthStatics.usernameKey, value: userModel.username),
     ]);
   }
 
