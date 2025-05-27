@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:mq_either/mq_either.dart';
+import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 
 part 'mq_remote_client_base_extension.dart';
@@ -59,7 +59,7 @@ class MqRemoteClient {
   }
 
   /// Makes a GET request to the given [url] and parses the response as type [T]
-  Future<Either<T, MqRemoteException>> get<T>(String url) {
+  Future<T> get<T>(String url) {
     return _get<T>(url);
   }
 
@@ -67,7 +67,7 @@ class MqRemoteClient {
   /// from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, MqRemoteException>> getType<T>(String url, {required FromJson<T> fromJson}) async {
+  Future<T> getType<T>(String url, {required FromJson<T> fromJson}) async {
     final data = await _get<Map<String, dynamic>>(url);
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
@@ -76,14 +76,14 @@ class MqRemoteClient {
   /// of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, MqRemoteException>> getListOfType<T>(String url, {required FromJson<T> fromJson}) async {
+  Future<List<T>> getListOfType<T>(String url, {required FromJson<T> fromJson}) async {
     final data = await _get<List<dynamic>>(url);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
 
   /// Makes a POST request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, MqRemoteException>> post<T>(String url, {Map<String, dynamic>? body}) {
+  Future<T> post<T>(String url, {Map<String, dynamic>? body}) {
     return _post<T>(url, body: body);
   }
 
@@ -91,11 +91,7 @@ class MqRemoteClient {
   /// the response as type [T] from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, MqRemoteException>> postType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<T> postType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _post<Map<String, dynamic>>(url, body: body);
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
@@ -104,18 +100,14 @@ class MqRemoteClient {
   /// the response as a list of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, MqRemoteException>> postListOfType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<List<T>> postListOfType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _post<List<dynamic>>(url, body: body);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
 
   /// Makes a PUT request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, MqRemoteException>> put<T>(String url, {Map<String, dynamic>? body}) {
+  Future<T> put<T>(String url, {Map<String, dynamic>? body}) {
     return _put<T>(url, body: body);
   }
 
@@ -123,11 +115,7 @@ class MqRemoteClient {
   /// the response as type [T] from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, MqRemoteException>> putType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<T> putType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _put<Map<String, dynamic>>(url, body: body);
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
@@ -136,11 +124,7 @@ class MqRemoteClient {
   /// the response as a list of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, MqRemoteException>> putListOfType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<List<T>> putListOfType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _put<List<dynamic>>(url, body: body);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
@@ -149,11 +133,7 @@ class MqRemoteClient {
   /// parses the response as type [T].
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, MqRemoteException>> patch<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<T> patch<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final response = await _patch<T>(url, body: body);
     return response;
   }
@@ -162,11 +142,7 @@ class MqRemoteClient {
   /// parses the response as type [T] from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, MqRemoteException>> patchType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<T> patchType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _patch<Map<String, dynamic>>(url, body: body);
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
@@ -175,18 +151,14 @@ class MqRemoteClient {
   /// parses the response as a list of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, MqRemoteException>> patchListOfType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<List<T>> patchListOfType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _patch<List<dynamic>>(url, body: body);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }
 
   /// Makes a DELETE request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<Either<T, MqRemoteException>> delete<T>(String url, {Map<String, dynamic>? body}) {
+  Future<T> delete<T>(String url, {Map<String, dynamic>? body}) {
     return _delete<T>(url, body: body);
   }
 
@@ -194,11 +166,7 @@ class MqRemoteClient {
   /// the response as type [T] from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<Either<T, MqRemoteException>> deleteType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<T> deleteType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _delete<Map<String, dynamic>>(url, body: body);
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
@@ -207,11 +175,7 @@ class MqRemoteClient {
   /// the response as a list of type [T].
   ///
   /// The [fromJson] parameter is used to parse each JSON object in the list.
-  Future<Either<List<T>, MqRemoteException>> deleteListOfType<T>(
-    String url, {
-    required FromJson<T> fromJson,
-    Map<String, dynamic>? body,
-  }) async {
+  Future<List<T>> deleteListOfType<T>(String url, {required FromJson<T> fromJson, Map<String, dynamic>? body}) async {
     final data = await _delete<List<dynamic>>(url, body: body);
     return _convertListOfType(jsonData: data, fromJson: fromJson);
   }

@@ -1,8 +1,6 @@
-# melos_managed_dependency_overrides: mq_crashlytics,mq_either,mq_remote_client
+# melos_managed_dependency_overrides: mq_crashlytics,mq_remote_client
 dependency_overrides:
   mq_crashlytics:
     path: ../mq_crashlytics
-  mq_either:
-    path: ../mq_either
   mq_remote_client:
     path: ../mq_remote_client

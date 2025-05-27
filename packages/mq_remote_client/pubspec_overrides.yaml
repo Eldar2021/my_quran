@@ -1,4 +1,0 @@
-# melos_managed_dependency_overrides: mq_either
-dependency_overrides:
-  mq_either:
-    path: ../mq_either

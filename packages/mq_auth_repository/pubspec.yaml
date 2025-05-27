@@ -18,8 +18,6 @@ dependencies:
 
   mq_crashlytics:
     path: ../mq_crashlytics
-  mq_either:
-    path: ../mq_either
   mq_storage:
     path: ../mq_storage
   mq_remote_client:

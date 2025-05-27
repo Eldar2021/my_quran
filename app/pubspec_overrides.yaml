@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: mq_analytics,mq_app_ui,mq_auth_repository,mq_ci_keys,mq_crashlytics,mq_either,mq_hatim_repository,mq_home_repository,mq_prayer_time,mq_quran_repository,mq_remote_config,mq_storage
+# melos_managed_dependency_overrides: mq_analytics,mq_app_ui,mq_auth_repository,mq_ci_keys,mq_crashlytics,mq_hatim_repository,mq_home_repository,mq_prayer_time,mq_quran_repository,mq_remote_config,mq_storage
 dependency_overrides:
   mq_remote_client:
     path: ../packages/mq_remote_client
@@ -12,8 +12,6 @@ dependency_overrides:
     path: ../packages/mq_ci_keys
   mq_crashlytics:
     path: ../packages/mq_crashlytics
-  mq_either:
-    path: ../packages/mq_either
   mq_hatim_repository:
     path: ../packages/mq_hatim_repository
   mq_home_repository:
@@ -26,4 +24,3 @@ dependency_overrides:
     path: ../packages/mq_remote_config
   mq_storage:
     path: ../packages/mq_storage
-

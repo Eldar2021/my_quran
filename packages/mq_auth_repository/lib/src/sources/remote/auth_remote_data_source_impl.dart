@@ -1,6 +1,5 @@
 import 'package:meta/meta.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
-import 'package:mq_either/mq_either.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
 
@@ -19,29 +18,23 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final bool isIntegrationTest;
 
   @override
-  Future<Either<UserModelResponse, Exception>> verifyOtp({
+  Future<UserModelResponse> verifyOtp({
     required String otp,
     required String email,
     required String languageCode,
     required Gender gender,
   }) async {
-    try {
-      final token = await client.postType(
-        '/api/v1/accounts/otp/verify/',
-        fromJson: TokenResponse.fromJson,
-        body: {'email': email, 'opt': otp},
-      );
+    final token = await client.postType(
+      '/api/v1/accounts/otp/verify/',
+      fromJson: TokenResponse.fromJson,
+      body: {'email': email, 'opt': otp},
+    );
 
-      return token.fold(Left.new, (r) async {
-        final user = UserModelResponse(accessToken: r.key, username: email, gender: gender, localeCode: languageCode);
+    final user = UserModelResponse(accessToken: token.key, username: email, gender: gender, localeCode: languageCode);
 
-        await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
+    await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
 
-        return Right(user);
-      });
-    } on Exception catch (e) {
-      return Left(Exception('Error fetching SMS code: $e'));
-    }
+    return user;
   }
 
   @override
@@ -54,7 +47,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserModelResponse, Exception>> signInWithGoogle(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signInWithGoogle(String languageCode, Gender gender) async {
     final googleAuth = await _getGoogleAuth();
 
     final token = await client.postType(
@@ -63,18 +56,16 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       body: {'access_token': googleAuth.accessToken},
     );
 
-    return token.fold(Left.new, (r) async {
-      final user = UserModelResponse(
-        accessToken: r.key,
-        username: googleAuth.name,
-        gender: gender,
-        localeCode: languageCode,
-      );
+    final user = UserModelResponse(
+      accessToken: token.key,
+      username: googleAuth.name,
+      gender: gender,
+      localeCode: languageCode,
+    );
 
-      await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
+    await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
 
-      return Right(user);
-    });
+    return user;
   }
 
   Future<_UserReqParam> _getGoogleAuth() async {
@@ -89,7 +80,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserModelResponse, Exception>> signInWithApple(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signInWithApple(String languageCode, Gender gender) async {
     final appleAuth = await _getAppleAuth();
 
     final token = await client.postType(
@@ -98,18 +89,16 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       body: {'access_token': appleAuth.accessToken, 'id_token': appleAuth.identityToken},
     );
 
-    return token.fold(Left.new, (r) async {
-      final user = UserModelResponse(
-        accessToken: r.key,
-        username: appleAuth.name,
-        gender: gender,
-        localeCode: languageCode,
-      );
+    final user = UserModelResponse(
+      accessToken: token.key,
+      username: appleAuth.name,
+      gender: gender,
+      localeCode: languageCode,
+    );
 
-      await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
+    await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
 
-      return Right(user);
-    });
+    return user;
   }
 
   Future<_UserReqParam> _getAppleAuth() async {
@@ -126,7 +115,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserDataResponse, Exception>> saveUserData(UserEntity userEntity) {
+  Future<UserDataResponse> saveUserData(UserEntity userEntity) {
     return client.putType(
       '/api/v1/accounts/profile/${userEntity.accessToken}/',
       fromJson: UserDataResponse.fromJson,
@@ -135,7 +124,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserDataResponse, Exception>> pathGender({required String userId, required Gender gender}) {
+  Future<UserDataResponse> pathGender({required String userId, required Gender gender}) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
       fromJson: UserDataResponse.fromJson,
@@ -144,7 +133,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<UserDataResponse, Exception>> pathLocaleCode({required String userId, required String localeCode}) {
+  Future<UserDataResponse> pathLocaleCode({required String userId, required String localeCode}) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
       fromJson: UserDataResponse.fromJson,

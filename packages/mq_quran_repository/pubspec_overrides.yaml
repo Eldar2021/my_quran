@@ -1,7 +1,5 @@
-# melos_managed_dependency_overrides: mq_either,mq_remote_client,mq_storage
+# melos_managed_dependency_overrides: mq_remote_client,mq_storage
 dependency_overrides:
-  mq_either:
-    path: ../mq_either
   mq_remote_client:
     path: ../mq_remote_client
   mq_storage:
