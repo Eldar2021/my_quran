@@ -11,6 +11,8 @@ void main() {
   const emptyList = 'https://eldar2021.github.io/encointer/test/empty_list.json';
   const postList = 'https://jsonplaceholder.typicode.com/posts';
   const postDatas = 'https://jsonplaceholder.typicode.com/posts/1';
+  const postListGet = 'https://eldar2021.github.io/my-quran/tests/posts.json';
+  const postDatasGet = 'https://eldar2021.github.io/my-quran/tests/post.json';
 
   final requestBody = {'title': 'foo', 'body': 'bar', 'userId': 1};
 
@@ -18,13 +20,13 @@ void main() {
 
   group('MqRemoteClient `get`, `getType`, `getListOfType`', () {
     test('Get', () async {
-      final mapValue = await client.get<Map<String, dynamic>>(postDatas);
+      final mapValue = await client.get<Map<String, dynamic>>(postDatasGet);
 
       expect(mapValue, isNotNull);
       expect(mapValue, isMap);
       expect(mapValue, isA<Map<String, dynamic>>());
 
-      final listValue = await client.get<List<dynamic>>(postList);
+      final listValue = await client.get<List<dynamic>>(postListGet);
       expect(listValue, isNotNull);
       expect(listValue, isList);
       expect(listValue.isNotEmpty, true);
@@ -32,13 +34,13 @@ void main() {
     });
 
     test('Get Type', () async {
-      final testModel = await client.getType<TestModel>(postDatas, fromJson: TestModel.fromJson);
+      final testModel = await client.getType<TestModel>(postDatasGet, fromJson: TestModel.fromJson);
       expect(testModel, isNotNull);
       expect(testModel, isA<TestModel>());
     });
 
     test('Get List Of Type', () async {
-      final testModelList = await client.getListOfType<TestModel>(postList, fromJson: TestModel.fromJson);
+      final testModelList = await client.getListOfType<TestModel>(postListGet, fromJson: TestModel.fromJson);
       expect(testModelList, isNotNull);
       expect(testModelList, isList);
       expect(testModelList, isA<List<TestModel>>());

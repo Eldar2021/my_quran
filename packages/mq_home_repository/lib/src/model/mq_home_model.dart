@@ -57,7 +57,7 @@ final class MqHomeCreatorModel {
   const MqHomeCreatorModel({
     required this.firstName,
     required this.lastName,
-    required this.username,
+    required this.userName,
     required this.email,
     required this.avatar,
   });
@@ -65,9 +65,14 @@ final class MqHomeCreatorModel {
   factory MqHomeCreatorModel.fromJson(Map<String, dynamic> json) => _$MqHomeCreatorModelFromJson(json);
   Map<String, dynamic> toJson() => _$MqHomeCreatorModelToJson(this);
 
+  @JsonKey(name: 'first_name')
   final String? firstName;
+
+  @JsonKey(name: 'last_name')
   final String? lastName;
-  final String username;
+
+  @JsonKey(name: 'username')
+  final String userName;
   final String email;
   final String? avatar;
 }
@@ -98,7 +103,7 @@ final class MqHomeUserModel {
   const MqHomeUserModel({
     required this.firstName,
     required this.lastName,
-    required this.username,
+    required this.userName,
     required this.email,
     required this.avatar,
   });
@@ -106,9 +111,14 @@ final class MqHomeUserModel {
   factory MqHomeUserModel.fromJson(Map<String, dynamic> json) => _$MqHomeUserModelFromJson(json);
   Map<String, dynamic> toJson() => _$MqHomeUserModelToJson(this);
 
+  @JsonKey(name: 'first_name')
   final String? firstName;
+
+  @JsonKey(name: 'last_name')
   final String? lastName;
-  final String username;
+
+  @JsonKey(name: 'username')
+  final String userName;
   final String email;
   final String? avatar;
 }
