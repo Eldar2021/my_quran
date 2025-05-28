@@ -7,10 +7,9 @@ part of 'user_data_response.dart';
 // **************************************************************************
 
 UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
-    UserDataResponse(
-      gender: json['gender'] as String,
-      language: json['language'] as String,
-    );
+    UserDataResponse(gender: json['gender'] as String, language: json['language'] as String);
 
-Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
-    <String, dynamic>{'gender': instance.gender, 'language': instance.language};
+Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) => <String, dynamic>{
+  'gender': instance.gender,
+  'language': instance.language,
+};
