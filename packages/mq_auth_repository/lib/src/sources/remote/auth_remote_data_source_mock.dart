@@ -44,7 +44,7 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserDataResponse> saveUserData(UserEntity userEntity) async {
+  Future<UserDataResponse> saveUserData(UserModelResponse userEntity) async {
     return UserDataResponse(gender: userEntity.gender.toString(), language: userEntity.localeCode);
   }
 

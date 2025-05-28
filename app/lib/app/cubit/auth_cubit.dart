@@ -59,8 +59,8 @@ class AuthCubit extends Cubit<AuthState> {
     return state;
   }
 
-  Future<void> setUserData(UserEntity userEntity) {
-    return authRepository.setUserData(userEntity);
+  Future<void> setUserData(UserModelResponse userModel) {
+    return authRepository.setUserData(userModel);
   }
 
   Future<void> saveLocale(String localeCode) async {
