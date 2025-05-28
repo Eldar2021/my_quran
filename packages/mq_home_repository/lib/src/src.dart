@@ -1,12 +1,11 @@
 // entities
 export 'entity/mq_donation_page_entity.dart';
 export 'entity/mq_home_banner_entity.dart';
-export 'entity/mq_home_entity.dart';
 export 'entity/mq_story_entity.dart';
 // models
 export 'model/mq_donation_page_response.dart';
 export 'model/mq_home_banner_response.dart';
-export 'model/mq_home_model_response.dart';
+export 'model/mq_home_model.dart';
 export 'model/mq_story_model_response.dart';
 // repositories
 export 'repository/mq_home_repository.dart';

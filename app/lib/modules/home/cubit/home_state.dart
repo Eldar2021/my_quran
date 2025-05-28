@@ -4,7 +4,7 @@ part of 'home_cubit.dart';
 final class HomeState extends Equatable {
   const HomeState({this.status = FetchStatus.loading, this.homeModel});
 
-  final MqHomeEntity? homeModel;
+  final MqHomeModel? homeModel;
   final FetchStatus status;
 
   @override

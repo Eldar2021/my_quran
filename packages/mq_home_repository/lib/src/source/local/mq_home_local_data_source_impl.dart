@@ -13,18 +13,25 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
   static const _homeBannersCacheKey = 'home-banners';
 
   @override
-  MqHomeModelResponse getLocalData() {
+  MqHomeModel getLocalData() {
     final localValue = storage.readString(key: _homeDataCacheKey);
     if (localValue != null) {
       final data = jsonDecode(localValue);
-      return MqHomeModelResponse.fromJson(data as Map<String, dynamic>);
+      return MqHomeModel.fromJson(data as Map<String, dynamic>);
     } else {
-      return const MqHomeModelResponse(allDoneHatims: 0, allDonePages: 0, donePages: 0);
+      return const MqHomeModel(
+        allDoneHatims: 0,
+        allDonePages: 0,
+        donePages: 0,
+        enableCreationHatim: false,
+        invitedHatims: [],
+        hatims: [],
+      );
     }
   }
 
   @override
-  Future<void> saveLocalData(MqHomeModelResponse data) async {
+  Future<void> saveLocalData(MqHomeModel data) async {
     await storage.writeString(key: _homeDataCacheKey, value: jsonEncode(data.toJson()));
   }
 

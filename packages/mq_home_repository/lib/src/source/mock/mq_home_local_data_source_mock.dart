@@ -6,12 +6,19 @@ final class MqHomeLocalDataSourceMock implements MqHomeLocalDataSource {
   const MqHomeLocalDataSourceMock();
 
   @override
-  MqHomeModelResponse getLocalData() {
-    return const MqHomeModelResponse(allDoneHatims: 0, allDonePages: 0, donePages: 0);
+  MqHomeModel getLocalData() {
+    return const MqHomeModel(
+      allDoneHatims: 0,
+      allDonePages: 0,
+      donePages: 0,
+      enableCreationHatim: false,
+      invitedHatims: [],
+      hatims: [],
+    );
   }
 
   @override
-  Future<void> saveLocalData(MqHomeModelResponse data) {
+  Future<void> saveLocalData(MqHomeModel data) {
     return Future.value();
   }
 

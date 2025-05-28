@@ -12,7 +12,7 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
   final MqHomeRemoteDataSource remoteDataSource;
 
   @override
-  Future<MqHomeEntity> getData() async {
+  Future<MqHomeModel> getData() async {
     try {
       final remoteData = await remoteDataSource.getRemoteData();
       await localDataSource.saveLocalData(remoteData);
@@ -24,11 +24,14 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
     }
   }
 
-  MqHomeEntity _convertData(MqHomeModelResponse response) {
-    return MqHomeEntity(
+  MqHomeModel _convertData(MqHomeModel response) {
+    return MqHomeModel(
       allDoneHatims: response.allDoneHatims,
       allDonePages: response.allDonePages,
       donePages: response.donePages,
+      enableCreationHatim: response.enableCreationHatim,
+      invitedHatims: response.invitedHatims?.map((e) => e).toList(),
+      hatims: response.hatims?.map((e) => e).toList(),
     );
   }
 
