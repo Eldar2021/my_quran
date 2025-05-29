@@ -6,8 +6,15 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
   const MqHomeRemoteDataSourceMock();
 
   @override
-  Future<MqHomeModelResponse> getRemoteData() async {
-    return const MqHomeModelResponse(allDoneHatims: 0, allDonePages: 0, donePages: 0);
+  Future<MqHomeModel> getRemoteData() async {
+    return const MqHomeModel(
+      allDoneHatims: 0,
+      allDonePages: 0,
+      donePages: 0,
+      enableCreationHatim: false,
+      invitedHatims: [],
+      hatims: [],
+    );
   }
 
   @override

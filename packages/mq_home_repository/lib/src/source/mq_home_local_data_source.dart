@@ -1,9 +1,9 @@
 import 'package:mq_home_repository/mq_home_repository.dart';
 
 abstract class MqHomeLocalDataSource {
-  MqHomeModelResponse getLocalData();
+  MqHomeModel getLocalData();
 
-  Future<void> saveLocalData(MqHomeModelResponse data);
+  Future<void> saveLocalData(MqHomeModel data);
 
   List<MqHomeBannerResponse> getHomeBanners();
 

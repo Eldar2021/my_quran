@@ -9,8 +9,8 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
   final MqRemoteClient remoteClient;
 
   @override
-  Future<MqHomeModelResponse> getRemoteData() {
-    return remoteClient.getType<MqHomeModelResponse>('/api/v1/hatim/dashboard', fromJson: MqHomeModelResponse.fromJson);
+  Future<MqHomeModel> getRemoteData() {
+    return remoteClient.getType<MqHomeModel>('/api/v1/hatim/dashboard', fromJson: MqHomeModel.fromJson);
   }
 
   @override

@@ -12,24 +12,16 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
   final MqHomeRemoteDataSource remoteDataSource;
 
   @override
-  Future<MqHomeEntity> getData() async {
+  Future<MqHomeModel> getData() async {
     try {
       final remoteData = await remoteDataSource.getRemoteData();
       await localDataSource.saveLocalData(remoteData);
-      return _convertData(remoteData);
+      return remoteData;
     } catch (e, s) {
       MqCrashlytics.report(e, s);
       log('HomeRepositoryImpl, getData error: $e');
-      return _convertData(localDataSource.getLocalData());
+      return localDataSource.getLocalData();
     }
-  }
-
-  MqHomeEntity _convertData(MqHomeModelResponse response) {
-    return MqHomeEntity(
-      allDoneHatims: response.allDoneHatims,
-      allDonePages: response.allDonePages,
-      donePages: response.donePages,
-    );
   }
 
   @override
