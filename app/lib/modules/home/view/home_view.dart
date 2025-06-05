@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
@@ -33,6 +34,7 @@ class _HomeViewState extends State<HomeView> {
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
     }
     context.read<LocationCubit>().init();
+
     super.initState();
   }
 
@@ -167,7 +169,18 @@ class _HomeViewState extends State<HomeView> {
           builder: (context, state) {
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
-              onPressed: state.isHatimEnable ? _onJoinToHatim : null,
+              onPressed:
+                  state.isHatimEnable
+                      ? () {
+                        final hatims = context.read<HomeCubit>().state.homeModel?.hatims ?? [];
+
+                        if (hatims.length <= 1) {
+                          _onJoinToHatim();
+                        } else {
+                          ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims);
+                        }
+                      }
+                      : null,
               child: Text(context.l10n.joinToHatim),
             );
           },
@@ -191,5 +204,15 @@ class _HomeViewState extends State<HomeView> {
       storyCubit.getStories(authCubit.state.currentLocale.languageCode),
       bannerCubit.getBanners(),
     ]);
+
+    if (homeCubit.state.homeModel!.invitedHatims!.isNotEmpty && homeCubit.state.homeModel!.invitedHatims != null) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        ShowInvitationWidget.showInvitationSheet<void>(
+          context: context,
+          invitedHatims: homeCubit.state.homeModel!.invitedHatims!,
+        );
+      });
+    }
   }
 }

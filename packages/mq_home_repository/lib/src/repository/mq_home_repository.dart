@@ -8,4 +8,8 @@ abstract interface class MqHomeRepository {
   Future<MqDonationPageEntity> getDonationPageData();
 
   Future<List<MqHomeBannerEntity>> getHomeBanners();
+
+  Future<void> hatimAccept(String id);
+
+  Future<void> hatimReject(String id);
 }

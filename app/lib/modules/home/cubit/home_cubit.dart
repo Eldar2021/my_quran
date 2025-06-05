@@ -21,4 +21,20 @@ class HomeCubit extends Cubit<HomeState> {
       emit(const HomeState(status: FetchStatus.error));
     }
   }
+
+  Future<void> hatimAccept(String id) async {
+    try {
+      await homeRepository.hatimAccept(id);
+    } on Exception catch (e) {
+      emit(state.copyWith(exception: e));
+    }
+  }
+
+  Future<void> hatimReject(String id) async {
+    try {
+      await homeRepository.hatimReject(id);
+    } on Exception catch (e) {
+      emit(state.copyWith(exception: e));
+    }
+  }
 }

@@ -25,6 +25,6 @@ final class MqHomeInvitedHatimsModel {
   final String? description;
   final String type;
   final String status;
-  final List<MqHatimCreatorModel>? creator;
+  final MqHatimCreatorModel? creator;
   final List<MqHatimParticipantsDetailModel>? participantsDetails;
 }
