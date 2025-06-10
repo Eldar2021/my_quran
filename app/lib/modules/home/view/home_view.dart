@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
@@ -169,18 +170,20 @@ class _HomeViewState extends State<HomeView> {
           builder: (context, state) {
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
-              onPressed:
-                  state.isHatimEnable
-                      ? () {
-                        final hatims = context.read<HomeCubit>().state.homeModel?.hatims ?? [];
+              onPressed: () {
+                context.pushNamed(AppRouter.createHatim);
+              },
+              // state.isHatimEnable
+              //     ? () {
+              //       final hatims = context.read<HomeCubit>().state.homeModel?.hatims ?? [];
 
-                        if (hatims.length <= 1) {
-                          _onJoinToHatim();
-                        } else {
-                          ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims);
-                        }
-                      }
-                      : null,
+              //       if (hatims.length <= 1) {
+              //         _onJoinToHatim();
+              //       } else {
+              //         ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims);
+              //       }
+              //     }
+              //     : null,
               child: Text(context.l10n.joinToHatim),
             );
           },
