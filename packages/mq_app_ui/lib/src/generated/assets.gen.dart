@@ -72,6 +72,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/favourite.svg
   SvgGenImage get favourite => const SvgGenImage('assets/icons/favourite.svg');
 
+  /// File path: assets/icons/fluent_description.svg
+  SvgGenImage get fluentDescription => const SvgGenImage('assets/icons/fluent_description.svg');
+
   /// File path: assets/icons/github.svg
   SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
 
@@ -147,11 +150,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/sms.svg
   SvgGenImage get sms => const SvgGenImage('assets/icons/sms.svg');
 
+  /// File path: assets/icons/solid_users.svg
+  SvgGenImage get solidUsers => const SvgGenImage('assets/icons/solid_users.svg');
+
   /// File path: assets/icons/sun.svg
   SvgGenImage get sun => const SvgGenImage('assets/icons/sun.svg');
 
   /// File path: assets/icons/telegram.svg
   SvgGenImage get telegram => const SvgGenImage('assets/icons/telegram.svg');
+
+  /// File path: assets/icons/title.svg
+  SvgGenImage get title => const SvgGenImage('assets/icons/title.svg');
 
   /// File path: assets/icons/translate.svg
   SvgGenImage get translate => const SvgGenImage('assets/icons/translate.svg');
@@ -195,6 +204,7 @@ class $AssetsIconsGen {
     download,
     emailSms,
     favourite,
+    fluentDescription,
     github,
     google,
     heptagon,
@@ -220,8 +230,10 @@ class $AssetsIconsGen {
     share,
     shareFill,
     sms,
+    solidUsers,
     sun,
     telegram,
+    title,
     translate,
     trash,
     userFemale,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/modules/create/create_hatim/view/create_hatim_view.dart';
+import 'package:my_quran/modules/create/search/view/search_view.dart';
 import 'package:my_quran/modules/modules.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -41,6 +43,9 @@ final class AppRouter {
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
   static const donation = 'donation';
+
+  static const createHatim = 'create-hatim';
+  static const search = 'search';
 
   GoRouter router() {
     return GoRouter(
@@ -153,6 +158,18 @@ final class AppRouter {
         name: developers,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const DevelopersView(),
+      ),
+      GoRoute(
+        path: createHatim,
+        name: createHatim,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const CreateHatimView(),
+      ),
+      GoRoute(
+        path: search,
+        name: search,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const SearchView(),
       ),
     ];
   }
