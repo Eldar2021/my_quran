@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class ShowHatimWidget {
   static Future<T?> showHatimSheet<T>({
@@ -38,7 +39,7 @@ class ShowHatimWidget {
                 decoration: BoxDecoration(color: colorScheme.inverseSurface, borderRadius: BorderRadius.circular(20)),
               ),
               const SizedBox(height: 22),
-              Text('My Hatims', style: prTextTheme.titleLarge),
+              Text(context.l10n.myHatims, style: prTextTheme.titleLarge),
               Flexible(
                 child: ListView.builder(
                   itemCount: hatim.length,

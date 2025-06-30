@@ -21,6 +21,7 @@ final class MqKeys {
   static const search = 'search';
   static const titleTextField = 'title-text-field';
   static const descriptionTextField = 'description-text-field';
+  static const createHatimButton = 'create-hatim-button';
 
   // hatim
   static const hatimPage = 'hatim-page';

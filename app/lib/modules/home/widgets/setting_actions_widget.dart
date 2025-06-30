@@ -83,6 +83,16 @@ class SettingActionsWidget extends StatelessWidget {
           },
         ),
         DrawerTile(
+          key: const Key(MqKeys.createHatim),
+          onTap: () {
+            MqAnalytic.track(AnalyticKey.goCreateHatim);
+            Navigator.pop(context);
+            context.pushNamed(AppRouter.createHatim);
+          },
+          icon: Assets.icons.solidUsers.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+          title: context.l10n.createHatim,
+        ),
+        DrawerTile(
           key: const Key(MqKeys.settingsDevelopers),
           onTap: () {
             MqAnalytic.track(AnalyticKey.goDevelopersPage);

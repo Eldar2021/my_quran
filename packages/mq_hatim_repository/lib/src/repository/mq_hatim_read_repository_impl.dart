@@ -17,6 +17,18 @@ final class MqHatimReadRepositoryImpl implements MqHatimRepository {
   }
 
   @override
+  Future<MqSearchModel> getSearch(String user) async {
+    final res = await dataSource.getSearch(user);
+    return res;
+  }
+
+  @override
+  Future<MqHatimsModel> createHatim(MqHatimCreateModel hatim) async {
+    final res = await dataSource.createHatim(hatim);
+    return res;
+  }
+
+  @override
   void connectToSocket(String token) {
     dataSource.connectToSocket(token);
   }

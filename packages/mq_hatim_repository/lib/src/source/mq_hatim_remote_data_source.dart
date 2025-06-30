@@ -2,6 +2,11 @@ import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
 abstract class MqHatimRemoteDataSource {
   Future<HatimReadModel> getHatim();
+
+  Future<MqSearchModel> getSearch(String? user);
+
+  Future<MqHatimsModel> createHatim(MqHatimCreateModel hatim);
+
   void connectToSocket(String token);
   void sinkHatimJuzs(String hatimId);
   void sinkHatimUserPages();

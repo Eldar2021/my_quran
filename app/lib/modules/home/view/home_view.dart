@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
-
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -27,6 +25,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
+    super.initState();
+
     _getHomeData();
     final user = context.read<AuthCubit>().state.user;
     final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
@@ -35,8 +35,6 @@ class _HomeViewState extends State<HomeView> {
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
     }
     context.read<LocationCubit>().init();
-
-    super.initState();
   }
 
   @override
@@ -87,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
               builder: (context, state) {
                 final status = state.status;
                 return switch (status) {
-                  FetchStatus.loading || FetchStatus.error => const SizedBox.shrink(),
+                  FetchStatus.initial || FetchStatus.loading || FetchStatus.error => const SizedBox.shrink(),
                   FetchStatus.success => MqStoryItemsWidget(
                     listHeight: 132,
                     buttonWidth: 70,
@@ -171,19 +169,14 @@ class _HomeViewState extends State<HomeView> {
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
               onPressed: () {
-                context.pushNamed(AppRouter.createHatim);
-              },
-              // state.isHatimEnable
-              //     ? () {
-              //       final hatims = context.read<HomeCubit>().state.homeModel?.hatims ?? [];
+                final hatims = context.read<HomeCubit>().state.homeModel?.hatims ?? [];
 
-              //       if (hatims.length <= 1) {
-              //         _onJoinToHatim();
-              //       } else {
-              //         ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims);
-              //       }
-              //     }
-              //     : null,
+                if (hatims.length <= 1) {
+                  _onJoinToHatim();
+                } else {
+                  ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims);
+                }
+              },
               child: Text(context.l10n.joinToHatim),
             );
           },

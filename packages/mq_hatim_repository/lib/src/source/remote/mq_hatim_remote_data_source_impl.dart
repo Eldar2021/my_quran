@@ -20,6 +20,33 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
   }
 
   @override
+  Future<MqSearchModel> getSearch(String? user) async {
+    try {
+      return remoteClient.getType('/api/v1/hatim/search_user/?q=$user', fromJson: MqSearchModel.fromJson);
+    } catch (e) {
+      throw Exception('Error getSearch: $e');
+    }
+  }
+
+  @override
+  Future<MqHatimsModel> createHatim(MqHatimCreateModel hatim) async {
+    try {
+      return remoteClient.postType(
+        '/api/v1/hatim/',
+        fromJson: MqHatimsModel.fromJson,
+        body: {
+          'title': hatim.title,
+          'description': hatim.description,
+          'type': hatim.type,
+          'participants': hatim.participants,
+        },
+      );
+    } catch (e) {
+      throw Exception('Error createHatim: $e');
+    }
+  }
+
+  @override
   void connectToSocket(String token) {
     if (!isInitilized) {
       channel = WebSocketChannel.connect(Uri.parse('wss://myquran.life/ws/?token=$token'));

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mq_home_repository/mq_home_repository.dart';
+import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
 part 'mq_hatim_model.g.dart';
 
@@ -25,8 +25,6 @@ final class MqHatimsModel {
   final String? description;
   final String type;
   final String status;
-  final MqHatimCreatorModel? creator;
-
-  @JsonKey(name: 'participants_details')
-  final List<MqHatimParticipantsDetailModel>? participantsDetails;
+  final MqHatimCreateUserModel? creator;
+  final List<MqHatimParticipantsDetailUserModel>? participantsDetails;
 }

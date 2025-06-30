@@ -135,6 +135,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/qybla_direction.svg
   SvgGenImage get qyblaDirection => const SvgGenImage('assets/icons/qybla_direction.svg');
 
+  /// File path: assets/icons/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
+
   /// File path: assets/icons/settings_burger.svg
   SvgGenImage get settingsBurger => const SvgGenImage('assets/icons/settings_burger.svg');
 
@@ -225,6 +228,7 @@ class $AssetsIconsGen {
     previousFill,
     quran,
     qyblaDirection,
+    search,
     settingsBurger,
     settingsFilter,
     share,
