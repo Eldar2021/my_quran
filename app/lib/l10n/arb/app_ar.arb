@@ -151,5 +151,6 @@
     "decline": "رفض",
     "accept": "قبول",
     "hatimCreatedBy": "تم إنشاء الختم بواسطة:",
-    "myHatims": "ختماتي"
+    "myHatims": "ختماتي",
+    "generalHatim": "ختم عام"
 }

@@ -164,14 +164,14 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+        child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
+            final hatims = state.homeModel?.hatims;
+
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
               onPressed: () {
-                final hatims = context.read<HomeCubit>().state.homeModel?.hatims ?? [];
-
-                if (hatims.length <= 1) {
+                if (hatims!.length <= 1) {
                   _onJoinToHatim();
                 } else {
                   ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims);
@@ -195,13 +195,15 @@ class _HomeViewState extends State<HomeView> {
     final storyCubit = context.read<MqStoryCubit>();
     final authCubit = context.read<AuthCubit>();
     final bannerCubit = context.read<HomeBannersCubit>();
+
     await Future.wait([
       homeCubit.getData(),
       storyCubit.getStories(authCubit.state.currentLocale.languageCode),
       bannerCubit.getBanners(),
     ]);
 
-    if (homeCubit.state.homeModel!.invitedHatims!.isNotEmpty && homeCubit.state.homeModel!.invitedHatims != null) {
+    final invites = homeCubit.state.homeModel?.invitedHatims;
+    if (invites != null && invites.isNotEmpty) {
       SchedulerBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         ShowInvitationWidget.showInvitationSheet<void>(

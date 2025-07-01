@@ -57,6 +57,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/copy.svg
   SvgGenImage get copy => const SvgGenImage('assets/icons/copy.svg');
 
+  /// File path: assets/icons/create_hatim.svg
+  SvgGenImage get createHatim => const SvgGenImage('assets/icons/create_hatim.svg');
+
   /// File path: assets/icons/developers.svg
   SvgGenImage get developers => const SvgGenImage('assets/icons/developers.svg');
 
@@ -202,6 +205,7 @@ class $AssetsIconsGen {
     check,
     cloud,
     copy,
+    createHatim,
     developers,
     donate,
     download,

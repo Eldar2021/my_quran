@@ -89,7 +89,7 @@ class SettingActionsWidget extends StatelessWidget {
             Navigator.pop(context);
             context.pushNamed(AppRouter.createHatim);
           },
-          icon: Assets.icons.solidUsers.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+          icon: Assets.icons.createHatim.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
           title: context.l10n.createHatim,
         ),
         DrawerTile(

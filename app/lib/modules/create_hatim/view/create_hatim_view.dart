@@ -49,8 +49,8 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
   void initState() {
     super.initState();
 
-    _titleController = TextEditingController();
-    _descriptionController = TextEditingController();
+    _titleController = TextEditingController()..addListener(_onSetState);
+    _descriptionController = TextEditingController()..addListener(_onSetState);
   }
 
   @override
@@ -65,7 +65,7 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
           if (state.hatimModel != null) {
             context.goNamed(AppRouter.createHatimSuccess);
           } else if (state.exception != null) {
-            AppAlert.showErrorDialog(context, errorText: state.exception.toString());
+            AppSnackbar.showError(context: context, title: state.exception.toString());
           }
         },
         builder: (context, state) {
@@ -160,10 +160,11 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
         child: BlocBuilder<CreateHatimCubit, CreateHatimState>(
           builder: (context, state) {
             final loading = state.status == FetchStatus.loading;
+            final canSubmit = !loading && _isFormFilled;
 
             return ElevatedButton(
               key: const Key(MqKeys.createHatimButton),
-              onPressed: loading ? () {} : _onSubmit,
+              onPressed: canSubmit ? _onSubmit : null,
               child:
                   loading
                       ? const SizedBox.square(
@@ -178,6 +179,17 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
     );
   }
 
+  void _onSetState() {
+    setState(() {});
+  }
+
+  bool get _isFormFilled {
+    final title = _titleController.text.trim();
+    final desc = _descriptionController.text.trim();
+    final participants = context.read<CreateHatimCubit>().state.selectedUsers;
+    return title.isNotEmpty && desc.isNotEmpty && participants.isNotEmpty;
+  }
+
   Future<void> _pickParticipants(BuildContext context) async {
     final cubit = context.read<CreateHatimCubit>();
 
@@ -185,6 +197,11 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
       context,
       MaterialPageRoute(builder: (_) => BlocProvider.value(value: cubit, child: const SearchView())),
     );
+
+    if (mounted) {
+      _onSetState();
+      _formKey.currentState?.validate();
+    }
   }
 
   void _onSubmit() {

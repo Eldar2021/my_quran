@@ -47,6 +47,8 @@ class ShowHatimWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                   itemBuilder: (context, index) {
                     final item = hatim[index];
+                    final titleText = item.type == 'GENERAL' ? context.l10n.generalHatim : item.title;
+
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: GestureDetector(
@@ -60,7 +62,7 @@ class ShowHatimWidget {
                                   colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
                                 ),
                                 const SizedBox(width: 10),
-                                Text(item.title ?? '', style: prTextTheme.titleMedium),
+                                Text('$titleText', style: prTextTheme.titleMedium),
                                 const Spacer(),
                                 Icon(Icons.arrow_forward_ios_rounded, color: colorScheme.primary),
                               ],
