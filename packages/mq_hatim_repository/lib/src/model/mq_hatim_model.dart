@@ -26,5 +26,7 @@ final class MqHatimsModel {
   final String type;
   final String status;
   final MqHatimCreateUserModel? creator;
+
+  @JsonKey(name: 'participants_details')
   final List<MqHatimParticipantsDetailUserModel>? participantsDetails;
 }
