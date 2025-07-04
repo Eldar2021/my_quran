@@ -203,12 +203,13 @@ class _HomeViewState extends State<HomeView> {
 
     final invites = homeCubit.state.homeModel?.invitedHatims;
     if (invites != null && invites.isNotEmpty) {
-      SchedulerBinding.instance.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) async {
         if (!mounted) return;
-        ShowInvitationWidget.showInvitationSheet<void>(
+        await ShowInvitationWidget.showInvitationSheet<void>(
           context: context,
           invitedHatims: homeCubit.state.homeModel!.invitedHatims!,
         );
+        await homeCubit.getData();
       });
     }
   }
