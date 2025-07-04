@@ -9,6 +9,7 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class SettingActionsWidget extends StatelessWidget {
   const SettingActionsWidget({super.key});
@@ -82,15 +83,23 @@ class SettingActionsWidget extends StatelessWidget {
             }
           },
         ),
-        DrawerTile(
-          key: const Key(MqKeys.createHatim),
-          onTap: () {
-            MqAnalytic.track(AnalyticKey.goCreateHatim);
-            Navigator.pop(context);
-            context.pushNamed(AppRouter.createHatim);
+        BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            if (state.homeModel?.enableCreationHatim ?? false) {
+              return DrawerTile(
+                key: const Key(MqKeys.createHatim),
+                onTap: () {
+                  MqAnalytic.track(AnalyticKey.goCreateHatim);
+                  Navigator.pop(context);
+                  context.pushNamed(AppRouter.createHatim);
+                },
+                icon: Assets.icons.createHatim.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+                title: context.l10n.createHatim,
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
           },
-          icon: Assets.icons.createHatim.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
-          title: context.l10n.createHatim,
         ),
         DrawerTile(
           key: const Key(MqKeys.settingsDevelopers),
