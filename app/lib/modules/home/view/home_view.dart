@@ -171,7 +171,6 @@ class _HomeViewState extends State<HomeView> {
               key: const Key(MqKeys.participantToHatim),
               onPressed: () {
                 if ((hatims?.length ?? 0) > 1) {
-                  // test hatim
                   ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims!);
                 } else {
                   _onJoinToHatim();
