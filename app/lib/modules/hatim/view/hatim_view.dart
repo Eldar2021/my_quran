@@ -12,21 +12,22 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class HatimView extends StatelessWidget {
-  const HatimView({super.key});
+  const HatimView(this.hatimId, {super.key});
+
+  final String hatimId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) => HatimBloc(
-            repo: MqHatimReadRepositoryImpl(
-              dataSource:
-                  context.read<AppConfig>().isMockData
-                      ? MqHatimRemoteDataSourceMock()
-                      : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
-            ),
-            token: context.read<AuthCubit>().state.user!.accessToken,
-          )..add(GetInitailDataEvent(context.read<HomeCubit>().state.hatimsId)),
+      create: (context) => HatimBloc(
+        hatimId: hatimId,
+        repo: MqHatimReadRepositoryImpl(
+          dataSource: context.read<AppConfig>().isMockData
+              ? MqHatimRemoteDataSourceMock()
+              : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
+        ),
+        token: context.read<AuthCubit>().state.user!.accessToken,
+      )..add(const GetInitailDataEvent()),
       child: const HatimUI(),
     );
   }
@@ -65,7 +66,7 @@ class _HatimUIState extends State<HatimUI> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          context.read<HatimBloc>().add(GetInitailDataEvent(context.read<HomeCubit>().state.hatimsId));
+          context.read<HatimBloc>().add(const GetInitailDataEvent());
         },
         child: BlocBuilder<HatimBloc, HatimState>(
           builder: (context, state) {

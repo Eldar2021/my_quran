@@ -15,7 +15,6 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getData() async {
     try {
       final homeModel = await homeRepository.getData();
-      if (homeModel.hatims != null) if (homeModel.hatims!.length == 1) saveHatimId(homeModel.hatims!.first.id);
       emit(state.copyWith(status: FetchStatus.success, homeModel: homeModel));
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
@@ -38,6 +37,4 @@ class HomeCubit extends Cubit<HomeState> {
       emit(state.copyWith(exception: e));
     }
   }
-
-  void saveHatimId(String id) => emit(state.copyWith(hatimsId: id));
 }

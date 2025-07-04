@@ -15,11 +15,6 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
   bool isInitilized = false;
 
   @override
-  Future<HatimReadModel> getHatim() async {
-    return remoteClient.postType('/api/v1/hatim/join_to_hatim', fromJson: HatimReadModel.fromJson);
-  }
-
-  @override
   Future<MqSearchModel> getSearch(String? user) async {
     try {
       return remoteClient.getType('/api/v1/hatim/search_user/?q=$user', fromJson: MqSearchModel.fromJson);

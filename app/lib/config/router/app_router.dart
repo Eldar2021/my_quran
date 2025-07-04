@@ -105,10 +105,13 @@ final class AppRouter {
   static List<RouteBase> get _homeSubRoutes {
     return [
       GoRoute(
-        path: hatim,
+        path: '$hatim/:hatimId',
         name: hatim,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const HatimView(),
+        builder: (context, state) {
+          final hatimId = ParseParams.parseHatimId(state.pathParameters);
+          return HatimView(hatimId);
+        },
         routes: [
           GoRoute(
             path: '$hatimRead/:pages',

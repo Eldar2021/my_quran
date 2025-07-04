@@ -10,7 +10,7 @@ part 'mq_remote_client_base_extension.dart';
 /// {@endtemplate}
 typedef FromJson<T> = T Function(Map<String, dynamic>);
 
-/// A function type that converts a [Map<String, dynamic>] to an object of type T
+/// A function type that converts a `Map<String, dynamic>` to an object of type T
 ///
 /// Used to deserialize JSON responses from the server.
 typedef ResolveValue = String? Function();
