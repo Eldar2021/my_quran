@@ -40,6 +40,9 @@ dependencies:
   loader_overlay: ^5.0.0
   meta: ^1.16.0
 
+  # snackbar
+  toastification: ^3.0.3
+
   # Navigation
   go_router: ^14.8.0
 
@@ -70,6 +73,7 @@ dependencies:
     path: ../packages/mq_prayer_time
 
   # flutter_native_splash: ^2.4.4
+
 
 dev_dependencies:
   flutter_test:
