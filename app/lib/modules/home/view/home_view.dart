@@ -170,9 +170,10 @@ class _HomeViewState extends State<HomeView> {
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
               onPressed: () {
-                if ((hatims?.length ?? 0) > 1) {
+                final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
+                if ((hatims?.length ?? 0) > 1 && !isIntegrationTest) {
                   ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims!);
-                } else if ((hatims?.length ?? 0) == 1) {
+                } else {
                   _onJoinToHatim(hatims?.first.id ?? '');
                 }
               },
@@ -194,6 +195,7 @@ class _HomeViewState extends State<HomeView> {
     final storyCubit = context.read<MqStoryCubit>();
     final authCubit = context.read<AuthCubit>();
     final bannerCubit = context.read<HomeBannersCubit>();
+    final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
 
     await Future.wait([
       homeCubit.getData(),
@@ -202,7 +204,8 @@ class _HomeViewState extends State<HomeView> {
     ]);
 
     final invites = homeCubit.state.homeModel?.invitedHatims;
-    if (invites != null && invites.isNotEmpty) {
+
+    if (invites != null && invites.isNotEmpty && !isIntegrationTest) {
       SchedulerBinding.instance.addPostFrameCallback((_) async {
         if (!mounted) return;
         await ShowInvitationWidget.showInvitationSheet<void>(
