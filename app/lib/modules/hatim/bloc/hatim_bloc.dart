@@ -34,8 +34,6 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     try {
       if (state.dashBoardState is HatimDashBoardLoading) return;
       emit(state.copyWith(dashBoardState: const HatimDashBoardLoading()));
-      final data = await repo.getHatim();
-      emit(state.copyWith(dashBoardState: HatimDashBoardFetched(data)));
 
       emit(state.copyWith(eventState: const HatimStateLoading()));
       repo.connectToSocket(token);
@@ -44,10 +42,10 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
         islistened = true;
       }
 
-      emit(state.copyWith(eventState: HatimStateSuccess(data.id)));
+      emit(state.copyWith(eventState: HatimStateSuccess(event.hatimId)));
 
       emit(state.copyWith(juzsState: const HatimJuzsLoading()));
-      repo.sinkHatimJuzs(data.id);
+      repo.sinkHatimJuzs(event.hatimId);
 
       emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
       repo.sinkHatimUserPages();

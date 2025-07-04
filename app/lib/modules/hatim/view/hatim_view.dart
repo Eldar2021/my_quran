@@ -9,7 +9,6 @@ import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
-import 'package:my_quran/modules/hatim/hatim.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class HatimView extends StatelessWidget {
@@ -27,7 +26,7 @@ class HatimView extends StatelessWidget {
                       : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
             ),
             token: context.read<AuthCubit>().state.user!.accessToken,
-          )..add(const GetInitailDataEvent()),
+          )..add(GetInitailDataEvent(context.read<HomeCubit>().state.hatimsId)),
       child: const HatimUI(),
     );
   }
@@ -66,7 +65,7 @@ class _HatimUIState extends State<HatimUI> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          context.read<HatimBloc>().add(const GetInitailDataEvent());
+          context.read<HatimBloc>().add(GetInitailDataEvent(context.read<HomeCubit>().state.hatimsId));
         },
         child: BlocBuilder<HatimBloc, HatimState>(
           builder: (context, state) {

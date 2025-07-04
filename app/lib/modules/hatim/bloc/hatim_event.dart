@@ -7,7 +7,9 @@ sealed class HatimEvent {
 
 @immutable
 final class GetInitailDataEvent extends HatimEvent {
-  const GetInitailDataEvent();
+  const GetInitailDataEvent(this.hatimId);
+
+  final String hatimId;
 }
 
 @immutable

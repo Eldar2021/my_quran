@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class ShowHatimWidget {
   static Future<T?> showHatimSheet<T>({
@@ -52,7 +56,12 @@ class ShowHatimWidget {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.read<HomeCubit>().saveHatimId(item.id);
+                          Navigator.of(context).pop();
+                          MqAnalytic.track(AnalyticKey.goHatim);
+                          context.goNamedIfAuthenticated(AppRouter.hatim);
+                        },
                         child: GradientDecoratedBox(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),

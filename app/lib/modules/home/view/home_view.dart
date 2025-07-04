@@ -167,14 +167,13 @@ class _HomeViewState extends State<HomeView> {
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             final hatims = state.homeModel?.hatims;
-
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
               onPressed: () {
-                if (hatims!.length <= 1) {
-                  _onJoinToHatim();
+                if ((hatims?.length ?? 0) > 1) {
+                  ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims!);
                 } else {
-                  ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims);
+                  _onJoinToHatim();
                 }
               },
               child: Text(context.l10n.joinToHatim),
