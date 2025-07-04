@@ -57,10 +57,7 @@ class ShowHatimWidget {
                         onTap: () {
                           Navigator.of(context).pop();
                           MqAnalytic.track(AnalyticKey.goHatim);
-                          context.goNamedIfAuthenticated(
-                            AppRouter.hatim,
-                            pathParameters: {'hatimId': item.id},
-                          );
+                          context.goNamedIfAuthenticated(AppRouter.hatim, pathParameters: {'hatimId': item.id});
                         },
                         child: GradientDecoratedBox(
                           child: Padding(

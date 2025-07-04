@@ -9,15 +9,7 @@ class MqHatimRemoteDataSourceMock implements MqHatimRemoteDataSource {
   @override
   Future<MqSearchModel> getSearch(String? user) async {
     return const MqSearchModel(
-      users: [
-        MqUserIdModel(
-          id: 1,
-          userName: 'user1',
-          email: 'user1@gmail.com',
-          firstName: 'user1',
-          lastName: 'user1',
-        ),
-      ],
+      users: [MqUserIdModel(id: 1, userName: 'user1', email: 'user1@gmail.com', firstName: 'user1', lastName: 'user1')],
     );
   }
 

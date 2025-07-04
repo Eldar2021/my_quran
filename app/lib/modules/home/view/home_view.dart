@@ -87,24 +87,25 @@ class _HomeViewState extends State<HomeView> {
                 return switch (status) {
                   FetchStatus.initial || FetchStatus.loading || FetchStatus.error => const SizedBox.shrink(),
                   FetchStatus.success => MqStoryItemsWidget(
-                      listHeight: 132,
-                      buttonWidth: 70,
-                      buttonSpacing: 14,
-                      items: state.getStories.asMap().entries.map((e) {
-                        final idIndex = e.key;
-                        final item = e.value;
-                        return MqStoryItem(
-                          id: '$idIndex',
-                          cardImageLink: item.cardImageUrl,
-                          cardLabel: item.cardLabel,
-                          storyPagesImages: item.screens.map((e) => e.imageUrl).toList(),
-                          storyPageDuration: List.generate(
-                            item.screens.length,
-                            (index) => Duration(milliseconds: item.screens[index].durationByMilliseconds),
-                          ),
-                        );
-                      }).toList(),
-                    ),
+                    listHeight: 132,
+                    buttonWidth: 70,
+                    buttonSpacing: 14,
+                    items:
+                        state.getStories.asMap().entries.map((e) {
+                          final idIndex = e.key;
+                          final item = e.value;
+                          return MqStoryItem(
+                            id: '$idIndex',
+                            cardImageLink: item.cardImageUrl,
+                            cardLabel: item.cardLabel,
+                            storyPagesImages: item.screens.map((e) => e.imageUrl).toList(),
+                            storyPageDuration: List.generate(
+                              item.screens.length,
+                              (index) => Duration(milliseconds: item.screens[index].durationByMilliseconds),
+                            ),
+                          );
+                        }).toList(),
+                  ),
                 };
               },
             ),
@@ -185,10 +186,7 @@ class _HomeViewState extends State<HomeView> {
 
   void _onJoinToHatim(String hatimId) {
     MqAnalytic.track(AnalyticKey.goHatim);
-    context.goNamedIfAuthenticated(
-      AppRouter.hatim,
-      pathParameters: {'hatimId': hatimId},
-    );
+    context.goNamedIfAuthenticated(AppRouter.hatim, pathParameters: {'hatimId': hatimId});
   }
 
   Future<void> _getHomeData() async {

@@ -12,11 +12,7 @@ part 'hatim_state_juz_pages.dart';
 part 'hatim_state_user_pages.dart';
 
 class HatimBloc extends Bloc<HatimEvent, HatimState> {
-  HatimBloc({
-    required this.repo,
-    required this.token,
-    required this.hatimId,
-  }) : super(const HatimState()) {
+  HatimBloc({required this.repo, required this.token, required this.hatimId}) : super(const HatimState()) {
     on<GetInitailDataEvent>(_onGetInitailDataEvent);
     on<GetHatimJuzPagesEvent>(_onGetHatimJuzPagesEvent);
     on<SelectPageEvent>(_onSelectPageEvent);
@@ -74,11 +70,11 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     final newState = switch (src.$1) {
       HatimResponseType.listOfJuz => state.copyWith(juzsState: HatimJuzsFetched(src.$2 as List<MqHatimJusEntity>)),
       HatimResponseType.listOfPage => state.copyWith(
-          juzPagesState: HatimJuzPagesFetched(src.$2 as List<MqHatimPagesEntity>),
-        ),
+        juzPagesState: HatimJuzPagesFetched(src.$2 as List<MqHatimPagesEntity>),
+      ),
       HatimResponseType.userPages => state.copyWith(
-          userPagesState: HatimUserPagesFetched(src.$2 as List<MqHatimPagesEntity>),
-        ),
+        userPagesState: HatimUserPagesFetched(src.$2 as List<MqHatimPagesEntity>),
+      ),
     };
 
     emit(newState);
