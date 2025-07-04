@@ -30,7 +30,7 @@ abstract class StorageInterfaceSyncRead {
   /// Throws a [StorageException] if the read fails.
   int? readInt({required String key});
 
-  /// Returns the [List<String>] value associated with the provided [key].
+  /// Returns the `List<String>` value associated with the provided [key].
   ///
   /// Returns `null` if no value is found for the given [key].
   ///
@@ -57,7 +57,7 @@ abstract class StorageInterfaceSyncRead {
   /// Throws a [StorageException] if the write fails.
   Future<bool> writeInt({required String key, required int value});
 
-  /// Asynchronously writes [List<String>] the provided [key] and [value] pair.
+  /// Asynchronously writes `List<String>` the provided [key] and [value] pair.
   ///
   /// Throws a [StorageException] if the write fails.
   Future<bool> writeStringList({required String key, required List<String> value});

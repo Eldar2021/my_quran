@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -41,6 +40,10 @@ final class AppRouter {
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
   static const donation = 'donation';
+
+  static const createHatim = 'create-hatim';
+  static const search = 'search';
+  static const createHatimSuccess = 'create-hatim-success';
 
   GoRouter router() {
     return GoRouter(
@@ -102,10 +105,13 @@ final class AppRouter {
   static List<RouteBase> get _homeSubRoutes {
     return [
       GoRoute(
-        path: hatim,
+        path: '$hatim/:hatimId',
         name: hatim,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const HatimView(),
+        builder: (context, state) {
+          final hatimId = ParseParams.parseHatimId(state.pathParameters);
+          return HatimView(hatimId);
+        },
         routes: [
           GoRoute(
             path: '$hatimRead/:pages',
@@ -153,6 +159,24 @@ final class AppRouter {
         name: developers,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const DevelopersView(),
+      ),
+      GoRoute(
+        path: createHatim,
+        name: createHatim,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const CreateHatimView(),
+      ),
+      GoRoute(
+        path: search,
+        name: search,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const SearchView(),
+      ),
+      GoRoute(
+        name: createHatimSuccess,
+        path: createHatimSuccess,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const SuccessView(),
       ),
     ];
   }

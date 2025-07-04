@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
-
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -25,6 +25,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
+    super.initState();
+
     _getHomeData();
     final user = context.read<AuthCubit>().state.user;
     final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
@@ -33,7 +35,6 @@ class _HomeViewState extends State<HomeView> {
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
     }
     context.read<LocationCubit>().init();
-    super.initState();
   }
 
   @override
@@ -84,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
               builder: (context, state) {
                 final status = state.status;
                 return switch (status) {
-                  FetchStatus.loading || FetchStatus.error => const SizedBox.shrink(),
+                  FetchStatus.initial || FetchStatus.loading || FetchStatus.error => const SizedBox.shrink(),
                   FetchStatus.success => MqStoryItemsWidget(
                     listHeight: 132,
                     buttonWidth: 70,
@@ -163,11 +164,19 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+        child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
+            final hatims = state.homeModel?.hatims;
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
-              onPressed: state.isHatimEnable ? _onJoinToHatim : null,
+              onPressed: () {
+                final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
+                if ((hatims?.length ?? 0) > 1 && !isIntegrationTest) {
+                  ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims!);
+                } else {
+                  _onJoinToHatim(hatims?.first.id ?? '');
+                }
+              },
               child: Text(context.l10n.joinToHatim),
             );
           },
@@ -176,9 +185,9 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  void _onJoinToHatim() {
+  void _onJoinToHatim(String hatimId) {
     MqAnalytic.track(AnalyticKey.goHatim);
-    context.goNamedIfAuthenticated(AppRouter.hatim);
+    context.goNamedIfAuthenticated(AppRouter.hatim, pathParameters: {'hatimId': hatimId});
   }
 
   Future<void> _getHomeData() async {
@@ -186,10 +195,25 @@ class _HomeViewState extends State<HomeView> {
     final storyCubit = context.read<MqStoryCubit>();
     final authCubit = context.read<AuthCubit>();
     final bannerCubit = context.read<HomeBannersCubit>();
+    final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
+
     await Future.wait([
       homeCubit.getData(),
       storyCubit.getStories(authCubit.state.currentLocale.languageCode),
       bannerCubit.getBanners(),
     ]);
+
+    final invites = homeCubit.state.homeModel?.invitedHatims;
+
+    if (invites != null && invites.isNotEmpty && !isIntegrationTest) {
+      SchedulerBinding.instance.addPostFrameCallback((_) async {
+        if (!mounted) return;
+        await ShowInvitationWidget.showInvitationSheet<void>(
+          context: context,
+          invitedHatims: homeCubit.state.homeModel!.invitedHatims!,
+        );
+        await homeCubit.getData();
+      });
+    }
   }
 }

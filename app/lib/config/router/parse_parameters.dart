@@ -36,4 +36,13 @@ final class ParseParams {
       return 1;
     }
   }
+
+  static String parseHatimId(Map<String, String> args) {
+    try {
+      return args['hatimId'] ?? '';
+    } on Exception catch (e, s) {
+      MqCrashlytics.report(e, s);
+      return '';
+    }
+  }
 }

@@ -5,14 +5,14 @@ publish_to: none
 
 environment:
   sdk: ">=3.7.0-0 <4.0.0"
-  flutter: ^3.29.0
+  flutter: ^3.29.3
 
 dependencies:
   flutter:
     sdk: flutter
-  
+
   json_annotation: ^4.9.0
-  
+
   # Packages
   mq_crashlytics:
     path: ../mq_crashlytics
@@ -22,7 +22,7 @@ dependencies:
     path: ../mq_remote_config
   mq_storage:
     path: ../mq_storage
-    
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -8,4 +8,8 @@ abstract class MqHomeRemoteDataSource {
   Future<MqDonationPageResponse> getDonationPageData();
 
   Future<List<MqHomeBannerResponse>> getHomeBanners();
+
+  Future<void> hatimAccept(String id);
+
+  Future<void> hatimReject(String id);
 }

@@ -1,21 +1,18 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
 part 'hatim_event.dart';
 part 'hatim_state.dart';
-part 'hatim_state_dashboard.dart';
 part 'hatim_state_juzs.dart';
 part 'hatim_state_juz_pages.dart';
 part 'hatim_state_user_pages.dart';
 
 class HatimBloc extends Bloc<HatimEvent, HatimState> {
-  HatimBloc({required this.repo, required this.token}) : super(const HatimState()) {
+  HatimBloc({required this.repo, required this.token, required this.hatimId}) : super(const HatimState()) {
     on<GetInitailDataEvent>(_onGetInitailDataEvent);
     on<GetHatimJuzPagesEvent>(_onGetHatimJuzPagesEvent);
     on<SelectPageEvent>(_onSelectPageEvent);
@@ -27,35 +24,19 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
   }
 
   final MqHatimRepository repo;
+  final String hatimId;
   final String token;
   bool islistened = false;
 
   FutureOr<void> _onGetInitailDataEvent(GetInitailDataEvent event, Emitter<HatimState> emit) async {
-    try {
-      if (state.dashBoardState is HatimDashBoardLoading) return;
-      emit(state.copyWith(dashBoardState: const HatimDashBoardLoading()));
-      final data = await repo.getHatim();
-      emit(state.copyWith(dashBoardState: HatimDashBoardFetched(data)));
-
-      emit(state.copyWith(eventState: const HatimStateLoading()));
-      repo.connectToSocket(token);
-      if (!islistened) {
-        repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
-        islistened = true;
-      }
-
-      emit(state.copyWith(eventState: HatimStateSuccess(data.id)));
-
-      emit(state.copyWith(juzsState: const HatimJuzsLoading()));
-      repo.sinkHatimJuzs(data.id);
-
-      emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
-      repo.sinkHatimUserPages();
-    } on Exception catch (e, s) {
-      MqCrashlytics.report(e, s);
-      log('_onGetHatimDashBoardEvent: $e\n$s');
-      emit(state.copyWith(dashBoardState: HatimDashBoardFailed(Exception(e))));
+    repo.connectToSocket(token);
+    if (!islistened) {
+      repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
+      islistened = true;
     }
+    repo.sinkHatimJuzs(hatimId);
+    emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
+    repo.sinkHatimUserPages();
   }
 
   FutureOr<void> _onGetHatimJuzPagesEvent(GetHatimJuzPagesEvent event, Emitter<HatimState> emit) async {

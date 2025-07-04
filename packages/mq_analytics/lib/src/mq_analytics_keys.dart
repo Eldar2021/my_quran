@@ -13,6 +13,7 @@ abstract class AnalyticKey {
   static const goQuranReadByJuz = 'go_quran_read_by_juz';
   static const goQuranReadBySurah = 'go_quran_read_by_surah';
   static const goVerificationOtp = 'go_verification_otp';
+  static const goCreateHatim = 'go_create_hatim';
 
   // select - unselect
   static const selectLanguage = 'select_language';
