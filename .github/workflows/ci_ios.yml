@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - device: "iPhone 15 Pro Max"
-          - device: "iPad Pro (12.9-inch) (6th generation)"
+          - device: "iPhone 16 Pro Max"
+          - device: "iPad Pro 13-inch (M4)"
       fail-fast: true
     steps:
       - name: "Available Devices"
