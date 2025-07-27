@@ -51,7 +51,7 @@ android {
     defaultConfig {
         applicationId "com.alee.my_quran"
         minSdkVersion 23 // flutter.minSdkVersion
-        targetSdkVersion 34 // flutter.targetSdkVersion
+        targetSdkVersion 35 // flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
