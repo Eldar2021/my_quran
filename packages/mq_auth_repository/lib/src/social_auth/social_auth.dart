@@ -6,19 +6,21 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
 class SoccialAuth {
-  SoccialAuth({GoogleSignIn? googleSignIn}) : _googleSignIn = googleSignIn ?? GoogleSignIn();
+  SoccialAuth({GoogleSignIn? googleSignIn}) : _googleSignIn = googleSignIn ?? GoogleSignIn.instance;
 
   final GoogleSignIn _googleSignIn;
 
   Future<Map<String, dynamic>?> signInWithGoogle() async {
     try {
-      final googleUser = await _googleSignIn.signIn();
-      final googleAuth = await googleUser?.authentication;
+      final googleUser = await _googleSignIn.authenticate();
+      final googleAuth = googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        idToken: googleAuth.idToken,
       );
-      final respone = {'name': googleUser!.displayName ?? '', 'accessToken': credential.accessToken};
+      final respone = {
+        'name': googleUser.displayName ?? '',
+        'accessToken': credential.accessToken,
+      };
       return respone;
     } catch (e, s) {
       MqCrashlytics.report(e, s);
