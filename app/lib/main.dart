@@ -66,14 +66,13 @@ Future<void> main({bool isIntegrationTest = false}) async {
         RepositoryProvider<NetworkClient>(create: (context) => NetworkClient()),
         RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
         RepositoryProvider<MqRemoteClient>(
-          create:
-              (context) => MqRemoteClient(
-                dio: Dio(BaseOptions(baseUrl: domain)),
-                network: context.read<NetworkClient>(),
-                language: () => storage.readString(key: StorageKeys.localeKey),
-                token: () => storage.readString(key: StorageKeys.tokenKey),
-                oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
-              )..initilize(),
+          create: (context) => MqRemoteClient(
+            dio: Dio(BaseOptions(baseUrl: domain)),
+            network: context.read<NetworkClient>(),
+            language: () => storage.readString(key: StorageKeys.localeKey),
+            token: () => storage.readString(key: StorageKeys.tokenKey),
+            oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
+          )..initilize(),
         ),
       ],
       child: const MyApp(),

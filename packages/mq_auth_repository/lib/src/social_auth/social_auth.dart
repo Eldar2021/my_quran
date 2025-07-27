@@ -6,19 +6,20 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @immutable
 class SoccialAuth {
-  SoccialAuth({GoogleSignIn? googleSignIn}) : _googleSignIn = googleSignIn ?? GoogleSignIn.instance;
+  SoccialAuth({GoogleSignIn? googleSignIn}) : _googleSignIn = googleSignIn ?? GoogleSignIn();
 
   final GoogleSignIn _googleSignIn;
 
   Future<Map<String, dynamic>?> signInWithGoogle() async {
     try {
-      final googleUser = await _googleSignIn.authenticate();
-      final googleAuth = googleUser.authentication;
+      final googleUser = await _googleSignIn.signIn();
+      final googleAuth = await googleUser?.authentication;
       final credential = GoogleAuthProvider.credential(
-        idToken: googleAuth.idToken,
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
       );
       final respone = {
-        'name': googleUser.displayName ?? '',
+        'name': googleUser?.displayName ?? '',
         'accessToken': credential.accessToken,
       };
       return respone;
