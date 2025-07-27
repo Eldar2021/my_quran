@@ -73,13 +73,14 @@ class HatimJusSelectPagesView extends StatelessWidget {
                 if (pages.isNotEmpty) {
                   return ElevatedButton(
                     onPressed: () async {
+                      final hatimId = context.read<HatimBloc>().hatimId;
                       final pageIds = pages.map((e) => e.id).toList();
                       final pageNumbers = pages.map((e) => e.number).toList();
                       context.read<HatimBloc>().add(SetInProgressPagesEvent(pageIds));
                       MqAnalytic.track(AnalyticKey.goHatimReadPage, params: {'pages': pageIds});
                       final value = await context.pushNamed<bool>(
                         AppRouter.hatimRead,
-                        pathParameters: {'pages': pageNumbers.toString()},
+                        pathParameters: {'hatimId': hatimId, 'pages': pageNumbers.toString()},
                       );
                       if (value != null && value && context.mounted) {
                         context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));

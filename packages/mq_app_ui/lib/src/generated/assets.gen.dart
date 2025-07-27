@@ -57,6 +57,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/copy.svg
   SvgGenImage get copy => const SvgGenImage('assets/icons/copy.svg');
 
+  /// File path: assets/icons/create_hatim.svg
+  SvgGenImage get createHatim => const SvgGenImage('assets/icons/create_hatim.svg');
+
   /// File path: assets/icons/developers.svg
   SvgGenImage get developers => const SvgGenImage('assets/icons/developers.svg');
 
@@ -71,6 +74,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/favourite.svg
   SvgGenImage get favourite => const SvgGenImage('assets/icons/favourite.svg');
+
+  /// File path: assets/icons/fluent_description.svg
+  SvgGenImage get fluentDescription => const SvgGenImage('assets/icons/fluent_description.svg');
 
   /// File path: assets/icons/github.svg
   SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
@@ -132,6 +138,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/qybla_direction.svg
   SvgGenImage get qyblaDirection => const SvgGenImage('assets/icons/qybla_direction.svg');
 
+  /// File path: assets/icons/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
+
   /// File path: assets/icons/settings_burger.svg
   SvgGenImage get settingsBurger => const SvgGenImage('assets/icons/settings_burger.svg');
 
@@ -147,11 +156,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/sms.svg
   SvgGenImage get sms => const SvgGenImage('assets/icons/sms.svg');
 
+  /// File path: assets/icons/solid_users.svg
+  SvgGenImage get solidUsers => const SvgGenImage('assets/icons/solid_users.svg');
+
   /// File path: assets/icons/sun.svg
   SvgGenImage get sun => const SvgGenImage('assets/icons/sun.svg');
 
   /// File path: assets/icons/telegram.svg
   SvgGenImage get telegram => const SvgGenImage('assets/icons/telegram.svg');
+
+  /// File path: assets/icons/title.svg
+  SvgGenImage get title => const SvgGenImage('assets/icons/title.svg');
 
   /// File path: assets/icons/translate.svg
   SvgGenImage get translate => const SvgGenImage('assets/icons/translate.svg');
@@ -190,11 +205,13 @@ class $AssetsIconsGen {
     check,
     cloud,
     copy,
+    createHatim,
     developers,
     donate,
     download,
     emailSms,
     favourite,
+    fluentDescription,
     github,
     google,
     heptagon,
@@ -215,13 +232,16 @@ class $AssetsIconsGen {
     previousFill,
     quran,
     qyblaDirection,
+    search,
     settingsBurger,
     settingsFilter,
     share,
     shareFill,
     sms,
+    solidUsers,
     sun,
     telegram,
+    title,
     translate,
     trash,
     userFemale,

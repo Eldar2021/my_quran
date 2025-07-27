@@ -16,6 +16,13 @@ final class MqKeys {
   static const allReadedPageCount = 'all-readed-page-count';
   static const participantToHatim = 'participant-to-hatim';
 
+  // create-hatim
+  static const createHatim = 'create-hatim';
+  static const search = 'search';
+  static const titleTextField = 'title-text-field';
+  static const descriptionTextField = 'description-text-field';
+  static const createHatimButton = 'create-hatim-button';
+
   // hatim
   static const hatimPage = 'hatim-page';
   static const hatimJuzsList = 'hatim-juzs-list';

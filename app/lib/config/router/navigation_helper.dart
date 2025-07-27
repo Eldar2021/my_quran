@@ -15,7 +15,12 @@ extension NavigationHelper on BuildContext {
     if (isAuthedticated) {
       goNamed(name, pathParameters: pathParameters, queryParameters: queryParameters, extra: extra);
     } else {
-      pushNamed(AppRouter.loginWihtSoccial);
+      pushNamed(
+        AppRouter.loginWihtSoccial,
+        pathParameters: pathParameters,
+        queryParameters: queryParameters,
+        extra: extra,
+      );
     }
   }
 }

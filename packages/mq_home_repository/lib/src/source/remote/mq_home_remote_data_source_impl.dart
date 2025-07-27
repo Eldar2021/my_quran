@@ -14,6 +14,24 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
   }
 
   @override
+  Future<void> hatimAccept(String id) async {
+    try {
+      await remoteClient.postType('/api/v1/hatim/$id/accept/', fromJson: Map<String, dynamic>.from);
+    } catch (e) {
+      throw Exception('Error during accept hatim: $e');
+    }
+  }
+
+  @override
+  Future<void> hatimReject(String id) async {
+    try {
+      await remoteClient.postType('/api/v1/hatim/$id/reject/', fromJson: Map<String, dynamic>.from);
+    } catch (e) {
+      throw Exception('Error during reject hatim: $e');
+    }
+  }
+
+  @override
   Future<List<MqStoryModelResponse>> getStories(String language) async {
     return remoteClient.getListOfType<MqStoryModelResponse>(
       'https://eldar2021.github.io/my-quran/stories/$language/my-quran-stories.json',

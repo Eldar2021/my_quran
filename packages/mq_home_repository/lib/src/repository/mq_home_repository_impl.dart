@@ -79,4 +79,14 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
   bool _isSameDate(DateTime now, DateTime date) {
     return now.year == date.year && now.month == date.month && now.day == date.day;
   }
+
+  @override
+  Future<void> hatimAccept(String id) async {
+    await remoteDataSource.hatimAccept(id);
+  }
+
+  @override
+  Future<void> hatimReject(String id) async {
+    await remoteDataSource.hatimReject(id);
+  }
 }

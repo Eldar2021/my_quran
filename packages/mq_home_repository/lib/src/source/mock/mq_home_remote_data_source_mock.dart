@@ -65,4 +65,10 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
     await Future<void>.delayed(const Duration(seconds: 1));
     return mqMockHomeBanners.map((e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>)).toList();
   }
+
+  @override
+  Future<void> hatimAccept(String id) => Future.value();
+
+  @override
+  Future<void> hatimReject(String id) => Future.value();
 }

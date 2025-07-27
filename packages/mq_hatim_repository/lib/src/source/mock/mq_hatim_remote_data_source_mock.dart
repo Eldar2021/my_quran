@@ -7,8 +7,36 @@ class MqHatimRemoteDataSourceMock implements MqHatimRemoteDataSource {
   final StreamController<dynamic> _controller = StreamController<dynamic>();
 
   @override
-  Future<HatimReadModel> getHatim() async {
-    return const HatimReadModel(id: '1', status: 'done', type: 'user_pages');
+  Future<MqSearchModel> getSearch(String? user) async {
+    return const MqSearchModel(
+      users: [MqUserIdModel(id: 1, userName: 'user1', email: 'user1@gmail.com', firstName: 'user1', lastName: 'user1')],
+    );
+  }
+
+  @override
+  Future<MqHatimsModel> createHatim(MqHatimCreateModel user) async {
+    return const MqHatimsModel(
+      id: '111',
+      title: 'test hatim',
+      description: 'test hatim description',
+      type: 'GROUP',
+      status: 'IN_PROGRESS',
+      creator: MqHatimCreateUserModel(
+        firstName: 'user 1',
+        lastName: 'user 1',
+        userName: '@user 1',
+        email: 'test email',
+        avatar: '',
+      ),
+      participantsDetails: [
+        MqHatimParticipantsDetailUserModel(
+          id: 1,
+          hatim: 'test hatim',
+          user: MqUserHatimModel(userName: 'user', email: 'email', firstName: 'user', lastName: 'user', avatar: ''),
+          accepted: false,
+        ),
+      ],
+    );
   }
 
   @override

@@ -1,7 +1,9 @@
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
 abstract class MqHatimRepository {
-  Future<MqHatimReadEntity> getHatim();
+  Future<MqSearchModel> getSearch(String user);
+
+  Future<MqHatimsModel> createHatim(MqHatimCreateModel hatim);
 
   void connectToSocket(String token);
 
