@@ -4,17 +4,17 @@ version: 0.1.0+1
 publish_to: none
 
 environment:
-  sdk: ">=3.7.0-0 <4.0.0"
+  sdk: ">=3.8.0-0 <4.0.0"
   flutter: ^3.32.8
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.16.0
+  meta: ^1.16.0 #1.17.0
   json_annotation: ^4.9.0
-  firebase_auth: ^5.4.2
-  google_sign_in: ^6.2.2
-  sign_in_with_apple: ^6.1.4
+  firebase_auth: ^5.7.0
+  google_sign_in: ^7.1.1
+  sign_in_with_apple: ^7.0.1
 
   mq_crashlytics:
     path: ../mq_crashlytics
@@ -27,6 +27,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
-  very_good_analysis: ^7.0.0
-  build_runner: ^2.4.15
-  json_serializable: ^6.9.4
+  very_good_analysis: ^9.0.0
+  build_runner: ^2.6.0
+  json_serializable: ^6.10.0
