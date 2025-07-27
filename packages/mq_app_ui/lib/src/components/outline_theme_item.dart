@@ -19,11 +19,16 @@ class OutlineThemeItem extends StatelessWidget {
     return Material(
       color: backgroundColor,
       type: MaterialType.card,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: borderColor)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+        side: BorderSide(color: borderColor),
+      ),
       child: SizedBox(
         width: 70,
         height: 40,
-        child: Center(child: Text(digit, style: TextStyle(color: foregroundColor, fontSize: 22))),
+        child: Center(
+          child: Text(digit, style: TextStyle(color: foregroundColor, fontSize: 22)),
+        ),
       ),
     );
   }

@@ -16,7 +16,10 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const ScaffoldWithBgImage(
       key: Key(MqKeys.loginInitial),
-      body: Padding(padding: EdgeInsets.symmetric(horizontal: 24), child: SafeArea(child: LoginBody())),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: SafeArea(child: LoginBody()),
+      ),
     );
   }
 }

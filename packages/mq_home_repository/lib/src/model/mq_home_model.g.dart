@@ -11,10 +11,9 @@ MqHomeModel _$MqHomeModelFromJson(Map<String, dynamic> json) => MqHomeModel(
   allDonePages: (json['allDonePages'] as num).toInt(),
   donePages: (json['donePages'] as num).toInt(),
   enableCreationHatim: json['enableCreationHatim'] as bool,
-  invitedHatims:
-      (json['invitedHatims'] as List<dynamic>?)
-          ?.map((e) => MqHomeInvitedHatimsModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  invitedHatims: (json['invitedHatims'] as List<dynamic>?)
+      ?.map((e) => MqHomeInvitedHatimsModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
   hatims: (json['hatims'] as List<dynamic>?)?.map((e) => MqHatimsModel.fromJson(e as Map<String, dynamic>)).toList(),
 );
 

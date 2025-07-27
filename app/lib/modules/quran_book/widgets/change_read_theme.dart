@@ -16,7 +16,9 @@ class ChangeReadThemeSheetContent extends StatelessWidget {
         color: themeCubit.state.bgColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      child: const FractionallySizedBox(child: Padding(padding: EdgeInsets.symmetric(horizontal: 32), child: _Body())),
+      child: const FractionallySizedBox(
+        child: Padding(padding: EdgeInsets.symmetric(horizontal: 32), child: _Body()),
+      ),
     );
   }
 }

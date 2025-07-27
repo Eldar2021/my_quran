@@ -117,15 +117,15 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                         builder: (context, snapshot) {
                           return snapshot.data?.$1 != 0
                               ? Row(
-                                children: [
-                                  Text(_getPreyerLabel(snapshot.data?.$1), style: prTextTheme.bodyLarge),
-                                  SizedBox(width: context.withWidth(7)),
-                                  Text(
-                                    _printDuration(snapshot.data?.$2 ?? Duration.zero),
-                                    style: prTextTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w900),
-                                  ),
-                                ],
-                              )
+                                  children: [
+                                    Text(_getPreyerLabel(snapshot.data?.$1), style: prTextTheme.bodyLarge),
+                                    SizedBox(width: context.withWidth(7)),
+                                    Text(
+                                      _printDuration(snapshot.data?.$2 ?? Duration.zero),
+                                      style: prTextTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w900),
+                                    ),
+                                  ],
+                                )
                               : const SizedBox.shrink();
                         },
                       ),
@@ -221,12 +221,11 @@ class SalaahItemTimeCard extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
-      color:
-          isActive
-              ? colorScheme.primary
-              : isDark
-              ? colorScheme.surface.withValues(alpha: 0.5)
-              : colorScheme.shadow.withValues(alpha: 0.5),
+      color: isActive
+          ? colorScheme.primary
+          : isDark
+          ? colorScheme.surface.withValues(alpha: 0.5)
+          : colorScheme.shadow.withValues(alpha: 0.5),
       margin: EdgeInsets.zero,
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.withWidth(8))),

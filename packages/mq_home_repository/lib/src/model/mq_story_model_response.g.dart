@@ -11,8 +11,9 @@ MqStoryModelResponse _$MqStoryModelResponseFromJson(Map<String, dynamic> json) =
   cardLabel: json['cardLabel'] as String,
   isViewed: json['isViewed'] as bool,
   button: MqStoryButtonResponse.fromJson(json['button'] as Map<String, dynamic>),
-  screens:
-      (json['screens'] as List<dynamic>).map((e) => MqStoryScreenResponse.fromJson(e as Map<String, dynamic>)).toList(),
+  screens: (json['screens'] as List<dynamic>)
+      .map((e) => MqStoryScreenResponse.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$MqStoryModelResponseToJson(MqStoryModelResponse instance) => <String, dynamic>{

@@ -18,15 +18,13 @@ class CreateHatimView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) => CreateHatimCubit(
-            MqHatimReadRepositoryImpl(
-              dataSource:
-                  context.read<AppConfig>().isMockData
-                      ? MqHatimRemoteDataSourceMock()
-                      : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
-            ),
-          ),
+      create: (context) => CreateHatimCubit(
+        MqHatimReadRepositoryImpl(
+          dataSource: context.read<AppConfig>().isMockData
+              ? MqHatimRemoteDataSourceMock()
+              : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
+        ),
+      ),
       child: const CreateHatimViewBody(),
     );
   }
@@ -165,13 +163,12 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
             return ElevatedButton(
               key: const Key(MqKeys.createHatimButton),
               onPressed: canSubmit ? _onSubmit : null,
-              child:
-                  loading
-                      ? const SizedBox.square(
-                        dimension: 25,
-                        child: CircularProgressIndicator(color: AppColors.white, strokeWidth: 2),
-                      )
-                      : Text(context.l10n.createHatim),
+              child: loading
+                  ? const SizedBox.square(
+                      dimension: 25,
+                      child: CircularProgressIndicator(color: AppColors.white, strokeWidth: 2),
+                    )
+                  : Text(context.l10n.createHatim),
             );
           },
         ),
@@ -195,7 +192,9 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
 
     await Navigator.push<void>(
       context,
-      MaterialPageRoute(builder: (_) => BlocProvider.value(value: cubit, child: const SearchView())),
+      MaterialPageRoute(
+        builder: (_) => BlocProvider.value(value: cubit, child: const SearchView()),
+      ),
     );
 
     if (mounted) {

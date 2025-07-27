@@ -13,7 +13,12 @@ class FormLabel extends StatelessWidget {
       text: TextSpan(
         text: title,
         style: prTextTheme.bodyMedium,
-        children: <TextSpan>[TextSpan(text: '*', style: prTextTheme.bodyMedium?.copyWith(color: colorScheme.error))],
+        children: <TextSpan>[
+          TextSpan(
+            text: '*',
+            style: prTextTheme.bodyMedium?.copyWith(color: colorScheme.error),
+          ),
+        ],
       ),
     );
   }

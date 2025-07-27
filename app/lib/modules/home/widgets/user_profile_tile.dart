@@ -17,10 +17,9 @@ class UserProfileTile extends StatelessWidget {
       title: Text(user?.username ?? context.l10n.hello, maxLines: 1),
       leading: CircleAvatar(
         backgroundColor: colorScheme.onSurface.withValues(alpha: 0.1),
-        child:
-            user?.gender == Gender.male
-                ? Assets.icons.userMale.svg(colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn))
-                : Assets.icons.userFemale.svg(colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn)),
+        child: user?.gender == Gender.male
+            ? Assets.icons.userMale.svg(colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn))
+            : Assets.icons.userFemale.svg(colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn)),
       ),
     );
   }

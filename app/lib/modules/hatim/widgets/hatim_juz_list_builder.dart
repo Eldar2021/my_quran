@@ -45,11 +45,10 @@ class HatimJuzListBuilder extends StatelessWidget {
     await Navigator.push<void>(
       context,
       MaterialPageRoute<void>(
-        builder:
-            (BuildContext context) => BlocProvider.value(
-              value: bloc..add(GetHatimJuzPagesEvent(item.id)),
-              child: HatimJusSelectPagesView(hatimJusEntity: item),
-            ),
+        builder: (BuildContext context) => BlocProvider.value(
+          value: bloc..add(GetHatimJuzPagesEvent(item.id)),
+          child: HatimJusSelectPagesView(hatimJusEntity: item),
+        ),
       ),
     );
     bloc.add(const ResetJuzPagesEvent());

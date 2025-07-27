@@ -54,7 +54,12 @@ class ThemeTypographyPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Typography'),
-          bottom: const TabBar(tabs: <Widget>[Tab(text: 'Primary Text Theme'), Tab(text: 'Text Theme')]),
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(text: 'Primary Text Theme'),
+              Tab(text: 'Text Theme'),
+            ],
+          ),
         ),
         body: TabBarView(
           children: [

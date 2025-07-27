@@ -15,14 +15,12 @@ class QuranByPagesView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create:
-              (context) =>
-                  QuranBookThemeCubit(readThemeRepository: context.read<ReadThemeRepository>())..initializeTheme(),
+          create: (context) =>
+              QuranBookThemeCubit(readThemeRepository: context.read<ReadThemeRepository>())..initializeTheme(),
         ),
         BlocProvider(
-          create:
-              (context) =>
-                  QuranBookByPageCubit(repository: context.read<MqQuranRepository>(), pagesNumber: pagesNumber),
+          create: (context) =>
+              QuranBookByPageCubit(repository: context.read<MqQuranRepository>(), pagesNumber: pagesNumber),
         ),
       ],
       child: const _QuranByPagesView(),

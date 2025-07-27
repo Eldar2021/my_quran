@@ -19,17 +19,15 @@ class HatimView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) => HatimBloc(
-            hatimId: hatimId,
-            repo: MqHatimReadRepositoryImpl(
-              dataSource:
-                  context.read<AppConfig>().isMockData
-                      ? MqHatimRemoteDataSourceMock()
-                      : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
-            ),
-            token: context.read<AuthCubit>().state.user!.accessToken,
-          )..add(const GetInitailDataEvent()),
+      create: (context) => HatimBloc(
+        hatimId: hatimId,
+        repo: MqHatimReadRepositoryImpl(
+          dataSource: context.read<AppConfig>().isMockData
+              ? MqHatimRemoteDataSourceMock()
+              : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
+        ),
+        token: context.read<AuthCubit>().state.user!.accessToken,
+      )..add(const GetInitailDataEvent()),
       child: const HatimUI(),
     );
   }

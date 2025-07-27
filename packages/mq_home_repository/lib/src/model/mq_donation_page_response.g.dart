@@ -21,10 +21,9 @@ MqDonationPageResponse _$MqDonationPageResponseFromJson(Map<String, dynamic> jso
   pageDescriptionKy: json['pageDescriptionKy'] as String,
   pageDescriptionRu: json['pageDescriptionRu'] as String,
   pageDescriptionTr: json['pageDescriptionTr'] as String,
-  requisites:
-      (json['requisites'] as List<dynamic>)
-          .map((e) => MqDonationRequisiteResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  requisites: (json['requisites'] as List<dynamic>)
+      .map((e) => MqDonationRequisiteResponse.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$MqDonationPageResponseToJson(MqDonationPageResponse instance) => <String, dynamic>{

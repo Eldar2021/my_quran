@@ -51,7 +51,10 @@ final class AppRouter {
       navigatorKey: rootNavigatorKey,
       debugLogDiagnostics: kDebugMode,
       routes: [
-        GoRoute(path: '/', builder: (context, state) => const Scaffold(body: Center(child: Text('Init')))),
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const Scaffold(body: Center(child: Text('Init'))),
+        ),
         GoRoute(path: '/$login', name: login, builder: (context, state) => const LoginView()),
         GoRoute(
           path: '/$verificationCode/:email',

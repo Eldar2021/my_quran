@@ -22,37 +22,37 @@ class HatimPageStatusCard extends StatelessWidget {
       HatimPageStatus.done =>
         isMine
             ? CircleButton(
-              backgroundColor: AppColors.tomato2,
-              foregroundColor: AppColors.white,
-              disabledForegroundColor: AppColors.tomato2,
-              borderColor: AppColors.tomato2,
-              onPressed: onTap,
-              child: Text('$pageNumber'),
-            )
+                backgroundColor: AppColors.tomato2,
+                foregroundColor: AppColors.white,
+                disabledForegroundColor: AppColors.tomato2,
+                borderColor: AppColors.tomato2,
+                onPressed: onTap,
+                child: Text('$pageNumber'),
+              )
             : CircleButton(
-              foregroundColor: AppColors.tomato2,
-              disabledForegroundColor: AppColors.tomato2,
-              borderColor: AppColors.tomato2,
-              onPressed: onTap,
-              child: Text('$pageNumber'),
-            ),
+                foregroundColor: AppColors.tomato2,
+                disabledForegroundColor: AppColors.tomato2,
+                borderColor: AppColors.tomato2,
+                onPressed: onTap,
+                child: Text('$pageNumber'),
+              ),
       HatimPageStatus.inProgress || HatimPageStatus.booked =>
         isMine
             ? CircleButton(
-              backgroundColor: AppColors.goldenrod,
-              foregroundColor: AppColors.white,
-              disabledForegroundColor: AppColors.goldenrod,
-              borderColor: AppColors.goldenrod,
-              onPressed: onTap,
-              child: Text('$pageNumber'),
-            )
+                backgroundColor: AppColors.goldenrod,
+                foregroundColor: AppColors.white,
+                disabledForegroundColor: AppColors.goldenrod,
+                borderColor: AppColors.goldenrod,
+                onPressed: onTap,
+                child: Text('$pageNumber'),
+              )
             : CircleButton(
-              foregroundColor: AppColors.goldenrod,
-              disabledForegroundColor: AppColors.goldenrod,
-              borderColor: AppColors.goldenrod,
-              onPressed: onTap,
-              child: Text('$pageNumber'),
-            ),
+                foregroundColor: AppColors.goldenrod,
+                disabledForegroundColor: AppColors.goldenrod,
+                borderColor: AppColors.goldenrod,
+                onPressed: onTap,
+                child: Text('$pageNumber'),
+              ),
       HatimPageStatus.todo => CircleButton(
         foregroundColor: AppColors.mediumseagreen,
         disabledForegroundColor: AppColors.mediumseagreen,

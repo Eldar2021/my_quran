@@ -24,7 +24,9 @@ class HatimJusSelectPagesView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 0, 24, 50),
         children: [
-          Center(child: Text(context.l10n.hatim, style: prTextTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600))),
+          Center(
+            child: Text(context.l10n.hatim, style: prTextTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600)),
+          ),
           const SizedBox(height: 8),
           Center(
             child: Padding(
@@ -111,27 +113,25 @@ class HatimPageGridListBuilder extends StatelessWidget {
       spacing: 12,
       runSpacing: 12,
       alignment: WrapAlignment.center,
-      children:
-          items.map((e) {
-            return HatimPageStatusCard(
-              status: e.status,
-              pageNumber: e.number,
-              isMine: e.mine,
-              onTap:
-                  e.status.isActive
-                      ? () {
-                        final bloc = context.read<HatimBloc>();
-                        if (e.status == HatimPageStatus.todo) {
-                          MqAnalytic.track(AnalyticKey.selectPage, params: {'page': e.id});
-                          bloc.add(SelectPageEvent(e.id));
-                        } else if (e.mine) {
-                          MqAnalytic.track(AnalyticKey.unselectPage, params: {'page': e.id});
-                          bloc.add(UnSelectPageEvent(e.id));
-                        }
-                      }
-                      : null,
-            );
-          }).toList(),
+      children: items.map((e) {
+        return HatimPageStatusCard(
+          status: e.status,
+          pageNumber: e.number,
+          isMine: e.mine,
+          onTap: e.status.isActive
+              ? () {
+                  final bloc = context.read<HatimBloc>();
+                  if (e.status == HatimPageStatus.todo) {
+                    MqAnalytic.track(AnalyticKey.selectPage, params: {'page': e.id});
+                    bloc.add(SelectPageEvent(e.id));
+                  } else if (e.mine) {
+                    MqAnalytic.track(AnalyticKey.unselectPage, params: {'page': e.id});
+                    bloc.add(UnSelectPageEvent(e.id));
+                  }
+                }
+              : null,
+        );
+      }).toList(),
     );
   }
 }

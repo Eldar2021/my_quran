@@ -35,10 +35,9 @@ class AudioButtomSheet extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     icon: const Icon(Icons.fast_rewind),
                     color: isDark ? colorScheme.inverseSurface : null,
-                    onPressed:
-                        context.read<QuranAudioCubit>().hasPreviousSurah
-                            ? () => context.read<QuranAudioCubit>().previous()
-                            : null,
+                    onPressed: context.read<QuranAudioCubit>().hasPreviousSurah
+                        ? () => context.read<QuranAudioCubit>().previous()
+                        : null,
                   );
                 },
               ),
@@ -60,10 +59,9 @@ class AudioButtomSheet extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     icon: const Icon(Icons.fast_forward),
                     color: isDark ? colorScheme.inverseSurface : null,
-                    onPressed:
-                        context.read<QuranAudioCubit>().hasNextSurah
-                            ? () => context.read<QuranAudioCubit>().next()
-                            : null,
+                    onPressed: context.read<QuranAudioCubit>().hasNextSurah
+                        ? () => context.read<QuranAudioCubit>().next()
+                        : null,
                   );
                 },
               ),

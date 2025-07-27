@@ -37,18 +37,17 @@ class ParticipantTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         style: prTextTheme.titleSmall?.copyWith(fontWeight: FontWeight.w400),
       ),
-      trailing:
-          isOutlined
-              ? OutlinedButton(
-                style: ElevatedButton.styleFrom(fixedSize: const Size(118, 36)),
-                onPressed: onPressed,
-                child: Text(text),
-              )
-              : ElevatedButton(
-                style: ElevatedButton.styleFrom(fixedSize: const Size(130, 36)),
-                onPressed: onPressed,
-                child: Text(text),
-              ),
+      trailing: isOutlined
+          ? OutlinedButton(
+              style: ElevatedButton.styleFrom(fixedSize: const Size(118, 36)),
+              onPressed: onPressed,
+              child: Text(text),
+            )
+          : ElevatedButton(
+              style: ElevatedButton.styleFrom(fixedSize: const Size(130, 36)),
+              onPressed: onPressed,
+              child: Text(text),
+            ),
     );
   }
 }

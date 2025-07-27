@@ -56,10 +56,9 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                     value: sliderValue,
                     max: sliderMaxValue,
                     min: sliderMinValue,
-                    inactiveColor:
-                        isDark
-                            ? colorScheme.onSurface.withValues(alpha: 0.7)
-                            : colorScheme.outline.withValues(alpha: 0.2),
+                    inactiveColor: isDark
+                        ? colorScheme.onSurface.withValues(alpha: 0.7)
+                        : colorScheme.outline.withValues(alpha: 0.2),
                     onChanged: onDragSliderChanged,
                   ),
                 ),
@@ -83,19 +82,17 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                 iconSize: 66,
                 padding: EdgeInsets.zero,
                 color: colorScheme.primary,
-                onPressed:
-                    isLoading
-                        ? null
-                        : isProgressing
-                        ? onPressedPause
-                        : onPressedPlay,
-                icon:
-                    isLoading
-                        ? Padding(
-                          padding: const EdgeInsets.all(13),
-                          child: CupertinoActivityIndicator(color: colorScheme.primary, radius: 20),
-                        )
-                        : Icon(isProgressing ? Icons.pause_circle : Icons.play_circle),
+                onPressed: isLoading
+                    ? null
+                    : isProgressing
+                    ? onPressedPause
+                    : onPressedPlay,
+                icon: isLoading
+                    ? Padding(
+                        padding: const EdgeInsets.all(13),
+                        child: CupertinoActivityIndicator(color: colorScheme.primary, radius: 20),
+                      )
+                    : Icon(isProgressing ? Icons.pause_circle : Icons.play_circle),
               ),
               const SizedBox(width: 20),
               IconButton(
