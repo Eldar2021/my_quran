@@ -233,3 +233,24 @@
 - Upgraded all dependencies
 - Moved PackageInfo to MqRemoteConfig
 - Upgraded Android gradle/kotlin
+
+---
+
+# What's Changed v1.3.15+25
+
+## [UX]
+
+- Added hatim and show invitation massage
+- Fixed splash screen
+
+## [Bug Fixes]
+
+- Fixed github actions
+
+## [Technical]
+
+- Removed either
+- Added Unit test to MqRemoteConfig
+- add new Token responce model
+- Update response model and delete Entity
+- Bumped flutter version 3.32.8
