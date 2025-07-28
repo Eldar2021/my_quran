@@ -86,8 +86,8 @@ abstract class AppTheme {
     return const ProgressIndicatorThemeData();
   }
 
-  TabBarTheme get tabBarTheme {
-    return const TabBarTheme();
+  TabBarThemeData get tabBarTheme {
+    return const TabBarThemeData();
   }
 
   InputBorder get textFieldBorder {

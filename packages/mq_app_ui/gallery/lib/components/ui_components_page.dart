@@ -91,7 +91,10 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
           const SizedBox(height: 8),
           ElevatedButton(onPressed: () {}, child: const Text('Get started')),
           const SizedBox(height: 8),
-          ElevatedButton(onPressed: () {}, child: CupertinoActivityIndicator(color: colorScheme.onPrimary)),
+          ElevatedButton(
+            onPressed: () {},
+            child: CupertinoActivityIndicator(color: colorScheme.onPrimary),
+          ),
           const SizedBox(height: 8),
           const ElevatedButton(onPressed: null, child: Text('Get started')),
           const SizedBox(height: 26),

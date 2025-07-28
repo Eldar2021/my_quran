@@ -18,14 +18,13 @@ class GenderRedioWidget extends StatelessWidget {
       value: itemIsMale ? AppUiGender.male : AppUiGender.famela,
       groupValue: gender,
       onChanged: onChanged,
-      secondary:
-          itemIsMale
-              ? Assets.icons.userMale.svg(
-                colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
-              )
-              : Assets.icons.userFemale.svg(
-                colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
-              ),
+      secondary: itemIsMale
+          ? Assets.icons.userMale.svg(
+              colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
+            )
+          : Assets.icons.userFemale.svg(
+              colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
+            ),
       title: Text(
         title ?? '',
         style: textTheme.titleMedium?.copyWith(color: selected ? colorScheme.primary : colorScheme.onSurface),

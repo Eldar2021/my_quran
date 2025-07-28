@@ -18,7 +18,10 @@ class SoccialAuth {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      final respone = {'name': googleUser!.displayName ?? '', 'accessToken': credential.accessToken};
+      final respone = {
+        'name': googleUser?.displayName ?? '',
+        'accessToken': credential.accessToken,
+      };
       return respone;
     } catch (e, s) {
       MqCrashlytics.report(e, s);

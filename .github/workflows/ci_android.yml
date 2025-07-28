@@ -10,24 +10,23 @@ jobs:
   integration_test_android:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - name: Enable KVM
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-
-      - uses: subosito/flutter-action@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.29.3"
+          flutter-version: "3.32.8"
           channel: stable
+          cache: true
 
-      - uses: actions/setup-java@v3
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
           java-version: "17"
           distribution: "temurin"
           cache: gradle
+
       - run: flutter doctor -v
 
       - run: dart pub global activate flutterfire_cli
@@ -38,14 +37,17 @@ jobs:
       - name: "Melos bs"
         run: melos bootstrap
 
-      - uses: reactivecircus/android-emulator-runner@v2
+      - name: Run Android integration tests
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: 34
           arch: x86_64
+          emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
           script: melos integration-test
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: my-artifact
+          name: android-screenshots
           path: ./screenshots/*

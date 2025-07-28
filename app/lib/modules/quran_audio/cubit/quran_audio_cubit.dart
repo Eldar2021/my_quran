@@ -24,24 +24,20 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
       surahs = quranRepository.getSurahsData();
       sequenceStateStream = player.sequenceStateStream;
       playerStateStream = player.playerStateStream;
-      final playList = ConcatenatingAudioSource(
-        shuffleOrder: DefaultShuffleOrder(),
-        children:
-            surahs
-                .map(
-                  (s) => AudioSource.uri(
-                    Uri.parse(ApiConst.audio(s.surahPath)),
-                    tag: MediaItem(
-                      id: '${s.id}',
-                      album: 'Quran',
-                      title: s.nameSimple,
-                      artUri: Uri.parse(ApiConst.appLogoLink),
-                    ),
-                  ),
-                )
-                .toList(),
-      );
-      await player.setAudioSource(playList, initialIndex: 0, preload: false);
+      final playList = surahs
+          .map(
+            (s) => AudioSource.uri(
+              Uri.parse(ApiConst.audio(s.surahPath)),
+              tag: MediaItem(
+                id: '${s.id}',
+                album: 'Quran',
+                title: s.nameSimple,
+                artUri: Uri.parse(ApiConst.appLogoLink),
+              ),
+            ),
+          )
+          .toList();
+      await player.setAudioSources(playList, initialIndex: 0, preload: false);
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       emit(QuranAudioState(exception: e.toString()));

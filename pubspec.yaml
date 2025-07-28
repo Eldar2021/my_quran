@@ -2,8 +2,8 @@ name: my_quran_main
 description: A new Flutter project.
 
 environment:
-  sdk: ">=3.7.0-0 <4.0.0"
-  flutter: 3.29.3
+  sdk: ">=3.8.0-0 <4.0.0"
+  flutter: 3.32.8
 
 dev_dependencies:
-  melos: ^6.3.2
+  melos: ^6.3.3

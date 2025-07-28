@@ -90,21 +90,20 @@ class _HomeViewState extends State<HomeView> {
                     listHeight: 132,
                     buttonWidth: 70,
                     buttonSpacing: 14,
-                    items:
-                        state.getStories.asMap().entries.map((e) {
-                          final idIndex = e.key;
-                          final item = e.value;
-                          return MqStoryItem(
-                            id: '$idIndex',
-                            cardImageLink: item.cardImageUrl,
-                            cardLabel: item.cardLabel,
-                            storyPagesImages: item.screens.map((e) => e.imageUrl).toList(),
-                            storyPageDuration: List.generate(
-                              item.screens.length,
-                              (index) => Duration(milliseconds: item.screens[index].durationByMilliseconds),
-                            ),
-                          );
-                        }).toList(),
+                    items: state.getStories.asMap().entries.map((e) {
+                      final idIndex = e.key;
+                      final item = e.value;
+                      return MqStoryItem(
+                        id: '$idIndex',
+                        cardImageLink: item.cardImageUrl,
+                        cardLabel: item.cardLabel,
+                        storyPagesImages: item.screens.map((e) => e.imageUrl).toList(),
+                        storyPageDuration: List.generate(
+                          item.screens.length,
+                          (index) => Duration(milliseconds: item.screens[index].durationByMilliseconds),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 };
               },

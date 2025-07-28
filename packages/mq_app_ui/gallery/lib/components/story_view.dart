@@ -29,25 +29,24 @@ class _StoryViewState extends State<StoryView> {
       body: ListView(
         children: [
           MqStoryItemsWidget(
-            items:
-                sources.asMap().entries.map((e) {
-                  final idx = e.key;
-                  final v = e.value;
-                  return MqStoryItem(
-                    id: '$idx',
-                    cardImageLink: v,
-                    cardLabel: 'New UI My Quran Team',
-                    storyPagesImages: sources,
-                    storyPageDuration: const [
-                      Duration(seconds: 1),
-                      Duration(seconds: 1),
-                      Duration(seconds: 1),
-                      Duration(seconds: 1),
-                      Duration(seconds: 1),
-                      Duration(seconds: 1),
-                    ],
-                  );
-                }).toList(),
+            items: sources.asMap().entries.map((e) {
+              final idx = e.key;
+              final v = e.value;
+              return MqStoryItem(
+                id: '$idx',
+                cardImageLink: v,
+                cardLabel: 'New UI My Quran Team',
+                storyPagesImages: sources,
+                storyPageDuration: const [
+                  Duration(seconds: 1),
+                  Duration(seconds: 1),
+                  Duration(seconds: 1),
+                  Duration(seconds: 1),
+                  Duration(seconds: 1),
+                  Duration(seconds: 1),
+                ],
+              );
+            }).toList(),
           ),
         ],
       ),

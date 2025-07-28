@@ -41,10 +41,9 @@ class SeekBar extends StatelessWidget {
                       ),
                       onChanged: (value) => onChanged?.call(value),
                       onChangeEnd: (value) => onChangeEnd?.call(value),
-                      inactiveColor:
-                          isDark
-                              ? colorScheme.onSurface.withValues(alpha: 0.7)
-                              : colorScheme.outline.withValues(alpha: 0.2),
+                      inactiveColor: isDark
+                          ? colorScheme.onSurface.withValues(alpha: 0.7)
+                          : colorScheme.outline.withValues(alpha: 0.2),
                     ),
                   ),
                 ),

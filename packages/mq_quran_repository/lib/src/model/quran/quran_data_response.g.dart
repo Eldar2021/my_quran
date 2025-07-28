@@ -7,8 +7,9 @@ part of 'quran_data_response.dart';
 // **************************************************************************
 
 QuranDataResponse _$QuranDataResponseFromJson(Map<String, dynamic> json) => QuranDataResponse(
-  verses:
-      (json['verses'] as List<dynamic>).map((e) => QuranDataVerseResponse.fromJson(e as Map<String, dynamic>)).toList(),
+  verses: (json['verses'] as List<dynamic>)
+      .map((e) => QuranDataVerseResponse.fromJson(e as Map<String, dynamic>))
+      .toList(),
   meta: QuranDataMetaResponse.fromJson(json['meta'] as Map<String, dynamic>),
 );
 

@@ -53,7 +53,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final token = await client.postType(
       '/api/v1/accounts/google/',
       fromJson: TokenModel.fromJson,
-      body: {'access_token': googleAuth.accessToken, 'gender': gender.name, 'language': languageCode},
+      body: {
+        'access_token': googleAuth.accessToken,
+        'gender': gender.name,
+        'language': languageCode,
+      },
     );
 
     final user = UserModelResponse(

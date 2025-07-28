@@ -58,40 +58,38 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
       buttonSpacing: widget.buttonSpacing,
       paddingLeft: 24,
       pageTransform: const StoryPage3DTransform(),
-      buttonDatas:
-          _items
-              .map(
-                (e) => StoryButtonData(
-                  storyId: e.id,
-                  storyController: _storyController,
-                  timelineBackgroundColor: colorScheme.primary,
-                  buttonDecoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(e.cardImageLink)),
-                  ),
-                  child: Align(alignment: Alignment.bottomCenter, child: _CradLabelText(e.cardLabel)),
-                  borderDecoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: colorScheme.primary),
-                  ),
-                  storyPages:
-                      e.storyPagesImages
-                          .map(
-                            (i) => StoryPageScaffold(
-                              body: Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(image: CachedNetworkImageProvider(i), fit: BoxFit.cover),
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                  segmentDuration: e.storyPageDuration,
-                ),
-              )
-              .toList(),
+      buttonDatas: _items
+          .map(
+            (e) => StoryButtonData(
+              storyId: e.id,
+              storyController: _storyController,
+              timelineBackgroundColor: colorScheme.primary,
+              buttonDecoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(e.cardImageLink)),
+              ),
+              child: Align(alignment: Alignment.bottomCenter, child: _CradLabelText(e.cardLabel)),
+              borderDecoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: colorScheme.primary),
+              ),
+              storyPages: e.storyPagesImages
+                  .map(
+                    (i) => StoryPageScaffold(
+                      body: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(image: CachedNetworkImageProvider(i), fit: BoxFit.cover),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+              segmentDuration: e.storyPageDuration,
+            ),
+          )
+          .toList(),
     );
   }
 }

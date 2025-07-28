@@ -55,13 +55,12 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
     return PagedSliverList<int, QuranDataEntity>.separated(
       key: const Key(MqKeys.quranReadView),
       pagingController: _pagingController,
-      separatorBuilder:
-          (context, index) => Center(
-            child: Text(
-              _pagesNumber[index].toArabicDigits,
-              style: TextStyle(fontSize: themeCubit.state.textSize, color: themeCubit.state.frColor),
-            ),
-          ),
+      separatorBuilder: (context, index) => Center(
+        child: Text(
+          _pagesNumber[index].toArabicDigits,
+          style: TextStyle(fontSize: themeCubit.state.textSize, color: themeCubit.state.frColor),
+        ),
+      ),
       builderDelegate: PagedChildBuilderDelegate<QuranDataEntity>(
         itemBuilder: (context, item, index) {
           final strb = item.dataDatePage().map((e) => e.samePage(context)).toList().toString();

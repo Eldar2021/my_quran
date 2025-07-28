@@ -41,16 +41,14 @@ class QuranReadAudioProgressingWidget extends StatelessWidget {
               foregroundColor: colorScheme.primary,
               side: BorderSide(color: colorScheme.primary),
             ),
-            onPressed:
-                isLoading
-                    ? null
-                    : isProgressing
-                    ? onPressedPause
-                    : onPressedPlay,
-            icon:
-                isLoading
-                    ? CupertinoActivityIndicator(color: colorScheme.primary)
-                    : Icon(isProgressing ? Icons.pause : Icons.play_arrow_rounded),
+            onPressed: isLoading
+                ? null
+                : isProgressing
+                ? onPressedPause
+                : onPressedPlay,
+            icon: isLoading
+                ? CupertinoActivityIndicator(color: colorScheme.primary)
+                : Icon(isProgressing ? Icons.pause : Icons.play_arrow_rounded),
           ),
           const SizedBox(width: 5),
           Text(firstTime),
@@ -65,8 +63,9 @@ class QuranReadAudioProgressingWidget extends StatelessWidget {
                 value: sliderValue,
                 max: sliderMax,
                 min: sliderMin,
-                inactiveColor:
-                    isDark ? colorScheme.onSurface.withValues(alpha: 0.7) : colorScheme.outline.withValues(alpha: 0.2),
+                inactiveColor: isDark
+                    ? colorScheme.onSurface.withValues(alpha: 0.7)
+                    : colorScheme.outline.withValues(alpha: 0.2),
                 onChanged: onDragSliderChanged,
               ),
             ),

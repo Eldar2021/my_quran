@@ -13,10 +13,9 @@ MqHomeInvitedHatimsModel _$MqHomeInvitedHatimsModelFromJson(Map<String, dynamic>
   type: json['type'] as String,
   status: json['status'] as String,
   creator: json['creator'] == null ? null : MqHatimCreatorModel.fromJson(json['creator'] as Map<String, dynamic>),
-  participantsDetails:
-      (json['participantsDetails'] as List<dynamic>?)
-          ?.map((e) => MqHatimParticipantsDetailModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  participantsDetails: (json['participantsDetails'] as List<dynamic>?)
+      ?.map((e) => MqHatimParticipantsDetailModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$MqHomeInvitedHatimsModelToJson(MqHomeInvitedHatimsModel instance) => <String, dynamic>{

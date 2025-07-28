@@ -95,28 +95,28 @@ class _SearchViewState extends State<SearchView> {
                         FetchStatus.success =>
                           state.searchModel?.users == null || state.searchModel!.users!.isEmpty
                               ? Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 180),
-                                  child: Text(context.l10n.noUsersFound),
-                                ),
-                              )
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 180),
+                                    child: Text(context.l10n.noUsersFound),
+                                  ),
+                                )
                               : ListView.builder(
-                                itemCount: state.searchModel!.users!.length,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: const EdgeInsets.only(bottom: 120),
-                                itemBuilder: (context, index) {
-                                  final user = state.searchModel!.users![index];
-                                  final isAdded = state.selectedUsers.any((u) => u.id == user.id);
-                                  final cubit = context.read<CreateHatimCubit>();
+                                  itemCount: state.searchModel!.users!.length,
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: const EdgeInsets.only(bottom: 120),
+                                  itemBuilder: (context, index) {
+                                    final user = state.searchModel!.users![index];
+                                    final isAdded = state.selectedUsers.any((u) => u.id == user.id);
+                                    final cubit = context.read<CreateHatimCubit>();
 
-                                  return ParticipantTile(
-                                    user: user,
-                                    text: context.l10n.add,
-                                    onPressed: isAdded ? null : () => cubit.addParticipant(user),
-                                  );
-                                },
-                              ),
+                                    return ParticipantTile(
+                                      user: user,
+                                      text: context.l10n.add,
+                                      onPressed: isAdded ? null : () => cubit.addParticipant(user),
+                                    );
+                                  },
+                                ),
                       },
                     ],
                   ),

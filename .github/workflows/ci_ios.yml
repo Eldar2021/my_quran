@@ -8,21 +8,31 @@ on:
 
 jobs:
   integration_test_ios:
-    runs-on: macos-latest
+    runs-on: macos-15
     strategy:
       matrix:
         include:
-          - device: "iPhone 15 Pro Max"
-          - device: "iPad Pro (12.9-inch) (6th generation)"
+          - device: "iPhone 16 Pro Max"
+          - device: "iPad Pro 13-inch (M4)"
       fail-fast: true
     steps:
       - name: "Available Devices"
         run: xcrun simctl list --json devices available
 
       - uses: actions/checkout@v3
+
+      - name: Select Xcode 16.2
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+
+      - name: Confirm Xcode Version
+        run: xcodebuild -version
+
+      - name: "Available Devices"
+        run: xcrun simctl list --json devices available
+
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.29.3"
+          flutter-version: "3.32.8"
           channel: stable
       - run: flutter doctor -v
 
@@ -37,7 +47,7 @@ jobs:
       - uses: futureware-tech/simulator-action@v2
         with:
           model: ${{ matrix.device }}
-          os_version: "17.2"
+          os_version: "18.2"
 
       - name: Integration Test
         run: melos integration-test

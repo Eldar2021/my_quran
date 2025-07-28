@@ -62,10 +62,9 @@ class PinputWidget extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 64, maxWidth: 64),
       decoration: BoxDecoration(
         border: Border.all(
-          color:
-              theme.brightness == Brightness.dark
-                  ? theme.colorScheme.onSurface.withValues(alpha: 0.7)
-                  : theme.colorScheme.shadow.withValues(alpha: 0.3),
+          color: theme.brightness == Brightness.dark
+              ? theme.colorScheme.onSurface.withValues(alpha: 0.7)
+              : theme.colorScheme.shadow.withValues(alpha: 0.3),
         ),
         borderRadius: BorderRadius.circular(10),
       ),
