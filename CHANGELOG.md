@@ -240,8 +240,7 @@
 
 ## [UX]
 
-- Added hatim and show invitation massage
-- Fixed splash screen
+- Added group hatim
 
 ## [Bug Fixes]
 
@@ -249,8 +248,8 @@
 
 ## [Technical]
 
-- Removed either
+- Removed either package
 - Added Unit test to MqRemoteConfig
-- add new Token responce model
-- Update response model and delete Entity
+- Added new Token response model
+- Updated response model and delete Entity
 - Bumped flutter version 3.32.8
