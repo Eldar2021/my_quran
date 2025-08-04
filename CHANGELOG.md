@@ -233,3 +233,23 @@
 - Upgraded all dependencies
 - Moved PackageInfo to MqRemoteConfig
 - Upgraded Android gradle/kotlin
+
+---
+
+# What's Changed v1.3.15+25
+
+## [UX]
+
+- Added group hatim
+
+## [Bug Fixes]
+
+- Fixed github actions
+
+## [Technical]
+
+- Removed either package
+- Added Unit test to MqRemoteConfig
+- Added new Token response model
+- Updated response model and delete Entity
+- Bumped flutter version 3.32.8
