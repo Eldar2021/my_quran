@@ -15,6 +15,9 @@ import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/example/data/repository/example_repo_iml.dart';
+import 'package:my_quran/modules/example/data/sources/example_service.dart';
+import 'package:my_quran/modules/example/domain/example_repository.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class MyApp extends StatelessWidget {
@@ -31,6 +34,12 @@ class MyApp extends StatelessWidget {
             isMockData ? const AppLocalDataSourceMock() : AppLocalDataSourceImpl(context.read<PreferencesStorage>()),
           ),
         ),
+        RepositoryProvider<ExampleRepository>(
+          create: (context) => ExampleRepoIml(
+            ExampleService(context.read<MqRemoteClient>()),
+          ),
+        ),
+
         RepositoryProvider<MqHomeRepository>(
           create: (context) => MqHomeRepositoryImpl(
             isMockData

@@ -9,6 +9,7 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/example/presentation/view/example_view.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/utils/show/snackbars.dart';
@@ -43,6 +44,7 @@ class _HomeViewState extends State<HomeView> {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       key: _scaffoldKey,
+
       drawer: HomeDrawer(
         closeDrawer: () {
           _scaffoldKey.currentState?.closeDrawer();
@@ -161,26 +163,36 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            final hatims = state.homeModel?.hatims;
-            return ElevatedButton(
-              key: const Key(MqKeys.participantToHatim),
-              onPressed: () {
-                final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
-                if ((hatims?.length ?? 0) > 1 && !isIntegrationTest) {
-                  ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims!);
-                } else {
-                  _onJoinToHatim(hatims?.first.id ?? '');
-                }
-              },
-              child: Text(context.l10n.joinToHatim),
-            );
-          },
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push<void>(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => const ExamplePage(),
+            ),
+          );
+        },
       ),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 24),
+      //   child: BlocBuilder<HomeCubit, HomeState>(
+      //     builder: (context, state) {
+      //       final hatims = state.homeModel?.hatims;
+      //       return ElevatedButton(
+      //         key: const Key(MqKeys.participantToHatim),
+      //         onPressed: () {
+      //           final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
+      //           if ((hatims?.length ?? 0) > 1 && !isIntegrationTest) {
+      //             ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims!);
+      //           } else {
+      //             _onJoinToHatim(hatims?.first.id ?? '');
+      //           }
+      //         },
+      //         child: Text(context.l10n.joinToHatim),
+      //       );
+      //     },
+      //   ),
+      // ),
     );
   }
 
