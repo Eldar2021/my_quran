@@ -65,5 +65,6 @@ app/android/fastlane/metadata/android/en-US/images/phoneScreenshots/
 **/build/
 # keep the .lock file from the workspace and the app.
 packages/**/pubspec.lock
+packages/**/l10n_errors.txt
 # FVM Version Cache
 .fvm/
