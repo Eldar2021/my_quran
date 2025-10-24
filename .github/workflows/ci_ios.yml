@@ -9,50 +9,59 @@ on:
 jobs:
   integration_test_ios:
     runs-on: macos-latest
+
     strategy:
       matrix:
         include:
           - device: "iPhone 16 Pro Max"
           - device: "iPad Pro 13-inch (M4)"
       fail-fast: true
-    steps:
-      - name: "Available Devices"
-        run: xcrun simctl list --json devices available
 
-      - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Select Xcode 16.2
         run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
-      - name: Confirm Xcode Version
-        run: xcodebuild -version
+      - name: Confirm Xcode Version and Check Platform
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
 
-      - name: "Available Devices"
+      - name: Install Missing iOS 18.2 Simulator Runtime ⚠️
+        run: |
+          echo "İstenen iOS 18.2 Runtime'ı manuel olarak indiriliyor..."
+          sudo xcodebuild -downloadPlatform iOS -buildVersion 18.2
+          echo "İndirme tamamlandı."
+          xcrun simctl list runtimes
+
+      - name: "Available Devices after Installation"
         run: xcrun simctl list --json devices available
 
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.35.6"
           channel: stable
+
       - run: flutter doctor -v
 
-      - run: dart pub global activate flutterfire_cli
-
-      - name: "Melos Install"
-        run: dart pub global activate melos
+      - name: Install Global Tools (flutterfire_cli & melos)
+        run: |
+          dart pub global activate flutterfire_cli
+          dart pub global activate melos
 
       - name: "Melos bs"
-        run: melos bootstrap
+        run: $HOME/.pub-cache/bin/melos bootstrap
 
       - uses: futureware-tech/simulator-action@v2
         with:
           model: ${{ matrix.device }}
 
       - name: Integration Test
-        run: melos integration-test
+        run: $HOME/.pub-cache/bin/melos integration-test
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ${{ matrix.device }}
+          name: ${{ matrix.device }}-screenshots
           path: ./screenshots/*
