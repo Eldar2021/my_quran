@@ -8,7 +8,7 @@ on:
 
 jobs:
   integration_test_ios:
-    runs-on: macos-15
+    runs-on: macos-latest
     strategy:
       matrix:
         include:
@@ -47,7 +47,7 @@ jobs:
       - uses: futureware-tech/simulator-action@v2
         with:
           model: ${{ matrix.device }}
-          os_version: "18.2"
+          os_version: "18.6"
 
       - name: Integration Test
         run: melos integration-test

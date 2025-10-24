@@ -6,8 +6,10 @@ part of 'mq_hatim_base_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-HatimBaseResponse _$HatimBaseResponseFromJson(Map<String, dynamic> json) =>
-    HatimBaseResponse(type: $enumDecode(_$HatimResponseTypeEnumMap, json['type']), data: json['data']);
+HatimBaseResponse _$HatimBaseResponseFromJson(Map<String, dynamic> json) => HatimBaseResponse(
+  type: $enumDecode(_$HatimResponseTypeEnumMap, json['type']),
+  data: json['data'],
+);
 
 Map<String, dynamic> _$HatimBaseResponseToJson(HatimBaseResponse instance) => <String, dynamic>{
   'type': _$HatimResponseTypeEnumMap[instance.type]!,

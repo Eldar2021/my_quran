@@ -14,7 +14,9 @@ MqHatimCreatorModel _$MqHatimCreatorModelFromJson(Map<String, dynamic> json) => 
   avatar: json['avatar'] as String?,
 );
 
-Map<String, dynamic> _$MqHatimCreatorModelToJson(MqHatimCreatorModel instance) => <String, dynamic>{
+Map<String, dynamic> _$MqHatimCreatorModelToJson(
+  MqHatimCreatorModel instance,
+) => <String, dynamic>{
   'first_name': instance.firstName,
   'last_name': instance.lastName,
   'username': instance.userName,

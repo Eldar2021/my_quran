@@ -12,9 +12,17 @@ MqHatimsModel _$MqHatimsModelFromJson(Map<String, dynamic> json) => MqHatimsMode
   description: json['description'] as String?,
   type: json['type'] as String,
   status: json['status'] as String,
-  creator: json['creator'] == null ? null : MqHatimCreateUserModel.fromJson(json['creator'] as Map<String, dynamic>),
+  creator: json['creator'] == null
+      ? null
+      : MqHatimCreateUserModel.fromJson(
+          json['creator'] as Map<String, dynamic>,
+        ),
   participantsDetails: (json['participants_details'] as List<dynamic>?)
-      ?.map((e) => MqHatimParticipantsDetailUserModel.fromJson(e as Map<String, dynamic>))
+      ?.map(
+        (e) => MqHatimParticipantsDetailUserModel.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
       .toList(),
 );
 

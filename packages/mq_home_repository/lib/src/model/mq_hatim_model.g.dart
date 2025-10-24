@@ -6,7 +6,9 @@ part of 'mq_hatim_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MqHatimsModel _$MqHatimsModelFromJson(Map<String, dynamic> json) => MqHatimsModel(
+MqHatimsModel _$MqHatimsModelFromJson(
+  Map<String, dynamic> json,
+) => MqHatimsModel(
   id: json['id'] as String,
   title: json['title'] as String?,
   description: json['description'] as String?,
@@ -14,7 +16,9 @@ MqHatimsModel _$MqHatimsModelFromJson(Map<String, dynamic> json) => MqHatimsMode
   status: json['status'] as String,
   creator: json['creator'] == null ? null : MqHatimCreatorModel.fromJson(json['creator'] as Map<String, dynamic>),
   participantsDetails: (json['participants_details'] as List<dynamic>?)
-      ?.map((e) => MqHatimParticipantsDetailModel.fromJson(e as Map<String, dynamic>))
+      ?.map(
+        (e) => MqHatimParticipantsDetailModel.fromJson(e as Map<String, dynamic>),
+      )
       .toList(),
 );
 
