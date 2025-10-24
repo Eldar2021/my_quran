@@ -1,20 +1,20 @@
 name: mq_storage
 description: My Quran Storage
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.32.8
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  # flutter_secure_storage: ^9.2.4
-  shared_preferences: ^2.5.3
+  shared_preferences:
+  # flutter_secure_storage:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^9.0.0
-  mocktail: ^1.0.4
+  very_good_analysis:
+  mocktail:

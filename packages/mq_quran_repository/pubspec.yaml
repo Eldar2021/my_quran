@@ -1,27 +1,24 @@
 name: mq_quran_repository
 description: MqQuranRepository Package
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.32.8
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  json_annotation: ^4.9.0
+  json_annotation:
 
-  # Packages
   mq_remote_client:
-    path: ../mq_remote_client
   mq_storage:
-    path: ../mq_storage
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
-  build_runner: ^2.6.0
-  json_serializable: ^6.10.0
+  mocktail:
+  very_good_analysis:
+  build_runner:
+  json_serializable:

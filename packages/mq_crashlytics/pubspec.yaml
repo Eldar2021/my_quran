@@ -1,6 +1,7 @@
 name: mq_crashlytics
 description: MyQuran Crashlytics package
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:

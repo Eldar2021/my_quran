@@ -1,21 +1,21 @@
 name: mq_remote_client
 description: My Quran Remote Client
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.32.8
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  connectivity_plus: ^6.1.4
-  dio: ^5.8.0+1
-  meta: ^1.16.0 #1.17.0
+  connectivity_plus:
+  dio:
+  meta:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
+  mocktail:
+  very_good_analysis:

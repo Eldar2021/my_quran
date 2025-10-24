@@ -1,35 +1,34 @@
 name: mq_app_ui
 description: My Quran App UI package
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.32.8
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.20.2
-  pinput: ^5.0.1
-  mockingjay: ^2.0.0
-  flutter_svg: ^2.2.0
-  animated_analog_clock: ^0.2.1
-  syncfusion_flutter_charts: ^30.1.41
-  flutter_instagram_storyboard: ^1.0.1 # need change pkg
-  cached_network_image: ^3.4.1
+  intl:
+  pinput:
+  mockingjay:
+  flutter_svg:
+  animated_analog_clock:
+  syncfusion_flutter_charts:
+  flutter_instagram_storyboard:
+  cached_network_image:
+
   mq_storage:
-    path: ../mq_storage
   mq_prayer_time:
-    path: ../mq_prayer_time
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
-  build_runner: ^2.6.0
-  flutter_gen_runner: ^5.11.0
+  mocktail:
+  very_good_analysis:
+  build_runner:
+  flutter_gen_runner:
 
 flutter:
   uses-material-design: true

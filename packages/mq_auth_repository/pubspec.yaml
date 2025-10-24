@@ -1,32 +1,29 @@
 name: mq_auth_repository
 description: MyQuran Auth Repository
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.32.8
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.16.0 #1.17.0
-  json_annotation: ^4.9.0
-  firebase_auth: ^6.1.1
-  google_sign_in: ^6.3.0 #7.1.1
-  sign_in_with_apple: ^7.0.1
+  meta:
+  json_annotation:
+  firebase_auth:
+  google_sign_in:
+  sign_in_with_apple:
 
   mq_crashlytics:
-    path: ../mq_crashlytics
   mq_storage:
-    path: ../mq_storage
   mq_remote_client:
-    path: ../mq_remote_client
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
-  build_runner: ^2.6.0
-  json_serializable: ^6.10.0
+  mocktail:
+  very_good_analysis:
+  build_runner:
+  json_serializable:

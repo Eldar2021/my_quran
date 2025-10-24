@@ -72,7 +72,8 @@ final class MqLocationServiceImpl implements MqLocationService {
   Future<String> timeZoneLocation() async {
     try {
       tz.initializeTimeZones();
-      final timeZoneName = await FlutterTimezone.getLocalTimezone();
+      final timeZone = await FlutterTimezone.getLocalTimezone();
+      final timeZoneName = timeZone.localizedName?.name ?? 'Bishkek/Asia';
       final location = tz.getLocation(timeZoneName);
       tz.setLocalLocation(tz.getLocation(timeZoneName));
       return location.name;
