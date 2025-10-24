@@ -5,3 +5,6 @@ linter:
     public_member_api_docs: false
     lines_longer_than_80_chars: false
     sort_pub_dependencies: false
+
+formatter:
+  trailing_commas: preserve

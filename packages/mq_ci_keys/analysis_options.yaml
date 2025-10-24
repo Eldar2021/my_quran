@@ -14,5 +14,8 @@ analyzer:
     - "bin/cache/**"
 
   errors:
-   todo: false
-   fixme: false
+    todo: false
+    fixme: false
+
+formatter:
+  trailing_commas: preserve

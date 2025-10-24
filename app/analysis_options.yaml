@@ -19,3 +19,6 @@ analyzer:
   errors:
     todo: false
     fixme: false
+
+formatter:
+  trailing_commas: preserve
