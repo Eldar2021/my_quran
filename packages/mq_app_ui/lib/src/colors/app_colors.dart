@@ -175,7 +175,7 @@ abstract class AppColors {
 
   static LinearGradient cardGradient(ThemeData theme, {bool isTomato = false, bool isBlue = false}) {
     final brightness = theme.brightness;
-    if ((theme.colorScheme.primary == AppColors.tomato || isTomato) && isBlue == false) {
+    if ((theme.colorScheme.primary == AppColors.tomato || isTomato) && !isBlue) {
       return switch (brightness) {
         Brightness.light => const LinearGradient(
           colors: [Color(0xFFFCEBE6), Color(0xFFFFFDFD), Color(0xFFFCEBE6)],

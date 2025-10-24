@@ -29,18 +29,18 @@ dependencies:
   toastification:
   go_router:
 
-  # mq_ci_keys:
-  # mq_remote_client:
-  # mq_storage:
-  # mq_crashlytics:
-  # mq_analytics:
-  # mq_remote_config:
-  # mq_auth_repository:
-  # mq_home_repository:
-  # mq_quran_repository:
-  # mq_hatim_repository:
-  # mq_app_ui:
-  # mq_prayer_time:
+  mq_ci_keys:
+  mq_remote_client:
+  mq_storage:
+  mq_crashlytics:
+  mq_analytics:
+  mq_remote_config:
+  mq_auth_repository:
+  mq_home_repository:
+  mq_quran_repository:
+  mq_hatim_repository:
+  mq_app_ui:
+  mq_prayer_time:
 
   # flutter_native_splash:
 

@@ -16,7 +16,11 @@ class GenderRedioWidget extends StatelessWidget {
     return RadioListTile<AppUiGender>(
       controlAffinity: ListTileControlAffinity.trailing,
       value: itemIsMale ? AppUiGender.male : AppUiGender.famela,
+      // This private field will be used later.
+      // ignore: deprecated_member_use
       groupValue: gender,
+      // This private field will be used later.
+      // ignore: deprecated_member_use
       onChanged: onChanged,
       secondary: itemIsMale
           ? Assets.icons.userMale.svg(

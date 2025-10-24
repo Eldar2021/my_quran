@@ -17,7 +17,11 @@ class OrangeThemeCard extends StatelessWidget {
         activeColor: AppColors.tomato,
         title: Text(title, style: prTextTheme.titleMedium?.copyWith(color: AppColors.tomato)),
         value: true,
+        // This private field will be used later.
+        // ignore: deprecated_member_use
         groupValue: isActive,
+        // This private field will be used later.
+        // ignore: deprecated_member_use
         onChanged: (v) => onChanged(value: v),
       ),
     );
@@ -40,7 +44,11 @@ class BlueThemeCard extends StatelessWidget {
         activeColor: AppColors.darkslateblue,
         title: Text(title, style: prTextTheme.titleMedium?.copyWith(color: AppColors.darkslateblue)),
         value: false,
+        // This private field will be used later.
+        // ignore: deprecated_member_use
         groupValue: isActive,
+        // This private field will be used later.
+        // ignore: deprecated_member_use
         onChanged: (v) => onChanged(value: v),
       ),
     );

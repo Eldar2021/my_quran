@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -30,7 +31,7 @@ final class MqAnalytic {
   static void track(String event, {Map<String, Object>? params}) {
     try {
       if (kDebugMode) return;
-      _analytics.logEvent(name: event, parameters: params);
+      unawaited(_analytics.logEvent(name: event, parameters: params));
     } on Exception catch (error, stackTrace) {
       MqCrashlytics.report(error, stackTrace);
       log('MqAnalytics track error: $error, stackTrace: $stackTrace');

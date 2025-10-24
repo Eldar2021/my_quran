@@ -49,7 +49,7 @@ class MqRemoteClient {
             'Accept': 'application/json',
             'X-CSRFTOKEN': '9KDITf4aeXMyyQffH5TMtuuUtSfOSLtnZIeF2JZBXJziDfbP0wLo7xrWsUVeL2wO',
             if (tokenValue != null) 'Authorization': 'Token $tokenValue',
-            if (languageValue != null) 'Accept-Language': languageValue,
+            'Accept-Language': ?languageValue,
             if (oldTokenValue != null) 'old-token': 'Old Token $oldTokenValue',
           };
           return handler.next(options);
