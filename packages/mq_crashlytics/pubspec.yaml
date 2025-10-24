@@ -5,16 +5,15 @@ resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.35.6
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  firebase_crashlytics: ^5.0.3
+  firebase_crashlytics:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^10.0.0
+  mocktail:
+  very_good_analysis:
