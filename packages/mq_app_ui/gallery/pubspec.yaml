@@ -1,28 +1,26 @@
 name: gallery
 description: "A new Flutter project."
-
+resolution: workspace
 publish_to: "none"
-
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  pinput: ^5.0.1
+  cupertino_icons:
+  pinput:
+
   mq_app_ui:
-    path: ../
   mq_storage:
-    path: ../../mq_storage
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
+  mocktail:
+  very_good_analysis:
 
 flutter:
   uses-material-design: true

@@ -19,7 +19,7 @@ class LanguageDropdownButtonFormField<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<T>(
-      value: value,
+      initialValue: value,
       icon: const Icon(Icons.keyboard_arrow_down),
       alignment: AlignmentDirectional.center,
       decoration: InputDecoration(labelText: labelText, prefixIcon: const Icon(Icons.translate)),

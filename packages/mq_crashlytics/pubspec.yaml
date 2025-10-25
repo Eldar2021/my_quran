@@ -1,19 +1,19 @@
 name: mq_crashlytics
 description: MyQuran Crashlytics package
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.32.8
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  firebase_crashlytics: ^4.3.10
+  firebase_crashlytics:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
+  mocktail:
+  very_good_analysis:

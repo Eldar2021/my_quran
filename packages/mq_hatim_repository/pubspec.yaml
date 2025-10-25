@@ -1,28 +1,25 @@
 name: mq_hatim_repository
 description: Mq hatim repository package
 version: 0.1.0+1
+resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.8.0-0 <4.0.0"
-  flutter: ^3.32.8
+  sdk: ^3.9.2
 
 dependencies:
   flutter:
     sdk: flutter
-  json_annotation: ^4.9.0
-  web_socket_channel: ^3.0.3
+  json_annotation:
+  web_socket_channel:
 
-  # Packages
   mq_crashlytics:
-    path: ../mq_crashlytics
   mq_remote_client:
-    path: ../mq_remote_client
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.6.0
-  mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
-  json_serializable: ^6.10.0
+  build_runner:
+  mocktail:
+  very_good_analysis:
+  json_serializable:

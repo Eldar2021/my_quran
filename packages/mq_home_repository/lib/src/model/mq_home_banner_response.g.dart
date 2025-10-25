@@ -6,7 +6,9 @@ part of 'mq_home_banner_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MqHomeBannerResponse _$MqHomeBannerResponseFromJson(Map<String, dynamic> json) => MqHomeBannerResponse(
+MqHomeBannerResponse _$MqHomeBannerResponseFromJson(
+  Map<String, dynamic> json,
+) => MqHomeBannerResponse(
   imageRu: json['imageRu'] as String,
   imageEn: json['imageEn'] as String,
   imageKy: json['imageKy'] as String,
@@ -15,7 +17,9 @@ MqHomeBannerResponse _$MqHomeBannerResponseFromJson(Map<String, dynamic> json) =
   date: json['date'] as String?,
 );
 
-Map<String, dynamic> _$MqHomeBannerResponseToJson(MqHomeBannerResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$MqHomeBannerResponseToJson(
+  MqHomeBannerResponse instance,
+) => <String, dynamic>{
   'imageRu': instance.imageRu,
   'imageEn': instance.imageEn,
   'imageKy': instance.imageKy,

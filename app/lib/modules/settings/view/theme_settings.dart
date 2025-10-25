@@ -31,7 +31,7 @@ class ThemeSettingsView extends StatelessWidget {
               onChanged: (v) {
                 MqAnalytic.track(
                   AnalyticKey.selectThemeMode,
-                  params: {'mode': v == true ? Brightness.light.name : Brightness.dark.name},
+                  params: {'mode': v ? Brightness.light.name : Brightness.dark.name},
                 );
                 context.read<AppThemeCubit>().changeMode(isDark: v);
               },

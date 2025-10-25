@@ -6,7 +6,9 @@ part of 'mq_donation_page_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MqDonationPageResponse _$MqDonationPageResponseFromJson(Map<String, dynamic> json) => MqDonationPageResponse(
+MqDonationPageResponse _$MqDonationPageResponseFromJson(
+  Map<String, dynamic> json,
+) => MqDonationPageResponse(
   pageTitleAr: json['pageTitleAr'] as String,
   pageTitleEn: json['pageTitleEn'] as String,
   pageTitleId: json['pageTitleId'] as String,
@@ -22,11 +24,15 @@ MqDonationPageResponse _$MqDonationPageResponseFromJson(Map<String, dynamic> jso
   pageDescriptionRu: json['pageDescriptionRu'] as String,
   pageDescriptionTr: json['pageDescriptionTr'] as String,
   requisites: (json['requisites'] as List<dynamic>)
-      .map((e) => MqDonationRequisiteResponse.fromJson(e as Map<String, dynamic>))
+      .map(
+        (e) => MqDonationRequisiteResponse.fromJson(e as Map<String, dynamic>),
+      )
       .toList(),
 );
 
-Map<String, dynamic> _$MqDonationPageResponseToJson(MqDonationPageResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$MqDonationPageResponseToJson(
+  MqDonationPageResponse instance,
+) => <String, dynamic>{
   'pageTitleAr': instance.pageTitleAr,
   'pageTitleEn': instance.pageTitleEn,
   'pageTitleId': instance.pageTitleId,
@@ -44,15 +50,18 @@ Map<String, dynamic> _$MqDonationPageResponseToJson(MqDonationPageResponse insta
   'requisites': instance.requisites,
 };
 
-MqDonationRequisiteResponse _$MqDonationRequisiteResponseFromJson(Map<String, dynamic> json) =>
-    MqDonationRequisiteResponse(
-      bankType: json['bankType'] as String,
-      requisite: json['requisite'] as String,
-      requisiteForCopy: json['requisiteForCopy'] as String,
-      accountName: json['accountName'] as String,
-    );
+MqDonationRequisiteResponse _$MqDonationRequisiteResponseFromJson(
+  Map<String, dynamic> json,
+) => MqDonationRequisiteResponse(
+  bankType: json['bankType'] as String,
+  requisite: json['requisite'] as String,
+  requisiteForCopy: json['requisiteForCopy'] as String,
+  accountName: json['accountName'] as String,
+);
 
-Map<String, dynamic> _$MqDonationRequisiteResponseToJson(MqDonationRequisiteResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$MqDonationRequisiteResponseToJson(
+  MqDonationRequisiteResponse instance,
+) => <String, dynamic>{
   'bankType': instance.bankType,
   'requisite': instance.requisite,
   'requisiteForCopy': instance.requisiteForCopy,

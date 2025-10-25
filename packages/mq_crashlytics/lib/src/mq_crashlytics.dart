@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
@@ -16,13 +18,15 @@ final class MqCrashlytics {
     if (kDebugMode) {
       debugPrint('exception: $exception\nstack: $stack');
     } else {
-      crashlytics.recordError(
-        exception,
-        stack,
-        reason: reason,
-        information: information,
-        printDetails: printDetails,
-        fatal: fatal,
+      unawaited(
+        crashlytics.recordError(
+          exception,
+          stack,
+          reason: reason,
+          information: information,
+          printDetails: printDetails,
+          fatal: fatal,
+        ),
       );
     }
   }
@@ -31,7 +35,7 @@ final class MqCrashlytics {
     if (kDebugMode) {
       debugPrint('exception: $flutterErrorDetails');
     } else {
-      crashlytics.recordFlutterError(flutterErrorDetails, fatal: fatal);
+      unawaited(crashlytics.recordFlutterError(flutterErrorDetails, fatal: fatal));
     }
   }
 

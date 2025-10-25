@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_ios:
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -20,7 +20,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.32.8"
+          flutter-version: "3.35.6"
           channel: "stable"
           architecture: x64
       - run: flutter doctor

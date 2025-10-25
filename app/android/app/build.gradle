@@ -32,7 +32,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.alee.my_quran"
-    compileSdkVersion 35
+    compileSdkVersion 36
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -50,8 +50,8 @@ android {
 
     defaultConfig {
         applicationId "com.alee.my_quran"
-        minSdkVersion 23 // flutter.minSdkVersion
-        targetSdkVersion 35 // flutter.targetSdkVersion
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
@@ -79,4 +79,10 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    def exoplayer_version = "2.19.1"
+    implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-hls:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:$exoplayer_version"
+}

@@ -7,3 +7,7 @@ linter:
     lines_longer_than_80_chars: false
     directives_ordering: false
     one_member_abstracts: false
+    discarded_futures: false
+
+formatter:
+  trailing_commas: preserve
