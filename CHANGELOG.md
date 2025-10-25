@@ -253,3 +253,16 @@
 - Added new Token response model
 - Updated response model and delete Entity
 - Bumped flutter version 3.32.8
+
+---
+
+# What's Changed v1.3.16+26
+
+## [Bug Fixes]
+
+- Fixed Quran audio on android
+
+## [Technical]
+
+- Implemented Dart workspace
+- Bumped flutter version 3.35.6
