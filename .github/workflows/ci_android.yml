@@ -42,33 +42,18 @@ jobs:
       - name: Melos Bootstrap
         run: melos bootstrap
 
-      - name: Start Android Emulator
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          disable-animations: false
           api-level: 34
-          arch: x86_64
-          disable-animations: true
-          emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
-          script: echo "Emulator is starting..."
-
-      - name: Wait for device to be ready and run tests
-        shell: bash
-        run: |
-          echo "Checking if device is fully booted..."
-
-          # Cihazın adb tarafından görülebilir olmasını bekle
-          adb wait-for-device
-
-          # Cihaz önyükleme işlemini tamamlayana kadar bekle (until döngüsü ile daha güvenilir)
-          until adb shell getprop sys.boot_completed | tr -d '\r' | grep -q 1; do
-            echo "Waiting for boot...";
-            sleep 5;
-          done
-
-          echo "Device is ready. Starting melos integration-test..."
-
-          # Test komutunuz
-          melos integration-test
+          script: melos integration-test
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
