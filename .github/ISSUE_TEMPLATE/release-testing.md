@@ -1,89 +1,43 @@
 ---
 name: Release Testing
-about: Manual Release testing tasks before doing a release
-title: Release testing <enter-version>
-labels: ""
+about: Manual checklist for publishing a new release
+title: "[Release] v<version>"
+labels: "release"
 assignees: ""
 ---
 
-# Release Testing v<enter-version>
+# Release Checklist: v<version>
 
-## Tasks:
+## 1. Preparation
 
-- [ ] Taks
+- [ ] Confirm all PRs are merged.
+- [ ] Update version in `app/pubspec.yaml` and `CHANGELOG.md`.
+- [ ] Create, commit, and push release branch: `git checkout -b rl/v<version>`, `git commit -m "release: v<version>"`, `git push --set-upstream origin rl/v<version>`
+- [ ] Create PR and verify all CI tests pass.
 
-## Create Branch & Check Auto CI
+## 2. Testing
 
-- [ ] Change version in `app/pubspec.yaml`
-- [ ] Create branch: `rl/v<version>`
-- [ ] Write change information (e.g., in a dedicated file like `CHANGELOG.md`)
-- [ ] Commit changes: `git add .` & `git commit -m "release v<version>"`
-- [ ] Push branch: `git push --set-upstream origin rl/v<version>`
-- [ ] Create PR for auto testing CI
+- [ ] Perform manual regression and monkey testing.
+- [ ] Verify Firebase Remote Config `donationIsEnable` is `false`.
 
-### Monkey Testing
+## 3. Tagging
 
-- [ ] Perform manual testing (e.g., edge cases, usability)
+- [ ] Create and push tag: `git tag -a v<version> -m "Release v<version>"` & `git push origin v<version>`
 
-### Create Tag
+## 4. Android Deployment
 
-- [ ] Create a tag: `git tag -a v<version> -m "release v<version>"`
-- [ ] Push tag: `git push origin v<version>`
+- [ ] Verify Android keys (`android_password.dart`, `android_upload_keystore`).
+- [ ] Set `android/app/build.gradle` to `release` mode.
+- [ ] Build: `melos flutter-clean && melos pub-get && cd app && flutter build appbundle`
+- [ ] Upload to Play Store, add release notes, submit, and publish after approval.
 
-### Donation Feature disable
+## 5. iOS Deployment
 
-- [ ] Firebase Remote Config Set `false` to `donationIsEnable`
+- [ ] Build: `melos flutter-clean && melos pub-get`
+- [ ] In Xcode: Verify certificates, profiles, Bundle ID, and Team ID.
+- [ ] "Product" -> "Archive", then "Distribute App" to "TestFlight & App Store".
+- [ ] In App Store Connect: Create new version, add notes, select build, and submit.
 
-## Deploy Android
+## 6. Post-Release Cleanup
 
-- [ ] **Check Keys:**
-  - Verify `./keys/android_password.dart`
-  - Check `./keys/android_upload_keystore`
-- [ ] **Prepare Release Build:**
-  - Change `debug` to `release` in `android/app/build.gradle`
-  - Clean & rebuild: `melos flutter-clean` & `melos pub-get` & `cd app && flutter build appbundle`
-- [ ] **Create Play Store Release:**
-
-  - Upload app bundle to Play Store Console
-  - Write release name and detailed release notes
-  - Submit for review
-  - After review approval: Publish to production
-
-## Deploy iOS
-
-- [ ] **Pre-run:**
-  - Clean & rebuild: `melos flutter-clean` & `melos pub-get` & `melos run-app`
-- [ ] **Xcode Checks:**
-  - Open the iOS project in Xcode
-  - Verify certificates: `ios_development`, `ios_distribution`, `distribution`
-  - Check provisioning profiles: `dev profiles`, `prod profiles`
-  - Confirm Display Name (in General settings)
-  - Verify `Build Identifier` and `Team ID`
-- [ ] **Create Archive:**
-  - Select "Product" -> "Destination" -> "Any iOS Device (arm64)"
-  - Select "Product" -> "Archive"
-- [ ] **Distribute App:**
-  - Click "Distribute App"
-  - Select "TestFlight & App Store"
-  - Tap "Distribute"
-- [ ] **Create App Store Connect Record:**
-  - In App Store Connect, select "My Quran" app
-  - Click "+ iOS App"
-  - Enter detailed change description
-  - Review and update app information & screenshots
-  - Enter build version
-  - Submit for review
-
-## Undo Changes (After Release)
-
-- [ ] Change `release` back to `debug` in `android/app/build.gradle`
-
-**Improvements:**
-
-- **Clarity:** Improved formatting, headings, and bullet points for better readability.
-- **Conciseness:** Removed redundant steps and combined similar tasks.
-- **Completeness:** Added steps for creating a `CHANGELOG.md` and checking keys.
-- **Accuracy:** Corrected typos (e.g., "Cahnge" to "Change", "Prom" to "Product").
-- **Best Practices:** Emphasized the importance of thorough testing and clear release notes.
-
-This revised template provides a more structured and comprehensive guide for your release testing process. Remember to adapt it further based on your specific project requirements and workflow.
+- [ ] Revert `android/app/build.gradle` back to `debug` and commit.
