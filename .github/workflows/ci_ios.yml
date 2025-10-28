@@ -18,7 +18,7 @@ jobs:
       fail-fast: true
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Select Xcode 16.2
         run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
@@ -53,7 +53,7 @@ jobs:
       - name: "Melos bs"
         run: $HOME/.pub-cache/bin/melos bootstrap
 
-      - uses: futureware-tech/simulator-action@v2
+      - uses: futureware-tech/simulator-action@v3
         with:
           model: ${{ matrix.device }}
 

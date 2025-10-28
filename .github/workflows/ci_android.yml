@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -21,29 +21,43 @@ jobs:
           cache: true
 
       - name: Set up Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
           java-version: "17"
           distribution: "temurin"
           cache: gradle
 
-      - run: flutter doctor -v
+      - name: Flutter Doctor
+        run: flutter doctor -v
 
-      - run: dart pub global activate flutterfire_cli
+      - name: Activate Flutterfire CLI
+        run: dart pub global activate flutterfire_cli
 
-      - name: "Melos Install"
+      - name: Activate Melos
         run: dart pub global activate melos
 
-      - name: "Melos bs"
+      - name: Melos Bootstrap
         run: melos bootstrap
 
-      - name: Run Android integration tests
+      - name: Run Android integration tests - Emulator Setup
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
           arch: x86_64
+          disable-animations: true
           emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
-          script: melos integration-test
+
+      - name: Wait for device to be ready and run tests
+        run: |
+          echo "Checking if device is fully booted..."
+
+          $ANDROID_HOME/platform-tools/adb wait-for-device
+
+          $ANDROID_HOME/platform-tools/adb shell while [[ -z $($(command -v adb) shell getprop sys.boot_completed | tr -d '\r') ]]; do echo "Waiting for boot..."; sleep 5; done
+
+          echo "Device is ready. Starting melos integration-test..."
+
+          melos integration-test
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
