@@ -28,9 +28,7 @@ jobs:
           cache: gradle
 
       - name: Add Android SDK tools to PATH
-        run: |
-          echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
-          echo "$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_PATH
+        run: echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
 
       - name: Flutter Doctor
         run: flutter doctor -v
@@ -44,27 +42,33 @@ jobs:
       - name: Melos Bootstrap
         run: melos bootstrap
 
-      - name: Run Android integration tests
+      - name: Start Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
           arch: x86_64
           disable-animations: true
           emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
+          script: echo "Emulator is starting..."
 
-          script: |
-            echo "Checking if device is fully booted..."
+      - name: Wait for device to be ready and run tests
+        shell: bash
+        run: |
+          echo "Checking if device is fully booted..."
 
-            # Cihazın adb tarafından görülebilir olmasını bekle
-            $ANDROID_HOME/platform-tools/adb wait-for-device
+          # Cihazın adb tarafından görülebilir olmasını bekle
+          adb wait-for-device
 
-            # Cihaz önyükleme işlemini tamamlayana kadar bekle
-            $ANDROID_HOME/platform-tools/adb shell while [[ -z $($(command -v adb) shell getprop sys.boot_completed | tr -d '\r') ]]; do echo "Waiting for boot..."; sleep 5; done
+          # Cihaz önyükleme işlemini tamamlayana kadar bekle (until döngüsü ile daha güvenilir)
+          until adb shell getprop sys.boot_completed | tr -d '\r' | grep -q 1; do
+            echo "Waiting for boot...";
+            sleep 5;
+          done
 
-            echo "Device is ready. Starting melos integration-test..."
+          echo "Device is ready. Starting melos integration-test..."
 
-            # Test komutunuz
-            melos integration-test
+          # Test komutunuz
+          melos integration-test
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
