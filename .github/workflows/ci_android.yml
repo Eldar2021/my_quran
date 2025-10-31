@@ -52,7 +52,6 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           disable-animations: false
-          api-level: 34
           script: melos integration-test
 
       - name: Upload screenshots
