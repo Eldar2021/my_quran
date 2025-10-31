@@ -10,42 +10,54 @@ jobs:
   integration_test_android:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: "Check out repository"
         uses: actions/checkout@v4
 
-      - name: Set up Flutter
+      - name: "Set up Flutter"
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.35.6"
           channel: stable
           cache: true
 
-      - name: Set up Java
+      - name: "Set up Java"
         uses: actions/setup-java@v3
         with:
           java-version: "17"
           distribution: "temurin"
           cache: gradle
 
-      - run: flutter doctor -v
+      - name: "Add Android SDK tools to PATH"
+        run: echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
 
-      - run: dart pub global activate flutterfire_cli
+      - name: "Flutter Doctor"
+        run: flutter doctor -v
 
-      - name: "Melos Install"
+      - name: "Activate Flutterfire CLI"
+        run: dart pub global activate flutterfire_cli
+
+      - name: "Activate Melos"
         run: dart pub global activate melos
 
-      - name: "Melos bs"
+      - name: "Melos Bootstrap"
         run: melos bootstrap
 
-      - name: Run Android integration tests
+      - name: "Enable KVM"
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: "Run test"
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
           arch: x86_64
           emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
+          disable-animations: true
           script: melos integration-test
 
-      - name: Upload screenshots
+      - name: "Upload screenshots"
         uses: actions/upload-artifact@v4
         if: always()
         with:

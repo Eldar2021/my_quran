@@ -19,7 +19,7 @@ jobs:
           - test: C Label (breaking changes)
             enforced_labels: "C0-breaksnothing,C1-breaksapi"
     steps:
-      - name: Label check
+      - name: "Label check"
         run: |
           MATCH=$(jq -cn '${{ toJSON(github.event.pull_request.labels.*.name) }} as $USER_LABELS |
           ${{ toJSON(matrix.enforced_labels)  }} | split(",") as $LABELS |

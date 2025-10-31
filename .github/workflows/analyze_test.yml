@@ -11,7 +11,7 @@ jobs:
     name: Analyze code and Unit test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.35.6"
@@ -23,7 +23,7 @@ jobs:
       - name: "Melos Install"
         run: dart pub global activate melos
 
-      - name: "Melos bs"
+      - name: "Melos bootstrap"
         run: melos bootstrap
 
       - name: "Check fmt"

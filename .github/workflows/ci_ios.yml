@@ -18,21 +18,21 @@ jobs:
       fail-fast: true
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: Select Xcode 16.2
+      - name: "Select Xcode 16.2"
         run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
-      - name: Confirm Xcode Version and Check Platform
+      - name: "Confirm Xcode Version and Check Platform"
         run: |
           xcodebuild -version
           xcrun simctl list runtimes
 
-      - name: Install Missing iOS 18.2 Simulator Runtime ⚠️
+      - name: "Install Missing iOS 18.2 Simulator Runtime"
         run: |
-          echo "İstenen iOS 18.2 Runtime'ı manuel olarak indiriliyor..."
+          echo "Installing iOS 18.2 Runtime..."
           sudo xcodebuild -downloadPlatform iOS -buildVersion 18.2
-          echo "İndirme tamamlandı."
+          echo "Installation completed."
           xcrun simctl list runtimes
 
       - name: "Available Devices after Installation"
@@ -45,19 +45,19 @@ jobs:
 
       - run: flutter doctor -v
 
-      - name: Install Global Tools (flutterfire_cli & melos)
+      - name: "Install Global Tools (flutterfire_cli & melos)"
         run: |
           dart pub global activate flutterfire_cli
           dart pub global activate melos
 
-      - name: "Melos bs"
+      - name: "Melos bootstrap"
         run: $HOME/.pub-cache/bin/melos bootstrap
 
-      - uses: futureware-tech/simulator-action@v2
+      - uses: futureware-tech/simulator-action@v3
         with:
           model: ${{ matrix.device }}
 
-      - name: Integration Test
+      - name: "Run Integration Test"
         run: $HOME/.pub-cache/bin/melos integration-test
 
       - uses: actions/upload-artifact@v4
