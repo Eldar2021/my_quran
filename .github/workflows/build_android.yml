@@ -27,7 +27,7 @@ jobs:
       - name: "Melos Install"
         run: dart pub global activate melos
 
-      - name: "Melos bs"
+      - name: "Melos bootstrap"
         run: melos bootstrap
 
       - name: "Build apk"
