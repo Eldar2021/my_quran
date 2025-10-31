@@ -56,3 +56,10 @@ final class ReceidevBaseDataEvent extends HatimEvent {
 final class ResetJuzPagesEvent extends HatimEvent {
   const ResetJuzPagesEvent();
 }
+
+@immutable
+final class SetErrorStateEvent extends HatimEvent {
+  const SetErrorStateEvent(this.error);
+
+  final Object error;
+}

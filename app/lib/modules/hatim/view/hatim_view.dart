@@ -7,6 +7,7 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/components/components.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -24,7 +25,9 @@ class HatimView extends StatelessWidget {
         repo: MqHatimReadRepositoryImpl(
           dataSource: context.read<AppConfig>().isMockData
               ? MqHatimRemoteDataSourceMock()
-              : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
+              : MqHatimRemoteDataSourceImpl(
+                  remoteClient: context.read<MqRemoteClient>(),
+                ),
         ),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetInitailDataEvent()),
@@ -41,6 +44,8 @@ class HatimUI extends StatefulWidget {
 }
 
 class _HatimUIState extends State<HatimUI> {
+  late final NetworkClient networkClient;
+
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
@@ -56,12 +61,30 @@ class _HatimUIState extends State<HatimUI> {
             builder: (context, state) {
               final subState = state.userPagesState;
               return switch (subState) {
-                HatimUserPagesFetched() => Text('${subState.data.length}', style: prTextTheme.titleLarge),
+                HatimUserPagesFetched() => Text(
+                  '${subState.data.length}',
+                  style: prTextTheme.titleLarge,
+                ),
                 _ => const SizedBox.shrink(),
               };
             },
           ),
           const SizedBox(width: 30),
+          InternetStatusListenerWidget(
+            onInternetConnected: () {
+              final bloc = context.read<HatimBloc>();
+              if (bloc.state.juzsState is HatimJuzsFailed) {
+                bloc.add(const GetInitailDataEvent());
+              }
+            },
+            onInternetDisconnected: () {
+              final bloc = context.read<HatimBloc>();
+              if (bloc.state.juzsState is! HatimJuzsFailed) {
+                bloc.add(const SetErrorStateEvent('Internet Connection'));
+              }
+            },
+          ),
+          const SizedBox(width: 20),
         ],
       ),
       body: RefreshIndicator(
@@ -99,17 +122,28 @@ class _HatimUIState extends State<HatimUI> {
                   final pageIds = pages.map((e) => e.id).toList();
                   final pageNumbers = pages.map((e) => e.number).toList();
                   context.read<HatimBloc>().add(SetInProgressPagesEvent(pageIds));
-                  MqAnalytic.track(AnalyticKey.goHatimReadPage, params: {'pages': pageIds});
+                  MqAnalytic.track(
+                    AnalyticKey.goHatimReadPage,
+                    params: {'pages': pageIds},
+                  );
                   final value = await context.pushNamed<bool>(
                     AppRouter.hatimRead,
-                    pathParameters: {'hatimId': hatimId, 'pages': pageNumbers.toString()},
+                    pathParameters: {
+                      'hatimId': hatimId,
+                      'pages': pageNumbers.toString(),
+                    },
                   );
                   if (value != null && value && context.mounted) {
                     context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
                   }
                 },
                 label: Text(context.l10n.read),
-                icon: Assets.icons.book.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+                icon: Assets.icons.book.svg(
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
               );
             }
           }
