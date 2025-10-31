@@ -51,10 +51,10 @@ jobs:
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
-          target: google_apis
+          api-level: 34
           arch: x86_64
-          disable-animations: false
+          emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
+          disable-animations: true
           script: melos integration-test
 
       - name: Upload screenshots
