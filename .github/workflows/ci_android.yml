@@ -51,6 +51,7 @@ jobs:
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          api-level: 33
           disable-animations: false
           script: melos integration-test
 
