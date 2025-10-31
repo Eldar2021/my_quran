@@ -25,5 +25,9 @@ final class HatimState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [juzsState, juzPagesState, userPagesState];
+  List<Object?> get props => [
+    juzsState,
+    juzPagesState,
+    userPagesState,
+  ];
 }
