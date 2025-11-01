@@ -29,7 +29,7 @@ dependencies:
   firebase_auth: ^6.1.1
   firebase_crashlytics: ^5.0.3
   firebase_remote_config: ^6.1.0
-  google_sign_in: ^6.3.0 #7.2.0 Need Work
+  google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
   bloc: ^9.1.0
   flutter_bloc: ^9.1.1
