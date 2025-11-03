@@ -63,7 +63,10 @@ class SoccialAuth {
       final googleAuth = googleUser.authentication;
 
       // Get client authorization (accessToken) - request default scopes
-      final clientAuth = await googleUser.authorizationClient.authorizationForScopes(<String>[]);
+      final clientAuth = await googleUser.authorizationClient.authorizationForScopes([
+        'email',
+        'profile',
+      ]);
 
       final credential = GoogleAuthProvider.credential(
         accessToken: clientAuth?.accessToken,
