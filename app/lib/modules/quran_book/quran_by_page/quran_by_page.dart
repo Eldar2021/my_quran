@@ -1,3 +1,3 @@
-export 'cubit/quran_book_by_page_cubit.dart';
+export 'bloc/quran_page_paging_bloc.dart';
 export 'view/quran_by_pages_view.dart';
 export 'widgets/quran_by_pages_pagination.dart';

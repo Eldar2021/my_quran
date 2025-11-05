@@ -10,114 +10,148 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranByPagesPagination extends StatefulWidget {
-  const QuranByPagesPagination(this.pagesNumber, {super.key});
-
-  final List<int> pagesNumber;
+  const QuranByPagesPagination({super.key});
 
   @override
   State<QuranByPagesPagination> createState() => _QuranByPagesPaginationState();
 }
 
 class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
+  static const _quranFmt = 'uthmani';
+
+  late final QuranPagePagingBloc _bloc;
   late final List<int> _pagesNumber;
-  late final PagingController<int, QuranDataEntity> _pagingController;
-  var _index = 0;
 
   @override
   void initState() {
-    _pagesNumber = widget.pagesNumber;
-    _pagingController = PagingController<int, QuranDataEntity>(
-      fetchPage: _fetchPage,
-      getNextPageKey: (value) {
-        return _index < _pagesNumber.length ? _pagesNumber[_index] : null;
-      },
-    );
+    _bloc = context.read<QuranPagePagingBloc>();
+    _pagesNumber = _bloc.pagesNumber;
     super.initState();
   }
 
-  Future<List<QuranDataEntity>> _fetchPage(int pageKey) async {
-    final page = _pagesNumber[_index];
-    final newItems = await context.read<QuranBookByPageCubit>().getData(page, 'uthmani');
-    _index++;
-    return newItems != null ? [newItems] : [];
+  // Future<void> _refresh() async {
+  //   final event = QuranPagePagingRefresh(
+  //     pageNumber: _pagesNumber[0],
+  //     quranFmt: _quranFmt,
+  //   );
+  //   _bloc.add(event);
+  // }
+
+  void _nextPage() {
+    final event = QuranPagePagingFetchNex(
+      pageNumber: _pagesNumber[_bloc.state.index ?? 0],
+      quranFmt: _quranFmt,
+    );
+    _bloc.add(event);
   }
 
   @override
   Widget build(BuildContext context) {
     final themeCubit = context.watch<QuranBookThemeCubit>();
-    return PagingListener(
-      controller: _pagingController,
-      builder: (context, state, fetchNextPage) => PagedSliverList<int, QuranDataEntity>.separated(
-        key: const Key(MqKeys.quranReadView),
-        state: state,
-        fetchNextPage: fetchNextPage,
-        separatorBuilder: (context, index) => Center(
-          child: Text(
-            _pagesNumber[index].toArabicDigits,
-            style: TextStyle(fontSize: themeCubit.state.textSize, color: themeCubit.state.frColor),
-          ),
-        ),
-        builderDelegate: PagedChildBuilderDelegate<QuranDataEntity>(
-          itemBuilder: (context, item, index) {
-            final strb = item.dataDatePage().map((e) => e.samePage(context)).toList().toString();
-            final text = strb.replaceAll('[', '').replaceAll(']', '');
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Localizations.override(
-                context: context,
-                locale: const Locale('ar'),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      text,
-                      style: TextStyle(
-                        fontFamily: FontFamily.qpcUthmanicHafs,
-                        fontSize: themeCubit.state.textSize,
-                        color: themeCubit.state.frColor,
-                        height: 2.5,
-                      ),
-                      textDirection: TextDirection.rtl,
-                    ),
-                    if (_pagesNumber[index] == _pagesNumber.last)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 50, bottom: 50, left: 24, right: 24),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            final readThemeState = context.read<QuranBookThemeCubit>().state;
-                            MqAnalytic.track(AnalyticKey.showAmin);
-                            final value = await MqAlertDialogs.showAmen<bool>(
-                              context: context,
-                              backgroundColor: readThemeState.bgColor,
-                              foregroundColor: readThemeState.frColor,
-                              title: context.l10n.amen,
-                              content: context.l10n.dua,
-                              buttonText: context.l10n.ameen,
-                              gender: context.read<AuthCubit>().state.mqAppUiGender,
-                              onPressed: () => Navigator.pop(context, true),
-                            );
 
-                            if (value != null && value && context.mounted) {
-                              Navigator.pop(context, true);
-                            }
-                          },
-                          child: Text(context.l10n.readed),
-                        ),
-                      ),
-                  ],
+    return BlocBuilder<QuranPagePagingBloc, QuranPagePagingState>(
+      bloc: _bloc,
+      builder: (context, state) {
+        return PagedSliverList<int, QuranDataEntity>(
+          key: const Key(MqKeys.quranReadView),
+          state: state,
+          fetchNextPage: _nextPage,
+          builderDelegate: PagedChildBuilderDelegate(
+            itemBuilder: (context, item, index) {
+              final strb = item.dataDatePage().map((e) => e.samePage(context)).toList().toString();
+              final text = strb.replaceAll('[', '').replaceAll(']', '');
+              final page = int.tryParse(item.meta.filters.value);
+              final isLast = index >= _pagesNumber.length - 1;
+
+              return _QuranPageItem(
+                text: text,
+                themeCubit: themeCubit,
+                isLast: isLast,
+                page: page,
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _QuranPageItem extends StatelessWidget {
+  const _QuranPageItem({
+    required this.text,
+    required this.themeCubit,
+    required this.isLast,
+    required this.page,
+  });
+
+  final String text;
+  final QuranBookThemeCubit themeCubit;
+  final bool isLast;
+  final int? page;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Localizations.override(
+        context: context,
+        locale: const Locale('ar'),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                fontFamily: FontFamily.qpcUthmanicHafs,
+                fontSize: themeCubit.state.textSize,
+                color: themeCubit.state.frColor,
+                height: 2.5,
+              ),
+              textDirection: TextDirection.rtl,
+            ),
+            if (page != null)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    page!.toArabicDigits,
+                    style: TextStyle(
+                      fontSize: themeCubit.state.textSize,
+                      color: themeCubit.state.frColor,
+                    ),
+                  ),
                 ),
               ),
-            );
-          },
+            if (isLast)
+              Padding(
+                padding: const EdgeInsets.only(top: 50, bottom: 50, left: 24, right: 24),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final readThemeState = context.read<QuranBookThemeCubit>().state;
+                    MqAnalytic.track(AnalyticKey.showAmin);
+                    final value = await MqAlertDialogs.showAmen<bool>(
+                      context: context,
+                      backgroundColor: readThemeState.bgColor,
+                      foregroundColor: readThemeState.frColor,
+                      title: context.l10n.amen,
+                      content: context.l10n.dua,
+                      buttonText: context.l10n.ameen,
+                      gender: context.read<AuthCubit>().state.mqAppUiGender,
+                      onPressed: () => Navigator.pop(context, true),
+                    );
+
+                    if (value != null && value && context.mounted) {
+                      Navigator.pop(context, true);
+                    }
+                  },
+                  child: Text(context.l10n.readed),
+                ),
+              ),
+          ],
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _pagingController.dispose();
-    super.dispose();
   }
 }
