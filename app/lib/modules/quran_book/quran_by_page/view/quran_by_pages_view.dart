@@ -15,12 +15,15 @@ class QuranByPagesView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              QuranBookThemeCubit(readThemeRepository: context.read<ReadThemeRepository>())..initializeTheme(),
+          create: (context) => QuranBookThemeCubit(
+            readThemeRepository: context.read<ReadThemeRepository>(),
+          )..initializeTheme(),
         ),
         BlocProvider(
-          create: (context) =>
-              QuranBookByPageCubit(repository: context.read<MqQuranRepository>(), pagesNumber: pagesNumber),
+          create: (context) => QuranPagePagingBloc(
+            repository: context.read<MqQuranRepository>(),
+            pagesNumber: pagesNumber,
+          ),
         ),
       ],
       child: const _QuranByPagesView(),
@@ -28,21 +31,8 @@ class QuranByPagesView extends StatelessWidget {
   }
 }
 
-class _QuranByPagesView extends StatefulWidget {
+class _QuranByPagesView extends StatelessWidget {
   const _QuranByPagesView();
-
-  @override
-  State<_QuranByPagesView> createState() => __QuranByPagesViewState();
-}
-
-class __QuranByPagesViewState extends State<_QuranByPagesView> {
-  late final List<int> _pagesNumber;
-
-  @override
-  void initState() {
-    _pagesNumber = context.read<QuranBookByPageCubit>().pagesNumber;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +46,11 @@ class __QuranByPagesViewState extends State<_QuranByPagesView> {
               context.l10n.hatim,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: FontFamily.qpcUthmanicHafs, fontSize: 26, color: themeCubit.state.frColor),
+              style: TextStyle(
+                fontFamily: FontFamily.qpcUthmanicHafs,
+                fontSize: 26,
+                color: themeCubit.state.frColor,
+              ),
             ),
           ),
           SliverPadding(
@@ -64,7 +58,7 @@ class __QuranByPagesViewState extends State<_QuranByPagesView> {
               vertical: themeCubit.state.verticalSpaceSize,
               horizontal: themeCubit.state.horizontalSpaceSize,
             ),
-            sliver: QuranByPagesPagination(_pagesNumber),
+            sliver: const QuranByPagesPagination(),
           ),
         ],
       ),

@@ -49,7 +49,7 @@ dependencies:
   adhan_dart: ^1.1.2
   flutter_svg: ^2.2.1
   cached_network_image: ^3.4.1
-  infinite_scroll_pagination: 4.1.0 #5.1.1 Need Work
+  infinite_scroll_pagination: ^5.1.1
   pinput: ^5.0.2
   animated_analog_clock: ^0.2.2
   syncfusion_flutter_charts: ^31.2.3
