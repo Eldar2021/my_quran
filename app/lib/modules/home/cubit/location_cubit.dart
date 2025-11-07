@@ -39,17 +39,29 @@ class LocationCubit extends Cubit<LocationState> {
 
     emit(newState);
 
-    await client.saveData(position: position, locationName: locationName, timeZoneLocation: timeZoneLocation);
+    await client.saveData(
+      position: position,
+      locationName: locationName,
+      timeZoneLocation: timeZoneLocation,
+    );
   }
 
-  void _onInitailLocation(Position mewPosition, String newLocationName, String newTimeZoneLocation) {
+  void _onInitailLocation(
+    Position mewPosition,
+    String newLocationName,
+    String newTimeZoneLocation,
+  ) {
     position = mewPosition;
     locationName = newLocationName;
     timeZoneLocation = newTimeZoneLocation;
     updateLocation();
   }
 
-  void _updateLocation(Position mewPosition, String newLocationName, String newTimeZoneLocation) {
+  void _updateLocation(
+    Position mewPosition,
+    String newLocationName,
+    String newTimeZoneLocation,
+  ) {
     position = mewPosition;
     locationName = newLocationName;
     timeZoneLocation = newTimeZoneLocation;
@@ -61,7 +73,11 @@ class LocationCubit extends Cubit<LocationState> {
     emit(state.copyWith(eventState: newEventState));
   }
 
-  void _keepLocation(Position keepPosition, String keepLocationName, String keepTimeZoneLocation) {
+  void _keepLocation(
+    Position keepPosition,
+    String keepLocationName,
+    String keepTimeZoneLocation,
+  ) {
     position = keepPosition;
     locationName = keepLocationName;
     timeZoneLocation = keepTimeZoneLocation;

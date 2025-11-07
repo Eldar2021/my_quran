@@ -46,7 +46,7 @@ dependencies:
   geolocator: ^14.0.2
   timezone: ^0.10.1
   flutter_timezone: ^5.0.0
-  adhan_dart: ^1.1.2
+  adhan_dart: ^1.2.0
   flutter_svg: ^2.2.1
   cached_network_image: ^3.4.1
   infinite_scroll_pagination: ^5.1.1

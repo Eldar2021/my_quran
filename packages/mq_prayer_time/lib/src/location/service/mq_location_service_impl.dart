@@ -17,7 +17,9 @@ final class MqLocationServiceImpl implements MqLocationService {
       final permission = await getLocationPermission();
       if (permission) {
         final location = await Geolocator.getCurrentPosition(
-          locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+          locationSettings: const LocationSettings(
+            accuracy: LocationAccuracy.high,
+          ),
         );
         return location;
       } else {
@@ -52,7 +54,10 @@ final class MqLocationServiceImpl implements MqLocationService {
   @override
   Future<String> getLocationName(Position position) async {
     try {
-      final placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+      final placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
 
       if (placemarks.isNotEmpty) {
         final place = placemarks.first;
