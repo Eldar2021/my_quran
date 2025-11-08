@@ -32,12 +32,18 @@ final class MqLocationStorageImpl implements MqLocationStorage {
   Future<void> setLocation(Position position) async {
     final data = LocationJson.fromPosition(position);
     final value = jsonEncode(data.toJson());
-    await storage.writeString(key: _locationKey, value: value);
+    await storage.writeString(
+      key: _locationKey,
+      value: value,
+    );
   }
 
   @override
   Future<void> setLocationName(String locationName) async {
-    await storage.writeString(key: _locationNameKey, value: locationName);
+    await storage.writeString(
+      key: _locationNameKey,
+      value: locationName,
+    );
   }
 
   @override
@@ -47,6 +53,9 @@ final class MqLocationStorageImpl implements MqLocationStorage {
 
   @override
   Future<void> setTimeZoneLocation(String timeZoneLocation) async {
-    await storage.writeString(key: _timeZoneLocationKey, value: timeZoneLocation);
+    await storage.writeString(
+      key: _timeZoneLocationKey,
+      value: timeZoneLocation,
+    );
   }
 }

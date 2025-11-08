@@ -27,22 +27,22 @@ PODS:
   - Firebase/RemoteConfig (12.4.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 12.4.0)
-  - firebase_analytics (12.0.3):
+  - firebase_analytics (12.0.4):
     - firebase_core
     - FirebaseAnalytics (= 12.4.0)
     - Flutter
-  - firebase_auth (6.1.1):
+  - firebase_auth (6.1.2):
     - Firebase/Auth (= 12.4.0)
     - firebase_core
     - Flutter
-  - firebase_core (4.2.0):
+  - firebase_core (4.2.1):
     - Firebase/CoreOnly (= 12.4.0)
     - Flutter
-  - firebase_crashlytics (5.0.3):
+  - firebase_crashlytics (5.0.4):
     - Firebase/Crashlytics (= 12.4.0)
     - firebase_core
     - Flutter
-  - firebase_remote_config (6.1.0):
+  - firebase_remote_config (6.1.1):
     - Firebase/RemoteConfig (= 12.4.0)
     - firebase_core
     - Flutter
@@ -336,11 +336,11 @@ SPEC CHECKSUMS:
   audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   Firebase: f07b15ae5a6ec0f93713e30b923d9970d144af3e
-  firebase_analytics: 1d024068b1d4707d5ba7a42a12976ddf3316d835
-  firebase_auth: c2b8be95d602d4e8a9148fae72333ef78e69cc20
-  firebase_core: 744984dbbed8b3036abf34f0b98d80f130a7e464
-  firebase_crashlytics: f3a9a4338ab99b67042f64e9e22e1bf349cb44ed
-  firebase_remote_config: 8a9f8724eb6d1a3c23c6e3e7275e90a004ca08a7
+  firebase_analytics: 67fbdd9f3c04e55048024f3da21cfc36f05e56cf
+  firebase_auth: 9225db04db5d8e3b46dc8940e04bc6aec6833e27
+  firebase_core: f1aafb21c14f497e5498f7ffc4dc63cbb52b2594
+  firebase_crashlytics: 83c7467d7534975a4d779af43bd226d0a4616464
+  firebase_remote_config: a984c9b1b0ada895a3f03a46f1bbb4c998663aa5
   FirebaseABTesting: c05b5ec9f1d9f21a65909525de301d375032d9a4
   FirebaseAnalytics: 0fc2b20091f0ddd21bf73397cf8f0eb5346dc24f
   FirebaseAppCheckInterop: f734c802f21fe1da0837708f0f9a27218c8a4ed0
