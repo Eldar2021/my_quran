@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 class OrangeThemeCard extends StatelessWidget {
-  const OrangeThemeCard({required this.isActive, required this.onChanged, this.title = 'Orange', super.key});
+  const OrangeThemeCard({
+    required this.isActive,
+    required this.onChanged,
+    this.title = 'Orange',
+    super.key,
+  });
 
   final bool isActive;
   final String title;
@@ -13,23 +18,31 @@ class OrangeThemeCard extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return GradientDecoratedBox(
       useTomato: true,
-      child: RadioListTile(
-        activeColor: AppColors.tomato,
-        title: Text(title, style: prTextTheme.titleMedium?.copyWith(color: AppColors.tomato)),
-        value: true,
-        // This private field will be used later.
-        // ignore: deprecated_member_use
+      child: RadioGroup<bool>(
         groupValue: isActive,
-        // This private field will be used later.
-        // ignore: deprecated_member_use
         onChanged: (v) => onChanged(value: v),
+        child: RadioListTile(
+          activeColor: AppColors.tomato,
+          title: Text(
+            title,
+            style: prTextTheme.titleMedium?.copyWith(
+              color: AppColors.tomato,
+            ),
+          ),
+          value: true,
+        ),
       ),
     );
   }
 }
 
 class BlueThemeCard extends StatelessWidget {
-  const BlueThemeCard({required this.isActive, required this.onChanged, this.title = 'Blue', super.key});
+  const BlueThemeCard({
+    required this.isActive,
+    required this.onChanged,
+    this.title = 'Blue',
+    super.key,
+  });
 
   final bool isActive;
   final String title;
@@ -40,16 +53,19 @@ class BlueThemeCard extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return GradientDecoratedBox(
       useBlue: true,
-      child: RadioListTile(
-        activeColor: AppColors.darkslateblue,
-        title: Text(title, style: prTextTheme.titleMedium?.copyWith(color: AppColors.darkslateblue)),
-        value: false,
-        // This private field will be used later.
-        // ignore: deprecated_member_use
+      child: RadioGroup<bool>(
         groupValue: isActive,
-        // This private field will be used later.
-        // ignore: deprecated_member_use
         onChanged: (v) => onChanged(value: v),
+        child: RadioListTile(
+          activeColor: AppColors.darkslateblue,
+          title: Text(
+            title,
+            style: prTextTheme.titleMedium?.copyWith(
+              color: AppColors.darkslateblue,
+            ),
+          ),
+          value: false,
+        ),
       ),
     );
   }

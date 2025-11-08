@@ -23,10 +23,8 @@ class AuthState extends Equatable {
   Locale get currentLocale {
     if (user != null) return Locale(user!.localeCode);
     if (localeForNow != null) return Locale(localeForNow!);
-    // This private field will be used later.
-    // ignore: deprecated_member_use
-    final deviceLocal = window.locale.languageCode;
-    return AppLocalizationHelper.getSupportedLocale(deviceLocal);
+    final deviceLocal = WidgetsBinding.instance.platformDispatcher.locale;
+    return AppLocalizationHelper.getSupportedLocale(deviceLocal.languageCode);
   }
 
   Gender get gender {
