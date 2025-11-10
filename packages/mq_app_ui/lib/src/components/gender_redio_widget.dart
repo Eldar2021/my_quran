@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 
 class GenderRedioWidget extends StatelessWidget {
-  const GenderRedioWidget({required this.gender, this.itemIsMale = true, this.onChanged, this.title, super.key});
+  const GenderRedioWidget({
+    required this.gender,
+    required this.onChanged,
+    this.itemIsMale = true,
+    this.title,
+    super.key,
+  });
 
   final AppUiGender gender;
-  final void Function(AppUiGender?)? onChanged;
+  final void Function(AppUiGender? value) onChanged;
   final String? title;
   final bool itemIsMale;
 
@@ -13,28 +19,38 @@ class GenderRedioWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
-    return RadioListTile<AppUiGender>(
-      controlAffinity: ListTileControlAffinity.trailing,
-      value: itemIsMale ? AppUiGender.male : AppUiGender.famela,
-      // This private field will be used later.
-      // ignore: deprecated_member_use
+    return RadioGroup<AppUiGender>(
       groupValue: gender,
-      // This private field will be used later.
-      // ignore: deprecated_member_use
       onChanged: onChanged,
-      secondary: itemIsMale
-          ? Assets.icons.userMale.svg(
-              colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
-            )
-          : Assets.icons.userFemale.svg(
-              colorFilter: ColorFilter.mode(selected ? colorScheme.primary : colorScheme.onSurface, BlendMode.srcIn),
-            ),
-      title: Text(
-        title ?? '',
-        style: textTheme.titleMedium?.copyWith(color: selected ? colorScheme.primary : colorScheme.onSurface),
+      child: RadioListTile<AppUiGender>(
+        controlAffinity: ListTileControlAffinity.trailing,
+        value: itemIsMale ? AppUiGender.male : AppUiGender.famela,
+        secondary: itemIsMale
+            ? Assets.icons.userMale.svg(
+                colorFilter: ColorFilter.mode(
+                  selected ? colorScheme.primary : colorScheme.onSurface,
+                  BlendMode.srcIn,
+                ),
+              )
+            : Assets.icons.userFemale.svg(
+                colorFilter: ColorFilter.mode(
+                  selected ? colorScheme.primary : colorScheme.onSurface,
+                  BlendMode.srcIn,
+                ),
+              ),
+        title: Text(
+          title ?? '',
+          style: textTheme.titleMedium?.copyWith(
+            color: selected ? colorScheme.primary : colorScheme.onSurface,
+          ),
+        ),
+        selected: selected,
+        shape: Border(
+          bottom: BorderSide(
+            color: selected ? colorScheme.primary : colorScheme.onSurface,
+          ),
+        ),
       ),
-      selected: selected,
-      shape: Border(bottom: BorderSide(color: selected ? colorScheme.primary : colorScheme.onSurface)),
     );
   }
 
