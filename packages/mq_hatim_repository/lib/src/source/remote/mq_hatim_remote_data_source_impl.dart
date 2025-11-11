@@ -11,20 +11,23 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
 
   final MqRemoteClient remoteClient;
 
-  late final WebSocketChannel channel;
+  late WebSocketChannel channel;
   bool isInitilized = false;
 
   @override
-  Future<MqSearchModel> getSearch(String? user) async {
+  Future<MqSearchModel> getSearch(String? user) {
     try {
-      return remoteClient.getType('/api/v1/hatim/search_user/?q=$user', fromJson: MqSearchModel.fromJson);
+      return remoteClient.getType(
+        '/api/v1/hatim/search_user/?q=$user',
+        fromJson: MqSearchModel.fromJson,
+      );
     } catch (e) {
       throw Exception('Error getSearch: $e');
     }
   }
 
   @override
-  Future<MqHatimsModel> createHatim(MqHatimCreateModel hatim) async {
+  Future<MqHatimsModel> createHatim(MqHatimCreateModel hatim) {
     try {
       return remoteClient.postType(
         '/api/v1/hatim/',
@@ -44,7 +47,9 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
   @override
   void connectToSocket(String token) {
     if (!isInitilized) {
-      channel = WebSocketChannel.connect(Uri.parse('wss://myquran.life/ws/?token=$token'));
+      channel = WebSocketChannel.connect(
+        Uri.parse('wss://myquran.life/ws/?token=$token'),
+      );
       isInitilized = true;
     }
   }
@@ -93,6 +98,7 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
 
   @override
   Future<void> close() async {
+    isInitilized = false;
     await channel.sink.close();
   }
 
