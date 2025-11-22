@@ -51,6 +51,7 @@ jobs:
         run: |
           cd app
           flutter build ipa --release \
+            -t lib/main.dart \
             --export-options-plist=ios/Runner/ExportOptions.plist \
             -- \
             CODE_SIGN_STYLE=Manual \
@@ -60,7 +61,7 @@ jobs:
 
       - name: Show Generated files
         run: |
-          ls build/ios/ipa
+          ls app/build/ios/ipa
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
