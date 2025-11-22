@@ -28,12 +28,6 @@ jobs:
           storeFile=release-key.jks
           EOF
 
-      - name: "Check current state Android"
-        run: ls app/android
-
-      - name: "Check current state Android App"
-        run: ls app/android/app
-
       - name: "Set up Java"
         uses: actions/setup-java@v3
         with:
@@ -47,9 +41,6 @@ jobs:
           flutter-version: "3.35.6"
           channel: stable
           cache: true
-
-      - name: "Check current state 2"
-        run: ls
 
       - name: "Flutter Doctor"
         run: flutter doctor -v
@@ -70,7 +61,7 @@ jobs:
 
       - name: Show Generated files
         run: |
-          ls build/app/outputs/bundle/release
+          ls app/build/app/outputs/bundle/release
 
       - name: Upload App Bundle Artifact
         uses: actions/upload-artifact@v4

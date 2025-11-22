@@ -52,10 +52,11 @@ jobs:
           cd app
           flutter build ipa --release \
             --export-options-plist=ios/Runner/ExportOptions.plist \
-            --xcargs CODE_SIGN_STYLE=Manual \
-            --xcargs DEVELOPMENT_TEAM=L8HXY9BDGG \
-            --xcargs CODE_SIGN_IDENTITY="Apple Distribution" \
-            --xcargs PROVISIONING_PROFILE_SPECIFIER=""
+            -- \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM=L8HXY9BDGG \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER=""
 
       - name: Show Generated files
         run: |
