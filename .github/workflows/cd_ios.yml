@@ -1,0 +1,74 @@
+name: CD IOS (Release Build)
+
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy_ios:
+    runs-on: macos-latest
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v5
+
+      - name: Install Apple Certificate and Provisioning Profile
+        uses: Apple-Actions/import-codesign-certs@v2
+        with:
+          p12-file-base64: ${{ secrets.IOS_DIST_CERT_P12_BASE64 }}
+          p12-password: ${{ secrets.IOS_DIST_CERT_PASSWORD }}
+
+      - name: Install Provisioning Profile
+        uses: Apple-Actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: com.alee.hatimapp
+          profile-type: "IOS_APP_STORE"
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-private-key: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+
+      - name: "Set up Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.35.6"
+          channel: stable
+          cache: true
+
+      - run: flutter doctor -v
+
+      - name: "Install Global Tools (flutterfire_cli & melos)"
+        run: |
+          dart pub global activate flutterfire_cli
+          dart pub global activate melos
+
+      - name: "Melos Bootstrap"
+        run: melos bootstrap
+
+      - name: Build IPA
+        run: |
+          cd app
+          flutter build ipa --release \
+            --export-options-plist=ios/Runner/ExportOptions.plist
+
+      - name: Show Generated files
+        run: |
+          ls build/ios/ipa
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Runner.ipa
+          path: app/build/ios/ipa/Runner.ipa
+
+      - name: Upload to App Store Connect
+        run: |
+          xcrun altool --upload-app \
+            --type ios \
+            --file "app/build/ios/ipa/Runner.ipa" \
+            --apiKey "${{ secrets.APP_STORE_CONNECT_KEY_ID }}" \
+            --apiIssuer "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}"
+        env:
+          API_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}

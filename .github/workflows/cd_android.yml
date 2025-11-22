@@ -62,6 +62,10 @@ jobs:
           cd app
           flutter build appbundle --release
 
+      - name: Show Generated files
+        run: |
+          ls build/app/outputs/bundle/release
+
       - name: Upload App Bundle Artifact
         uses: actions/upload-artifact@v4
         with:
