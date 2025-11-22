@@ -36,7 +36,6 @@ jobs:
         with:
           flutter-version: "3.35.6"
           channel: stable
-          cache: true
 
       - run: flutter doctor -v
 

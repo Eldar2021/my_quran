@@ -28,13 +28,11 @@ jobs:
           storeFile=my-release-key.jks
           EOF
 
-      - name: "Check current state 1"
-        run: ls
+      - name: "Check current state Android"
+        run: ls app/android
 
-      - name: "Check current state my-release-key.jks"
-        run: |
-          ls app/android
-          ls app/android/app
+      - name: "Check current state Android App"
+        run: ls app/android/app
 
       - name: "Set up Java"
         uses: actions/setup-java@v3
