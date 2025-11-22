@@ -28,6 +28,14 @@ jobs:
           storeFile=my-release-key.jks
           EOF
 
+      - name: "Check current state 1"
+        run: ls
+
+      - name: "Check current state my-release-key.jks"
+        run: |
+          ls app/android
+          ls app/android/app
+
       - name: "Set up Java"
         uses: actions/setup-java@v3
         with:
@@ -42,7 +50,7 @@ jobs:
           channel: stable
           cache: true
 
-      - name: "Check current state"
+      - name: "Check current state 2"
         run: ls
 
       - name: "Flutter Doctor"
