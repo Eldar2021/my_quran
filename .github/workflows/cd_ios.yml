@@ -47,17 +47,17 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
+      - name: Disable Automatic Signing in Xcode Project
+        run: |
+          cd app
+          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
+          echo "Automatic signing disabled."
+
       - name: Build IPA
         run: |
           cd app
           flutter build ipa --release \
-            -t lib/main.dart \
             --export-options-plist=ios/Runner/ExportOptions.plist \
-            -- \
-            CODE_SIGN_STYLE=Manual \
-            DEVELOPMENT_TEAM=L8HXY9BDGG \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            PROVISIONING_PROFILE_SPECIFIER=""
 
       - name: Show Generated files
         run: |
