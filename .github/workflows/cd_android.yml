@@ -1,0 +1,78 @@
+name: CD Android (Release Build)
+
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build_android_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > app/android/app/release-key.jks
+
+      - name: Create key.properties
+        run: |
+          cat <<EOF > app/android/key.properties
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          storeFile=my-release-key.jks
+          EOF
+
+      - name: "Set up Java"
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: gradle
+
+      - name: "Set up Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.35.6"
+          channel: stable
+          cache: true
+
+      - name: "Check current state"
+        run: ls
+
+      - name: "Flutter Doctor"
+        run: flutter doctor -v
+
+      - name: "Activate Flutterfire CLI"
+        run: dart pub global activate flutterfire_cli
+
+      - name: "Activate Melos"
+        run: dart pub global activate melos
+
+      - name: "Melos Bootstrap"
+        run: melos bootstrap
+
+      - name: Build App Bundle
+        run: |
+          cd app
+          flutter build appbundle --release
+
+      - name: Upload App Bundle Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.aab
+          path: app/build/app/outputs/bundle/release/app-release.aab
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.alee.my_quran
+          releaseFiles: app/build/app/outputs/bundle/release/app-release.aab
+          track: beta
+          status: draft
