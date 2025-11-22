@@ -25,7 +25,7 @@ jobs:
           storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
           keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
-          storeFile=my-release-key.jks
+          storeFile=app/my-release-key.jks
           EOF
 
       - name: "Check current state Android"
