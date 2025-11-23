@@ -47,31 +47,29 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
-      - name: Disable Automatic Signing in Xcode Project
+      - name: Force Manual Signing and Distribution Cert in Xcode Project
         run: |
           cd app
+          PROJECT_FILE="ios/Runner.xcodeproj/project.pbxproj"
 
-          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
-          echo "Automatic signing disabled."
+          echo "1. Setting signing style to Manual..."
+          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' "$PROJECT_FILE"
 
-          echo "Removing DEVELOPMENT_TEAM lines from project.pbxproj..."
-          sed -i '' '/DEVELOPMENT_TEAM =/d' ios/Runner.xcodeproj/project.pbxproj
+          echo "2. Removing Development Team ID..."
+          sed -i '' '/DEVELOPMENT_TEAM =/d' "$PROJECT_FILE"
 
-          echo "Checking if DEVELOPMENT_TEAM is gone (Should print nothing below):"
-          grep "DEVELOPMENT_TEAM" ios/Runner.xcodeproj/project.pbxproj || true
+          echo "3. Forcing CODE_SIGN_IDENTITY to 'Apple Distribution' everywhere..."
+          sed -i '' 's/CODE_SIGN_IDENTITY = "iPhone Developer";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' "$PROJECT_FILE"
+          sed -i '' 's/CODE_SIGN_IDENTITY = "";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' "$PROJECT_FILE"
+
+          echo "Xcode project file updated successfully."
+          grep "CODE_SIGN_IDENTITY" "$PROJECT_FILE" | head -n 5 || true
 
       - name: Build IPA
         run: |
           cd app
           flutter build ipa --release \
-            -t lib/main.dart \
-            --export-options-plist=ios/Runner/ExportOptions.plist \
-            -- \
-            -configuration Release \
-            "CODE_SIGN_IDENTITY[sdk=iphoneos*]"="Apple Distribution" \
-            CODE_SIGN_STYLE=Manual \
-            PROVISIONING_PROFILE_SPECIFIER="" \
-            DEVELOPMENT_TEAM=L8HXY9BDGG
+            --export-options-plist=ios/Runner/ExportOptions.plist
 
       - name: Show Generated files
         run: |
