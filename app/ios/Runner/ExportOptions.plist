@@ -24,6 +24,9 @@
 
     <key>provisioningProfiles</key>
     <dict>
-        <key>com.alee.hatimapp</key> <string>App Store</string> </dict>
+        <key>com.alee.hatimapp</key> 
+        <string>App Store</string> </dict>
+    <key>thinning</key>
+	<string>&lt;none&gt;</string>
 </dict>
 </plist>
