@@ -69,7 +69,14 @@ jobs:
         run: |
           cd app
           flutter build ipa --release \
-            --export-options-plist=ios/Runner/ExportOptions.plist
+            -t lib/main.dart \
+            --export-options-plist=ios/Runner/ExportOptions.plist \
+            -- \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            "CODE_SIGN_IDENTITY[sdk=iphoneos*]"="Apple Distribution" \
+            DEVELOPMENT_TEAM="" \
+            PROVISIONING_PROFILE_SPECIFIER=""
 
       - name: Show Generated files
         run: |
