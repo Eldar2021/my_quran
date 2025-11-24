@@ -1,0 +1,117 @@
+name: CD IOS (Release Build)
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy_ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v5
+
+      - name: Install Certificate and Profile
+        env:
+          P12_BASE64: ${{ secrets.IOS_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
+          PROFILE_BASE64: ${{ secrets.IOS_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: "temporary_password"
+        run: |
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          echo -n "$P12_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security default-keychain -s $KEYCHAIN_PATH
+
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+
+          PP_UUID=$(grep -a -A 1 'UUID' $PP_PATH | grep string | sed -e 's/<string>//' -e 's/<\/string>//' -e 's/^[[:space:]]*//')
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/$PP_UUID.mobileprovision
+
+      - name: "Verify Certificates and Profiles"
+        run: |
+          echo "=== Installed Certificates ==="
+          security find-identity -v -p codesigning
+
+          echo "=== Installed Profiles ==="
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+
+      - name: "Set up Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.35.6"
+          channel: stable
+
+      - run: flutter doctor -v
+
+      - name: "Install Global Tools (flutterfire_cli & melos)"
+        run: |
+          dart pub global activate flutterfire_cli
+          dart pub global activate melos
+
+      - name: "Melos Bootstrap"
+        run: melos bootstrap
+
+      - name: Force Manual Signing via Ruby
+        run: |
+          gem install xcodeproj
+
+          ruby <<EOF
+          require 'xcodeproj'
+
+          project_path = 'app/ios/Runner.xcodeproj'
+          project = Xcodeproj::Project.open(project_path)
+
+          target = project.targets.first
+
+          target.build_configurations.each do |config|
+            if config.name == 'Release'
+              puts "Updating Release build settings..."
+              config.build_settings['CODE_SIGN_STYLE'] = 'Manual'
+              config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'MyQuranGuthabActionCD'
+              config.build_settings['DEVELOPMENT_TEAM'] = 'L8HXY9BDGG'
+              config.build_settings['CODE_SIGN_IDENTITY'] = 'Apple Distribution'
+              config.build_settings['CODE_SIGN_ENTITLEMENTS'] = 'Runner/Runner.entitlements'
+            end
+          end
+
+          project.save
+          puts "Project settings updated successfully!"
+          EOF
+
+      - name: Build IPA
+        run: |
+          cd app
+          flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
+
+      - name: Show Generated files
+        run: |
+          ls -la app/build/ios/ipa
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Runner.ipa
+          path: app/build/ios/ipa/my_quran.ipa
+
+      - name: Upload to TestFlight
+        uses: apple-actions/upload-testflight-build@v1
+        with:
+          app-path: "app/build/ios/ipa/my_quran.ipa"
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
