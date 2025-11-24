@@ -11,25 +11,34 @@ on:
 jobs:
   build_and_deploy_ios:
     runs-on: macos-latest
+
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v5
 
-      - name: Install Apple Certificate and Provisioning Profile
-        uses: Apple-Actions/import-codesign-certs@v2
-        with:
-          p12-file-base64: ${{ secrets.IOS_DIST_CERT_P12_BASE64 }}
-          p12-password: ${{ secrets.IOS_DIST_CERT_PASSWORD }}
+      - name: Install Certificate and Profile
+        env:
+          P12_BASE64: ${{ secrets.IOS_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
+          PROFILE_BASE64: ${{ secrets.IOS_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: "temporary_password"
+        run: |
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 
-      - name: Install Provisioning Profile
-        id: provisioning
-        uses: poad/apple-provisioning-profiles-downloader@v1.0.8
-        with:
-          bundle-id: com.alee.hatimapp
-          profile-type: "IOS_APP_STORE"
-          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          api-private-key: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+          echo -n "$P12_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
       - name: "Set up Flutter"
         uses: subosito/flutter-action@v2
@@ -47,36 +56,11 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
-      - name: Force Manual Signing and Distribution Cert in Xcode Project
-        run: |
-          cd app
-          PROJECT_FILE="ios/Runner.xcodeproj/project.pbxproj"
-
-          echo "1. Setting signing style to Manual..."
-          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' "$PROJECT_FILE"
-
-          echo "2. Removing Development Team ID..."
-          sed -i '' '/DEVELOPMENT_TEAM =/d' "$PROJECT_FILE"
-
-          echo "3. Forcing CODE_SIGN_IDENTITY to 'Apple Distribution' everywhere..."
-          sed -i '' 's/CODE_SIGN_IDENTITY = "iPhone Developer";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' "$PROJECT_FILE"
-          sed -i '' 's/CODE_SIGN_IDENTITY = "";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' "$PROJECT_FILE"
-
-          echo "Xcode project file updated successfully."
-          grep "CODE_SIGN_IDENTITY" "$PROJECT_FILE" | head -n 5 || true
-
       - name: Build IPA
         run: |
           cd app
           flutter build ipa --release \
-            -t lib/main.dart \
-            --export-options-plist=ios/Runner/ExportOptions.plist \
-            -- \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            "CODE_SIGN_IDENTITY[sdk=iphoneos*]"="Apple Distribution" \
-            DEVELOPMENT_TEAM="" \
-            PROVISIONING_PROFILE_SPECIFIER=""
+          --export-options-plist=ios/Runner/ExportOptions.plist
 
       - name: Show Generated files
         run: |
@@ -88,12 +72,10 @@ jobs:
           name: Runner.ipa
           path: app/build/ios/ipa/Runner.ipa
 
-      - name: Upload to App Store Connect
-        run: |
-          xcrun altool --upload-app \
-            --type ios \
-            --file "app/build/ios/ipa/Runner.ipa" \
-            --apiKey "${{ secrets.APP_STORE_CONNECT_KEY_ID }}" \
-            --apiIssuer "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}"
-        env:
-          API_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+      - name: Upload to TestFlight
+        uses: apple-actions/upload-testflight-build@v1
+        with:
+          app-path: "app/build/ios/ipa/*.ipa"
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
