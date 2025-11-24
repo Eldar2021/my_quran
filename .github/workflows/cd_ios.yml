@@ -72,7 +72,7 @@ jobs:
         run: |
           cd app/ios
 
-          sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' Runner.xcodeproj/project.pbxproj
 
           echo "DEVELOPMENT_TEAM = L8HXY9BDGG" >> Flutter/Release.xcconfig
           echo "PROVISIONING_PROFILE_SPECIFIER = MyQuranGuthabActionCD" >> Flutter/Release.xcconfig
