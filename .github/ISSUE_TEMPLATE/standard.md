@@ -1,8 +1,7 @@
 ---
 name: Standard
 about: Standard issue
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
