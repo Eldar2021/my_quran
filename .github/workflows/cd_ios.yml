@@ -16,29 +16,29 @@ jobs:
       - name: "Checkout repository"
         uses: actions/checkout@v5
 
-      # - name: Install Certificate and Profile
-      #   env:
-      #     P12_BASE64: ${{ secrets.IOS_P12_BASE64 }}
-      #     P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
-      #     PROFILE_BASE64: ${{ secrets.IOS_PROVISION_PROFILE_BASE64 }}
-      #     KEYCHAIN_PASSWORD: "temporary_password"
-      #   run: |
-      #     CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-      #     PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-      #     KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+      - name: Install Certificate and Profile
+        env:
+          P12_BASE64: ${{ secrets.IOS_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
+          PROFILE_BASE64: ${{ secrets.IOS_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: "temporary_password"
+        run: |
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 
-      #     echo -n "$P12_BASE64" | base64 --decode -o $CERTIFICATE_PATH
-      #     echo -n "$PROFILE_BASE64" | base64 --decode -o $PP_PATH
+          echo -n "$P12_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$PROFILE_BASE64" | base64 --decode -o $PP_PATH
 
-      #     security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-      #     security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-      #     security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
-      #     security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-      #     security list-keychain -d user -s $KEYCHAIN_PATH
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
 
-      #     mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-      #     cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
       - name: "Set up Flutter"
         uses: subosito/flutter-action@v2
@@ -56,20 +56,16 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
-      # - name: Build IPA
-      #   run: |
-      #     cd app
-      #     flutter build ipa --release \
-      #     --export-options-plist=ios/Runner/ExportOptions.plist
-
-      - name: iOS Application Building...
-        uses: cedvdb/action-flutter-build-ios@v1
-        with:
-          build-cmd: cd app && flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
-          certificate-base64: ${{ secrets.IOS_P12_BASE64 }}
-          certificate-password: ${{ secrets.IOS_P12_PASSWORD }}
-          provisioning-profile-base64: ${{ secrets.IOS_PROVISION_PROFILE_BASE64 }}
-          keychain-password: ${{ secrets.temporary_password }}
+      - name: Build IPA
+        run: |
+          cd app
+          flutter build ipa --release \
+          --export-options-plist=ios/Runner/ExportOptions.plist \
+          -- \
+          CODE_SIGN_STYLE=Manual \
+          PROVISIONING_PROFILE_SPECIFIER="MyQuranGuthabActionCD" \
+          DEVELOPMENT_TEAM="L8HXY9BDGG" \
+          CODE_SIGN_IDENTITY="Apple Distribution"
 
       - name: Show Generated files
         run: |
