@@ -33,12 +33,24 @@ jobs:
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security default-keychain -s $KEYCHAIN_PATH
 
           security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
 
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+          PP_UUID=$(grep -a -A 1 'UUID' $PP_PATH | grep string | sed -e 's/<string>//' -e 's/<\/string>//' -e 's/^[[:space:]]*//')
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/$PP_UUID.mobileprovision
+
+      - name: "Verify Certificates and Profiles"
+        run: |
+          echo "=== Installed Certificates ==="
+          security find-identity -v -p codesigning
+
+          echo "=== Installed Profiles ==="
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
 
       - name: "Set up Flutter"
         uses: subosito/flutter-action@v2
@@ -60,16 +72,11 @@ jobs:
         run: |
           cd app
           flutter build ipa --release \
-          --export-options-plist=ios/Runner/ExportOptions.plist \
-          -- \
-          CODE_SIGN_STYLE=Manual \
-          PROVISIONING_PROFILE_SPECIFIER="MyQuranGuthabActionCD" \
-          DEVELOPMENT_TEAM="L8HXY9BDGG" \
-          CODE_SIGN_IDENTITY="Apple Distribution"
+            --export-options-plist=ios/Runner/ExportOptions.plist
 
       - name: Show Generated files
         run: |
-          ls app/build/ios/ipa
+          ls -la app/build/ios/ipa
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
@@ -80,7 +87,7 @@ jobs:
       - name: Upload to TestFlight
         uses: apple-actions/upload-testflight-build@v1
         with:
-          app-path: "app/build/ios/ipa/*.ipa"
+          app-path: "app/build/ios/ipa/Runner.ipa"
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
