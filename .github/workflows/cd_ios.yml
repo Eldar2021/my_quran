@@ -68,17 +68,32 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
-      - name: Update iOS Signing Settings
+      - name: Force Manual Signing via Ruby
         run: |
-          cd app/ios
+          gem install xcodeproj
 
-          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' Runner.xcodeproj/project.pbxproj
-          sed -i '' 's/DEVELOPMENT_TEAM = L8HXY9BDGG;/DEVELOPMENT_TEAM = "";/g' Runner.xcodeproj/project.pbxproj
+          ruby <<EOF
+          require 'xcodeproj'
 
-          echo "DEVELOPMENT_TEAM = L8HXY9BDGG" >> Flutter/Release.xcconfig
-          echo "PROVISIONING_PROFILE_SPECIFIER = MyQuranGuthabActionCD" >> Flutter/Release.xcconfig
-          echo "CODE_SIGN_STYLE = Manual" >> Flutter/Release.xcconfig
-          echo "CODE_SIGN_IDENTITY = Apple Distribution" >> Flutter/Release.xcconfig
+          project_path = 'app/ios/Runner.xcodeproj'
+          project = Xcodeproj::Project.open(project_path)
+
+          target = project.targets.first
+
+          target.build_configurations.each do |config|
+            if config.name == 'Release'
+              puts "Updating Release build settings..."
+              config.build_settings['CODE_SIGN_STYLE'] = 'Manual'
+              config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'MyQuranGuthabActionCD'
+              config.build_settings['DEVELOPMENT_TEAM'] = 'L8HXY9BDGG'
+              config.build_settings['CODE_SIGN_IDENTITY'] = 'Apple Distribution'
+              config.build_settings['CODE_SIGN_ENTITLEMENTS'] = 'Runner/Runner.entitlements'
+            end
+          end
+
+          project.save
+          puts "Project settings updated successfully!"
+          EOF
 
       - name: Build IPA
         run: |
