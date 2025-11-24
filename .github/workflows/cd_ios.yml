@@ -68,11 +68,17 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
+      - name: "Disable Automatic Signing"
+        run: |
+          cd app/ios
+          ruby -i -pe "gsub(/CODE_SIGN_STYLE = Automatic;/, 'CODE_SIGN_STYLE = Manual;')" Runner.xcodeproj/project.pbxproj
+          ruby -i -pe "gsub(/ProvisioningStyle = Automatic;/, 'ProvisioningStyle = Manual;')" Runner.xcodeproj/project.pbxproj
+          echo "✅ Automatic signing disabled"
+
       - name: Build IPA
         run: |
           cd app
-          flutter build ipa --release \
-            --export-options-plist=ios/Runner/ExportOptions.plist
+          flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
 
       - name: Show Generated files
         run: |
