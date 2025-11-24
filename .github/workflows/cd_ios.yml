@@ -108,12 +108,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Runner.ipa
-          path: app/build/ios/ipa/Runner.ipa
+          path: app/build/ios/ipa/my_quran.ipa
 
       - name: Upload to TestFlight
         uses: apple-actions/upload-testflight-build@v1
         with:
-          app-path: "app/build/ios/ipa/Runner.ipa"
+          app-path: "app/build/ios/ipa/my_quran.ipa"
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
