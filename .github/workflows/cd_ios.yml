@@ -68,21 +68,16 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
-      - name: "Disable Automatic Signing"
+      - name: Update iOS Signing Settings
         run: |
           cd app/ios
 
-          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' Runner.xcodeproj/project.pbxproj
-          sed -i '' 's/DEVELOPMENT_TEAM = "";/DEVELOPMENT_TEAM = L8HXY9BDGG;/g' Runner.xcodeproj/project.pbxproj
-          sed -i '' 's/DEVELOPMENT_TEAM = L8HXY9BDGG;/DEVELOPMENT_TEAM = L8HXY9BDGG;/g' Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' Runner.xcodeproj/project.pbxproj
 
-          sed -i '' '/PRODUCT_BUNDLE_IDENTIFIER = com.alee.hatimapp;/a\
-          				PROVISIONING_PROFILE_SPECIFIER = "MyQuranGuthabActionCD";\
-          				CODE_SIGN_IDENTITY = "Apple Distribution";
-          ' Runner.xcodeproj/project.pbxproj
-
-          echo "=== Updated project.pbxproj ==="
-          grep -A 5 "CODE_SIGN_STYLE" Runner.xcodeproj/project.pbxproj | head -20
+          echo "DEVELOPMENT_TEAM = L8HXY9BDGG" >> Flutter/Release.xcconfig
+          echo "PROVISIONING_PROFILE_SPECIFIER = MyQuranGuthabActionCD" >> Flutter/Release.xcconfig
+          echo "CODE_SIGN_STYLE = Manual" >> Flutter/Release.xcconfig
+          echo "CODE_SIGN_IDENTITY = Apple Distribution" >> Flutter/Release.xcconfig
 
       - name: Build IPA
         run: |
