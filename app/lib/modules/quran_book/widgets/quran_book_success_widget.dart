@@ -5,8 +5,8 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class QuranBookSurahSuccessWidget extends StatelessWidget {
-  const QuranBookSurahSuccessWidget(this.items, {super.key});
+class QuranBookSuccessWidget extends StatelessWidget {
+  const QuranBookSuccessWidget(this.items, {super.key});
 
   final List<QuranDataSamePage> items;
 

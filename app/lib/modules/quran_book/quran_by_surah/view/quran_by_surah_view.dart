@@ -72,7 +72,7 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
                 QuranBookBySurahInitial() => const QuranBookSliverProgressingIndicator(),
                 QuranBookBySurahLoading() => const QuranBookSliverProgressingIndicator(),
                 QuranBookBySurahError() => QuranBookSliverErrorWidget(state.error.toString()),
-                QuranBookBySurahLoaded() => QuranBookSurahSuccessWidget(state.items),
+                QuranBookBySurahLoaded() => QuranBookSuccessWidget(state.items),
               };
             },
           ),
