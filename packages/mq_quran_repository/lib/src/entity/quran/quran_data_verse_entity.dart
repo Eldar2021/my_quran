@@ -22,6 +22,8 @@ sealed class QuranDataVerseEntity {
     if (list[1] == '1' && verseKey != '9:1' && verseKey != '1:1') return true;
     return false;
   }
+
+  bool get isFirstAyatOfQuran => verseKey == '1:1';
 }
 
 @immutable

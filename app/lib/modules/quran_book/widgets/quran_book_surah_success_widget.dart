@@ -42,7 +42,7 @@ class QuranBookSurahSuccessWidget extends StatelessWidget {
                         TextSpan(
                           text: '${item.isFirst(e.verseKey) ? '' : '\n\n'} ${MqQuranStatic.bismallah} \n',
                         ),
-                      TextSpan(text: e.text),
+                      TextSpan(text: e.isFirstAyatOfQuran ? '${e.text}\n' : e.text),
                       WidgetSpan(
                         child: Text(
                           ' ${e.ayatNumber.toArabicDigits} ',
