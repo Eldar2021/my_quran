@@ -101,15 +101,15 @@ class _QuranPageItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text.rich(
+            RichText(
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: FontFamily.uthmanicV2,
-                fontSize: themeCubit.state.textSize,
-                color: themeCubit.state.frColor,
-                height: 2.3,
-              ),
-              TextSpan(
+              text: TextSpan(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontFamily: FontFamily.uthmanicV2,
+                  fontSize: themeCubit.state.textSize,
+                  color: themeCubit.state.frColor,
+                  height: 2.3,
+                ),
                 children: verses.map((e) {
                   return TextSpan(
                     children: [
@@ -118,20 +118,16 @@ class _QuranPageItem extends StatelessWidget {
                           text: '${firstKey == e.verseKey ? '' : '\n\n'} ${MqQuranStatic.bismallah} \n',
                         ),
                       TextSpan(text: e.text),
-                      WidgetSpan(
-                        child: Text(
-                          ' ${e.ayatNumber.toArabicDigits} ',
-                          textDirection: TextDirection.rtl,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            fontFamily: FontFamily.uthmanicRegular,
-                            fontSize: themeCubit.state.textSize,
-                            color: themeCubit.state.frColor,
-                            letterSpacing: 0,
-                            height: 1.2,
-                          ),
+                      TextSpan(
+                        text: ' ${e.ayatNumber.toArabicDigits} ',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontFamily: FontFamily.uthmanicRegular,
+                          fontSize: themeCubit.state.textSize,
+                          color: themeCubit.state.frColor,
+                          letterSpacing: -2.5,
                         ),
                       ),
+                      if (e.isFirstAyatOfQuran) const TextSpan(text: '\n'),
                     ],
                   );
                 }).toList(),

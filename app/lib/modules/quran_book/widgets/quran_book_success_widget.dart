@@ -26,15 +26,15 @@ class QuranBookSuccessWidget extends StatelessWidget {
           return Localizations.override(
             context: context,
             locale: const Locale('ar'),
-            child: Text.rich(
+            child: RichText(
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: FontFamily.uthmanicV2,
-                fontSize: themeCubit.state.textSize,
-                color: themeCubit.state.frColor,
-                height: 2.3,
-              ),
-              TextSpan(
+              text: TextSpan(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontFamily: FontFamily.uthmanicV2,
+                  fontSize: themeCubit.state.textSize,
+                  color: themeCubit.state.frColor,
+                  height: 2.3,
+                ),
                 children: item.verses.map((e) {
                   return TextSpan(
                     children: [
@@ -42,21 +42,17 @@ class QuranBookSuccessWidget extends StatelessWidget {
                         TextSpan(
                           text: '${item.isFirst(e.verseKey) ? '' : '\n\n'} ${MqQuranStatic.bismallah} \n',
                         ),
-                      TextSpan(text: e.isFirstAyatOfQuran ? '${e.text}\n' : e.text),
-                      WidgetSpan(
-                        child: Text(
-                          ' ${e.ayatNumber.toArabicDigits} ',
-                          textDirection: TextDirection.rtl,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            fontFamily: FontFamily.uthmanicRegular,
-                            fontSize: themeCubit.state.textSize,
-                            color: themeCubit.state.frColor,
-                            letterSpacing: 0,
-                            height: 1.2,
-                          ),
+                      TextSpan(text: e.text),
+                      TextSpan(
+                        text: ' ${e.ayatNumber.toArabicDigits} ',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontFamily: FontFamily.uthmanicRegular,
+                          fontSize: themeCubit.state.textSize,
+                          color: themeCubit.state.frColor,
+                          letterSpacing: -2.5,
                         ),
                       ),
+                      if (e.isFirstAyatOfQuran) const TextSpan(text: '\n'),
                     ],
                   );
                 }).toList(),
