@@ -29,7 +29,7 @@ class QuranBookSurahSuccessWidget extends StatelessWidget {
             child: Text(
               '${item.samePage(context)}',
               style: TextStyle(
-                fontFamily: FontFamily.qpcUthmanicHafs,
+                fontFamily: FontFamily.uthmanicV2,
                 fontSize: themeCubit.state.textSize,
                 color: themeCubit.state.frColor,
                 height: 2.3,
@@ -49,7 +49,10 @@ class QuranBookSurahSuccessWidget extends StatelessWidget {
                   locale: const Locale('ar'),
                   child: Text(
                     item.pageNumber.toArabicDigits,
-                    style: TextStyle(fontSize: themeCubit.state.textSize, color: themeCubit.state.frColor),
+                    style: TextStyle(
+                      fontSize: themeCubit.state.textSize,
+                      color: themeCubit.state.frColor,
+                    ),
                   ),
                 ),
                 const Expanded(child: Divider()),

@@ -3,7 +3,10 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 @immutable
 final class QuranDataEntity {
-  const QuranDataEntity({required this.verses, required this.meta});
+  const QuranDataEntity({
+    required this.verses,
+    required this.meta,
+  });
 
   final List<QuranDataVerseEntity> verses;
   final QuranDataMetaEntity meta;
@@ -38,14 +41,19 @@ final class QuranDataEntity {
 
 @immutable
 final class QuranDataMetaEntity {
-  const QuranDataMetaEntity({required this.filters});
+  const QuranDataMetaEntity({
+    required this.filters,
+  });
 
   final QuranDataFilterEntity filters;
 }
 
 @immutable
 final class QuranDataSamePage {
-  const QuranDataSamePage({required this.pageNumber, required this.verses});
+  const QuranDataSamePage({
+    required this.pageNumber,
+    required this.verses,
+  });
 
   final int pageNumber;
   final List<QuranDataVerseEntity> verses;
@@ -53,7 +61,7 @@ final class QuranDataSamePage {
   StringBuffer samePage(BuildContext context) {
     return StringBuffer()..writeAll(
       verses.map((e) {
-        final a = e.text.replaceAll('\u{06DF}', '\u{0652}');
+        final a = e.text;
         final String bismillahCentered;
         if (e.isFirst && e.verseKey != '1:1') {
           bismillahCentered =

@@ -104,7 +104,7 @@ class _QuranPageItem extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                fontFamily: FontFamily.qpcUthmanicHafs,
+                fontFamily: FontFamily.uthmanicV2,
                 fontSize: themeCubit.state.textSize,
                 color: themeCubit.state.frColor,
                 height: 2.5,
