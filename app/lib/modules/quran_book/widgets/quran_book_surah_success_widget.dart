@@ -26,13 +26,40 @@ class QuranBookSurahSuccessWidget extends StatelessWidget {
           return Localizations.override(
             context: context,
             locale: const Locale('ar'),
-            child: Text(
-              '${item.samePage(context)}',
+            child: Text.rich(
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: FontFamily.uthmanicV2,
                 fontSize: themeCubit.state.textSize,
                 color: themeCubit.state.frColor,
                 height: 2.3,
+              ),
+              TextSpan(
+                children: item.verses.map((e) {
+                  return TextSpan(
+                    children: [
+                      if (e.showBismillah)
+                        TextSpan(
+                          text: '${item.isFirst(e.verseKey) ? '' : '\n\n'} ${MqQuranStatic.bismallah} \n',
+                        ),
+                      TextSpan(text: e.text),
+                      WidgetSpan(
+                        child: Text(
+                          ' ${e.ayatNumber.toArabicDigits} ',
+                          textDirection: TextDirection.rtl,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            fontFamily: FontFamily.uthmanicRegular,
+                            fontSize: themeCubit.state.textSize,
+                            color: themeCubit.state.frColor,
+                            letterSpacing: 0,
+                            height: 1.2,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
               ),
             ),
           );
@@ -44,15 +71,11 @@ class QuranBookSurahSuccessWidget extends StatelessWidget {
             child: Row(
               children: [
                 const Expanded(child: Divider()),
-                Localizations.override(
-                  context: context,
-                  locale: const Locale('ar'),
-                  child: Text(
-                    item.pageNumber.toArabicDigits,
-                    style: TextStyle(
-                      fontSize: themeCubit.state.textSize,
-                      color: themeCubit.state.frColor,
-                    ),
+                Text(
+                  item.pageNumber.toArabicDigits,
+                  style: TextStyle(
+                    fontSize: themeCubit.state.textSize,
+                    color: themeCubit.state.frColor,
                   ),
                 ),
                 const Expanded(child: Divider()),
