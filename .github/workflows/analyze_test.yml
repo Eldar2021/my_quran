@@ -11,7 +11,7 @@ jobs:
   flutter_test:
     name: Analyze code and Unit test
     runs-on: ubuntu-latest
-    if: github.base_ref == 'main' && github.event.pull_request.draft == false
+    if: github.event_name == 'push' || (github.event.pull_request.draft == false)
     steps:
       - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
