@@ -20,7 +20,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail:
-  very_good_analysis:
 
 flutter:
   uses-material-design: true

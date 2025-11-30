@@ -21,5 +21,4 @@ dev_dependencies:
     sdk: flutter
   build_runner:
   mocktail:
-  very_good_analysis:
   json_serializable:

@@ -1,4 +1,4 @@
-final hatimPageMockDataList = [
+const List<List<Map<String, dynamic>>> hatimPageMockDataList = [
   hatimPageMockData1,
   hatimPageMockData2,
   hatimPageMockData3,
@@ -31,7 +31,7 @@ final hatimPageMockDataList = [
   hatimPageMockData30,
 ];
 
-final hatimPageMockData1 = [
+const List<Map<String, dynamic>> hatimPageMockData1 = [
   {'id': 1, 'status': 'empty', 'isMy': true},
   {'id': 2, 'status': 'empty', 'isMy': true},
   {'id': 3, 'status': 'empty', 'isMy': true},
@@ -55,7 +55,7 @@ final hatimPageMockData1 = [
   {'id': 21, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData2 = [
+const List<Map<String, dynamic>> hatimPageMockData2 = [
   {'id': 22, 'status': 'empty', 'isMy': true},
   {'id': 23, 'status': 'empty', 'isMy': true},
   {'id': 24, 'status': 'empty', 'isMy': true},
@@ -78,7 +78,7 @@ final hatimPageMockData2 = [
   {'id': 41, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData3 = [
+const List<Map<String, dynamic>> hatimPageMockData3 = [
   {'id': 42, 'status': 'empty', 'isMy': true},
   {'id': 43, 'status': 'empty', 'isMy': true},
   {'id': 44, 'status': 'empty', 'isMy': true},
@@ -102,7 +102,7 @@ final hatimPageMockData3 = [
   {'id': 62, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData4 = [
+const List<Map<String, dynamic>> hatimPageMockData4 = [
   {'id': 62, 'status': 'empty', 'isMy': true},
   {'id': 63, 'status': 'empty', 'isMy': true},
   {'id': 64, 'status': 'empty', 'isMy': true},
@@ -125,7 +125,7 @@ final hatimPageMockData4 = [
   {'id': 81, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData5 = [
+const List<Map<String, dynamic>> hatimPageMockData5 = [
   {'id': 82, 'status': 'empty', 'isMy': true},
   {'id': 83, 'status': 'empty', 'isMy': true},
   {'id': 84, 'status': 'empty', 'isMy': true},
@@ -148,7 +148,7 @@ final hatimPageMockData5 = [
   {'id': 101, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData6 = [
+const List<Map<String, dynamic>> hatimPageMockData6 = [
   {'id': 102, 'status': 'empty', 'isMy': true},
   {'id': 103, 'status': 'empty', 'isMy': true},
   {'id': 104, 'status': 'empty', 'isMy': true},
@@ -171,7 +171,7 @@ final hatimPageMockData6 = [
   {'id': 121, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData7 = [
+const List<Map<String, dynamic>> hatimPageMockData7 = [
   {'id': 121, 'status': 'empty', 'isMy': true},
   {'id': 122, 'status': 'empty', 'isMy': true},
   {'id': 123, 'status': 'empty', 'isMy': true},
@@ -195,7 +195,7 @@ final hatimPageMockData7 = [
   {'id': 141, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData8 = [
+const List<Map<String, dynamic>> hatimPageMockData8 = [
   {'id': 142, 'status': 'empty', 'isMy': true},
   {'id': 143, 'status': 'empty', 'isMy': true},
   {'id': 144, 'status': 'empty', 'isMy': true},
@@ -218,7 +218,7 @@ final hatimPageMockData8 = [
   {'id': 161, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData9 = [
+const List<Map<String, dynamic>> hatimPageMockData9 = [
   {'id': 162, 'status': 'empty', 'isMy': true},
   {'id': 163, 'status': 'empty', 'isMy': true},
   {'id': 164, 'status': 'empty', 'isMy': true},
@@ -241,7 +241,7 @@ final hatimPageMockData9 = [
   {'id': 181, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData10 = [
+const List<Map<String, dynamic>> hatimPageMockData10 = [
   {'id': 182, 'status': 'empty', 'isMy': true},
   {'id': 183, 'status': 'empty', 'isMy': true},
   {'id': 184, 'status': 'empty', 'isMy': true},
@@ -264,7 +264,7 @@ final hatimPageMockData10 = [
   {'id': 201, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData11 = [
+const List<Map<String, dynamic>> hatimPageMockData11 = [
   {'id': 201, 'status': 'empty', 'isMy': true},
   {'id': 202, 'status': 'empty', 'isMy': true},
   {'id': 203, 'status': 'empty', 'isMy': true},
@@ -288,7 +288,7 @@ final hatimPageMockData11 = [
   {'id': 221, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData12 = [
+const List<Map<String, dynamic>> hatimPageMockData12 = [
   {'id': 222, 'status': 'empty', 'isMy': true},
   {'id': 223, 'status': 'empty', 'isMy': true},
   {'id': 224, 'status': 'empty', 'isMy': true},
@@ -311,7 +311,7 @@ final hatimPageMockData12 = [
   {'id': 241, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData13 = [
+const List<Map<String, dynamic>> hatimPageMockData13 = [
   {'id': 242, 'status': 'empty', 'isMy': true},
   {'id': 243, 'status': 'empty', 'isMy': true},
   {'id': 244, 'status': 'empty', 'isMy': true},
@@ -334,7 +334,7 @@ final hatimPageMockData13 = [
   {'id': 261, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData14 = [
+const List<Map<String, dynamic>> hatimPageMockData14 = [
   {'id': 262, 'status': 'empty', 'isMy': true},
   {'id': 263, 'status': 'empty', 'isMy': true},
   {'id': 264, 'status': 'empty', 'isMy': true},
@@ -357,7 +357,7 @@ final hatimPageMockData14 = [
   {'id': 281, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData15 = [
+const List<Map<String, dynamic>> hatimPageMockData15 = [
   {'id': 282, 'status': 'empty', 'isMy': true},
   {'id': 283, 'status': 'empty', 'isMy': true},
   {'id': 284, 'status': 'empty', 'isMy': true},
@@ -380,7 +380,7 @@ final hatimPageMockData15 = [
   {'id': 301, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData16 = [
+const List<Map<String, dynamic>> hatimPageMockData16 = [
   {'id': 302, 'status': 'empty', 'isMy': true},
   {'id': 303, 'status': 'empty', 'isMy': true},
   {'id': 304, 'status': 'empty', 'isMy': true},
@@ -403,7 +403,7 @@ final hatimPageMockData16 = [
   {'id': 321, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData17 = [
+const List<Map<String, dynamic>> hatimPageMockData17 = [
   {'id': 322, 'status': 'empty', 'isMy': true},
   {'id': 323, 'status': 'empty', 'isMy': true},
   {'id': 324, 'status': 'empty', 'isMy': true},
@@ -426,7 +426,7 @@ final hatimPageMockData17 = [
   {'id': 341, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData18 = [
+const List<Map<String, dynamic>> hatimPageMockData18 = [
   {'id': 342, 'status': 'empty', 'isMy': true},
   {'id': 343, 'status': 'empty', 'isMy': true},
   {'id': 344, 'status': 'empty', 'isMy': true},
@@ -449,7 +449,7 @@ final hatimPageMockData18 = [
   {'id': 361, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData19 = [
+const List<Map<String, dynamic>> hatimPageMockData19 = [
   {'id': 362, 'status': 'empty', 'isMy': true},
   {'id': 363, 'status': 'empty', 'isMy': true},
   {'id': 364, 'status': 'empty', 'isMy': true},
@@ -472,7 +472,7 @@ final hatimPageMockData19 = [
   {'id': 381, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData20 = [
+const List<Map<String, dynamic>> hatimPageMockData20 = [
   {'id': 382, 'status': 'empty', 'isMy': true},
   {'id': 383, 'status': 'empty', 'isMy': true},
   {'id': 384, 'status': 'empty', 'isMy': true},
@@ -495,7 +495,7 @@ final hatimPageMockData20 = [
   {'id': 401, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData21 = [
+const List<Map<String, dynamic>> hatimPageMockData21 = [
   {'id': 402, 'status': 'empty', 'isMy': true},
   {'id': 403, 'status': 'empty', 'isMy': true},
   {'id': 404, 'status': 'empty', 'isMy': true},
@@ -518,7 +518,7 @@ final hatimPageMockData21 = [
   {'id': 421, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData22 = [
+const List<Map<String, dynamic>> hatimPageMockData22 = [
   {'id': 422, 'status': 'empty', 'isMy': true},
   {'id': 423, 'status': 'empty', 'isMy': true},
   {'id': 424, 'status': 'empty', 'isMy': true},
@@ -541,7 +541,7 @@ final hatimPageMockData22 = [
   {'id': 441, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData23 = [
+const List<Map<String, dynamic>> hatimPageMockData23 = [
   {'id': 442, 'status': 'empty', 'isMy': true},
   {'id': 443, 'status': 'empty', 'isMy': true},
   {'id': 444, 'status': 'empty', 'isMy': true},
@@ -564,7 +564,7 @@ final hatimPageMockData23 = [
   {'id': 461, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData24 = [
+const List<Map<String, dynamic>> hatimPageMockData24 = [
   {'id': 462, 'status': 'empty', 'isMy': true},
   {'id': 463, 'status': 'empty', 'isMy': true},
   {'id': 464, 'status': 'empty', 'isMy': true},
@@ -587,7 +587,7 @@ final hatimPageMockData24 = [
   {'id': 481, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData25 = [
+const List<Map<String, dynamic>> hatimPageMockData25 = [
   {'id': 482, 'status': 'empty', 'isMy': true},
   {'id': 483, 'status': 'empty', 'isMy': true},
   {'id': 484, 'status': 'empty', 'isMy': true},
@@ -611,7 +611,7 @@ final hatimPageMockData25 = [
   {'id': 502, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData26 = [
+const List<Map<String, dynamic>> hatimPageMockData26 = [
   {'id': 502, 'status': 'empty', 'isMy': true},
   {'id': 503, 'status': 'empty', 'isMy': true},
   {'id': 504, 'status': 'empty', 'isMy': true},
@@ -634,7 +634,7 @@ final hatimPageMockData26 = [
   {'id': 521, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData27 = [
+const List<Map<String, dynamic>> hatimPageMockData27 = [
   {'id': 522, 'status': 'empty', 'isMy': true},
   {'id': 523, 'status': 'empty', 'isMy': true},
   {'id': 524, 'status': 'empty', 'isMy': true},
@@ -657,7 +657,7 @@ final hatimPageMockData27 = [
   {'id': 541, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData28 = [
+const List<Map<String, dynamic>> hatimPageMockData28 = [
   {'id': 542, 'status': 'empty', 'isMy': true},
   {'id': 543, 'status': 'empty', 'isMy': true},
   {'id': 544, 'status': 'empty', 'isMy': true},
@@ -680,7 +680,7 @@ final hatimPageMockData28 = [
   {'id': 561, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData29 = [
+const List<Map<String, dynamic>> hatimPageMockData29 = [
   {'id': 562, 'status': 'empty', 'isMy': true},
   {'id': 563, 'status': 'empty', 'isMy': true},
   {'id': 564, 'status': 'empty', 'isMy': true},
@@ -703,7 +703,7 @@ final hatimPageMockData29 = [
   {'id': 581, 'status': 'empty', 'isMy': true},
 ];
 
-final hatimPageMockData30 = [
+const List<Map<String, dynamic>> hatimPageMockData30 = [
   {'id': 582, 'status': 'empty', 'isMy': true},
   {'id': 583, 'status': 'empty', 'isMy': true},
   {'id': 584, 'status': 'empty', 'isMy': true},

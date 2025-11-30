@@ -11,30 +11,50 @@ class ContactUsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return ScaffoldWithBgImage(
-      appBar: AppBar(key: const Key(MqKeys.settingsContactUsPage), title: Text(context.l10n.contactUs)),
+      appBar: AppBar(
+        key: const Key(MqKeys.settingsContactUsPage),
+        title: Text(context.l10n.contactUs),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(context.l10n.assalamuAlaikum, style: prTextTheme.titleMedium),
+            Text(
+              context.l10n.assalamuAlaikum,
+              style: prTextTheme.titleMedium,
+            ),
             const SizedBox(height: 10),
-            Text(context.l10n.feedbackMessage, style: prTextTheme.bodyMedium),
+            Text(
+              context.l10n.feedbackMessage,
+              style: prTextTheme.bodyMedium,
+            ),
             const SizedBox(height: 15),
-            Text(context.l10n.withRespect, style: prTextTheme.bodyMedium),
+            Text(
+              context.l10n.withRespect,
+              style: prTextTheme.bodyMedium,
+            ),
             const Spacer(),
             const SizedBox(height: 16),
             ContactWhatsappButton(
               labelText: context.l10n.chatOnWhatsApp,
               onPressed: () {
-                AppLaunch.sendWhatsApp('996990039301', snackBarText: context.l10n.errorOccurred, context: context);
+                AppLaunch.sendWhatsApp(
+                  '996990039301',
+                  snackBarText: context.l10n.errorOccurred,
+                  context: context,
+                );
               },
             ),
             const SizedBox(height: 20),
             ContactTelegramButton(
               labelText: context.l10n.connectOnTelegram,
               onPressed: () {
-                AppLaunch.sendTelegram('ak_bulak', snackBarText: context.l10n.errorOccurred, context: context);
+                AppLaunch.sendTelegram(
+                  'ak_bulak',
+                  snackBarText: context.l10n.errorOccurred,
+                  context: context,
+                );
               },
             ),
             const SizedBox(height: 20),

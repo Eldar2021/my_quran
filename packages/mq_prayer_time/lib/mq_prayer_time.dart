@@ -1,4 +1,4 @@
 /// My Quran Prayers times packages
-library mq_prayer_time;
+library;
 
 export 'src/mq_prayer_time.dart';

@@ -49,7 +49,6 @@ dev_dependencies:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  very_good_analysis:
   test:
   mocktail:
   # flutter_launcher_icons

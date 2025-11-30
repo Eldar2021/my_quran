@@ -1,4 +1,4 @@
 /// MQ Home Repository Package
-library mq_home_repository;
+library;
 
 export 'src/src.dart';

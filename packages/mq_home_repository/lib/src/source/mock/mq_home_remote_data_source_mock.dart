@@ -19,7 +19,7 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
 
   @override
   Future<List<MqStoryModelResponse>> getStories(String language) async {
-    return mqStoriesMock.map((e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>)).toList();
+    return mqStoriesMock.map(MqStoryModelResponse.fromJson).toList();
   }
 
   @override
@@ -63,7 +63,7 @@ final class MqHomeRemoteDataSourceMock implements MqHomeRemoteDataSource {
   @override
   Future<List<MqHomeBannerResponse>> getHomeBanners() async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    return mqMockHomeBanners.map((e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>)).toList();
+    return mqMockHomeBanners.map(MqHomeBannerResponse.fromJson).toList();
   }
 
   @override
