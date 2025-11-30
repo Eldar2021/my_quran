@@ -31,6 +31,10 @@ Future<void> main() async {
         break;
       }
     }
+    if (element.startsWith('@@')) {
+      usedKeys[element] = enJsonData[element];
+      isUsed = true;
+    }
     if (!isUsed) {
       unusedKeys[element] = enJsonData[element];
     }
