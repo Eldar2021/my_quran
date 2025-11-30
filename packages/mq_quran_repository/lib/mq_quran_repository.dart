@@ -1,4 +1,4 @@
 /// MqQuranRepository Package
-library mq_quran_repository;
+library;
 
 export 'src/src.dart';

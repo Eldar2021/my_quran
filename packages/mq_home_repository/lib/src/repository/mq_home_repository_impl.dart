@@ -17,7 +17,7 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
       final remoteData = await remoteDataSource.getRemoteData();
       await localDataSource.saveLocalData(remoteData);
       return remoteData;
-    } catch (e, s) {
+    } on Object catch (e, s) {
       MqCrashlytics.report(e, s);
       log('HomeRepositoryImpl, getData error: $e');
       return localDataSource.getLocalData();
@@ -29,10 +29,10 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
     try {
       final remoteData = await remoteDataSource.getStories(language);
       return remoteData.map((e) => e.toEntity()).toList();
-    } catch (e, s) {
+    } on Object catch (e, s) {
       MqCrashlytics.report(e, s);
       log('HomeRepositoryImpl, getStories error: $e');
-      final items = mqStoriesMock.map((e) => MqStoryModelResponse.fromJson(e as Map<String, dynamic>)).toList();
+      final items = mqStoriesMock.map(MqStoryModelResponse.fromJson).toList();
       return items.map((e) => e.toEntity()).toList();
     }
   }
@@ -68,7 +68,7 @@ final class MqHomeRepositoryImpl implements MqHomeRepository {
       );
 
       return list;
-    } catch (e, s) {
+    } on Object catch (e, s) {
       MqCrashlytics.report(e, s);
       log('HomeRepositoryImpl, getData error: $e');
       final banners = localDataSource.getHomeBanners();

@@ -25,7 +25,7 @@ final class MqLocationServiceImpl implements MqLocationService {
       } else {
         return MqLocationStatic.makkahPosition;
       }
-    } catch (e, s) {
+    } on Object catch (e, s) {
       log('getCurrentLocation error: $e \n $s');
       return MqLocationStatic.makkahPosition;
     }
@@ -45,7 +45,7 @@ final class MqLocationServiceImpl implements MqLocationService {
       } else {
         return true;
       }
-    } catch (e, s) {
+    } on Object catch (e, s) {
       log('_getLocationPermission error: $e \n $s');
       return false;
     }
@@ -67,7 +67,7 @@ final class MqLocationServiceImpl implements MqLocationService {
         if (district != null && district.isNotEmpty) return district;
       }
       return 'Unknown';
-    } catch (e, s) {
+    } on Object catch (e, s) {
       log('getLocationName error: $e \n $s');
       return 'Unknown';
     }
@@ -82,7 +82,7 @@ final class MqLocationServiceImpl implements MqLocationService {
       final location = tz.getLocation(timeZoneName);
       tz.setLocalLocation(tz.getLocation(timeZoneName));
       return location.name;
-    } catch (e, s) {
+    } on Object catch (e, s) {
       log('timeZoneLocation error: $e \n $s');
       return MqLocationStatic.makkahTimezone;
     }

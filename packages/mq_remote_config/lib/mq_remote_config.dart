@@ -1,4 +1,4 @@
 /// MyQuran Remote Config package
-library mq_remote_config;
+library;
 
 export 'src/mq_remote_config.dart';

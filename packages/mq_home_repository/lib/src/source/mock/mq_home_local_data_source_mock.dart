@@ -24,7 +24,7 @@ final class MqHomeLocalDataSourceMock implements MqHomeLocalDataSource {
 
   @override
   List<MqHomeBannerResponse> getHomeBanners() {
-    return mqMockHomeBanners.map((e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>)).toList();
+    return mqMockHomeBanners.map(MqHomeBannerResponse.fromJson).toList();
   }
 
   @override
@@ -33,7 +33,7 @@ final class MqHomeLocalDataSourceMock implements MqHomeLocalDataSource {
   }
 }
 
-const mqMockHomeBanners = [
+const List<Map<String, dynamic>> mqMockHomeBanners = [
   {
     'imageRu': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
     'imageEn': 'https://eldar2021.github.io/my-quran/assets/banners/mq-juma-v1.jpeg',
@@ -64,7 +64,7 @@ const mqMockHomeBanners = [
   },
 ];
 
-const mqStoriesMock = [
+const List<Map<String, dynamic>> mqStoriesMock = [
   {
     'cardImageUrl': 'https://eldar2021.github.io/my-quran/assets/aa_story_card/app.jpeg',
     'cardLabel': 'MyQuran\nApp',

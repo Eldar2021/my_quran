@@ -21,6 +21,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail:
-  very_good_analysis:
   build_runner:
   json_serializable:

@@ -1,4 +1,4 @@
 /// Mq hatim repository package
-library mq_hatim_repository;
+library;
 
 export 'src/src.dart';
