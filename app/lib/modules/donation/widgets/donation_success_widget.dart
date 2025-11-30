@@ -20,15 +20,21 @@ class DonationSuccessWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       children: [
         const SizedBox(height: 20),
-        Text(data.getTitle(languageCode), style: prTextTheme.titleLarge),
+        Text(
+          data.getTitle(languageCode),
+          style: prTextTheme.titleLarge,
+        ),
         const SizedBox(height: 8),
-        Text(data.getDescription(languageCode), style: prTextTheme.bodyMedium),
+        Text(
+          data.getDescription(languageCode),
+          style: prTextTheme.bodyMedium,
+        ),
         const SizedBox(height: 20),
         ListView.builder(
           shrinkWrap: true,
           primary: false,
           itemCount: data.requisites.length,
-          itemBuilder: (BuildContext context, int index) {
+          itemBuilder: (context, index) {
             final item = data.requisites[index];
             return MqBankInfoCard(
               bankName: item.bankType,

@@ -18,7 +18,7 @@ class HatimJuzListBuilder extends StatelessWidget {
       key: const Key(MqKeys.hatimJuzsList),
       itemCount: items.length,
       padding: const EdgeInsets.fromLTRB(24, 20, 24, 70),
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         final item = items[index];
         return Padding(
           padding: const EdgeInsets.only(bottom: 12),
@@ -39,16 +39,24 @@ class HatimJuzListBuilder extends StatelessWidget {
     );
   }
 
-  Future<void> _onTap(MqHatimJusEntity item, BuildContext context) async {
-    MqAnalytic.track(AnalyticKey.selectHatimJuz, params: {'juzId': item.id});
+  Future<void> _onTap(
+    MqHatimJusEntity item,
+    BuildContext context,
+  ) async {
+    MqAnalytic.track(
+      AnalyticKey.selectHatimJuz,
+      params: {'juzId': item.id},
+    );
     final bloc = context.read<HatimBloc>();
     await Navigator.push<void>(
       context,
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => BlocProvider.value(
-          value: bloc..add(GetHatimJuzPagesEvent(item.id)),
-          child: HatimJusSelectPagesView(hatimJusEntity: item),
-        ),
+        builder: (BuildContext context) {
+          return BlocProvider.value(
+            value: bloc..add(GetHatimJuzPagesEvent(item.id)),
+            child: HatimJusSelectPagesView(hatimJusEntity: item),
+          );
+        },
       ),
     );
     bloc.add(const ResetJuzPagesEvent());

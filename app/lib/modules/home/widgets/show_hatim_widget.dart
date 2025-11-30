@@ -21,14 +21,15 @@ class ShowHatimWidget {
       builder: (context) {
         final prTextTheme = Theme.of(context).primaryTextTheme;
         final colorScheme = Theme.of(context).colorScheme;
-
         final maxHeight = MediaQuery.of(context).size.height - 120;
 
         return Container(
           constraints: BoxConstraints(maxHeight: maxHeight),
           decoration: BoxDecoration(
             color: colorScheme.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(40),
+            ),
           ),
           padding: EdgeInsets.zero,
           child: Column(
@@ -38,15 +39,24 @@ class ShowHatimWidget {
               Container(
                 width: 57,
                 height: 6,
-                decoration: BoxDecoration(color: colorScheme.inverseSurface, borderRadius: BorderRadius.circular(20)),
+                decoration: BoxDecoration(
+                  color: colorScheme.inverseSurface,
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
               const SizedBox(height: 22),
-              Text(context.l10n.myHatims, style: prTextTheme.titleLarge),
+              Text(
+                context.l10n.myHatims,
+                style: prTextTheme.titleLarge,
+              ),
               Flexible(
                 child: ListView.builder(
                   itemCount: hatim.length,
                   shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 20,
+                  ),
                   itemBuilder: (context, index) {
                     final item = hatim[index];
                     final titleText = item.type == 'GENERAL' ? context.l10n.generalHatim : item.title;
@@ -57,20 +67,35 @@ class ShowHatimWidget {
                         onTap: () {
                           Navigator.of(context).pop();
                           MqAnalytic.track(AnalyticKey.goHatim);
-                          context.goNamedIfAuthenticated(AppRouter.hatim, pathParameters: {'hatimId': item.id});
+                          context.goNamedIfAuthenticated(
+                            AppRouter.hatim,
+                            pathParameters: {'hatimId': item.id},
+                          );
                         },
                         child: GradientDecoratedBox(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 18,
+                              vertical: 30,
+                            ),
                             child: Row(
                               children: [
                                 Assets.icons.quran.svg(
-                                  colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+                                  colorFilter: ColorFilter.mode(
+                                    colorScheme.primary,
+                                    BlendMode.srcIn,
+                                  ),
                                 ),
                                 const SizedBox(width: 10),
-                                Text('$titleText', style: prTextTheme.titleMedium),
+                                Text(
+                                  '$titleText',
+                                  style: prTextTheme.titleMedium,
+                                ),
                                 const Spacer(),
-                                Icon(Icons.arrow_forward_ios_rounded, color: colorScheme.primary),
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  color: colorScheme.primary,
+                                ),
                               ],
                             ),
                           ),

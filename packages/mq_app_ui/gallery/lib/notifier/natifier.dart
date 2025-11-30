@@ -45,7 +45,10 @@ class MqAppUiNotifier extends ChangeNotifier {
   Future<void> changeTheme(MqAppUiType type) async {
     try {
       _themeType = type;
-      await storage.writeString(key: _themeKey, value: _themeType.name);
+      await storage.writeString(
+        key: _themeKey,
+        value: _themeType.name,
+      );
       notifyListeners();
     } on Exception catch (e) {
       log(e.toString());

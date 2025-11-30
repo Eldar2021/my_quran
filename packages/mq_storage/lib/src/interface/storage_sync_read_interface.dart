@@ -35,37 +35,56 @@ abstract class StorageInterfaceSyncRead {
   /// Returns `null` if no value is found for the given [key].
   ///
   /// Throws a [StorageException] if the read fails.
-  List<String>? readStringList({required String key});
+  List<String>? readStringList({
+    required String key,
+  });
 
   /// Asynchronously writes [String] the provided [key] and [value] pair.
   ///
   /// Throws a [StorageException] if the write fails.
-  Future<bool> writeString({required String key, required String value});
+  Future<bool> writeString({
+    required String key,
+    required String value,
+  });
 
   /// Asynchronously writes [bool] the provided [key] and [value] pair.
   ///
   /// Throws a [StorageException] if the write fails.
-  Future<bool> writeBool({required String key, required bool value});
+  Future<bool> writeBool({
+    required String key,
+    required bool value,
+  });
 
   /// Asynchronously writes [double] the provided [key] and [value] pair.
   ///
   /// Throws a [StorageException] if the write fails.
-  Future<bool> writeDouble({required String key, required double value});
+  Future<bool> writeDouble({
+    required String key,
+    required double value,
+  });
 
   /// Asynchronously writes [int] the provided [key] and [value] pair.
   ///
   /// Throws a [StorageException] if the write fails.
-  Future<bool> writeInt({required String key, required int value});
+  Future<bool> writeInt({
+    required String key,
+    required int value,
+  });
 
   /// Asynchronously writes `List<String>` the provided [key] and [value] pair.
   ///
   /// Throws a [StorageException] if the write fails.
-  Future<bool> writeStringList({required String key, required List<String> value});
+  Future<bool> writeStringList({
+    required String key,
+    required List<String> value,
+  });
 
   /// Asynchronously removes the value associated with the provided [key].
   ///
   /// Throws a [StorageException] if the deletion fails.
-  Future<bool> delete({required String key});
+  Future<bool> delete({
+    required String key,
+  });
 
   /// Asynchronously removes all 'key-value' pairs.
   ///

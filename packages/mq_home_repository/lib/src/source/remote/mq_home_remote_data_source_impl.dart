@@ -10,13 +10,19 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
 
   @override
   Future<MqHomeModel> getRemoteData() {
-    return remoteClient.getType<MqHomeModel>('/api/v1/hatim/dashboard', fromJson: MqHomeModel.fromJson);
+    return remoteClient.getType<MqHomeModel>(
+      '/api/v1/hatim/dashboard',
+      fromJson: MqHomeModel.fromJson,
+    );
   }
 
   @override
   Future<void> hatimAccept(String id) async {
     try {
-      await remoteClient.postType('/api/v1/hatim/$id/accept/', fromJson: Map<String, dynamic>.from);
+      await remoteClient.postType(
+        '/api/v1/hatim/$id/accept/',
+        fromJson: Map<String, dynamic>.from,
+      );
     } catch (e) {
       throw Exception('Error during accept hatim: $e');
     }
@@ -25,7 +31,10 @@ final class MqHomeRemoteDataSourceImpl implements MqHomeRemoteDataSource {
   @override
   Future<void> hatimReject(String id) async {
     try {
-      await remoteClient.postType('/api/v1/hatim/$id/reject/', fromJson: Map<String, dynamic>.from);
+      await remoteClient.postType(
+        '/api/v1/hatim/$id/reject/',
+        fromJson: Map<String, dynamic>.from,
+      );
     } catch (e) {
       throw Exception('Error during reject hatim: $e');
     }

@@ -71,7 +71,9 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
               return switch (state) {
                 QuranBookBySurahInitial() => const QuranBookSliverProgressingIndicator(),
                 QuranBookBySurahLoading() => const QuranBookSliverProgressingIndicator(),
-                QuranBookBySurahError() => QuranBookSliverErrorWidget(state.error.toString()),
+                QuranBookBySurahError() => QuranBookSliverErrorWidget(
+                  state.error.toString(),
+                ),
                 QuranBookBySurahLoaded() => QuranBookSuccessWidget(state.items),
               };
             },

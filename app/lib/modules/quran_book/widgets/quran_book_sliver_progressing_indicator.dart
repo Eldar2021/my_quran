@@ -8,7 +8,9 @@ class QuranBookSliverProgressingIndicator extends StatelessWidget {
     return const SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.only(top: 50),
-        child: Center(child: CircularProgressIndicator()),
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

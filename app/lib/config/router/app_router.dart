@@ -7,7 +7,9 @@ import 'package:my_quran/modules/modules.dart';
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final _sectionNavigatorKey1 = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
-final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
+final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(
+  debugLabel: 'quran-audio',
+);
 
 @immutable
 final class AppRouter {
@@ -53,9 +55,15 @@ final class AppRouter {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const Scaffold(body: Center(child: Text('Init'))),
+          builder: (context, state) => const Scaffold(
+            body: Center(child: Text('Init')),
+          ),
         ),
-        GoRoute(path: '/$login', name: login, builder: (context, state) => const LoginView()),
+        GoRoute(
+          path: '/$login',
+          name: login,
+          builder: (context, state) => const LoginView(),
+        ),
         GoRoute(
           path: '/$verificationCode/:email',
           name: verificationCode,
@@ -64,8 +72,16 @@ final class AppRouter {
             return VerificationCodeView(email: email!);
           },
         ),
-        GoRoute(path: '/$loginWihtSoccial', name: loginWihtSoccial, builder: (context, state) => const SignInView()),
-        GoRoute(path: '/$devModeView', name: devModeView, builder: (context, state) => const DevModeView()),
+        GoRoute(
+          path: '/$loginWihtSoccial',
+          name: loginWihtSoccial,
+          builder: (context, state) => const SignInView(),
+        ),
+        GoRoute(
+          path: '/$devModeView',
+          name: devModeView,
+          builder: (context, state) => const DevModeView(),
+        ),
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return MainView(navigationShell);
@@ -96,7 +112,11 @@ final class AppRouter {
             StatefulShellBranch(
               navigatorKey: _sectionNavigatorKey3,
               routes: [
-                GoRoute(path: '/$quranAudio', name: quranAudio, builder: (context, state) => const QuranAudioView()),
+                GoRoute(
+                  path: '/$quranAudio',
+                  name: quranAudio,
+                  builder: (context, state) => const QuranAudioView(),
+                ),
               ],
             ),
           ],

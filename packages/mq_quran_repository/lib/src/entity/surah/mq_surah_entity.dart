@@ -33,7 +33,10 @@ final class MqSurahEntity {
 
 @immutable
 final class MqSurahTranslatedNameEntity {
-  const MqSurahTranslatedNameEntity({required this.languageName, required this.name});
+  const MqSurahTranslatedNameEntity({
+    required this.languageName,
+    required this.name,
+  });
 
   final String languageName;
   final String name;

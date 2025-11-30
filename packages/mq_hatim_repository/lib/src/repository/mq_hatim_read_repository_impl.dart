@@ -30,12 +30,18 @@ final class MqHatimReadRepositoryImpl implements MqHatimRepository {
   @override
   Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {
     return dataSource.stream.map((data) {
-      final src = HatimBaseResponse.fromJson(jsonDecode(data as String) as Map<String, dynamic>);
+      final src = HatimBaseResponse.fromJson(
+        jsonDecode(data as String) as Map<String, dynamic>,
+      );
 
       return switch (src.type) {
         HatimResponseType.listOfJuz => _receidevJuzs(src.data as List<dynamic>),
-        HatimResponseType.listOfPage => _receidevJuzPage(src.data as List<dynamic>),
-        HatimResponseType.userPages => _receidevUserPages(src.data as List<dynamic>),
+        HatimResponseType.listOfPage => _receidevJuzPage(
+          src.data as List<dynamic>,
+        ),
+        HatimResponseType.userPages => _receidevUserPages(
+          src.data as List<dynamic>,
+        ),
       };
     });
   }
@@ -45,12 +51,16 @@ final class MqHatimReadRepositoryImpl implements MqHatimRepository {
     return (HatimResponseType.listOfJuz, data.map((e) => e.entity).toList());
   }
 
-  (HatimResponseType, List<MqHatimPagesEntity>) _receidevJuzPage(List<dynamic> src) {
+  (HatimResponseType, List<MqHatimPagesEntity>) _receidevJuzPage(
+    List<dynamic> src,
+  ) {
     final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
     return (HatimResponseType.listOfPage, data.map((e) => e.entity).toList());
   }
 
-  (HatimResponseType, List<MqHatimPagesEntity>) _receidevUserPages(List<dynamic> src) {
+  (HatimResponseType, List<MqHatimPagesEntity>) _receidevUserPages(
+    List<dynamic> src,
+  ) {
     final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
     return (HatimResponseType.userPages, data.map((e) => e.entity).toList());
   }

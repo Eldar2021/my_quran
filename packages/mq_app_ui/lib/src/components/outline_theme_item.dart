@@ -27,7 +27,13 @@ class OutlineThemeItem extends StatelessWidget {
         width: 70,
         height: 40,
         child: Center(
-          child: Text(digit, style: TextStyle(color: foregroundColor, fontSize: 22)),
+          child: Text(
+            digit,
+            style: TextStyle(
+              color: foregroundColor,
+              fontSize: 22,
+            ),
+          ),
         ),
       ),
     );

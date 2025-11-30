@@ -31,11 +31,19 @@ final class MqCrashlytics {
     }
   }
 
-  static void recordFlutterError(FlutterErrorDetails flutterErrorDetails, {bool fatal = false}) {
+  static void recordFlutterError(
+    FlutterErrorDetails flutterErrorDetails, {
+    bool fatal = false,
+  }) {
     if (kDebugMode) {
       debugPrint('exception: $flutterErrorDetails');
     } else {
-      unawaited(crashlytics.recordFlutterError(flutterErrorDetails, fatal: fatal));
+      unawaited(
+        crashlytics.recordFlutterError(
+          flutterErrorDetails,
+          fatal: fatal,
+        ),
+      );
     }
   }
 
@@ -47,7 +55,9 @@ final class MqCrashlytics {
     }
   }
 
-  static Future<void> setCrashlyticsCollectionEnabled({required bool enabled}) async {
+  static Future<void> setCrashlyticsCollectionEnabled({
+    required bool enabled,
+  }) async {
     return crashlytics.setCrashlyticsCollectionEnabled(enabled);
   }
 

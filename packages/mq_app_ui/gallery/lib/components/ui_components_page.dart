@@ -6,7 +6,9 @@ class UiComponentsPage extends StatefulWidget {
   const UiComponentsPage({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const UiComponentsPage());
+    return MaterialPageRoute<void>(
+      builder: (_) => const UiComponentsPage(),
+    );
   }
 
   @override
@@ -26,27 +28,41 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('UI Components')),
+      appBar: AppBar(
+        title: const Text('UI Components'),
+      ),
       body: ListView(
         padding: const EdgeInsets.only(left: 16, right: 16),
         children: [
           const SizedBox(height: 16),
-          Text('Dropdown Button Form Field', style: textTheme.bodyLarge),
+          Text(
+            'Dropdown Button Form Field',
+            style: textTheme.bodyLarge,
+          ),
           const SizedBox(height: 16),
           LanguageDropdownButtonFormField<String>(
             value: dropdownValue,
             items: const ['English', 'Turkish', 'Kyrgyz'],
             labelText: 'Please select a language',
             itemBuilder: (value) {
-              return DropdownMenuItem(value: value, child: Text(value ?? ''));
+              return DropdownMenuItem(
+                value: value,
+                child: Text(value ?? ''),
+              );
             },
           ),
           const SizedBox(height: 26),
-          Text('Pin Field', style: textTheme.bodyLarge),
+          Text(
+            'Pin Field',
+            style: textTheme.bodyLarge,
+          ),
           const SizedBox(height: 8),
           const PinputWidget(),
           const SizedBox(height: 26),
-          Text('Read Theme items', style: textTheme.bodyLarge),
+          Text(
+            'Read Theme items',
+            style: textTheme.bodyLarge,
+          ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,12 +77,21 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
                 foregroundColor: AppColors.black,
                 borderColor: colorScheme.primary,
               ),
-              OutlineThemeItem(backgroundColor: colorScheme.onSurface, foregroundColor: colorScheme.surface),
-              OutlineThemeItem(backgroundColor: colorScheme.scrim, foregroundColor: colorScheme.surface),
+              OutlineThemeItem(
+                backgroundColor: colorScheme.onSurface,
+                foregroundColor: colorScheme.surface,
+              ),
+              OutlineThemeItem(
+                backgroundColor: colorScheme.scrim,
+                foregroundColor: colorScheme.surface,
+              ),
             ],
           ),
           const SizedBox(height: 26),
-          Text('Gender Redio Widget', style: textTheme.bodyLarge),
+          Text(
+            'Gender Redio Widget',
+            style: textTheme.bodyLarge,
+          ),
           GenderRedioWidget(
             gender: gender,
             title: 'Male',
@@ -87,18 +112,32 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
             },
           ),
           const SizedBox(height: 26),
-          Text('Elevated Buttons', style: prTextTheme.bodyLarge),
-          const SizedBox(height: 8),
-          ElevatedButton(onPressed: () {}, child: const Text('Get started')),
+          Text(
+            'Elevated Buttons',
+            style: prTextTheme.bodyLarge,
+          ),
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {},
-            child: CupertinoActivityIndicator(color: colorScheme.onPrimary),
+            child: const Text('Get started'),
           ),
           const SizedBox(height: 8),
-          const ElevatedButton(onPressed: null, child: Text('Get started')),
+          ElevatedButton(
+            onPressed: () {},
+            child: CupertinoActivityIndicator(
+              color: colorScheme.onPrimary,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const ElevatedButton(
+            onPressed: null,
+            child: Text('Get started'),
+          ),
           const SizedBox(height: 26),
-          Text('Switch', style: prTextTheme.bodyLarge),
+          Text(
+            'Switch',
+            style: prTextTheme.bodyLarge,
+          ),
           const SizedBox(height: 8),
           SwitchListTile(
             value: enableAzan,
@@ -119,40 +158,64 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
             },
           ),
           const SizedBox(height: 26),
-          Text('Text field', style: prTextTheme.bodyLarge),
+          Text(
+            'Text field',
+            style: prTextTheme.bodyLarge,
+          ),
           const SizedBox(height: 8),
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Enter your email',
-              prefixIcon: Icon(Icons.email, size: 28),
+              prefixIcon: Icon(
+                Icons.email,
+                size: 28,
+              ),
               hintText: 'Enter email',
             ),
           ),
           const SizedBox(height: 26),
-          Text('Outline bottons', style: prTextTheme.bodyLarge),
+          Text(
+            'Outline bottons',
+            style: prTextTheme.bodyLarge,
+          ),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
-              OutlinedButton(onPressed: () {}, child: const Text('Read')),
+              OutlinedButton(
+                onPressed: () {},
+                child: const Text('Read'),
+              ),
               OutlinedButton.icon(
                 onPressed: () {},
                 label: const Text('Read'),
                 iconAlignment: IconAlignment.end,
-                icon: Assets.icons.book.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+                icon: Assets.icons.book.svg(
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
               ),
               OutlinedButton.icon(
                 onPressed: null,
                 label: const Text('Read'),
                 iconAlignment: IconAlignment.end,
-                icon: Assets.icons.book.svg(colorFilter: ColorFilter.mode(colorScheme.outline, BlendMode.srcIn)),
+                icon: Assets.icons.book.svg(
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.outline,
+                    BlendMode.srcIn,
+                  ),
+                ),
               ),
               OutlinedButton(
                 onPressed: () {},
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: CupertinoActivityIndicator(color: colorScheme.primary),
+                  child: CupertinoActivityIndicator(
+                    color: colorScheme.primary,
+                  ),
                 ),
               ),
             ],
@@ -229,7 +292,12 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
             leading: CircleAvatar(
               radius: 17,
               backgroundColor: colorScheme.onInverseSurface,
-              child: Assets.icons.translate.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+              child: Assets.icons.translate.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
             title: const Text('Custom app'),
             titleTextStyle: prTextTheme.titleLarge,
@@ -248,26 +316,50 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
         currentIndex: bottomIndex,
         items: [
           BottomNavigationBarItem(
-            activeIcon: Assets.icons.quran.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
-            icon: Assets.icons.quran.svg(colorFilter: ColorFilter.mode(colorScheme.outline, BlendMode.srcIn)),
+            activeIcon: Assets.icons.quran.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+            icon: Assets.icons.quran.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.outline,
+                BlendMode.srcIn,
+              ),
+            ),
             label: 'Quran',
           ),
           BottomNavigationBarItem(
             activeIcon: Assets.icons.prayingMan.svg(
               width: 27,
-              colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                colorScheme.primary,
+                BlendMode.srcIn,
+              ),
             ),
             icon: Assets.icons.prayingMan.svg(
               width: 27,
-              colorFilter: ColorFilter.mode(colorScheme.outline, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                colorScheme.outline,
+                BlendMode.srcIn,
+              ),
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             activeIcon: Assets.icons.listenQuran.svg(
-              colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                colorScheme.primary,
+                BlendMode.srcIn,
+              ),
             ),
-            icon: Assets.icons.listenQuran.svg(colorFilter: ColorFilter.mode(colorScheme.outline, BlendMode.srcIn)),
+            icon: Assets.icons.listenQuran.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.outline,
+                BlendMode.srcIn,
+              ),
+            ),
             label: 'Messages',
           ),
         ],

@@ -5,7 +5,9 @@ class AppComponentsPage extends StatefulWidget {
   const AppComponentsPage({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const AppComponentsPage());
+    return MaterialPageRoute<void>(
+      builder: (_) => const AppComponentsPage(),
+    );
   }
 
   @override
@@ -22,7 +24,9 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('App Components')),
+      appBar: AppBar(
+        title: const Text('App Components'),
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         children: [
@@ -91,7 +95,11 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             child: const Text('Set loading state'),
           ),
           const Divider(),
-          const MyQuranStaticsInfoWidget(count1: '1200', count2: '9967', count3: '1021'),
+          const MyQuranStaticsInfoWidget(
+            count1: '1200',
+            count2: '9967',
+            count3: '1021',
+          ),
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
@@ -114,9 +122,20 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ColumnInfoColoredBox.circular(title: 'Readed', value: '9'),
-              ColumnInfoColoredBox.circular(boxColor: AppColors.goldenrod, title: 'In progress', value: '9'),
-              ColumnInfoColoredBox.circular(boxColor: AppColors.mediumseagreen, title: 'Not selected', value: '9'),
+              ColumnInfoColoredBox.circular(
+                title: 'Readed',
+                value: '9',
+              ),
+              ColumnInfoColoredBox.circular(
+                boxColor: AppColors.goldenrod,
+                title: 'In progress',
+                value: '9',
+              ),
+              ColumnInfoColoredBox.circular(
+                boxColor: AppColors.mediumseagreen,
+                title: 'Not selected',
+                value: '9',
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -158,7 +177,12 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const SizedBox(height: 8),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [Text('Readed'), Text('In progress'), Text('Not Selected'), Text('Your selected')],
+            children: [
+              Text('Readed'),
+              Text('In progress'),
+              Text('Not Selected'),
+              Text('Your selected'),
+            ],
           ),
           const SizedBox(height: 20),
           const Divider(),
@@ -167,9 +191,20 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ColumnInfoColoredBox(title: 'Readed', value: '9'),
-              ColumnInfoColoredBox(boxColor: AppColors.goldenrod, title: 'In progress', value: '9'),
-              ColumnInfoColoredBox(boxColor: AppColors.mediumseagreen, title: 'Not selected', value: '9'),
+              ColumnInfoColoredBox(
+                title: 'Readed',
+                value: '9',
+              ),
+              ColumnInfoColoredBox(
+                boxColor: AppColors.goldenrod,
+                title: 'In progress',
+                value: '9',
+              ),
+              ColumnInfoColoredBox(
+                boxColor: AppColors.mediumseagreen,
+                title: 'Not selected',
+                value: '9',
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -194,13 +229,21 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
-          ContactWhatsappButton(onPressed: () {}),
+          ContactWhatsappButton(
+            onPressed: () {},
+          ),
           const SizedBox(height: 20),
-          ContactTelegramButton(onPressed: () {}),
+          ContactTelegramButton(
+            onPressed: () {},
+          ),
           const SizedBox(height: 20),
-          ContactEmailButton(onPressed: () {}),
+          ContactEmailButton(
+            onPressed: () {},
+          ),
           const SizedBox(height: 20),
-          ContactGithubButton(onPressed: () {}),
+          ContactGithubButton(
+            onPressed: () {},
+          ),
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
@@ -224,9 +267,13 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
-          GoogleSignInButton(onPressed: () {}),
+          GoogleSignInButton(
+            onPressed: () {},
+          ),
           const SizedBox(height: 20),
-          AppleSignInButton(onPressed: () {}),
+          AppleSignInButton(
+            onPressed: () {},
+          ),
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
@@ -237,7 +284,12 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             onTap: () {},
             trailing: IconButton(
               onPressed: () {},
-              icon: Assets.icons.bookMarkFill.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+              icon: Assets.icons.bookMarkFill.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
           ),
           QuranItemTile(
@@ -248,10 +300,20 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             isSelected: true,
             trailing: IconButton(
               onPressed: () {},
-              icon: Assets.icons.bookMarkFill.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+              icon: Assets.icons.bookMarkFill.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
           ),
-          QuranItemTile(index: 114, title: 'Al Imran', subtitle: 'العمران', onTap: () {}),
+          QuranItemTile(
+            index: 114,
+            title: 'Al Imran',
+            subtitle: 'العمران',
+            onTap: () {},
+          ),
           const SizedBox(height: 300),
         ],
       ),

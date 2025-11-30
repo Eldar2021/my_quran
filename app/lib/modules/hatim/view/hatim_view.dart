@@ -24,7 +24,9 @@ class HatimView extends StatelessWidget {
         repo: MqHatimReadRepositoryImpl(
           dataSource: context.read<AppConfig>().isMockData
               ? MqHatimRemoteDataSourceMock()
-              : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
+              : MqHatimRemoteDataSourceImpl(
+                  remoteClient: context.read<MqRemoteClient>(),
+                ),
         ),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetInitailDataEvent()),
@@ -56,7 +58,10 @@ class _HatimUIState extends State<HatimUI> {
             builder: (context, state) {
               final subState = state.userPagesState;
               return switch (subState) {
-                HatimUserPagesFetched() => Text('${subState.data.length}', style: prTextTheme.titleLarge),
+                HatimUserPagesFetched() => Text(
+                  '${subState.data.length}',
+                  style: prTextTheme.titleLarge,
+                ),
                 _ => const SizedBox.shrink(),
               };
             },
@@ -72,10 +77,16 @@ class _HatimUIState extends State<HatimUI> {
           builder: (context, state) {
             final juzsState = state.juzsState;
             return switch (juzsState) {
-              HatimJuzsInitial() => const Center(child: CircularProgressIndicator()),
-              HatimJuzsLoading() => const Center(child: CircularProgressIndicator()),
+              HatimJuzsInitial() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              HatimJuzsLoading() => const Center(
+                child: CircularProgressIndicator(),
+              ),
               HatimJuzsFetched() => HatimJuzListBuilder(juzsState.data),
-              HatimJuzsFailed() => Center(child: Text('${juzsState.exception}')),
+              HatimJuzsFailed() => Center(
+                child: Text('${juzsState.exception}'),
+              ),
             };
           },
         ),
@@ -98,18 +109,31 @@ class _HatimUIState extends State<HatimUI> {
                   final hatimId = context.read<HatimBloc>().hatimId;
                   final pageIds = pages.map((e) => e.id).toList();
                   final pageNumbers = pages.map((e) => e.number).toList();
-                  context.read<HatimBloc>().add(SetInProgressPagesEvent(pageIds));
-                  MqAnalytic.track(AnalyticKey.goHatimReadPage, params: {'pages': pageIds});
+                  context.read<HatimBloc>().add(
+                    SetInProgressPagesEvent(pageIds),
+                  );
+                  MqAnalytic.track(
+                    AnalyticKey.goHatimReadPage,
+                    params: {'pages': pageIds},
+                  );
                   final value = await context.pushNamed<bool>(
                     AppRouter.hatimRead,
-                    pathParameters: {'hatimId': hatimId, 'pages': pageNumbers.toString()},
+                    pathParameters: {
+                      'hatimId': hatimId,
+                      'pages': pageNumbers.toString(),
+                    },
                   );
                   if (value != null && value && context.mounted) {
                     context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
                   }
                 },
                 label: Text(context.l10n.read),
-                icon: Assets.icons.book.svg(colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)),
+                icon: Assets.icons.book.svg(
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
               );
             }
           }

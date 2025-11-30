@@ -34,32 +34,49 @@ final class MockStorage extends Mock implements PreferencesStorage {
   }
 
   @override
-  Future<bool> writeString({required String key, required String value}) {
+  Future<bool> writeString({
+    required String key,
+    required String value,
+  }) {
     return Future.value(true);
   }
 
   @override
-  Future<bool> writeBool({required String key, required bool value}) {
+  Future<bool> writeBool({
+    required String key,
+    required bool value,
+  }) {
     return Future.value(true);
   }
 
   @override
-  Future<bool> writeDouble({required String key, required double value}) {
+  Future<bool> writeDouble({
+    required String key,
+    required double value,
+  }) {
     return Future.value(true);
   }
 
   @override
-  Future<bool> writeInt({required String key, required int value}) {
+  Future<bool> writeInt({
+    required String key,
+    required int value,
+  }) {
     return Future.value(true);
   }
 
   @override
-  Future<bool> writeStringList({required String key, required List<String> value}) {
+  Future<bool> writeStringList({
+    required String key,
+    required List<String> value,
+  }) {
     return Future.value(true);
   }
 
   @override
-  Future<bool> delete({required String key}) async {
+  Future<bool> delete({
+    required String key,
+  }) async {
     return Future.value(true);
   }
 
@@ -95,7 +112,12 @@ class MockMqRemoteConfig implements MqRemoteConfig {
     void Function()? onDone,
     bool? cancelOnError,
   }) {
-    return Stream.value('').listen((i) => onData(), onError: onError, onDone: onDone, cancelOnError: cancelOnError);
+    return Stream.value('').listen(
+      (i) => onData(),
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
   }
 
   @override

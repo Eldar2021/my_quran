@@ -30,9 +30,17 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       body: {'email': email, 'opt': otp},
     );
 
-    final user = UserModelResponse(accessToken: token.key, username: email, gender: gender, localeCode: languageCode);
+    final user = UserModelResponse(
+      accessToken: token.key,
+      username: email,
+      gender: gender,
+      localeCode: languageCode,
+    );
 
-    await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
+    await storage.writeString(
+      key: MqAuthStatics.tokenKey,
+      value: user.accessToken,
+    );
 
     return user;
   }
@@ -40,14 +48,21 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> loginWithEmail(String email) async {
     try {
-      await client.postType('/api/v1/accounts/otp/send/', fromJson: Map<String, dynamic>.from, body: {'email': email});
+      await client.postType(
+        '/api/v1/accounts/otp/send/',
+        fromJson: Map<String, dynamic>.from,
+        body: {'email': email},
+      );
     } catch (e) {
       throw Exception('Error during login: $e');
     }
   }
 
   @override
-  Future<UserModelResponse> signInWithGoogle(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signInWithGoogle(
+    String languageCode,
+    Gender gender,
+  ) async {
     final googleAuth = await _getGoogleAuth();
 
     final token = await client.postType(
@@ -67,24 +82,37 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       localeCode: languageCode,
     );
 
-    await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
+    await storage.writeString(
+      key: MqAuthStatics.tokenKey,
+      value: user.accessToken,
+    );
 
     return user;
   }
 
   Future<_UserReqParam> _getGoogleAuth() async {
     if (isIntegrationTest) {
-      return const _UserReqParam(name: 'Test User', accessToken: r'myquran_te$t_t0ken');
+      return const _UserReqParam(
+        name: 'Test User',
+        accessToken: r'myquran_te$t_t0ken',
+      );
     } else {
       final googleAuth = await soccialAuth.signInWithGoogle();
       final accessToken = googleAuth?['accessToken'] ?? '';
       final username = googleAuth?['name'] ?? '';
-      return _UserReqParam(name: username.toString(), accessToken: accessToken.toString());
+
+      return _UserReqParam(
+        name: username.toString(),
+        accessToken: accessToken.toString(),
+      );
     }
   }
 
   @override
-  Future<UserModelResponse> signInWithApple(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signInWithApple(
+    String languageCode,
+    Gender gender,
+  ) async {
     final appleAuth = await _getAppleAuth();
 
     final token = await client.postType(
@@ -105,21 +133,31 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       localeCode: languageCode,
     );
 
-    await storage.writeString(key: MqAuthStatics.tokenKey, value: user.accessToken);
+    await storage.writeString(
+      key: MqAuthStatics.tokenKey,
+      value: user.accessToken,
+    );
 
     return user;
   }
 
   Future<_UserReqParam> _getAppleAuth() async {
     if (isIntegrationTest) {
-      return const _UserReqParam(name: 'Test User', accessToken: r'myquran_te$t_t0ken');
+      return const _UserReqParam(
+        name: 'Test User',
+        accessToken: r'myquran_te$t_t0ken',
+      );
     } else {
       final appleAuth = await soccialAuth.signInWithApple();
       final identityToken = appleAuth.$2.identityToken ?? '';
       final accessToken = appleAuth.$1.credential!.accessToken ?? '';
       final username = appleAuth.$1.user?.displayName ?? '';
 
-      return _UserReqParam(name: username, accessToken: accessToken, identityToken: identityToken);
+      return _UserReqParam(
+        name: username,
+        accessToken: accessToken,
+        identityToken: identityToken,
+      );
     }
   }
 
@@ -128,12 +166,18 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return client.putType(
       '/api/v1/accounts/profile/${userModel.accessToken}/',
       fromJson: UserDataResponse.fromJson,
-      body: {'gender': userModel.gender.name.toUpperCase(), 'language': userModel.localeCode.toUpperCase()},
+      body: {
+        'gender': userModel.gender.name.toUpperCase(),
+        'language': userModel.localeCode.toUpperCase(),
+      },
     );
   }
 
   @override
-  Future<UserDataResponse> pathGender({required String userId, required Gender gender}) {
+  Future<UserDataResponse> pathGender({
+    required String userId,
+    required Gender gender,
+  }) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
       fromJson: UserDataResponse.fromJson,
@@ -142,7 +186,10 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserDataResponse> pathLocaleCode({required String userId, required String localeCode}) {
+  Future<UserDataResponse> pathLocaleCode({
+    required String userId,
+    required String localeCode,
+  }) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
       fromJson: UserDataResponse.fromJson,
@@ -152,7 +199,9 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<void> deleteAccountRemote() async {
-    await client.delete<Map<String, dynamic>>('/api/v1/accounts/profile/delete_my_account/');
+    await client.delete<Map<String, dynamic>>(
+      '/api/v1/accounts/profile/delete_my_account/',
+    );
 
     await soccialAuth.deleteAccount();
   }
@@ -165,7 +214,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
 @immutable
 final class _UserReqParam {
-  const _UserReqParam({required this.name, required this.accessToken, this.identityToken});
+  const _UserReqParam({
+    required this.name,
+    required this.accessToken,
+    this.identityToken,
+  });
 
   final String name;
   final String accessToken;

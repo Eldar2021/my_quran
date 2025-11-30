@@ -14,7 +14,9 @@ class StoryView extends StatefulWidget {
   const StoryView({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const StoryView());
+    return MaterialPageRoute<void>(
+      builder: (_) => const StoryView(),
+    );
   }
 
   @override

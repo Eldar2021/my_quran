@@ -154,7 +154,12 @@ class _QuranPageItem extends StatelessWidget {
               ),
             if (isLast)
               Padding(
-                padding: const EdgeInsets.only(top: 50, bottom: 50, left: 24, right: 24),
+                padding: const EdgeInsets.only(
+                  top: 50,
+                  bottom: 50,
+                  left: 24,
+                  right: 24,
+                ),
                 child: ElevatedButton(
                   onPressed: () async {
                     final readThemeState = context.read<QuranBookThemeCubit>().state;

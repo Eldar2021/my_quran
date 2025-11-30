@@ -58,16 +58,27 @@ class _HomeViewState extends State<HomeView> {
           onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
           },
-          icon: Assets.icons.settingsBurger.svg(colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn)),
+          icon: Assets.icons.settingsBurger.svg(
+            colorFilter: ColorFilter.mode(
+              colorScheme.onSurface,
+              BlendMode.srcIn,
+            ),
+          ),
         ),
         actions: [
           IconButton(
             padding: const EdgeInsets.only(right: 24),
             onPressed: () {
-              AppSnackbar.showSnackbar(context, context.l10n.featureInFuture);
+              AppSnackbar.showSnackbar(
+                context,
+                context.l10n.featureInFuture,
+              );
             },
             icon: Assets.icons.qyblaDirection.svg(
-              colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                colorScheme.onSurface,
+                BlendMode.srcIn,
+              ),
             ),
           ),
         ],
@@ -100,7 +111,9 @@ class _HomeViewState extends State<HomeView> {
                         storyPagesImages: item.screens.map((e) => e.imageUrl).toList(),
                         storyPageDuration: List.generate(
                           item.screens.length,
-                          (index) => Duration(milliseconds: item.screens[index].durationByMilliseconds),
+                          (index) => Duration(
+                            milliseconds: item.screens[index].durationByMilliseconds,
+                          ),
                         ),
                       );
                     }).toList(),
@@ -114,15 +127,24 @@ class _HomeViewState extends State<HomeView> {
             Builder(
               builder: (ctx) {
                 return ListTile(
-                  onTap: () => AppShare.shareUri(context: ctx, url: ApiConst.oneLink),
+                  onTap: () => AppShare.shareUri(
+                    context: ctx,
+                    url: ApiConst.oneLink,
+                  ),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 24),
                   leading: CircleAvatar(
                     backgroundColor: colorScheme.onInverseSurface,
                     child: Assets.icons.shareFill.svg(
-                      colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(
+                        colorScheme.primary,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
-                  title: Text(context.l10n.shareApp, style: prTextTheme.bodyMedium),
+                  title: Text(
+                    context.l10n.shareApp,
+                    style: prTextTheme.bodyMedium,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                 );
               },
@@ -135,8 +157,14 @@ class _HomeViewState extends State<HomeView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(context.l10n.progress, style: prTextTheme.titleMedium),
-                  Text(context.l10n.joinChallenge, style: prTextTheme.titleMedium),
+                  Text(
+                    context.l10n.progress,
+                    style: prTextTheme.titleMedium,
+                  ),
+                  Text(
+                    context.l10n.joinChallenge,
+                    style: prTextTheme.titleMedium,
+                  ),
                 ],
               ),
             ),
@@ -171,7 +199,10 @@ class _HomeViewState extends State<HomeView> {
               onPressed: () {
                 final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
                 if ((hatims?.length ?? 0) > 1 && !isIntegrationTest) {
-                  ShowHatimWidget.showHatimSheet<void>(context: context, hatim: hatims!);
+                  ShowHatimWidget.showHatimSheet<void>(
+                    context: context,
+                    hatim: hatims!,
+                  );
                 } else {
                   _onJoinToHatim(hatims?.first.id ?? '');
                 }
@@ -186,7 +217,10 @@ class _HomeViewState extends State<HomeView> {
 
   void _onJoinToHatim(String hatimId) {
     MqAnalytic.track(AnalyticKey.goHatim);
-    context.goNamedIfAuthenticated(AppRouter.hatim, pathParameters: {'hatimId': hatimId});
+    context.goNamedIfAuthenticated(
+      AppRouter.hatim,
+      pathParameters: {'hatimId': hatimId},
+    );
   }
 
   Future<void> _getHomeData() async {

@@ -38,7 +38,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<AuthState> signInWithGoogle() async {
     try {
-      final user = await authRepository.signWithGoogle(state.currentLocale.languageCode, state.gender);
+      final user = await authRepository.signWithGoogle(
+        state.currentLocale.languageCode,
+        state.gender,
+      );
       emit(state.copyWith(user: user));
       return state;
     } on Exception catch (e) {
@@ -49,7 +52,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<AuthState> signInWithApple() async {
     try {
-      final user = await authRepository.signWithApple(state.currentLocale.languageCode, state.gender);
+      final user = await authRepository.signWithApple(
+        state.currentLocale.languageCode,
+        state.gender,
+      );
       emit(state.copyWith(user: user));
     } on Exception catch (e) {
       emit(state.copyWith(exception: e));
@@ -65,7 +71,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> saveLocale(String localeCode) async {
     if (state.isAuthedticated) {
       try {
-        final res = await authRepository.patchLocaleCode(userId: state.user!.accessToken, localeCode: localeCode);
+        final res = await authRepository.patchLocaleCode(
+          userId: state.user!.accessToken,
+          localeCode: localeCode,
+        );
         final newUser = state.user!.copyWith(localeCode: res.localeValue);
         emit(state.copyWith(user: newUser));
       } on Exception catch (e) {
@@ -80,7 +89,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> saveGender(Gender gender) async {
     if (state.isAuthedticated) {
       try {
-        final res = await authRepository.patchGender(userId: state.user!.accessToken, gender: gender);
+        final res = await authRepository.patchGender(
+          userId: state.user!.accessToken,
+          gender: gender,
+        );
         final newUser = state.user!.copyWith(gender: res.genderValue);
         emit(state.copyWith(user: newUser));
       } on Exception catch (e) {

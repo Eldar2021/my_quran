@@ -19,7 +19,11 @@ final class MqStoryEntity {
 
 @immutable
 final class MqStoryButtonEntity {
-  const MqStoryButtonEntity({required this.hasButton, required this.label, required this.action});
+  const MqStoryButtonEntity({
+    required this.hasButton,
+    required this.label,
+    required this.action,
+  });
 
   final bool hasButton;
   final String label;
@@ -28,7 +32,10 @@ final class MqStoryButtonEntity {
 
 @immutable
 final class MqStoryScreenEntity {
-  const MqStoryScreenEntity({required this.imageUrl, required this.durationByMilliseconds});
+  const MqStoryScreenEntity({
+    required this.imageUrl,
+    required this.durationByMilliseconds,
+  });
 
   final String imageUrl;
   final int durationByMilliseconds;

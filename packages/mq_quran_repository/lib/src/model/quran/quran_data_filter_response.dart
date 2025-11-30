@@ -23,9 +23,15 @@ sealed class QuranDataFilterResponse {
 
   QuranDataFilterEntity toEntity() {
     return switch (this) {
-      QuranDataFilterPageNumber() => QuranDataFilterPageNumberEntity(pageNumber: value),
-      QuranDataFilterJuzNumber() => QuranDataFilterJuzNumberEntity(juzNumber: value),
-      QuranDataFilterSurahNumber() => QuranDataFilterSurahNumberEntity(surahNumber: value),
+      QuranDataFilterPageNumber() => QuranDataFilterPageNumberEntity(
+        pageNumber: value,
+      ),
+      QuranDataFilterJuzNumber() => QuranDataFilterJuzNumberEntity(
+        juzNumber: value,
+      ),
+      QuranDataFilterSurahNumber() => QuranDataFilterSurahNumberEntity(
+        surahNumber: value,
+      ),
     };
   }
 
@@ -35,12 +41,18 @@ sealed class QuranDataFilterResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataFilterPageNumber extends QuranDataFilterResponse {
-  const QuranDataFilterPageNumber({required this.pageNumber}) : super(value: pageNumber);
+  const QuranDataFilterPageNumber({
+    required this.pageNumber,
+  }) : super(value: pageNumber);
 
-  factory QuranDataFilterPageNumber.fromJson(Map<String, dynamic> json) => _$QuranDataFilterPageNumberFromJson(json);
+  factory QuranDataFilterPageNumber.fromJson(Map<String, dynamic> json) {
+    return _$QuranDataFilterPageNumberFromJson(json);
+  }
 
   @override
-  Map<String, dynamic> toJson() => _$QuranDataFilterPageNumberToJson(this);
+  Map<String, dynamic> toJson() {
+    return _$QuranDataFilterPageNumberToJson(this);
+  }
 
   @JsonKey(name: 'page_number')
   final String pageNumber;
@@ -49,12 +61,18 @@ final class QuranDataFilterPageNumber extends QuranDataFilterResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataFilterJuzNumber extends QuranDataFilterResponse {
-  const QuranDataFilterJuzNumber({required this.juzNumber}) : super(value: juzNumber);
+  const QuranDataFilterJuzNumber({
+    required this.juzNumber,
+  }) : super(value: juzNumber);
 
-  factory QuranDataFilterJuzNumber.fromJson(Map<String, dynamic> json) => _$QuranDataFilterJuzNumberFromJson(json);
+  factory QuranDataFilterJuzNumber.fromJson(Map<String, dynamic> json) {
+    return _$QuranDataFilterJuzNumberFromJson(json);
+  }
 
   @override
-  Map<String, dynamic> toJson() => _$QuranDataFilterJuzNumberToJson(this);
+  Map<String, dynamic> toJson() {
+    return _$QuranDataFilterJuzNumberToJson(this);
+  }
 
   @JsonKey(name: 'juz_number')
   final String juzNumber;
@@ -63,12 +81,18 @@ final class QuranDataFilterJuzNumber extends QuranDataFilterResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataFilterSurahNumber extends QuranDataFilterResponse {
-  const QuranDataFilterSurahNumber({required this.surahNumber}) : super(value: surahNumber);
+  const QuranDataFilterSurahNumber({
+    required this.surahNumber,
+  }) : super(value: surahNumber);
 
-  factory QuranDataFilterSurahNumber.fromJson(Map<String, dynamic> json) => _$QuranDataFilterSurahNumberFromJson(json);
+  factory QuranDataFilterSurahNumber.fromJson(Map<String, dynamic> json) {
+    return _$QuranDataFilterSurahNumberFromJson(json);
+  }
 
   @override
-  Map<String, dynamic> toJson() => _$QuranDataFilterSurahNumberToJson(this);
+  Map<String, dynamic> toJson() {
+    return _$QuranDataFilterSurahNumberToJson(this);
+  }
 
   @JsonKey(name: 'chapter_number')
   final String surahNumber;

@@ -15,6 +15,7 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     final username = storage.readString(key: MqAuthStatics.usernameKey);
     final localeCode = storage.readString(key: MqAuthStatics.localeKey);
     if (userToken == null && userGender == null && username == null) return null;
+
     return UserModelResponse(
       accessToken: userToken!,
       username: username!,
@@ -29,20 +30,35 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<void> saveUserData(UserModelResponse userModel) async {
     await Future.wait([
-      storage.writeString(key: MqAuthStatics.localeKey, value: userModel.localeCode),
-      storage.writeString(key: MqAuthStatics.genderKey, value: userModel.gender.name),
-      storage.writeString(key: MqAuthStatics.usernameKey, value: userModel.username),
+      storage.writeString(
+        key: MqAuthStatics.localeKey,
+        value: userModel.localeCode,
+      ),
+      storage.writeString(
+        key: MqAuthStatics.genderKey,
+        value: userModel.gender.name,
+      ),
+      storage.writeString(
+        key: MqAuthStatics.usernameKey,
+        value: userModel.username,
+      ),
     ]);
   }
 
   @override
   Future<void> saveGender(Gender gender) {
-    return storage.writeString(key: MqAuthStatics.genderKey, value: gender.name);
+    return storage.writeString(
+      key: MqAuthStatics.genderKey,
+      value: gender.name,
+    );
   }
 
   @override
   Future<void> saveLocaleCode(String localeCode) {
-    return storage.writeString(key: MqAuthStatics.localeKey, value: localeCode);
+    return storage.writeString(
+      key: MqAuthStatics.localeKey,
+      value: localeCode,
+    );
   }
 
   @override

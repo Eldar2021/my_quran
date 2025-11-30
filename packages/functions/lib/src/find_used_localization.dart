@@ -9,13 +9,24 @@ const _enJsonPath = 'app/lib/l10n/arb/app_en.arb';
 const _docsPath = 'packages/functions';
 
 Future<void> main() async {
-  final currentProjectPath = Directory.current.path.replaceAll('/packages/functions', '');
+  final currentProjectPath = Directory.current.path.replaceAll(
+    '/packages/functions',
+    '',
+  );
   final usedKeys = <String, dynamic>{};
   final unusedKeys = <String, dynamic>{};
 
-  final enJsonData = await readJsonFile('$currentProjectPath/$_enJsonPath');
+  final enJsonData = await readJsonFile(
+    '$currentProjectPath/$_enJsonPath',
+  );
+
   print(enJsonData);
-  final files = await readAllFilesInDirectory('$currentProjectPath/', extension: '.dart');
+
+  final files = await readAllFilesInDirectory(
+    '$currentProjectPath/',
+    extension: '.dart',
+  );
+
   print(files);
 
   for (final element in enJsonData.keys) {
@@ -40,7 +51,13 @@ Future<void> main() async {
     }
   }
 
-  await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/unused_keys.json', unusedKeys);
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_docsPath/docs/unused_keys.json',
+    unusedKeys,
+  );
 
-  await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/used_keys.json', usedKeys);
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_docsPath/docs/used_keys.json',
+    usedKeys,
+  );
 }

@@ -16,7 +16,9 @@ class FormLabel extends StatelessWidget {
         children: <TextSpan>[
           TextSpan(
             text: '*',
-            style: prTextTheme.bodyMedium?.copyWith(color: colorScheme.error),
+            style: prTextTheme.bodyMedium?.copyWith(
+              color: colorScheme.error,
+            ),
           ),
         ],
       ),

@@ -6,7 +6,12 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class SeekBar extends StatelessWidget {
-  const SeekBar({required this.player, super.key, this.onChanged, this.onChangeEnd});
+  const SeekBar({
+    required this.player,
+    super.key,
+    this.onChanged,
+    this.onChangeEnd,
+  });
 
   final AudioPlayer player;
   final ValueChanged<double>? onChanged;
@@ -25,12 +30,16 @@ class SeekBar extends StatelessWidget {
           builder: (context, snapshot) {
             return Row(
               children: [
-                Text(AppRegExp.duration.firstMatch('${player.position}')?.group(1) ?? '${player.position}'),
+                Text(
+                  AppRegExp.duration.firstMatch('${player.position}')?.group(1) ?? '${player.position}',
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: SliderTheme(
                     data: SliderThemeData(
-                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                      thumbShape: const RoundSliderThumbShape(
+                        enabledThumbRadius: 6,
+                      ),
                       trackShape: CustomTrackShape(),
                     ),
                     child: Slider(
@@ -48,7 +57,9 @@ class SeekBar extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Text(AppRegExp.duration.firstMatch('${player.duration ?? 0}')?.group(1) ?? '${player.duration ?? 0}'),
+                Text(
+                  AppRegExp.duration.firstMatch('${player.duration ?? 0}')?.group(1) ?? '${player.duration ?? 0}',
+                ),
               ],
             );
           },

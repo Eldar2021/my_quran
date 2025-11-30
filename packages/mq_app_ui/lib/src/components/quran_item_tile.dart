@@ -34,13 +34,19 @@ class QuranItemTile extends StatelessWidget {
               Assets.icons.islamicSymbolFill.svg(
                 width: 50,
                 height: 50,
-                colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
               )
             else
               Assets.icons.heptagon.svg(
                 width: 50,
                 height: 50,
-                colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
               ),
             Align(
               child: Text(
@@ -54,7 +60,12 @@ class QuranItemTile extends StatelessWidget {
         ),
       ),
       title: Text(title),
-      subtitle: Text(subtitle, style: prTextTheme.bodyLarge?.copyWith(color: colorScheme.primary)),
+      subtitle: Text(
+        subtitle,
+        style: prTextTheme.bodyLarge?.copyWith(
+          color: colorScheme.primary,
+        ),
+      ),
       trailing: trailing,
     );
   }

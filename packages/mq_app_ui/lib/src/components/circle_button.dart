@@ -31,9 +31,14 @@ class CircleButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
         disabledForegroundColor: disabledForegroundColor,
-        side: BorderSide(color: borderColor ?? colorScheme.primary, width: boderWidth),
+        side: BorderSide(
+          color: borderColor ?? colorScheme.primary,
+          width: boderWidth,
+        ),
         shape: const CircleBorder(),
-        textStyle: prTextTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+        textStyle: prTextTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.w600,
+        ),
       ),
       onPressed: onPressed,
       child: child,

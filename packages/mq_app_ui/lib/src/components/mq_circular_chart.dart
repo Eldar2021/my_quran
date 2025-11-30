@@ -8,7 +8,11 @@ class MqCircularChart extends StatelessWidget {
     this.innerRadius = 85,
     this.annotationFontSize = 18,
     this.dataSource = const [20, 30, 50],
-    this.colors = const [AppColors.tomato2, AppColors.goldenrod, AppColors.mediumseagreen],
+    this.colors = const [
+      AppColors.tomato2,
+      AppColors.goldenrod,
+      AppColors.mediumseagreen,
+    ],
     this.annotation = '',
     super.key,
   });
@@ -30,7 +34,12 @@ class MqCircularChart extends StatelessWidget {
         palette: colors,
         annotations: [
           CircularChartAnnotation(
-            widget: Text(annotation, style: prTextTheme.titleLarge?.copyWith(fontSize: annotationFontSize)),
+            widget: Text(
+              annotation,
+              style: prTextTheme.titleLarge?.copyWith(
+                fontSize: annotationFontSize,
+              ),
+            ),
           ),
         ],
         series: [

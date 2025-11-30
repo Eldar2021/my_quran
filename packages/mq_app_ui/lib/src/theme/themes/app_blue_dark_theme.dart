@@ -68,7 +68,10 @@ final class AppBlueDarkTheme extends AppTheme {
       labelLarge: AppTextStyles.labelLarge,
       labelMedium: AppTextStyles.labelMedium,
       labelSmall: AppTextStyles.labelSmall,
-    ).apply(displayColor: AppColors.white, bodyColor: AppColors.white);
+    ).apply(
+      displayColor: AppColors.white,
+      bodyColor: AppColors.white,
+    );
   }
 
   @override
@@ -89,6 +92,9 @@ final class AppBlueDarkTheme extends AppTheme {
       labelLarge: AppTextStyles.labelLarge,
       labelMedium: AppTextStyles.labelMedium,
       labelSmall: AppTextStyles.labelSmall,
-    ).apply(displayColor: AppColors.ghostwhite, bodyColor: AppColors.ghostwhite);
+    ).apply(
+      displayColor: AppColors.ghostwhite,
+      bodyColor: AppColors.ghostwhite,
+    );
   }
 }

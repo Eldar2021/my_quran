@@ -20,10 +20,17 @@ class MqStoryCubit extends Cubit<MqStoryState> {
       };
       emit(const MqStoryState());
       final stories = await homeRepository.getStories(localeCode);
-      emit(MqStoryState(status: FetchStatus.success, stories: stories));
+      emit(
+        MqStoryState(
+          status: FetchStatus.success,
+          stories: stories,
+        ),
+      );
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
-      emit(const MqStoryState(status: FetchStatus.error));
+      emit(
+        const MqStoryState(status: FetchStatus.error),
+      );
     }
   }
 }

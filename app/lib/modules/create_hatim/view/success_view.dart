@@ -20,13 +20,28 @@ class SuccessView extends StatelessWidget {
             Container(
               width: 90,
               height: 90,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: colorScheme.primary),
-              child: Icon(Icons.check_outlined, size: 50, color: colorScheme.onPrimary),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: colorScheme.primary,
+              ),
+              child: Icon(
+                Icons.check_outlined,
+                size: 50,
+                color: colorScheme.onPrimary,
+              ),
             ),
             const SizedBox(height: 16),
-            Text(context.l10n.hatimCreated, textAlign: TextAlign.center, style: prTextTheme.headlineMedium),
+            Text(
+              context.l10n.hatimCreated,
+              textAlign: TextAlign.center,
+              style: prTextTheme.headlineMedium,
+            ),
             const SizedBox(height: 10),
-            Text(context.l10n.hatimDescription, textAlign: TextAlign.center, style: prTextTheme.bodyLarge),
+            Text(
+              context.l10n.hatimDescription,
+              textAlign: TextAlign.center,
+              style: prTextTheme.bodyLarge,
+            ),
             const Spacer(),
           ],
         ),
@@ -34,7 +49,10 @@ class SuccessView extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: ElevatedButton(onPressed: () => context.goNamed(AppRouter.home), child: Text(context.l10n.backToHome)),
+        child: ElevatedButton(
+          onPressed: () => context.goNamed(AppRouter.home),
+          child: Text(context.l10n.backToHome),
+        ),
       ),
     );
   }

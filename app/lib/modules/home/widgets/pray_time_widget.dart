@@ -37,7 +37,10 @@ class MqSalaahTimeWidget extends StatelessWidget {
     );
   }
 
-  void _onEventNewLocation(BuildContext context, String newLocation) {
+  void _onEventNewLocation(
+    BuildContext context,
+    String newLocation,
+  ) {
     AppAlert.showUpdateLocation(
       context: context,
       newLocation: newLocation,

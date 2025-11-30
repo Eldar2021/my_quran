@@ -67,7 +67,9 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
               return switch (state) {
                 QuranBookByJuzInitial() => const QuranBookSliverProgressingIndicator(),
                 QuranBookByJuzLoading() => const QuranBookSliverProgressingIndicator(),
-                QuranBookByJuzError() => QuranBookSliverErrorWidget(state.error.toString()),
+                QuranBookByJuzError() => QuranBookSliverErrorWidget(
+                  state.error.toString(),
+                ),
                 QuranBookByJuzLoaded() => QuranBookSuccessWidget(state.items),
               };
             },

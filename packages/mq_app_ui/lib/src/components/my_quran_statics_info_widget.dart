@@ -48,17 +48,29 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                           ),
                         ),
                         Center(
-                          child: Text(count1, style: prTextTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                          child: Text(
+                            count1,
+                            style: prTextTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text(label1, textAlign: TextAlign.center, style: prTextTheme.titleSmall),
+                  Text(
+                    label1,
+                    textAlign: TextAlign.center,
+                    style: prTextTheme.titleSmall,
+                  ),
                 ],
               ),
               const SizedBox(width: 16),
-              VerticalDivider(thickness: 2, color: isDark ? colorScheme.inverseSurface : colorScheme.surface),
+              VerticalDivider(
+                thickness: 2,
+                color: isDark ? colorScheme.inverseSurface : colorScheme.surface,
+              ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
@@ -68,7 +80,10 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                       children: [
                         Assets.icons.quran.svg(
                           height: 28,
-                          colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.onSurface,
+                            BlendMode.srcIn,
+                          ),
                         ),
                         const SizedBox(width: 8),
                         Column(
@@ -77,25 +92,35 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                             Text(
                               label2,
                               maxLines: 1,
-                              style: prTextTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             Text(
                               count2,
                               maxLines: 1,
-                              style: prTextTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w800),
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                           ],
                         ),
                       ],
                     ),
                     const Spacer(),
-                    Divider(thickness: 2, color: isDark ? colorScheme.inverseSurface : colorScheme.surface),
+                    Divider(
+                      thickness: 2,
+                      color: isDark ? colorScheme.inverseSurface : colorScheme.surface,
+                    ),
                     const Spacer(),
                     Row(
                       children: [
                         Assets.icons.prayerHand.svg(
                           height: 28,
-                          colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.onSurface,
+                            BlendMode.srcIn,
+                          ),
                         ),
                         const SizedBox(width: 8),
                         Column(
@@ -104,12 +129,16 @@ class MyQuranStaticsInfoWidget extends StatelessWidget {
                             Text(
                               label3,
                               maxLines: 1,
-                              style: prTextTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             Text(
                               count3,
                               maxLines: 1,
-                              style: prTextTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w800),
+                              style: prTextTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                           ],
                         ),

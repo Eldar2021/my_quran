@@ -4,7 +4,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-Future<void> createAndWriteJsonFile(String filePath, Map<String, dynamic> data) async {
+Future<void> createAndWriteJsonFile(
+  String filePath,
+  Map<String, dynamic> data,
+) async {
   try {
     final file = File(filePath);
     final jsonString = const JsonEncoder.withIndent('  ').convert(data);

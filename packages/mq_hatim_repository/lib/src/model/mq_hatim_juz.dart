@@ -25,6 +25,13 @@ class HatimJus {
   final int done;
 
   MqHatimJusEntity get entity {
-    return MqHatimJusEntity(id: id, status: status, number: number, toDo: toDo, inProgress: inProgress, done: done);
+    return MqHatimJusEntity(
+      id: id,
+      status: status,
+      number: number,
+      toDo: toDo,
+      inProgress: inProgress,
+      done: done,
+    );
   }
 }

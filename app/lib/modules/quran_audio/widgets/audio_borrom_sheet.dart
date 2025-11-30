@@ -15,14 +15,25 @@ class AudioButtomSheet extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(22), topRight: Radius.circular(22)),
-        boxShadow: [BoxShadow(color: colorScheme.shadow.withValues(alpha: 0.3), blurRadius: 7)],
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(22),
+          topRight: Radius.circular(22),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.3),
+            blurRadius: 7,
+          ),
+        ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 20),
-          SeekBar(player: context.read<QuranAudioCubit>().player, onChangeEnd: context.read<QuranAudioCubit>().seek),
+          SeekBar(
+            player: context.read<QuranAudioCubit>().player,
+            onChangeEnd: context.read<QuranAudioCubit>().seek,
+          ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

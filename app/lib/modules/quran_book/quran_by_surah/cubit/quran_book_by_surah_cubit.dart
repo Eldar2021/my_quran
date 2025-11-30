@@ -5,7 +5,10 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 part 'quran_book_by_surah_state.dart';
 
 class QuranBookBySurahCubit extends Cubit<QuranBookBySurahState> {
-  QuranBookBySurahCubit({required this.repository, required this.surahNumber}) : super(const QuranBookBySurahInitial());
+  QuranBookBySurahCubit({
+    required this.repository,
+    required this.surahNumber,
+  }) : super(const QuranBookBySurahInitial());
 
   final MqQuranRepository repository;
   final int surahNumber;
@@ -14,7 +17,10 @@ class QuranBookBySurahCubit extends Cubit<QuranBookBySurahState> {
     try {
       if (state is QuranBookBySurahLoaded) return;
       emit(const QuranBookBySurahLoading());
-      final response = await repository.fetchQuranBySurah(surahNumber, quranFmt);
+      final response = await repository.fetchQuranBySurah(
+        surahNumber,
+        quranFmt,
+      );
       emit(QuranBookBySurahLoaded(response));
     } on Exception catch (e) {
       emit(QuranBookBySurahError(e.toString()));

@@ -9,7 +9,9 @@ extension ScreenshotExtension on FlutterDriver {
     bool waitUntilNoTransientCallbacks = true,
   }) async {
     if (waitUntilNoTransientCallbacks) {
-      await this.waitUntilNoTransientCallbacks(timeout: const Duration(seconds: 30));
+      await this.waitUntilNoTransientCallbacks(
+        timeout: const Duration(seconds: 30),
+      );
     }
     final pixels = await screenshot();
     final directoryPath = directory.endsWith('/') ? directory : '$directory/';

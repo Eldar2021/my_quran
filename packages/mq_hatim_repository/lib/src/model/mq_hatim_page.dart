@@ -7,7 +7,12 @@ part 'mq_hatim_page.g.dart';
 
 @JsonSerializable()
 class HatimPages {
-  const HatimPages({required this.id, required this.status, required this.number, required this.mine});
+  const HatimPages({
+    required this.id,
+    required this.status,
+    required this.number,
+    required this.mine,
+  });
 
   factory HatimPages.fromJson(Map<String, dynamic> json) => _$HatimPagesFromJson(json);
   Map<String, dynamic> toJson() => _$HatimPagesToJson(this);
@@ -18,7 +23,12 @@ class HatimPages {
   final bool mine;
 
   MqHatimPagesEntity get entity {
-    return MqHatimPagesEntity(id: id, status: status, number: number, mine: mine);
+    return MqHatimPagesEntity(
+      id: id,
+      status: status,
+      number: number,
+      mine: mine,
+    );
   }
 }
 
@@ -35,7 +45,9 @@ enum HatimPageStatus {
   Color get bgColor {
     return switch (this) {
       HatimPageStatus.done => const Color(0xffA851FA).withValues(alpha: 0.6),
-      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(0xffC992B1).withValues(alpha: 0.6),
+      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(
+        0xffC992B1,
+      ).withValues(alpha: 0.6),
       _ => const Color(0xffF6684E).withValues(alpha: 0.9),
     };
   }
@@ -43,7 +55,9 @@ enum HatimPageStatus {
   Color get frColor {
     return switch (this) {
       HatimPageStatus.done => const Color(0xffA851FA).withValues(alpha: 0.6),
-      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(0xffC992B1).withValues(alpha: 0.6),
+      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(
+        0xffC992B1,
+      ).withValues(alpha: 0.6),
       _ => const Color(0xffF6684E).withValues(alpha: 0.9),
     };
   }
@@ -51,7 +65,9 @@ enum HatimPageStatus {
   Color? get iconColor {
     return switch (this) {
       HatimPageStatus.done => const Color(0xffA851FA).withValues(alpha: 0.6),
-      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(0xffC992B1).withValues(alpha: 0.6),
+      HatimPageStatus.booked || HatimPageStatus.inProgress => const Color(
+        0xffC992B1,
+      ).withValues(alpha: 0.6),
       _ => const Color(0xffF6684E).withValues(alpha: 0.9),
     };
   }

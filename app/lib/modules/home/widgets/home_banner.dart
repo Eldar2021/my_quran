@@ -37,8 +37,16 @@ class _BannerWidget extends StatelessWidget {
           child: CarouselView(
             itemSnapping: true,
             itemExtent: context.width - 90,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            children: banners.map((e) => HeroLayoutCard(imageUrl: _getUrl(e, context))).toList(),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            children: banners
+                .map(
+                  (e) => HeroLayoutCard(
+                    imageUrl: _getUrl(e, context),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),

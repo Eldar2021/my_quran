@@ -17,7 +17,10 @@ class PageViewItem<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+      padding: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: 24,
+      ),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
@@ -28,8 +31,14 @@ class PageViewItem<T> extends StatelessWidget {
             title: '${item.juzNumber}-${context.l10n.juz}',
             subtitle: '${item.firstVerseId}-${item.lastVerseId}',
             onTap: () async {
-              MqAnalytic.track(AnalyticKey.goQuranReadByJuz, params: {'juzId': item.id});
-              context.goNamed(AppRouter.quranByJuz, pathParameters: {'juzNumber': item.juzNumber.toString()});
+              MqAnalytic.track(
+                AnalyticKey.goQuranReadByJuz,
+                params: {'juzId': item.id},
+              );
+              context.goNamed(
+                AppRouter.quranByJuz,
+                pathParameters: {'juzNumber': item.juzNumber.toString()},
+              );
             },
           );
         } else if (item is MqSurahEntity) {
@@ -41,16 +50,25 @@ class PageViewItem<T> extends StatelessWidget {
             onTap: () async {
               MqAnalytic.track(
                 AnalyticKey.goQuranReadBySurah,
-                params: {'surahId': item.id, 'surahName': item.nameSimple},
+                params: {
+                  'surahId': item.id,
+                  'surahName': item.nameSimple,
+                },
               );
-              context.goNamed(AppRouter.quranBySurah, pathParameters: {'surahNumber': item.id.toString()});
+              context.goNamed(
+                AppRouter.quranBySurah,
+                pathParameters: {'surahNumber': item.id.toString()},
+              );
             },
           );
         }
         return const SizedBox();
       },
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider(height: 0.5, color: colorScheme.onSurface.withValues(alpha: 0.1));
+      separatorBuilder: (context, index) {
+        return Divider(
+          height: 0.5,
+          color: colorScheme.onSurface.withValues(alpha: 0.1),
+        );
       },
     );
   }

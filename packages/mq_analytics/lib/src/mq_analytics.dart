@@ -9,32 +9,57 @@ import 'package:mq_crashlytics/mq_crashlytics.dart';
 final class MqAnalytic {
   const MqAnalytic._();
 
-  static Future<void> setAnalyticsCollectionEnabled({required bool enabled}) async {
+  static Future<void> setAnalyticsCollectionEnabled({
+    required bool enabled,
+  }) async {
     try {
       await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(enabled);
     } on Exception catch (error, stackTrace) {
       MqCrashlytics.report(error, stackTrace);
-      log('MqAnalytics setAnalyticsCollectionEnabled error: $error, stackTrace: $stackTrace');
+      log(
+        'MqAnalytics setAnalyticsCollectionEnabled:',
+        error: error,
+        stackTrace: stackTrace,
+      );
     }
   }
 
   static Future<void> setUserProperty(String userName) async {
     try {
       if (kDebugMode) return;
-      await _analytics.setUserProperty(name: userName, value: null);
+      await _analytics.setUserProperty(
+        name: userName,
+        value: null,
+      );
     } on Exception catch (error, stackTrace) {
       MqCrashlytics.report(error, stackTrace);
-      log('MqAnalytics setUserProperty error: $error, stackTrace: $stackTrace');
+      log(
+        'MqAnalytics setUserProperty:',
+        error: error,
+        stackTrace: stackTrace,
+      );
     }
   }
 
-  static void track(String event, {Map<String, Object>? params}) {
+  static void track(
+    String event, {
+    Map<String, Object>? params,
+  }) {
     try {
       if (kDebugMode) return;
-      unawaited(_analytics.logEvent(name: event, parameters: params));
+      unawaited(
+        _analytics.logEvent(
+          name: event,
+          parameters: params,
+        ),
+      );
     } on Exception catch (error, stackTrace) {
       MqCrashlytics.report(error, stackTrace);
-      log('MqAnalytics track error: $error, stackTrace: $stackTrace');
+      log(
+        'MqAnalytics track:',
+        error: error,
+        stackTrace: stackTrace,
+      );
     }
   }
 

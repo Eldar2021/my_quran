@@ -1,3 +1,10 @@
-enum MqAppUiGender { male, famale, unknown }
+enum MqAppUiGender {
+  male,
+  famale,
+  unknown,
+}
 
-enum AppUiGender { male, famela }
+enum AppUiGender {
+  male,
+  famela,
+}

@@ -52,7 +52,9 @@ class SoccialAuth {
         );
       } else {
         // Fallback for platforms that don't support authenticate
-        throw UnsupportedError('Google Sign-In authenticate() not supported on this platform');
+        throw UnsupportedError(
+          'Google Sign-In authenticate() not supported on this platform',
+        );
       }
 
       if (googleUser == null) {
@@ -86,14 +88,24 @@ class SoccialAuth {
   Future<(UserCredential, AuthorizationCredentialAppleID)> signInWithApple() async {
     try {
       final credential = await SignInWithApple.getAppleIDCredential(
-        scopes: [AppleIDAuthorizationScopes.email, AppleIDAuthorizationScopes.fullName],
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
       );
 
-      final oauthCredential = OAuthProvider(
-        'apple.com',
-      ).credential(idToken: credential.identityToken, accessToken: credential.authorizationCode);
+      final oauthCredential =
+          OAuthProvider(
+            'apple.com',
+          ).credential(
+            idToken: credential.identityToken,
+            accessToken: credential.authorizationCode,
+          );
 
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(
+        oauthCredential,
+      );
+
       return (userCredential, credential);
     } catch (e, s) {
       MqCrashlytics.report(e, s);

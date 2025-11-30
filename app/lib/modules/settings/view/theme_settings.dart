@@ -14,7 +14,10 @@ class ThemeSettingsView extends StatelessWidget {
     final themeCubit = context.watch<AppThemeCubit>();
     final colorScheme = Theme.of(context).colorScheme;
     return ScaffoldWithBgImage(
-      appBar: AppBar(key: const Key(MqKeys.settingsThemePage), title: Text(context.l10n.theme)),
+      appBar: AppBar(
+        key: const Key(MqKeys.settingsThemePage),
+        title: Text(context.l10n.theme),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -26,12 +29,17 @@ class ThemeSettingsView extends StatelessWidget {
               value: themeCubit.state.themeData.brightness == Brightness.dark,
               title: Text(context.l10n.darkMode),
               secondary: Assets.icons.lightDark.svg(
-                colorFilter: ColorFilter.mode(colorScheme.onSurface, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                  colorScheme.onSurface,
+                  BlendMode.srcIn,
+                ),
               ),
               onChanged: (v) {
                 MqAnalytic.track(
                   AnalyticKey.selectThemeMode,
-                  params: {'mode': v ? Brightness.light.name : Brightness.dark.name},
+                  params: {
+                    'mode': v ? Brightness.light.name : Brightness.dark.name,
+                  },
                 );
                 context.read<AppThemeCubit>().changeMode(isDark: v);
               },
@@ -55,7 +63,10 @@ class ThemeSettingsView extends StatelessWidget {
               },
             ),
             const Spacer(),
-            ElevatedButton(onPressed: () => Navigator.pop(context), child: Text(context.l10n.saveChanges)),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(context.l10n.saveChanges),
+            ),
             SizedBox(height: AppSpacing.bottomSpace),
           ],
         ),

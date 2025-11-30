@@ -14,8 +14,9 @@ final class MqHatimParticipantsDetailUserModel {
     required this.accepted,
   });
 
-  factory MqHatimParticipantsDetailUserModel.fromJson(Map<String, dynamic> json) =>
-      _$MqHatimParticipantsDetailUserModelFromJson(json);
+  factory MqHatimParticipantsDetailUserModel.fromJson(
+    Map<String, dynamic> json,
+  ) => _$MqHatimParticipantsDetailUserModelFromJson(json);
   Map<String, dynamic> toJson() => _$MqHatimParticipantsDetailUserModelToJson(this);
 
   final int id;

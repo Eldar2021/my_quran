@@ -49,7 +49,9 @@ class QuranAudioProgressingWidget extends StatelessWidget {
               Expanded(
                 child: SliderTheme(
                   data: SliderThemeData(
-                    thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                    thumbShape: const RoundSliderThumbShape(
+                      enabledThumbRadius: 6,
+                    ),
                     trackShape: CustomTrackShape(),
                   ),
                   child: Slider(
@@ -90,9 +92,14 @@ class QuranAudioProgressingWidget extends StatelessWidget {
                 icon: isLoading
                     ? Padding(
                         padding: const EdgeInsets.all(13),
-                        child: CupertinoActivityIndicator(color: colorScheme.primary, radius: 20),
+                        child: CupertinoActivityIndicator(
+                          color: colorScheme.primary,
+                          radius: 20,
+                        ),
                       )
-                    : Icon(isProgressing ? Icons.pause_circle : Icons.play_circle),
+                    : Icon(
+                        isProgressing ? Icons.pause_circle : Icons.play_circle,
+                      ),
               ),
               const SizedBox(width: 20),
               IconButton(
