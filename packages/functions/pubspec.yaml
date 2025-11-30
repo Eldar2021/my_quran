@@ -1,0 +1,11 @@
+name: functions
+description: Dart functions
+version: 0.1.0+1
+resolution: workspace
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+
+dev_dependencies:
+  test:

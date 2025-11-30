@@ -6,6 +6,7 @@ environment:
 
 workspace:
   - app
+  - packages/functions
   - packages/mq_analytics
   - packages/mq_app_ui
   - packages/mq_app_ui/gallery
