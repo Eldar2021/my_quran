@@ -7,7 +7,9 @@ part 'mq_search_model.g.dart';
 @JsonSerializable()
 @immutable
 final class MqSearchModel {
-  const MqSearchModel({required this.users});
+  const MqSearchModel({
+    required this.users,
+  });
 
   factory MqSearchModel.fromJson(Map<String, dynamic> json) => _$MqSearchModelFromJson(json);
   Map<String, dynamic> toJson() => _$MqSearchModelToJson(this);

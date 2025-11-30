@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: themeProvider!,
-      builder: (BuildContext context, Widget? child) {
+      builder: (context, child) {
         return MaterialApp(
           title: 'MyQuran Example Gallery',
           theme: themeProvider!.theme.themeData,
@@ -52,61 +52,81 @@ class RootPage extends StatelessWidget {
         icon: const Icon(Icons.color_lens),
         title: const Text('Theme Colors'),
         subtitle: const Text('All theme colors'),
-        onTap: () => Navigator.of(context).push<void>(ThemeColorsView.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          ThemeColorsView.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.color_lens),
         title: const Text('App Colors'),
         subtitle: const Text('All app colors'),
-        onTap: () => Navigator.of(context).push<void>(AppColorsView.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          AppColorsView.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.text_format),
         title: const Text('Theme Typography'),
         subtitle: const Text('All of the predefined theme text styles'),
-        onTap: () => Navigator.of(context).push<void>(ThemeTypographyPage.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          ThemeTypographyPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.text_format),
         title: const Text('App Typography'),
         subtitle: const Text('All of the predefined app text styles'),
-        onTap: () => Navigator.of(context).push<void>(AppTypographyPage.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          AppTypographyPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.border_vertical),
         title: const Text('Spacing'),
         subtitle: const Text('All of the predefined spacings'),
-        onTap: () => Navigator.of(context).push<void>(SpacingPage.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          SpacingPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.widgets),
         title: const Text('UI Components'),
         subtitle: const Text('All of the predefined components'),
-        onTap: () => Navigator.of(context).push<void>(UiComponentsPage.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          UiComponentsPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.widgets),
         title: const Text('Body Image'),
         subtitle: const Text('All of the predefined body'),
-        onTap: () => Navigator.of(context).push<void>(BgImageBodyPage.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          BgImageBodyPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.pest_control_rodent_sharp),
         title: const Text('App Components'),
         subtitle: const Text('All of the app components'),
-        onTap: () => Navigator.of(context).push<void>(AppComponentsPage.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          AppComponentsPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.add_reaction_outlined),
         title: const Text('Show Contents'),
         subtitle: const Text('All of the show contents'),
-        onTap: () => Navigator.of(context).push<void>(ShowContentsPage.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          ShowContentsPage.route(),
+        ),
       ),
       ListItem(
         icon: const Icon(Icons.storage),
         title: const Text('Story Contents'),
         subtitle: const Text('All of the store contents'),
-        onTap: () => Navigator.of(context).push<void>(StoryView.route()),
+        onTap: () => Navigator.of(context).push<void>(
+          StoryView.route(),
+        ),
       ),
       Wrap(
         children: [
@@ -140,7 +160,9 @@ class RootPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('My Quran Gallery App')),
+      appBar: AppBar(
+        title: const Text('My Quran Gallery App'),
+      ),
       body: ListView.separated(
         itemCount: pages.length,
         itemBuilder: (_, index) => pages[index],
@@ -151,7 +173,13 @@ class RootPage extends StatelessWidget {
 }
 
 class ListItem extends StatelessWidget {
-  const ListItem({required this.icon, required this.title, required this.subtitle, this.onTap, super.key});
+  const ListItem({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    this.onTap,
+    super.key,
+  });
 
   final VoidCallback? onTap;
   final Icon icon;
@@ -162,7 +190,9 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: IconTheme(
-        data: IconThemeData(color: Theme.of(context).iconTheme.color),
+        data: IconThemeData(
+          color: Theme.of(context).iconTheme.color,
+        ),
         child: icon,
       ),
       title: title,

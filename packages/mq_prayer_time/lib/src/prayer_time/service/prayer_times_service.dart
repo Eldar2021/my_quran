@@ -32,12 +32,35 @@ final class PrayerTimesService {
       precision: true,
     );
 
-    final fajrTime = tz.TZDateTime.from(prayerTimes.fajr, timezone);
-    final sunriseTime = tz.TZDateTime.from(prayerTimes.sunrise, timezone);
-    final dhuhrTime = tz.TZDateTime.from(prayerTimes.dhuhr, timezone);
-    final asrTime = tz.TZDateTime.from(prayerTimes.asr, timezone);
-    final maghribTime = tz.TZDateTime.from(prayerTimes.maghrib, timezone);
-    final ishaTime = tz.TZDateTime.from(prayerTimes.isha, timezone);
+    final fajrTime = tz.TZDateTime.from(
+      prayerTimes.fajr,
+      timezone,
+    );
+
+    final sunriseTime = tz.TZDateTime.from(
+      prayerTimes.sunrise,
+      timezone,
+    );
+
+    final dhuhrTime = tz.TZDateTime.from(
+      prayerTimes.dhuhr,
+      timezone,
+    );
+
+    final asrTime = tz.TZDateTime.from(
+      prayerTimes.asr,
+      timezone,
+    );
+
+    final maghribTime = tz.TZDateTime.from(
+      prayerTimes.maghrib,
+      timezone,
+    );
+
+    final ishaTime = tz.TZDateTime.from(
+      prayerTimes.isha,
+      timezone,
+    );
 
     return MqPrayerTime(
       fajr: fajrTime,

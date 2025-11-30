@@ -27,7 +27,10 @@ class QuranPagePagingBloc extends Bloc<QuranPagePagingEvent, QuranPagePagingStat
     int pageNumber,
     String quranFmt,
   ) async {
-    final res = await repository.fetchQuranByPage(pageNumber, quranFmt);
+    final res = await repository.fetchQuranByPage(
+      pageNumber,
+      quranFmt,
+    );
     return [res];
   }
 

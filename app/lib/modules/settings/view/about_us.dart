@@ -9,19 +9,31 @@ class AboutUsVuew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBgImage(
-      appBar: AppBar(title: Text(context.l10n.aboutUs), key: const Key(MqKeys.settingsAboutUsPage)),
+      appBar: AppBar(
+        title: Text(context.l10n.aboutUs),
+        key: const Key(MqKeys.settingsAboutUsPage),
+      ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 20,
+        ),
         children: [
           const SizedBox(height: 20),
           Text(
             context.l10n.prophetLegacy,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
             textAlign: TextAlign.center,
           ),
           Text(
             context.l10n.alImran,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
             textAlign: TextAlign.center,
           ),
         ],

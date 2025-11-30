@@ -28,7 +28,11 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider<AppRepository>(
           create: (context) => AppRepositoryImpl(
-            isMockData ? const AppLocalDataSourceMock() : AppLocalDataSourceImpl(context.read<PreferencesStorage>()),
+            isMockData
+                ? const AppLocalDataSourceMock()
+                : AppLocalDataSourceImpl(
+                    context.read<PreferencesStorage>(),
+                  ),
           ),
         ),
         RepositoryProvider<MqHomeRepository>(
@@ -69,7 +73,11 @@ class MyApp extends StatelessWidget {
           },
         ),
         RepositoryProvider<ReadThemeRepository>(
-          create: (context) => ReadThemeRepositoryImpl(LocalThemeDataSourceImpl(context.read<PreferencesStorage>())),
+          create: (context) => ReadThemeRepositoryImpl(
+            LocalThemeDataSourceImpl(
+              context.read<PreferencesStorage>(),
+            ),
+          ),
         ),
         RepositoryProvider<MqQuranRepository>(
           create: (context) => MqQuranRepositoryImpl(
@@ -77,17 +85,34 @@ class MyApp extends StatelessWidget {
             MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
           ),
         ),
-        BlocProvider(create: (context) => AuthCubit(context.read<AuthRepository>())),
-        BlocProvider(create: (context) => HomeCubit(context.read<MqHomeRepository>())),
-        BlocProvider(create: (context) => MqStoryCubit(context.read<MqHomeRepository>())),
-        BlocProvider(create: (context) => HomeBannersCubit(context.read<MqHomeRepository>())),
         BlocProvider(
-          create: (context) =>
-              QuranAudioCubit(AudioPlayer(), context.read<NetworkClient>(), context.read<MqQuranRepository>())..init(),
+          create: (context) => AuthCubit(context.read<AuthRepository>()),
         ),
-        BlocProvider(create: (context) => RemoteConfigCubit(context.read<MqRemoteConfig>())),
-        BlocProvider(create: (context) => LocationCubit(context.read<MqLocationClient>())),
-        BlocProvider(create: (context) => AppThemeCubit(context.read<AppRepository>())),
+        BlocProvider(
+          create: (context) => HomeCubit(context.read<MqHomeRepository>()),
+        ),
+        BlocProvider(
+          create: (context) => MqStoryCubit(context.read<MqHomeRepository>()),
+        ),
+        BlocProvider(
+          create: (context) => HomeBannersCubit(context.read<MqHomeRepository>()),
+        ),
+        BlocProvider(
+          create: (context) => QuranAudioCubit(
+            AudioPlayer(),
+            context.read<NetworkClient>(),
+            context.read<MqQuranRepository>(),
+          )..init(),
+        ),
+        BlocProvider(
+          create: (context) => RemoteConfigCubit(context.read<MqRemoteConfig>()),
+        ),
+        BlocProvider(
+          create: (context) => LocationCubit(context.read<MqLocationClient>()),
+        ),
+        BlocProvider(
+          create: (context) => AppThemeCubit(context.read<AppRepository>()),
+        ),
       ],
       child: const QuranApp(),
     );
@@ -106,7 +131,9 @@ class _QuranAppState extends State<QuranApp> {
 
   @override
   void initState() {
-    _router = AppRouter.intance(isFirstTime: !context.read<AuthCubit>().isAuthedticated).router();
+    _router = AppRouter.intance(
+      isFirstTime: !context.read<AuthCubit>().isAuthedticated,
+    ).router();
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       context.read<RemoteConfigCubit>().init();

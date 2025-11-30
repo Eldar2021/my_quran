@@ -10,7 +10,7 @@ on:
 jobs:
   integration_test_ios:
     runs-on: macos-14
-    if: github.base_ref == 'main' && github.event.pull_request.draft == false
+    if: github.event_name == 'push' || (github.event.pull_request.draft == false)
     strategy:
       matrix:
         include:

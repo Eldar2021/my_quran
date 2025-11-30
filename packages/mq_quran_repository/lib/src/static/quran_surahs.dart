@@ -9,7 +9,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الفاتحة',
     'verses_count': 7,
     'pages': [1, 1],
-    'translated_name': {'language_name': 'english', 'name': 'The Opener'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Opener',
+    },
   },
   {
     'id': 2,
@@ -21,7 +24,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'البقرة',
     'verses_count': 286,
     'pages': [2, 49],
-    'translated_name': {'language_name': 'english', 'name': 'The Cow'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Cow',
+    },
   },
   {
     'id': 3,
@@ -33,7 +39,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'آل عمران',
     'verses_count': 200,
     'pages': [50, 76],
-    'translated_name': {'language_name': 'english', 'name': 'Family of Imran'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Family of Imran',
+    },
   },
   {
     'id': 4,
@@ -45,7 +54,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النساء',
     'verses_count': 176,
     'pages': [77, 106],
-    'translated_name': {'language_name': 'english', 'name': 'The Women'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Women',
+    },
   },
   {
     'id': 5,
@@ -57,7 +69,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المائدة',
     'verses_count': 120,
     'pages': [106, 127],
-    'translated_name': {'language_name': 'english', 'name': 'The Table Spread'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Table Spread',
+    },
   },
   {
     'id': 6,
@@ -69,7 +84,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الأنعام',
     'verses_count': 165,
     'pages': [128, 150],
-    'translated_name': {'language_name': 'english', 'name': 'The Cattle'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Cattle',
+    },
   },
   {
     'id': 7,
@@ -81,7 +99,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الأعراف',
     'verses_count': 206,
     'pages': [151, 176],
-    'translated_name': {'language_name': 'english', 'name': 'The Heights'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Heights',
+    },
   },
   {
     'id': 8,
@@ -93,7 +114,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الأنفال',
     'verses_count': 75,
     'pages': [177, 186],
-    'translated_name': {'language_name': 'english', 'name': 'The Spoils of War'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Spoils of War',
+    },
   },
   {
     'id': 9,
@@ -105,7 +129,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'التوبة',
     'verses_count': 129,
     'pages': [187, 207],
-    'translated_name': {'language_name': 'english', 'name': 'The Repentance'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Repentance',
+    },
   },
   {
     'id': 10,
@@ -117,7 +144,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'يونس',
     'verses_count': 109,
     'pages': [208, 221],
-    'translated_name': {'language_name': 'english', 'name': 'Jonah'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Jonah',
+    },
   },
   {
     'id': 11,
@@ -129,7 +159,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'هود',
     'verses_count': 123,
     'pages': [221, 235],
-    'translated_name': {'language_name': 'english', 'name': 'Hud'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Hud',
+    },
   },
   {
     'id': 12,
@@ -141,7 +174,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'يوسف',
     'verses_count': 111,
     'pages': [235, 248],
-    'translated_name': {'language_name': 'english', 'name': 'Joseph'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Joseph',
+    },
   },
   {
     'id': 13,
@@ -153,7 +189,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الرعد',
     'verses_count': 43,
     'pages': [249, 255],
-    'translated_name': {'language_name': 'english', 'name': 'The Thunder'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Thunder',
+    },
   },
   {
     'id': 14,
@@ -165,7 +204,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'ابراهيم',
     'verses_count': 52,
     'pages': [255, 261],
-    'translated_name': {'language_name': 'english', 'name': 'Abraham'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Abraham',
+    },
   },
   {
     'id': 15,
@@ -177,7 +219,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الحجر',
     'verses_count': 99,
     'pages': [262, 267],
-    'translated_name': {'language_name': 'english', 'name': 'The Rocky Tract'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Rocky Tract',
+    },
   },
   {
     'id': 16,
@@ -189,7 +234,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النحل',
     'verses_count': 128,
     'pages': [267, 281],
-    'translated_name': {'language_name': 'english', 'name': 'The Bee'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Bee',
+    },
   },
   {
     'id': 17,
@@ -201,7 +249,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الإسراء',
     'verses_count': 111,
     'pages': [282, 293],
-    'translated_name': {'language_name': 'english', 'name': 'The Night Journey'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Night Journey',
+    },
   },
   {
     'id': 18,
@@ -213,7 +264,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الكهف',
     'verses_count': 110,
     'pages': [293, 304],
-    'translated_name': {'language_name': 'english', 'name': 'The Cave'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Cave',
+    },
   },
   {
     'id': 19,
@@ -225,7 +279,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'مريم',
     'verses_count': 98,
     'pages': [305, 312],
-    'translated_name': {'language_name': 'english', 'name': 'Mary'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Mary',
+    },
   },
   {
     'id': 20,
@@ -237,7 +294,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'طه',
     'verses_count': 135,
     'pages': [312, 321],
-    'translated_name': {'language_name': 'english', 'name': 'Ta-Ha'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Ta-Ha',
+    },
   },
   {
     'id': 21,
@@ -249,7 +309,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الأنبياء',
     'verses_count': 112,
     'pages': [322, 331],
-    'translated_name': {'language_name': 'english', 'name': 'The Prophets'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Prophets',
+    },
   },
   {
     'id': 22,
@@ -261,7 +324,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الحج',
     'verses_count': 78,
     'pages': [332, 341],
-    'translated_name': {'language_name': 'english', 'name': 'The Pilgrimage'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Pilgrimage',
+    },
   },
   {
     'id': 23,
@@ -273,7 +339,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المؤمنون',
     'verses_count': 118,
     'pages': [342, 349],
-    'translated_name': {'language_name': 'english', 'name': 'The Believers'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Believers',
+    },
   },
   {
     'id': 24,
@@ -285,7 +354,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النور',
     'verses_count': 64,
     'pages': [350, 359],
-    'translated_name': {'language_name': 'english', 'name': 'The Light'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Light',
+    },
   },
   {
     'id': 25,
@@ -297,7 +369,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الفرقان',
     'verses_count': 77,
     'pages': [359, 366],
-    'translated_name': {'language_name': 'english', 'name': 'The Criterion'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Criterion',
+    },
   },
   {
     'id': 26,
@@ -309,7 +384,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الشعراء',
     'verses_count': 227,
     'pages': [367, 376],
-    'translated_name': {'language_name': 'english', 'name': 'The Poets'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Poets',
+    },
   },
   {
     'id': 27,
@@ -321,7 +399,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النمل',
     'verses_count': 93,
     'pages': [377, 385],
-    'translated_name': {'language_name': 'english', 'name': 'The Ant'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Ant',
+    },
   },
   {
     'id': 28,
@@ -333,7 +414,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'القصص',
     'verses_count': 88,
     'pages': [385, 396],
-    'translated_name': {'language_name': 'english', 'name': 'The Stories'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Stories',
+    },
   },
   {
     'id': 29,
@@ -345,7 +429,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'العنكبوت',
     'verses_count': 69,
     'pages': [396, 404],
-    'translated_name': {'language_name': 'english', 'name': 'The Spider'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Spider',
+    },
   },
   {
     'id': 30,
@@ -357,7 +444,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الروم',
     'verses_count': 60,
     'pages': [404, 410],
-    'translated_name': {'language_name': 'english', 'name': 'The Romans'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Romans',
+    },
   },
   {
     'id': 31,
@@ -369,7 +459,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'لقمان',
     'verses_count': 34,
     'pages': [411, 414],
-    'translated_name': {'language_name': 'english', 'name': 'Luqman'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Luqman',
+    },
   },
   {
     'id': 32,
@@ -381,7 +474,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'السجدة',
     'verses_count': 30,
     'pages': [415, 417],
-    'translated_name': {'language_name': 'english', 'name': 'The Prostration'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Prostration',
+    },
   },
   {
     'id': 33,
@@ -393,7 +489,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الأحزاب',
     'verses_count': 73,
     'pages': [418, 427],
-    'translated_name': {'language_name': 'english', 'name': 'The Combined Forces'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Combined Forces',
+    },
   },
   {
     'id': 34,
@@ -405,7 +504,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'سبإ',
     'verses_count': 54,
     'pages': [428, 434],
-    'translated_name': {'language_name': 'english', 'name': 'Sheba'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Sheba',
+    },
   },
   {
     'id': 35,
@@ -417,7 +519,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'فاطر',
     'verses_count': 45,
     'pages': [434, 440],
-    'translated_name': {'language_name': 'english', 'name': 'Originator'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Originator',
+    },
   },
   {
     'id': 36,
@@ -429,7 +534,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'يس',
     'verses_count': 83,
     'pages': [440, 445],
-    'translated_name': {'language_name': 'english', 'name': 'Ya Sin'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Ya Sin',
+    },
   },
   {
     'id': 37,
@@ -441,7 +549,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الصافات',
     'verses_count': 182,
     'pages': [446, 452],
-    'translated_name': {'language_name': 'english', 'name': 'Those who set the Ranks'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Those who set the Ranks',
+    },
   },
   {
     'id': 38,
@@ -453,7 +564,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'ص',
     'verses_count': 88,
     'pages': [453, 458],
-    'translated_name': {'language_name': 'english', 'name': "The Letter 'Saad'"},
+    'translated_name': {
+      'language_name': 'english',
+      'name': "The Letter 'Saad'",
+    },
   },
   {
     'id': 39,
@@ -465,7 +579,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الزمر',
     'verses_count': 75,
     'pages': [458, 467],
-    'translated_name': {'language_name': 'english', 'name': 'The Troops'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Troops',
+    },
   },
   {
     'id': 40,
@@ -477,7 +594,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'غافر',
     'verses_count': 85,
     'pages': [467, 476],
-    'translated_name': {'language_name': 'english', 'name': 'The Forgiver'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Forgiver',
+    },
   },
   {
     'id': 41,
@@ -489,7 +609,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'فصلت',
     'verses_count': 54,
     'pages': [477, 482],
-    'translated_name': {'language_name': 'english', 'name': 'Explained in Detail'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Explained in Detail',
+    },
   },
   {
     'id': 42,
@@ -501,7 +624,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الشورى',
     'verses_count': 53,
     'pages': [483, 489],
-    'translated_name': {'language_name': 'english', 'name': 'The Consultation'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Consultation',
+    },
   },
   {
     'id': 43,
@@ -513,7 +639,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الزخرف',
     'verses_count': 89,
     'pages': [489, 495],
-    'translated_name': {'language_name': 'english', 'name': 'The Ornaments of Gold'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Ornaments of Gold',
+    },
   },
   {
     'id': 44,
@@ -525,7 +654,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الدخان',
     'verses_count': 59,
     'pages': [496, 498],
-    'translated_name': {'language_name': 'english', 'name': 'The Smoke'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Smoke',
+    },
   },
   {
     'id': 45,
@@ -537,7 +669,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الجاثية',
     'verses_count': 37,
     'pages': [499, 502],
-    'translated_name': {'language_name': 'english', 'name': 'The Crouching'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Crouching',
+    },
   },
   {
     'id': 46,
@@ -549,7 +684,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الأحقاف',
     'verses_count': 35,
     'pages': [502, 506],
-    'translated_name': {'language_name': 'english', 'name': 'The Wind-Curved Sandhills'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Wind-Curved Sandhills',
+    },
   },
   {
     'id': 47,
@@ -561,7 +699,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'محمد',
     'verses_count': 38,
     'pages': [507, 510],
-    'translated_name': {'language_name': 'english', 'name': 'Muhammad'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Muhammad',
+    },
   },
   {
     'id': 48,
@@ -573,7 +714,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الفتح',
     'verses_count': 29,
     'pages': [511, 515],
-    'translated_name': {'language_name': 'english', 'name': 'The Victory'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Victory',
+    },
   },
   {
     'id': 49,
@@ -585,7 +729,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الحجرات',
     'verses_count': 18,
     'pages': [515, 517],
-    'translated_name': {'language_name': 'english', 'name': 'The Rooms'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Rooms',
+    },
   },
   {
     'id': 50,
@@ -597,7 +744,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'ق',
     'verses_count': 45,
     'pages': [518, 520],
-    'translated_name': {'language_name': 'english', 'name': "The Letter 'Qaf'"},
+    'translated_name': {
+      'language_name': 'english',
+      'name': "The Letter 'Qaf'",
+    },
   },
   {
     'id': 51,
@@ -609,7 +759,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الذاريات',
     'verses_count': 60,
     'pages': [520, 523],
-    'translated_name': {'language_name': 'english', 'name': 'The Winnowing Winds'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Winnowing Winds',
+    },
   },
   {
     'id': 52,
@@ -621,7 +774,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الطور',
     'verses_count': 49,
     'pages': [523, 525],
-    'translated_name': {'language_name': 'english', 'name': 'The Mount'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Mount',
+    },
   },
   {
     'id': 53,
@@ -633,7 +789,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النجم',
     'verses_count': 62,
     'pages': [526, 528],
-    'translated_name': {'language_name': 'english', 'name': 'The Star'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Star',
+    },
   },
   {
     'id': 54,
@@ -645,7 +804,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'القمر',
     'verses_count': 55,
     'pages': [528, 531],
-    'translated_name': {'language_name': 'english', 'name': 'The Moon'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Moon',
+    },
   },
   {
     'id': 55,
@@ -657,7 +819,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الرحمن',
     'verses_count': 78,
     'pages': [531, 534],
-    'translated_name': {'language_name': 'english', 'name': 'The Beneficent'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Beneficent',
+    },
   },
   {
     'id': 56,
@@ -669,7 +834,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الواقعة',
     'verses_count': 96,
     'pages': [534, 537],
-    'translated_name': {'language_name': 'english', 'name': 'The Inevitable'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Inevitable',
+    },
   },
   {
     'id': 57,
@@ -681,7 +849,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الحديد',
     'verses_count': 29,
     'pages': [537, 541],
-    'translated_name': {'language_name': 'english', 'name': 'The Iron'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Iron',
+    },
   },
   {
     'id': 58,
@@ -693,7 +864,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المجادلة',
     'verses_count': 22,
     'pages': [542, 545],
-    'translated_name': {'language_name': 'english', 'name': 'The Pleading Woman'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Pleading Woman',
+    },
   },
   {
     'id': 59,
@@ -705,7 +879,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الحشر',
     'verses_count': 24,
     'pages': [545, 548],
-    'translated_name': {'language_name': 'english', 'name': 'The Exile'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Exile',
+    },
   },
   {
     'id': 60,
@@ -717,7 +894,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الممتحنة',
     'verses_count': 13,
     'pages': [549, 551],
-    'translated_name': {'language_name': 'english', 'name': 'She that is to be examined'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'She that is to be examined',
+    },
   },
   {
     'id': 61,
@@ -729,7 +909,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الصف',
     'verses_count': 14,
     'pages': [551, 552],
-    'translated_name': {'language_name': 'english', 'name': 'The Ranks'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Ranks',
+    },
   },
   {
     'id': 62,
@@ -741,7 +924,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الجمعة',
     'verses_count': 11,
     'pages': [553, 554],
-    'translated_name': {'language_name': 'english', 'name': 'The Congregation, Friday'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Congregation, Friday',
+    },
   },
   {
     'id': 63,
@@ -753,7 +939,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المنافقون',
     'verses_count': 11,
     'pages': [554, 555],
-    'translated_name': {'language_name': 'english', 'name': 'The Hypocrites'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Hypocrites',
+    },
   },
   {
     'id': 64,
@@ -765,7 +954,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'التغابن',
     'verses_count': 18,
     'pages': [556, 557],
-    'translated_name': {'language_name': 'english', 'name': 'The Mutual Disillusion'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Mutual Disillusion',
+    },
   },
   {
     'id': 65,
@@ -777,7 +969,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الطلاق',
     'verses_count': 12,
     'pages': [558, 559],
-    'translated_name': {'language_name': 'english', 'name': 'The Divorce'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Divorce',
+    },
   },
   {
     'id': 66,
@@ -789,7 +984,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'التحريم',
     'verses_count': 12,
     'pages': [560, 561],
-    'translated_name': {'language_name': 'english', 'name': 'The Prohibition'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Prohibition',
+    },
   },
   {
     'id': 67,
@@ -801,7 +999,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الملك',
     'verses_count': 30,
     'pages': [562, 564],
-    'translated_name': {'language_name': 'english', 'name': 'The Sovereignty'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Sovereignty',
+    },
   },
   {
     'id': 68,
@@ -813,7 +1014,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'القلم',
     'verses_count': 52,
     'pages': [564, 566],
-    'translated_name': {'language_name': 'english', 'name': 'The Pen'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Pen',
+    },
   },
   {
     'id': 69,
@@ -825,7 +1029,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الحاقة',
     'verses_count': 52,
     'pages': [566, 568],
-    'translated_name': {'language_name': 'english', 'name': 'The Reality'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Reality',
+    },
   },
   {
     'id': 70,
@@ -837,7 +1044,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المعارج',
     'verses_count': 44,
     'pages': [568, 570],
-    'translated_name': {'language_name': 'english', 'name': 'The Ascending Stairways'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Ascending Stairways',
+    },
   },
   {
     'id': 71,
@@ -849,7 +1059,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'نوح',
     'verses_count': 28,
     'pages': [570, 571],
-    'translated_name': {'language_name': 'english', 'name': 'Noah'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Noah',
+    },
   },
   {
     'id': 72,
@@ -861,7 +1074,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الجن',
     'verses_count': 28,
     'pages': [572, 573],
-    'translated_name': {'language_name': 'english', 'name': 'The Jinn'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Jinn',
+    },
   },
   {
     'id': 73,
@@ -873,7 +1089,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المزمل',
     'verses_count': 20,
     'pages': [574, 575],
-    'translated_name': {'language_name': 'english', 'name': 'The Enshrouded One'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Enshrouded One',
+    },
   },
   {
     'id': 74,
@@ -885,7 +1104,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المدثر',
     'verses_count': 56,
     'pages': [575, 577],
-    'translated_name': {'language_name': 'english', 'name': 'The Cloaked One'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Cloaked One',
+    },
   },
   {
     'id': 75,
@@ -897,7 +1119,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'القيامة',
     'verses_count': 40,
     'pages': [577, 578],
-    'translated_name': {'language_name': 'english', 'name': 'The Resurrection'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Resurrection',
+    },
   },
   {
     'id': 76,
@@ -909,7 +1134,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الانسان',
     'verses_count': 31,
     'pages': [578, 580],
-    'translated_name': {'language_name': 'english', 'name': 'The Man'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Man',
+    },
   },
   {
     'id': 77,
@@ -921,7 +1149,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المرسلات',
     'verses_count': 50,
     'pages': [580, 581],
-    'translated_name': {'language_name': 'english', 'name': 'The Emissaries'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Emissaries',
+    },
   },
   {
     'id': 78,
@@ -933,7 +1164,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النبإ',
     'verses_count': 40,
     'pages': [582, 583],
-    'translated_name': {'language_name': 'english', 'name': 'The Tidings'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Tidings',
+    },
   },
   {
     'id': 79,
@@ -945,7 +1179,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النازعات',
     'verses_count': 46,
     'pages': [583, 584],
-    'translated_name': {'language_name': 'english', 'name': 'Those who drag forth'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Those who drag forth',
+    },
   },
   {
     'id': 80,
@@ -957,7 +1194,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'عبس',
     'verses_count': 42,
     'pages': [585, 585],
-    'translated_name': {'language_name': 'english', 'name': 'He Frowned'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'He Frowned',
+    },
   },
   {
     'id': 81,
@@ -969,7 +1209,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'التكوير',
     'verses_count': 29,
     'pages': [586, 586],
-    'translated_name': {'language_name': 'english', 'name': 'The Overthrowing'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Overthrowing',
+    },
   },
   {
     'id': 82,
@@ -981,7 +1224,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الإنفطار',
     'verses_count': 19,
     'pages': [587, 587],
-    'translated_name': {'language_name': 'english', 'name': 'The Cleaving'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Cleaving',
+    },
   },
   {
     'id': 83,
@@ -993,7 +1239,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المطففين',
     'verses_count': 36,
     'pages': [587, 589],
-    'translated_name': {'language_name': 'english', 'name': 'The Defrauding'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Defrauding',
+    },
   },
   {
     'id': 84,
@@ -1005,7 +1254,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الإنشقاق',
     'verses_count': 25,
     'pages': [589, 589],
-    'translated_name': {'language_name': 'english', 'name': 'The Sundering'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Sundering',
+    },
   },
   {
     'id': 85,
@@ -1017,7 +1269,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'البروج',
     'verses_count': 22,
     'pages': [590, 590],
-    'translated_name': {'language_name': 'english', 'name': 'The Mansions of the Stars'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Mansions of the Stars',
+    },
   },
   {
     'id': 86,
@@ -1029,7 +1284,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الطارق',
     'verses_count': 17,
     'pages': [591, 591],
-    'translated_name': {'language_name': 'english', 'name': 'The Nightcommer'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Nightcommer',
+    },
   },
   {
     'id': 87,
@@ -1041,7 +1299,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الأعلى',
     'verses_count': 19,
     'pages': [591, 592],
-    'translated_name': {'language_name': 'english', 'name': 'The Most High'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Most High',
+    },
   },
   {
     'id': 88,
@@ -1053,7 +1314,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الغاشية',
     'verses_count': 26,
     'pages': [592, 592],
-    'translated_name': {'language_name': 'english', 'name': 'The Overwhelming'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Overwhelming',
+    },
   },
   {
     'id': 89,
@@ -1065,7 +1329,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الفجر',
     'verses_count': 30,
     'pages': [593, 594],
-    'translated_name': {'language_name': 'english', 'name': 'The Dawn'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Dawn',
+    },
   },
   {
     'id': 90,
@@ -1077,7 +1344,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'البلد',
     'verses_count': 20,
     'pages': [594, 594],
-    'translated_name': {'language_name': 'english', 'name': 'The City'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The City',
+    },
   },
   {
     'id': 91,
@@ -1089,7 +1359,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الشمس',
     'verses_count': 15,
     'pages': [595, 595],
-    'translated_name': {'language_name': 'english', 'name': 'The Sun'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Sun',
+    },
   },
   {
     'id': 92,
@@ -1101,7 +1374,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الليل',
     'verses_count': 21,
     'pages': [595, 596],
-    'translated_name': {'language_name': 'english', 'name': 'The Night'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Night',
+    },
   },
   {
     'id': 93,
@@ -1113,7 +1389,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الضحى',
     'verses_count': 11,
     'pages': [596, 596],
-    'translated_name': {'language_name': 'english', 'name': 'The Morning Hours'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Morning Hours',
+    },
   },
   {
     'id': 94,
@@ -1125,7 +1404,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الشرح',
     'verses_count': 8,
     'pages': [596, 596],
-    'translated_name': {'language_name': 'english', 'name': 'The Relief'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Relief',
+    },
   },
   {
     'id': 95,
@@ -1137,7 +1419,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'التين',
     'verses_count': 8,
     'pages': [597, 597],
-    'translated_name': {'language_name': 'english', 'name': 'The Fig'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Fig',
+    },
   },
   {
     'id': 96,
@@ -1149,7 +1434,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'العلق',
     'verses_count': 19,
     'pages': [597, 597],
-    'translated_name': {'language_name': 'english', 'name': 'The Clot'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Clot',
+    },
   },
   {
     'id': 97,
@@ -1161,7 +1449,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'القدر',
     'verses_count': 5,
     'pages': [598, 598],
-    'translated_name': {'language_name': 'english', 'name': 'The Power'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Power',
+    },
   },
   {
     'id': 98,
@@ -1173,7 +1464,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'البينة',
     'verses_count': 8,
     'pages': [598, 599],
-    'translated_name': {'language_name': 'english', 'name': 'The Clear Proof'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Clear Proof',
+    },
   },
   {
     'id': 99,
@@ -1185,7 +1479,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الزلزلة',
     'verses_count': 8,
     'pages': [599, 599],
-    'translated_name': {'language_name': 'english', 'name': 'The Earthquake'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Earthquake',
+    },
   },
   {
     'id': 100,
@@ -1197,7 +1494,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'العاديات',
     'verses_count': 11,
     'pages': [599, 600],
-    'translated_name': {'language_name': 'english', 'name': 'The Courser'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Courser',
+    },
   },
   {
     'id': 101,
@@ -1209,7 +1509,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'القارعة',
     'verses_count': 11,
     'pages': [600, 600],
-    'translated_name': {'language_name': 'english', 'name': 'The Calamity'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Calamity',
+    },
   },
   {
     'id': 102,
@@ -1221,7 +1524,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'التكاثر',
     'verses_count': 8,
     'pages': [600, 600],
-    'translated_name': {'language_name': 'english', 'name': 'The Rivalry in world increase'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Rivalry in world increase',
+    },
   },
   {
     'id': 103,
@@ -1233,7 +1539,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'العصر',
     'verses_count': 3,
     'pages': [601, 601],
-    'translated_name': {'language_name': 'english', 'name': 'The Declining Day'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Declining Day',
+    },
   },
   {
     'id': 104,
@@ -1245,7 +1554,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الهمزة',
     'verses_count': 9,
     'pages': [601, 601],
-    'translated_name': {'language_name': 'english', 'name': 'The Traducer'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Traducer',
+    },
   },
   {
     'id': 105,
@@ -1257,7 +1569,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الفيل',
     'verses_count': 5,
     'pages': [601, 601],
-    'translated_name': {'language_name': 'english', 'name': 'The Elephant'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Elephant',
+    },
   },
   {
     'id': 106,
@@ -1269,7 +1584,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'قريش',
     'verses_count': 4,
     'pages': [602, 602],
-    'translated_name': {'language_name': 'english', 'name': 'Quraysh'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Quraysh',
+    },
   },
   {
     'id': 107,
@@ -1281,7 +1599,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الماعون',
     'verses_count': 7,
     'pages': [602, 602],
-    'translated_name': {'language_name': 'english', 'name': 'The Small kindnesses'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Small kindnesses',
+    },
   },
   {
     'id': 108,
@@ -1293,7 +1614,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الكوثر',
     'verses_count': 3,
     'pages': [602, 602],
-    'translated_name': {'language_name': 'english', 'name': 'The Abundance'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Abundance',
+    },
   },
   {
     'id': 109,
@@ -1305,7 +1629,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الكافرون',
     'verses_count': 6,
     'pages': [603, 603],
-    'translated_name': {'language_name': 'english', 'name': 'The Disbelievers'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Disbelievers',
+    },
   },
   {
     'id': 110,
@@ -1317,7 +1644,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'النصر',
     'verses_count': 3,
     'pages': [603, 603],
-    'translated_name': {'language_name': 'english', 'name': 'The Divine Support'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Divine Support',
+    },
   },
   {
     'id': 111,
@@ -1329,7 +1659,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'المسد',
     'verses_count': 5,
     'pages': [603, 603],
-    'translated_name': {'language_name': 'english', 'name': 'The Palm Fiber'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Palm Fiber',
+    },
   },
   {
     'id': 112,
@@ -1341,7 +1674,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الإخلاص',
     'verses_count': 4,
     'pages': [604, 604],
-    'translated_name': {'language_name': 'english', 'name': 'The Sincerity'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Sincerity',
+    },
   },
   {
     'id': 113,
@@ -1353,7 +1689,10 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الفلق',
     'verses_count': 5,
     'pages': [604, 604],
-    'translated_name': {'language_name': 'english', 'name': 'The Daybreak'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'The Daybreak',
+    },
   },
   {
     'id': 114,
@@ -1365,6 +1704,9 @@ const mqQuranSurahsData = <Map<String, dynamic>>[
     'name_arabic': 'الناس',
     'verses_count': 6,
     'pages': [604, 604],
-    'translated_name': {'language_name': 'english', 'name': 'Mankind'},
+    'translated_name': {
+      'language_name': 'english',
+      'name': 'Mankind',
+    },
   },
 ];

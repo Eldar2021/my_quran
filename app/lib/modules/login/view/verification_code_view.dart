@@ -54,7 +54,10 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
             context.read<AuthCubit>().setUserData(state.user!);
             context.goNamed(AppRouter.home);
           } else if (state.exception != null) {
-            AppAlert.showErrorDialog(context, errorText: state.exception.toString());
+            AppAlert.showErrorDialog(
+              context,
+              errorText: state.exception.toString(),
+            );
           }
         },
         child: Form(
@@ -66,18 +69,26 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
                 child: Text(
                   context.l10n.myQuran,
                   textAlign: TextAlign.center,
-                  style: prTextTheme.displayMedium?.copyWith(color: colorScheme.primary, fontWeight: FontWeight.w800),
+                  style: prTextTheme.displayMedium?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
               const SizedBox(height: 60),
               Center(
                 child: Text(
                   context.l10n.verification,
-                  style: prTextTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
+                  style: prTextTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
-              Text(context.l10n.enter4DigitCode, textAlign: TextAlign.center),
+              Text(
+                context.l10n.enter4DigitCode,
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: 26),
               PinputWidget(
                 key: const Key(MqKeys.otpTextField),
@@ -94,8 +105,14 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
                 key: Key(MqKeys.loginTypeName('email')),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    MqAnalytic.track(AnalyticKey.tapLogin, params: {'soccial': 'email'});
-                    context.read<AuthCubit>().verifyOtp(verificationCodeController.text, widget.email);
+                    MqAnalytic.track(
+                      AnalyticKey.tapLogin,
+                      params: {'soccial': 'email'},
+                    );
+                    context.read<AuthCubit>().verifyOtp(
+                      verificationCodeController.text,
+                      widget.email,
+                    );
                   }
                 },
                 child: Text(context.l10n.login),

@@ -9,7 +9,11 @@ import 'package:my_quran/constants/contants.dart';
 part 'quran_audio_state.dart';
 
 class QuranAudioCubit extends Cubit<QuranAudioState> {
-  QuranAudioCubit(this.player, this.networkClient, this.quranRepository) : super(QuranAudioState());
+  QuranAudioCubit(
+    this.player,
+    this.networkClient,
+    this.quranRepository,
+  ) : super(const QuranAudioState());
 
   final AudioPlayer player;
   final NetworkClient networkClient;
@@ -37,7 +41,11 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
             ),
           )
           .toList();
-      await player.setAudioSources(playList, initialIndex: 0, preload: false);
+      await player.setAudioSources(
+        playList,
+        initialIndex: 0,
+        preload: false,
+      );
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       emit(QuranAudioState(exception: e.toString()));
@@ -48,17 +56,22 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
     if (await networkClient.checkInternetConnection()) {
       await player.play();
     } else {
-      emit(QuranAudioState(exception: 'Internet connection'));
+      emit(const QuranAudioState(exception: 'Internet connection'));
     }
   }
 
   Future<void> pause() async => player.pause();
+
   Future<void> stop() async => player.stop();
+
   Future<void> next() async => player.seekToNext();
+
   Future<void> previous() async => player.seekToPrevious();
 
   Future<void> seek([double milliseconds = 500]) async {
-    await player.seek(Duration(milliseconds: milliseconds.toInt()));
+    await player.seek(
+      Duration(milliseconds: milliseconds.toInt()),
+    );
   }
 
   Future<void> changeSurah(int i) async {

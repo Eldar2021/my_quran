@@ -60,7 +60,10 @@ class _SignInViewState extends State<SignInView> {
             context.read<AuthCubit>().setUserData(state.user!);
             context.goNamed(AppRouter.home);
           } else if (state.exception != null) {
-            AppAlert.showErrorDialog(context, errorText: state.exception.toString());
+            AppAlert.showErrorDialog(
+              context,
+              errorText: state.exception.toString(),
+            );
           }
         },
         child: Form(
@@ -73,7 +76,10 @@ class _SignInViewState extends State<SignInView> {
                 child: Text(
                   context.l10n.myQuran,
                   textAlign: TextAlign.center,
-                  style: prTextTheme.displayMedium?.copyWith(color: colorScheme.primary, fontWeight: FontWeight.w800),
+                  style: prTextTheme.displayMedium?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
               SizedBox(height: size.height * 0.07),
@@ -104,8 +110,13 @@ class _SignInViewState extends State<SignInView> {
                     MqAnalytic.track(AnalyticKey.goVerificationOtp);
                     try {
                       unawaited(AppAlert.showLoading(context));
-                      context.read<AuthCubit>().loginWithEmail(emailController.text);
-                      context.goNamed(AppRouter.verificationCode, pathParameters: {'email': emailController.text});
+                      context.read<AuthCubit>().loginWithEmail(
+                        emailController.text,
+                      );
+                      context.goNamed(
+                        AppRouter.verificationCode,
+                        pathParameters: {'email': emailController.text},
+                      );
                       if (context.mounted) context.loaderOverlay.hide();
                     } on Exception catch (e) {
                       log(e.toString());
@@ -117,7 +128,10 @@ class _SignInViewState extends State<SignInView> {
               Row(
                 children: [
                   const Expanded(child: Divider()),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: 8), child: Text(context.l10n.orContinueWith)),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(context.l10n.orContinueWith),
+                  ),
                   const Expanded(child: Divider()),
                 ],
               ),
@@ -126,7 +140,10 @@ class _SignInViewState extends State<SignInView> {
                 key: Key(MqKeys.loginTypeName('google')),
                 label: context.l10n.continueWithGoogle,
                 onPressed: () async {
-                  MqAnalytic.track(AnalyticKey.tapLogin, params: {'soccial': 'google'});
+                  MqAnalytic.track(
+                    AnalyticKey.tapLogin,
+                    params: {'soccial': 'google'},
+                  );
                   unawaited(AppAlert.showLoading(context));
                   await context.read<AuthCubit>().signInWithGoogle();
                   if (context.mounted) context.loaderOverlay.hide();
@@ -138,7 +155,10 @@ class _SignInViewState extends State<SignInView> {
                   key: Key(MqKeys.loginTypeName('apple')),
                   label: context.l10n.continueWithApple,
                   onPressed: () async {
-                    MqAnalytic.track(AnalyticKey.tapLogin, params: {'soccial': 'apple'});
+                    MqAnalytic.track(
+                      AnalyticKey.tapLogin,
+                      params: {'soccial': 'apple'},
+                    );
                     unawaited(AppAlert.showLoading(context));
                     await context.read<AuthCubit>().signInWithApple();
                     if (context.mounted) context.loaderOverlay.hide();
@@ -159,7 +179,9 @@ class _SignInViewState extends State<SignInView> {
                 },
                 child: Text(
                   context.l10n.continueAsGuest,
-                  style: prTextTheme.titleMedium?.copyWith(color: colorScheme.primary),
+                  style: prTextTheme.titleMedium?.copyWith(
+                    color: colorScheme.primary,
+                  ),
                 ),
               ),
             ],

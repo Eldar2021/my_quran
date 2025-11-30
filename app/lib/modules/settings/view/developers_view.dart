@@ -12,12 +12,22 @@ class DevelopersView extends StatelessWidget {
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return ScaffoldWithBgImage(
-      appBar: AppBar(title: Text(context.l10n.forDevelopers), key: const Key(MqKeys.settingsDevelopersPage)),
+      appBar: AppBar(
+        title: Text(context.l10n.forDevelopers),
+        key: const Key(MqKeys.settingsDevelopersPage),
+      ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 20,
+        ),
         child: Column(
           children: [
-            Text(context.l10n.githubMessage, style: prTextTheme.bodyLarge, textAlign: TextAlign.center),
+            Text(
+              context.l10n.githubMessage,
+              style: prTextTheme.bodyLarge,
+              textAlign: TextAlign.center,
+            ),
             const Spacer(),
             ContactGithubButton(
               labelText: context.l10n.github,

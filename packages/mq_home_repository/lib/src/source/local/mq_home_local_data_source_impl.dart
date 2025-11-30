@@ -32,7 +32,10 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
 
   @override
   Future<void> saveLocalData(MqHomeModel data) async {
-    await storage.writeString(key: _homeDataCacheKey, value: jsonEncode(data.toJson()));
+    await storage.writeString(
+      key: _homeDataCacheKey,
+      value: jsonEncode(data.toJson()),
+    );
   }
 
   @override
@@ -40,7 +43,13 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
     final localValue = storage.readString(key: _homeBannersCacheKey);
     if (localValue != null) {
       final data = jsonDecode(localValue) as List<dynamic>;
-      return data.map((e) => MqHomeBannerResponse.fromJson(e as Map<String, dynamic>)).toList();
+      return data
+          .map(
+            (e) => MqHomeBannerResponse.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList();
     } else {
       return [];
     }
@@ -48,6 +57,9 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
 
   @override
   Future<void> setHomeBanners(List<MqHomeBannerResponse> banners) async {
-    await storage.writeString(key: _homeBannersCacheKey, value: jsonEncode(banners.map((e) => e.toJson()).toList()));
+    await storage.writeString(
+      key: _homeBannersCacheKey,
+      value: jsonEncode(banners.map((e) => e.toJson()).toList()),
+    );
   }
 }

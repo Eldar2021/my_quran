@@ -15,7 +15,12 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getData() async {
     try {
       final homeModel = await homeRepository.getData();
-      emit(state.copyWith(status: FetchStatus.success, homeModel: homeModel));
+      emit(
+        state.copyWith(
+          status: FetchStatus.success,
+          homeModel: homeModel,
+        ),
+      );
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       emit(state.copyWith(status: FetchStatus.error));

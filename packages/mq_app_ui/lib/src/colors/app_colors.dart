@@ -32,7 +32,10 @@ abstract class AppColors {
   /// start,stop hex: (#EF6F33,#E93921)
   /// start,stop opacity: (1,1)
   /// This is a tomatoGradient color
-  static const List<Color> tomatoGradient = <Color>[Color(0xffEF6F33), Color(0xffE93921)];
+  static const List<Color> tomatoGradient = <Color>[
+    Color(0xffEF6F33),
+    Color(0xffE93921),
+  ];
 
   /// darkslateblue figma style properties
   /// hex: #075395
@@ -57,7 +60,10 @@ abstract class AppColors {
   /// start,stop hex: (#89C8FF,#118CF8)
   /// start,stop opacity: (1,1)
   /// This is a darkslateblueGradient color
-  static const List<Color> darkslateblueGradient = <Color>[Color(0xff89C8FF), Color(0xff118CF8)];
+  static const List<Color> darkslateblueGradient = <Color>[
+    Color(0xff89C8FF),
+    Color(0xff118CF8),
+  ];
 
   /// White figma style properties
   /// hex: #ffffff
@@ -173,17 +179,30 @@ abstract class AppColors {
   /// This is a telegram color
   static const Color telegram = Color(0xff2BABEE);
 
-  static LinearGradient cardGradient(ThemeData theme, {bool isTomato = false, bool isBlue = false}) {
+  static LinearGradient cardGradient(
+    ThemeData theme, {
+    bool isTomato = false,
+    bool isBlue = false,
+  }) {
     final brightness = theme.brightness;
     if ((theme.colorScheme.primary == AppColors.tomato || isTomato) && !isBlue) {
       return switch (brightness) {
         Brightness.light => const LinearGradient(
-          colors: [Color(0xFFFCEBE6), Color(0xFFFFFDFD), Color(0xFFFCEBE6)],
+          colors: [
+            Color(0xFFFCEBE6),
+            Color(0xFFFFFDFD),
+            Color(0xFFFCEBE6),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         Brightness.dark => const LinearGradient(
-          colors: [Color(0xFF3C2D2B), Color(0xFF2B292A), Color(0xFF2B292A), Color(0xFF3C2D2B)],
+          colors: [
+            Color(0xFF3C2D2B),
+            Color(0xFF2B292A),
+            Color(0xFF2B292A),
+            Color(0xFF3C2D2B),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -191,12 +210,22 @@ abstract class AppColors {
     } else {
       return switch (brightness) {
         Brightness.light => const LinearGradient(
-          colors: [Color(0xFFEAF5FE), Color(0xFFFDFEFF), Color(0xFFFDFEFF), Color(0xFFEAF5FE)],
+          colors: [
+            Color(0xFFEAF5FE),
+            Color(0xFFFDFEFF),
+            Color(0xFFFDFEFF),
+            Color(0xFFEAF5FE),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         Brightness.dark => const LinearGradient(
-          colors: [Color(0xFF2D353D), Color(0xFF2A2A2C), Color(0xFF2A2A2C), Color(0xFF2D353D)],
+          colors: [
+            Color(0xFF2D353D),
+            Color(0xFF2A2A2C),
+            Color(0xFF2A2A2C),
+            Color(0xFF2D353D),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

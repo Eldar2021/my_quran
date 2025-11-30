@@ -20,15 +20,30 @@ extension PumpApp on WidgetTester {
     return pumpWidget(
       MultiRepositoryProvider(
         providers: [
-          RepositoryProvider(create: (context) => AppConfig(isIntegrationTest: true, storage: storage)),
-          RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
+          RepositoryProvider(
+            create: (context) => AppConfig(
+              isIntegrationTest: true,
+              storage: storage,
+            ),
+          ),
+          RepositoryProvider<MqRemoteConfig>(
+            create: (context) => remoteConfig,
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => AppThemeCubit(appRepository)),
-            BlocProvider(create: (context) => AuthCubit(authRepository)),
-            BlocProvider(create: (context) => HomeCubit(homeRepo)),
-            BlocProvider(create: (context) => RemoteConfigCubit(remoteConfig)),
+            BlocProvider(
+              create: (context) => AppThemeCubit(appRepository),
+            ),
+            BlocProvider(
+              create: (context) => AuthCubit(authRepository),
+            ),
+            BlocProvider(
+              create: (context) => HomeCubit(homeRepo),
+            ),
+            BlocProvider(
+              create: (context) => RemoteConfigCubit(remoteConfig),
+            ),
           ],
           child: const QuranApp(),
         ),

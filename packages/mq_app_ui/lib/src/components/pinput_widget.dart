@@ -39,7 +39,9 @@ class PinputWidget extends StatelessWidget {
         ),
       ),
       errorPinTheme: pinTheme(theme).copyWith(
-        textStyle: theme.textTheme.headlineMedium!.copyWith(color: theme.colorScheme.error),
+        textStyle: theme.textTheme.headlineMedium!.copyWith(
+          color: theme.colorScheme.error,
+        ),
         decoration: BoxDecoration(
           border: Border.all(color: theme.colorScheme.error),
           borderRadius: BorderRadius.circular(10),
@@ -58,7 +60,9 @@ class PinputWidget extends StatelessWidget {
   PinTheme pinTheme(ThemeData theme) {
     return PinTheme(
       margin: EdgeInsets.all(itemPadding),
-      textStyle: theme.textTheme.headlineMedium!.copyWith(color: theme.colorScheme.primary),
+      textStyle: theme.textTheme.headlineMedium!.copyWith(
+        color: theme.colorScheme.primary,
+      ),
       constraints: const BoxConstraints(maxHeight: 64, maxWidth: 64),
       decoration: BoxDecoration(
         border: Border.all(

@@ -23,8 +23,12 @@ class PreferencesStorage implements StorageInterfaceSyncRead {
   /// Returns a new instance of [PreferencesStorage].
   ///
   /// If [SharedPreferences] is not provided, the default instance will be used.
-  static Future<PreferencesStorage> getInstance([SharedPreferences? pref]) async {
-    return PreferencesStorage._(pref ?? await SharedPreferences.getInstance());
+  static Future<PreferencesStorage> getInstance([
+    SharedPreferences? pref,
+  ]) async {
+    return PreferencesStorage._(
+      pref ?? await SharedPreferences.getInstance(),
+    );
   }
 
   @override
@@ -73,7 +77,10 @@ class PreferencesStorage implements StorageInterfaceSyncRead {
   }
 
   @override
-  Future<bool> writeString({required String key, required String value}) {
+  Future<bool> writeString({
+    required String key,
+    required String value,
+  }) {
     try {
       return _sharedPreferences.setString(key, value);
     } catch (error, stackTrace) {
@@ -82,7 +89,10 @@ class PreferencesStorage implements StorageInterfaceSyncRead {
   }
 
   @override
-  Future<bool> writeBool({required String key, required bool value}) {
+  Future<bool> writeBool({
+    required String key,
+    required bool value,
+  }) {
     try {
       return _sharedPreferences.setBool(key, value);
     } catch (error, stackTrace) {
@@ -91,7 +101,10 @@ class PreferencesStorage implements StorageInterfaceSyncRead {
   }
 
   @override
-  Future<bool> writeDouble({required String key, required double value}) {
+  Future<bool> writeDouble({
+    required String key,
+    required double value,
+  }) {
     try {
       return _sharedPreferences.setDouble(key, value);
     } catch (error, stackTrace) {
@@ -100,7 +113,10 @@ class PreferencesStorage implements StorageInterfaceSyncRead {
   }
 
   @override
-  Future<bool> writeInt({required String key, required int value}) {
+  Future<bool> writeInt({
+    required String key,
+    required int value,
+  }) {
     try {
       return _sharedPreferences.setInt(key, value);
     } catch (error, stackTrace) {
@@ -109,7 +125,10 @@ class PreferencesStorage implements StorageInterfaceSyncRead {
   }
 
   @override
-  Future<bool> writeStringList({required String key, required List<String> value}) {
+  Future<bool> writeStringList({
+    required String key,
+    required List<String> value,
+  }) {
     try {
       return _sharedPreferences.setStringList(key, value);
     } catch (error, stackTrace) {

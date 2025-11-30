@@ -14,7 +14,10 @@ final class QuranDataEntity {
   List<QuranDataSamePage> dataDatePage() {
     final groupedVerses = <int, List<QuranDataVerseEntity>>{};
 
-    final parsedPageEndings = MqQuranStatic.pagesEnded.map((page, endVerseKey) {
+    final parsedPageEndings = MqQuranStatic.pagesEnded.map((
+      page,
+      endVerseKey,
+    ) {
       final parts = endVerseKey.split(':').map(int.parse);
       return MapEntry(page, (parts.first, parts.last));
     });

@@ -54,19 +54,34 @@ class ColumnInfoColoredBox extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: crossAxisAlignment,
       children: [
-        Text(title, style: titleStyle ?? prTextTheme.titleSmall?.copyWith(fontWeight: FontWeight.w300)),
+        Text(
+          title,
+          style:
+              titleStyle ??
+              prTextTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w300,
+              ),
+        ),
         const SizedBox(height: 6),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             DecoratedBox(
-              decoration: BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(boxBorderRadius)),
+              decoration: BoxDecoration(
+                color: boxColor,
+                borderRadius: BorderRadius.circular(boxBorderRadius),
+              ),
               child: SizedBox(width: boxWidth, height: boxHeight),
             ),
             const SizedBox(width: 6),
             Text(
               value,
-              style: valueStyle ?? prTextTheme.titleSmall?.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+              style:
+                  valueStyle ??
+                  prTextTheme.titleSmall?.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
             ),
           ],
         ),

@@ -15,7 +15,12 @@ final class QuranBookThemeState extends Equatable {
   final double textSize;
 
   @override
-  List<Object?> get props => [verticalSpaceSize, horizontalSpaceSize, modeIndex, textSize];
+  List<Object?> get props => [
+    verticalSpaceSize,
+    horizontalSpaceSize,
+    modeIndex,
+    textSize,
+  ];
 
   QuranBookThemeState copyWith({
     double? verticalSpaceSize,

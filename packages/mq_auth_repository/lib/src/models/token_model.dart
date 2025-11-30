@@ -7,7 +7,10 @@ part 'token_model.g.dart';
 @JsonSerializable()
 @immutable
 final class TokenModel {
-  const TokenModel(this.key, this.user);
+  const TokenModel(
+    this.key,
+    this.user,
+  );
 
   factory TokenModel.fromJson(Map<String, dynamic> json) => _$TokenModelFromJson(json);
   Map<String, dynamic> toJson() => _$TokenModelToJson(this);

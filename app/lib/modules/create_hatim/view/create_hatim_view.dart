@@ -22,7 +22,9 @@ class CreateHatimView extends StatelessWidget {
         MqHatimReadRepositoryImpl(
           dataSource: context.read<AppConfig>().isMockData
               ? MqHatimRemoteDataSourceMock()
-              : MqHatimRemoteDataSourceImpl(remoteClient: context.read<MqRemoteClient>()),
+              : MqHatimRemoteDataSourceImpl(
+                  remoteClient: context.read<MqRemoteClient>(),
+                ),
         ),
       ),
       child: const CreateHatimViewBody(),
@@ -57,13 +59,19 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
 
     return Scaffold(
       key: const Key(MqKeys.createHatim),
-      appBar: AppBar(title: Text(context.l10n.createHatim), centerTitle: true),
+      appBar: AppBar(
+        title: Text(context.l10n.createHatim),
+        centerTitle: true,
+      ),
       body: BlocConsumer<CreateHatimCubit, CreateHatimState>(
         listener: (BuildContext context, CreateHatimState state) {
           if (state.hatimModel != null) {
             context.goNamed(AppRouter.createHatimSuccess);
           } else if (state.exception != null) {
-            AppSnackbar.showError(context: context, title: state.exception.toString());
+            AppSnackbar.showError(
+              context: context,
+              title: state.exception.toString(),
+            );
           }
         },
         builder: (context, state) {
@@ -81,12 +89,17 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
                   TextFormField(
                     key: const Key(MqKeys.titleTextField),
                     controller: _titleController,
-                    validator: (value) => (value == null || value.isEmpty) ? context.l10n.enterHatimTitle : null,
+                    validator: (value) {
+                      return (value == null || value.isEmpty) ? context.l10n.enterHatimTitle : null;
+                    },
                     decoration: InputDecoration(
                       prefixIcon: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Assets.icons.title.svg(
-                          colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.primary,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                       hintText: context.l10n.enterHatimTitleHere,
@@ -98,12 +111,17 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
                     key: const Key(MqKeys.descriptionTextField),
                     controller: _descriptionController,
                     maxLines: null,
-                    validator: (value) => (value == null || value.isEmpty) ? context.l10n.enterHatimDescription : null,
+                    validator: (value) {
+                      return (value == null || value.isEmpty) ? context.l10n.enterHatimDescription : null;
+                    },
                     decoration: InputDecoration(
                       prefixIcon: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Assets.icons.fluentDescription.svg(
-                          colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.primary,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                       hintText: context.l10n.enterHatimDescriptionHere,
@@ -113,18 +131,27 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
                   FormLabel(title: context.l10n.participants),
                   TextFormField(
                     onTap: () => _pickParticipants(context),
-                    validator: (_) => participants.isEmpty ? context.l10n.addParticipantsToHatim : null,
+                    validator: (_) {
+                      return participants.isEmpty ? context.l10n.addParticipantsToHatim : null;
+                    },
                     readOnly: true,
                     keyboardType: TextInputType.none,
                     decoration: InputDecoration(
                       prefixIcon: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Assets.icons.solidUsers.svg(
-                          colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+                          colorFilter: ColorFilter.mode(
+                            colorScheme.primary,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                       hintText: context.l10n.addParticipantsToYourHatim,
-                      suffixIcon: Icon(Icons.arrow_forward_ios_rounded, color: colorScheme.inverseSurface, size: 20),
+                      suffixIcon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: colorScheme.inverseSurface,
+                        size: 20,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -139,7 +166,9 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
                             user: user,
                             text: context.l10n.remove,
                             isOutlined: true,
-                            onPressed: () => context.read<CreateHatimCubit>().removeParticipant(user),
+                            onPressed: () {
+                              context.read<CreateHatimCubit>().removeParticipant(user);
+                            },
                           );
                         },
                       ),
@@ -166,7 +195,10 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
               child: loading
                   ? const SizedBox.square(
                       dimension: 25,
-                      child: CircularProgressIndicator(color: AppColors.white, strokeWidth: 2),
+                      child: CircularProgressIndicator(
+                        color: AppColors.white,
+                        strokeWidth: 2,
+                      ),
                     )
                   : Text(context.l10n.createHatim),
             );
@@ -193,7 +225,10 @@ class _CreateHatimViewBodyState extends State<CreateHatimViewBody> {
     await Navigator.push<void>(
       context,
       MaterialPageRoute(
-        builder: (_) => BlocProvider.value(value: cubit, child: const SearchView()),
+        builder: (_) => BlocProvider.value(
+          value: cubit,
+          child: const SearchView(),
+        ),
       ),
     );
 

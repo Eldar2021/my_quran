@@ -17,7 +17,13 @@ final class CreateHatimState extends Equatable {
   final List<MqUserIdModel> selectedUsers;
 
   @override
-  List<Object?> get props => [status, exception, hatimModel, searchModel, selectedUsers];
+  List<Object?> get props => [
+    status,
+    exception,
+    hatimModel,
+    searchModel,
+    selectedUsers,
+  ];
 
   CreateHatimState copyWith({
     FetchStatus? status,

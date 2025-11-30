@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 final class MqPopupActions {
   MqPopupActions(this.key);
   final GlobalKey key;
+
   void showPopupMenu(BuildContext context) {
     final renderBox = key.currentContext!.findRenderObject()! as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
@@ -38,9 +39,17 @@ final class MqPopupActions {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(Icons.play_arrow, color: Colors.black),
-                        VerticalDivider(color: Colors.grey),
-                        Icon(Icons.translate, color: Colors.red),
+                        Icon(
+                          Icons.play_arrow,
+                          color: Colors.black,
+                        ),
+                        VerticalDivider(
+                          color: Colors.grey,
+                        ),
+                        Icon(
+                          Icons.translate,
+                          color: Colors.red,
+                        ),
                       ],
                     ),
                   ),
@@ -58,7 +67,12 @@ class BubbleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path()
-      ..addRRect(RRect.fromRectAndRadius(Rect.fromLTRB(0, 10, size.width, size.height), const Radius.circular(16)))
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTRB(0, 10, size.width, size.height),
+          const Radius.circular(16),
+        ),
+      )
       ..moveTo(size.width / 2 - 10, 10)
       ..lineTo(size.width / 2, 0)
       ..lineTo(size.width / 2 + 10, 10)

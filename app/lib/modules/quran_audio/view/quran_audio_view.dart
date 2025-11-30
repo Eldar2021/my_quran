@@ -4,7 +4,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
@@ -22,14 +21,19 @@ class QuranAudioView extends StatelessWidget {
           builder: (context, snapshot) {
             final index = snapshot.data?.currentIndex;
             final surah = index != null ? context.read<QuranAudioCubit>().surahs[index] : null;
-            return Text('${surah?.nameSimple ?? context.l10n.listening} (${surah?.nameArabic ?? ''})');
+            return Text(
+              '${surah?.nameSimple ?? context.l10n.listening} (${surah?.nameArabic ?? ''})',
+            );
           },
         ),
       ),
       body: BlocListener<QuranAudioCubit, QuranAudioState>(
         listener: (context, state) {
           if (state.exception != null) {
-            AppAlert.showErrorDialog(context, errorText: state.exception ?? context.l10n.error);
+            AppAlert.showErrorDialog(
+              context,
+              errorText: state.exception ?? context.l10n.error,
+            );
           }
         },
         child: ListView.separated(
@@ -44,17 +48,25 @@ class QuranAudioView extends StatelessWidget {
               title: item.nameSimple,
               subtitle: item.nameArabic,
               onTap: () {
-                MqAnalytic.track(AnalyticKey.selectQuranAudioBySurah, params: {'surahName': item.nameSimple});
+                MqAnalytic.track(
+                  AnalyticKey.selectQuranAudioBySurah,
+                  params: {'surahName': item.nameSimple},
+                );
                 context.read<QuranAudioCubit>().changeSurah(index);
               },
             );
           },
           separatorBuilder: (BuildContext context, int index) {
-            return Divider(height: 0.5, color: colorScheme.onSurface.withValues(alpha: 0.1));
+            return Divider(
+              height: 0.5,
+              color: colorScheme.onSurface.withValues(alpha: 0.1),
+            );
           },
         ),
       ),
-      bottomNavigationBar: const AudioButtomSheet(key: Key(MqKeys.quranAudioBottomSheet)),
+      bottomNavigationBar: const AudioButtomSheet(
+        key: Key(MqKeys.quranAudioBottomSheet),
+      ),
     );
   }
 }

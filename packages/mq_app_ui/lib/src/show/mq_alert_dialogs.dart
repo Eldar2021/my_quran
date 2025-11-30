@@ -20,28 +20,48 @@ abstract class MqAlertDialogs {
       builder: (context) {
         return AlertDialog(
           backgroundColor: backgroundColor,
-          contentTextStyle: textTheme.titleMedium?.copyWith(color: foregroundColor),
-          titleTextStyle: textTheme.titleLarge?.copyWith(color: foregroundColor),
+          contentTextStyle: textTheme.titleMedium?.copyWith(
+            color: foregroundColor,
+          ),
+          titleTextStyle: textTheme.titleLarge?.copyWith(
+            color: foregroundColor,
+          ),
           actionsAlignment: MainAxisAlignment.center,
           icon: switch (gender) {
             MqAppUiGender.male => Assets.icons.userMale.svg(
               height: 100,
-              colorFilter: ColorFilter.mode(foregroundColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                foregroundColor,
+                BlendMode.srcIn,
+              ),
             ),
             MqAppUiGender.famale => Assets.icons.userFemale.svg(
               height: 100,
-              colorFilter: ColorFilter.mode(foregroundColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                foregroundColor,
+                BlendMode.srcIn,
+              ),
             ),
             MqAppUiGender.unknown => Assets.icons.moonIslamic.svg(
               height: 100,
-              colorFilter: ColorFilter.mode(foregroundColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                foregroundColor,
+                BlendMode.srcIn,
+              ),
             ),
           },
           title: Text(title),
-          content: content != null ? Text(content, textAlign: TextAlign.center) : null,
+          content: content != null
+              ? Text(
+                  content,
+                  textAlign: TextAlign.center,
+                )
+              : null,
           actions: [
             ElevatedButton(
-              style: ElevatedButton.styleFrom(fixedSize: const Size(double.maxFinite, 52)),
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(double.maxFinite, 52),
+              ),
               onPressed: onPressed,
               child: Text(buttonText),
             ),

@@ -17,7 +17,12 @@ class CreateHatimCubit extends Cubit<CreateHatimState> {
 
     try {
       final response = await mqHatimRepository.createHatim(hatim);
-      emit(state.copyWith(status: FetchStatus.success, hatimModel: response));
+      emit(
+        state.copyWith(
+          status: FetchStatus.success,
+          hatimModel: response,
+        ),
+      );
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
 
@@ -30,7 +35,12 @@ class CreateHatimCubit extends Cubit<CreateHatimState> {
 
     try {
       final response = await mqHatimRepository.getSearch(user);
-      emit(state.copyWith(status: FetchStatus.success, searchModel: response));
+      emit(
+        state.copyWith(
+          status: FetchStatus.success,
+          searchModel: response,
+        ),
+      );
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       emit(state.copyWith(status: FetchStatus.error, exception: e));
@@ -39,12 +49,20 @@ class CreateHatimCubit extends Cubit<CreateHatimState> {
 
   Future<void> addParticipant(MqUserIdModel user) async {
     if (!state.selectedUsers.contains(user)) {
-      emit(state.copyWith(selectedUsers: state.selectedUsers + [user]));
+      emit(
+        state.copyWith(
+          selectedUsers: state.selectedUsers + [user],
+        ),
+      );
     }
   }
 
   Future<void> removeParticipant(MqUserIdModel user) async {
-    emit(state.copyWith(selectedUsers: state.selectedUsers.where((u) => u.id != user.id).toList()));
+    emit(
+      state.copyWith(
+        selectedUsers: state.selectedUsers.where((u) => u.id != user.id).toList(),
+      ),
+    );
   }
 
   Future<void> clearSearch() async {

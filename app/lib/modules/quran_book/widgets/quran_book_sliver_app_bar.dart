@@ -6,7 +6,10 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranBookSliverAppBar extends StatelessWidget {
-  const QuranBookSliverAppBar({required this.title, super.key});
+  const QuranBookSliverAppBar({
+    required this.title,
+    super.key,
+  });
 
   final Widget title;
 
@@ -19,7 +22,10 @@ class QuranBookSliverAppBar extends StatelessWidget {
       centerTitle: true,
       backgroundColor: themeCubit.state.bgColor,
       foregroundColor: themeCubit.state.frColor,
-      flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: title),
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
+        title: title,
+      ),
       actions: [
         IconButton(
           key: const Key(MqKeys.quranReadSettings),

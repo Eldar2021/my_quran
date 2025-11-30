@@ -67,7 +67,10 @@ final class AppOrangeTheme extends AppTheme {
       labelLarge: AppTextStyles.labelLarge,
       labelMedium: AppTextStyles.labelMedium,
       labelSmall: AppTextStyles.labelSmall,
-    ).apply(displayColor: AppColors.black, bodyColor: AppColors.black);
+    ).apply(
+      displayColor: AppColors.black,
+      bodyColor: AppColors.black,
+    );
   }
 
   @override
@@ -88,6 +91,9 @@ final class AppOrangeTheme extends AppTheme {
       labelLarge: AppTextStyles.labelLarge,
       labelMedium: AppTextStyles.labelMedium,
       labelSmall: AppTextStyles.labelSmall,
-    ).apply(displayColor: AppColors.darkslategray2, bodyColor: AppColors.darkslategray2);
+    ).apply(
+      displayColor: AppColors.darkslategray2,
+      bodyColor: AppColors.darkslategray2,
+    );
   }
 }

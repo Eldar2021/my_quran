@@ -16,17 +16,26 @@ void main() {
 
   final requestBody = {'title': 'foo', 'body': 'bar', 'userId': 1};
 
-  setUp(() => client = MqRemoteClient(dio: Dio(), network: MockNetworkClient()));
+  setUp(
+    () => client = MqRemoteClient(
+      dio: Dio(),
+      network: MockNetworkClient(),
+    ),
+  );
 
   group('MqRemoteClient `get`, `getType`, `getListOfType`', () {
     test('Get', () async {
-      final mapValue = await client.get<Map<String, dynamic>>(postDatasGet);
+      final mapValue = await client.get<Map<String, dynamic>>(
+        postDatasGet,
+      );
 
       expect(mapValue, isNotNull);
       expect(mapValue, isMap);
       expect(mapValue, isA<Map<String, dynamic>>());
 
-      final listValue = await client.get<List<dynamic>>(postListGet);
+      final listValue = await client.get<List<dynamic>>(
+        postListGet,
+      );
       expect(listValue, isNotNull);
       expect(listValue, isList);
       expect(listValue.isNotEmpty, true);
@@ -34,13 +43,19 @@ void main() {
     });
 
     test('Get Type', () async {
-      final testModel = await client.getType<TestModel>(postDatasGet, fromJson: TestModel.fromJson);
+      final testModel = await client.getType<TestModel>(
+        postDatasGet,
+        fromJson: TestModel.fromJson,
+      );
       expect(testModel, isNotNull);
       expect(testModel, isA<TestModel>());
     });
 
     test('Get List Of Type', () async {
-      final testModelList = await client.getListOfType<TestModel>(postListGet, fromJson: TestModel.fromJson);
+      final testModelList = await client.getListOfType<TestModel>(
+        postListGet,
+        fromJson: TestModel.fromJson,
+      );
       expect(testModelList, isNotNull);
       expect(testModelList, isList);
       expect(testModelList, isA<List<TestModel>>());
@@ -48,7 +63,10 @@ void main() {
     });
 
     test('Get empty List', () async {
-      final testModelList = await client.getListOfType<TestModel>(emptyList, fromJson: TestModel.fromJson);
+      final testModelList = await client.getListOfType<TestModel>(
+        emptyList,
+        fromJson: TestModel.fromJson,
+      );
       expect(testModelList, isNotNull);
       expect(testModelList, isList);
       expect(testModelList, isA<List<TestModel>>());
@@ -58,14 +76,21 @@ void main() {
 
   group('MqRemoteClient `post`, `postType`, `postListOfType`', () {
     test('Post', () async {
-      final mapValue = await client.post<Map<String, dynamic>>(postList, body: requestBody);
+      final mapValue = await client.post<Map<String, dynamic>>(
+        postList,
+        body: requestBody,
+      );
 
       expect(mapValue, isNotNull);
       expect(mapValue, isA<Map<String, dynamic>>());
     });
 
     test('Post Type', () async {
-      final testModel = await client.postType<TestModel>(postList, body: requestBody, fromJson: TestModel.fromJson);
+      final testModel = await client.postType<TestModel>(
+        postList,
+        body: requestBody,
+        fromJson: TestModel.fromJson,
+      );
 
       expect(testModel, isA<TestModel>());
     });
@@ -73,14 +98,21 @@ void main() {
 
   group('MqRemoteClient `put`, `putType`, `putListOfType`', () {
     test('Put', () async {
-      final mapValue = await client.put<Map<String, dynamic>>(postDatas, body: requestBody);
+      final mapValue = await client.put<Map<String, dynamic>>(
+        postDatas,
+        body: requestBody,
+      );
       expect(mapValue, isNotNull);
 
       expect(mapValue, isA<Map<String, dynamic>>());
     });
 
     test('Put Type', () async {
-      final testModel = await client.putType<TestModel>(postDatas, body: requestBody, fromJson: TestModel.fromJson);
+      final testModel = await client.putType<TestModel>(
+        postDatas,
+        body: requestBody,
+        fromJson: TestModel.fromJson,
+      );
 
       expect(testModel, isA<TestModel>());
     });
@@ -88,14 +120,22 @@ void main() {
 
   group('MqRemoteClient `patch`, `patchType`, `patchListOfType`', () {
     test('Patch', () async {
-      final mapValue = await client.patch<Map<String, dynamic>>(postDatas, fromJson: (json) => json, body: requestBody);
+      final mapValue = await client.patch<Map<String, dynamic>>(
+        postDatas,
+        fromJson: (json) => json,
+        body: requestBody,
+      );
 
       expect(mapValue, isNotNull);
       expect(mapValue, isA<Map<String, dynamic>>());
     });
 
     test('Patch Type', () async {
-      final testModel = await client.patchType<TestModel>(postDatas, body: requestBody, fromJson: TestModel.fromJson);
+      final testModel = await client.patchType<TestModel>(
+        postDatas,
+        body: requestBody,
+        fromJson: TestModel.fromJson,
+      );
 
       expect(testModel, isA<TestModel>());
     });

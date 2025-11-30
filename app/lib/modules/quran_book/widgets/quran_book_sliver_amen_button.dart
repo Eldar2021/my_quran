@@ -7,7 +7,11 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranBookSliverAmenButton extends StatelessWidget {
-  const QuranBookSliverAmenButton({required this.onAmenPressed, required this.afterAmenPressed, super.key});
+  const QuranBookSliverAmenButton({
+    required this.onAmenPressed,
+    required this.afterAmenPressed,
+    super.key,
+  });
 
   final void Function() onAmenPressed;
   final void Function() afterAmenPressed;
@@ -17,7 +21,12 @@ class QuranBookSliverAmenButton extends StatelessWidget {
     final themeCubit = context.watch<QuranBookThemeCubit>();
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.only(top: 50, bottom: 50, left: 24, right: 24),
+        padding: const EdgeInsets.only(
+          top: 50,
+          bottom: 50,
+          left: 24,
+          right: 24,
+        ),
         child: ElevatedButton(
           onPressed: () async {
             MqAnalytic.track(AnalyticKey.showAmin);

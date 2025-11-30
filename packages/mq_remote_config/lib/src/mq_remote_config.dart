@@ -10,19 +10,27 @@ export 'package:package_info_plus/package_info_plus.dart';
 
 @immutable
 class MqRemoteConfig {
-  MqRemoteConfig({required PackageInfo packageInfo, FirebaseRemoteConfig? firebaseRemoteConfig})
-    : _firebaseRemoteConfig = firebaseRemoteConfig ?? FirebaseRemoteConfig.instance,
-      _packageInfo = packageInfo;
+  MqRemoteConfig({
+    required PackageInfo packageInfo,
+    FirebaseRemoteConfig? firebaseRemoteConfig,
+  }) : _firebaseRemoteConfig = firebaseRemoteConfig ?? FirebaseRemoteConfig.instance,
+       _packageInfo = packageInfo;
 
   final FirebaseRemoteConfig _firebaseRemoteConfig;
   final PackageInfo _packageInfo;
 
   Future<void> initialise() async {
     await _firebaseRemoteConfig.setConfigSettings(
-      RemoteConfigSettings(fetchTimeout: const Duration(minutes: 1), minimumFetchInterval: const Duration(hours: 1)),
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(minutes: 1),
+        minimumFetchInterval: const Duration(hours: 1),
+      ),
     );
 
-    await _firebaseRemoteConfig.setDefaults(defaultParams(currentBuildNumber));
+    await _firebaseRemoteConfig.setDefaults(
+      defaultParams(currentBuildNumber),
+    );
+
     await _firebaseRemoteConfig.fetchAndActivate();
   }
 
@@ -34,7 +42,10 @@ class MqRemoteConfig {
     final data = jsonDecode(_firebaseRemoteConfig.getString(_appVersion)) as Map<String, dynamic>;
     final platformName = Platform.isIOS ? 'ios' : 'android';
     final versionData = data[platformName] as Map<String, dynamic>;
-    return (versionData['requiredBuildNumber'], versionData['recommendedBuildNumber']);
+    return (
+      versionData['requiredBuildNumber'],
+      versionData['recommendedBuildNumber'],
+    );
   }
 
   static const _hatimIsEnable = 'hatimIsEnable';
@@ -43,8 +54,14 @@ class MqRemoteConfig {
 
   static Map<String, dynamic> defaultAppVersionValue(int currentBuildNumber) {
     return {
-      'android': {'requiredBuildNumber': currentBuildNumber, 'recommendedBuildNumber': currentBuildNumber},
-      'ios': {'requiredBuildNumber': currentBuildNumber, 'recommendedBuildNumber': currentBuildNumber},
+      'android': {
+        'requiredBuildNumber': currentBuildNumber,
+        'recommendedBuildNumber': currentBuildNumber,
+      },
+      'ios': {
+        'requiredBuildNumber': currentBuildNumber,
+        'recommendedBuildNumber': currentBuildNumber,
+      },
     };
   }
 

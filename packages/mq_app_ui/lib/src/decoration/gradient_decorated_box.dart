@@ -21,8 +21,17 @@ class GradientDecoratedBox extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        gradient: AppColors.cardGradient(Theme.of(context), isTomato: useTomato, isBlue: useBlue),
-        boxShadow: [BoxShadow(color: colorScheme.shadow.withValues(alpha: 0.08), blurRadius: 20)],
+        gradient: AppColors.cardGradient(
+          Theme.of(context),
+          isTomato: useTomato,
+          isBlue: useBlue,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.08),
+            blurRadius: 20,
+          ),
+        ],
       ),
       child: child,
     );

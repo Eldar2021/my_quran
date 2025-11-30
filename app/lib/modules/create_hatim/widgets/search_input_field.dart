@@ -3,7 +3,12 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class SearchInputField extends StatelessWidget {
-  const SearchInputField({required this.searchController, required this.searchFocusNode, this.onChanged, super.key});
+  const SearchInputField({
+    required this.searchController,
+    required this.searchFocusNode,
+    this.onChanged,
+    super.key,
+  });
 
   final TextEditingController searchController;
   final FocusNode searchFocusNode;
@@ -26,20 +31,30 @@ class SearchInputField extends StatelessWidget {
         focusNode: searchFocusNode,
         decoration: InputDecoration(
           hintText: isFocused ? null : context.l10n.searchEmailOrUsername,
-          hintStyle: prTextTheme.titleMedium?.copyWith(fontWeight: FontWeight.w400),
+          hintStyle: prTextTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w400,
+          ),
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12),
             child: Assets.icons.search.svg(
-              colorFilter: ColorFilter.mode(isFocused ? colorScheme.primary : fadedOnSurface, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                isFocused ? colorScheme.primary : fadedOnSurface,
+                BlendMode.srcIn,
+              ),
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: fadedOnSurface),
+            borderSide: BorderSide(
+              color: fadedOnSurface,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: colorScheme.primary, width: 2),
+            borderSide: BorderSide(
+              color: colorScheme.primary,
+              width: 2,
+            ),
           ),
         ),
       ),

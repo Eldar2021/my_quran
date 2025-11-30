@@ -15,7 +15,9 @@ final class MqStoryModelResponse {
     required this.screens,
   });
 
-  factory MqStoryModelResponse.fromJson(Map<String, dynamic> json) => _$MqStoryModelResponseFromJson(json);
+  factory MqStoryModelResponse.fromJson(Map<String, dynamic> json) {
+    return _$MqStoryModelResponseFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$MqStoryModelResponseToJson(this);
 
@@ -39,9 +41,15 @@ final class MqStoryModelResponse {
 @JsonSerializable()
 @immutable
 final class MqStoryButtonResponse {
-  const MqStoryButtonResponse({required this.hasButton, required this.label, required this.action});
+  const MqStoryButtonResponse({
+    required this.hasButton,
+    required this.label,
+    required this.action,
+  });
 
-  factory MqStoryButtonResponse.fromJson(Map<String, dynamic> json) => _$MqStoryButtonResponseFromJson(json);
+  factory MqStoryButtonResponse.fromJson(Map<String, dynamic> json) {
+    return _$MqStoryButtonResponseFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$MqStoryButtonResponseToJson(this);
 
@@ -50,16 +58,25 @@ final class MqStoryButtonResponse {
   final String action;
 
   MqStoryButtonEntity toEntity() {
-    return MqStoryButtonEntity(hasButton: hasButton, label: label, action: action);
+    return MqStoryButtonEntity(
+      hasButton: hasButton,
+      label: label,
+      action: action,
+    );
   }
 }
 
 @JsonSerializable()
 @immutable
 final class MqStoryScreenResponse {
-  const MqStoryScreenResponse({required this.imageUrl, required this.durationByMilliseconds});
+  const MqStoryScreenResponse({
+    required this.imageUrl,
+    required this.durationByMilliseconds,
+  });
 
-  factory MqStoryScreenResponse.fromJson(Map<String, dynamic> json) => _$MqStoryScreenResponseFromJson(json);
+  factory MqStoryScreenResponse.fromJson(Map<String, dynamic> json) {
+    return _$MqStoryScreenResponseFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$MqStoryScreenResponseToJson(this);
 
@@ -67,6 +84,9 @@ final class MqStoryScreenResponse {
   final int durationByMilliseconds;
 
   MqStoryScreenEntity toEntity() {
-    return MqStoryScreenEntity(imageUrl: imageUrl, durationByMilliseconds: durationByMilliseconds);
+    return MqStoryScreenEntity(
+      imageUrl: imageUrl,
+      durationByMilliseconds: durationByMilliseconds,
+    );
   }
 }

@@ -5,7 +5,11 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 part 'quran_data_verse_response.g.dart';
 
 sealed class QuranDataVerseResponse {
-  const QuranDataVerseResponse({required this.id, required this.verseKey, required this.text});
+  const QuranDataVerseResponse({
+    required this.id,
+    required this.verseKey,
+    required this.text,
+  });
 
   factory QuranDataVerseResponse.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('text_uthmani')) {
@@ -29,13 +33,21 @@ sealed class QuranDataVerseResponse {
 
   QuranDataVerseEntity toEntity() {
     return switch (this) {
-      QuranDataVerseUthmaniResponse() => QuranDataVerseUthmaniEntity(id: id, verseKey: verseKey, textUtmani: text),
+      QuranDataVerseUthmaniResponse() => QuranDataVerseUthmaniEntity(
+        id: id,
+        verseKey: verseKey,
+        textUtmani: text,
+      ),
       QuranDataVerseUthmaniSimpleResponse() => QuranDataVerseUthmaniSimpleEntity(
         id: id,
         verseKey: verseKey,
         textUtmaniSimple: text,
       ),
-      QuranDataVerseImlaeiResponse() => QuranDataVerseImlaeiEntity(id: id, verseKey: verseKey, textImlaei: text),
+      QuranDataVerseImlaeiResponse() => QuranDataVerseImlaeiEntity(
+        id: id,
+        verseKey: verseKey,
+        textImlaei: text,
+      ),
     };
   }
 }
@@ -43,8 +55,11 @@ sealed class QuranDataVerseResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataVerseUthmaniResponse extends QuranDataVerseResponse {
-  const QuranDataVerseUthmaniResponse({required super.id, required super.verseKey, required this.textUtmani})
-    : super(text: textUtmani);
+  const QuranDataVerseUthmaniResponse({
+    required super.id,
+    required super.verseKey,
+    required this.textUtmani,
+  }) : super(text: textUtmani);
 
   factory QuranDataVerseUthmaniResponse.fromJson(Map<String, dynamic> json) =>
       _$QuranDataVerseUthmaniResponseFromJson(json);
@@ -65,8 +80,9 @@ final class QuranDataVerseUthmaniSimpleResponse extends QuranDataVerseResponse {
     required this.textUtmaniSimple,
   }) : super(text: textUtmaniSimple);
 
-  factory QuranDataVerseUthmaniSimpleResponse.fromJson(Map<String, dynamic> json) =>
-      _$QuranDataVerseUthmaniSimpleResponseFromJson(json);
+  factory QuranDataVerseUthmaniSimpleResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => _$QuranDataVerseUthmaniSimpleResponseFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$QuranDataVerseUthmaniSimpleResponseToJson(this);
@@ -78,8 +94,11 @@ final class QuranDataVerseUthmaniSimpleResponse extends QuranDataVerseResponse {
 @JsonSerializable()
 @immutable
 final class QuranDataVerseImlaeiResponse extends QuranDataVerseResponse {
-  const QuranDataVerseImlaeiResponse({required super.id, required super.verseKey, required this.textImlaei})
-    : super(text: textImlaei);
+  const QuranDataVerseImlaeiResponse({
+    required super.id,
+    required super.verseKey,
+    required this.textImlaei,
+  }) : super(text: textImlaei);
 
   factory QuranDataVerseImlaeiResponse.fromJson(Map<String, dynamic> json) =>
       _$QuranDataVerseImlaeiResponseFromJson(json);

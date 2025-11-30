@@ -43,7 +43,9 @@ class AppColorsView extends StatelessWidget {
       appBar: AppBar(title: const Text('App Colors')),
       body: GridView.builder(
         itemCount: colorItems.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+        ),
         itemBuilder: (_, index) => colorItems[index],
       ),
     );

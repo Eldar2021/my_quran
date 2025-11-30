@@ -66,9 +66,15 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
               timelineBackgroundColor: colorScheme.primary,
               buttonDecoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(e.cardImageLink)),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: CachedNetworkImageProvider(e.cardImageLink),
+                ),
               ),
-              child: Align(alignment: Alignment.bottomCenter, child: _CradLabelText(e.cardLabel)),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: _CradLabelText(e.cardLabel),
+              ),
               borderDecoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: colorScheme.primary),
@@ -80,7 +86,10 @@ class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
                         width: double.infinity,
                         height: double.infinity,
                         decoration: BoxDecoration(
-                          image: DecorationImage(image: CachedNetworkImageProvider(i), fit: BoxFit.cover),
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(i),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -113,7 +122,12 @@ class _CradLabelText extends StatelessWidget {
           style: prTextTheme.bodySmall,
           overflow: TextOverflow.ellipsis,
         ),
-        Text(secondText, textAlign: TextAlign.center, style: prTextTheme.bodySmall, overflow: TextOverflow.ellipsis),
+        Text(
+          secondText,
+          textAlign: TextAlign.center,
+          style: prTextTheme.bodySmall,
+          overflow: TextOverflow.ellipsis,
+        ),
       ],
     );
   }

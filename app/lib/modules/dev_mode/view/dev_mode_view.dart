@@ -50,10 +50,16 @@ class _DevModeViewState extends State<DevModeView> {
             onPressed: () async {
               MqAnalytic.track(
                 AnalyticKey.selectDevMode,
-                params: {'devDomain': _controller.text, 'isDevMode': isDevMode},
+                params: {
+                  'devDomain': _controller.text,
+                  'isDevMode': isDevMode,
+                },
               );
               final appConfig = context.read<AppConfig>();
-              await appConfig.setDevMode(devDomain: _controller.text, isDevmode: isDevMode);
+              await appConfig.setDevMode(
+                devDomain: _controller.text,
+                isDevmode: isDevMode,
+              );
               if (context.mounted) {
                 AppAlert.showRestartDialog(context);
               }
@@ -63,12 +69,20 @@ class _DevModeViewState extends State<DevModeView> {
           const SizedBox(height: 20),
           TextButton(
             onPressed: () async {
-              MqCrashlytics.report(Exception('Test report Error'), StackTrace.current);
+              MqCrashlytics.report(
+                Exception('Test report Error'),
+                StackTrace.current,
+              );
               MqCrashlytics.recordFlutterError(
-                FlutterErrorDetails(exception: Exception('Test recordFlutterError Error')),
+                FlutterErrorDetails(
+                  exception: Exception('Test recordFlutterError Error'),
+                ),
               );
               await MqCrashlytics.setUserIdentifier('Test Eldiiar');
-              MqAnalytic.track(AnalyticKey.test, params: {'Tested By': 'Eldiiar'});
+              MqAnalytic.track(
+                AnalyticKey.test,
+                params: {'Tested By': 'Eldiiar'},
+              );
             },
             child: Text(context.l10n.testCrashlyticsAnalytics),
           ),

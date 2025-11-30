@@ -60,7 +60,11 @@ class ScaffoldWithBgImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Theme(
-      data: theme.copyWith(appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent)),
+      data: theme.copyWith(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+        ),
+      ),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,

@@ -6,7 +6,10 @@ import 'package:mq_home_repository/mq_home_repository.dart';
 
 @immutable
 final class MqHomeRepositoryImpl implements MqHomeRepository {
-  const MqHomeRepositoryImpl(this.localDataSource, this.remoteDataSource);
+  const MqHomeRepositoryImpl(
+    this.localDataSource,
+    this.remoteDataSource,
+  );
 
   final MqHomeLocalDataSource localDataSource;
   final MqHomeRemoteDataSource remoteDataSource;

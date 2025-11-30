@@ -42,7 +42,11 @@ class HatimJuzItemCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
+          padding: const EdgeInsets.only(
+            right: 16,
+            top: 8,
+            bottom: 8,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -55,14 +59,31 @@ class HatimJuzItemCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: prTextTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+                    Text(
+                      title,
+                      style: prTextTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ColumnInfoColoredBox(boxColor: firstBoxColor, title: firstText, value: '$firstValue'),
-                        ColumnInfoColoredBox(boxColor: secondBoxColor, title: secondText, value: '$secondValue'),
-                        ColumnInfoColoredBox(boxColor: thirdBoxColor, title: thirdText, value: '$thirdValue'),
+                        ColumnInfoColoredBox(
+                          boxColor: firstBoxColor,
+                          title: firstText,
+                          value: '$firstValue',
+                        ),
+                        ColumnInfoColoredBox(
+                          boxColor: secondBoxColor,
+                          title: secondText,
+                          value: '$secondValue',
+                        ),
+                        ColumnInfoColoredBox(
+                          boxColor: thirdBoxColor,
+                          title: thirdText,
+                          value: '$thirdValue',
+                        ),
                       ],
                     ),
                   ],

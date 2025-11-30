@@ -20,11 +20,17 @@ import 'package:my_quran/firebase_options.dart';
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  await MqAnalytic.setAnalyticsCollectionEnabled(enabled: kReleaseMode);
+  await MqAnalytic.setAnalyticsCollectionEnabled(
+    enabled: kReleaseMode,
+  );
 
-  await MqCrashlytics.setCrashlyticsCollectionEnabled(enabled: kReleaseMode);
+  await MqCrashlytics.setCrashlyticsCollectionEnabled(
+    enabled: kReleaseMode,
+  );
 
   FlutterError.onError = MqCrashlytics.recordFlutterError;
 
@@ -34,7 +40,10 @@ Future<void> main({bool isIntegrationTest = false}) async {
   };
 
   FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
+    log(
+      details.exceptionAsString(),
+      stackTrace: details.stack,
+    );
   };
 
   await JustAudioBackground.init(
@@ -49,22 +58,37 @@ Future<void> main({bool isIntegrationTest = false}) async {
 
   final packageInfo = await PackageInfo.fromPlatform();
 
-  final remoteConfig = MqRemoteConfig(packageInfo: packageInfo);
+  final remoteConfig = MqRemoteConfig(
+    packageInfo: packageInfo,
+  );
 
   await remoteConfig.initialise();
 
-  final appConfig = AppConfig(isIntegrationTest: isIntegrationTest, storage: storage);
+  final appConfig = AppConfig(
+    isIntegrationTest: isIntegrationTest,
+    storage: storage,
+  );
 
   final domain = appConfig.isDevMode ? appConfig.devDomain : ApiConst.domain;
 
   runApp(
     MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AppConfig>(create: (context) => appConfig),
-        RepositoryProvider<PreferencesStorage>(create: (context) => storage),
-        RepositoryProvider<PackageInfo>(create: (context) => packageInfo),
-        RepositoryProvider<NetworkClient>(create: (context) => NetworkClient()),
-        RepositoryProvider<MqRemoteConfig>(create: (context) => remoteConfig),
+        RepositoryProvider<AppConfig>(
+          create: (context) => appConfig,
+        ),
+        RepositoryProvider<PreferencesStorage>(
+          create: (context) => storage,
+        ),
+        RepositoryProvider<PackageInfo>(
+          create: (context) => packageInfo,
+        ),
+        RepositoryProvider<NetworkClient>(
+          create: (context) => NetworkClient(),
+        ),
+        RepositoryProvider<MqRemoteConfig>(
+          create: (context) => remoteConfig,
+        ),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => MqRemoteClient(
             dio: Dio(BaseOptions(baseUrl: domain)),

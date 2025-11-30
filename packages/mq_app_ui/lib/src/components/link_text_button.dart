@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class LinkTextButton extends StatelessWidget {
-  const LinkTextButton({required this.text, this.onPressed, this.textStyle, this.color, super.key});
+  const LinkTextButton({
+    required this.text,
+    this.onPressed,
+    this.textStyle,
+    this.color,
+    super.key,
+  });
 
   final String text;
   final void Function()? onPressed;

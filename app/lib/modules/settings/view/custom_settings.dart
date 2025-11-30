@@ -47,11 +47,15 @@ class CustomAppSettingView extends StatelessWidget {
                     params: {'language': v?.languageCode ?? 'en'},
                   );
                   context.loaderOverlay.show();
-                  await context.read<AuthCubit>().saveLocale(v?.languageCode ?? 'en');
+                  await context.read<AuthCubit>().saveLocale(
+                    v?.languageCode ?? 'en',
+                  );
                   if (context.mounted) context.loaderOverlay.hide();
                 },
                 itemBuilder: (value) {
-                  final name = AppLocalizationHelper.getName(value?.toLanguageTag() ?? 'en');
+                  final name = AppLocalizationHelper.getName(
+                    value?.toLanguageTag() ?? 'en',
+                  );
                   return DropdownMenuItem(
                     value: value,
                     child: Text(name),
@@ -61,7 +65,9 @@ class CustomAppSettingView extends StatelessWidget {
               const SizedBox(height: 50),
               Text(context.l10n.pleaseSelectGender),
               const SizedBox(height: 8),
-              Text(context.l10n.selectGenderForPersonalization),
+              Text(
+                context.l10n.selectGenderForPersonalization,
+              ),
               GenderRedioWidget(
                 key: const Key(MqKeys.settingsGenderMale),
                 gender: authCubit.state.appUiGender,

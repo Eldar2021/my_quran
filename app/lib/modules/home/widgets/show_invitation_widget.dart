@@ -19,14 +19,23 @@ class ShowInvitationWidget {
       useSafeArea: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
-        return _InvitationSheet(invitedHatims: List.from(invitedHatims), confirmKey: confirmKey, cancelKey: cancelKey);
+        return _InvitationSheet(
+          invitedHatims: List.from(invitedHatims),
+          confirmKey: confirmKey,
+          cancelKey: cancelKey,
+        );
       },
     );
   }
 }
 
 class _InvitationSheet extends StatefulWidget {
-  const _InvitationSheet({required this.invitedHatims, this.confirmKey, this.cancelKey});
+  const _InvitationSheet({
+    required this.invitedHatims,
+    this.confirmKey,
+    this.cancelKey,
+  });
+
   final List<MqHomeInvitedHatimsModel> invitedHatims;
   final String? confirmKey;
   final String? cancelKey;
@@ -56,7 +65,9 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
       constraints: BoxConstraints(maxHeight: maxHeight),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
       ),
       padding: EdgeInsets.zero,
       child: Column(
@@ -66,19 +77,36 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
           Container(
             width: 57,
             height: 6,
-            decoration: BoxDecoration(color: colorScheme.inverseSurface, borderRadius: BorderRadius.circular(20)),
+            decoration: BoxDecoration(
+              color: colorScheme.inverseSurface,
+              borderRadius: BorderRadius.circular(20),
+            ),
           ),
           const SizedBox(height: 22),
-          Text(context.l10n.invitations, style: prTextTheme.titleLarge),
+          Text(
+            context.l10n.invitations,
+            style: prTextTheme.titleLarge,
+          ),
           const SizedBox(height: 8),
-          Text(context.l10n.invitationsDescription, textAlign: TextAlign.center, style: prTextTheme.titleSmall),
+          Text(
+            context.l10n.invitationsDescription,
+            textAlign: TextAlign.center,
+            style: prTextTheme.titleSmall,
+          ),
           Flexible(
             child: AnimatedList(
               key: _listKey,
               initialItemCount: _items.length,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 20,
+              ),
               itemBuilder: (context, index, animation) {
-                return _buildItem(_items[index], index, animation);
+                return _buildItem(
+                  _items[index],
+                  index,
+                  animation,
+                );
               },
             ),
           ),
@@ -91,7 +119,14 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
     final removedItem = _items.removeAt(index);
     _listKey.currentState?.removeItem(
       index,
-      (context, animation) => SizeTransition(sizeFactor: animation, child: _buildItem(removedItem, index, animation)),
+      (context, animation) => SizeTransition(
+        sizeFactor: animation,
+        child: _buildItem(
+          removedItem,
+          index,
+          animation,
+        ),
+      ),
     );
 
     if (accepted) {
@@ -107,7 +142,11 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
     }
   }
 
-  Widget _buildItem(MqHomeInvitedHatimsModel item, int index, Animation<double> animation) {
+  Widget _buildItem(
+    MqHomeInvitedHatimsModel item,
+    int index,
+    Animation<double> animation,
+  ) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return FadeTransition(
       opacity: animation,
@@ -115,7 +154,10 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
         padding: const EdgeInsets.only(bottom: 12),
         child: GradientDecoratedBox(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 20,
+            ),
             child: Column(
               children: [
                 Text(item.title ?? '', style: prTextTheme.titleMedium),

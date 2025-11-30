@@ -16,10 +16,17 @@ final class AppAlert {
             child: SizedBox(
               width: 80,
               height: 80,
-              child: CupertinoActivityIndicator(color: Theme.of(context).colorScheme.primary, radius: 16),
+              child: CupertinoActivityIndicator(
+                color: Theme.of(context).colorScheme.primary,
+                radius: 16,
+              ),
             ),
           ),
-          content: Text(context.l10n.pleaseWait, style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
+          content: Text(
+            context.l10n.pleaseWait,
+            style: const TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
         );
       },
     );
@@ -56,7 +63,12 @@ final class AppAlert {
         return CupertinoAlertDialog(
           title: Text(context.l10n.restartApp),
           content: Text(context.l10n.restartForDevMode),
-          actions: <Widget>[CupertinoButton(onPressed: () => exit(0), child: Text(context.l10n.restart))],
+          actions: <Widget>[
+            CupertinoButton(
+              onPressed: () => exit(0),
+              child: Text(context.l10n.restart),
+            ),
+          ],
         );
       },
     );
@@ -72,16 +84,31 @@ final class AppAlert {
       context: context,
       builder: (BuildContext ctx) {
         return CupertinoAlertDialog(
-          title: Text(context.l10n.newLocationDetected, textAlign: TextAlign.center),
+          title: Text(
+            context.l10n.newLocationDetected,
+            textAlign: TextAlign.center,
+          ),
           content: Column(
             children: [
-              Text(newLocation, textAlign: TextAlign.center),
-              Text(context.l10n.doYouWantToChange, textAlign: TextAlign.center),
+              Text(
+                newLocation,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                context.l10n.doYouWantToChange,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
           actions: <Widget>[
-            CupertinoButton(onPressed: () => onCancel(ctx), child: Text(context.l10n.cancel)),
-            CupertinoButton(onPressed: () => onConfirm(ctx), child: Text(context.l10n.yes)),
+            CupertinoButton(
+              onPressed: () => onCancel(ctx),
+              child: Text(context.l10n.cancel),
+            ),
+            CupertinoButton(
+              onPressed: () => onConfirm(ctx),
+              child: Text(context.l10n.yes),
+            ),
           ],
         );
       },

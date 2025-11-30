@@ -11,7 +11,10 @@ import 'package:my_quran/modules/hatim/hatim.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class HatimJusSelectPagesView extends StatelessWidget {
-  const HatimJusSelectPagesView({required this.hatimJusEntity, super.key});
+  const HatimJusSelectPagesView({
+    required this.hatimJusEntity,
+    super.key,
+  });
 
   final MqHatimJusEntity hatimJusEntity;
 
@@ -25,23 +28,39 @@ class HatimJusSelectPagesView extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(24, 0, 24, 50),
         children: [
           Center(
-            child: Text(context.l10n.hatim, style: prTextTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600)),
+            child: Text(
+              context.l10n.hatim,
+              style: prTextTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ),
           const SizedBox(height: 8),
           Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text(context.l10n.selectBelowPages, style: prTextTheme.bodyMedium, textAlign: TextAlign.center),
+              child: Text(
+                context.l10n.selectBelowPages,
+                style: prTextTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           MqHalfCircleChart(
             annotation: '${hatimJusEntity.total}\n${context.l10n.totalPages}',
-            dataSource: [hatimJusEntity.done, hatimJusEntity.inProgress, hatimJusEntity.toDo],
+            dataSource: [
+              hatimJusEntity.done,
+              hatimJusEntity.inProgress,
+              hatimJusEntity.toDo,
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ColumnInfoColoredBox.circular(title: context.l10n.readed, value: '${hatimJusEntity.done}'),
+              ColumnInfoColoredBox.circular(
+                title: context.l10n.readed,
+                value: '${hatimJusEntity.done}',
+              ),
               ColumnInfoColoredBox.circular(
                 boxColor: AppColors.goldenrod,
                 title: context.l10n.reading,
@@ -59,10 +78,18 @@ class HatimJusSelectPagesView extends StatelessWidget {
             builder: (context, state) {
               final juzPagesState = state.juzPagesState;
               return switch (juzPagesState) {
-                HatimJuzPagesInitial() => const Center(child: CircularProgressIndicator()),
-                HatimJuzPagesLoading() => const Center(child: CircularProgressIndicator()),
-                HatimJuzPagesFetched() => HatimPageGridListBuilder(juzPagesState.data),
-                HatimJuzPagesFailed() => Center(child: Text('${juzPagesState.exception}')),
+                HatimJuzPagesInitial() => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                HatimJuzPagesLoading() => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                HatimJuzPagesFetched() => HatimPageGridListBuilder(
+                  juzPagesState.data,
+                ),
+                HatimJuzPagesFailed() => Center(
+                  child: Text('${juzPagesState.exception}'),
+                ),
               };
             },
           ),
@@ -78,14 +105,24 @@ class HatimJusSelectPagesView extends StatelessWidget {
                       final hatimId = context.read<HatimBloc>().hatimId;
                       final pageIds = pages.map((e) => e.id).toList();
                       final pageNumbers = pages.map((e) => e.number).toList();
-                      context.read<HatimBloc>().add(SetInProgressPagesEvent(pageIds));
-                      MqAnalytic.track(AnalyticKey.goHatimReadPage, params: {'pages': pageIds});
+                      context.read<HatimBloc>().add(
+                        SetInProgressPagesEvent(pageIds),
+                      );
+                      MqAnalytic.track(
+                        AnalyticKey.goHatimReadPage,
+                        params: {'pages': pageIds},
+                      );
                       final value = await context.pushNamed<bool>(
                         AppRouter.hatimRead,
-                        pathParameters: {'hatimId': hatimId, 'pages': pageNumbers.toString()},
+                        pathParameters: {
+                          'hatimId': hatimId,
+                          'pages': pageNumbers.toString(),
+                        },
                       );
                       if (value != null && value && context.mounted) {
-                        context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
+                        context.read<HatimBloc>().add(
+                          SetDonePagesEvent(pageIds),
+                        );
                       }
                     },
                     child: Text(context.l10n.read),
@@ -122,10 +159,16 @@ class HatimPageGridListBuilder extends StatelessWidget {
               ? () {
                   final bloc = context.read<HatimBloc>();
                   if (e.status == HatimPageStatus.todo) {
-                    MqAnalytic.track(AnalyticKey.selectPage, params: {'page': e.id});
+                    MqAnalytic.track(
+                      AnalyticKey.selectPage,
+                      params: {'page': e.id},
+                    );
                     bloc.add(SelectPageEvent(e.id));
                   } else if (e.mine) {
-                    MqAnalytic.track(AnalyticKey.unselectPage, params: {'page': e.id});
+                    MqAnalytic.track(
+                      AnalyticKey.unselectPage,
+                      params: {'page': e.id},
+                    );
                     bloc.add(UnSelectPageEvent(e.id));
                   }
                 }

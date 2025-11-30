@@ -42,8 +42,12 @@ abstract class AppTheme {
         fixedSize: const Size(double.maxFinite, 52),
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(99)),
-        textStyle: primaryTextTheme.titleMedium?.copyWith(fontSize: 18),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(99),
+        ),
+        textStyle: primaryTextTheme.titleMedium?.copyWith(
+          fontSize: 18,
+        ),
       ),
     );
   }
@@ -54,8 +58,12 @@ abstract class AppTheme {
         side: BorderSide(color: colorScheme.primary),
         fixedSize: const Size.fromHeight(50),
         iconColor: colorScheme.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(99)),
-        textStyle: primaryTextTheme.titleMedium?.copyWith(fontSize: 18),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(99),
+        ),
+        textStyle: primaryTextTheme.titleMedium?.copyWith(
+          fontSize: 18,
+        ),
       ),
     );
   }
@@ -69,7 +77,10 @@ abstract class AppTheme {
       backgroundColor: colorScheme.surface,
       dragHandleSize: const Size(58, 6),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(32), topRight: Radius.circular(32)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(32),
+          topRight: Radius.circular(32),
+        ),
       ),
     );
   }
@@ -79,7 +90,11 @@ abstract class AppTheme {
   }
 
   SwitchThemeData get switchTheme {
-    return SwitchThemeData(trackOutlineColor: WidgetStateProperty.resolveWith((states) => AppColors.transparent));
+    return SwitchThemeData(
+      trackOutlineColor: WidgetStateProperty.resolveWith(
+        (states) => AppColors.transparent,
+      ),
+    );
   }
 
   ProgressIndicatorThemeData get progressIndicatorTheme {

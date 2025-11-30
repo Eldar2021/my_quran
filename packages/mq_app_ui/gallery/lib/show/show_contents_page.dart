@@ -5,7 +5,9 @@ class ShowContentsPage extends StatefulWidget {
   const ShowContentsPage({super.key});
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const ShowContentsPage());
+    return MaterialPageRoute<void>(
+      builder: (_) => const ShowContentsPage(),
+    );
   }
 
   @override
@@ -22,7 +24,10 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
-          Text('Show amen', style: prTextTheme.titleMedium),
+          Text(
+            'Show amen',
+            style: prTextTheme.titleMedium,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -66,12 +71,21 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
-          Text('Link Text button', style: prTextTheme.titleMedium),
-          LinkTextButton(text: 'Link Text', onPressed: () {}),
+          Text(
+            'Link Text button',
+            style: prTextTheme.titleMedium,
+          ),
+          LinkTextButton(
+            text: 'Link Text',
+            onPressed: () {},
+          ),
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
-          Text('Bottom Sheets', style: prTextTheme.titleMedium),
+          Text(
+            'Bottom Sheets',
+            style: prTextTheme.titleMedium,
+          ),
           Row(
             children: [
               TextButton(
@@ -105,7 +119,10 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
-          Text('Popup Menu', style: prTextTheme.titleMedium),
+          Text(
+            'Popup Menu',
+            style: prTextTheme.titleMedium,
+          ),
         ],
       ),
     );

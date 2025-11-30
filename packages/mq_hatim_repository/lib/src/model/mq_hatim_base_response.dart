@@ -6,7 +6,10 @@ part 'mq_hatim_base_response.g.dart';
 @JsonSerializable()
 @immutable
 final class HatimBaseResponse {
-  const HatimBaseResponse({required this.type, required this.data});
+  const HatimBaseResponse({
+    required this.type,
+    required this.data,
+  });
 
   factory HatimBaseResponse.fromJson(Map<String, dynamic> json) => _$HatimBaseResponseFromJson(json);
   Map<String, dynamic> toJson() => _$HatimBaseResponseToJson(this);

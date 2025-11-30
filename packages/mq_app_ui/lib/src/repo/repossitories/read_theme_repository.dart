@@ -24,7 +24,12 @@ final class ReadThemeData {
     );
   }
 
-  static const initial = ReadThemeData(modeIndex: 1, verticalSpaceSize: 0, horizontalSpaceSize: 14, textSize: 28);
+  static const initial = ReadThemeData(
+    modeIndex: 1,
+    verticalSpaceSize: 0,
+    horizontalSpaceSize: 14,
+    textSize: 28,
+  );
 
   final int modeIndex;
   final double verticalSpaceSize;
@@ -40,11 +45,21 @@ final class ReadThemeData {
     };
   }
 
-  static const frReadThemeColor = [Color(0xff000000), Color(0xff000000), Color(0xffFFFFFF), Color(0xffFFFFFF)];
+  static const frReadThemeColor = [
+    Color(0xff000000),
+    Color(0xff000000),
+    Color(0xffFFFFFF),
+    Color(0xffFFFFFF),
+  ];
 
   Color get foregroundColor => frReadThemeColor[modeIndex];
 
-  static const bgReadThemeColor = [Color(0xffFFFFFF), Color(0xffFFEED6), Color(0xff1C1C1E), Color(0xff0E0E0F)];
+  static const bgReadThemeColor = [
+    Color(0xffFFFFFF),
+    Color(0xffFFEED6),
+    Color(0xff1C1C1E),
+    Color(0xff0E0E0F),
+  ];
 
   Color get backgroundColor => bgReadThemeColor[modeIndex];
 }

@@ -20,7 +20,9 @@ void main() {
 
     setUp(() async {
       preferences = MockSharedPreferences();
-      preferencesStorage = await PreferencesStorage.getInstance(preferences);
+      preferencesStorage = await PreferencesStorage.getInstance(
+        preferences,
+      );
     });
 
     test('Create SecureStorage constructor', () {
@@ -29,77 +31,135 @@ void main() {
 
     group('Read', () {
       test('return String `mockValue` succesfully', () {
-        when(() => preferences.getString(mockKey)).thenAnswer((_) => mockValue);
+        when(
+          () => preferences.getString(mockKey),
+        ).thenAnswer((_) => mockValue);
+
         final actual = preferencesStorage.readString(key: mockKey);
+
         expect(actual, mockValue);
       });
 
       test('return bool `mockBoolValue` succesfully', () {
-        when(() => preferences.getBool(mockKey)).thenAnswer((_) => mockBoolValue);
+        when(
+          () => preferences.getBool(mockKey),
+        ).thenAnswer((_) => mockBoolValue);
         final actual = preferencesStorage.readBool(key: mockKey);
         expect(actual, mockBoolValue);
       });
 
       test('return double `mockDoubleValue` succesfully', () {
-        when(() => preferences.getDouble(mockKey)).thenAnswer((_) => mockDoubleValue);
+        when(
+          () => preferences.getDouble(mockKey),
+        ).thenAnswer((_) => mockDoubleValue);
         final actual = preferencesStorage.readDouble(key: mockKey);
         expect(actual, mockDoubleValue);
       });
 
       test('return int `mockIntValue` succesfully', () {
-        when(() => preferences.getInt(mockKey)).thenAnswer((_) => mockIntValue);
+        when(
+          () => preferences.getInt(mockKey),
+        ).thenAnswer((_) => mockIntValue);
         final actual = preferencesStorage.readInt(key: mockKey);
         expect(actual, mockIntValue);
       });
 
       test('return List<String> `mockListStringValue` succesfully', () {
-        when(() => preferences.getStringList(mockKey)).thenAnswer((_) => mockListStringValue);
+        when(
+          () => preferences.getStringList(mockKey),
+        ).thenAnswer((_) => mockListStringValue);
         final actual = preferencesStorage.readStringList(key: mockKey);
         expect(actual, mockListStringValue);
       });
 
       test('return `null`', () {
-        when(() => preferences.getString(mockKey)).thenAnswer((_) => null);
+        when(
+          () => preferences.getString(mockKey),
+        ).thenAnswer((_) => null);
         final actual = preferencesStorage.readString(key: mockKey);
         expect(actual, isNull);
       });
 
       test('throw `StorageException` fails', () async {
-        when(() => preferences.getString(mockKey)).thenThrow(mockException);
-        expect(() => preferencesStorage.readString(key: mockKey), throwsA(isA<StorageException>()));
+        when(
+          () => preferences.getString(mockKey),
+        ).thenThrow(mockException);
+        expect(
+          () => preferencesStorage.readString(key: mockKey),
+          throwsA(isA<StorageException>()),
+        );
       });
     });
 
     group('Write', () {
       test('write String succesfully', () async {
-        when(() => preferences.setString(mockKey, mockValue)).thenAnswer((_) => Future.value(true));
-        expect(preferencesStorage.writeString(key: mockKey, value: mockValue), completes);
+        when(
+          () => preferences.setString(mockKey, mockValue),
+        ).thenAnswer((_) => Future.value(true));
+        expect(
+          preferencesStorage.writeString(key: mockKey, value: mockValue),
+          completes,
+        );
       });
 
       test('write bool `mockBoolValue` succesfully', () {
-        when(() => preferences.setBool(mockKey, mockBoolValue)).thenAnswer((_) => Future.value(true));
-        expect(preferencesStorage.writeBool(key: mockKey, value: mockBoolValue), completes);
+        when(
+          () => preferences.setBool(mockKey, mockBoolValue),
+        ).thenAnswer((_) => Future.value(true));
+        expect(
+          preferencesStorage.writeBool(
+            key: mockKey,
+            value: mockBoolValue,
+          ),
+          completes,
+        );
       });
 
       test('return double `mockDoubleValue` succesfully', () {
-        when(() => preferences.setDouble(mockKey, mockDoubleValue)).thenAnswer((_) => Future.value(true));
-        expect(preferencesStorage.writeDouble(key: mockKey, value: mockDoubleValue), completes);
+        when(
+          () => preferences.setDouble(mockKey, mockDoubleValue),
+        ).thenAnswer((_) => Future.value(true));
+        expect(
+          preferencesStorage.writeDouble(
+            key: mockKey,
+            value: mockDoubleValue,
+          ),
+          completes,
+        );
       });
 
       test('return int `mockIntValue` succesfully', () {
-        when(() => preferences.setInt(mockKey, mockIntValue)).thenAnswer((_) => Future.value(true));
-        expect(preferencesStorage.writeInt(key: mockKey, value: mockIntValue), completes);
+        when(
+          () => preferences.setInt(mockKey, mockIntValue),
+        ).thenAnswer((_) => Future.value(true));
+        expect(
+          preferencesStorage.writeInt(key: mockKey, value: mockIntValue),
+          completes,
+        );
       });
 
       test('return List<String> `mockListStringValue` succesfully', () {
-        when(() => preferences.setStringList(mockKey, mockListStringValue)).thenAnswer((_) => Future.value(true));
-        expect(preferencesStorage.writeStringList(key: mockKey, value: mockListStringValue), completes);
+        when(
+          () => preferences.setStringList(mockKey, mockListStringValue),
+        ).thenAnswer((_) => Future.value(true));
+        expect(
+          preferencesStorage.writeStringList(
+            key: mockKey,
+            value: mockListStringValue,
+          ),
+          completes,
+        );
       });
 
       test('throw `StorageException` fails', () async {
-        when(() => preferences.setString(mockKey, mockValue)).thenThrow(mockException);
+        when(
+          () => preferences.setString(mockKey, mockValue),
+        ).thenThrow(mockException);
         expect(
-          () async => preferencesStorage.writeString(key: mockKey, value: mockValue),
+          () async => preferencesStorage.writeString(
+            key: mockKey,
+            value: mockValue,
+          ),
           throwsA(isA<StorageException>()),
         );
       });
@@ -107,25 +167,45 @@ void main() {
 
     group('Delete', () {
       test('delete successfully', () async {
-        when(() => preferences.remove(mockKey)).thenAnswer((_) => Future.value(true));
-        expect(preferencesStorage.delete(key: mockKey), completes);
+        when(
+          () => preferences.remove(mockKey),
+        ).thenAnswer((_) => Future.value(true));
+        expect(
+          preferencesStorage.delete(key: mockKey),
+          completes,
+        );
       });
 
       test('throw `StorageException` fails', () async {
-        when(() => preferences.remove(mockKey)).thenThrow(mockException);
-        expect(() async => preferencesStorage.delete(key: mockKey), throwsA(isA<StorageException>()));
+        when(
+          () => preferences.remove(mockKey),
+        ).thenThrow(mockException);
+        expect(
+          () async => preferencesStorage.delete(key: mockKey),
+          throwsA(isA<StorageException>()),
+        );
       });
     });
 
     group('Clear', () {
       test('clear successfully', () async {
-        when(() => preferences.clear()).thenAnswer((_) => Future.value(true));
-        expect(preferencesStorage.clear(), completes);
+        when(
+          () => preferences.clear(),
+        ).thenAnswer((_) => Future.value(true));
+        expect(
+          preferencesStorage.clear(),
+          completes,
+        );
       });
 
       test('throw `StorageException` fails', () async {
-        when(() => preferences.clear()).thenThrow(mockException);
-        expect(() async => preferencesStorage.clear(), throwsA(isA<StorageException>()));
+        when(
+          () => preferences.clear(),
+        ).thenThrow(mockException);
+        expect(
+          () async => preferencesStorage.clear(),
+          throwsA(isA<StorageException>()),
+        );
       });
     });
   });

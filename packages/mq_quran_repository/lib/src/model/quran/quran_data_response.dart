@@ -7,11 +7,18 @@ part 'quran_data_response.g.dart';
 @JsonSerializable()
 @immutable
 final class QuranDataResponse {
-  const QuranDataResponse({required this.verses, required this.meta});
+  const QuranDataResponse({
+    required this.verses,
+    required this.meta,
+  });
 
-  factory QuranDataResponse.fromJson(Map<String, dynamic> json) => _$QuranDataResponseFromJson(json);
+  factory QuranDataResponse.fromJson(Map<String, dynamic> json) {
+    return _$QuranDataResponseFromJson(json);
+  }
 
-  Map<String, dynamic> toJson() => _$QuranDataResponseToJson(this);
+  Map<String, dynamic> toJson() {
+    return _$QuranDataResponseToJson(this);
+  }
 
   @JsonKey(name: 'verses')
   final List<QuranDataVerseResponse> verses;
@@ -19,23 +26,34 @@ final class QuranDataResponse {
   final QuranDataMetaResponse meta;
 
   QuranDataEntity toEntity() {
-    return QuranDataEntity(verses: verses.map((e) => e.toEntity()).toList(), meta: meta.toEntity());
+    return QuranDataEntity(
+      verses: verses.map((e) => e.toEntity()).toList(),
+      meta: meta.toEntity(),
+    );
   }
 }
 
 @JsonSerializable()
 @immutable
 final class QuranDataMetaResponse {
-  const QuranDataMetaResponse({required this.filters});
+  const QuranDataMetaResponse({
+    required this.filters,
+  });
 
-  factory QuranDataMetaResponse.fromJson(Map<String, dynamic> json) => _$QuranDataMetaResponseFromJson(json);
+  factory QuranDataMetaResponse.fromJson(Map<String, dynamic> json) {
+    return _$QuranDataMetaResponseFromJson(json);
+  }
 
-  Map<String, dynamic> toJson() => _$QuranDataMetaResponseToJson(this);
+  Map<String, dynamic> toJson() {
+    return _$QuranDataMetaResponseToJson(this);
+  }
 
   @JsonKey(name: 'filters')
   final QuranDataFilterResponse filters;
 
   QuranDataMetaEntity toEntity() {
-    return QuranDataMetaEntity(filters: filters.toEntity());
+    return QuranDataMetaEntity(
+      filters: filters.toEntity(),
+    );
   }
 }

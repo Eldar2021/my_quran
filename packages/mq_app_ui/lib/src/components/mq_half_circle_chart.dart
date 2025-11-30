@@ -8,7 +8,11 @@ class MqHalfCircleChart extends StatelessWidget {
     this.innerRadius = 85,
     this.annotationFontSize = 18,
     this.dataSource = const [20, 30, 50],
-    this.colors = const [AppColors.tomato2, AppColors.goldenrod, AppColors.mediumseagreen],
+    this.colors = const [
+      AppColors.tomato2,
+      AppColors.goldenrod,
+      AppColors.mediumseagreen,
+    ],
     this.annotation = '26\nTotal pages',
     super.key,
   });
@@ -39,7 +43,9 @@ class MqHalfCircleChart extends StatelessWidget {
                 widget: Text(
                   annotation,
                   textAlign: TextAlign.center,
-                  style: prTextTheme.titleLarge?.copyWith(fontSize: annotationFontSize),
+                  style: prTextTheme.titleLarge?.copyWith(
+                    fontSize: annotationFontSize,
+                  ),
                 ),
               ),
             ],

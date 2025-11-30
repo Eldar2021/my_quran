@@ -39,7 +39,9 @@ Future<void> checkQuranSettings(FlutterDriver driver) async {
   });
 }
 
-Future<void> backQuranReadInitPageFromQuranReadView(FlutterDriver driver) async {
+Future<void> backQuranReadInitPageFromQuranReadView(
+  FlutterDriver driver,
+) async {
   await driver.runUnsynchronized(() async {
     await driver.waitFor(find.byValueKey(MqKeys.quranReadView));
     await driver.tap(find.pageBack());

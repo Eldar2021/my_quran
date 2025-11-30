@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:my_quran/core/core.dart';
@@ -33,7 +32,10 @@ class _SearchViewState extends State<SearchView> {
 
     return Scaffold(
       key: const Key(MqKeys.search),
-      appBar: AppBar(title: Text(context.l10n.addParticipants), centerTitle: true),
+      appBar: AppBar(
+        title: Text(context.l10n.addParticipants),
+        centerTitle: true,
+      ),
       body: BlocBuilder<CreateHatimCubit, CreateHatimState>(
         builder: (context, state) {
           final status = state.status;
@@ -44,13 +46,18 @@ class _SearchViewState extends State<SearchView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 16),
-                SearchInputField(searchController: _searchController, searchFocusNode: _searchFocusNode),
+                SearchInputField(
+                  searchController: _searchController,
+                  searchFocusNode: _searchFocusNode,
+                ),
                 if (_isTooShort)
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
                       context.l10n.queryMinLength,
-                      style: prTextTheme.bodySmall?.copyWith(color: AppColors.tomato),
+                      style: prTextTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ),
                 Expanded(
@@ -59,7 +66,10 @@ class _SearchViewState extends State<SearchView> {
                     children: [
                       if (state.selectedUsers.isNotEmpty) ...[
                         const SizedBox(height: 20),
-                        Text(context.l10n.addedParticipants, style: prTextTheme.titleMedium),
+                        Text(
+                          context.l10n.addedParticipants,
+                          style: prTextTheme.titleMedium,
+                        ),
                         const SizedBox(height: 10),
                         ListView.builder(
                           itemCount: state.selectedUsers.length,
@@ -72,13 +82,18 @@ class _SearchViewState extends State<SearchView> {
                               user: user,
                               text: context.l10n.remove,
                               isOutlined: true,
-                              onPressed: () => context.read<CreateHatimCubit>().removeParticipant(user),
+                              onPressed: () {
+                                context.read<CreateHatimCubit>().removeParticipant(user);
+                              },
                             );
                           },
                         ),
                       ],
                       const SizedBox(height: 20),
-                      Text(context.l10n.allUsers, style: prTextTheme.titleMedium),
+                      Text(
+                        context.l10n.allUsers,
+                        style: prTextTheme.titleMedium,
+                      ),
                       const SizedBox(height: 10),
                       switch (status) {
                         FetchStatus.initial => Center(
@@ -88,7 +103,10 @@ class _SearchViewState extends State<SearchView> {
                           ),
                         ),
                         FetchStatus.loading => const Center(
-                          child: Padding(padding: EdgeInsets.only(top: 180), child: CircularProgressIndicator()),
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 180),
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
                         FetchStatus.error => const SizedBox.shrink(),
 
@@ -107,7 +125,9 @@ class _SearchViewState extends State<SearchView> {
                                   padding: const EdgeInsets.only(bottom: 120),
                                   itemBuilder: (context, index) {
                                     final user = state.searchModel!.users![index];
-                                    final isAdded = state.selectedUsers.any((u) => u.id == user.id);
+                                    final isAdded = state.selectedUsers.any(
+                                      (u) => u.id == user.id,
+                                    );
                                     final cubit = context.read<CreateHatimCubit>();
 
                                     return ParticipantTile(

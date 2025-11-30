@@ -24,7 +24,10 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModelResponse> signInWithGoogle(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signInWithGoogle(
+    String languageCode,
+    Gender gender,
+  ) async {
     return UserModelResponse(
       accessToken: 'mock_token_google',
       username: 'Mock Google User',
@@ -34,7 +37,10 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModelResponse> signInWithApple(String languageCode, Gender gender) async {
+  Future<UserModelResponse> signInWithApple(
+    String languageCode,
+    Gender gender,
+  ) async {
     return UserModelResponse(
       accessToken: 'mock_token_apple',
       username: 'Mock Apple User',
@@ -45,17 +51,32 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
 
   @override
   Future<UserDataResponse> saveUserData(UserModelResponse userEntity) async {
-    return UserDataResponse(gender: userEntity.gender.toString(), language: userEntity.localeCode);
+    return UserDataResponse(
+      gender: userEntity.gender.toString(),
+      language: userEntity.localeCode,
+    );
   }
 
   @override
-  Future<UserDataResponse> pathGender({required String userId, required Gender gender}) async {
-    return UserDataResponse(gender: Gender.male.toString(), language: 'en');
+  Future<UserDataResponse> pathGender({
+    required String userId,
+    required Gender gender,
+  }) async {
+    return UserDataResponse(
+      gender: Gender.male.toString(),
+      language: 'en',
+    );
   }
 
   @override
-  Future<UserDataResponse> pathLocaleCode({required String userId, required String localeCode}) async {
-    return UserDataResponse(gender: Gender.male.toString(), language: 'en');
+  Future<UserDataResponse> pathLocaleCode({
+    required String userId,
+    required String localeCode,
+  }) async {
+    return UserDataResponse(
+      gender: Gender.male.toString(),
+      language: 'en',
+    );
   }
 
   @override

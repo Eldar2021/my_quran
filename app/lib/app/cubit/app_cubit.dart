@@ -18,7 +18,9 @@ class AppThemeCubit extends Cubit<AppTheme> {
   Future<void> changeMode({required bool isDark}) async {
     await appThemeRepository.saveThemeMode(isDark: isDark);
     if (isDark) {
-      emit(state.isOrange ? const AppOrangeDarkTheme() : const AppBlueDarkTheme());
+      emit(
+        state.isOrange ? const AppOrangeDarkTheme() : const AppBlueDarkTheme(),
+      );
     } else {
       emit(state.isOrange ? const AppOrangeTheme() : const AppBlueTheme());
     }

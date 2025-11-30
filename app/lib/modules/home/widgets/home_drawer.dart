@@ -22,7 +22,11 @@ class HomeDrawer extends StatelessWidget {
       key: const Key(MqKeys.settingsView),
       width: size.width * 0.85,
       backgroundColor: colorScheme.surface,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(40))),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(40),
+        ),
+      ),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +52,9 @@ class HomeDrawer extends StatelessWidget {
                   builder: (context, state) {
                     return Text(
                       '${context.l10n.version} ${state.version}',
-                      style: prTextTheme.bodyLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: 0.6)),
+                      style: prTextTheme.bodyLarge?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
                     );
                   },
                 ),

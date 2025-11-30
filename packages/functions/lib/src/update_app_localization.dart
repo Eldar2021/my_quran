@@ -17,7 +17,10 @@ const _usedKeysPath = 'packages/functions/docs/used_keys.json';
 const _docsPath = 'packages/functions';
 
 Future<void> main() async {
-  final currentProjectPath = Directory.current.path.replaceAll('/packages/functions', '');
+  final currentProjectPath = Directory.current.path.replaceAll(
+    '/packages/functions',
+    '',
+  );
 
   final enJsonData = <String, dynamic>{};
   final kyJsonData = <String, dynamic>{};
@@ -60,39 +63,87 @@ Future<void> main() async {
 
   print('Finish all used keys');
 
-  await createAndWriteJsonFile('$currentProjectPath/$_enJsonPath', enJsonData);
-  await createAndWriteJsonFile('$currentProjectPath/$_kyJsonPath', kyJsonData);
-  await createAndWriteJsonFile('$currentProjectPath/$_ruJsonPath', ruJsonData);
-  await createAndWriteJsonFile('$currentProjectPath/$_arJsonPath', arJsonData);
-  await createAndWriteJsonFile('$currentProjectPath/$_idJsonPath', idJsonData);
-  await createAndWriteJsonFile('$currentProjectPath/$_kkJsonPath', kkJsonData);
-  await createAndWriteJsonFile('$currentProjectPath/$_trJsonPath', trJsonData);
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_enJsonPath',
+    enJsonData,
+  );
+
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_kyJsonPath',
+    kyJsonData,
+  );
+
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_ruJsonPath',
+    ruJsonData,
+  );
+
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_arJsonPath',
+    arJsonData,
+  );
+
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_idJsonPath',
+    idJsonData,
+  );
+
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_kkJsonPath',
+    kkJsonData,
+  );
+
+  await createAndWriteJsonFile(
+    '$currentProjectPath/$_trJsonPath',
+    trJsonData,
+  );
 
   if (!enJsonData.equal(enJsonContent)) {
-    await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/old_en.json', enJsonContent);
+    await createAndWriteJsonFile(
+      '$currentProjectPath/$_docsPath/docs/old_en.json',
+      enJsonContent,
+    );
   }
 
   if (!kyJsonData.equal(kyJsonContent)) {
-    await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/old_ky.json', kyJsonContent);
+    await createAndWriteJsonFile(
+      '$currentProjectPath/$_docsPath/docs/old_ky.json',
+      kyJsonContent,
+    );
   }
 
   if (!ruJsonData.equal(ruJsonContent)) {
-    await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/old_ru.json', ruJsonContent);
+    await createAndWriteJsonFile(
+      '$currentProjectPath/$_docsPath/docs/old_ru.json',
+      ruJsonContent,
+    );
   }
 
   if (!arJsonData.equal(arJsonContent)) {
-    await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/old_ar.json', arJsonContent);
+    await createAndWriteJsonFile(
+      '$currentProjectPath/$_docsPath/docs/old_ar.json',
+      arJsonContent,
+    );
   }
 
   if (!idJsonData.equal(idJsonContent)) {
-    await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/old_id.json', idJsonContent);
+    await createAndWriteJsonFile(
+      '$currentProjectPath/$_docsPath/docs/old_id.json',
+      idJsonContent,
+    );
   }
 
   if (!kkJsonData.equal(kkJsonContent)) {
-    await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/old_kk.json', kkJsonContent);
+    await createAndWriteJsonFile(
+      '$currentProjectPath/$_docsPath/docs/old_kk.json',
+      kkJsonContent,
+    );
   }
 
   if (!trJsonData.equal(trJsonContent)) {
-    await createAndWriteJsonFile('$currentProjectPath/$_docsPath/docs/old_tr.json', trJsonContent);
+    await createAndWriteJsonFile(
+      '$currentProjectPath/$_docsPath/docs/old_tr.json',
+      trJsonContent,
+    );
   }
 }

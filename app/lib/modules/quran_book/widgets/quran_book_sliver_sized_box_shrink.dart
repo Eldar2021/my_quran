@@ -5,6 +5,8 @@ class QuranBookSliverSizedBoxShrink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SliverToBoxAdapter(child: SizedBox.shrink());
+    return const SliverToBoxAdapter(
+      child: SizedBox.shrink(),
+    );
   }
 }
