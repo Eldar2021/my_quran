@@ -58,15 +58,13 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
           fetchNextPage: _nextPage,
           builderDelegate: PagedChildBuilderDelegate(
             itemBuilder: (context, item, index) {
-              final strb = item.dataDatePage().map((e) => e.samePage(context)).toList().toString();
-              final text = strb.replaceAll('[', '').replaceAll(']', '');
               final page = int.tryParse(item.meta.filters.value);
               final isLast = index >= _pagesNumber.length - 1;
-
               return _QuranPageItem(
-                text: text,
+                verses: item.verses,
                 themeCubit: themeCubit,
                 isLast: isLast,
+                firstKey: item.verses.first.verseKey,
                 page: page,
               );
             },
@@ -79,15 +77,17 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
 
 class _QuranPageItem extends StatelessWidget {
   const _QuranPageItem({
-    required this.text,
+    required this.verses,
     required this.themeCubit,
     required this.isLast,
+    required this.firstKey,
     required this.page,
   });
 
-  final String text;
+  final List<QuranDataVerseEntity> verses;
   final QuranBookThemeCubit themeCubit;
   final bool isLast;
+  final String firstKey;
   final int? page;
 
   @override
@@ -101,27 +101,55 @@ class _QuranPageItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              text,
-              style: TextStyle(
-                fontFamily: FontFamily.qpcUthmanicHafs,
-                fontSize: themeCubit.state.textSize,
-                color: themeCubit.state.frColor,
-                height: 2.5,
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontFamily: FontFamily.uthmanicV2,
+                  fontSize: themeCubit.state.textSize,
+                  color: themeCubit.state.frColor,
+                  height: 2.3,
+                ),
+                children: verses.map((e) {
+                  return TextSpan(
+                    children: [
+                      if (e.showBismillah)
+                        TextSpan(
+                          text: '${firstKey == e.verseKey ? '' : '\n\n'} ${MqQuranStatic.bismallah} \n',
+                        ),
+                      TextSpan(text: e.text),
+                      TextSpan(
+                        text: ' ${e.ayatNumber.toArabicDigits} ',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontFamily: FontFamily.uthmanicRegular,
+                          fontSize: themeCubit.state.textSize,
+                          color: themeCubit.state.frColor,
+                          letterSpacing: -2.5,
+                        ),
+                      ),
+                      if (e.isFirstAyatOfQuran) const TextSpan(text: '\n'),
+                    ],
+                  );
+                }).toList(),
               ),
-              textDirection: TextDirection.rtl,
             ),
             if (page != null)
               Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    page!.toArabicDigits,
-                    style: TextStyle(
-                      fontSize: themeCubit.state.textSize,
-                      color: themeCubit.state.frColor,
+                child: Row(
+                  children: [
+                    const Expanded(child: Divider()),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(
+                        page!.toArabicDigits,
+                        style: TextStyle(
+                          fontSize: themeCubit.state.textSize,
+                          color: themeCubit.state.frColor,
+                        ),
+                      ),
                     ),
-                  ),
+                    const Expanded(child: Divider()),
+                  ],
                 ),
               ),
             if (isLast)

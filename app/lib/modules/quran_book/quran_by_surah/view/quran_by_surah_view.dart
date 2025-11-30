@@ -14,12 +14,15 @@ class QuranBySurahView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              QuranBookThemeCubit(readThemeRepository: context.read<ReadThemeRepository>())..initializeTheme(),
+          create: (context) => QuranBookThemeCubit(
+            readThemeRepository: context.read<ReadThemeRepository>(),
+          )..initializeTheme(),
         ),
         BlocProvider(
-          create: (context) =>
-              QuranBookBySurahCubit(repository: context.read<MqQuranRepository>(), surahNumber: surahNumber),
+          create: (context) => QuranBookBySurahCubit(
+            repository: context.read<MqQuranRepository>(),
+            surahNumber: surahNumber,
+          ),
         ),
       ],
       child: const _QuranBySurahView(),
@@ -56,7 +59,11 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
               _surahEntity.nameArabic,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: FontFamily.qpcUthmanicHafs, fontSize: 32, color: themeCubit.state.frColor),
+              style: TextStyle(
+                fontFamily: FontFamily.uthmanicV2,
+                fontSize: 32,
+                color: themeCubit.state.frColor,
+              ),
             ),
           ),
           BlocBuilder<QuranBookBySurahCubit, QuranBookBySurahState>(
@@ -65,7 +72,7 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
                 QuranBookBySurahInitial() => const QuranBookSliverProgressingIndicator(),
                 QuranBookBySurahLoading() => const QuranBookSliverProgressingIndicator(),
                 QuranBookBySurahError() => QuranBookSliverErrorWidget(state.error.toString()),
-                QuranBookBySurahLoaded() => QuranBookSurahSuccessWidget(state.items),
+                QuranBookBySurahLoaded() => QuranBookSuccessWidget(state.items),
               };
             },
           ),

@@ -15,11 +15,15 @@ class QuranByJuzView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              QuranBookThemeCubit(readThemeRepository: context.read<ReadThemeRepository>())..initializeTheme(),
+          create: (context) => QuranBookThemeCubit(
+            readThemeRepository: context.read<ReadThemeRepository>(),
+          )..initializeTheme(),
         ),
         BlocProvider(
-          create: (context) => QuranBookByJuzCubit(repository: context.read<MqQuranRepository>(), juzNumber: juzNumber),
+          create: (context) => QuranBookByJuzCubit(
+            repository: context.read<MqQuranRepository>(),
+            juzNumber: juzNumber,
+          ),
         ),
       ],
       child: const _QuranByJuzView(),
@@ -64,7 +68,7 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
                 QuranBookByJuzInitial() => const QuranBookSliverProgressingIndicator(),
                 QuranBookByJuzLoading() => const QuranBookSliverProgressingIndicator(),
                 QuranBookByJuzError() => QuranBookSliverErrorWidget(state.error.toString()),
-                QuranBookByJuzLoaded() => QuranBookSurahSuccessWidget(state.items),
+                QuranBookByJuzLoaded() => QuranBookSuccessWidget(state.items),
               };
             },
           ),

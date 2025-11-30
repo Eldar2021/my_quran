@@ -47,7 +47,6 @@ class _QuranByPagesView extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: FontFamily.qpcUthmanicHafs,
                 fontSize: 26,
                 color: themeCubit.state.frColor,
               ),

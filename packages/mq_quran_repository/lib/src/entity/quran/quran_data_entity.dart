@@ -3,7 +3,10 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 @immutable
 final class QuranDataEntity {
-  const QuranDataEntity({required this.verses, required this.meta});
+  const QuranDataEntity({
+    required this.verses,
+    required this.meta,
+  });
 
   final List<QuranDataVerseEntity> verses;
   final QuranDataMetaEntity meta;
@@ -29,53 +32,42 @@ final class QuranDataEntity {
         currentPage++;
       }
 
-      groupedVerses.update(currentPage, (list) => list..add(verse), ifAbsent: () => [verse]);
+      groupedVerses.update(currentPage, (list) {
+        return list..add(verse);
+      }, ifAbsent: () => [verse]);
     }
 
-    return groupedVerses.entries.map((entry) => QuranDataSamePage(pageNumber: entry.key, verses: entry.value)).toList();
+    return groupedVerses.entries
+        .map(
+          (entry) => QuranDataSamePage(
+            pageNumber: entry.key,
+            verses: entry.value,
+          ),
+        )
+        .toList();
   }
 }
 
 @immutable
 final class QuranDataMetaEntity {
-  const QuranDataMetaEntity({required this.filters});
+  const QuranDataMetaEntity({
+    required this.filters,
+  });
 
   final QuranDataFilterEntity filters;
 }
 
 @immutable
 final class QuranDataSamePage {
-  const QuranDataSamePage({required this.pageNumber, required this.verses});
+  const QuranDataSamePage({
+    required this.pageNumber,
+    required this.verses,
+  });
 
   final int pageNumber;
   final List<QuranDataVerseEntity> verses;
 
-  StringBuffer samePage(BuildContext context) {
-    return StringBuffer()..writeAll(
-      verses.map((e) {
-        final a = e.text.replaceAll('\u{06DF}', '\u{0652}');
-        final String bismillahCentered;
-        if (e.isFirst && e.verseKey != '1:1') {
-          bismillahCentered =
-              '${e.verseKey == verses.first.verseKey ? '' : '\n\n'}${_centerText(MqQuranStatic.bismallah)}\n';
-        } else {
-          bismillahCentered = '';
-        }
-        final sajdaSymbol = e.hasSajda ? MqQuranStatic.sajdaSymbol : '';
-        return '$bismillahCentered$a$sajdaSymbol\uFD3F${e.ayatNumber.toArabicDigits}\uFD3E  ';
-      }),
-    );
-  }
-
-  String _centerText(String text, {int lineWidth = 50}) {
-    final totalPadding = lineWidth - text.length;
-    if (totalPadding <= 0) return text;
-
-    final leftPadding = totalPadding ~/ 1;
-    final rightPadding = totalPadding - leftPadding;
-
-    return ' ' * leftPadding + text + ' ' * rightPadding;
-  }
+  bool isFirst(String key) => verses.first.verseKey == key;
 }
 
 extension NumberConverter on num {
