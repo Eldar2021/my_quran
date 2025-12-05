@@ -266,3 +266,23 @@
 
 - Implemented Dart workspace
 - Bumped flutter version 3.35.6
+
+---
+
+# What's Changed v1.3.19+31
+
+## [Bug Fixes]
+
+- Fixed Quran font
+- Fixed localizations
+- Fixed Apple issue `NSLocationAlwaysAndWhenInUseUsageDescription`
+
+## [Technical]
+
+- Improved CI tests
+- Upgraded Google signin
+- Upgraded infinite_scroll_pagination pkg
+- Upgraded adhan_dart pkg
+- Fixed all ignores dart analyze
+- Implemented CI/CD
+- Added Make file
