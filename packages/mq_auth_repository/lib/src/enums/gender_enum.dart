@@ -5,7 +5,8 @@ enum Gender {
   @JsonValue('male')
   male,
   @JsonValue('female')
-  female;
+  female
+  ;
 
   factory Gender.fromData(String? src) {
     return switch (src) {
