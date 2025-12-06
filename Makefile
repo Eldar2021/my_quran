@@ -2,7 +2,7 @@ pod-install:
 	cd app/ios && rm -f Podfile.lock
 	cd app/ios && rm -rf .symlinks
 	cd app/ios && rm -rf Pods
-	cd app/ios && pod install
+	cd app/ios && pod install --repo-update
 
 gen-assets:
 	cd packages/mq_app_ui && flutter pub run build_runner build --delete-conflicting-outputs

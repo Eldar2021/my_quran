@@ -1,3 +1,6 @@
+// Ignored print
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:flutter_driver/flutter_driver.dart';
@@ -8,17 +11,22 @@ extension ScreenshotExtension on FlutterDriver {
     String directory = '../screenshots',
     bool waitUntilNoTransientCallbacks = true,
   }) async {
+    final operationSystem = await requestData('getPlatformCommand');
+    if (operationSystem == 'android') return;
+
     if (waitUntilNoTransientCallbacks) {
       await this.waitUntilNoTransientCallbacks(
         timeout: const Duration(seconds: 30),
       );
     }
-    final pixels = await screenshot();
-    final directoryPath = directory.endsWith('/') ? directory : '$directory/';
-    final file = await File('$directoryPath$name.png').create(recursive: true);
-    await file.writeAsBytes(pixels);
-    // Just on Debug mode
-    // ignore: avoid_print
+    try {
+      final pixels = await screenshot().timeout(const Duration(minutes: 2));
+      final directoryPath = directory.endsWith('/') ? directory : '$directory/';
+      final file = await File('$directoryPath$name.png').create(recursive: true);
+      await file.writeAsBytes(pixels);
+    } on Object catch (e) {
+      print(e);
+    }
     print('Screenshot $name');
   }
 }
