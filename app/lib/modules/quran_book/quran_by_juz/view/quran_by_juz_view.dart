@@ -56,11 +56,23 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
         slivers: [
           QuranBookSliverAppBar(
             title: Text(
-              '$_juzNumber-${context.l10n.juz}',
+              MqQuranStatic.bismallah,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(color: themeCubit.state.frColor),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontFamily: FontFamily.uthmanicV2,
+                color: themeCubit.state.frColor,
+              ),
             ),
+            actions: [
+              const SizedBox(width: 16),
+              Text(
+                '$_juzNumber-${context.l10n.juz}',
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: themeCubit.state.frColor),
+              ),
+            ],
           ),
           BlocBuilder<QuranBookByJuzCubit, QuranBookByJuzState>(
             builder: (context, state) {

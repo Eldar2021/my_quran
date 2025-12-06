@@ -6,6 +6,7 @@ export 'widgets/quran_book_sliver_app_bar.dart';
 export 'widgets/quran_book_sliver_progressing_indicator.dart';
 export 'widgets/quran_book_sliver_error_widget.dart';
 export 'widgets/quran_book_success_widget.dart';
+export 'widgets/quran_verses_widget.dart';
 export 'widgets/quran_book_sliver_sized_box_shrink.dart';
 export 'widgets/quran_book_sliver_amen_button.dart';
 export 'widgets/change_read_theme.dart';

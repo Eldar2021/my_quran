@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
-import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranByPagesView extends StatelessWidget {
@@ -43,11 +42,11 @@ class _QuranByPagesView extends StatelessWidget {
         slivers: [
           QuranBookSliverAppBar(
             title: Text(
-              context.l10n.hatim,
+              MqQuranStatic.bismallah,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 26,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontFamily: FontFamily.uthmanicV2,
                 color: themeCubit.state.frColor,
               ),
             ),

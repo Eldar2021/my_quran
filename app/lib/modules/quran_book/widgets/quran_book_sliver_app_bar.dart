@@ -8,10 +8,12 @@ import 'package:my_quran/modules/modules.dart';
 class QuranBookSliverAppBar extends StatelessWidget {
   const QuranBookSliverAppBar({
     required this.title,
+    this.actions,
     super.key,
   });
 
   final Widget title;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class QuranBookSliverAppBar extends StatelessWidget {
         title: title,
       ),
       actions: [
+        ...actions ?? [],
         IconButton(
           key: const Key(MqKeys.quranReadSettings),
           onPressed: () {

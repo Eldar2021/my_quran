@@ -101,37 +101,10 @@ class _QuranPageItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontFamily: FontFamily.uthmanicV2,
-                  fontSize: themeCubit.state.textSize,
-                  color: themeCubit.state.frColor,
-                  height: 2.3,
-                ),
-                children: verses.map((e) {
-                  return TextSpan(
-                    children: [
-                      if (e.showBismillah)
-                        TextSpan(
-                          text: '${firstKey == e.verseKey ? '' : '\n\n'} ${MqQuranStatic.bismallah} \n',
-                        ),
-                      TextSpan(text: e.text),
-                      TextSpan(
-                        text: ' ${e.ayatNumber.toArabicDigits} ',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontFamily: FontFamily.uthmanicRegular,
-                          fontSize: themeCubit.state.textSize,
-                          color: themeCubit.state.frColor,
-                          letterSpacing: -2.5,
-                        ),
-                      ),
-                      if (e.isFirstAyatOfQuran) const TextSpan(text: '\n'),
-                    ],
-                  );
-                }).toList(),
-              ),
+            QuranVersesWidget(
+              themeCubit: themeCubit,
+              verses: verses,
+              firstKey: firstKey,
             ),
             if (page != null)
               Center(
