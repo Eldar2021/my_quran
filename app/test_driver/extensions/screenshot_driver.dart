@@ -11,6 +11,9 @@ extension ScreenshotExtension on FlutterDriver {
     String directory = '../screenshots',
     bool waitUntilNoTransientCallbacks = true,
   }) async {
+    final operationSystem = await requestData('getPlatformCommand');
+    if (operationSystem == 'android') return;
+
     if (waitUntilNoTransientCallbacks) {
       await this.waitUntilNoTransientCallbacks(
         timeout: const Duration(seconds: 30),
