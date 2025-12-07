@@ -20,7 +20,7 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
   /// Performs an HTTP POST request to the specified [url] with an optional [body].
   Future<T> _post<T>(
     String url, {
-    Map<String, dynamic>? body,
+    Object? body,
     Map<String, String>? headers,
   }) async {
     try {

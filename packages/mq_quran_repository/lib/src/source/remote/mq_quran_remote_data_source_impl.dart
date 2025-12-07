@@ -22,10 +22,7 @@ final class MqQuranRemoteDataSourceImpl implements MqQuranRemoteDataSource {
         'Authorization': basicAuth,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: {
-        'grant_type': 'client_credentials',
-        'scope': 'content',
-      },
+      body: 'grant_type=client_credentials&scope=content',
     );
     return data['access_token'] as String;
   }

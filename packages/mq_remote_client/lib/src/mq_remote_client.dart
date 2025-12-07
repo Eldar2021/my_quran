@@ -93,7 +93,7 @@ class MqRemoteClient {
   /// the response as type [T].
   Future<T> post<T>(
     String url, {
-    Map<String, dynamic>? body,
+    Object? body,
     Map<String, String>? headers,
   }) {
     return _post<T>(
