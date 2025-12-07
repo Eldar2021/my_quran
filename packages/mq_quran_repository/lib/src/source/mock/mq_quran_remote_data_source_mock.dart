@@ -105,4 +105,12 @@ class MqQuranRemoteDataSourceMock implements MqQuranRemoteDataSource {
     await Future<void>.delayed(const Duration(seconds: 1));
     return QuranDataResponse.fromJson(data);
   }
+
+  @override
+  Future<String> getToken(
+    String clientId,
+    String clientSecret,
+  ) async {
+    return 'token';
+  }
 }

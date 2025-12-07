@@ -30,23 +30,23 @@ final class MqQuranRepositoryImpl implements MqQuranRepository {
     int juzNumber,
     String quranFmt,
   ) async {
-    final cachedData = localDataSource.getQuranByJuz(
-      juzNumber,
-      quranFmt,
-    );
+    // final cachedData = localDataSource.getQuranByJuz(
+    //   juzNumber,
+    //   quranFmt,
+    // );
 
-    if (cachedData != null) return cachedData.toEntity();
+    // if (cachedData != null) return cachedData.toEntity();
 
     final data = await remoteDataSource.fetchQuranByJuz(
       juzNumber,
       quranFmt,
     );
 
-    await localDataSource.setQuranByJuz(
-      juzNumber,
-      quranFmt,
-      data,
-    );
+    // await localDataSource.setQuranByJuz(
+    //   juzNumber,
+    //   quranFmt,
+    //   data,
+    // );
 
     return data.toEntity();
   }
@@ -56,23 +56,23 @@ final class MqQuranRepositoryImpl implements MqQuranRepository {
     int pageNumber,
     String quranFmt,
   ) async {
-    final cachedData = localDataSource.getQuranByPage(
-      pageNumber,
-      quranFmt,
-    );
+    // final cachedData = localDataSource.getQuranByPage(
+    //   pageNumber,
+    //   quranFmt,
+    // );
 
-    if (cachedData != null) return cachedData.toEntity();
+    // if (cachedData != null) return cachedData.toEntity();
 
     final data = await remoteDataSource.fetchQuranByPage(
       pageNumber,
       quranFmt,
     );
 
-    await localDataSource.setQuranByPage(
-      pageNumber,
-      quranFmt,
-      data,
-    );
+    // await localDataSource.setQuranByPage(
+    //   pageNumber,
+    //   quranFmt,
+    //   data,
+    // );
 
     return data.toEntity();
   }
@@ -82,23 +82,23 @@ final class MqQuranRepositoryImpl implements MqQuranRepository {
     int surahNumber,
     String quranFmt,
   ) async {
-    final cachedData = localDataSource.getQuranBySurah(
-      surahNumber,
-      quranFmt,
-    );
+    // final cachedData = localDataSource.getQuranBySurah(
+    //   surahNumber,
+    //   quranFmt,
+    // );
 
-    if (cachedData != null) return cachedData.toEntity();
+    // if (cachedData != null) return cachedData.toEntity();
 
     final data = await remoteDataSource.fetchQuranBySurah(
       surahNumber,
       quranFmt,
     );
 
-    await localDataSource.setQuranBySurah(
-      surahNumber,
-      quranFmt,
-      data,
-    );
+    // await localDataSource.setQuranBySurah(
+    //   surahNumber,
+    //   quranFmt,
+    //   data,
+    // );
 
     return data.toEntity();
   }

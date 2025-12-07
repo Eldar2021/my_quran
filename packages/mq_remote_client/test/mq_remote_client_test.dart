@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 

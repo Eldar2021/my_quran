@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
@@ -7,6 +9,26 @@ final class MqQuranRemoteDataSourceImpl implements MqQuranRemoteDataSource {
   const MqQuranRemoteDataSourceImpl(this.remoteClient);
 
   final MqRemoteClient remoteClient;
+
+  @override
+  Future<String> getToken(
+    String clientId,
+    String clientSecret,
+  ) async {
+    final basicAuth = 'Basic ${base64Encode(utf8.encode('$clientId:$clientSecret'))}';
+    final data = await remoteClient.post<Map<String, dynamic>>(
+      'https://prelive-oauth2.quran.foundation/oauth2/token',
+      headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: {
+        'grant_type': 'client_credentials',
+        'scope': 'content',
+      },
+    );
+    return data['access_token'] as String;
+  }
 
   @override
   Future<QuranDataResponse> fetchQuranByJuz(

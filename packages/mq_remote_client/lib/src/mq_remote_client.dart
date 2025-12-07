@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 
 part 'mq_remote_client_base_extension.dart';
@@ -92,8 +91,16 @@ class MqRemoteClient {
 
   /// Makes a POST request to the given [url] with an optional [body] and parses
   /// the response as type [T].
-  Future<T> post<T>(String url, {Map<String, dynamic>? body}) {
-    return _post<T>(url, body: body);
+  Future<T> post<T>(
+    String url, {
+    Map<String, dynamic>? body,
+    Map<String, String>? headers,
+  }) {
+    return _post<T>(
+      url,
+      body: body,
+      headers: headers,
+    );
   }
 
   /// Makes a POST request to the given [url] with an optional [body] and parses

@@ -18,10 +18,18 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
   }
 
   /// Performs an HTTP POST request to the specified [url] with an optional [body].
-  Future<T> _post<T>(String url, {Map<String, dynamic>? body}) async {
+  Future<T> _post<T>(
+    String url, {
+    Map<String, dynamic>? body,
+    Map<String, String>? headers,
+  }) async {
     try {
       if (await network.checkInternetConnection()) {
-        final response = await dio.post<T>(url, data: body);
+        final response = await dio.post<T>(
+          url,
+          data: body,
+          options: Options(headers: headers),
+        );
         return response.data as T;
       } else {
         throw const NerWorkException();

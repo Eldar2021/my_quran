@@ -1,6 +1,11 @@
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 abstract class MqQuranRemoteDataSource {
+  Future<String> getToken(
+    String clientId,
+    String clientSecret,
+  );
+
   Future<QuranDataResponse> fetchQuranByPage(
     int pageNumber,
     String quranFmt,
