@@ -1829,7 +1829,7 @@ packages:
     source: hosted
     version: "3.0.3"
   web_socket_client:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: web_socket_client
       sha256: "394789177aa3bc1b7b071622a1dbf52a4631d7ce23c555c39bb2523e92316b07"
