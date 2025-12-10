@@ -104,5 +104,15 @@ class MqHatimRemoteDataSourceMock implements MqHatimRemoteDataSource {
   }
 
   @override
+  Future<void> disconnect() async {
+    await _controller.close();
+  }
+
+  @override
+  Stream<ConnectionState> get connectionStream {
+    return Stream.value(const Connected());
+  }
+
+  @override
   Stream<dynamic> get stream => _controller.stream;
 }

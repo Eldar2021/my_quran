@@ -87,5 +87,11 @@ final class MqHatimReadRepositoryImpl implements MqHatimRepository {
   void sinkDonePages(List<String> pageIds) => dataSource.sinkDonePages(pageIds);
 
   @override
+  Future<void> disconnect() async => dataSource.disconnect();
+
+  @override
+  Stream<ConnectionState> get connectionStream => dataSource.connectionStream;
+
+  @override
   Future<void> close() async => dataSource.close();
 }

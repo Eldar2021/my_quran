@@ -56,3 +56,20 @@ final class ReceidevBaseDataEvent extends HatimEvent {
 final class ResetJuzPagesEvent extends HatimEvent {
   const ResetJuzPagesEvent();
 }
+
+@immutable
+final class ConnectWebSocketEvent extends HatimEvent {
+  const ConnectWebSocketEvent();
+}
+
+@immutable
+final class DisconnectWebSocketEvent extends HatimEvent {
+  const DisconnectWebSocketEvent();
+}
+
+@immutable
+final class ConnectionChangedEvent extends HatimEvent {
+  const ConnectionChangedEvent(this.connectionState);
+
+  final ConnectionState connectionState;
+}

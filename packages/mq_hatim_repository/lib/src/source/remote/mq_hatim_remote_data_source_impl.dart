@@ -4,15 +4,10 @@ import 'dart:convert';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 
-import 'package:web_socket_channel/web_socket_channel.dart';
-
 class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
-  MqHatimRemoteDataSourceImpl({required this.remoteClient});
+  const MqHatimRemoteDataSourceImpl({required this.remoteClient});
 
   final MqRemoteClient remoteClient;
-
-  late final WebSocketChannel channel;
-  bool isInitilized = false;
 
   @override
   Future<MqSearchModel> getSearch(String? user) async {
@@ -46,12 +41,7 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
 
   @override
   void connectToSocket(String token) {
-    if (!isInitilized) {
-      channel = WebSocketChannel.connect(
-        Uri.parse('wss://myquran.life/ws/?token=$token'),
-      );
-      isInitilized = true;
-    }
+    HatimWebSocketClient.instance.connect(token);
   }
 
   @override
@@ -60,13 +50,13 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
       'type': 'list_of_juz',
       'hatim_id': hatimId,
     };
-    channel.sink.add(json.encode(data));
+    HatimWebSocketClient.instance.send(json.encode(data));
   }
 
   @override
   void sinkHatimUserPages() {
     final data = {'type': 'user_pages'};
-    channel.sink.add(jsonEncode(data));
+    HatimWebSocketClient.instance.send(jsonEncode(data));
   }
 
   @override
@@ -75,7 +65,7 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
       'type': 'list_of_page',
       'juz_id': juzId,
     };
-    channel.sink.add(jsonEncode(data));
+    HatimWebSocketClient.instance.send(jsonEncode(data));
   }
 
   @override
@@ -84,7 +74,7 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
       'type': 'book',
       'pageId': pageId,
     };
-    channel.sink.add(jsonEncode(data));
+    HatimWebSocketClient.instance.send(jsonEncode(data));
   }
 
   @override
@@ -93,7 +83,7 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
       'type': 'to_do',
       'pageId': pageId,
     };
-    channel.sink.add(jsonEncode(data));
+    HatimWebSocketClient.instance.send(jsonEncode(data));
   }
 
   @override
@@ -102,7 +92,7 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
       'type': 'in_progress',
       'pageIds': pageIds,
     };
-    channel.sink.add(jsonEncode(data));
+    HatimWebSocketClient.instance.send(jsonEncode(data));
   }
 
   @override
@@ -111,14 +101,22 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
       'type': 'done',
       'pageIds': pageIds,
     };
-    channel.sink.add(jsonEncode(data));
+    HatimWebSocketClient.instance.send(jsonEncode(data));
+  }
+
+  @override
+  Future<void> disconnect() async {
+    HatimWebSocketClient.instance.disconnect();
   }
 
   @override
   Future<void> close() async {
-    await channel.sink.close();
+    HatimWebSocketClient.instance.disconnect();
   }
 
   @override
-  Stream<dynamic> get stream => channel.stream;
+  Stream<dynamic> get stream => HatimWebSocketClient.instance.messages;
+
+  @override
+  Stream<ConnectionState> get connectionStream => HatimWebSocketClient.instance.connection;
 }

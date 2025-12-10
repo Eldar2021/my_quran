@@ -25,6 +25,9 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     on<SetDonePagesEvent>(_onSetDonePagesEvent);
     on<ResetJuzPagesEvent>(_onResetJuzPagesEvent);
     on<ReceidevBaseDataEvent>(_onReceidevBaseDataEvent);
+    on<ConnectWebSocketEvent>(_onConnectWebSocketEvent);
+    on<DisconnectWebSocketEvent>(_onDisconnectWebSocketEvent);
+    on<ConnectionChangedEvent>(_onConnectionChangedEvent);
   }
 
   final MqHatimRepository repo;
@@ -39,6 +42,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     repo.connectToSocket(token);
     if (!islistened) {
       repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
+      repo.connectionStream.listen((v) => add(ConnectionChangedEvent(v)));
       islistened = true;
     }
     repo.sinkHatimJuzs(hatimId);
@@ -116,6 +120,27 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     };
 
     emit(newState);
+  }
+
+  FutureOr<void> _onConnectWebSocketEvent(
+    ConnectWebSocketEvent event,
+    Emitter<HatimState> emit,
+  ) {
+    repo.connectToSocket(token);
+  }
+
+  FutureOr<void> _onDisconnectWebSocketEvent(
+    DisconnectWebSocketEvent event,
+    Emitter<HatimState> emit,
+  ) {
+    repo.disconnect();
+  }
+
+  FutureOr<void> _onConnectionChangedEvent(
+    ConnectionChangedEvent event,
+    Emitter<HatimState> emit,
+  ) {
+    emit(state.copyWith(connectionState: event.connectionState));
   }
 
   @override

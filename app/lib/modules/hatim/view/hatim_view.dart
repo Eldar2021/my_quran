@@ -42,7 +42,28 @@ class HatimUI extends StatefulWidget {
   State<HatimUI> createState() => _HatimUIState();
 }
 
-class _HatimUIState extends State<HatimUI> {
+class _HatimUIState extends State<HatimUI> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      context.read<HatimBloc>().add(const ConnectWebSocketEvent());
+    } else if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+      context.read<HatimBloc>().add(const DisconnectWebSocketEvent());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
@@ -66,7 +87,25 @@ class _HatimUIState extends State<HatimUI> {
               };
             },
           ),
-          const SizedBox(width: 30),
+          const SizedBox(width: 8),
+          BlocBuilder<HatimBloc, HatimState>(
+            buildWhen: (p, c) => p.connectionState != c.connectionState,
+            builder: (context, state) {
+              final connectionState = state.connectionState;
+              if (connectionState is Connected) {
+                return const Icon(Icons.wifi, color: Colors.green);
+              } else if (connectionState is Connecting || connectionState is Reconnecting) {
+                return const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                );
+              } else {
+                return const Icon(Icons.wifi_off, color: Colors.red);
+              }
+            },
+          ),
+          const SizedBox(width: 20),
         ],
       ),
       body: RefreshIndicator(
@@ -116,6 +155,7 @@ class _HatimUIState extends State<HatimUI> {
                     AnalyticKey.goHatimReadPage,
                     params: {'pages': pageIds},
                   );
+                  context.read<HatimBloc>().add(const DisconnectWebSocketEvent());
                   final value = await context.pushNamed<bool>(
                     AppRouter.hatimRead,
                     pathParameters: {
@@ -123,8 +163,11 @@ class _HatimUIState extends State<HatimUI> {
                       'pages': pageNumbers.toString(),
                     },
                   );
-                  if (value != null && value && context.mounted) {
-                    context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
+                  if (context.mounted) {
+                    context.read<HatimBloc>().add(const ConnectWebSocketEvent());
+                    if (value != null && value) {
+                      context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
+                    }
                   }
                 },
                 label: Text(context.l10n.read),

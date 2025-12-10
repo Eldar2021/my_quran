@@ -25,5 +25,9 @@ abstract class MqHatimRepository {
 
   Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream;
 
+  Stream<ConnectionState> get connectionStream;
+
+  Future<void> disconnect();
+
   Future<void> close();
 }

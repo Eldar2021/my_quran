@@ -23,7 +23,11 @@ abstract class MqHatimRemoteDataSource {
 
   void sinkDonePages(List<String> pageIds);
 
-  Future<void> close();
+  Future<void> disconnect();
 
   Stream<dynamic> get stream;
+
+  Stream<ConnectionState> get connectionStream;
+
+  Future<void> close();
 }
