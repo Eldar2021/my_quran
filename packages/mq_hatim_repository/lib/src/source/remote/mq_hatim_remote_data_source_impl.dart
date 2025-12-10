@@ -115,8 +115,12 @@ class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
   }
 
   @override
-  Stream<dynamic> get stream => HatimWebSocketClient.instance.messages;
+  Stream<dynamic> get stream {
+    return HatimWebSocketClient.instance.messages;
+  }
 
   @override
-  Stream<ConnectionState> get connectionStream => HatimWebSocketClient.instance.connection;
+  Stream<ConnectionState> get connectionStream {
+    return HatimWebSocketClient.instance.connection;
+  }
 }

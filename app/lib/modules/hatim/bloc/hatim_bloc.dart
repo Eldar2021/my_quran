@@ -40,11 +40,12 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     Emitter<HatimState> emit,
   ) async {
     repo.connectToSocket(token);
-    if (!islistened) {
-      repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
-      repo.connectionStream.listen((v) => add(ConnectionChangedEvent(v)));
-      islistened = true;
-    }
+    // if (!islistened && !isClosed) {
+    repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
+
+    repo.connectionStream.listen((v) => add(ConnectionChangedEvent(v)));
+    islistened = true;
+    // }
     repo.sinkHatimJuzs(hatimId);
     emit(
       state.copyWith(
