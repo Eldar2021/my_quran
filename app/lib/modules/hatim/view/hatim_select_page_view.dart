@@ -23,7 +23,12 @@ class HatimJusSelectPagesView extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Scaffold(
       key: const Key(MqKeys.hatimSelectPage),
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: const [
+          HatimConnectionStateWidget(),
+          SizedBox(width: 20),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 0, 24, 50),
         children: [

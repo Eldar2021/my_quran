@@ -46,6 +46,8 @@ class _HatimUIState extends State<HatimUI> {
         title: Text(context.l10n.hatim),
         centerTitle: true,
         actions: [
+          const HatimConnectionStateWidget(),
+          const SizedBox(width: 10),
           BlocBuilder<HatimBloc, HatimState>(
             buildWhen: (p, c) => p.userPagesState != c.userPagesState,
             builder: (context, state) {
