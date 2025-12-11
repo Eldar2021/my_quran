@@ -9,7 +9,7 @@ class MqHatimSocketMock implements MqHatimSocket {
   final StreamController<dynamic> _controller = StreamController<dynamic>();
 
   @override
-  void connectToSocket(String token) {}
+  void connectToSocket(String token, String hatimId) {}
 
   @override
   void sinkHatimJuzs(String hatimId) {
@@ -54,9 +54,7 @@ class MqHatimSocketMock implements MqHatimSocket {
   }
 
   @override
-  Future<void> close() async {
-    await _controller.close();
-  }
+  void close() => _controller.close();
 
   @override
   Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {

@@ -1,20 +1,31 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:web_socket_client/web_socket_client.dart';
 
 class MqHatimSocketImpl implements MqHatimSocket {
   MqHatimSocketImpl();
 
-  late final WebSocketChannel channel;
+  late final WebSocket channel;
+
   bool isInitilized = false;
 
   @override
-  void connectToSocket(String token) {
+  void connectToSocket(String token, String hatimId) {
     if (!isInitilized) {
-      channel = WebSocketChannel.connect(
+      channel = WebSocket(
         Uri.parse('wss://myquran.life/ws/?token=$token'),
+        backoff: BinaryExponentialBackoff(
+          initial: const Duration(seconds: 1),
+          maximumStep: 30,
+        ),
       );
+
+      channel.connection.listen((state) {
+        log('Socket state: $state');
+        if (state is Connected) sinkHatimJuzs(hatimId);
+      });
       isInitilized = true;
     }
   }
@@ -25,13 +36,14 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'list_of_juz',
       'hatim_id': hatimId,
     };
-    channel.sink.add(json.encode(data));
+    log('sinkHatimJuzs: ${json.encode(data)}');
+    channel.send(json.encode(data));
   }
 
   @override
   void sinkHatimUserPages() {
     final data = {'type': 'user_pages'};
-    channel.sink.add(jsonEncode(data));
+    channel.send(jsonEncode(data));
   }
 
   @override
@@ -40,7 +52,7 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'list_of_page',
       'juz_id': juzId,
     };
-    channel.sink.add(jsonEncode(data));
+    channel.send(jsonEncode(data));
   }
 
   @override
@@ -49,7 +61,7 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'book',
       'pageId': pageId,
     };
-    channel.sink.add(jsonEncode(data));
+    channel.send(jsonEncode(data));
   }
 
   @override
@@ -58,7 +70,7 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'to_do',
       'pageId': pageId,
     };
-    channel.sink.add(jsonEncode(data));
+    channel.send(jsonEncode(data));
   }
 
   @override
@@ -67,7 +79,7 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'in_progress',
       'pageIds': pageIds,
     };
-    channel.sink.add(jsonEncode(data));
+    channel.send(jsonEncode(data));
   }
 
   @override
@@ -76,17 +88,16 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'done',
       'pageIds': pageIds,
     };
-    channel.sink.add(jsonEncode(data));
+    channel.send(jsonEncode(data));
   }
 
   @override
-  Future<void> close() async {
-    await channel.sink.close();
-  }
+  void close() => channel.close();
 
   @override
   Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {
-    return channel.stream.map((data) {
+    return channel.messages.map((data) {
+      log('stream: $data');
       final src = HatimBaseResponse.fromJson(
         jsonDecode(data as String) as Map<String, dynamic>,
       );

@@ -37,12 +37,12 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     GetInitailDataEvent event,
     Emitter<HatimState> emit,
   ) async {
-    socket.connectToSocket(token);
+    socket.connectToSocket(token, hatimId);
     if (!islistened) {
       socket.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
       islistened = true;
     }
-    socket.sinkHatimJuzs(hatimId);
+
     emit(
       state.copyWith(
         userPagesState: const HatimUserPagesLoading(),
