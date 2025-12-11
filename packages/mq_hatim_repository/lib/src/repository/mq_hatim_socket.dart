@@ -3,7 +3,7 @@ import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 abstract interface class MqHatimSocket {
   void connectToSocket(String token);
 
-  Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream;
+  Stream<dynamic> get messages;
 
   Stream<ConnectionState> get connectionStream;
 

@@ -12,6 +12,17 @@ class MqHatimSocketMock implements MqHatimSocket {
   void connectToSocket(String token) {}
 
   @override
+  Stream<dynamic> get messages => _controller.stream;
+
+  @override
+  Stream<ConnectionState> get connectionStream {
+    return Stream<ConnectionState>.fromIterable([
+      const Connecting(),
+      const Connected(),
+    ]);
+  }
+
+  @override
   void sinkHatimJuzs(String hatimId) {
     final data = {'type': 'list_of_juz', 'hatim_id': hatimId};
     _controller.add(json.encode(data));
@@ -55,52 +66,4 @@ class MqHatimSocketMock implements MqHatimSocket {
 
   @override
   void close() => _controller.close();
-
-  @override
-  Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {
-    return _controller.stream.map((data) {
-      final src = HatimBaseResponse.fromJson(
-        jsonDecode(data as String) as Map<String, dynamic>,
-      );
-
-      return switch (src.type) {
-        HatimResponseType.listOfJuz => _receidevJuzs(
-          src.data as List<dynamic>,
-        ),
-        HatimResponseType.listOfPage => _receidevJuzPage(
-          src.data as List<dynamic>,
-        ),
-        HatimResponseType.userPages => _receidevUserPages(
-          src.data as List<dynamic>,
-        ),
-      };
-    });
-  }
-
-  (HatimResponseType, List<MqHatimJusEntity>) _receidevJuzs(List<dynamic> src) {
-    final data = src.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.listOfJuz, data.map((e) => e.entity).toList());
-  }
-
-  (HatimResponseType, List<MqHatimPagesEntity>) _receidevJuzPage(
-    List<dynamic> src,
-  ) {
-    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.listOfPage, data.map((e) => e.entity).toList());
-  }
-
-  (HatimResponseType, List<MqHatimPagesEntity>) _receidevUserPages(
-    List<dynamic> src,
-  ) {
-    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.userPages, data.map((e) => e.entity).toList());
-  }
-
-  @override
-  Stream<ConnectionState> get connectionStream {
-    return Stream<ConnectionState>.fromIterable([
-      const Connecting(),
-      const Connected(),
-    ]);
-  }
 }

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +19,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     required this.token,
     required this.hatimId,
   }) : super(const HatimState()) {
-    on<GetInitailDataEvent>(_onGetInitailDataEvent);
+    on<GetInitialDataEvent>(_onGetInitailDataEvent);
     on<HatimConnectionChangedEvent>(_onHatimConnectionChangedEvent);
     on<GetHatimJuzPagesEvent>(_onGetHatimJuzPagesEvent);
     on<SelectPageEvent>(_onSelectPageEvent);
@@ -25,7 +27,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     on<SetInProgressPagesEvent>(_onSetInProgressPagesEvent);
     on<SetDonePagesEvent>(_onSetDonePagesEvent);
     on<ResetJuzPagesEvent>(_onResetJuzPagesEvent);
-    on<ReceidevBaseDataEvent>(_onReceidevBaseDataEvent);
+    on<ReceivedBaseDataEvent>(_onReceidevBaseDataEvent);
   }
 
   final MqHatimSocket socket;
@@ -33,21 +35,24 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
   final String token;
 
   StreamSubscription<ConnectionState>? _connectionSubscription;
-  StreamSubscription<(HatimResponseType, List<MqHatimBaseEntity>)>? _messageSubscription;
+  StreamSubscription<dynamic>? _messageSubscription;
 
   FutureOr<void> _onGetInitailDataEvent(
-    GetInitailDataEvent event,
+    GetInitialDataEvent event,
     Emitter<HatimState> emit,
   ) async {
     socket.connectToSocket(token);
 
     await _connectionSubscription?.cancel();
     _connectionSubscription = socket.connectionStream.listen((connectionState) {
+      log('connectionState: $connectionState');
       add(HatimConnectionChangedEvent(connectionState));
     });
 
-    _messageSubscription ??= socket.stream.listen((v) {
-      add(ReceidevBaseDataEvent(v));
+    _messageSubscription ??= socket.messages.listen((v) {
+      log('stream: $v');
+      final data = _parseStream(v);
+      add(ReceivedBaseDataEvent(data));
     });
 
     emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
@@ -113,7 +118,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
   }
 
   FutureOr<void> _onReceidevBaseDataEvent(
-    ReceidevBaseDataEvent event,
+    ReceivedBaseDataEvent event,
     Emitter<HatimState> emit,
   ) {
     final src = event.data;
@@ -140,5 +145,31 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     _messageSubscription?.cancel();
     socket.close();
     return super.close();
+  }
+
+  (HatimResponseType, List<MqHatimBaseEntity>) _parseStream(dynamic data) {
+    final src = HatimBaseResponse.fromJson(
+      jsonDecode(data as String) as Map<String, dynamic>,
+    );
+    return switch (src.type) {
+      HatimResponseType.listOfJuz => _receiveJuzs(src.data as List<dynamic>),
+      HatimResponseType.listOfPage => _receiveJuzPage(src.data as List<dynamic>),
+      HatimResponseType.userPages => _receiveUserPages(src.data as List<dynamic>),
+    };
+  }
+
+  (HatimResponseType, List<MqHatimJusEntity>) _receiveJuzs(List<dynamic> src) {
+    final data = src.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
+    return (HatimResponseType.listOfJuz, data.map((e) => e.entity).toList());
+  }
+
+  (HatimResponseType, List<MqHatimPagesEntity>) _receiveJuzPage(List<dynamic> src) {
+    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
+    return (HatimResponseType.listOfPage, data.map((e) => e.entity).toList());
+  }
+
+  (HatimResponseType, List<MqHatimPagesEntity>) _receiveUserPages(List<dynamic> src) {
+    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
+    return (HatimResponseType.userPages, data.map((e) => e.entity).toList());
   }
 }

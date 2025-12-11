@@ -11,9 +11,6 @@ class MqHatimSocketImpl implements MqHatimSocket {
   bool isInitialized = false;
 
   @override
-  Stream<ConnectionState> get connectionStream => channel.connection;
-
-  @override
   void connectToSocket(String token) {
     if (!isInitialized) {
       channel = WebSocket(
@@ -26,6 +23,12 @@ class MqHatimSocketImpl implements MqHatimSocket {
       isInitialized = true;
     }
   }
+
+  @override
+  Stream<ConnectionState> get connectionStream => channel.connection;
+
+  @override
+  Stream<dynamic> get messages => channel.messages;
 
   @override
   void sinkHatimJuzs(String hatimId) {
@@ -90,35 +93,4 @@ class MqHatimSocketImpl implements MqHatimSocket {
 
   @override
   void close() => channel.close();
-
-  @override
-  Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {
-    return channel.messages.map((data) {
-      log('stream: $data');
-      final src = HatimBaseResponse.fromJson(
-        jsonDecode(data as String) as Map<String, dynamic>,
-      );
-
-      return switch (src.type) {
-        HatimResponseType.listOfJuz => _receiveJuzs(src.data as List<dynamic>),
-        HatimResponseType.listOfPage => _receiveJuzPage(src.data as List<dynamic>),
-        HatimResponseType.userPages => _receiveUserPages(src.data as List<dynamic>),
-      };
-    });
-  }
-
-  (HatimResponseType, List<MqHatimJusEntity>) _receiveJuzs(List<dynamic> src) {
-    final data = src.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.listOfJuz, data.map((e) => e.entity).toList());
-  }
-
-  (HatimResponseType, List<MqHatimPagesEntity>) _receiveJuzPage(List<dynamic> src) {
-    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.listOfPage, data.map((e) => e.entity).toList());
-  }
-
-  (HatimResponseType, List<MqHatimPagesEntity>) _receiveUserPages(List<dynamic> src) {
-    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.userPages, data.map((e) => e.entity).toList());
-  }
 }

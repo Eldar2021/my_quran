@@ -6,8 +6,8 @@ sealed class HatimEvent {
 }
 
 @immutable
-final class GetInitailDataEvent extends HatimEvent {
-  const GetInitailDataEvent();
+final class GetInitialDataEvent extends HatimEvent {
+  const GetInitialDataEvent();
 }
 
 @immutable
@@ -53,8 +53,8 @@ final class SetDonePagesEvent extends HatimEvent {
 }
 
 @immutable
-final class ReceidevBaseDataEvent extends HatimEvent {
-  const ReceidevBaseDataEvent(this.data);
+final class ReceivedBaseDataEvent extends HatimEvent {
+  const ReceivedBaseDataEvent(this.data);
 
   final (HatimResponseType, List<MqHatimBaseEntity>) data;
 }

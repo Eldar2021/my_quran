@@ -22,7 +22,7 @@ class HatimView extends StatelessWidget {
         hatimId: hatimId,
         socket: context.read<AppConfig>().isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
         token: context.read<AuthCubit>().state.user!.accessToken,
-      )..add(const GetInitailDataEvent()),
+      )..add(const GetInitialDataEvent()),
       child: const HatimUI(),
     );
   }
@@ -64,7 +64,7 @@ class _HatimUIState extends State<HatimUI> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          context.read<HatimBloc>().add(const GetInitailDataEvent());
+          context.read<HatimBloc>().add(const GetInitialDataEvent());
         },
         child: BlocBuilder<HatimBloc, HatimState>(
           builder: (context, state) {
