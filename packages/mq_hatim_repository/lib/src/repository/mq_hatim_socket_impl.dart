@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
@@ -9,11 +10,13 @@ class MqHatimSocketImpl implements MqHatimSocket {
 
   late final WebSocket channel;
 
-  bool isInitilized = false;
+  StreamSubscription<ConnectionState>? _connectionSubscription;
+
+  bool isInitialized = false;
 
   @override
   void connectToSocket(String token, String hatimId) {
-    if (!isInitilized) {
+    if (!isInitialized) {
       channel = WebSocket(
         Uri.parse('wss://myquran.life/ws/?token=$token'),
         backoff: BinaryExponentialBackoff(
@@ -22,11 +25,12 @@ class MqHatimSocketImpl implements MqHatimSocket {
         ),
       );
 
-      channel.connection.listen((state) {
+      _connectionSubscription = channel.connection.listen((state) {
         log('Socket state: $state');
         if (state is Connected) sinkHatimJuzs(hatimId);
       });
-      isInitilized = true;
+
+      isInitialized = true;
     }
   }
 
@@ -36,8 +40,8 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'list_of_juz',
       'hatim_id': hatimId,
     };
-    log('sinkHatimJuzs: ${json.encode(data)}');
-    channel.send(json.encode(data));
+    log('sinkHatimJuzs: ${jsonEncode(data)}');
+    channel.send(jsonEncode(data));
   }
 
   @override
@@ -92,7 +96,10 @@ class MqHatimSocketImpl implements MqHatimSocket {
   }
 
   @override
-  void close() => channel.close();
+  void close() {
+    _connectionSubscription?.cancel();
+    channel.close();
+  }
 
   @override
   Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {
@@ -103,32 +110,24 @@ class MqHatimSocketImpl implements MqHatimSocket {
       );
 
       return switch (src.type) {
-        HatimResponseType.listOfJuz => _receidevJuzs(src.data as List<dynamic>),
-        HatimResponseType.listOfPage => _receidevJuzPage(
-          src.data as List<dynamic>,
-        ),
-        HatimResponseType.userPages => _receidevUserPages(
-          src.data as List<dynamic>,
-        ),
+        HatimResponseType.listOfJuz => _receiveJuzs(src.data as List<dynamic>),
+        HatimResponseType.listOfPage => _receiveJuzPage(src.data as List<dynamic>),
+        HatimResponseType.userPages => _receiveUserPages(src.data as List<dynamic>),
       };
     });
   }
 
-  (HatimResponseType, List<MqHatimJusEntity>) _receidevJuzs(List<dynamic> src) {
+  (HatimResponseType, List<MqHatimJusEntity>) _receiveJuzs(List<dynamic> src) {
     final data = src.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
     return (HatimResponseType.listOfJuz, data.map((e) => e.entity).toList());
   }
 
-  (HatimResponseType, List<MqHatimPagesEntity>) _receidevJuzPage(
-    List<dynamic> src,
-  ) {
+  (HatimResponseType, List<MqHatimPagesEntity>) _receiveJuzPage(List<dynamic> src) {
     final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
     return (HatimResponseType.listOfPage, data.map((e) => e.entity).toList());
   }
 
-  (HatimResponseType, List<MqHatimPagesEntity>) _receidevUserPages(
-    List<dynamic> src,
-  ) {
+  (HatimResponseType, List<MqHatimPagesEntity>) _receiveUserPages(List<dynamic> src) {
     final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
     return (HatimResponseType.userPages, data.map((e) => e.entity).toList());
   }
