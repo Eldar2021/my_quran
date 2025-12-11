@@ -5,7 +5,6 @@ import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
-import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
@@ -21,13 +20,7 @@ class HatimView extends StatelessWidget {
     return BlocProvider(
       create: (context) => HatimBloc(
         hatimId: hatimId,
-        repo: MqHatimReadRepositoryImpl(
-          dataSource: context.read<AppConfig>().isMockData
-              ? MqHatimRemoteDataSourceMock()
-              : MqHatimRemoteDataSourceImpl(
-                  remoteClient: context.read<MqRemoteClient>(),
-                ),
-        ),
+        socket: context.read<AppConfig>().isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetInitailDataEvent()),
       child: const HatimUI(),

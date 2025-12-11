@@ -13,7 +13,7 @@ part 'hatim_state_user_pages.dart';
 
 class HatimBloc extends Bloc<HatimEvent, HatimState> {
   HatimBloc({
-    required this.repo,
+    required this.socket,
     required this.token,
     required this.hatimId,
   }) : super(const HatimState()) {
@@ -27,7 +27,8 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     on<ReceidevBaseDataEvent>(_onReceidevBaseDataEvent);
   }
 
-  final MqHatimRepository repo;
+  final MqHatimSocket socket;
+
   final String hatimId;
   final String token;
   bool islistened = false;
@@ -36,18 +37,18 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     GetInitailDataEvent event,
     Emitter<HatimState> emit,
   ) async {
-    repo.connectToSocket(token);
+    socket.connectToSocket(token);
     if (!islistened) {
-      repo.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
+      socket.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
       islistened = true;
     }
-    repo.sinkHatimJuzs(hatimId);
+    socket.sinkHatimJuzs(hatimId);
     emit(
       state.copyWith(
         userPagesState: const HatimUserPagesLoading(),
       ),
     );
-    repo.sinkHatimUserPages();
+    socket.sinkHatimUserPages();
   }
 
   FutureOr<void> _onGetHatimJuzPagesEvent(
@@ -56,35 +57,35 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
   ) async {
     if (state.juzPagesState is HatimJuzPagesLoading) return;
     emit(state.copyWith(juzPagesState: const HatimJuzPagesLoading()));
-    repo.sinkHatimJuzPages(event.juzId);
+    socket.sinkHatimJuzPages(event.juzId);
   }
 
   FutureOr<void> _onSelectPageEvent(
     SelectPageEvent event,
     Emitter<HatimState> emit,
   ) async {
-    repo.sinkSelectPage(event.pageId);
+    socket.sinkSelectPage(event.pageId);
   }
 
   FutureOr<void> _onUnSelectPageEvent(
     UnSelectPageEvent event,
     Emitter<HatimState> emit,
   ) async {
-    repo.sinkUnSelectPage(event.pageId);
+    socket.sinkUnSelectPage(event.pageId);
   }
 
   FutureOr<void> _onSetInProgressPagesEvent(
     SetInProgressPagesEvent event,
     Emitter<HatimState> emit,
   ) async {
-    repo.sinkInProgressPages(event.pageIds);
+    socket.sinkInProgressPages(event.pageIds);
   }
 
   FutureOr<void> _onSetDonePagesEvent(
     SetDonePagesEvent event,
     Emitter<HatimState> emit,
   ) async {
-    repo.sinkDonePages(event.pageIds);
+    socket.sinkDonePages(event.pageIds);
   }
 
   FutureOr<void> _onResetJuzPagesEvent(
@@ -120,7 +121,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
 
   @override
   Future<void> close() {
-    repo.close();
+    socket.close();
     return super.close();
   }
 }
