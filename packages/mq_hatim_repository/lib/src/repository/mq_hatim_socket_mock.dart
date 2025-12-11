@@ -9,7 +9,7 @@ class MqHatimSocketMock implements MqHatimSocket {
   final StreamController<dynamic> _controller = StreamController<dynamic>();
 
   @override
-  void connectToSocket(String token, String hatimId) {}
+  void connectToSocket(String token) {}
 
   @override
   void sinkHatimJuzs(String hatimId) {
@@ -94,5 +94,13 @@ class MqHatimSocketMock implements MqHatimSocket {
   ) {
     final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
     return (HatimResponseType.userPages, data.map((e) => e.entity).toList());
+  }
+
+  @override
+  Stream<ConnectionState> get connectionStream {
+    return Stream<ConnectionState>.fromIterable([
+      const Connecting(),
+      const Connected(),
+    ]);
   }
 }

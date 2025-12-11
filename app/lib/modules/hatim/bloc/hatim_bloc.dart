@@ -18,6 +18,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     required this.hatimId,
   }) : super(const HatimState()) {
     on<GetInitailDataEvent>(_onGetInitailDataEvent);
+    on<HatimConnectionChangedEvent>(_onHatimConnectionChangedEvent);
     on<GetHatimJuzPagesEvent>(_onGetHatimJuzPagesEvent);
     on<SelectPageEvent>(_onSelectPageEvent);
     on<UnSelectPageEvent>(_onUnSelectPageEvent);
@@ -28,27 +29,41 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
   }
 
   final MqHatimSocket socket;
-
   final String hatimId;
   final String token;
-  bool islistened = false;
+
+  StreamSubscription<ConnectionState>? _connectionSubscription;
+  StreamSubscription<(HatimResponseType, List<MqHatimBaseEntity>)>? _messageSubscription;
 
   FutureOr<void> _onGetInitailDataEvent(
     GetInitailDataEvent event,
     Emitter<HatimState> emit,
   ) async {
-    socket.connectToSocket(token, hatimId);
-    if (!islistened) {
-      socket.stream.listen((v) => add(ReceidevBaseDataEvent(v)));
-      islistened = true;
-    }
+    socket.connectToSocket(token);
 
-    emit(
-      state.copyWith(
-        userPagesState: const HatimUserPagesLoading(),
-      ),
-    );
-    socket.sinkHatimUserPages();
+    await _connectionSubscription?.cancel();
+    _connectionSubscription = socket.connectionStream.listen((connectionState) {
+      add(HatimConnectionChangedEvent(connectionState));
+    });
+
+    _messageSubscription ??= socket.stream.listen((v) {
+      add(ReceidevBaseDataEvent(v));
+    });
+
+    emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
+  }
+
+  FutureOr<void> _onHatimConnectionChangedEvent(
+    HatimConnectionChangedEvent event,
+    Emitter<HatimState> emit,
+  ) {
+    emit(state.copyWith(connectionState: event.connectionState));
+
+    if (event.connectionState is Connected) {
+      socket
+        ..sinkHatimJuzs(hatimId)
+        ..sinkHatimUserPages();
+    }
   }
 
   FutureOr<void> _onGetHatimJuzPagesEvent(
@@ -121,6 +136,8 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
 
   @override
   Future<void> close() {
+    _connectionSubscription?.cancel();
+    _messageSubscription?.cancel();
     socket.close();
     return super.close();
   }

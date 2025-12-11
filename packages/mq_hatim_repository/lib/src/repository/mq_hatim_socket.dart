@@ -1,7 +1,11 @@
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
 abstract interface class MqHatimSocket {
-  void connectToSocket(String token, String hatimId);
+  void connectToSocket(String token);
+
+  Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream;
+
+  Stream<ConnectionState> get connectionStream;
 
   void sinkHatimJuzs(String hatimId);
 
@@ -16,8 +20,6 @@ abstract interface class MqHatimSocket {
   void sinkInProgressPages(List<String> pageIds);
 
   void sinkDonePages(List<String> pageIds);
-
-  Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream;
 
   void close();
 }

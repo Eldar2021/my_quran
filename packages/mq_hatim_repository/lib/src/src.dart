@@ -21,3 +21,4 @@ export 'repository/mq_hatim_socket_mock.dart';
 export 'source/mock/mq_hatim_remote_data_source_mock.dart';
 export 'source/mq_hatim_remote_data_source.dart';
 export 'source/remote/mq_hatim_remote_data_source_impl.dart';
+export 'package:web_socket_client/web_socket_client.dart';

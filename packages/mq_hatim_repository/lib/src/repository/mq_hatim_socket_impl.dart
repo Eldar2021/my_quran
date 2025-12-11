@@ -3,19 +3,18 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
-import 'package:web_socket_client/web_socket_client.dart';
 
 class MqHatimSocketImpl implements MqHatimSocket {
   MqHatimSocketImpl();
 
   late final WebSocket channel;
-
-  StreamSubscription<ConnectionState>? _connectionSubscription;
-
   bool isInitialized = false;
 
   @override
-  void connectToSocket(String token, String hatimId) {
+  Stream<ConnectionState> get connectionStream => channel.connection;
+
+  @override
+  void connectToSocket(String token) {
     if (!isInitialized) {
       channel = WebSocket(
         Uri.parse('wss://myquran.life/ws/?token=$token'),
@@ -24,12 +23,6 @@ class MqHatimSocketImpl implements MqHatimSocket {
           maximumStep: 30,
         ),
       );
-
-      _connectionSubscription = channel.connection.listen((state) {
-        log('Socket state: $state');
-        if (state is Connected) sinkHatimJuzs(hatimId);
-      });
-
       isInitialized = true;
     }
   }
@@ -96,10 +89,7 @@ class MqHatimSocketImpl implements MqHatimSocket {
   }
 
   @override
-  void close() {
-    _connectionSubscription?.cancel();
-    channel.close();
-  }
+  void close() => channel.close();
 
   @override
   Stream<(HatimResponseType, List<MqHatimBaseEntity>)> get stream {

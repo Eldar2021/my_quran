@@ -11,6 +11,13 @@ final class GetInitailDataEvent extends HatimEvent {
 }
 
 @immutable
+final class HatimConnectionChangedEvent extends HatimEvent {
+  const HatimConnectionChangedEvent(this.connectionState);
+
+  final ConnectionState connectionState;
+}
+
+@immutable
 final class GetHatimJuzPagesEvent extends HatimEvent {
   const GetHatimJuzPagesEvent(this.juzId);
 
