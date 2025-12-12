@@ -45,12 +45,15 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     socket.connectToSocket(token);
 
     await _connectionSubscription?.cancel();
+    await _messageSubscription?.cancel();
+    _connectionSubscription = null;
+    _messageSubscription = null;
     _connectionSubscription = socket.connectionStream.listen((connectionState) {
       log('connectionState: $connectionState');
       add(HatimConnectionChangedEvent(connectionState));
     });
 
-    _messageSubscription ??= socket.messages.listen((v) {
+    _messageSubscription = socket.messages.listen((v) {
       log('stream: $v');
       final data = _parseStream(v);
       add(ReceivedBaseDataEvent(data));
@@ -66,6 +69,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     emit(state.copyWith(connectionState: event.connectionState));
 
     if (event.connectionState is Connected || event.connectionState is Reconnected) {
+      log('sinkHatimJuzs=$hatimId');
       socket
         ..sinkHatimJuzs(hatimId)
         ..sinkHatimUserPages();
@@ -75,23 +79,21 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
   FutureOr<void> _onDisconnectSocketEvent(
     DisconnectSocketEvent event,
     Emitter<HatimState> emit,
-  ) {
+  ) async {
     socket.close();
-    emit(
-      state.copyWith(
-        juzsState: const HatimJuzsInitial(),
-        juzPagesState: const HatimJuzPagesInitial(),
-        userPagesState: const HatimUserPagesInitial(),
-        connectionState: const Disconnected(),
-      ),
-    );
+
+    await _connectionSubscription?.cancel();
+    _connectionSubscription = null;
+    await _messageSubscription?.cancel();
+    _messageSubscription = null;
+
+    emit(state.copyWith(connectionState: const Disconnected()));
   }
 
   FutureOr<void> _onGetHatimJuzPagesEvent(
     GetHatimJuzPagesEvent event,
     Emitter<HatimState> emit,
   ) async {
-    if (state.juzPagesState is HatimJuzPagesLoading) return;
     emit(state.copyWith(juzPagesState: const HatimJuzPagesLoading()));
     socket.sinkHatimJuzPages(event.juzId);
   }
@@ -128,9 +130,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     ResetJuzPagesEvent event,
     Emitter<HatimState> emit,
   ) {
-    emit(
-      state.copyWith(juzPagesState: const HatimJuzPagesInitial()),
-    );
+    emit(state.copyWith(juzPagesState: const HatimJuzPagesInitial()));
   }
 
   FutureOr<void> _onReceidevBaseDataEvent(
@@ -146,9 +146,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
         juzPagesState: HatimJuzPagesFetched(src.$2 as List<MqHatimPagesEntity>),
       ),
       HatimResponseType.userPages => state.copyWith(
-        userPagesState: HatimUserPagesFetched(
-          src.$2 as List<MqHatimPagesEntity>,
-        ),
+        userPagesState: HatimUserPagesFetched(src.$2 as List<MqHatimPagesEntity>),
       ),
     };
 
