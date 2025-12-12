@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +9,7 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -17,10 +20,11 @@ class HatimView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMockData = context.read<AppConfig>().isMockData;
     return BlocProvider(
       create: (context) => HatimBloc(
         hatimId: hatimId,
-        socket: context.read<AppConfig>().isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
+        socket: isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
         token: context.read<AuthCubit>().state.user!.accessToken,
       )..add(const GetInitialDataEvent()),
       child: const HatimUI(),
@@ -35,7 +39,13 @@ class HatimUI extends StatefulWidget {
   State<HatimUI> createState() => _HatimUIState();
 }
 
-class _HatimUIState extends State<HatimUI> {
+class _HatimUIState extends State<HatimUI> with WidgetsBindingObserver, AppLifeCycleStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    initAppLifeCycle();
+  }
+
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
@@ -136,5 +146,26 @@ class _HatimUIState extends State<HatimUI> {
         },
       ),
     );
+  }
+
+  @override
+  void Function()? get onAppLifeCycleResumed => () {
+    log('Reconnecting to socket');
+  };
+
+  @override
+  void Function()? get onAppLifeCyclePaused => () {
+    log('Disconnecting from socket');
+  };
+
+  @override
+  void Function()? get onAppLifeCycleInactive => () {
+    log('Disconnecting from socket');
+  };
+
+  @override
+  void dispose() {
+    disposeAppLifeCycle();
+    super.dispose();
   }
 }

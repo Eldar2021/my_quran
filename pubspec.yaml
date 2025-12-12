@@ -43,6 +43,7 @@ dependencies:
   url_launcher: ^6.3.2
   share_plus: ^12.0.1
   connectivity_plus: ^7.0.0
+  internet_connection_checker_plus: ^2.9.1+1
   package_info_plus: ^8.3.1 #9.0.0 geolocator
   geocoding: ^4.0.0
   geolocator: ^14.0.2
