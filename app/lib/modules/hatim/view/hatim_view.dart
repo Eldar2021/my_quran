@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -41,6 +39,8 @@ class HatimUI extends StatefulWidget {
 
 class _HatimUIState extends State<HatimUI>
     with WidgetsBindingObserver, AppLifeCycleStateMixin, InternetConnectionMixin {
+  ValueNotifier<String?> extraTextNotifier = ValueNotifier(null);
+
   @override
   void initState() {
     super.initState();
@@ -58,7 +58,12 @@ class _HatimUIState extends State<HatimUI>
         title: Text(context.l10n.hatim),
         centerTitle: true,
         actions: [
-          const HatimConnectionStateWidget(),
+          ValueListenableBuilder(
+            valueListenable: extraTextNotifier,
+            builder: (context, value, child) {
+              return HatimConnectionStateWidget(extraText: value);
+            },
+          ),
           const SizedBox(width: 10),
           BlocBuilder<HatimBloc, HatimState>(
             buildWhen: (p, c) => p.userPagesState != c.userPagesState,
@@ -152,27 +157,26 @@ class _HatimUIState extends State<HatimUI>
 
   @override
   void Function()? get onAppLifeCycleResumed => () {
-    log('Reconnecting to socket');
+    extraTextNotifier.value = 'Resumed';
+    context.read<HatimBloc>().add(const GetInitialDataEvent());
   };
 
   @override
   void Function()? get onAppLifeCyclePaused => () {
-    log('Disconnecting from socket');
-  };
-
-  @override
-  void Function()? get onAppLifeCycleInactive => () {
-    log('Disconnecting from socket');
+    extraTextNotifier.value = 'Paused';
+    context.read<HatimBloc>().add(const DisconnectSocketEvent());
   };
 
   @override
   void Function()? get onConnectedInternet => () {
-    log('Reconnecting to socket');
+    extraTextNotifier.value = 'Connected';
+    context.read<HatimBloc>().add(const GetInitialDataEvent());
   };
 
   @override
   void Function()? get onDisconnectedInternet => () {
-    log('Disconnecting from socket');
+    extraTextNotifier.value = 'Disconnected';
+    context.read<HatimBloc>().add(const DisconnectSocketEvent());
   };
 
   @override

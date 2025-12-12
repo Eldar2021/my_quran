@@ -4,7 +4,12 @@ import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class HatimConnectionStateWidget extends StatelessWidget {
-  const HatimConnectionStateWidget({super.key});
+  const HatimConnectionStateWidget({
+    super.key,
+    this.extraText,
+  });
+
+  final String? extraText;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +37,21 @@ class HatimConnectionStateWidget extends StatelessWidget {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.wifi,
-              color: iconColor,
+            Flexible(
+              child: Icon(
+                Icons.wifi,
+                color: iconColor,
+              ),
             ),
             Text(
               label,
               style: prTextTheme.labelMedium,
             ),
+            if (extraText != null)
+              Text(
+                extraText!,
+                style: prTextTheme.labelMedium,
+              ),
           ],
         );
       },

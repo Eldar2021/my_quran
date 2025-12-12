@@ -18,6 +18,11 @@ final class HatimConnectionChangedEvent extends HatimEvent {
 }
 
 @immutable
+final class DisconnectSocketEvent extends HatimEvent {
+  const DisconnectSocketEvent();
+}
+
+@immutable
 final class GetHatimJuzPagesEvent extends HatimEvent {
   const GetHatimJuzPagesEvent(this.juzId);
 

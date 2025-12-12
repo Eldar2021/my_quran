@@ -20,6 +20,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     required this.hatimId,
   }) : super(const HatimState()) {
     on<GetInitialDataEvent>(_onGetInitailDataEvent);
+    on<DisconnectSocketEvent>(_onDisconnectSocketEvent);
     on<HatimConnectionChangedEvent>(_onHatimConnectionChangedEvent);
     on<GetHatimJuzPagesEvent>(_onGetHatimJuzPagesEvent);
     on<SelectPageEvent>(_onSelectPageEvent);
@@ -64,11 +65,26 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
   ) {
     emit(state.copyWith(connectionState: event.connectionState));
 
-    if (event.connectionState is Connected) {
+    if (event.connectionState is Connected || event.connectionState is Reconnected) {
       socket
         ..sinkHatimJuzs(hatimId)
         ..sinkHatimUserPages();
     }
+  }
+
+  FutureOr<void> _onDisconnectSocketEvent(
+    DisconnectSocketEvent event,
+    Emitter<HatimState> emit,
+  ) {
+    socket.close();
+    emit(
+      state.copyWith(
+        juzsState: const HatimJuzsInitial(),
+        juzPagesState: const HatimJuzPagesInitial(),
+        userPagesState: const HatimUserPagesInitial(),
+        connectionState: const Disconnected(),
+      ),
+    );
   }
 
   FutureOr<void> _onGetHatimJuzPagesEvent(

@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
 class MqHatimSocketImpl implements MqHatimSocket {
   MqHatimSocketImpl();
 
-  late final WebSocket channel;
+  late WebSocket channel;
   bool isInitialized = false;
 
   @override
@@ -36,7 +35,6 @@ class MqHatimSocketImpl implements MqHatimSocket {
       'type': 'list_of_juz',
       'hatim_id': hatimId,
     };
-    log('sinkHatimJuzs: ${jsonEncode(data)}');
     channel.send(jsonEncode(data));
   }
 
@@ -92,5 +90,8 @@ class MqHatimSocketImpl implements MqHatimSocket {
   }
 
   @override
-  void close() => channel.close();
+  void close() {
+    channel.close();
+    isInitialized = false;
+  }
 }
