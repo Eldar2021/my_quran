@@ -28,6 +28,7 @@ dependencies:
   meta:
   toastification:
   go_router:
+  internet_connection_checker_plus:
 
   mq_ci_keys:
   mq_remote_client:

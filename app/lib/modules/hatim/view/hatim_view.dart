@@ -39,11 +39,13 @@ class HatimUI extends StatefulWidget {
   State<HatimUI> createState() => _HatimUIState();
 }
 
-class _HatimUIState extends State<HatimUI> with WidgetsBindingObserver, AppLifeCycleStateMixin {
+class _HatimUIState extends State<HatimUI>
+    with WidgetsBindingObserver, AppLifeCycleStateMixin, InternetConnectionMixin {
   @override
   void initState() {
     super.initState();
     initAppLifeCycle();
+    initConnection();
   }
 
   @override
@@ -164,8 +166,19 @@ class _HatimUIState extends State<HatimUI> with WidgetsBindingObserver, AppLifeC
   };
 
   @override
+  void Function()? get onConnectedInternet => () {
+    log('Reconnecting to socket');
+  };
+
+  @override
+  void Function()? get onDisconnectedInternet => () {
+    log('Disconnecting from socket');
+  };
+
+  @override
   void dispose() {
     disposeAppLifeCycle();
+    disposeConnection();
     super.dispose();
   }
 }
