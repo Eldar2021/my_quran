@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
-import 'package:my_quran/config/router/app_router.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/hatim/hatim.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class HatimJusSelectPagesView extends StatelessWidget {
+class HatimJusSelectPagesView extends StatefulWidget {
   const HatimJusSelectPagesView({
     required this.hatimJusEntity,
     super.key,
@@ -19,11 +17,24 @@ class HatimJusSelectPagesView extends StatelessWidget {
   final MqHatimJusEntity hatimJusEntity;
 
   @override
+  State<HatimJusSelectPagesView> createState() => _HatimJusSelectPagesViewState();
+}
+
+class _HatimJusSelectPagesViewState extends State<HatimJusSelectPagesView> with HatimHelperMixin {
+  @override
+  void initState() {
+    context.read<HatimBloc>().add(GetHatimJuzPagesEvent(widget.hatimJusEntity.id));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Scaffold(
       key: const Key(MqKeys.hatimSelectPage),
-      appBar: AppBar(),
+      appBar: AppBar(
+        bottom: const HatimConnectionStateWidget(),
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 0, 24, 50),
         children: [
@@ -47,11 +58,11 @@ class HatimJusSelectPagesView extends StatelessWidget {
             ),
           ),
           MqHalfCircleChart(
-            annotation: '${hatimJusEntity.total}\n${context.l10n.totalPages}',
+            annotation: '${widget.hatimJusEntity.total}\n${context.l10n.totalPages}',
             dataSource: [
-              hatimJusEntity.done,
-              hatimJusEntity.inProgress,
-              hatimJusEntity.toDo,
+              widget.hatimJusEntity.done,
+              widget.hatimJusEntity.inProgress,
+              widget.hatimJusEntity.toDo,
             ],
           ),
           Row(
@@ -59,17 +70,17 @@ class HatimJusSelectPagesView extends StatelessWidget {
             children: [
               ColumnInfoColoredBox.circular(
                 title: context.l10n.readed,
-                value: '${hatimJusEntity.done}',
+                value: '${widget.hatimJusEntity.done}',
               ),
               ColumnInfoColoredBox.circular(
                 boxColor: AppColors.goldenrod,
                 title: context.l10n.reading,
-                value: '${hatimJusEntity.inProgress}',
+                value: '${widget.hatimJusEntity.inProgress}',
               ),
               ColumnInfoColoredBox.circular(
                 boxColor: AppColors.mediumseagreen,
                 title: context.l10n.notSelected,
-                value: '${hatimJusEntity.toDo}',
+                value: '${widget.hatimJusEntity.toDo}',
               ),
             ],
           ),
@@ -101,30 +112,11 @@ class HatimJusSelectPagesView extends StatelessWidget {
                 final pages = userPagesState.data;
                 if (pages.isNotEmpty) {
                   return ElevatedButton(
-                    onPressed: () async {
-                      final hatimId = context.read<HatimBloc>().hatimId;
-                      final pageIds = pages.map((e) => e.id).toList();
-                      final pageNumbers = pages.map((e) => e.number).toList();
-                      context.read<HatimBloc>().add(
-                        SetInProgressPagesEvent(pageIds),
-                      );
-                      MqAnalytic.track(
-                        AnalyticKey.goHatimReadPage,
-                        params: {'pages': pageIds},
-                      );
-                      final value = await context.pushNamed<bool>(
-                        AppRouter.hatimRead,
-                        pathParameters: {
-                          'hatimId': hatimId,
-                          'pages': pageNumbers.toString(),
-                        },
-                      );
-                      if (value != null && value && context.mounted) {
-                        context.read<HatimBloc>().add(
-                          SetDonePagesEvent(pageIds),
-                        );
-                      }
-                    },
+                    onPressed: () => navigateToHatimRead(
+                      pages,
+                      context,
+                      juzId: widget.hatimJusEntity.id,
+                    ),
                     child: Text(context.l10n.read),
                   );
                 }

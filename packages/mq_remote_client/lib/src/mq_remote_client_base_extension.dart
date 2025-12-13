@@ -5,12 +5,8 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
   /// Performs an HTTP GET request to the specified [url].
   Future<T> _get<T>(String url) async {
     try {
-      if (await network.checkInternetConnection()) {
-        final response = await dio.get<T>(url);
-        return response.data as T;
-      } else {
-        throw const NerWorkException();
-      }
+      final response = await dio.get<T>(url);
+      return response.data as T;
     } catch (e, s) {
       log('MqRemoteClientBaseMehtods._get', error: e, stackTrace: s);
       rethrow;
@@ -20,12 +16,8 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
   /// Performs an HTTP POST request to the specified [url] with an optional [body].
   Future<T> _post<T>(String url, {Map<String, dynamic>? body}) async {
     try {
-      if (await network.checkInternetConnection()) {
-        final response = await dio.post<T>(url, data: body);
-        return response.data as T;
-      } else {
-        throw const NerWorkException();
-      }
+      final response = await dio.post<T>(url, data: body);
+      return response.data as T;
     } catch (e, s) {
       log('MqRemoteClientBaseMehtods._post', error: e, stackTrace: s);
       rethrow;
@@ -35,12 +27,8 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
   /// Performs an HTTP PUT request to the specified [url] with an optional [body].
   Future<T> _put<T>(String url, {Map<String, dynamic>? body}) async {
     try {
-      if (await network.checkInternetConnection()) {
-        final response = await dio.put<T>(url, data: body);
-        return response.data as T;
-      } else {
-        throw const NerWorkException();
-      }
+      final response = await dio.put<T>(url, data: body);
+      return response.data as T;
     } catch (e, s) {
       log('MqRemoteClientBaseMehtods._put', error: e, stackTrace: s);
       rethrow;
@@ -50,12 +38,8 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
   /// Performs an HTTP PATCH request to the specified [url] with an optional [body].
   Future<T> _patch<T>(String url, {Map<String, dynamic>? body}) async {
     try {
-      if (await network.checkInternetConnection()) {
-        final response = await dio.patch<T>(url, data: body);
-        return response.data as T;
-      } else {
-        throw const NerWorkException();
-      }
+      final response = await dio.patch<T>(url, data: body);
+      return response.data as T;
     } catch (e, s) {
       log('MqRemoteClientBaseMehtods._patch', error: e, stackTrace: s);
       rethrow;
@@ -65,12 +49,8 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
   /// Performs an HTTP DELETE request to the specified [url] with an optional [body].
   Future<T> _delete<T>(String url, {Map<String, dynamic>? body}) async {
     try {
-      if (await network.checkInternetConnection()) {
-        final response = await dio.delete<T>(url, data: body);
-        return response.data as T;
-      } else {
-        throw const NerWorkException();
-      }
+      final response = await dio.delete<T>(url, data: body);
+      return response.data as T;
     } catch (e, s) {
       log('MqRemoteClientBaseMehtods._delete', error: e, stackTrace: s);
       rethrow;

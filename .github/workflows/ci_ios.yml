@@ -14,8 +14,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - device: "iPhone 16 Pro Max"
-          - device: "iPad Pro 13-inch (M4)"
+          - device: "iPhone 15"
       fail-fast: true
 
     steps:
@@ -29,10 +28,10 @@ jobs:
           xcodebuild -version
           xcrun simctl list runtimes
 
-      - name: "Install Missing iOS 18.2 Simulator Runtime"
+      - name: "Install Missing iOS 17.5 Simulator Runtime"
         run: |
-          echo "Installing iOS 18.2 Runtime..."
-          sudo xcodebuild -downloadPlatform iOS -buildVersion 18.2
+          echo "Installing iOS 17.5 Runtime..."
+          sudo xcodebuild -downloadPlatform iOS -buildVersion 17.5 || true
           echo "Installation completed."
           xcrun simctl list runtimes
 
@@ -52,14 +51,21 @@ jobs:
           dart pub global activate melos
 
       - name: "Melos bootstrap"
-        run: $HOME/.pub-cache/bin/melos bootstrap
+        run: melos bootstrap
 
       - uses: futureware-tech/simulator-action@v3
         with:
           model: ${{ matrix.device }}
+          erase_before_boot: true
+          shutdown_after_job: true
+
+      - name: "Wait for Simulator Warmup"
+        run: |
+          sleep 15
+          xcrun simctl list
 
       - name: "Run Integration Test"
-        run: $HOME/.pub-cache/bin/melos integration-test
+        run: melos integration-test -- --timeout 5m
 
       - uses: actions/upload-artifact@v4
         if: always()

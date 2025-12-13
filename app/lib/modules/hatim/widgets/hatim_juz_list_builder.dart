@@ -48,12 +48,16 @@ class HatimJuzListBuilder extends StatelessWidget {
       params: {'juzId': item.id},
     );
     final bloc = context.read<HatimBloc>();
+    final cubit = context.read<HatimConnectionCubit>();
     await Navigator.push<void>(
       context,
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
-          return BlocProvider.value(
-            value: bloc..add(GetHatimJuzPagesEvent(item.id)),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: bloc),
+              BlocProvider.value(value: cubit),
+            ],
             child: HatimJusSelectPagesView(hatimJusEntity: item),
           );
         },

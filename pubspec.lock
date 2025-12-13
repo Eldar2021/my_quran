@@ -895,6 +895,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
+  internet_connection_checker_plus:
+    dependency: "direct main"
+    description:
+      name: internet_connection_checker_plus
+      sha256: "4f1817b67106349905235020d30c7387c0fbb464c8d5b1237df741f5b9bdd346"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.9.1+1"
   intl:
     dependency: "direct main"
     description:
@@ -1821,13 +1829,21 @@ packages:
     source: hosted
     version: "1.0.1"
   web_socket_channel:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: web_socket_channel
       sha256: d645757fb0f4773d602444000a8131ff5d48c9e47adfe9772652dd1a4f2d45c8
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  web_socket_client:
+    dependency: "direct main"
+    description:
+      name: web_socket_client
+      sha256: "394789177aa3bc1b7b071622a1dbf52a4631d7ce23c555c39bb2523e92316b07"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.1"
   webdriver:
     dependency: transitive
     description:

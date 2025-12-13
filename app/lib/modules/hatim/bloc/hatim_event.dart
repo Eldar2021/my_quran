@@ -6,8 +6,22 @@ sealed class HatimEvent {
 }
 
 @immutable
-final class GetInitailDataEvent extends HatimEvent {
-  const GetInitailDataEvent();
+final class GetInitialDataEvent extends HatimEvent {
+  const GetInitialDataEvent({this.juzId});
+
+  final String? juzId;
+}
+
+@immutable
+final class HatimConnectionChangedEvent extends HatimEvent {
+  const HatimConnectionChangedEvent(this.connectionState);
+
+  final ConnectionState connectionState;
+}
+
+@immutable
+final class DisconnectSocketEvent extends HatimEvent {
+  const DisconnectSocketEvent();
 }
 
 @immutable
@@ -46,8 +60,8 @@ final class SetDonePagesEvent extends HatimEvent {
 }
 
 @immutable
-final class ReceidevBaseDataEvent extends HatimEvent {
-  const ReceidevBaseDataEvent(this.data);
+final class ReceivedBaseDataEvent extends HatimEvent {
+  const ReceivedBaseDataEvent(this.data);
 
   final (HatimResponseType, List<MqHatimBaseEntity>) data;
 }

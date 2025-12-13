@@ -37,11 +37,12 @@ dependencies:
   equatable: ^2.0.7
   json_annotation: ^4.9.0
   dio: ^5.9.0
-  web_socket_channel: ^3.0.3
+  web_socket_client: ^0.2.1
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.2
   share_plus: ^12.0.1
   connectivity_plus: ^7.0.0
+  internet_connection_checker_plus: ^2.9.1+1
   package_info_plus: ^8.3.1 #9.0.0 geolocator
   geocoding: ^4.0.0
   geolocator: ^14.0.2
@@ -141,5 +142,5 @@ melos:
       description: "Build an appbundle file"
 
     integration-test:
-      run: cd app && flutter drive --target=test_driver/app.dart --no-enable-impeller
+      run: cd app && flutter drive --target=test_driver/app.dart
       description: "Run integration tests for the my_quran"

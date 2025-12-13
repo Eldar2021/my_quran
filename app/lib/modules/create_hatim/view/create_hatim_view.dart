@@ -21,9 +21,9 @@ class CreateHatimView extends StatelessWidget {
       create: (context) => CreateHatimCubit(
         MqHatimReadRepositoryImpl(
           dataSource: context.read<AppConfig>().isMockData
-              ? MqHatimRemoteDataSourceMock()
+              ? const MqHatimRemoteDataSourceMock()
               : MqHatimRemoteDataSourceImpl(
-                  remoteClient: context.read<MqRemoteClient>(),
+                  context.read<MqRemoteClient>(),
                 ),
         ),
       ),

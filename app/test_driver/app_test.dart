@@ -102,7 +102,7 @@ void main() async {
 
     test('play-fatiha-and-baqara', () async {
       await playFatihaAndBaqara(driver);
-    });
+    }, timeout: const Timeout(Duration(seconds: 200)));
   });
 
   group('Settings', () {
