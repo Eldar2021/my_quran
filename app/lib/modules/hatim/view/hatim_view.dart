@@ -19,12 +19,19 @@ class HatimView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMockData = context.read<AppConfig>().isMockData;
-    return BlocProvider(
-      create: (context) => HatimBloc(
-        hatimId: hatimId,
-        socket: isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
-        token: context.read<AuthCubit>().state.user!.accessToken,
-      )..add(const GetInitialDataEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HatimBloc(
+            hatimId: hatimId,
+            socket: isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
+            token: context.read<AuthCubit>().state.user!.accessToken,
+          )..add(const GetInitialDataEvent()),
+        ),
+        BlocProvider(
+          create: (context) => HatimConnectionCubit(),
+        ),
+      ],
       child: const HatimUI(),
     );
   }
@@ -39,8 +46,6 @@ class HatimUI extends StatefulWidget {
 
 class _HatimUIState extends State<HatimUI>
     with WidgetsBindingObserver, AppLifeCycleStateMixin, InternetConnectionMixin {
-  ValueNotifier<String?> extraTextNotifier = ValueNotifier(null);
-
   @override
   void initState() {
     super.initState();
@@ -58,13 +63,6 @@ class _HatimUIState extends State<HatimUI>
         title: Text(context.l10n.hatim),
         centerTitle: true,
         actions: [
-          ValueListenableBuilder(
-            valueListenable: extraTextNotifier,
-            builder: (context, value, child) {
-              return HatimConnectionStateWidget(extraText: value);
-            },
-          ),
-          const SizedBox(width: 10),
           BlocBuilder<HatimBloc, HatimState>(
             buildWhen: (p, c) => p.userPagesState != c.userPagesState,
             builder: (context, state) {
@@ -85,7 +83,19 @@ class _HatimUIState extends State<HatimUI>
         onRefresh: () async {
           context.read<HatimBloc>().add(const GetInitialDataEvent());
         },
-        child: BlocBuilder<HatimBloc, HatimState>(
+        child: BlocConsumer<HatimBloc, HatimState>(
+          listener: (context, state) {
+            final connectionState = state.connectionState;
+            final value = switch (connectionState) {
+              Connecting() => HatimConnectionStateType.connecting,
+              Connected() => HatimConnectionStateType.connected,
+              Reconnecting() => HatimConnectionStateType.reconnecting,
+              Reconnected() => HatimConnectionStateType.reconnected,
+              Disconnecting() => HatimConnectionStateType.disconnecting,
+              Disconnected() => HatimConnectionStateType.disconnected,
+            };
+            context.read<HatimConnectionCubit>().setConnectionState(value);
+          },
           builder: (context, state) {
             final juzsState = state.juzsState;
             return switch (juzsState) {
@@ -157,25 +167,33 @@ class _HatimUIState extends State<HatimUI>
 
   @override
   void Function()? get onAppLifeCycleResumed => () {
-    extraTextNotifier.value = 'Resumed';
+    context.read<HatimConnectionCubit>().setAppLifecycleState(
+      HatimAppLifecycleStateType.resumed,
+    );
     context.read<HatimBloc>().add(const GetInitialDataEvent());
   };
 
   @override
   void Function()? get onAppLifeCyclePaused => () {
-    extraTextNotifier.value = 'Paused';
+    context.read<HatimConnectionCubit>().setAppLifecycleState(
+      HatimAppLifecycleStateType.paused,
+    );
     context.read<HatimBloc>().add(const DisconnectSocketEvent());
   };
 
   @override
   void Function()? get onConnectedInternet => () {
-    extraTextNotifier.value = 'Connected';
+    context.read<HatimConnectionCubit>().setInternetState(
+      HatimInternetStateType.connected,
+    );
     context.read<HatimBloc>().add(const GetInitialDataEvent());
   };
 
   @override
   void Function()? get onDisconnectedInternet => () {
-    extraTextNotifier.value = 'Disconnected';
+    context.read<HatimConnectionCubit>().setInternetState(
+      HatimInternetStateType.disconnected,
+    );
     context.read<HatimBloc>().add(const DisconnectSocketEvent());
   };
 
