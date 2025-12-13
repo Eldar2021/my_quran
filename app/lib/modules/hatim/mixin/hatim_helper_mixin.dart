@@ -9,8 +9,9 @@ import 'package:my_quran/modules/modules.dart';
 mixin HatimHelperMixin {
   Future<void> navigateToHatimRead(
     List<MqHatimPagesEntity> pages,
-    BuildContext context,
-  ) async {
+    BuildContext context, {
+    String? juzId,
+  }) async {
     final hatimId = context.read<HatimBloc>().hatimId;
     final pageIds = pages.map((e) => e.id).toList();
     final pageNumbers = pages.map((e) => e.number).toList();
@@ -22,15 +23,22 @@ mixin HatimHelperMixin {
       params: {'pages': pageIds},
     );
 
-    final value = await context.pushNamed<bool>(
-      AppRouter.hatimRead,
-      pathParameters: {
-        'hatimId': hatimId,
-        'pages': pageNumbers.toString(),
-      },
-    );
-    if (value != null && value && context.mounted) {
-      context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
+    await Future<void>.delayed(const Duration(milliseconds: 200));
+    if (context.mounted) {
+      context.read<HatimBloc>().add(const DisconnectSocketEvent());
+      final value = await context.pushNamed<bool>(
+        AppRouter.hatimRead,
+        pathParameters: {
+          'hatimId': hatimId,
+          'pages': pageNumbers.toString(),
+        },
+      );
+      if (context.mounted) {
+        context.read<HatimBloc>().add(GetInitialDataEvent(juzId: juzId));
+        if (value != null && value) {
+          context.read<HatimBloc>().add(SetDonePagesEvent(pageIds));
+        }
+      }
     }
   }
 }

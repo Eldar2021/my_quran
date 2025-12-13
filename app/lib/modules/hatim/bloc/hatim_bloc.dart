@@ -39,6 +39,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> with ParseHatimDataMixin {
   StreamSubscription<dynamic>? _messageSubscription;
 
   List<String>? _shouldSendDonePages;
+  String? _shouldSendJuzId;
 
   FutureOr<void> _onGetInitailDataEvent(
     GetInitialDataEvent event,
@@ -46,10 +47,14 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> with ParseHatimDataMixin {
   ) async {
     socket.connectToSocket(token);
 
+    _shouldSendJuzId = event.juzId;
+
     await _connectionSubscription?.cancel();
     await _messageSubscription?.cancel();
+
     _connectionSubscription = null;
     _messageSubscription = null;
+
     _connectionSubscription = socket.connectionStream.listen((connectionState) {
       log('connectionState: $connectionState');
       add(HatimConnectionChangedEvent(connectionState));
@@ -74,8 +79,12 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> with ParseHatimDataMixin {
         ..sinkHatimJuzs(hatimId)
         ..sinkHatimUserPages();
       if (_shouldSendDonePages != null) {
-        _shouldSendDonePages = null;
         add(SetDonePagesEvent(_shouldSendDonePages!));
+        _shouldSendDonePages = null;
+      }
+      if (_shouldSendJuzId != null) {
+        add(GetHatimJuzPagesEvent(_shouldSendJuzId!));
+        _shouldSendJuzId = null;
       }
     }
   }

@@ -22,6 +22,12 @@ class HatimJusSelectPagesView extends StatefulWidget {
 
 class _HatimJusSelectPagesViewState extends State<HatimJusSelectPagesView> with HatimHelperMixin {
   @override
+  void initState() {
+    context.read<HatimBloc>().add(GetHatimJuzPagesEvent(widget.hatimJusEntity.id));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Scaffold(
@@ -106,7 +112,11 @@ class _HatimJusSelectPagesViewState extends State<HatimJusSelectPagesView> with 
                 final pages = userPagesState.data;
                 if (pages.isNotEmpty) {
                   return ElevatedButton(
-                    onPressed: () => navigateToHatimRead(pages, context),
+                    onPressed: () => navigateToHatimRead(
+                      pages,
+                      context,
+                      juzId: widget.hatimJusEntity.id,
+                    ),
                     child: Text(context.l10n.read),
                   );
                 }

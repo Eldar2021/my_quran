@@ -55,10 +55,8 @@ class HatimJuzListBuilder extends StatelessWidget {
         builder: (BuildContext context) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider.value(
-                value: bloc..add(GetHatimJuzPagesEvent(item.id)),
-              ),
-              BlocProvider(create: (context) => cubit),
+              BlocProvider.value(value: bloc),
+              BlocProvider.value(value: cubit),
             ],
             child: HatimJusSelectPagesView(hatimJusEntity: item),
           );
