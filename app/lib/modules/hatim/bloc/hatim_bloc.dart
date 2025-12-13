@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
+import 'package:my_quran/modules/modules.dart';
 
 part 'hatim_event.dart';
 part 'hatim_state.dart';
@@ -13,7 +13,7 @@ part 'hatim_state_juzs.dart';
 part 'hatim_state_juz_pages.dart';
 part 'hatim_state_user_pages.dart';
 
-class HatimBloc extends Bloc<HatimEvent, HatimState> {
+class HatimBloc extends Bloc<HatimEvent, HatimState> with ParseHatimDataMixin {
   HatimBloc({
     required this.socket,
     required this.token,
@@ -54,8 +54,7 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     });
 
     _messageSubscription = socket.messages.listen((v) {
-      final data = _parseStream(v);
-      add(ReceivedBaseDataEvent(data));
+      add(ReceivedBaseDataEvent(parseHatimData(v)));
     });
 
     emit(state.copyWith(userPagesState: const HatimUserPagesLoading()));
@@ -158,31 +157,5 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     _messageSubscription?.cancel();
     socket.close();
     return super.close();
-  }
-
-  (HatimResponseType, List<MqHatimBaseEntity>) _parseStream(dynamic data) {
-    final src = HatimBaseResponse.fromJson(
-      jsonDecode(data as String) as Map<String, dynamic>,
-    );
-    return switch (src.type) {
-      HatimResponseType.listOfJuz => _receiveJuzs(src.data as List<dynamic>),
-      HatimResponseType.listOfPage => _receiveJuzPage(src.data as List<dynamic>),
-      HatimResponseType.userPages => _receiveUserPages(src.data as List<dynamic>),
-    };
-  }
-
-  (HatimResponseType, List<MqHatimJusEntity>) _receiveJuzs(List<dynamic> src) {
-    final data = src.map((e) => HatimJus.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.listOfJuz, data.map((e) => e.entity).toList());
-  }
-
-  (HatimResponseType, List<MqHatimPagesEntity>) _receiveJuzPage(List<dynamic> src) {
-    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.listOfPage, data.map((e) => e.entity).toList());
-  }
-
-  (HatimResponseType, List<MqHatimPagesEntity>) _receiveUserPages(List<dynamic> src) {
-    final data = src.map((e) => HatimPages.fromJson(e as Map<String, dynamic>)).toList();
-    return (HatimResponseType.userPages, data.map((e) => e.entity).toList());
   }
 }
