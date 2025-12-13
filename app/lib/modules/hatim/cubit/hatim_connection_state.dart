@@ -2,9 +2,9 @@ part of 'hatim_connection_cubit.dart';
 
 class HatimConnectionState extends Equatable {
   const HatimConnectionState({
-    this.stateType = HatimConnectionStateType.disconnected,
-    this.appLifecycleStateType = HatimAppLifecycleStateType.paused,
-    this.internetStateType = HatimInternetStateType.disconnected,
+    this.stateType = HatimConnectionStateType.connecting,
+    this.appLifecycleStateType = HatimAppLifecycleStateType.resumed,
+    this.internetStateType = HatimInternetStateType.connected,
   });
 
   final HatimConnectionStateType stateType;

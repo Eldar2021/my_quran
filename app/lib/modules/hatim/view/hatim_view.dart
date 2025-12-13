@@ -78,6 +78,7 @@ class _HatimUIState extends State<HatimUI>
           ),
           const SizedBox(width: 30),
         ],
+        bottom: const HatimConnectionStateWidget(),
       ),
       body: RefreshIndicator(
         onRefresh: () async {

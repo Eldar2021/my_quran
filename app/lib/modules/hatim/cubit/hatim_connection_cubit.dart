@@ -7,14 +7,20 @@ class HatimConnectionCubit extends Cubit<HatimConnectionState> {
   HatimConnectionCubit() : super(const HatimConnectionState());
 
   void setConnectionState(HatimConnectionStateType value) {
-    emit(state.copyWith(stateType: value));
+    if (!isClosed) {
+      emit(state.copyWith(stateType: value));
+    }
   }
 
   void setAppLifecycleState(HatimAppLifecycleStateType value) {
-    emit(state.copyWith(appLifecycleStateType: value));
+    if (!isClosed) {
+      emit(state.copyWith(appLifecycleStateType: value));
+    }
   }
 
   void setInternetState(HatimInternetStateType value) {
-    emit(state.copyWith(internetStateType: value));
+    if (!isClosed) {
+      emit(state.copyWith(internetStateType: value));
+    }
   }
 }

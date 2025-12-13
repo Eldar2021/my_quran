@@ -54,7 +54,6 @@ class HatimBloc extends Bloc<HatimEvent, HatimState> {
     });
 
     _messageSubscription = socket.messages.listen((v) {
-      log('stream: $v');
       final data = _parseStream(v);
       add(ReceivedBaseDataEvent(data));
     });

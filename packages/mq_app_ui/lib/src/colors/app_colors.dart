@@ -3,6 +3,42 @@ import 'package:flutter/material.dart';
 /// AppColors
 /// This class contains all the colors used in the app
 abstract class AppColors {
+  /// Green figma style properties
+  /// hex: #00FF00
+  /// opacity: 0
+  /// This is a green color
+  static const Color green = Color(0xff00FF00);
+
+  /// Red figma style properties
+  /// hex: #FF0000
+  /// opacity: 0
+  /// This is a red color
+  static const Color red = Color(0xffFF0000);
+
+  /// Dart red figma style properties
+  /// hex: #8B0000
+  /// opacity: 1
+  /// This is a dart red color
+  static const Color dartRed = Color(0xff8B0000);
+
+  /// Yellow figma style properties
+  /// hex: #FFC72C
+  /// opacity: 1
+  /// This is a yellow color
+  static const Color yellow = Color(0xffFFC72C);
+
+  /// Gold figma style properties
+  /// hex: #FFD700
+  /// opacity: 1
+  /// This is a orange color
+  static const Color gold = Color(0xffFFD700);
+
+  /// Lime green figma style properties
+  /// hex: #32CD32
+  /// opacity: 1
+  /// This is a lime green color
+  static const Color limeGreen = Color(0xff32CD32);
+
   /// Transparent figma style properties
   /// hex: #000000
   /// opacity: 0
