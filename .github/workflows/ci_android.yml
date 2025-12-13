@@ -15,6 +15,14 @@ jobs:
       - name: "Check out repository"
         uses: actions/checkout@v4
 
+      - name: "Free Disk Space (Ubuntu)"
+        run: |
+          sudo rm -rf /usr/local/lib/android/sdk/ndk
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
       - name: "Set up Flutter"
         uses: subosito/flutter-action@v2
         with:
@@ -53,8 +61,10 @@ jobs:
       - name: "Run test"
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: 35
           arch: x86_64
+          ram-size: 4096M
+          heap-size: 1024M
           emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
           disable-animations: true
           script: melos integration-test

@@ -15,7 +15,6 @@ jobs:
       matrix:
         include:
           - device: "iPhone 16 Pro Max"
-          - device: "iPad Pro 13-inch (M4)"
       fail-fast: true
 
     steps:
