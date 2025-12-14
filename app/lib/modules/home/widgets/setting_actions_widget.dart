@@ -213,6 +213,35 @@ class SettingActionsWidget extends StatelessWidget {
             ),
             title: context.l10n.deleteAccount,
           ),
+        if (authCubit.state.isAuthedticated)
+          BlocBuilder<NotificationCubit, NotificationGlobalState>(
+            builder: (context, state) {
+              final permissionState = state.permissionState;
+              return DrawerTile(
+                icon: Icon(
+                  Icons.notifications_none_outlined,
+                  color: colorScheme.primary,
+                ),
+                title: 'Notification',
+                trailing: switch (permissionState) {
+                  NotificationPermissionInitial() => const CircularProgressIndicator.adaptive(),
+                  NotificationPermissionLoading() => const CircularProgressIndicator.adaptive(),
+                  _ => Transform.scale(
+                    scale: 0.8,
+                    child: Switch(
+                      value: permissionState.isNotificationEnabled,
+                      onChanged: (value) {
+                        context.read<NotificationCubit>().toggleNotification(
+                          userToken: authCubit.state.user?.accessToken ?? '',
+                          value: value,
+                        );
+                      },
+                    ),
+                  ),
+                },
+              );
+            },
+          ),
       ],
     );
   }

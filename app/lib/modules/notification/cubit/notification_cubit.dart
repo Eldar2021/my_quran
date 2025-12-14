@@ -26,13 +26,16 @@ class NotificationCubit extends Cubit<NotificationGlobalState> {
     bool value = true,
   }) async {
     try {
+      emit(state.copyWith(permissionState: const NotificationPermissionLoading()));
       await repository.toggleNotification(
         userToken: userToken,
         value: value,
       );
-      emit(state.copyWith(isNotificationEnabled: value));
+      final newFetchState = NotificationPermissionSuccess(isEnabled: value);
+      emit(state.copyWith(permissionState: newFetchState));
     } on Object catch (e, s) {
       log('toggleNotification', error: e, stackTrace: s);
+      emit(state.copyWith(permissionState: NotificationPermissionError(e)));
     }
   }
 }

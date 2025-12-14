@@ -20,6 +20,7 @@ class NotificationRepository {
     required String userToken,
     required String locale,
   }) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
     try {
       // await client.post<void>(
       //   'api/send/notification/token',
@@ -43,6 +44,7 @@ class NotificationRepository {
     required String userToken,
   }) async {
     try {
+      await Future<void>.delayed(const Duration(seconds: 1));
       // await client.put<void>(
       //   'api/send/notification/token',
       //   body: {
@@ -60,6 +62,7 @@ class NotificationRepository {
   }
 
   Future<List<NotificationModel>?> getNotifications(String? locale) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
     if (locale == null) return null;
     try {
       return const [
