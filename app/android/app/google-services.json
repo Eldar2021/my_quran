@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "417182149715",
     "project_id": "my-quran-01",
-    "storage_bucket": "my-quran-01.appspot.com"
+    "storage_bucket": "my-quran-01.firebasestorage.app"
   },
   "client": [
     {
@@ -19,6 +19,14 @@
           "android_info": {
             "package_name": "com.alee.my_quran",
             "certificate_hash": "c7900f3d9f7367ae2f5ccd094393557e8e6afdbf"
+          }
+        },
+        {
+          "client_id": "417182149715-6pd8mhd33fve48v420ja85cu5lsbvdhh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alee.my_quran",
+            "certificate_hash": "0b10aee1f8938d8bcfdf0a2a58b3aa235c7ed001"
           }
         },
         {
