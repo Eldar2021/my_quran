@@ -20,11 +20,14 @@ class FirebaseNotificationService {
   Future<void> initialize({
     required OnSendTokenToServer onSendTokenToServer,
     required FirebaseNotificationClickHandler onNotificationClick,
+    required FutureOr<void> Function() onPermissionEnabled,
+    required FutureOr<void> Function() onPermissionDisabled,
   }) async {
     final settings = await firebaseMessaging.requestPermission();
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       log('🔔 User granted permission for notifications');
+      await onPermissionEnabled();
 
       if (Platform.isIOS) {
         await firebaseMessaging.setForegroundNotificationPresentationOptions(
@@ -57,6 +60,7 @@ class FirebaseNotificationService {
       });
     } else {
       log('🔕 User denied permission for notifications');
+      await onPermissionDisabled();
     }
   }
 

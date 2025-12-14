@@ -1,5 +1,31 @@
 part of 'notification_cubit.dart';
 
+class NotificationGlobalState extends Equatable {
+  const NotificationGlobalState({
+    this.fetchState = const NotificationInitial(),
+    this.isNotificationEnabled = false,
+  });
+
+  final NotificationState fetchState;
+  final bool isNotificationEnabled;
+
+  NotificationGlobalState copyWith({
+    NotificationState? fetchState,
+    bool? isNotificationEnabled,
+  }) {
+    return NotificationGlobalState(
+      fetchState: fetchState ?? this.fetchState,
+      isNotificationEnabled: isNotificationEnabled ?? this.isNotificationEnabled,
+    );
+  }
+
+  @override
+  List<Object> get props => [
+    fetchState,
+    isNotificationEnabled,
+  ];
+}
+
 sealed class NotificationState extends Equatable {
   const NotificationState();
 

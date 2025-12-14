@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:my_quran/core/core.dart';
 
 class NotificationService {
@@ -16,12 +18,16 @@ class NotificationService {
     required String locale,
     required LocalNotificationClickHandler onNotificationClick,
     required FirebaseNotificationClickHandler onFirebaseNotificationClick,
+    required FutureOr<void> Function() onPermissionEnabled,
+    required FutureOr<void> Function() onPermissionDisabled,
   }) async {
     await local.initialize(
       onNotificationClick: onNotificationClick,
     );
     await firebase.initialize(
       onNotificationClick: onFirebaseNotificationClick,
+      onPermissionEnabled: onPermissionEnabled,
+      onPermissionDisabled: onPermissionDisabled,
       onSendTokenToServer: (fcmToken) {
         return repository.setNotificationToken(
           token: fcmToken,

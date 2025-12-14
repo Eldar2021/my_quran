@@ -24,16 +24,17 @@ class _NotificationViewState extends State<NotificationView> {
       appBar: AppBar(
         title: const Text('Notification'),
       ),
-      body: BlocBuilder<NotificationCubit, NotificationState>(
+      body: BlocBuilder<NotificationCubit, NotificationGlobalState>(
         builder: (context, state) {
-          return switch (state) {
+          final fetchState = state.fetchState;
+          return switch (fetchState) {
             NotificationInitial() => const Center(child: CircularProgressIndicator.adaptive()),
             NotificationSuccess() => ListView.builder(
-              itemCount: state.notifications?.length ?? 0,
+              itemCount: fetchState.notifications?.length ?? 0,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(state.notifications?[index].title ?? ''),
-                  subtitle: Text(state.notifications?[index].body ?? ''),
+                  title: Text(fetchState.notifications?[index].title ?? ''),
+                  subtitle: Text(fetchState.notifications?[index].body ?? ''),
                 );
               },
             ),
