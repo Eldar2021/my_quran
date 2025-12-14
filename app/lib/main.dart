@@ -15,17 +15,25 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/app_observer.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
-// import 'package:my_quran/core/core.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/firebase_options.dart';
 
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  try {
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    } else {
+      log('Firebase already initialized');
+    }
+  } on Object catch (e) {
+    log('Firebase Init Error (Ignoring): $e');
+  }
 
-  // await FirebaseNotificationService().initialize();
+  await FirebaseNotificationService().initialize();
 
   await MqAnalytic.setAnalyticsCollectionEnabled(
     enabled: kReleaseMode,
