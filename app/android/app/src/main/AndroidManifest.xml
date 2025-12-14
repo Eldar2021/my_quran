@@ -2,6 +2,8 @@
     <!-- INTERNET -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- POST_NOTIFICATIONS -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> 
     <!-- Audio Background -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
@@ -33,7 +35,12 @@
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/launcher_icon"
         android:roundIcon="@mipmap/launcher_round">
-        
+        <!-- Firebase Notification -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
+        <!-- Firebase Notification -->
+
         <activity
             android:name="com.ryanheise.audioservice.AudioServiceActivity"
             android:exported="true"
