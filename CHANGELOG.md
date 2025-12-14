@@ -286,3 +286,11 @@
 - Fixed all ignores dart analyze
 - Implemented CI/CD
 - Added Make file
+
+---
+
+# What's Changed v1.3.21+33
+
+## [Bug Fixes]
+
+- Fixed web socket reconnection
