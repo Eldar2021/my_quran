@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+typedef LocalNotificationClickHandler = void Function(String payload);
+
 const _channel = AndroidNotificationChannel(
   'high_importance_channel',
   'High Importance Notifications',
@@ -32,7 +34,9 @@ class LocalNotificationService {
 
   final FlutterLocalNotificationsPlugin localNotification;
 
-  Future<void> initialize() async {
+  Future<void> initialize({
+    required LocalNotificationClickHandler onNotificationClick,
+  }) async {
     log('🔧 LocalNotificationService initializing...');
 
     await localNotification
@@ -43,8 +47,8 @@ class LocalNotificationService {
       initializationSettings,
       onDidReceiveNotificationResponse: (response) {
         log('🔔 Tapped on Notification: ${response.payload}');
-        // BURASI GÖREV 2: Navigation işlemi burada tetiklenecek.
-        // Şimdilik payload'ı logluyoruz.
+        final payload = response.payload;
+        if (payload != null) onNotificationClick(payload);
       },
     );
 

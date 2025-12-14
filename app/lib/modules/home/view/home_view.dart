@@ -36,6 +36,12 @@ class _HomeViewState extends State<HomeView> {
         await context.read<NotificationService>().initialize(
           userToken: user.accessToken,
           locale: user.localeCode,
+          onNotificationClick: (data) {
+            rootNavigatorKey.currentContext?.goNamed(AppRouter.notification);
+          },
+          onFirebaseNotificationClick: (data) {
+            rootNavigatorKey.currentContext?.goNamed(AppRouter.notification);
+          },
         );
       });
     }

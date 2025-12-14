@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:my_quran/core/notification/notification.dart';
 
 typedef OnSendTokenToServer = FutureOr<void> Function(String fcmToken);
+typedef FirebaseNotificationClickHandler = void Function(Map<String, dynamic> data);
 
 class FirebaseNotificationService {
   const FirebaseNotificationService({
@@ -18,6 +19,7 @@ class FirebaseNotificationService {
 
   Future<void> initialize({
     required OnSendTokenToServer onSendTokenToServer,
+    required FirebaseNotificationClickHandler onNotificationClick,
   }) async {
     final settings = await firebaseMessaging.requestPermission();
 
@@ -39,7 +41,7 @@ class FirebaseNotificationService {
         onShowNotification(message);
       });
 
-      await setupInteractedMessage();
+      await _setupInteractedMessage(onNotificationClick);
 
       final fcmToken = await firebaseMessaging.getToken();
       log('========================================');
@@ -58,17 +60,24 @@ class FirebaseNotificationService {
     }
   }
 
-  Future<void> setupInteractedMessage() async {
+  Future<void> _setupInteractedMessage(
+    FirebaseNotificationClickHandler onNotificationClick,
+  ) async {
     final initialMessage = await firebaseMessaging.getInitialMessage();
     if (initialMessage != null) {
-      _handleMessage(initialMessage);
+      _handleMessage(initialMessage, onNotificationClick);
     }
 
-    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+    FirebaseMessaging.onMessageOpenedApp.listen(
+      (message) => _handleMessage(message, onNotificationClick),
+    );
   }
 
-  void _handleMessage(RemoteMessage message) {
+  void _handleMessage(
+    RemoteMessage message,
+    FirebaseNotificationClickHandler onNotificationClick,
+  ) {
     log('Tapped on notification (Background/Terminated): ${message.data}');
-    // Navigation logic buraya gelecek
+    onNotificationClick(message.data);
   }
 }

@@ -14,9 +14,14 @@ class NotificationService {
   Future<void> initialize({
     required String userToken,
     required String locale,
+    required LocalNotificationClickHandler onNotificationClick,
+    required FirebaseNotificationClickHandler onFirebaseNotificationClick,
   }) async {
-    await local.initialize();
+    await local.initialize(
+      onNotificationClick: onNotificationClick,
+    );
     await firebase.initialize(
+      onNotificationClick: onFirebaseNotificationClick,
       onSendTokenToServer: (fcmToken) {
         return repository.setNotificationToken(
           token: fcmToken,
