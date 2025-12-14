@@ -5,18 +5,20 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:my_quran/core/notification/notification.dart';
 
+typedef OnSendTokenToServer = FutureOr<void> Function(String fcmToken);
+
 class FirebaseNotificationService {
   const FirebaseNotificationService({
     required this.firebaseMessaging,
-    required this.onSendTokenToServer,
     required this.onShowNotification,
   });
 
   final FirebaseMessaging firebaseMessaging;
-  final FutureOr<void> Function(String fcmToken) onSendTokenToServer;
   final FutureOr<void> Function(RemoteMessage message) onShowNotification;
 
-  Future<void> initialize() async {
+  Future<void> initialize({
+    required OnSendTokenToServer onSendTokenToServer,
+  }) async {
     final settings = await firebaseMessaging.requestPermission();
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {

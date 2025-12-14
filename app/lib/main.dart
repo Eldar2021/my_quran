@@ -35,23 +35,6 @@ Future<void> main({bool isIntegrationTest = false}) async {
     log('Firebase Init Error (Ignoring): $e');
   }
 
-  final localNotificationService = LocalNotificationService(
-    FlutterLocalNotificationsPlugin(),
-  );
-
-  final firebaseNotificationService = FirebaseNotificationService(
-    firebaseMessaging: FirebaseMessaging.instance,
-    onShowNotification: localNotificationService.showNotification,
-    onSendTokenToServer: (token) async {
-      log('🚀 Token Sunucuya Gönderilecek: $token');
-    },
-  );
-
-  final notificationService = NotificationService(
-    firebase: firebaseNotificationService,
-    local: localNotificationService,
-  );
-
   await MqAnalytic.setAnalyticsCollectionEnabled(
     enabled: kReleaseMode,
   );
@@ -99,6 +82,34 @@ Future<void> main({bool isIntegrationTest = false}) async {
 
   final domain = appConfig.isDevMode ? appConfig.devDomain : ApiConst.domain;
 
+  final netWorkClient = NetworkClient();
+
+  final remoteClient = MqRemoteClient(
+    dio: Dio(BaseOptions(baseUrl: domain)),
+    network: netWorkClient,
+    language: () => storage.readString(key: StorageKeys.localeKey),
+    token: () => storage.readString(key: StorageKeys.tokenKey),
+    oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
+  )..initilize();
+
+  final localNotificationService = LocalNotificationService(
+    FlutterLocalNotificationsPlugin(),
+  );
+
+  final firebaseNotificationService = FirebaseNotificationService(
+    firebaseMessaging: FirebaseMessaging.instance,
+    onShowNotification: localNotificationService.showNotification,
+  );
+
+  final notificationService = NotificationService(
+    firebase: firebaseNotificationService,
+    local: localNotificationService,
+    repository: NotificationRepository(
+      client: remoteClient,
+      storage: storage,
+    ),
+  );
+
   runApp(
     MultiRepositoryProvider(
       providers: [
@@ -112,7 +123,7 @@ Future<void> main({bool isIntegrationTest = false}) async {
           create: (context) => packageInfo,
         ),
         RepositoryProvider<NetworkClient>(
-          create: (context) => NetworkClient(),
+          create: (context) => netWorkClient,
         ),
         RepositoryProvider<MqRemoteConfig>(
           create: (context) => remoteConfig,
@@ -121,13 +132,7 @@ Future<void> main({bool isIntegrationTest = false}) async {
           create: (context) => notificationService,
         ),
         RepositoryProvider<MqRemoteClient>(
-          create: (context) => MqRemoteClient(
-            dio: Dio(BaseOptions(baseUrl: domain)),
-            network: context.read<NetworkClient>(),
-            language: () => storage.readString(key: StorageKeys.localeKey),
-            token: () => storage.readString(key: StorageKeys.tokenKey),
-            oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
-          )..initilize(),
+          create: (context) => remoteClient,
         ),
       ],
       child: const MyApp(),

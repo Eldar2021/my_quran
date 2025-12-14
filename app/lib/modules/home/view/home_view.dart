@@ -26,7 +26,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-
     _getHomeData();
     final user = context.read<AuthCubit>().state.user;
     final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
@@ -34,7 +33,10 @@ class _HomeViewState extends State<HomeView> {
       MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        await context.read<NotificationService>().initialize();
+        await context.read<NotificationService>().initialize(
+          userToken: user.accessToken,
+          locale: user.localeCode,
+        );
       });
     }
     context.read<LocationCubit>().init();
