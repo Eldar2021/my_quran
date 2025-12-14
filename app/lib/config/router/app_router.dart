@@ -29,6 +29,7 @@ final class AppRouter {
   static const quranByJuz = 'quran-by-juz';
   static const quranByPages = 'quran-by-pages';
   static const hatimRead = 'hatim-read';
+  static const notification = 'notification';
 
   static const login = 'login';
   static const loginWihtSoccial = 'login-with-soccial';
@@ -200,6 +201,12 @@ final class AppRouter {
         path: createHatimSuccess,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const SuccessView(),
+      ),
+      GoRoute(
+        name: notification,
+        path: notification,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const NotificationView(),
       ),
     ];
   }

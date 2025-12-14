@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/core/core.dart';
 
 class NotificationRepository {
   const NotificationRepository({
@@ -20,14 +21,14 @@ class NotificationRepository {
     required String locale,
   }) async {
     try {
-      await client.post<void>(
-        'api/send/notification/token',
-        body: {
-          'token': token,
-          'user_token': userToken,
-          'locale': locale,
-        },
-      );
+      // await client.post<void>(
+      //   'api/send/notification/token',
+      //   body: {
+      //     'token': token,
+      //     'user_token': userToken,
+      //     'locale': locale,
+      //   },
+      // );
       await storage.writeString(
         key: _notificationEnabledKey,
         value: token,
@@ -42,19 +43,48 @@ class NotificationRepository {
     required String userToken,
   }) async {
     try {
-      await client.put<void>(
-        'api/send/notification/token',
-        body: {
-          'value': value,
-          'user_token': userToken,
-        },
-      );
+      // await client.put<void>(
+      //   'api/send/notification/token',
+      //   body: {
+      //     'value': value,
+      //     'user_token': userToken,
+      //   },
+      // );
       await storage.writeBool(
         key: _notificationEnabledKey,
         value: value,
       );
     } on Object catch (e) {
       log('toggleNotification', error: e);
+    }
+  }
+
+  Future<List<NotificationModel>?> getNotifications(String? locale) async {
+    if (locale == null) return null;
+    try {
+      return const [
+        NotificationModel(
+          id: '1',
+          title: 'title',
+          body: 'body',
+          type: 'type',
+        ),
+        NotificationModel(
+          id: '2',
+          title: 'title',
+          body: 'body',
+          type: 'type',
+        ),
+        NotificationModel(
+          id: '2',
+          title: 'title',
+          body: 'body',
+          type: 'type',
+        ),
+      ];
+    } on Object catch (e) {
+      log('getNotificationToken', error: e);
+      return null;
     }
   }
 }

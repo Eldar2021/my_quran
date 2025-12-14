@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
@@ -11,7 +12,6 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
-import 'package:my_quran/utils/show/snackbars.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -72,18 +72,11 @@ class _HomeViewState extends State<HomeView> {
         ),
         actions: [
           IconButton(
-            padding: const EdgeInsets.only(right: 24),
-            onPressed: () {
-              AppSnackbar.showSnackbar(
-                context,
-                context.l10n.featureInFuture,
-              );
-            },
-            icon: Assets.icons.qyblaDirection.svg(
-              colorFilter: ColorFilter.mode(
-                colorScheme.onSurface,
-                BlendMode.srcIn,
-              ),
+            onPressed: () => context.pushNamed(AppRouter.notification),
+            icon: Icon(
+              Icons.notifications_none_outlined,
+              color: colorScheme.onSurface,
+              size: 28,
             ),
           ),
         ],

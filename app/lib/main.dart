@@ -101,13 +101,15 @@ Future<void> main({bool isIntegrationTest = false}) async {
     onShowNotification: localNotificationService.showNotification,
   );
 
+  final notificationRepository = NotificationRepository(
+    client: remoteClient,
+    storage: storage,
+  );
+
   final notificationService = NotificationService(
     firebase: firebaseNotificationService,
     local: localNotificationService,
-    repository: NotificationRepository(
-      client: remoteClient,
-      storage: storage,
-    ),
+    repository: notificationRepository,
   );
 
   runApp(
@@ -133,6 +135,9 @@ Future<void> main({bool isIntegrationTest = false}) async {
         ),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => remoteClient,
+        ),
+        RepositoryProvider<NotificationRepository>(
+          create: (context) => notificationRepository,
         ),
       ],
       child: const MyApp(),
