@@ -33,6 +33,9 @@ class _HomeViewState extends State<HomeView> {
     if (user != null) {
       MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await context.read<NotificationService>().initialize();
+      });
     }
     context.read<LocationCubit>().init();
   }

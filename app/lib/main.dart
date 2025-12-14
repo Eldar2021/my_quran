@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
@@ -33,7 +35,22 @@ Future<void> main({bool isIntegrationTest = false}) async {
     log('Firebase Init Error (Ignoring): $e');
   }
 
-  await FirebaseNotificationService().initialize();
+  final localNotificationService = LocalNotificationService(
+    FlutterLocalNotificationsPlugin(),
+  );
+
+  final firebaseNotificationService = FirebaseNotificationService(
+    firebaseMessaging: FirebaseMessaging.instance,
+    onShowNotification: localNotificationService.showNotification,
+    onSendTokenToServer: (token) async {
+      log('🚀 Token Sunucuya Gönderilecek: $token');
+    },
+  );
+
+  final notificationService = NotificationService(
+    firebase: firebaseNotificationService,
+    local: localNotificationService,
+  );
 
   await MqAnalytic.setAnalyticsCollectionEnabled(
     enabled: kReleaseMode,
@@ -99,6 +116,9 @@ Future<void> main({bool isIntegrationTest = false}) async {
         ),
         RepositoryProvider<MqRemoteConfig>(
           create: (context) => remoteConfig,
+        ),
+        RepositoryProvider<NotificationService>(
+          create: (context) => notificationService,
         ),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => MqRemoteClient(
