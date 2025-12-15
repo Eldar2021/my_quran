@@ -139,5 +139,7 @@
   "hatimCreatedBy": "Хатим түзгөн:",
   "myHatims": "Менин хатимдерим",
   "generalHatim": "Жалпы хатим",
-  "notifications": "Билдирүү"
+  "notifications": "Билдирүү",
+  "notificationEmptyTitle": "Азырынча эскертүүлөр жок",
+  "notificationEmptyBody": "Күтүп туруңуз! Жаңыртуулар болгондо сизге кабарлайбыз"
 }

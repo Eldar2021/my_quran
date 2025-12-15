@@ -34,12 +34,7 @@ class _NotificationViewState extends State<NotificationView> {
           } else if (fetchState is NotificationSuccess) {
             final notifications = fetchState.notifications;
             if (notifications == null || notifications.isEmpty) {
-              return Center(
-                child: Text(
-                  context.l10n.empty,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              );
+              return const NotificationEmptyState();
             }
             return ListView.separated(
               itemCount: notifications.length,
@@ -54,9 +49,7 @@ class _NotificationViewState extends State<NotificationView> {
               },
             );
           } else {
-            return Center(
-              child: Text(context.l10n.empty),
-            );
+            return const NotificationEmptyState();
           }
         },
       ),

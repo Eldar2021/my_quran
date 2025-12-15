@@ -139,5 +139,7 @@
   "hatimCreatedBy": "تم إنشاء الختم بواسطة:",
   "myHatims": "ختماتي",
   "generalHatim": "ختم عام",
-  "notifications": "إخطار"
+  "notifications": "إخطار",
+  "notificationEmptyTitle": "لا توجد إشعارات حتى الآن",
+  "notificationEmptyBody": "ترقبوا! سنقوم بإعلامكم عند وجود تحديثات"
 }

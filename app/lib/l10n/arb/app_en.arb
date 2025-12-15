@@ -139,5 +139,7 @@
   "hatimCreatedBy": "Hatim created by:",
   "myHatims": "My Hatims",
   "generalHatim": "General Hatim",
-  "notifications": "Notification"
+  "notifications": "Notifications",
+  "notificationEmptyTitle": "No notifications yet",
+  "notificationEmptyBody": "Stay tuned! We will notify you when we have updates."
 }

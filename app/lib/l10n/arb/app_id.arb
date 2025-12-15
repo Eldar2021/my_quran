@@ -139,5 +139,7 @@
   "hatimCreatedBy": "Hatim dibuat oleh:",
   "myHatims": "Hatim Saya",
   "generalHatim": "Hatim Umum",
-  "notifications": "Pemberitahuan"
+  "notifications": "Pemberitahuan",
+  "notificationEmptyTitle": "Belum ada pemberitahuan",
+  "notificationEmptyBody": "Tetap pantau! Kami akan memberitahu Anda saat ada pembaruan."
 }

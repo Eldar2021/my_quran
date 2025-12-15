@@ -139,5 +139,7 @@
   "hatimCreatedBy": "Hatim oluşturan:",
   "myHatims": "Hatimlerim",
   "generalHatim": "Genel Hatim",
-  "notifications": "Bildirim"
+  "notifications": "Bildirimler",
+  "notificationEmptyTitle": "Henüz bildirim yok",
+  "notificationEmptyBody": "Bizi izlemeye devam edin! Güncellemeler olduğunda sizi bilgilendireceğiz."
 }

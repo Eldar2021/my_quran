@@ -139,5 +139,7 @@
   "hatimCreatedBy": "Хатим создан:",
   "myHatims": "Мои Хатимы",
   "generalHatim": "Общий Хатим",
-  "notifications": "Уведомление"
+  "notifications": "Уведомление",
+  "notificationEmptyTitle": "Пока нет уведомлений",
+  "notificationEmptyBody": "Следите за обновлениями! Мы сообщим вам, когда появятся новости."
 }
