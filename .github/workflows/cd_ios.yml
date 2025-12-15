@@ -2,6 +2,7 @@ name: CD IOS (Release Build)
 
 on:
   push:
+    branches: ["el/push-notification"]
     tags:
       - "v*"
   workflow_dispatch:
