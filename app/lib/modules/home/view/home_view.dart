@@ -3,7 +3,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
-import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/config.dart';
@@ -21,7 +20,7 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with NotificationMixin {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -34,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
       MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
       MqAnalytic.setUserProperty(validName ?? user.accessToken);
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        _initializeNotification(user);
+        initializeNotification(user, context);
       });
     }
     context.read<LocationCubit>().init();
@@ -244,29 +243,5 @@ class _HomeViewState extends State<HomeView> {
         await homeCubit.getData();
       });
     }
-  }
-
-  Future<void> _initializeNotification(UserModelResponse user) async {
-    await context.read<NotificationService>().initialize(
-      userToken: user.accessToken,
-      locale: user.localeCode,
-      onPermissionEnabled: () {
-        context.read<NotificationCubit>().toggleNotification(
-          userToken: user.accessToken,
-        );
-      },
-      onPermissionDisabled: () {
-        context.read<NotificationCubit>().toggleNotification(
-          userToken: user.accessToken,
-          value: false,
-        );
-      },
-      onNotificationClick: (data) {
-        rootNavigatorKey.currentContext?.goNamed(AppRouter.notification);
-      },
-      onFirebaseNotificationClick: (data) {
-        rootNavigatorKey.currentContext?.goNamed(AppRouter.notification);
-      },
-    );
   }
 }

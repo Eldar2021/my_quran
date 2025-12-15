@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:my_quran/core/core.dart';
 
 class NotificationService {
-  const NotificationService({
+  NotificationService({
     required this.firebase,
     required this.local,
     required this.repository,
@@ -13,6 +13,8 @@ class NotificationService {
   final LocalNotificationService local;
   final NotificationRepository repository;
 
+  bool isInitialized = false;
+
   Future<void> initialize({
     required String userToken,
     required String locale,
@@ -21,9 +23,11 @@ class NotificationService {
     required FutureOr<void> Function() onPermissionEnabled,
     required FutureOr<void> Function() onPermissionDisabled,
   }) async {
-    await local.initialize(
-      onNotificationClick: onNotificationClick,
-    );
+    if (isInitialized) return;
+    isInitialized = true;
+
+    await local.initialize(onNotificationClick: onNotificationClick);
+
     await firebase.initialize(
       onNotificationClick: onFirebaseNotificationClick,
       onPermissionEnabled: onPermissionEnabled,

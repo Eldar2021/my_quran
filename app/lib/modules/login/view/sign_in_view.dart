@@ -8,12 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/api/api_const.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class SignInView extends StatefulWidget {
@@ -23,7 +25,7 @@ class SignInView extends StatefulWidget {
   State<SignInView> createState() => _SignInViewState();
 }
 
-class _SignInViewState extends State<SignInView> {
+class _SignInViewState extends State<SignInView> with NotificationMixin {
   final formKey = GlobalKey<FormState>();
   late TextEditingController emailController;
 
@@ -57,8 +59,7 @@ class _SignInViewState extends State<SignInView> {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
-            context.read<AuthCubit>().setUserData(state.user!);
-            context.goNamed(AppRouter.home);
+            _onLoginSuccess(state.user!);
           } else if (state.exception != null) {
             AppAlert.showErrorDialog(
               context,
@@ -189,5 +190,13 @@ class _SignInViewState extends State<SignInView> {
         ),
       ),
     );
+  }
+
+  Future<void> _onLoginSuccess(UserModelResponse user) async {
+    await Future.wait<void>([
+      context.read<AuthCubit>().setUserData(user),
+      initializeNotification(user, context),
+    ]);
+    if (mounted) context.goNamed(AppRouter.home);
   }
 }
