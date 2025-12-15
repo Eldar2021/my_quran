@@ -223,7 +223,7 @@ class SettingActionsWidget extends StatelessWidget {
                   Icons.notifications_none_outlined,
                   color: colorScheme.primary,
                 ),
-                title: 'Notification',
+                title: context.l10n.notifications,
                 trailing: switch (permissionState) {
                   NotificationPermissionInitial() => const CupertinoActivityIndicator(),
                   NotificationPermissionLoading() => const CupertinoActivityIndicator(),
