@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -23,7 +26,10 @@ class _NotificationViewState extends State<NotificationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.notifications),
+        title: InkWell(
+          onDoubleTap: _showDialog,
+          child: Text(context.l10n.notifications),
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<NotificationCubit, NotificationGlobalState>(
@@ -52,6 +58,29 @@ class _NotificationViewState extends State<NotificationView> {
             return const NotificationEmptyState();
           }
         },
+      ),
+    );
+  }
+
+  void _showDialog() {
+    final fcmToken = context.read<PreferencesStorage>().readString(
+      key: NotificationRepository.fcmTokenCacheKey,
+    );
+
+    showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('FCM Token'),
+        content: Text(fcmToken ?? 'Empty'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Clipboard.setData(ClipboardData(text: fcmToken ?? 'Empty'));
+              Navigator.pop(context);
+            },
+            child: const Text('Copy'),
+          ),
+        ],
       ),
     );
   }

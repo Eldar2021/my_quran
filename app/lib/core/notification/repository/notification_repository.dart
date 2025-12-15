@@ -11,6 +11,7 @@ class NotificationRepository {
   });
 
   static const _notificationEnabledKey = 'notification_enabled';
+  static const fcmTokenCacheKey = 'fcm_token_cache';
 
   final MqRemoteClient client;
   final PreferencesStorage storage;
@@ -30,10 +31,16 @@ class NotificationRepository {
       //     'locale': locale,
       //   },
       // );
-      await storage.writeString(
-        key: _notificationEnabledKey,
-        value: token,
-      );
+      await Future.wait([
+        storage.writeString(
+          key: _notificationEnabledKey,
+          value: token,
+        ),
+        storage.writeString(
+          key: fcmTokenCacheKey,
+          value: token,
+        ),
+      ]);
     } on Object catch (e) {
       log('setNotificationToken', error: e);
     }
