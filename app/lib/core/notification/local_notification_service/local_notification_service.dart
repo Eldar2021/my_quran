@@ -64,6 +64,7 @@ class LocalNotificationService {
         notification.hashCode,
         notification.title,
         notification.body,
+        payload: jsonEncode(message.data),
         NotificationDetails(
           android: AndroidNotificationDetails(
             _channel.id,
@@ -79,7 +80,6 @@ class LocalNotificationService {
             presentSound: true,
           ),
         ),
-        payload: jsonEncode(message.data),
       );
     }
   }

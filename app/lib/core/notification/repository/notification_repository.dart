@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_storage/mq_storage.dart';
@@ -21,16 +22,15 @@ class NotificationRepository {
     required String userToken,
     required String locale,
   }) async {
-    await Future<void>.delayed(const Duration(seconds: 1));
     try {
-      // await client.post<void>(
-      //   'api/send/notification/token',
-      //   body: {
-      //     'token': token,
-      //     'user_token': userToken,
-      //     'locale': locale,
-      //   },
-      // );
+      await client.postResponse<void>(
+        'api/v1/accounts/devices/',
+        body: {
+          'name': userToken,
+          'registration_id': token,
+          'type': Platform.isIOS ? 'ios' : 'android',
+        },
+      );
       await Future.wait([
         storage.writeString(
           key: _notificationEnabledKey,
@@ -51,14 +51,12 @@ class NotificationRepository {
     required String userToken,
   }) async {
     try {
-      await Future<void>.delayed(const Duration(seconds: 1));
-      // await client.put<void>(
-      //   'api/send/notification/token',
-      //   body: {
-      //     'value': value,
-      //     'user_token': userToken,
-      //   },
-      // );
+      await client.patchResponse<void>(
+        'api/v1/accounts/profile/$userToken/',
+        body: {
+          'allow_notifications': value,
+        },
+      );
       await storage.writeBool(
         key: _notificationEnabledKey,
         value: value,
@@ -69,7 +67,6 @@ class NotificationRepository {
   }
 
   Future<List<NotificationModel>?> getNotifications(String? locale) async {
-    await Future<void>.delayed(const Duration(seconds: 1));
     if (locale == null) return null;
     try {
       return const [
