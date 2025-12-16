@@ -18,7 +18,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final bool isIntegrationTest;
 
   @override
-  Future<LoginModel> verifyOtp({
+  Future<AuthModel> verifyOtp({
     required String otp,
     required String email,
     required String languageCode,
@@ -26,7 +26,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     final token = await client.postType(
       '/api/v1/accounts/otp/verify/',
-      fromJson: LoginModel.fromJson,
+      fromJson: AuthModel.fromJson,
       body: {'email': email, 'opt': otp},
     );
 
@@ -52,7 +52,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LoginModel> signInWithGoogle(
+  Future<AuthModel> signInWithGoogle(
     String languageCode,
     Gender gender,
   ) async {
@@ -60,7 +60,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final token = await client.postType(
       '/api/v1/accounts/google/',
-      fromJson: LoginModel.fromJson,
+      fromJson: AuthModel.fromJson,
       body: {
         'access_token': googleAuth.accessToken,
         'gender': gender.name,
@@ -95,7 +95,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LoginModel> signInWithApple(
+  Future<AuthModel> signInWithApple(
     String languageCode,
     Gender gender,
   ) async {
@@ -103,7 +103,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final token = await client.postType(
       '/api/v1/accounts/apple/',
-      fromJson: LoginModel.fromJson,
+      fromJson: AuthModel.fromJson,
       body: {
         'access_token': appleAuth.accessToken,
         'id_token': appleAuth.identityToken,

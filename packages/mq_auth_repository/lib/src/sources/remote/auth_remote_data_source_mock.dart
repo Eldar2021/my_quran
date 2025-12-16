@@ -38,29 +38,29 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   };
 
   @override
-  Future<LoginModel> verifyOtp({
+  Future<AuthModel> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
     required Gender gender,
   }) async {
-    return LoginModel.fromJson(loginModel);
+    return AuthModel.fromJson(loginModel);
   }
 
   @override
-  Future<LoginModel> signInWithGoogle(
+  Future<AuthModel> signInWithGoogle(
     String languageCode,
     Gender gender,
   ) async {
-    return LoginModel.fromJson(loginModel);
+    return AuthModel.fromJson(loginModel);
   }
 
   @override
-  Future<LoginModel> signInWithApple(
+  Future<AuthModel> signInWithApple(
     String languageCode,
     Gender gender,
   ) async {
-    return LoginModel.fromJson(loginModel);
+    return AuthModel.fromJson(loginModel);
   }
 
   @override

@@ -20,8 +20,8 @@ final class UserModel {
     required this.canCreateHatim,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserTokenModelFromJson(json);
-  Map<String, dynamic> toJson() => _$UserTokenModelToJson(this);
+  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
   @JsonKey(name: 'first_name')
   final String? firstName;

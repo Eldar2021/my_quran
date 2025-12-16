@@ -5,19 +5,19 @@ abstract class AuthRepository {
 
   Future<void> loginWithEmail(String email);
 
-  Future<LoginModel> verifyOtp({
+  Future<AuthModel> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
     required Gender gender,
   });
 
-  Future<LoginModel> signWithGoogle(
+  Future<AuthModel> signWithGoogle(
     String languageCode,
     Gender gender,
   );
 
-  Future<LoginModel> signWithApple(
+  Future<AuthModel> signWithApple(
     String languageCode,
     Gender gender,
   );

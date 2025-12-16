@@ -26,7 +26,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<LoginModel> verifyOtp({
+  Future<AuthModel> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
@@ -43,7 +43,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<LoginModel> signWithGoogle(
+  Future<AuthModel> signWithGoogle(
     String languageCode,
     Gender gender,
   ) async {
@@ -56,7 +56,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<LoginModel> signWithApple(
+  Future<AuthModel> signWithApple(
     String languageCode,
     Gender gender,
   ) async {
