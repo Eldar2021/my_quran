@@ -1,37 +1,37 @@
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 
 abstract class AuthRepository {
-  UserModelResponse? get init;
+  UserTokenModel? get init;
 
   Future<void> loginWithEmail(String email);
 
-  Future<UserModelResponse> verifyOtp({
+  Future<LoginModel> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
     required Gender gender,
   });
 
-  Future<UserModelResponse> signWithGoogle(
+  Future<LoginModel> signWithGoogle(
     String languageCode,
     Gender gender,
   );
 
-  Future<UserModelResponse> signWithApple(
+  Future<LoginModel> signWithApple(
     String languageCode,
     Gender gender,
   );
 
   Future<void> setUserData(
-    UserModelResponse userEntity,
+    UserTokenModel userEntity,
   );
 
-  Future<UserModelResponse> patchGender({
+  Future<UserTokenModel> patchGender({
     required String userId,
     required Gender gender,
   });
 
-  Future<UserModelResponse> patchLocaleCode({
+  Future<UserTokenModel> patchLocaleCode({
     required String userId,
     required String localeCode,
   });

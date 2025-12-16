@@ -10,21 +10,22 @@ import 'package:my_quran/modules/modules.dart';
 
 mixin NotificationMixin {
   Future<void> initializeNotification(
-    UserModelResponse user,
+    String userKey,
+    UserTokenModel user,
     BuildContext context,
   ) async {
     try {
       await context.read<NotificationService>().initialize(
-        userToken: user.accessToken,
-        locale: user.localeCode,
+        userToken: userKey,
+        locale: user.language ?? 'en',
         onPermissionEnabled: () {
           context.read<NotificationCubit>().toggleNotification(
-            userToken: user.accessToken,
+            userToken: userKey,
           );
         },
         onPermissionDisabled: () {
           context.read<NotificationCubit>().toggleNotification(
-            userToken: user.accessToken,
+            userToken: userKey,
             value: false,
           );
         },

@@ -53,7 +53,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
-            _onLoginSuccess(state.user!);
+            _onLoginSuccess(state.user!, state.userKey!);
           } else if (state.exception != null) {
             AppAlert.showErrorDialog(
               context,
@@ -125,10 +125,10 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
     );
   }
 
-  Future<void> _onLoginSuccess(UserModelResponse user) async {
+  Future<void> _onLoginSuccess(UserTokenModel user, String userKey) async {
     await Future.wait<void>([
       context.read<AuthCubit>().setUserData(user),
-      initializeNotification(user, context),
+      initializeNotification(userKey, user, context),
     ]);
     if (mounted) context.goNamed(AppRouter.home);
   }

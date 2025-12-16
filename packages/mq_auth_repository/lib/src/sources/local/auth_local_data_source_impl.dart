@@ -9,38 +9,38 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   final PreferencesStorage storage;
 
   @override
-  UserModelResponse? get init {
+  UserTokenModel? get init {
     final userToken = storage.readString(key: MqAuthStatics.tokenKey);
     final userGender = storage.readString(key: MqAuthStatics.genderKey);
     final username = storage.readString(key: MqAuthStatics.usernameKey);
     final localeCode = storage.readString(key: MqAuthStatics.localeKey);
     if (userToken == null && userGender == null && username == null) return null;
 
-    return UserModelResponse(
-      accessToken: userToken!,
-      username: username!,
-      gender: userGender == Gender.male.name ? Gender.male : Gender.female,
-      localeCode: localeCode ?? 'en',
-    );
+    // return UserTokenModel(
+    //   accessToken: userToken!,
+    //   username: username!,
+    //   gender: userGender == Gender.male.name ? Gender.male : Gender.female,
+    //   localeCode: localeCode ?? 'en',
+    // );
   }
 
   @override
   String? getToken() => storage.readString(key: MqAuthStatics.tokenKey);
 
   @override
-  Future<void> saveUserData(UserModelResponse userModel) async {
+  Future<void> saveUserData(UserTokenModel userModel) async {
     await Future.wait([
       storage.writeString(
         key: MqAuthStatics.localeKey,
-        value: userModel.localeCode,
+        value: userModel.language ?? 'en',
       ),
       storage.writeString(
         key: MqAuthStatics.genderKey,
-        value: userModel.gender.name,
+        value: userModel.gender?.name ?? 'male',
       ),
       storage.writeString(
         key: MqAuthStatics.usernameKey,
-        value: userModel.username,
+        value: userModel.username ?? '',
       ),
     ]);
   }

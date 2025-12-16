@@ -8,81 +8,80 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   @override
   Future<void> loginWithEmail(String email) => Future.value();
 
+  static const Map<String, Object?> mockData = {
+    'first_name': 'Eldiiar',
+    'last_name': 'Almazbek',
+    'username': 'eldiiar',
+    'avatar': 'https://lh3.googleusercontent.com/a/ACg8ocLxYr0F89L5FzZv9o_VyCYm3rkX4gtZAxBzyJkpC6yQE7uKuTY2=s96-c',
+    'email': 'eldiiaralmazbekov@gmail.com',
+    'country': null,
+    'phone_number': null,
+    'gender': 'FEMALE',
+    'language': 'KY',
+    'can_create_hatim': true,
+  };
+
+  static const Map<String, Object> loginModel = {
+    'key': '3d2cda9094f4753c375c49aa5e8e2fbedede2bbe',
+    'user': {
+      'first_name': 'Eldiiar',
+      'last_name': 'Almazbek',
+      'username': 'eldiiar',
+      'avatar': 'https://lh3.googleusercontent.com/a/ACg8ocLxYr0F89L5FzZv9o_VyCYm3rkX4gtZAxBzyJkpC6yQE7uKuTY2=s96-c',
+      'email': 'eldiiaralmazbekov@gmail.com',
+      'country': null,
+      'phone_number': null,
+      'gender': 'male',
+      'language': 'en',
+      'can_create_hatim': true,
+    },
+  };
+
   @override
-  Future<UserModelResponse> verifyOtp({
+  Future<LoginModel> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
     required Gender gender,
   }) async {
-    return UserModelResponse(
-      accessToken: r'myquran_te$t_t0ken',
-      username: 'Test User',
-      gender: gender,
-      localeCode: languageCode,
-    );
+    return LoginModel.fromJson(loginModel);
   }
 
   @override
-  Future<UserModelResponse> signInWithGoogle(
+  Future<LoginModel> signInWithGoogle(
     String languageCode,
     Gender gender,
   ) async {
-    return UserModelResponse(
-      accessToken: 'mock_token_google',
-      username: 'Mock Google User',
-      gender: gender,
-      localeCode: languageCode,
-    );
+    return LoginModel.fromJson(loginModel);
   }
 
   @override
-  Future<UserModelResponse> signInWithApple(
+  Future<LoginModel> signInWithApple(
     String languageCode,
     Gender gender,
   ) async {
-    return UserModelResponse(
-      accessToken: 'mock_token_apple',
-      username: 'Mock Apple User',
-      gender: gender,
-      localeCode: languageCode,
-    );
+    return LoginModel.fromJson(loginModel);
   }
 
   @override
-  Future<UserModelResponse> saveUserData(UserModelResponse userEntity) async {
-    return UserModelResponse(
-      accessToken: 'mock_token_apple',
-      username: 'Mock Apple User',
-      gender: userEntity.gender,
-      localeCode: userEntity.localeCode,
-    );
+  Future<UserTokenModel> saveUserData(UserTokenModel userEntity) async {
+    return UserTokenModel.fromJson(mockData);
   }
 
   @override
-  Future<UserModelResponse> pathGender({
+  Future<UserTokenModel> pathGender({
     required String userId,
     required Gender gender,
   }) async {
-    return UserModelResponse(
-      accessToken: 'mock_token_apple',
-      username: 'Mock Apple User',
-      gender: gender,
-      localeCode: 'en',
-    );
+    return UserTokenModel.fromJson(mockData);
   }
 
   @override
-  Future<UserModelResponse> pathLocaleCode({
+  Future<UserTokenModel> pathLocaleCode({
     required String userId,
     required String localeCode,
   }) async {
-    return UserModelResponse(
-      accessToken: 'mock_token_apple',
-      username: 'Mock Apple User',
-      gender: Gender.male,
-      localeCode: localeCode,
-    );
+    return UserTokenModel.fromJson(mockData);
   }
 
   @override

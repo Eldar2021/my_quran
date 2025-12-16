@@ -3,33 +3,33 @@ import 'package:mq_auth_repository/mq_auth_repository.dart';
 abstract class AuthRemoteDataSource {
   Future<void> loginWithEmail(String email);
 
-  Future<UserModelResponse> verifyOtp({
+  Future<LoginModel> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
     required Gender gender,
   });
 
-  Future<UserModelResponse> signInWithGoogle(
+  Future<LoginModel> signInWithGoogle(
     String languageCode,
     Gender gender,
   );
 
-  Future<UserModelResponse> signInWithApple(
+  Future<LoginModel> signInWithApple(
     String languageCode,
     Gender gender,
   );
 
-  Future<UserModelResponse> saveUserData(
-    UserModelResponse userModel,
+  Future<UserTokenModel> saveUserData(
+    UserTokenModel userModel,
   );
 
-  Future<UserModelResponse> pathGender({
+  Future<UserTokenModel> pathGender({
     required String userId,
     required Gender gender,
   });
 
-  Future<UserModelResponse> pathLocaleCode({
+  Future<UserTokenModel> pathLocaleCode({
     required String userId,
     required String localeCode,
   });

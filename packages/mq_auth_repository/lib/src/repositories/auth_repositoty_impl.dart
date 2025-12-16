@@ -12,10 +12,10 @@ final class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   @override
-  UserModelResponse? get init => localDataSource.init;
+  UserTokenModel? get init => localDataSource.init;
 
   @override
-  Future<void> setUserData(UserModelResponse userEntity) async {
+  Future<void> setUserData(UserTokenModel userEntity) async {
     await remoteDataSource.saveUserData(userEntity);
     await localDataSource.saveUserData(userEntity);
   }
@@ -26,7 +26,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserModelResponse> verifyOtp({
+  Future<LoginModel> verifyOtp({
     required String email,
     required String otp,
     required String languageCode,
@@ -39,16 +39,11 @@ final class AuthRepositoryImpl implements AuthRepository {
       gender: gender,
     );
 
-    return UserModelResponse(
-      accessToken: res.accessToken,
-      username: res.username,
-      gender: res.gender,
-      localeCode: res.localeCode,
-    );
+    return res;
   }
 
   @override
-  Future<UserModelResponse> signWithGoogle(
+  Future<LoginModel> signWithGoogle(
     String languageCode,
     Gender gender,
   ) async {
@@ -57,16 +52,11 @@ final class AuthRepositoryImpl implements AuthRepository {
       gender,
     );
 
-    return UserModelResponse(
-      accessToken: res.accessToken,
-      username: res.username,
-      gender: res.gender,
-      localeCode: res.localeCode,
-    );
+    return res;
   }
 
   @override
-  Future<UserModelResponse> signWithApple(
+  Future<LoginModel> signWithApple(
     String languageCode,
     Gender gender,
   ) async {
@@ -75,16 +65,11 @@ final class AuthRepositoryImpl implements AuthRepository {
       gender,
     );
 
-    return UserModelResponse(
-      accessToken: res.accessToken,
-      username: res.username,
-      gender: res.gender,
-      localeCode: res.localeCode,
-    );
+    return res;
   }
 
   @override
-  Future<UserModelResponse> patchGender({
+  Future<UserTokenModel> patchGender({
     required String userId,
     required Gender gender,
   }) async {
@@ -99,7 +84,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserModelResponse> patchLocaleCode({
+  Future<UserTokenModel> patchLocaleCode({
     required String userId,
     required String localeCode,
   }) async {

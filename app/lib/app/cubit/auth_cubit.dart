@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
         languageCode: state.currentLocale.languageCode,
         gender: state.gender,
       );
-      emit(state.copyWith(user: user));
+      emit(state.copyWith(user: user.user));
       return state;
     } on Exception catch (e) {
       emit(state.copyWith(exception: e));
@@ -42,7 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
         state.currentLocale.languageCode,
         state.gender,
       );
-      emit(state.copyWith(user: user));
+      emit(state.copyWith(user: user.user));
       return state;
     } on Exception catch (e) {
       emit(state.copyWith(exception: e));
@@ -56,7 +56,7 @@ class AuthCubit extends Cubit<AuthState> {
         state.currentLocale.languageCode,
         state.gender,
       );
-      emit(state.copyWith(user: user));
+      emit(state.copyWith(user: user.user));
     } on Exception catch (e) {
       emit(state.copyWith(exception: e));
     }
@@ -64,7 +64,7 @@ class AuthCubit extends Cubit<AuthState> {
     return state;
   }
 
-  Future<void> setUserData(UserModelResponse userModel) {
+  Future<void> setUserData(UserTokenModel userModel) {
     return authRepository.setUserData(userModel);
   }
 
@@ -72,10 +72,10 @@ class AuthCubit extends Cubit<AuthState> {
     if (state.isAuthedticated) {
       try {
         final res = await authRepository.patchLocaleCode(
-          userId: state.user!.accessToken,
+          userId: state.userKey ?? '',
           localeCode: localeCode,
         );
-        final newUser = state.user!.copyWith(localeCode: res.localeCode);
+        final newUser = state.user!.copyWith(language: res.language);
         emit(state.copyWith(user: newUser));
       } on Exception catch (e) {
         emit(state.copyWith(exception: e));
@@ -90,7 +90,7 @@ class AuthCubit extends Cubit<AuthState> {
     if (state.isAuthedticated) {
       try {
         final res = await authRepository.patchGender(
-          userId: state.user!.accessToken,
+          userId: state.userKey ?? '',
           gender: gender,
         );
         final newUser = state.user!.copyWith(gender: res.gender);

@@ -6,13 +6,13 @@ final class AuthLocalDataSourceMock implements AuthLocalDataSource {
   const AuthLocalDataSourceMock();
 
   @override
-  UserModelResponse? get init => null;
+  UserTokenModel? get init => null;
 
   @override
   String? getToken() => '';
 
   @override
-  Future<void> saveUserData(UserModelResponse userModel) => Future.value();
+  Future<void> saveUserData(UserTokenModel userModel) => Future.value();
 
   @override
   Future<void> saveGender(Gender gender) => Future.value();

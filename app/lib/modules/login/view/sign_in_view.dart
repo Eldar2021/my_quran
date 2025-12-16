@@ -59,7 +59,7 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
-            _onLoginSuccess(state.user!);
+            _onLoginSuccess(state.user!, state.userKey!);
           } else if (state.exception != null) {
             AppAlert.showErrorDialog(
               context,
@@ -192,10 +192,10 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
     );
   }
 
-  Future<void> _onLoginSuccess(UserModelResponse user) async {
+  Future<void> _onLoginSuccess(UserTokenModel user, String userKey) async {
     await Future.wait<void>([
       context.read<AuthCubit>().setUserData(user),
-      initializeNotification(user, context),
+      initializeNotification(userKey, user, context),
     ]);
     if (mounted) context.goNamed(AppRouter.home);
   }

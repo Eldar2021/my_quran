@@ -19,7 +19,7 @@ class _NotificationViewState extends State<NotificationView> {
   void initState() {
     super.initState();
     final user = context.read<AuthCubit>().state.user;
-    context.read<NotificationCubit>().getNotification(user?.localeCode);
+    context.read<NotificationCubit>().getNotification(user?.language ?? 'en');
   }
 
   @override

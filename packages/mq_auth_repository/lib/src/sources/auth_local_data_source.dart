@@ -1,11 +1,11 @@
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 
 abstract class AuthLocalDataSource {
-  UserModelResponse? get init;
+  UserTokenModel? get init;
 
   String? getToken();
 
-  Future<void> saveUserData(UserModelResponse userModel);
+  Future<void> saveUserData(UserTokenModel userModel);
 
   Future<void> saveGender(Gender gender);
 
