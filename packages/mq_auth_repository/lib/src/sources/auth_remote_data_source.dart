@@ -20,16 +20,16 @@ abstract class AuthRemoteDataSource {
     Gender gender,
   );
 
-  Future<UserDataResponse> saveUserData(
+  Future<UserModelResponse> saveUserData(
     UserModelResponse userModel,
   );
 
-  Future<UserDataResponse> pathGender({
+  Future<UserModelResponse> pathGender({
     required String userId,
     required Gender gender,
   });
 
-  Future<UserDataResponse> pathLocaleCode({
+  Future<UserModelResponse> pathLocaleCode({
     required String userId,
     required String localeCode,
   });

@@ -84,7 +84,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserDataResponse> patchGender({
+  Future<UserModelResponse> patchGender({
     required String userId,
     required Gender gender,
   }) async {
@@ -95,14 +95,11 @@ final class AuthRepositoryImpl implements AuthRepository {
 
     await localDataSource.saveGender(gender);
 
-    return UserDataResponse(
-      gender: res.gender,
-      language: res.language,
-    );
+    return res;
   }
 
   @override
-  Future<UserDataResponse> patchLocaleCode({
+  Future<UserModelResponse> patchLocaleCode({
     required String userId,
     required String localeCode,
   }) async {
@@ -113,10 +110,7 @@ final class AuthRepositoryImpl implements AuthRepository {
 
     await localDataSource.saveLocaleCode(localeCode);
 
-    return UserDataResponse(
-      gender: res.gender,
-      language: res.language,
-    );
+    return res;
   }
 
   @override

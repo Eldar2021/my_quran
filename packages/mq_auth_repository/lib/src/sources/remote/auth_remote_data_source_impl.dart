@@ -162,10 +162,10 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserDataResponse> saveUserData(UserModelResponse userModel) {
+  Future<UserModelResponse> saveUserData(UserModelResponse userModel) {
     return client.putType(
       '/api/v1/accounts/profile/${userModel.accessToken}/',
-      fromJson: UserDataResponse.fromJson,
+      fromJson: UserModelResponse.fromJson,
       body: {
         'gender': userModel.gender.name.toUpperCase(),
         'language': userModel.localeCode.toUpperCase(),
@@ -174,25 +174,25 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserDataResponse> pathGender({
+  Future<UserModelResponse> pathGender({
     required String userId,
     required Gender gender,
   }) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
-      fromJson: UserDataResponse.fromJson,
+      fromJson: UserModelResponse.fromJson,
       body: {'gender': gender.name.toUpperCase()},
     );
   }
 
   @override
-  Future<UserDataResponse> pathLocaleCode({
+  Future<UserModelResponse> pathLocaleCode({
     required String userId,
     required String localeCode,
   }) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
-      fromJson: UserDataResponse.fromJson,
+      fromJson: UserModelResponse.fromJson,
       body: {'language': localeCode.toUpperCase()},
     );
   }

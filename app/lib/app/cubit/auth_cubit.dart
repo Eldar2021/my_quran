@@ -75,7 +75,7 @@ class AuthCubit extends Cubit<AuthState> {
           userId: state.user!.accessToken,
           localeCode: localeCode,
         );
-        final newUser = state.user!.copyWith(localeCode: res.localeValue);
+        final newUser = state.user!.copyWith(localeCode: res.localeCode);
         emit(state.copyWith(user: newUser));
       } on Exception catch (e) {
         emit(state.copyWith(exception: e));
@@ -93,7 +93,7 @@ class AuthCubit extends Cubit<AuthState> {
           userId: state.user!.accessToken,
           gender: gender,
         );
-        final newUser = state.user!.copyWith(gender: res.genderValue);
+        final newUser = state.user!.copyWith(gender: res.gender);
         emit(state.copyWith(user: newUser));
       } on Exception catch (e) {
         emit(state.copyWith(exception: e));

@@ -50,32 +50,38 @@ final class AuthRemoteDataSourceMock implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserDataResponse> saveUserData(UserModelResponse userEntity) async {
-    return UserDataResponse(
-      gender: userEntity.gender.toString(),
-      language: userEntity.localeCode,
+  Future<UserModelResponse> saveUserData(UserModelResponse userEntity) async {
+    return UserModelResponse(
+      accessToken: 'mock_token_apple',
+      username: 'Mock Apple User',
+      gender: userEntity.gender,
+      localeCode: userEntity.localeCode,
     );
   }
 
   @override
-  Future<UserDataResponse> pathGender({
+  Future<UserModelResponse> pathGender({
     required String userId,
     required Gender gender,
   }) async {
-    return UserDataResponse(
-      gender: Gender.male.toString(),
-      language: 'en',
+    return UserModelResponse(
+      accessToken: 'mock_token_apple',
+      username: 'Mock Apple User',
+      gender: gender,
+      localeCode: 'en',
     );
   }
 
   @override
-  Future<UserDataResponse> pathLocaleCode({
+  Future<UserModelResponse> pathLocaleCode({
     required String userId,
     required String localeCode,
   }) async {
-    return UserDataResponse(
-      gender: Gender.male.toString(),
-      language: 'en',
+    return UserModelResponse(
+      accessToken: 'mock_token_apple',
+      username: 'Mock Apple User',
+      gender: Gender.male,
+      localeCode: localeCode,
     );
   }
 

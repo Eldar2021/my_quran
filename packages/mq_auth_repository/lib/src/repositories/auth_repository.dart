@@ -26,12 +26,12 @@ abstract class AuthRepository {
     UserModelResponse userEntity,
   );
 
-  Future<UserDataResponse> patchGender({
+  Future<UserModelResponse> patchGender({
     required String userId,
     required Gender gender,
   });
 
-  Future<UserDataResponse> patchLocaleCode({
+  Future<UserModelResponse> patchLocaleCode({
     required String userId,
     required String localeCode,
   });
