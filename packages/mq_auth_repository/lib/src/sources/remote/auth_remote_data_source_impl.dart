@@ -26,7 +26,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     final token = await client.postType(
       '/api/v1/accounts/otp/verify/',
-      fromJson: TokenModel.fromJson,
+      fromJson: LoginModel.fromJson,
       body: {'email': email, 'opt': otp},
     );
 
@@ -67,7 +67,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final token = await client.postType(
       '/api/v1/accounts/google/',
-      fromJson: TokenModel.fromJson,
+      fromJson: LoginModel.fromJson,
       body: {
         'access_token': googleAuth.accessToken,
         'gender': gender.name,
@@ -117,7 +117,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final token = await client.postType(
       '/api/v1/accounts/apple/',
-      fromJson: TokenModel.fromJson,
+      fromJson: LoginModel.fromJson,
       body: {
         'access_token': appleAuth.accessToken,
         'id_token': appleAuth.identityToken,

@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'token_model.dart';
+part of 'login_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TokenModel _$TokenModelFromJson(Map<String, dynamic> json) => TokenModel(
+LoginModel _$TokenModelFromJson(Map<String, dynamic> json) => LoginModel(
   json['key'] as String,
   UserTokenModel.fromJson(json['user'] as Map<String, dynamic>),
 );

@@ -1,6 +1,6 @@
 export '../enums/gender_enum.dart';
 export '../exceptions/auth_exception.dart';
-export 'models/token_model.dart';
+export 'models/login_model.dart';
 export 'models/user_model.dart';
 export 'models/user_token_model.dart';
 export 'repositories/auth_repository.dart';
