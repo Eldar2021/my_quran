@@ -218,6 +218,9 @@ class SettingActionsWidget extends StatelessWidget {
           BlocBuilder<NotificationCubit, NotificationGlobalState>(
             builder: (context, state) {
               final permissionState = state.permissionState;
+              if (permissionState is NotificationPermissionInitial) {
+                return const SizedBox.shrink();
+              }
               return DrawerTile(
                 icon: Icon(
                   Icons.notifications_none_outlined,

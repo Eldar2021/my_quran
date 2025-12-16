@@ -7,11 +7,13 @@ class NotificationService {
     required this.firebase,
     required this.local,
     required this.repository,
+    required this.isIntegrationTesting,
   });
 
   final FirebaseNotificationService firebase;
   final LocalNotificationService local;
   final NotificationRepository repository;
+  final bool isIntegrationTesting;
 
   bool isInitialized = false;
 
@@ -23,6 +25,7 @@ class NotificationService {
     required FutureOr<void> Function() onPermissionEnabled,
     required FutureOr<void> Function() onPermissionDisabled,
   }) async {
+    if (isIntegrationTesting) return;
     if (isInitialized) return;
     isInitialized = true;
 

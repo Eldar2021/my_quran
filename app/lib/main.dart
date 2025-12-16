@@ -110,6 +110,7 @@ Future<void> main({bool isIntegrationTest = false}) async {
     firebase: firebaseNotificationService,
     local: localNotificationService,
     repository: notificationRepository,
+    isIntegrationTesting: isIntegrationTest,
   );
 
   runApp(
