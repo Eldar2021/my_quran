@@ -76,9 +76,9 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return token;
   }
 
-  Future<_UserReqParam> _getGoogleAuth() async {
+  Future<LoginParam> _getGoogleAuth() async {
     if (isIntegrationTest) {
-      return const _UserReqParam(
+      return const LoginParam(
         name: 'Test User',
         accessToken: r'myquran_te$t_t0ken',
       );
@@ -87,7 +87,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final accessToken = googleAuth?['accessToken'] ?? '';
       final username = googleAuth?['name'] ?? '';
 
-      return _UserReqParam(
+      return LoginParam(
         name: username.toString(),
         accessToken: accessToken.toString(),
       );
@@ -120,9 +120,9 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return token;
   }
 
-  Future<_UserReqParam> _getAppleAuth() async {
+  Future<LoginParam> _getAppleAuth() async {
     if (isIntegrationTest) {
-      return const _UserReqParam(
+      return const LoginParam(
         name: 'Test User',
         accessToken: r'myquran_te$t_t0ken',
       );
@@ -132,7 +132,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final accessToken = appleAuth.$1.credential!.accessToken ?? '';
       final username = appleAuth.$1.user?.displayName ?? '';
 
-      return _UserReqParam(
+      return LoginParam(
         name: username,
         accessToken: accessToken,
         identityToken: identityToken,
@@ -141,10 +141,10 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserTokenModel> saveUserData(UserTokenModel userModel) {
+  Future<UserModel> saveUserData(UserModel userModel) {
     return client.putType(
       '/api/v1/accounts/profile/${userModel.firstName}/',
-      fromJson: UserTokenModel.fromJson,
+      fromJson: UserModel.fromJson,
       body: {
         'gender': userModel.gender?.name.toUpperCase() ?? 'MALE',
         'language': userModel.language?.toUpperCase() ?? 'EN',
@@ -153,25 +153,25 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserTokenModel> pathGender({
+  Future<UserModel> pathGender({
     required String userId,
     required Gender gender,
   }) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
-      fromJson: UserTokenModel.fromJson,
+      fromJson: UserModel.fromJson,
       body: {'gender': gender.name.toUpperCase()},
     );
   }
 
   @override
-  Future<UserTokenModel> pathLocaleCode({
+  Future<UserModel> pathLocaleCode({
     required String userId,
     required String localeCode,
   }) {
     return client.patchType(
       '/api/v1/accounts/profile/$userId/',
-      fromJson: UserTokenModel.fromJson,
+      fromJson: UserModel.fromJson,
       body: {'language': localeCode.toUpperCase()},
     );
   }
@@ -189,17 +189,4 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> logoutRemote() async {
     await soccialAuth.logOut();
   }
-}
-
-@immutable
-final class _UserReqParam {
-  const _UserReqParam({
-    required this.name,
-    required this.accessToken,
-    this.identityToken,
-  });
-
-  final String name;
-  final String accessToken;
-  final String? identityToken;
 }

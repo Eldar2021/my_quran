@@ -192,7 +192,7 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
     );
   }
 
-  Future<void> _onLoginSuccess(UserTokenModel user, String userKey) async {
+  Future<void> _onLoginSuccess(UserModel user, String userKey) async {
     await Future.wait<void>([
       context.read<AuthCubit>().setUserData(user),
       initializeNotification(userKey, user, context),

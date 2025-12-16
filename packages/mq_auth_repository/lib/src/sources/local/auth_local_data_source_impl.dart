@@ -9,7 +9,7 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   final PreferencesStorage storage;
 
   @override
-  UserTokenModel? get init {
+  UserModel? get init {
     final userToken = storage.readString(key: MqAuthStatics.tokenKey);
     final userGender = storage.readString(key: MqAuthStatics.genderKey);
     final username = storage.readString(key: MqAuthStatics.usernameKey);
@@ -28,7 +28,7 @@ final class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   String? getToken() => storage.readString(key: MqAuthStatics.tokenKey);
 
   @override
-  Future<void> saveUserData(UserTokenModel userModel) async {
+  Future<void> saveUserData(UserModel userModel) async {
     await Future.wait([
       storage.writeString(
         key: MqAuthStatics.localeKey,

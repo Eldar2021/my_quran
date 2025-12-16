@@ -11,7 +11,7 @@ import 'package:my_quran/modules/modules.dart';
 mixin NotificationMixin {
   Future<void> initializeNotification(
     String userKey,
-    UserTokenModel user,
+    UserModel user,
     BuildContext context,
   ) async {
     try {

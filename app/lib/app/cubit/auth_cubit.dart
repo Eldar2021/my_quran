@@ -64,7 +64,7 @@ class AuthCubit extends Cubit<AuthState> {
     return state;
   }
 
-  Future<void> setUserData(UserTokenModel userModel) {
+  Future<void> setUserData(UserModel userModel) {
     return authRepository.setUserData(userModel);
   }
 

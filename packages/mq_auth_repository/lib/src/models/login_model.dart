@@ -16,5 +16,5 @@ final class LoginModel {
   Map<String, dynamic> toJson() => _$TokenModelToJson(this);
 
   final String key;
-  final UserTokenModel user;
+  final UserModel user;
 }

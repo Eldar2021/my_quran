@@ -9,7 +9,7 @@ class AuthState extends Equatable {
     this.genderForNow,
   });
 
-  final UserTokenModel? user;
+  final UserModel? user;
   final String? userKey;
   final Object? exception;
   final String? localeForNow;
@@ -25,7 +25,7 @@ class AuthState extends Equatable {
   ];
 
   AuthState copyWith({
-    UserTokenModel? user,
+    UserModel? user,
     String? userKey,
     Object? exception,
     String? localeForNow,

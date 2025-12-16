@@ -12,10 +12,10 @@ final class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   @override
-  UserTokenModel? get init => localDataSource.init;
+  UserModel? get init => localDataSource.init;
 
   @override
-  Future<void> setUserData(UserTokenModel userEntity) async {
+  Future<void> setUserData(UserModel userEntity) async {
     await remoteDataSource.saveUserData(userEntity);
     await localDataSource.saveUserData(userEntity);
   }
@@ -69,7 +69,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserTokenModel> patchGender({
+  Future<UserModel> patchGender({
     required String userId,
     required Gender gender,
   }) async {
@@ -84,7 +84,7 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserTokenModel> patchLocaleCode({
+  Future<UserModel> patchLocaleCode({
     required String userId,
     required String localeCode,
   }) async {
