@@ -138,5 +138,8 @@
   "accept": "Accept",
   "hatimCreatedBy": "Hatim created by:",
   "myHatims": "My Hatims",
-  "generalHatim": "General Hatim"
+  "generalHatim": "General Hatim",
+  "notifications": "Notifications",
+  "notificationEmptyTitle": "No notifications yet",
+  "notificationEmptyBody": "Stay tuned! We will notify you when we have updates."
 }

@@ -24,6 +24,16 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
     }
   }
 
+  /// Performs an HTTP POST request to the specified [url] with an optional [body].
+  Future<Response<T>> postResponse<T>(String url, {Map<String, dynamic>? body}) async {
+    try {
+      return dio.post<T>(url, data: body);
+    } catch (e, s) {
+      log('MqRemoteClientBaseMehtods._post', error: e, stackTrace: s);
+      rethrow;
+    }
+  }
+
   /// Performs an HTTP PUT request to the specified [url] with an optional [body].
   Future<T> _put<T>(String url, {Map<String, dynamic>? body}) async {
     try {
@@ -40,6 +50,19 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
     try {
       final response = await dio.patch<T>(url, data: body);
       return response.data as T;
+    } catch (e, s) {
+      log('MqRemoteClientBaseMehtods._patch', error: e, stackTrace: s);
+      rethrow;
+    }
+  }
+
+  /// Performs an HTTP PATCH request to the specified [url] with an optional [body].
+  Future<Response<T>> patchResponse<T>(
+    String url, {
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      return dio.patch<T>(url, data: body);
     } catch (e, s) {
       log('MqRemoteClientBaseMehtods._patch', error: e, stackTrace: s);
       rethrow;

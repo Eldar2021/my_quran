@@ -138,5 +138,8 @@
   "accept": "Kabul et",
   "hatimCreatedBy": "Hatim oluşturan:",
   "myHatims": "Hatimlerim",
-  "generalHatim": "Genel Hatim"
+  "generalHatim": "Genel Hatim",
+  "notifications": "Bildirimler",
+  "notificationEmptyTitle": "Henüz bildirim yok",
+  "notificationEmptyBody": "Bizi izlemeye devam edin! Güncellemeler olduğunda sizi bilgilendireceğiz."
 }

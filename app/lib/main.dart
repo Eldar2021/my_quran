@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
@@ -15,14 +17,23 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/app_observer.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/firebase_options.dart';
 
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  try {
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    } else {
+      log('Firebase already initialized');
+    }
+  } on Object catch (e) {
+    log('Firebase Init Error (Ignoring): $e');
+  }
 
   await MqAnalytic.setAnalyticsCollectionEnabled(
     enabled: kReleaseMode,
@@ -71,6 +82,37 @@ Future<void> main({bool isIntegrationTest = false}) async {
 
   final domain = appConfig.isDevMode ? appConfig.devDomain : ApiConst.domain;
 
+  final netWorkClient = NetworkClient();
+
+  final remoteClient = MqRemoteClient(
+    dio: Dio(BaseOptions(baseUrl: domain)),
+    network: netWorkClient,
+    language: () => storage.readString(key: StorageKeys.localeKey),
+    token: () => storage.readString(key: StorageKeys.tokenKey),
+    oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
+  )..initilize();
+
+  final localNotificationService = LocalNotificationService(
+    FlutterLocalNotificationsPlugin(),
+  );
+
+  final firebaseNotificationService = FirebaseNotificationService(
+    firebaseMessaging: FirebaseMessaging.instance,
+    onShowNotification: localNotificationService.showNotification,
+  );
+
+  final notificationRepository = NotificationRepository(
+    client: remoteClient,
+    storage: storage,
+  );
+
+  final notificationService = NotificationService(
+    firebase: firebaseNotificationService,
+    local: localNotificationService,
+    repository: notificationRepository,
+    isIntegrationTesting: isIntegrationTest,
+  );
+
   runApp(
     MultiRepositoryProvider(
       providers: [
@@ -84,19 +126,19 @@ Future<void> main({bool isIntegrationTest = false}) async {
           create: (context) => packageInfo,
         ),
         RepositoryProvider<NetworkClient>(
-          create: (context) => NetworkClient(),
+          create: (context) => netWorkClient,
         ),
         RepositoryProvider<MqRemoteConfig>(
           create: (context) => remoteConfig,
         ),
+        RepositoryProvider<NotificationService>(
+          create: (context) => notificationService,
+        ),
         RepositoryProvider<MqRemoteClient>(
-          create: (context) => MqRemoteClient(
-            dio: Dio(BaseOptions(baseUrl: domain)),
-            network: context.read<NetworkClient>(),
-            language: () => storage.readString(key: StorageKeys.localeKey),
-            token: () => storage.readString(key: StorageKeys.tokenKey),
-            oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
-          )..initilize(),
+          create: (context) => remoteClient,
+        ),
+        RepositoryProvider<NotificationRepository>(
+          create: (context) => notificationRepository,
         ),
       ],
       child: const MyApp(),

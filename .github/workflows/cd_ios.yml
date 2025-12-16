@@ -93,6 +93,11 @@ jobs:
           puts "Project settings updated successfully!"
           EOF
 
+      - name: "Update Entitlements to Production"
+        run: |
+          sed -i '' 's/development/production/g' app/ios/Runner/Runner.entitlements
+          cat app/ios/Runner/Runner.entitlements
+
       - name: Build IPA
         run: |
           cd app

@@ -30,6 +30,8 @@ dependencies:
   firebase_auth: ^6.1.2
   firebase_crashlytics: ^5.0.4
   firebase_remote_config: ^6.1.1
+  firebase_messaging: ^16.0.4
+  flutter_local_notifications: ^19.5.0
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
   bloc: ^9.1.0

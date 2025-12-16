@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class VerificationCodeView extends StatefulWidget {
@@ -18,7 +20,7 @@ class VerificationCodeView extends StatefulWidget {
   State<VerificationCodeView> createState() => _VerificationCodeViewState();
 }
 
-class _VerificationCodeViewState extends State<VerificationCodeView> {
+class _VerificationCodeViewState extends State<VerificationCodeView> with NotificationMixin {
   late TextEditingController verificationCodeController;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -51,8 +53,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.user != null) {
-            context.read<AuthCubit>().setUserData(state.user!);
-            context.goNamed(AppRouter.home);
+            _onLoginSuccess(state.user!);
           } else if (state.exception != null) {
             AppAlert.showErrorDialog(
               context,
@@ -122,5 +123,13 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
         ),
       ),
     );
+  }
+
+  Future<void> _onLoginSuccess(UserModelResponse user) async {
+    await Future.wait<void>([
+      context.read<AuthCubit>().setUserData(user),
+      initializeNotification(user, context),
+    ]);
+    if (mounted) context.goNamed(AppRouter.home);
   }
 }

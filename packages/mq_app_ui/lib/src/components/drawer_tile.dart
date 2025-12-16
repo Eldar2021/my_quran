@@ -5,11 +5,13 @@ class DrawerTile extends StatelessWidget {
     required this.icon,
     required this.title,
     this.onTap,
+    this.trailing,
     super.key,
   });
 
   final Widget icon;
   final String title;
+  final Widget? trailing;
   final void Function()? onTap;
 
   @override
@@ -24,7 +26,7 @@ class DrawerTile extends StatelessWidget {
         child: icon,
       ),
       title: Text(title),
-      trailing: const Icon(Icons.arrow_forward_ios),
+      trailing: trailing ?? const Icon(Icons.arrow_forward_ios),
     );
   }
 }
