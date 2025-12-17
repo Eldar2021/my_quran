@@ -85,6 +85,7 @@ final class AuthLocalDataSource {
       await Future.wait([
         storage.delete(key: tokenKey),
         storage.delete(key: userKey),
+        storage.delete(key: notificationTokenKey),
       ]);
     } on Object catch (e) {
       log('AuthLocalDataSource clearUserData:', error: e);

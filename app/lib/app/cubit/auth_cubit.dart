@@ -70,64 +70,26 @@ class AuthCubit extends Cubit<AuthState> {
     return authRepository.saveUser(authModel);
   }
 
-  Future<void> saveLocale(String localeCode) async {
-    final auth = state.auth;
-    if (auth != null) {
-      try {
-        final res = await authRepository.patchLocale(
-          userId: auth.key,
-          localeCode: localeCode,
-        );
-        final newUser = auth.copyWith(user: res);
-        emit(state.copyWith(auth: newUser));
-      } on Exception catch (e) {
-        emit(state.copyWith(exception: e));
-        return;
-      }
-    } else {
-      emit(state.copyWith(localeForNow: localeCode));
-    }
-  }
-
-  Future<void> toggleNotification({
-    bool value = true,
+  Future<void> updateUserData(
+    UpdateUserDataParam param, {
+    AuthState? unAuthenticatedNewState,
   }) async {
     final auth = state.auth;
     if (auth != null) {
       try {
-        final res = await authRepository.toggleNotification(
-          userId: auth.key,
-          value: value,
-        );
+        final res = await authRepository.patchUserData(param);
         final newUser = auth.copyWith(user: res);
         emit(state.copyWith(auth: newUser));
       } on Exception catch (e) {
         emit(state.copyWith(exception: e));
         return;
       }
+    } else if (unAuthenticatedNewState != null) {
+      emit(unAuthenticatedNewState);
     }
   }
 
-  Future<void> saveGender(Gender gender) async {
-    final auth = state.auth;
-    if (auth != null) {
-      try {
-        final res = await authRepository.patchGender(
-          userId: auth.key,
-          gender: gender,
-        );
-        final newUser = auth.copyWith(user: res);
-        emit(state.copyWith(auth: newUser));
-      } on Exception catch (e) {
-        emit(state.copyWith(exception: e));
-        return;
-      }
-    } else {
-      emit(state.copyWith(genderForNow: gender));
-    }
-  }
-
-  Future<void> patchNotificationToken(String fcmToken) async {
+  Future<void> setNotificationToken(String fcmToken) async {
     final auth = state.auth;
     if (auth != null) {
       try {

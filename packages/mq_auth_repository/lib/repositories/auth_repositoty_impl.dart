@@ -56,51 +56,12 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserModel> patchGender({
-    required String userId,
-    required Gender gender,
-  }) async {
-    final res = await remoteDataSource.pathGender(
-      userId: userId,
-      gender: gender,
-    );
-
-    await localDataSource.saveUser(
-      AuthModel(key: userId, user: res),
-    );
-
-    return res;
-  }
-
-  @override
-  Future<UserModel> patchLocale({
-    required String userId,
-    required String localeCode,
-  }) async {
-    final res = await remoteDataSource.pathLocale(
-      userId: userId,
-      localeCode: localeCode,
-    );
-
-    await localDataSource.saveUser(
-      AuthModel(key: userId, user: res),
-    );
-
-    return res;
-  }
-
-  @override
-  String? getNotificationToken() {
-    return localDataSource.getNotificationToken();
-  }
-
-  @override
   Future<void> setNotificationToken({
     required String userId,
     required String notificationToken,
     required String deviceType,
   }) async {
-    await remoteDataSource.patchNotificationToken(
+    await remoteDataSource.setNotificationToken(
       userId: userId,
       notificationToken: notificationToken,
       deviceType: deviceType,
@@ -117,19 +78,11 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserModel> toggleNotification({
-    required String userId,
-    required bool value,
-  }) async {
-    final res = await remoteDataSource.toggleNotification(
-      userId: userId,
-      value: value,
-    );
-
+  Future<UserModel> patchUserData(UpdateUserDataParam param) async {
+    final res = await remoteDataSource.patchUserData(param);
     await localDataSource.saveUser(
-      AuthModel(key: userId, user: res),
+      AuthModel(key: param.userId, user: res),
     );
-
     return res;
   }
 

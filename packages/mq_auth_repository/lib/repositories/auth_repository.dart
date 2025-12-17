@@ -5,8 +5,6 @@ abstract class AuthRepository {
 
   Future<void> loginWithEmail(String email);
 
-  String? getNotificationToken();
-
   Future<AuthModel> verifyOtp({
     required String email,
     required String otp,
@@ -26,30 +24,19 @@ abstract class AuthRepository {
 
   Future<void> saveUser(AuthModel user);
 
-  Future<UserModel> patchGender({
-    required String userId,
-    required Gender gender,
-  });
-
-  Future<UserModel> patchLocale({
-    required String userId,
-    required String localeCode,
-  });
-
   Future<void> setNotificationToken({
     required String userId,
     required String notificationToken,
     required String deviceType,
   });
 
-  Future<UserModel> toggleNotification({
-    required String userId,
-    required bool value,
-  });
-
   Future<List<NotificationModel>> getNotifications(
     String userId,
     String locale,
+  );
+
+  Future<UserModel> patchUserData(
+    UpdateUserDataParam param,
   );
 
   Future<void> deleteAccount();

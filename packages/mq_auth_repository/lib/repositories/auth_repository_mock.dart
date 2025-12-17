@@ -54,28 +54,6 @@ final class AuthRepositoryMock implements AuthRepository {
   }
 
   @override
-  Future<UserModel> patchGender({
-    required String userId,
-    required Gender gender,
-  }) {
-    return Future.delayed(
-      const Duration(seconds: 1),
-      () => UserModel.fromJson(_userJsonData),
-    );
-  }
-
-  @override
-  Future<UserModel> patchLocale({
-    required String userId,
-    required String localeCode,
-  }) {
-    return Future.delayed(
-      const Duration(seconds: 1),
-      () => UserModel.fromJson(_userJsonData),
-    );
-  }
-
-  @override
   Future<void> deleteAccount() {
     return Future.value();
   }
@@ -83,11 +61,6 @@ final class AuthRepositoryMock implements AuthRepository {
   @override
   Future<void> logout() {
     return Future.value();
-  }
-
-  @override
-  String? getNotificationToken() {
-    return 'token';
   }
 
   @override
@@ -111,10 +84,7 @@ final class AuthRepositoryMock implements AuthRepository {
   }
 
   @override
-  Future<UserModel> toggleNotification({
-    required String userId,
-    required bool value,
-  }) {
+  Future<UserModel> patchUserData(UpdateUserDataParam param) {
     return Future.delayed(
       const Duration(seconds: 1),
       () => UserModel.fromJson(_userJsonData),

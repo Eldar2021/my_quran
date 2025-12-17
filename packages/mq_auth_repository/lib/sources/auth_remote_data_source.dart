@@ -103,39 +103,7 @@ final class AuthRemoteDataSource {
     }
   }
 
-  Future<UserModel> pathGender({
-    required String userId,
-    required Gender gender,
-  }) {
-    try {
-      return client.patchType(
-        '/api/v1/accounts/profile/$userId/',
-        fromJson: UserModel.fromJson,
-        body: {'gender': gender.name.toUpperCase()},
-      );
-    } on Object catch (e) {
-      log('AuthRemoteDataSource pathGender:', error: e);
-      rethrow;
-    }
-  }
-
-  Future<UserModel> pathLocale({
-    required String userId,
-    required String localeCode,
-  }) {
-    try {
-      return client.patchType(
-        '/api/v1/accounts/profile/$userId/',
-        fromJson: UserModel.fromJson,
-        body: {'language': localeCode.toUpperCase()},
-      );
-    } on Object catch (e) {
-      log('AuthRemoteDataSource pathLocale:', error: e);
-      rethrow;
-    }
-  }
-
-  Future<void> patchNotificationToken({
+  Future<void> setNotificationToken({
     required String userId,
     required String notificationToken,
     required String deviceType,
@@ -155,14 +123,11 @@ final class AuthRemoteDataSource {
     }
   }
 
-  Future<UserModel> toggleNotification({
-    required String userId,
-    required bool value,
-  }) {
+  Future<UserModel> patchUserData(UpdateUserDataParam param) async {
     try {
       return client.patchType(
-        '/api/v1/accounts/profile/$userId/',
-        body: {'allow_notifications': value},
+        '/api/v1/accounts/profile/${param.userId}/',
+        body: param.toJson(),
         fromJson: UserModel.fromJson,
       );
     } on Object catch (e) {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
@@ -227,7 +228,12 @@ class SettingActionsWidget extends StatelessWidget {
                   child: Switch(
                     value: state.auth?.user.isNotificationEnabled ?? false,
                     onChanged: (value) {
-                      context.read<AuthCubit>().toggleNotification(value: value);
+                      context.read<AuthCubit>().updateUserData(
+                        NotificationEnabledParam(
+                          userId: state.auth?.key ?? '',
+                          enabled: value,
+                        ),
+                      );
                     },
                   ),
                 ),

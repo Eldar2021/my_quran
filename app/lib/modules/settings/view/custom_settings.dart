@@ -41,23 +41,11 @@ class CustomAppSettingView extends StatelessWidget {
               LanguageDropdownButtonFormField<Locale>(
                 value: authCubit.state.currentLocale,
                 items: AppLocalizationHelper.locales,
-                onChanged: (v) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectLanguage,
-                    params: {'language': v?.languageCode ?? 'en'},
-                  );
-                  context.loaderOverlay.show();
-                  await context.read<AuthCubit>().saveLocale(
-                    v?.languageCode ?? 'en',
-                  );
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
-                itemBuilder: (value) {
-                  final name = AppLocalizationHelper.getName(
-                    value?.toLanguageTag() ?? 'en',
-                  );
+                onChanged: (v) => _updateLanguage(v, context),
+                itemBuilder: (v) {
+                  final name = AppLocalizationHelper.getName(v?.toLanguageTag());
                   return DropdownMenuItem(
-                    value: value,
+                    value: v,
                     child: Text(name),
                   );
                 },
@@ -72,30 +60,14 @@ class CustomAppSettingView extends StatelessWidget {
                 key: const Key(MqKeys.settingsGenderMale),
                 gender: authCubit.state.appUiGender,
                 title: context.l10n.male,
-                onChanged: (p0) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectGender,
-                    params: {'gender': Gender.male.name},
-                  );
-                  context.loaderOverlay.show();
-                  await context.read<AuthCubit>().saveGender(Gender.male);
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
+                onChanged: (p0) => _updateGender(Gender.male, context),
               ),
               GenderRedioWidget(
                 key: const Key(MqKeys.settingsGenderFemale),
                 gender: authCubit.state.appUiGender,
                 itemIsMale: false,
                 title: context.l10n.female,
-                onChanged: (p0) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectGender,
-                    params: {'gender': Gender.female.name},
-                  );
-                  context.loaderOverlay.show();
-                  await context.read<AuthCubit>().saveGender(Gender.female);
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
+                onChanged: (p0) => _updateGender(Gender.female, context),
               ),
               const Spacer(),
               ElevatedButton(
@@ -108,5 +80,45 @@ class CustomAppSettingView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _updateLanguage(
+    Locale? locale,
+    BuildContext context,
+  ) async {
+    final authCubit = context.read<AuthCubit>();
+    context.loaderOverlay.show();
+    await authCubit.updateUserData(
+      UpdateLanguageParam(
+        userId: authCubit.state.auth?.key ?? '',
+        language: locale?.languageCode ?? 'en',
+      ),
+      unAuthenticatedNewState: authCubit.state.copyWith(
+        localeForNow: locale?.languageCode ?? 'en',
+      ),
+    );
+    if (context.mounted) context.loaderOverlay.hide();
+  }
+
+  Future<void> _updateGender(
+    Gender gender,
+    BuildContext context,
+  ) async {
+    MqAnalytic.track(
+      AnalyticKey.selectGender,
+      params: {'gender': gender.name},
+    );
+    final authCubit = context.read<AuthCubit>();
+    context.loaderOverlay.show();
+    await authCubit.updateUserData(
+      UpdateGenderParam(
+        userId: authCubit.state.auth?.key ?? '',
+        gender: gender,
+      ),
+      unAuthenticatedNewState: authCubit.state.copyWith(
+        genderForNow: gender,
+      ),
+    );
+    if (context.mounted) context.loaderOverlay.hide();
   }
 }

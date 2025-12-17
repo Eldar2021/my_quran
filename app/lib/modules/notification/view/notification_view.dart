@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -64,7 +64,7 @@ class _NotificationViewState extends State<NotificationView> {
   }
 
   void _showDialog() {
-    final fcmToken = context.read<AuthRepository>().getNotificationToken();
+    final fcmToken = context.read<PreferencesStorage>().readString(key: 'notification-token');
     showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(

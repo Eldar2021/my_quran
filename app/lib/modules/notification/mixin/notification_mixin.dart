@@ -18,10 +18,14 @@ mixin NotificationMixin {
         userToken: auth.key,
         locale: auth.user.language ?? 'en',
         onPermissionEnabled: () {
-          context.read<AuthCubit>().toggleNotification();
+          context.read<AuthCubit>().updateUserData(
+            NotificationEnabledParam(enabled: true, userId: auth.key),
+          );
         },
         onPermissionDisabled: () {
-          context.read<AuthCubit>().toggleNotification(value: false);
+          context.read<AuthCubit>().updateUserData(
+            NotificationEnabledParam(enabled: false, userId: auth.key),
+          );
         },
         onNotificationClick: (data) {
           rootNavigatorKey.currentContext?.goNamed(
@@ -34,7 +38,7 @@ mixin NotificationMixin {
           );
         },
         onSendTokenToServer: (fcmToken) {
-          context.read<AuthCubit>().patchNotificationToken(fcmToken);
+          context.read<AuthCubit>().setNotificationToken(fcmToken);
         },
       );
     } on Object catch (e) {
