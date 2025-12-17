@@ -31,7 +31,9 @@ const _userJsonData = <String, dynamic>{
 };
 
 @immutable
-final class AuthRepositoryImpl implements AuthRepository {
+final class AuthRepositoryMock implements AuthRepository {
+  const AuthRepositoryMock();
+
   @override
   AuthModel? get initialAuth => null;
 

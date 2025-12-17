@@ -236,7 +236,7 @@ class SettingActionsWidget extends StatelessWidget {
                       value: permissionState.isNotificationEnabled,
                       onChanged: (value) {
                         context.read<NotificationCubit>().toggleNotification(
-                          userToken: authCubit.state.userKey ?? '',
+                          userToken: authCubit.userId,
                           value: value,
                         );
                       },

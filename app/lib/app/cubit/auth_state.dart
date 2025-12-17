@@ -2,38 +2,33 @@ part of 'auth_cubit.dart';
 
 class AuthState extends Equatable {
   const AuthState({
-    this.user,
-    this.userKey,
+    this.auth,
     this.exception,
     this.localeForNow,
     this.genderForNow,
   });
 
-  final UserModel? user;
-  final String? userKey;
+  final AuthModel? auth;
   final Object? exception;
   final String? localeForNow;
   final Gender? genderForNow;
 
   @override
   List<Object?> get props => [
-    user,
-    userKey,
+    auth,
     exception,
     localeForNow,
     genderForNow,
   ];
 
   AuthState copyWith({
-    UserModel? user,
-    String? userKey,
+    AuthModel? auth,
     Object? exception,
     String? localeForNow,
     Gender? genderForNow,
   }) {
     return AuthState(
-      user: user ?? this.user,
-      userKey: userKey ?? this.userKey,
+      auth: auth ?? this.auth,
       exception: exception ?? this.exception,
       localeForNow: localeForNow ?? this.localeForNow,
       genderForNow: genderForNow ?? this.genderForNow,
@@ -41,14 +36,14 @@ class AuthState extends Equatable {
   }
 
   Locale get currentLocale {
-    if (user != null) return Locale(user!.language ?? 'en');
+    if (auth != null) return Locale(auth!.user.language ?? 'en');
     if (localeForNow != null) return Locale(localeForNow!);
     final deviceLocal = WidgetsBinding.instance.platformDispatcher.locale;
     return AppLocalizationHelper.getSupportedLocale(deviceLocal.languageCode);
   }
 
   Gender get gender {
-    if (user != null) return user!.gender!;
+    if (auth != null) return auth!.user.gender ?? Gender.male;
     if (genderForNow != null) return genderForNow!;
     return Gender.male;
   }
@@ -67,5 +62,5 @@ class AuthState extends Equatable {
     };
   }
 
-  bool get isAuthedticated => user != null;
+  bool get isAuthedticated => auth != null;
 }

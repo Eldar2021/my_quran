@@ -27,14 +27,13 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
   void initState() {
     super.initState();
     _getHomeData();
-    final user = context.read<AuthCubit>().state.user;
-    final userKey = context.read<AuthCubit>().state.userKey;
-    final validName = user?.username?.replaceAll(RegExp(r'\W+'), '_');
-    if (userKey != null) {
-      MqCrashlytics.setUserIdentifier(validName ?? userKey);
-      MqAnalytic.setUserProperty(validName ?? userKey);
+    final auth = context.read<AuthCubit>().state.auth;
+    final validName = auth?.user.username?.replaceAll(RegExp(r'\W+'), '_');
+    if (auth != null) {
+      MqCrashlytics.setUserIdentifier(validName ?? auth.key);
+      MqAnalytic.setUserProperty(validName ?? auth.key);
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        initializeNotification(userKey, user!, context);
+        initializeNotification(auth, context);
       });
     }
     context.read<LocationCubit>().init();

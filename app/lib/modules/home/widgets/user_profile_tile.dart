@@ -11,7 +11,8 @@ class UserProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authCubit = context.watch<AuthCubit>();
-    final user = authCubit.state.user;
+    final auth = authCubit.state.auth;
+    final user = auth?.user;
     final colorScheme = Theme.of(context).colorScheme;
     return ListTile(
       title: Text(

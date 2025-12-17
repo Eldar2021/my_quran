@@ -58,24 +58,21 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider<AuthRepository>(
           create: (context) {
+            if (isMockData) return const AuthRepositoryMock();
             return AuthRepositoryImpl(
-              localDataSource: isMockData
-                  ? const AuthLocalDataSourceMock()
-                  : AuthLocalDataSourceImpl(context.read<PreferencesStorage>()),
-              remoteDataSource: isMockData
-                  ? const AuthRemoteDataSourceMock()
-                  : AuthRemoteDataSourceImpl(
-                      client: context.read<MqRemoteClient>(),
-                      storage: context.read<PreferencesStorage>(),
-                      googleSocialAuthService: GoogleSocialAuthService(
-                        googleSignIn: GoogleSignIn.instance,
-                        firebaseAuth: FirebaseAuth.instance,
-                      ),
-                      appleSocialAuthService: AppleSocialAuthService(
-                        firebaseAuth: FirebaseAuth.instance,
-                      ),
-                      isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
-                    ),
+              localDataSource: AuthLocalDataSource(context.read<PreferencesStorage>()),
+              remoteDataSource: AuthRemoteDataSource(
+                client: context.read<MqRemoteClient>(),
+                googleSocialAuthService: GoogleSocialAuthService(
+                  googleSignIn: GoogleSignIn.instance,
+                  firebaseAuth: FirebaseAuth.instance,
+                  isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
+                ),
+                appleSocialAuthService: AppleSocialAuthService(
+                  firebaseAuth: FirebaseAuth.instance,
+                  isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
+                ),
+              ),
             );
           },
         ),

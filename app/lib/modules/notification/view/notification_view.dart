@@ -18,8 +18,8 @@ class _NotificationViewState extends State<NotificationView> {
   @override
   void initState() {
     super.initState();
-    final user = context.read<AuthCubit>().state.user;
-    context.read<NotificationCubit>().getNotification(user?.language ?? 'en');
+    final auth = context.read<AuthCubit>().state.auth;
+    context.read<NotificationCubit>().getNotification(auth?.user.language ?? 'en');
   }
 
   @override

@@ -23,7 +23,7 @@ class HatimView extends StatelessWidget {
           create: (context) => HatimBloc(
             hatimId: hatimId,
             socket: isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
-            token: context.read<AuthCubit>().state.userKey ?? '',
+            token: context.read<AuthCubit>().userId,
           )..add(const GetInitialDataEvent()),
         ),
         BlocProvider(

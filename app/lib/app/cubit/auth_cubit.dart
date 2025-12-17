@@ -8,7 +8,7 @@ import 'package:my_quran/l10n/l10.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.authRepository) : super(AuthState(user: authRepository.init));
+  AuthCubit(this.authRepository) : super(AuthState(auth: authRepository.initialAuth));
 
   final AuthRepository authRepository;
 
@@ -22,13 +22,13 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<AuthState> verifyOtp(String otp, String email) async {
     try {
-      final user = await authRepository.verifyOtp(
+      final auth = await authRepository.verifyOtp(
         email: email,
         otp: otp,
         languageCode: state.currentLocale.languageCode,
         gender: state.gender,
       );
-      emit(state.copyWith(user: user.user));
+      emit(state.copyWith(auth: auth));
       return state;
     } on Exception catch (e) {
       emit(state.copyWith(exception: e));
@@ -38,11 +38,11 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<AuthState> signInWithGoogle() async {
     try {
-      final user = await authRepository.signWithGoogle(
+      final auth = await authRepository.signWithGoogle(
         state.currentLocale.languageCode,
         state.gender,
       );
-      emit(state.copyWith(user: user.user));
+      emit(state.copyWith(auth: auth));
       return state;
     } on Exception catch (e) {
       emit(state.copyWith(exception: e));
@@ -52,11 +52,11 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<AuthState> signInWithApple() async {
     try {
-      final user = await authRepository.signWithApple(
+      final auth = await authRepository.signWithApple(
         state.currentLocale.languageCode,
         state.gender,
       );
-      emit(state.copyWith(user: user.user));
+      emit(state.copyWith(auth: auth));
     } on Exception catch (e) {
       emit(state.copyWith(exception: e));
     }
@@ -64,19 +64,20 @@ class AuthCubit extends Cubit<AuthState> {
     return state;
   }
 
-  Future<void> setUserData(UserModel userModel) {
-    return authRepository.setUserData(userModel);
+  Future<void> setUserData(AuthModel authModel) {
+    return authRepository.saveUser(authModel);
   }
 
   Future<void> saveLocale(String localeCode) async {
-    if (state.isAuthedticated) {
+    final auth = state.auth;
+    if (auth != null) {
       try {
-        final res = await authRepository.patchLocaleCode(
-          userId: state.userKey ?? '',
+        final res = await authRepository.patchLocale(
+          userId: auth.key,
           localeCode: localeCode,
         );
-        final newUser = state.user!.copyWith(language: res.language);
-        emit(state.copyWith(user: newUser));
+        final newUser = auth.copyWith(user: res);
+        emit(state.copyWith(auth: newUser));
       } on Exception catch (e) {
         emit(state.copyWith(exception: e));
         return;
@@ -87,14 +88,15 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> saveGender(Gender gender) async {
-    if (state.isAuthedticated) {
+    final auth = state.auth;
+    if (auth != null) {
       try {
         final res = await authRepository.patchGender(
-          userId: state.userKey ?? '',
+          userId: auth.key,
           gender: gender,
         );
-        final newUser = state.user!.copyWith(gender: res.gender);
-        emit(state.copyWith(user: newUser));
+        final newUser = auth.copyWith(user: res);
+        emit(state.copyWith(auth: newUser));
       } on Exception catch (e) {
         emit(state.copyWith(exception: e));
         return;
@@ -105,6 +107,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> deleteAccount() async {
+    if (!isAuthedticated) return;
     try {
       await authRepository.deleteAccount();
       emit(const AuthState());
@@ -114,6 +117,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logout() async {
+    if (!isAuthedticated) return;
     try {
       await authRepository.logout();
       emit(const AuthState());
@@ -122,5 +126,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  bool get isAuthedticated => state.user != null;
+  bool get isAuthedticated => state.isAuthedticated;
+  String get userId => state.auth?.key ?? '';
 }

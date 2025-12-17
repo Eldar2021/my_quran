@@ -17,4 +17,14 @@ final class AuthModel {
 
   final String key;
   final UserModel user;
+
+  AuthModel copyWith({
+    String? key,
+    UserModel? user,
+  }) {
+    return AuthModel(
+      key: key ?? this.key,
+      user: user ?? this.user,
+    );
+  }
 }
