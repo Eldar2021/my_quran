@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
+import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
@@ -68,13 +69,21 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () => context.pushNamed(AppRouter.notification),
-            icon: Icon(
-              Icons.notifications_none_outlined,
-              color: colorScheme.onSurface,
-              size: 28,
-            ),
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              if (state.auth?.user.isNotificationEnabled ?? false) {
+                return IconButton(
+                  onPressed: () => context.pushNamed(AppRouter.notification),
+                  icon: Icon(
+                    Icons.notifications_none_outlined,
+                    color: colorScheme.onSurface,
+                    size: 28,
+                  ),
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
         ],
       ),
@@ -199,7 +208,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
                     hatim: hatims!,
                   );
                 } else {
-                  _onJoinToHatim(hatims?.first.id ?? '');
+                  _onJoinToHatim(hatims ?? []);
                 }
               },
               child: Text(context.l10n.joinToHatim),
@@ -210,12 +219,17 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     );
   }
 
-  void _onJoinToHatim(String hatimId) {
-    MqAnalytic.track(AnalyticKey.goHatim);
-    context.goNamedIfAuthenticated(
-      AppRouter.hatim,
-      pathParameters: {'hatimId': hatimId},
-    );
+  void _onJoinToHatim(List<MqHatimsModel> hatims) {
+    final hatimId = hatims.isNotEmpty ? hatims.first.id : null;
+    if (hatimId != null) {
+      MqAnalytic.track(AnalyticKey.goHatim);
+      context.goNamedIfAuthenticated(
+        AppRouter.hatim,
+        pathParameters: {'hatimId': hatimId},
+      );
+    } else {
+      context.pushNamed(AppRouter.loginWihtSoccial);
+    }
   }
 
   Future<void> _getHomeData() async {

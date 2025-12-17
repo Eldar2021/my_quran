@@ -92,16 +92,11 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> setNotificationToken(String fcmToken) async {
     final auth = state.auth;
     if (auth != null) {
-      try {
-        await authRepository.setNotificationToken(
-          userId: auth.key,
-          notificationToken: fcmToken,
-          deviceType: Platform.isAndroid ? 'android' : 'ios',
-        );
-      } on Exception catch (e) {
-        emit(state.copyWith(exception: e));
-        return;
-      }
+      await authRepository.setNotificationToken(
+        userId: auth.key,
+        notificationToken: fcmToken,
+        deviceType: Platform.isAndroid ? 'android' : 'ios',
+      );
     }
   }
 

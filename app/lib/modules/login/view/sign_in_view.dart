@@ -48,14 +48,7 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
     final size = MediaQuery.sizeOf(context);
     return ScaffoldWithBgImage(
       key: const Key(MqKeys.signInView),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            context.goNamed(AppRouter.login);
-          },
-        ),
-      ),
+      appBar: AppBar(),
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.auth != null) {
@@ -87,6 +80,7 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
               TextFormField(
                 key: const Key(MqKeys.emailTextField),
                 controller: emailController,
+                keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return context.l10n.enterEmail;

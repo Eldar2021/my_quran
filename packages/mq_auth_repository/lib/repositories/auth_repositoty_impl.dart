@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:meta/meta.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 
@@ -88,13 +90,23 @@ final class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> deleteAccount() async {
-    await remoteDataSource.deleteAccount();
-    await localDataSource.clearUserData();
+    try {
+      await localDataSource.clearUserData();
+      await remoteDataSource.deleteAccount();
+    } on Object catch (e) {
+      log('AuthRepositoryImpl deleteAccount:', error: e);
+      return Future.value();
+    }
   }
 
   @override
   Future<void> logout() async {
-    await remoteDataSource.logout();
-    await localDataSource.clearUserData();
+    try {
+      await localDataSource.clearUserData();
+      await remoteDataSource.logout();
+    } on Object catch (e) {
+      log('AuthRepositoryImpl logout:', error: e);
+      return Future.value();
+    }
   }
 }

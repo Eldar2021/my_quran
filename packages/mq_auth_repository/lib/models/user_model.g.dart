@@ -14,7 +14,10 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   email: json['email'] as String?,
   country: json['country'] as String?,
   phoneNumber: json['phone_number'] as String?,
-  gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
+  gender: _$JsonConverterFromJson<String, Gender>(
+    json['gender'],
+    const GenderTypeConverter().fromJson,
+  ),
   language: json['language'] as String?,
   canCreateHatim: json['can_create_hatim'] as bool?,
   isNotificationEnabled: json['is_notification_enabled'] as bool?,
@@ -28,10 +31,21 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
   'email': instance.email,
   'country': instance.country,
   'phone_number': instance.phoneNumber,
-  'gender': _$GenderEnumMap[instance.gender],
+  'gender': _$JsonConverterToJson<String, Gender>(
+    instance.gender,
+    const GenderTypeConverter().toJson,
+  ),
   'language': instance.language,
   'can_create_hatim': instance.canCreateHatim,
   'is_notification_enabled': instance.isNotificationEnabled,
 };
 
-const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) => json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) => value == null ? null : toJson(value);

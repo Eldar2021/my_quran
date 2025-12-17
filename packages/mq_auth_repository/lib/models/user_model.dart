@@ -38,6 +38,8 @@ final class UserModel {
 
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
+
+  @GenderTypeConverter()
   final Gender? gender;
   final String? language;
 

@@ -15,13 +15,12 @@ class CustomAppSettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authCubit = context.watch<AuthCubit>();
     return ScaffoldWithBgImage(
       appBar: AppBar(
         key: const Key(MqKeys.settingsGenderLangPage),
         title: Text(context.l10n.customApp),
       ),
-      body: BlocListener<AuthCubit, AuthState>(
+      body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.exception != null) {
             AppAlert.showErrorDialog(
@@ -30,54 +29,56 @@ class CustomAppSettingView extends StatelessWidget {
             );
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 30),
-              Text(context.l10n.pleaseSelectLanguage),
-              const SizedBox(height: 8),
-              LanguageDropdownButtonFormField<Locale>(
-                value: authCubit.state.currentLocale,
-                items: AppLocalizationHelper.locales,
-                onChanged: (v) => _updateLanguage(v, context),
-                itemBuilder: (v) {
-                  final name = AppLocalizationHelper.getName(v?.toLanguageTag());
-                  return DropdownMenuItem(
-                    value: v,
-                    child: Text(name),
-                  );
-                },
-              ),
-              const SizedBox(height: 50),
-              Text(context.l10n.pleaseSelectGender),
-              const SizedBox(height: 8),
-              Text(
-                context.l10n.selectGenderForPersonalization,
-              ),
-              GenderRedioWidget(
-                key: const Key(MqKeys.settingsGenderMale),
-                gender: authCubit.state.appUiGender,
-                title: context.l10n.male,
-                onChanged: (p0) => _updateGender(Gender.male, context),
-              ),
-              GenderRedioWidget(
-                key: const Key(MqKeys.settingsGenderFemale),
-                gender: authCubit.state.appUiGender,
-                itemIsMale: false,
-                title: context.l10n.female,
-                onChanged: (p0) => _updateGender(Gender.female, context),
-              ),
-              const Spacer(),
-              ElevatedButton(
-                onPressed: () => context.pop(),
-                child: Text(context.l10n.saveChanges),
-              ),
-              SizedBox(height: AppSpacing.bottomSpace),
-            ],
-          ),
-        ),
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 30),
+                Text(context.l10n.pleaseSelectLanguage),
+                const SizedBox(height: 8),
+                LanguageDropdownButtonFormField<Locale>(
+                  value: state.currentLocale,
+                  items: AppLocalizationHelper.locales,
+                  onChanged: (v) => _updateLanguage(v, context),
+                  itemBuilder: (v) {
+                    final name = AppLocalizationHelper.getName(v?.toLanguageTag());
+                    return DropdownMenuItem(
+                      value: v,
+                      child: Text(name),
+                    );
+                  },
+                ),
+                const SizedBox(height: 50),
+                Text(context.l10n.pleaseSelectGender),
+                const SizedBox(height: 8),
+                Text(
+                  context.l10n.selectGenderForPersonalization,
+                ),
+                GenderRedioWidget(
+                  key: const Key(MqKeys.settingsGenderMale),
+                  gender: state.appUiGender,
+                  title: context.l10n.male,
+                  onChanged: (p0) => _updateGender(Gender.male, context),
+                ),
+                GenderRedioWidget(
+                  key: const Key(MqKeys.settingsGenderFemale),
+                  gender: state.appUiGender,
+                  itemIsMale: false,
+                  title: context.l10n.female,
+                  onChanged: (p0) => _updateGender(Gender.female, context),
+                ),
+                const Spacer(),
+                ElevatedButton(
+                  onPressed: () => context.pop(),
+                  child: Text(context.l10n.saveChanges),
+                ),
+                SizedBox(height: AppSpacing.bottomSpace),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

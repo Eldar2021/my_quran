@@ -112,7 +112,7 @@ final class UpdateGenderParam extends UpdateUserDataParam {
 
   @override
   Map<String, dynamic> toJson() => {
-    'gender': gender.name.toLowerCase(),
+    'gender': gender.name.toUpperCase(),
   };
 }
 
@@ -126,7 +126,9 @@ final class UpdateLanguageParam extends UpdateUserDataParam {
   final String language;
 
   @override
-  Map<String, dynamic> toJson() => {'language': language};
+  Map<String, dynamic> toJson() => {
+    'language': language.toUpperCase(),
+  };
 }
 
 @immutable

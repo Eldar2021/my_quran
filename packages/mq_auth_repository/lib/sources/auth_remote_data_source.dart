@@ -157,14 +157,14 @@ final class AuthRemoteDataSource {
 
   Future<void> deleteAccount() async {
     try {
-      await client.delete<Map<String, dynamic>>(
+      await client.deleteResponse<void>(
         '/api/v1/accounts/profile/delete_my_account/',
       );
+      await googleSocialAuthService.deleteAccount();
     } on Object catch (e) {
       log('AuthRemoteDataSource deleteAccount:', error: e);
       rethrow;
     }
-    await googleSocialAuthService.deleteAccount();
   }
 
   Future<void> logout() async {
