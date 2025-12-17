@@ -67,7 +67,13 @@ class MyApp extends StatelessWidget {
                   : AuthRemoteDataSourceImpl(
                       client: context.read<MqRemoteClient>(),
                       storage: context.read<PreferencesStorage>(),
-                      soccialAuth: SoccialAuth(),
+                      googleSocialAuthService: GoogleSocialAuthService(
+                        googleSignIn: GoogleSignIn.instance,
+                        firebaseAuth: FirebaseAuth.instance,
+                      ),
+                      appleSocialAuthService: AppleSocialAuthService(
+                        firebaseAuth: FirebaseAuth.instance,
+                      ),
                       isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
                     ),
             );

@@ -8,13 +8,15 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   const AuthRemoteDataSourceImpl({
     required this.client,
     required this.storage,
-    required this.soccialAuth,
+    required this.googleSocialAuthService,
+    required this.appleSocialAuthService,
     required this.isIntegrationTest,
   });
 
   final MqRemoteClient client;
   final PreferencesStorage storage;
-  final SoccialAuth soccialAuth;
+  final GoogleSocialAuthService googleSocialAuthService;
+  final AppleSocialAuthService appleSocialAuthService;
   final bool isIntegrationTest;
 
   @override
@@ -83,7 +85,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         accessToken: r'myquran_te$t_t0ken',
       );
     } else {
-      final googleAuth = await soccialAuth.signInWithGoogle();
+      final googleAuth = await googleSocialAuthService.signInWithGoogle();
       final accessToken = googleAuth?['accessToken'] ?? '';
       final username = googleAuth?['name'] ?? '';
 
@@ -127,7 +129,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         accessToken: r'myquran_te$t_t0ken',
       );
     } else {
-      final appleAuth = await soccialAuth.signInWithApple();
+      final appleAuth = await appleSocialAuthService.signInWithApple();
       final identityToken = appleAuth.$2.identityToken ?? '';
       final accessToken = appleAuth.$1.credential!.accessToken ?? '';
       final username = appleAuth.$1.user?.displayName ?? '';
@@ -182,11 +184,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       '/api/v1/accounts/profile/delete_my_account/',
     );
 
-    await soccialAuth.deleteAccount();
+    await googleSocialAuthService.deleteAccount();
   }
 
   @override
   Future<void> logoutRemote() async {
-    await soccialAuth.logOut();
+    await googleSocialAuthService.logOut();
   }
 }
