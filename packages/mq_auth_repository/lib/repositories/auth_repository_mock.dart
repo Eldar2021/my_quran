@@ -91,7 +91,7 @@ final class AuthRepositoryMock implements AuthRepository {
   }
 
   @override
-  Future<void> patchNotificationToken({
+  Future<void> setNotificationToken({
     required String userId,
     required String notificationToken,
     required String deviceType,

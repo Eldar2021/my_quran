@@ -131,7 +131,7 @@ class AuthCubit extends Cubit<AuthState> {
     final auth = state.auth;
     if (auth != null) {
       try {
-        await authRepository.patchNotificationToken(
+        await authRepository.setNotificationToken(
           userId: auth.key,
           notificationToken: fcmToken,
           deviceType: Platform.isAndroid ? 'android' : 'ios',

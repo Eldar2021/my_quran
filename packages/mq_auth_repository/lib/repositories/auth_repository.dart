@@ -36,7 +36,7 @@ abstract class AuthRepository {
     required String localeCode,
   });
 
-  Future<void> patchNotificationToken({
+  Future<void> setNotificationToken({
     required String userId,
     required String notificationToken,
     required String deviceType,
