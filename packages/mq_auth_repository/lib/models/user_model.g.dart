@@ -17,6 +17,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
   language: json['language'] as String?,
   canCreateHatim: json['can_create_hatim'] as bool?,
+  isNotificationEnabled: json['is_notification_enabled'] as bool?,
 );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -30,6 +31,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
   'gender': _$GenderEnumMap[instance.gender],
   'language': instance.language,
   'can_create_hatim': instance.canCreateHatim,
+  'is_notification_enabled': instance.isNotificationEnabled,
 };
 
 const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};

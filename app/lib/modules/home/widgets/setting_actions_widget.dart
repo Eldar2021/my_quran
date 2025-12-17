@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
@@ -174,9 +175,11 @@ class SettingActionsWidget extends StatelessWidget {
                   confirmText: context.l10n.yes,
                   cancelText: context.l10n.cancel,
                   confirmKey: MqKeys.confirmLogoutButtonYes,
-                  onConfirm: () {
+                  onConfirm: () async {
                     MqAnalytic.track(AnalyticKey.tapLogout);
-                    authCubit.logout();
+                    context.loaderOverlay.show();
+                    await authCubit.logout();
+                    if (context.mounted) context.loaderOverlay.hide();
                   },
                   onCancel: () => Navigator.pop(context),
                 );
@@ -199,9 +202,11 @@ class SettingActionsWidget extends StatelessWidget {
                 content: context.l10n.confirmDeleteAccount,
                 confirmText: context.l10n.yes,
                 cancelText: context.l10n.cancel,
-                onConfirm: () {
+                onConfirm: () async {
                   MqAnalytic.track(AnalyticKey.tapDeleteAccount);
-                  authCubit.deleteAccount();
+                  context.loaderOverlay.show();
+                  await authCubit.deleteAccount();
+                  if (context.mounted) context.loaderOverlay.hide();
                 },
                 onCancel: () => Navigator.pop(context),
               );
@@ -227,13 +232,15 @@ class SettingActionsWidget extends StatelessWidget {
                   scale: 0.8,
                   child: Switch(
                     value: state.auth?.user.isNotificationEnabled ?? false,
-                    onChanged: (value) {
-                      context.read<AuthCubit>().updateUserData(
+                    onChanged: (value) async {
+                      context.loaderOverlay.show();
+                      await context.read<AuthCubit>().updateUserData(
                         NotificationEnabledParam(
                           userId: state.auth?.key ?? '',
                           enabled: value,
                         ),
                       );
+                      if (context.mounted) context.loaderOverlay.hide();
                     },
                   ),
                 ),
