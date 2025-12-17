@@ -29,10 +29,10 @@ jobs:
         run: melos bootstrap
 
       - name: "Check fmt"
-        run: melos format-check
+        run: dart format . --line-length 120 --set-exit-if-changed
 
       - name: "Analyze Code"
-        run: melos analyze-check
+        run: flutter analyze --fatal-warnings
 
       - name: "Run unit tests"
         run: melos unit-test
