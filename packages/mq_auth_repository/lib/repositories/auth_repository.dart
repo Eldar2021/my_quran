@@ -1,7 +1,7 @@
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 
 abstract class AuthRepository {
-  UserModel? get init;
+  AuthModel? get initialAuth;
 
   Future<void> loginWithEmail(String email);
 
@@ -22,16 +22,14 @@ abstract class AuthRepository {
     Gender gender,
   );
 
-  Future<void> setUserData(
-    UserModel userEntity,
-  );
+  Future<void> saveUser(AuthModel user);
 
   Future<UserModel> patchGender({
     required String userId,
     required Gender gender,
   });
 
-  Future<UserModel> patchLocaleCode({
+  Future<UserModel> patchLocale({
     required String userId,
     required String localeCode,
   });

@@ -12,12 +12,11 @@ final class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   @override
-  UserModel? get init => localDataSource.init;
+  AuthModel? get initialAuth => localDataSource.initialAuth;
 
   @override
-  Future<void> setUserData(UserModel userEntity) async {
-    await remoteDataSource.saveUserData(userEntity);
-    await localDataSource.saveUserData(userEntity);
+  Future<void> saveUser(AuthModel user) async {
+    await localDataSource.saveUser(user);
   }
 
   @override
@@ -31,41 +30,29 @@ final class AuthRepositoryImpl implements AuthRepository {
     required String otp,
     required String languageCode,
     required Gender gender,
-  }) async {
-    final res = await remoteDataSource.verifyOtp(
+  }) {
+    return remoteDataSource.verifyOtp(
       email: email,
       otp: otp,
       languageCode: languageCode,
       gender: gender,
     );
-
-    return res;
   }
 
   @override
   Future<AuthModel> signWithGoogle(
     String languageCode,
     Gender gender,
-  ) async {
-    final res = await remoteDataSource.signInWithGoogle(
-      languageCode,
-      gender,
-    );
-
-    return res;
+  ) {
+    return remoteDataSource.signInWithGoogle(languageCode, gender);
   }
 
   @override
   Future<AuthModel> signWithApple(
     String languageCode,
     Gender gender,
-  ) async {
-    final res = await remoteDataSource.signInWithApple(
-      languageCode,
-      gender,
-    );
-
-    return res;
+  ) {
+    return remoteDataSource.signInWithApple(languageCode, gender);
   }
 
   @override
@@ -78,35 +65,39 @@ final class AuthRepositoryImpl implements AuthRepository {
       gender: gender,
     );
 
-    await localDataSource.saveGender(gender);
+    await localDataSource.saveUser(
+      AuthModel(key: userId, user: res),
+    );
 
     return res;
   }
 
   @override
-  Future<UserModel> patchLocaleCode({
+  Future<UserModel> patchLocale({
     required String userId,
     required String localeCode,
   }) async {
-    final res = await remoteDataSource.pathLocaleCode(
+    final res = await remoteDataSource.pathLocale(
       userId: userId,
       localeCode: localeCode,
     );
 
-    await localDataSource.saveLocaleCode(localeCode);
+    await localDataSource.saveUser(
+      AuthModel(key: userId, user: res),
+    );
 
     return res;
   }
 
   @override
   Future<void> deleteAccount() async {
-    await remoteDataSource.deleteAccountRemote();
-    await localDataSource.deleteAccountLocal();
+    await remoteDataSource.deleteAccount();
+    await localDataSource.clearUserData();
   }
 
   @override
   Future<void> logout() async {
-    await remoteDataSource.logoutRemote();
-    await localDataSource.logoutLocal();
+    await remoteDataSource.logout();
+    await localDataSource.clearUserData();
   }
 }

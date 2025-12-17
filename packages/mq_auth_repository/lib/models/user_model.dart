@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import 'package:mq_auth_repository/src/mq_auth_repository.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 
 part 'user_model.g.dart';
 

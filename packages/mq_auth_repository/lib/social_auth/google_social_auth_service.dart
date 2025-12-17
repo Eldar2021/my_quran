@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
 
 @immutable
@@ -10,12 +9,20 @@ final class GoogleSocialAuthService {
   const GoogleSocialAuthService({
     required this.googleSignIn,
     required this.firebaseAuth,
+    required this.isIntegrationTest,
   });
 
   final GoogleSignIn googleSignIn;
   final FirebaseAuth firebaseAuth;
+  final bool isIntegrationTest;
 
-  Future<Map<String, dynamic>?> signInWithGoogle() async {
+  Future<LoginParam?> signIn() async {
+    if (isIntegrationTest) {
+      return const LoginParam(
+        name: 'Test User',
+        accessToken: r'myquran_te$t_t0ken',
+      );
+    }
     try {
       await googleSignIn.initialize();
 
@@ -68,10 +75,10 @@ final class GoogleSocialAuthService {
         idToken: googleAuth.idToken,
       );
 
-      return {
-        'name': googleUser.displayName ?? '',
-        'accessToken': credential.accessToken,
-      };
+      return LoginParam(
+        name: googleUser.displayName ?? '',
+        accessToken: credential.accessToken ?? '',
+      );
     } catch (e, s) {
       MqCrashlytics.report(e, s);
       rethrow;
@@ -79,6 +86,7 @@ final class GoogleSocialAuthService {
   }
 
   Future<void> deleteAccount() async {
+    if (isIntegrationTest) return;
     try {
       await firebaseAuth.signOut();
       await googleSignIn.disconnect();
@@ -89,6 +97,7 @@ final class GoogleSocialAuthService {
   }
 
   Future<void> logOut() async {
+    if (isIntegrationTest) return;
     try {
       await firebaseAuth.signOut();
       await googleSignIn.signOut();
