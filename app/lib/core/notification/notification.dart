@@ -5,8 +5,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 export 'firebase_notification_service/firebase_notification_service.dart';
 export 'local_notification_service/local_notification_service.dart';
 export 'service/notification_service.dart';
-export 'repository/notification_repository.dart';
-export 'models/notification_model.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {

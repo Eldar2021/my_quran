@@ -171,7 +171,10 @@ final class AuthRemoteDataSource {
     }
   }
 
-  Future<List<NotificationModel>> getNotifications() {
+  Future<List<NotificationModel>> getNotifications(
+    String userId,
+    String locale,
+  ) {
     try {
       return Future.delayed(
         const Duration(seconds: 1),

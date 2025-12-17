@@ -14,7 +14,6 @@ import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -116,9 +115,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AppThemeCubit(context.read<AppRepository>()),
-        ),
-        BlocProvider(
-          create: (context) => NotificationCubit(context.read<NotificationRepository>()),
         ),
       ],
       child: const QuranApp(),

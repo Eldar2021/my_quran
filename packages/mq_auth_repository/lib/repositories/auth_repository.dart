@@ -47,7 +47,10 @@ abstract class AuthRepository {
     required bool value,
   });
 
-  Future<List<NotificationModel>> getNotifications();
+  Future<List<NotificationModel>> getNotifications(
+    String userId,
+    String locale,
+  );
 
   Future<void> deleteAccount();
 

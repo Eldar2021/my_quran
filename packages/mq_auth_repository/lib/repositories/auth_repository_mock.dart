@@ -100,7 +100,10 @@ final class AuthRepositoryMock implements AuthRepository {
   }
 
   @override
-  Future<List<NotificationModel>> getNotifications() {
+  Future<List<NotificationModel>> getNotifications(
+    String userId,
+    String locale,
+  ) {
     return Future.delayed(
       const Duration(seconds: 1),
       () => notificationJsonData.map(NotificationModel.fromJson).toList(),

@@ -3,18 +3,18 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:my_quran/core/core.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 
 part 'notification_state.dart';
 
 class NotificationCubit extends Cubit<NotificationGlobalState> {
   NotificationCubit(this.repository) : super(const NotificationGlobalState());
 
-  final NotificationRepository repository;
+  final AuthRepository repository;
 
-  Future<void> getNotification(String? locale) async {
+  Future<void> getNotification(String locale, String userId) async {
     try {
-      final result = await repository.getNotifications(locale);
+      final result = await repository.getNotifications(locale, userId);
       emit(state.copyWith(fetchState: NotificationSuccess(result)));
     } on Object catch (e) {
       emit(state.copyWith(fetchState: NotificationError(e)));
@@ -22,13 +22,13 @@ class NotificationCubit extends Cubit<NotificationGlobalState> {
   }
 
   Future<void> toggleNotification({
-    required String userToken,
+    required String userId,
     bool value = true,
   }) async {
     try {
       emit(state.copyWith(permissionState: const NotificationPermissionLoading()));
       await repository.toggleNotification(
-        userToken: userToken,
+        userId: userId,
         value: value,
       );
       final newFetchState = NotificationPermissionSuccess(isEnabled: value);

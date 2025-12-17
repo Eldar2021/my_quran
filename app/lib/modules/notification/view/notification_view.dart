@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mq_storage/mq_storage.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/app/app.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -19,7 +18,10 @@ class _NotificationViewState extends State<NotificationView> {
   void initState() {
     super.initState();
     final auth = context.read<AuthCubit>().state.auth;
-    context.read<NotificationCubit>().getNotification(auth?.user.language ?? 'en');
+    context.read<NotificationCubit>().getNotification(
+      auth?.user.language ?? 'en',
+      auth?.key ?? '',
+    );
   }
 
   @override
@@ -63,10 +65,7 @@ class _NotificationViewState extends State<NotificationView> {
   }
 
   void _showDialog() {
-    final fcmToken = context.read<PreferencesStorage>().readString(
-      key: NotificationRepository.fcmTokenCacheKey,
-    );
-
+    final fcmToken = context.read<AuthRepository>().getNotificationToken();
     showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(

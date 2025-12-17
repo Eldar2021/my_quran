@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,6 +89,25 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> toggleNotification({
+    bool value = true,
+  }) async {
+    final auth = state.auth;
+    if (auth != null) {
+      try {
+        final res = await authRepository.toggleNotification(
+          userId: auth.key,
+          value: value,
+        );
+        final newUser = auth.copyWith(user: res);
+        emit(state.copyWith(auth: newUser));
+      } on Exception catch (e) {
+        emit(state.copyWith(exception: e));
+        return;
+      }
+    }
+  }
+
   Future<void> saveGender(Gender gender) async {
     final auth = state.auth;
     if (auth != null) {
@@ -103,6 +124,22 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } else {
       emit(state.copyWith(genderForNow: gender));
+    }
+  }
+
+  Future<void> patchNotificationToken(String fcmToken) async {
+    final auth = state.auth;
+    if (auth != null) {
+      try {
+        await authRepository.patchNotificationToken(
+          userId: auth.key,
+          notificationToken: fcmToken,
+          deviceType: Platform.isAndroid ? 'android' : 'ios',
+        );
+      } on Exception catch (e) {
+        emit(state.copyWith(exception: e));
+        return;
+      }
     }
   }
 
