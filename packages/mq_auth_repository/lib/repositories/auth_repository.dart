@@ -42,6 +42,13 @@ abstract class AuthRepository {
     required String deviceType,
   });
 
+  Future<UserModel> toggleNotification({
+    required String userId,
+    required bool value,
+  });
+
+  Future<List<NotificationModel>> getNotifications();
+
   Future<void> deleteAccount();
 
   Future<void> logout();

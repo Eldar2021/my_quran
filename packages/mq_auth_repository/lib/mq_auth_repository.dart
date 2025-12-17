@@ -7,6 +7,7 @@ export 'exceptions/auth_exception.dart';
 export 'models/auth_model.dart';
 export 'models/user_model.dart';
 export 'models/login_param.dart';
+export 'models/notification_model.dart';
 
 export 'social_auth/apple_social_auth_service.dart';
 export 'social_auth/google_social_auth_service.dart';

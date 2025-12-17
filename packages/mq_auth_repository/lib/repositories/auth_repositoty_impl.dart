@@ -90,18 +90,6 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> deleteAccount() async {
-    await remoteDataSource.deleteAccount();
-    await localDataSource.clearUserData();
-  }
-
-  @override
-  Future<void> logout() async {
-    await remoteDataSource.logout();
-    await localDataSource.clearUserData();
-  }
-
-  @override
   String? getNotificationToken() {
     return localDataSource.getNotificationToken();
   }
@@ -118,5 +106,39 @@ final class AuthRepositoryImpl implements AuthRepository {
       deviceType: deviceType,
     );
     await localDataSource.saveNotificationToken(notificationToken);
+  }
+
+  @override
+  Future<List<NotificationModel>> getNotifications() {
+    return remoteDataSource.getNotifications();
+  }
+
+  @override
+  Future<UserModel> toggleNotification({
+    required String userId,
+    required bool value,
+  }) async {
+    final res = await remoteDataSource.toggleNotification(
+      userId: userId,
+      value: value,
+    );
+
+    await localDataSource.saveUser(
+      AuthModel(key: userId, user: res),
+    );
+
+    return res;
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    await remoteDataSource.deleteAccount();
+    await localDataSource.clearUserData();
+  }
+
+  @override
+  Future<void> logout() async {
+    await remoteDataSource.logout();
+    await localDataSource.clearUserData();
   }
 }

@@ -142,7 +142,7 @@ final class AuthRemoteDataSource {
   }) {
     try {
       return client.postResponse<void>(
-        'api/v1/accounts/devices/',
+        '/api/v1/accounts/devices/',
         body: {
           'name': userId,
           'registration_id': notificationToken,
@@ -151,6 +151,38 @@ final class AuthRemoteDataSource {
       );
     } on Object catch (e) {
       log('AuthRemoteDataSource patchNotificationToken:', error: e);
+      rethrow;
+    }
+  }
+
+  Future<UserModel> toggleNotification({
+    required String userId,
+    required bool value,
+  }) {
+    try {
+      return client.patchType(
+        '/api/v1/accounts/profile/$userId/',
+        body: {'allow_notifications': value},
+        fromJson: UserModel.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource toggleNotification:', error: e);
+      rethrow;
+    }
+  }
+
+  Future<List<NotificationModel>> getNotifications() {
+    try {
+      return Future.delayed(
+        const Duration(seconds: 1),
+        () => notificationJsonData.map(NotificationModel.fromJson).toList(),
+      );
+      // return client.getListOfType(
+      //   '/api/v1/accounts/notifications/',
+      //   fromJson: NotificationModel.fromJson,
+      // );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getNotifications:', error: e);
       rethrow;
     }
   }
