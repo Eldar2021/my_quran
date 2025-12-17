@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -215,34 +214,23 @@ class SettingActionsWidget extends StatelessWidget {
             title: context.l10n.deleteAccount,
           ),
         if (authCubit.state.isAuthedticated)
-          BlocBuilder<NotificationCubit, NotificationGlobalState>(
+          BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
-              final permissionState = state.permissionState;
-              if (permissionState is NotificationPermissionInitial) {
-                return const SizedBox.shrink();
-              }
               return DrawerTile(
                 icon: Icon(
                   Icons.notifications_none_outlined,
                   color: colorScheme.primary,
                 ),
                 title: context.l10n.notifications,
-                trailing: switch (permissionState) {
-                  NotificationPermissionInitial() => const CupertinoActivityIndicator(),
-                  NotificationPermissionLoading() => const CupertinoActivityIndicator(),
-                  _ => Transform.scale(
-                    scale: 0.8,
-                    child: Switch(
-                      value: permissionState.isNotificationEnabled,
-                      onChanged: (value) {
-                        context.read<NotificationCubit>().toggleNotification(
-                          userId: authCubit.userId,
-                          value: value,
-                        );
-                      },
-                    ),
+                trailing: Transform.scale(
+                  scale: 0.8,
+                  child: Switch(
+                    value: state.auth?.user.isNotificationEnabled ?? false,
+                    onChanged: (value) {
+                      context.read<AuthCubit>().toggleNotification(value: value);
+                    },
                   ),
-                },
+                ),
               );
             },
           ),

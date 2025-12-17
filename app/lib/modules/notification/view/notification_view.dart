@@ -34,13 +34,12 @@ class _NotificationViewState extends State<NotificationView> {
         ),
         centerTitle: true,
       ),
-      body: BlocBuilder<NotificationCubit, NotificationGlobalState>(
+      body: BlocBuilder<NotificationCubit, NotificationState>(
         builder: (context, state) {
-          final fetchState = state.fetchState;
-          if (fetchState is NotificationInitial) {
+          if (state is NotificationInitial) {
             return const Center(child: CircularProgressIndicator.adaptive());
-          } else if (fetchState is NotificationSuccess) {
-            final notifications = fetchState.notifications;
+          } else if (state is NotificationSuccess) {
+            final notifications = state.notifications;
             if (notifications == null || notifications.isEmpty) {
               return const NotificationEmptyState();
             }
