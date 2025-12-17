@@ -113,4 +113,18 @@ final class AuthRepositoryMock implements AuthRepository {
   Future<void> logout() {
     return Future.value();
   }
+
+  @override
+  String? getNotificationToken() {
+    return 'token';
+  }
+
+  @override
+  Future<void> patchNotificationToken({
+    required String userId,
+    required String notificationToken,
+    required String deviceType,
+  }) {
+    return Future.value();
+  }
 }

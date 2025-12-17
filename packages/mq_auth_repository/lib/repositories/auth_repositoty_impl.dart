@@ -100,4 +100,23 @@ final class AuthRepositoryImpl implements AuthRepository {
     await remoteDataSource.logout();
     await localDataSource.clearUserData();
   }
+
+  @override
+  String? getNotificationToken() {
+    return localDataSource.getNotificationToken();
+  }
+
+  @override
+  Future<void> patchNotificationToken({
+    required String userId,
+    required String notificationToken,
+    required String deviceType,
+  }) async {
+    await remoteDataSource.patchNotificationToken(
+      userId: userId,
+      notificationToken: notificationToken,
+      deviceType: deviceType,
+    );
+    await localDataSource.saveNotificationToken(notificationToken);
+  }
 }

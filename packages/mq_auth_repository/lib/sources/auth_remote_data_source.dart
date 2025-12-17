@@ -62,7 +62,7 @@ final class AuthRemoteDataSource {
           'language': languageCode,
         },
       );
-    } catch (e) {
+    } on Object catch (e) {
       log('AuthRemoteDataSource signInWithGoogle:', error: e);
       rethrow;
     }
@@ -84,7 +84,7 @@ final class AuthRemoteDataSource {
           'language': languageCode,
         },
       );
-    } catch (e) {
+    } on Object catch (e) {
       log('AuthRemoteDataSource signInWithApple:', error: e);
       rethrow;
     }
@@ -107,32 +107,72 @@ final class AuthRemoteDataSource {
     required String userId,
     required Gender gender,
   }) {
-    return client.patchType(
-      '/api/v1/accounts/profile/$userId/',
-      fromJson: UserModel.fromJson,
-      body: {'gender': gender.name.toUpperCase()},
-    );
+    try {
+      return client.patchType(
+        '/api/v1/accounts/profile/$userId/',
+        fromJson: UserModel.fromJson,
+        body: {'gender': gender.name.toUpperCase()},
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource pathGender:', error: e);
+      rethrow;
+    }
   }
 
   Future<UserModel> pathLocale({
     required String userId,
     required String localeCode,
   }) {
-    return client.patchType(
-      '/api/v1/accounts/profile/$userId/',
-      fromJson: UserModel.fromJson,
-      body: {'language': localeCode.toUpperCase()},
-    );
+    try {
+      return client.patchType(
+        '/api/v1/accounts/profile/$userId/',
+        fromJson: UserModel.fromJson,
+        body: {'language': localeCode.toUpperCase()},
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource pathLocale:', error: e);
+      rethrow;
+    }
+  }
+
+  Future<void> patchNotificationToken({
+    required String userId,
+    required String notificationToken,
+    required String deviceType,
+  }) {
+    try {
+      return client.postResponse<void>(
+        'api/v1/accounts/devices/',
+        body: {
+          'name': userId,
+          'registration_id': notificationToken,
+          'type': deviceType,
+        },
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource patchNotificationToken:', error: e);
+      rethrow;
+    }
   }
 
   Future<void> deleteAccount() async {
-    await client.delete<Map<String, dynamic>>(
-      '/api/v1/accounts/profile/delete_my_account/',
-    );
+    try {
+      await client.delete<Map<String, dynamic>>(
+        '/api/v1/accounts/profile/delete_my_account/',
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource deleteAccount:', error: e);
+      rethrow;
+    }
     await googleSocialAuthService.deleteAccount();
   }
 
   Future<void> logout() async {
-    await googleSocialAuthService.logOut();
+    try {
+      await googleSocialAuthService.logOut();
+    } on Object catch (e) {
+      log('AuthRemoteDataSource logout:', error: e);
+      rethrow;
+    }
   }
 }

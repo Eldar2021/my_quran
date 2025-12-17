@@ -13,6 +13,7 @@ final class AuthLocalDataSource {
 
   static const tokenKey = 'token-new';
   static const userKey = 'user';
+  static const notificationTokenKey = 'notification-token';
 
   AuthModel? get initialAuth {
     try {
@@ -33,7 +34,23 @@ final class AuthLocalDataSource {
     }
   }
 
-  String? getToken() => storage.readString(key: tokenKey);
+  String? getToken() {
+    try {
+      return storage.readString(key: tokenKey);
+    } on Object catch (e) {
+      log('AuthLocalDataSource getToken:', error: e);
+      return null;
+    }
+  }
+
+  String? getNotificationToken() {
+    try {
+      return storage.readString(key: notificationTokenKey);
+    } on Object catch (e) {
+      log('AuthLocalDataSource getNotificationToken:', error: e);
+      return null;
+    }
+  }
 
   Future<void> saveUser(AuthModel userModel) async {
     try {
@@ -49,6 +66,17 @@ final class AuthLocalDataSource {
       ]);
     } on Object catch (e) {
       log('AuthLocalDataSource saveUser:', error: e);
+    }
+  }
+
+  Future<void> saveNotificationToken(String notificationToken) async {
+    try {
+      await storage.writeString(
+        key: notificationTokenKey,
+        value: notificationToken,
+      );
+    } on Object catch (e) {
+      log('AuthLocalDataSource saveNotificationToken:', error: e);
     }
   }
 

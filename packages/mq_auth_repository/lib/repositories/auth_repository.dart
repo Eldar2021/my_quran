@@ -5,6 +5,8 @@ abstract class AuthRepository {
 
   Future<void> loginWithEmail(String email);
 
+  String? getNotificationToken();
+
   Future<AuthModel> verifyOtp({
     required String email,
     required String otp,
@@ -32,6 +34,12 @@ abstract class AuthRepository {
   Future<UserModel> patchLocale({
     required String userId,
     required String localeCode,
+  });
+
+  Future<void> patchNotificationToken({
+    required String userId,
+    required String notificationToken,
+    required String deviceType,
   });
 
   Future<void> deleteAccount();
