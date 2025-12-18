@@ -8,6 +8,7 @@ linter:
     directives_ordering: false
     one_member_abstracts: false
     discarded_futures: false
+    avoid_positional_boolean_parameters: false
 
 analyzer:
   exclude:

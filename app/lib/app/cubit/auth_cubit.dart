@@ -14,59 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthRepository authRepository;
 
-  Future<void> loginWithEmail(String email) async {
-    try {
-      await authRepository.loginWithEmail(email);
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-    }
-  }
-
-  Future<AuthState> verifyOtp(String otp, String email) async {
-    try {
-      final auth = await authRepository.verifyOtp(
-        email: email,
-        otp: otp,
-        languageCode: state.currentLocale.languageCode,
-        gender: state.gender,
-      );
-      emit(state.copyWith(auth: auth));
-      return state;
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-      return state;
-    }
-  }
-
-  Future<AuthState> signInWithGoogle() async {
-    try {
-      final auth = await authRepository.signWithGoogle(
-        state.currentLocale.languageCode,
-        state.gender,
-      );
-      emit(state.copyWith(auth: auth));
-      return state;
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-      return state;
-    }
-  }
-
-  Future<AuthState> signInWithApple() async {
-    try {
-      final auth = await authRepository.signWithApple(
-        state.currentLocale.languageCode,
-        state.gender,
-      );
-      emit(state.copyWith(auth: auth));
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-    }
-
-    return state;
-  }
-
   Future<void> setUserData(AuthModel authModel) {
+    emit(state.copyWith(auth: authModel));
     return authRepository.saveUser(authModel);
   }
 

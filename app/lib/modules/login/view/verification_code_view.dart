@@ -12,7 +12,10 @@ import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class VerificationCodeView extends StatefulWidget {
-  const VerificationCodeView({required this.email, super.key});
+  const VerificationCodeView({
+    required this.email,
+    super.key,
+  });
 
   final String email;
 
@@ -21,18 +24,20 @@ class VerificationCodeView extends StatefulWidget {
 }
 
 class _VerificationCodeViewState extends State<VerificationCodeView> with NotificationMixin {
-  late TextEditingController verificationCodeController;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late final TextEditingController _controller;
+  late final GlobalKey<FormState> _formKey;
 
   @override
   void initState() {
     super.initState();
-    verificationCodeController = TextEditingController();
+    _controller = TextEditingController();
+    _formKey = GlobalKey<FormState>();
   }
 
   @override
   void dispose() {
-    verificationCodeController.dispose();
+    _controller.dispose();
+    _formKey.currentState?.dispose();
     super.dispose();
   }
 
@@ -42,27 +47,11 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
     final colorScheme = Theme.of(context).colorScheme;
     return ScaffoldWithBgImage(
       key: const Key(MqKeys.verifyOtpView),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            context.goNamed(AppRouter.loginWihtSoccial);
-          },
-        ),
-      ),
-      body: BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state.auth != null) {
-            _onLoginSuccess(state.auth!);
-          } else if (state.exception != null) {
-            AppAlert.showErrorDialog(
-              context,
-              errorText: state.exception.toString(),
-            );
-          }
-        },
+      appBar: AppBar(),
+      body: BlocListener<LoginCubit, LoginState>(
+        listener: _loginListener,
         child: Form(
-          key: formKey,
+          key: _formKey,
           child: ListView(
             padding: const EdgeInsets.all(24),
             children: [
@@ -93,29 +82,13 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
               const SizedBox(height: 26),
               PinputWidget(
                 key: const Key(MqKeys.otpTextField),
-                controller: verificationCodeController,
-                validator: (value) {
-                  if (value == null || value.length < 4) {
-                    return context.l10n.enterVerificationCode;
-                  }
-                  return null;
-                },
+                controller: _controller,
+                validator: (v) => Validators.otpValidator(v, context),
               ),
               const SizedBox(height: 30),
               ElevatedButton(
                 key: Key(MqKeys.loginTypeName('email')),
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    MqAnalytic.track(
-                      AnalyticKey.tapLogin,
-                      params: {'soccial': 'email'},
-                    );
-                    context.read<AuthCubit>().verifyOtp(
-                      verificationCodeController.text,
-                      widget.email,
-                    );
-                  }
-                },
+                onPressed: _verify,
                 child: Text(context.l10n.login),
               ),
             ],
@@ -125,11 +98,44 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
     );
   }
 
+  void _verify() {
+    if (_formKey.currentState!.validate()) {
+      MqAnalytic.track(
+        AnalyticKey.tapLogin,
+        params: {'soccial': 'email'},
+      );
+      final authState = context.read<AuthCubit>().state;
+      final otp = _controller.text.trim();
+      context.read<LoginCubit>().verifyOtp(
+        email: widget.email,
+        otp: otp,
+        languageCode: authState.currentLocale.languageCode,
+        gender: authState.gender,
+      );
+    }
+  }
+
+  void _loginListener(BuildContext context, LoginState state) {
+    context.manageLoader(state is LoginLoading);
+    if (state is LoginSuccess) {
+      _onLoginSuccess(state.data);
+    } else if (state is LoginError) {
+      _onLoginError(state.error);
+    }
+  }
+
   Future<void> _onLoginSuccess(AuthModel auth) async {
     await Future.wait<void>([
       context.read<AuthCubit>().setUserData(auth),
       initializeNotification(auth, context),
     ]);
     if (mounted) context.goNamed(AppRouter.home);
+  }
+
+  void _onLoginError(Object error) {
+    AppAlert.showErrorDialog(
+      context,
+      errorText: error.toString(),
+    );
   }
 }
