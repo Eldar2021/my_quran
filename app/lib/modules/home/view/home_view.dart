@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -230,6 +232,10 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     final authCubit = context.read<AuthCubit>();
     final bannerCubit = context.read<HomeBannersCubit>();
     final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
+
+    if (authCubit.state.auth != null) {
+      unawaited(context.read<ProfileCubit>().getUserData(authCubit.state.auth!.key));
+    }
 
     await Future.wait([
       homeCubit.getData(),

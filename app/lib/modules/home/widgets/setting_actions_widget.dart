@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
@@ -160,39 +159,49 @@ class SettingActionsWidget extends StatelessWidget {
           title: context.l10n.forDevelopers,
         ),
         if (authCubit.state.isAuthedticated)
-          BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {
-              if (!state.isAuthedticated) {
-                context.go('/login');
-              }
-            },
-            child: DrawerTile(
-              key: const Key(MqKeys.logoutButton),
-              onTap: () {
-                MqBottomSheets.showConfirmSheet<void>(
-                  context: context,
-                  title: context.l10n.logout,
-                  content: context.l10n.confirmLogout,
-                  confirmText: context.l10n.yes,
-                  cancelText: context.l10n.cancel,
-                  confirmKey: MqKeys.confirmLogoutButtonYes,
-                  onConfirm: () async {
-                    MqAnalytic.track(AnalyticKey.tapLogout);
-                    context.loaderOverlay.show();
-                    await authCubit.logout();
-                    if (context.mounted) context.loaderOverlay.hide();
+          DrawerTile(
+            key: const Key(MqKeys.logoutButton),
+            onTap: () {
+              MqBottomSheets.showConfirmSheet<void>(
+                context: context,
+                title: context.l10n.logout,
+                content: context.l10n.confirmLogout,
+                cancelText: context.l10n.cancel,
+                onCancel: () => Navigator.pop(context),
+                confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
+                  listener: (context, state) {
+                    if (state is ProfileLogout) context.go('/login');
                   },
-                  onCancel: () => Navigator.pop(context),
-                );
-              },
-              icon: Assets.icons.logout.svg(
-                colorFilter: ColorFilter.mode(
-                  colorScheme.primary,
-                  BlendMode.srcIn,
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      key: const Key(MqKeys.confirmLogoutButtonYes),
+                      onPressed: () {
+                        MqAnalytic.track(AnalyticKey.tapLogout);
+                        context.read<ProfileCubit>().logout();
+                      },
+                      child: switch (state) {
+                        ProfileLoading(:final type) =>
+                          type == ProfileLoadingType.logout
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                    color: Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                )
+                              : Text(context.l10n.yes),
+                        _ => Text(context.l10n.yes),
+                      },
+                    );
+                  },
                 ),
+              );
+            },
+            icon: Assets.icons.logout.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.primary,
+                BlendMode.srcIn,
               ),
-              title: context.l10n.logout,
             ),
+            title: context.l10n.logout,
           ),
         if (authCubit.state.isAuthedticated)
           DrawerTile(
@@ -201,15 +210,33 @@ class SettingActionsWidget extends StatelessWidget {
                 context: context,
                 title: context.l10n.deleteAccount,
                 content: context.l10n.confirmDeleteAccount,
-                confirmText: context.l10n.yes,
                 cancelText: context.l10n.cancel,
-                onConfirm: () async {
-                  MqAnalytic.track(AnalyticKey.tapDeleteAccount);
-                  context.loaderOverlay.show();
-                  await authCubit.deleteAccount();
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
                 onCancel: () => Navigator.pop(context),
+                confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
+                  listener: (context, state) {
+                    if (state is ProfileDeleted) context.go('/login');
+                  },
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      key: const Key(MqKeys.deleteAccountButton),
+                      onPressed: () {
+                        MqAnalytic.track(AnalyticKey.tapDeleteAccount);
+                        context.read<ProfileCubit>().deleteAccount();
+                      },
+                      child: switch (state) {
+                        ProfileLoading(:final type) =>
+                          type == ProfileLoadingType.deleteAccount
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                    color: Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                )
+                              : Text(context.l10n.yes),
+                        _ => Text(context.l10n.yes),
+                      },
+                    );
+                  },
+                ),
               );
             },
             icon: Assets.icons.trash.svg(

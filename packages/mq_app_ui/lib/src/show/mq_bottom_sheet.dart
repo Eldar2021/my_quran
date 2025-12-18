@@ -12,6 +12,8 @@ abstract class MqBottomSheets {
     String? content,
     String? confirmKey,
     String? cancelKey,
+    Widget? confirmButton,
+    Widget? cancelButton,
   }) {
     return showModalBottomSheet<T>(
       context: context,
@@ -46,19 +48,23 @@ abstract class MqBottomSheets {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                      child: OutlinedButton(
-                        key: cancelKey != null ? Key(cancelKey) : null,
-                        onPressed: onCancel,
-                        child: Text(cancelText),
-                      ),
+                      child:
+                          cancelButton ??
+                          OutlinedButton(
+                            key: cancelKey != null ? Key(cancelKey) : null,
+                            onPressed: onCancel,
+                            child: Text(cancelText),
+                          ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
-                      child: ElevatedButton(
-                        key: confirmKey != null ? Key(confirmKey) : null,
-                        onPressed: onConfirm,
-                        child: Text(confirmText),
-                      ),
+                      child:
+                          confirmButton ??
+                          ElevatedButton(
+                            key: confirmKey != null ? Key(confirmKey) : null,
+                            onPressed: onConfirm,
+                            child: Text(confirmText),
+                          ),
                     ),
                   ],
                 ),

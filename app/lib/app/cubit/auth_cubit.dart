@@ -36,26 +36,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> deleteAccount() async {
-    if (!isAuthedticated) return;
-    try {
-      await authRepository.deleteAccount();
-      emit(const AuthState());
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-    }
-  }
-
-  Future<void> logout() async {
-    if (!isAuthedticated) return;
-    try {
-      await authRepository.logout();
-      emit(const AuthState());
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-    }
-  }
-
   bool get isAuthedticated => state.isAuthedticated;
   String get userId => state.auth?.key ?? '';
 }
