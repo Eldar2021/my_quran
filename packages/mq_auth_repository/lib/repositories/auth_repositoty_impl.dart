@@ -58,6 +58,13 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<UserModel> getUserData(String userId) async {
+    final res = await remoteDataSource.getUserData(userId);
+    await localDataSource.saveUser(AuthModel(key: userId, user: res));
+    return res;
+  }
+
+  @override
   Future<void> setNotificationToken({
     required String userId,
     required String notificationToken,

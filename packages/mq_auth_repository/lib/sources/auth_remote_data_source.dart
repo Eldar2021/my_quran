@@ -90,6 +90,18 @@ final class AuthRemoteDataSource {
     }
   }
 
+  Future<UserModel> getUserData(String userId) {
+    try {
+      return client.getType(
+        '/api/v1/accounts/profile/$userId/',
+        fromJson: UserModel.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getUserData:', error: e);
+      rethrow;
+    }
+  }
+
   Future<UserModel> saveUser(AuthModel auth) {
     try {
       return client.putType(

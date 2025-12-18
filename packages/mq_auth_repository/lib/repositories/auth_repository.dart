@@ -22,6 +22,8 @@ abstract class AuthRepository {
     Gender gender,
   );
 
+  Future<UserModel> getUserData(String userId);
+
   Future<void> saveUser(AuthModel user);
 
   Future<void> setNotificationToken({

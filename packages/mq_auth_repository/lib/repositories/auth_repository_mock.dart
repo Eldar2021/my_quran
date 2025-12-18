@@ -54,6 +54,14 @@ final class AuthRepositoryMock implements AuthRepository {
   }
 
   @override
+  Future<UserModel> getUserData(String userId) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () => UserModel.fromJson(_userJsonData),
+    );
+  }
+
+  @override
   Future<void> deleteAccount() {
     return Future.value();
   }
