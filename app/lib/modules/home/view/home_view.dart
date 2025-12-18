@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
         actions: [
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {
-              if (state.auth?.user.isNotificationEnabled ?? false) {
+              if (state.auth?.user.allowNotifications ?? false) {
                 return IconButton(
                   onPressed: () => context.pushNamed(AppRouter.notification),
                   icon: Icon(

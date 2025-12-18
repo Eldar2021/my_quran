@@ -18,7 +18,7 @@ final class UserModel {
     required this.gender,
     required this.language,
     required this.canCreateHatim,
-    required this.isNotificationEnabled,
+    required this.allowNotifications,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
@@ -46,8 +46,8 @@ final class UserModel {
   @JsonKey(name: 'can_create_hatim')
   final bool? canCreateHatim;
 
-  @JsonKey(name: 'is_notification_enabled')
-  final bool? isNotificationEnabled;
+  @JsonKey(name: 'allow_notifications')
+  final bool? allowNotifications;
 
   UserModel copyWith({
     String? firstName,
@@ -60,7 +60,7 @@ final class UserModel {
     Gender? gender,
     String? language,
     bool? canCreateHatim,
-    bool? isNotificationEnabled,
+    bool? allowNotifications,
   }) {
     return UserModel(
       firstName: firstName ?? this.firstName,
@@ -73,7 +73,7 @@ final class UserModel {
       gender: gender ?? this.gender,
       language: language ?? this.language,
       canCreateHatim: canCreateHatim ?? this.canCreateHatim,
-      isNotificationEnabled: isNotificationEnabled ?? this.isNotificationEnabled,
+      allowNotifications: allowNotifications ?? this.allowNotifications,
     );
   }
 }

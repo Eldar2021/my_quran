@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,17 +33,6 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } else if (unAuthenticatedNewState != null) {
       emit(unAuthenticatedNewState);
-    }
-  }
-
-  Future<void> setNotificationToken(String fcmToken) async {
-    final auth = state.auth;
-    if (auth != null) {
-      await authRepository.setNotificationToken(
-        userId: auth.key,
-        notificationToken: fcmToken,
-        deviceType: Platform.isAndroid ? 'android' : 'ios',
-      );
     }
   }
 

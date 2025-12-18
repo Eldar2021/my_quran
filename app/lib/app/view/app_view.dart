@@ -92,6 +92,9 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
+          create: (context) => NotificationCubit(context.read<AuthRepository>()),
+        ),
+        BlocProvider(
           create: (context) => HomeCubit(context.read<MqHomeRepository>()),
         ),
         BlocProvider(

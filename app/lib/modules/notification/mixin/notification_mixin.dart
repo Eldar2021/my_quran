@@ -7,6 +7,7 @@ import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
+import 'package:my_quran/modules/modules.dart';
 
 mixin NotificationMixin {
   Future<void> initializeNotification(
@@ -38,7 +39,10 @@ mixin NotificationMixin {
           );
         },
         onSendTokenToServer: (fcmToken) {
-          context.read<AuthCubit>().setNotificationToken(fcmToken);
+          context.read<NotificationCubit>().setNotificationToken(
+            auth,
+            fcmToken,
+          );
         },
       );
     } on Object catch (e) {

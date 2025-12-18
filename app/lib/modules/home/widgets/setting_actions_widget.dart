@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
-import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
@@ -12,6 +12,7 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/utils/show/snackbars.dart';
 
 class SettingActionsWidget extends StatelessWidget {
   const SettingActionsWidget({super.key});
@@ -220,32 +221,42 @@ class SettingActionsWidget extends StatelessWidget {
             title: context.l10n.deleteAccount,
           ),
         if (authCubit.state.isAuthedticated)
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              return DrawerTile(
-                icon: Icon(
-                  Icons.notifications_none_outlined,
-                  color: colorScheme.primary,
-                ),
-                title: context.l10n.notifications,
-                trailing: Transform.scale(
-                  scale: 0.8,
-                  child: Switch(
-                    value: state.auth?.user.isNotificationEnabled ?? false,
-                    onChanged: (value) async {
-                      context.loaderOverlay.show();
-                      await context.read<AuthCubit>().updateUserData(
-                        NotificationEnabledParam(
-                          userId: state.auth?.key ?? '',
-                          enabled: value,
-                        ),
-                      );
-                      if (context.mounted) context.loaderOverlay.hide();
-                    },
+          DrawerTile(
+            icon: Icon(
+              Icons.notifications_none_outlined,
+              color: colorScheme.primary,
+            ),
+            title: context.l10n.notifications,
+            trailing: BlocConsumer<NotificationCubit, NotificationState>(
+              listener: (context, state) {
+                final allowedState = state.allowedState;
+                if (allowedState is NotificationAllowedError) {
+                  AppSnackbar.showError(
+                    context: context,
+                    title: allowedState.error.toString(),
+                  );
+                }
+              },
+              builder: (context, state) {
+                final allowedState = state.allowedState;
+                return switch (allowedState) {
+                  NotificationAllowedInitial() => const SizedBox.shrink(),
+                  NotificationAllowedLoading() => const CupertinoActivityIndicator(),
+                  _ => Transform.scale(
+                    scale: 0.8,
+                    child: Switch(
+                      value: allowedState.value,
+                      onChanged: (value) {
+                        context.read<NotificationCubit>().toggleNotification(
+                          context.read<AuthCubit>().userId,
+                          value,
+                        );
+                      },
+                    ),
                   ),
-                ),
-              );
-            },
+                };
+              },
+            ),
           ),
         const SizedBox(height: 20),
       ],
