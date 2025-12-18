@@ -34,6 +34,16 @@ final class ProfileSuccess extends ProfileState {
 }
 
 @immutable
+final class ProfileLogout extends ProfileState {
+  const ProfileLogout();
+}
+
+@immutable
+final class ProfileDeleted extends ProfileState {
+  const ProfileDeleted();
+}
+
+@immutable
 final class ProfileError extends ProfileState {
   const ProfileError(this.error);
 
