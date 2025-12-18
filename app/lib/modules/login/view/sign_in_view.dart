@@ -80,16 +80,10 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
                 ),
               ),
               const SizedBox(height: 30),
-              ValueListenableBuilder(
-                valueListenable: _emailController,
-                builder: (context, value, child) {
-                  final isValid = _formKey.currentState!.validate();
-                  return ElevatedButton(
-                    key: const Key(MqKeys.sendOtp),
-                    onPressed: isValid ? _sendOtp : null,
-                    child: Text(context.l10n.login),
-                  );
-                },
+              ElevatedButton(
+                key: const Key(MqKeys.sendOtp),
+                onPressed: _sendOtp,
+                child: Text(context.l10n.login),
               ),
               const SizedBox(height: 40),
               Row(
@@ -166,13 +160,18 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
   }
 
   Future<void> _sendOtp() async {
+    if (!_formKey.currentState!.validate()) return;
     MqAnalytic.track(AnalyticKey.goVerificationOtp);
     final email = _emailController.text.trim();
-    await context.read<LoginCubit>().loginWithEmail(email);
+    unawaited(context.read<LoginCubit>().loginWithEmail(email));
     if (mounted) {
-      context.goNamed(
-        AppRouter.verificationCode,
-        pathParameters: {'email': email},
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => BlocProvider.value(
+            value: context.read<LoginCubit>(),
+            child: VerificationCodeView(email: email),
+          ),
+        ),
       );
     }
   }

@@ -35,7 +35,6 @@ final class AppRouter {
 
   static const login = 'login';
   static const loginWihtSoccial = 'login-with-soccial';
-  static const verificationCode = 'verification-code';
 
   static const settingsPage = 'settings';
   static const customAppSettings = 'custom-settings';
@@ -76,16 +75,6 @@ final class AppRouter {
               child: const SignInView(),
             );
           },
-          routes: [
-            GoRoute(
-              path: '$verificationCode/:email',
-              name: verificationCode,
-              builder: (context, state) {
-                final email = state.pathParameters['email'];
-                return VerificationCodeView(email: email!);
-              },
-            ),
-          ],
         ),
         GoRoute(
           path: '/$devModeView',
