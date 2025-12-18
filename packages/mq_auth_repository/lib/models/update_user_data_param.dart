@@ -154,5 +154,5 @@ final class NotificationEnabledParam extends UpdateUserDataParam {
   final bool enabled;
 
   @override
-  Map<String, dynamic> toJson() => {'notification_enabled': enabled};
+  Map<String, dynamic> toJson() => {'allow_notifications': enabled};
 }

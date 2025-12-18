@@ -69,21 +69,13 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
           ),
         ),
         actions: [
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              if (state.auth?.user.allowNotifications ?? false) {
-                return IconButton(
-                  onPressed: () => context.pushNamed(AppRouter.notification),
-                  icon: Icon(
-                    Icons.notifications_none_outlined,
-                    color: colorScheme.onSurface,
-                    size: 28,
-                  ),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            },
+          IconButton(
+            onPressed: () => context.pushNamed(AppRouter.notification),
+            icon: Icon(
+              Icons.notifications_none_outlined,
+              color: colorScheme.onSurface,
+              size: 28,
+            ),
           ),
         ],
       ),
