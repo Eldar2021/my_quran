@@ -21,6 +21,15 @@ class AuthCubit extends Cubit<AuthState> {
     emit(state.copyWith(auth: auth));
   }
 
+  void clearAuth() {
+    emit(
+      AuthState(
+        localeForNow: state.localeForNow,
+        genderForNow: state.genderForNow,
+      ),
+    );
+  }
+
   void uupdateLocale(String locale) {
     emit(state.copyWith(localeForNow: locale));
   }

@@ -171,6 +171,7 @@ class SettingActionsWidget extends StatelessWidget {
                 confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
                   listener: (context, state) {
                     if (state is ProfileLogout) {
+                      context.read<AuthCubit>().clearAuth();
                       context.go('/login');
                     } else if (state is ProfileError) {
                       AppSnackbar.showError(
@@ -227,6 +228,7 @@ class SettingActionsWidget extends StatelessWidget {
                 confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
                   listener: (context, state) {
                     if (state is ProfileDeleted) {
+                      context.read<AuthCubit>().clearAuth();
                       context.go('/login');
                     } else if (state is ProfileError) {
                       AppSnackbar.showError(
