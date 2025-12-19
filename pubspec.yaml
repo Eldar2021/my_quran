@@ -90,6 +90,12 @@ melos:
       concurrency: 1
       description: "Format Dart code for selected package"
 
+    format-check:
+      run: |
+        dart format . --line-length 120 --set-exit-if-changed
+        flutter pub get
+      description: "Check format all Dart code"
+
     unit-test:
       run: melos exec -c 1 -- flutter test
       description: "Run unit tests (all packages)"
