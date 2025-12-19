@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
-import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -14,19 +13,16 @@ mixin NotificationMixin {
     AuthModel auth,
     BuildContext context,
   ) async {
+    final notificationCubit = context.read<NotificationCubit>();
     try {
       await context.read<NotificationService>().initialize(
         userToken: auth.key,
         locale: auth.user.language ?? 'en',
         onPermissionEnabled: () {
-          context.read<AuthCubit>().updateUserData(
-            NotificationEnabledParam(enabled: true, userId: auth.key),
-          );
+          notificationCubit.toggleNotification(auth.key, true);
         },
         onPermissionDisabled: () {
-          context.read<AuthCubit>().updateUserData(
-            NotificationEnabledParam(enabled: false, userId: auth.key),
-          );
+          notificationCubit.toggleNotification(auth.key, false);
         },
         onNotificationClick: (data) {
           rootNavigatorKey.currentContext?.goNamed(
@@ -39,7 +35,7 @@ mixin NotificationMixin {
           );
         },
         onSendTokenToServer: (fcmToken) {
-          context.read<NotificationCubit>().setNotificationToken(
+          notificationCubit.setNotificationToken(
             auth,
             fcmToken,
           );

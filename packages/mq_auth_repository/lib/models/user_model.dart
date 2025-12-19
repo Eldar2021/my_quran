@@ -8,17 +8,17 @@ part 'user_model.g.dart';
 @immutable
 final class UserModel {
   const UserModel({
-    required this.firstName,
-    required this.lastName,
-    required this.username,
-    required this.avatar,
-    required this.email,
-    required this.country,
-    required this.phoneNumber,
-    required this.gender,
-    required this.language,
-    required this.canCreateHatim,
-    required this.allowNotifications,
+    this.firstName,
+    this.lastName,
+    this.username,
+    this.avatar,
+    this.email,
+    this.country,
+    this.phoneNumber,
+    this.gender,
+    this.language,
+    this.canCreateHatim,
+    this.allowNotifications,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

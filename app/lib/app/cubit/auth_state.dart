@@ -3,33 +3,28 @@ part of 'auth_cubit.dart';
 class AuthState extends Equatable {
   const AuthState({
     this.auth,
-    this.exception,
     this.localeForNow,
     this.genderForNow,
   });
 
   final AuthModel? auth;
-  final Object? exception;
   final String? localeForNow;
   final Gender? genderForNow;
 
   @override
   List<Object?> get props => [
     auth,
-    exception,
     localeForNow,
     genderForNow,
   ];
 
   AuthState copyWith({
     AuthModel? auth,
-    Object? exception,
     String? localeForNow,
     Gender? genderForNow,
   }) {
     return AuthState(
       auth: auth ?? this.auth,
-      exception: exception ?? this.exception,
       localeForNow: localeForNow ?? this.localeForNow,
       genderForNow: genderForNow ?? this.genderForNow,
     );

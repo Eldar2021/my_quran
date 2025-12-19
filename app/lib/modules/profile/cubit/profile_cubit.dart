@@ -15,7 +15,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(const ProfileLoading(ProfileLoadingType.initial));
     try {
       final user = await repository.getUserData(userId);
-      emit(ProfileSuccess(user));
+      emit(ProfileSuccess(AuthModel(user: user, key: userId)));
     } on Object catch (e) {
       emit(ProfileError(e));
     }
@@ -25,7 +25,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileLoading(ProfileLoadingType.fromUpdateValueType(param)));
     try {
       final res = await repository.patchUserData(param);
-      emit(ProfileSuccess(res));
+      emit(ProfileSuccess(AuthModel(key: param.userId, user: res)));
     } on Object catch (e) {
       emit(ProfileError(e));
     }
@@ -49,5 +49,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     } on Exception catch (e) {
       emit(ProfileError(e));
     }
+  }
+
+  void setAuth(AuthModel auth) {
+    emit(ProfileSuccess(auth));
   }
 }

@@ -27,7 +27,7 @@ final class ProfileLoading extends ProfileState {
 final class ProfileSuccess extends ProfileState {
   const ProfileSuccess(this.user);
 
-  final UserModel user;
+  final AuthModel user;
 
   @override
   List<Object> get props => [user];

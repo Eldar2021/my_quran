@@ -170,7 +170,19 @@ class SettingActionsWidget extends StatelessWidget {
                 onCancel: () => Navigator.pop(context),
                 confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
                   listener: (context, state) {
-                    if (state is ProfileLogout) context.go('/login');
+                    if (state is ProfileLogout) {
+                      context.go('/login');
+                    } else if (state is ProfileError) {
+                      AppSnackbar.showError(
+                        context: context,
+                        title: context.l10n.error,
+                      );
+                      final authCubit = context.read<AuthCubit>();
+                      final profileCubit = context.read<ProfileCubit>();
+                      if (authCubit.state.auth != null) {
+                        profileCubit.setAuth(authCubit.state.auth!);
+                      }
+                    }
                   },
                   builder: (context, state) {
                     return ElevatedButton(
@@ -214,7 +226,19 @@ class SettingActionsWidget extends StatelessWidget {
                 onCancel: () => Navigator.pop(context),
                 confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
                   listener: (context, state) {
-                    if (state is ProfileDeleted) context.go('/login');
+                    if (state is ProfileDeleted) {
+                      context.go('/login');
+                    } else if (state is ProfileError) {
+                      AppSnackbar.showError(
+                        context: context,
+                        title: context.l10n.error,
+                      );
+                      final authCubit = context.read<AuthCubit>();
+                      final profileCubit = context.read<ProfileCubit>();
+                      if (authCubit.state.auth != null) {
+                        profileCubit.setAuth(authCubit.state.auth!);
+                      }
+                    }
                   },
                   builder: (context, state) {
                     return ElevatedButton(

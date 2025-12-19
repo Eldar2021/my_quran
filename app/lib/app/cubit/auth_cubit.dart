@@ -17,23 +17,16 @@ class AuthCubit extends Cubit<AuthState> {
     return authRepository.saveUser(authModel);
   }
 
-  Future<void> updateUserData(
-    UpdateUserDataParam param, {
-    AuthState? unAuthenticatedNewState,
-  }) async {
-    final auth = state.auth;
-    if (auth != null) {
-      try {
-        final res = await authRepository.patchUserData(param);
-        final newUser = auth.copyWith(user: res);
-        emit(state.copyWith(auth: newUser));
-      } on Exception catch (e) {
-        emit(state.copyWith(exception: e));
-        return;
-      }
-    } else if (unAuthenticatedNewState != null) {
-      emit(unAuthenticatedNewState);
-    }
+  void updateAuth(AuthModel auth) {
+    emit(state.copyWith(auth: auth));
+  }
+
+  void uupdateLocale(String locale) {
+    emit(state.copyWith(localeForNow: locale));
+  }
+
+  void updateGender(Gender gender) {
+    emit(state.copyWith(genderForNow: gender));
   }
 
   bool get isAuthedticated => state.isAuthedticated;
