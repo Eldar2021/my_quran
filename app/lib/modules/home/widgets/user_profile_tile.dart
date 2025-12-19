@@ -14,12 +14,11 @@ class UserProfileTile extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         final userName = state.auth?.user.firstName ?? context.l10n.hello;
-        final userGender = state.auth?.user.gender ?? state.genderForNow;
         return ListTile(
           title: Text(userName, maxLines: 1),
           leading: CircleAvatar(
             backgroundColor: colorScheme.onSurface.withValues(alpha: 0.1),
-            child: userGender == Gender.female
+            child: state.currentGender == Gender.female
                 ? Assets.icons.userFemale.svg(
                     colorFilter: ColorFilter.mode(
                       colorScheme.onSurface,

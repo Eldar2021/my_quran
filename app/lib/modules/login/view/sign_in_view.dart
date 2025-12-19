@@ -149,12 +149,12 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
     if (isGoogle) {
       context.read<LoginCubit>().signInWithGoogle(
         languageCode: authState.currentLocale.languageCode,
-        gender: authState.gender,
+        gender: authState.currentGender,
       );
     } else {
       context.read<LoginCubit>().signInWithApple(
         languageCode: authState.currentLocale.languageCode,
-        gender: authState.gender,
+        gender: authState.currentGender,
       );
     }
   }

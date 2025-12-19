@@ -8,9 +8,13 @@ import 'package:my_quran/l10n/l10.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.authRepository) : super(AuthState(auth: authRepository.initialAuth));
+  AuthCubit({
+    required this.authRepository,
+    this.auth,
+  }) : super(AuthState(auth: auth));
 
   final AuthRepository authRepository;
+  final AuthModel? auth;
 
   Future<void> setUserData(AuthModel authModel) {
     emit(state.copyWith(auth: authModel));
@@ -21,21 +25,16 @@ class AuthCubit extends Cubit<AuthState> {
     emit(state.copyWith(auth: auth));
   }
 
-  void clearAuth() {
-    emit(
-      AuthState(
-        localeForNow: state.localeForNow,
-        genderForNow: state.genderForNow,
-      ),
-    );
-  }
+  void clearAuth() => emit(
+    AuthState(locale: state.locale, gender: state.gender),
+  );
 
   void uupdateLocale(String locale) {
-    emit(state.copyWith(localeForNow: locale));
+    emit(state.copyWith(locale: locale));
   }
 
   void updateGender(Gender gender) {
-    emit(state.copyWith(genderForNow: gender));
+    emit(state.copyWith(gender: gender));
   }
 
   bool get isAuthedticated => state.isAuthedticated;

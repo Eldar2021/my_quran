@@ -3,55 +3,55 @@ part of 'auth_cubit.dart';
 class AuthState extends Equatable {
   const AuthState({
     this.auth,
-    this.localeForNow,
-    this.genderForNow,
+    this.locale,
+    this.gender,
   });
 
   final AuthModel? auth;
-  final String? localeForNow;
-  final Gender? genderForNow;
+  final String? locale;
+  final Gender? gender;
 
   @override
   List<Object?> get props => [
     auth,
-    localeForNow,
-    genderForNow,
+    locale,
+    gender,
   ];
 
   AuthState copyWith({
     AuthModel? auth,
-    String? localeForNow,
-    Gender? genderForNow,
+    String? locale,
+    Gender? gender,
   }) {
     return AuthState(
       auth: auth ?? this.auth,
-      localeForNow: localeForNow ?? this.localeForNow,
-      genderForNow: genderForNow ?? this.genderForNow,
+      locale: locale ?? this.locale,
+      gender: gender ?? this.gender,
     );
   }
 
   Locale get currentLocale {
     if (auth != null) return Locale(auth!.user.language?.toLowerCase() ?? 'en');
-    if (localeForNow != null) return Locale(localeForNow!);
+    if (locale != null) return Locale(locale!);
     final deviceLocal = WidgetsBinding.instance.platformDispatcher.locale;
     return AppLocalizationHelper.getSupportedLocale(deviceLocal.languageCode);
   }
 
-  Gender get gender {
+  Gender get currentGender {
     if (auth != null) return auth!.user.gender ?? Gender.male;
-    if (genderForNow != null) return genderForNow!;
+    if (gender != null) return gender!;
     return Gender.male;
   }
 
   AppUiGender get appUiGender {
-    return switch (gender) {
+    return switch (currentGender) {
       Gender.male => AppUiGender.male,
       Gender.female => AppUiGender.famela,
     };
   }
 
   MqAppUiGender get mqAppUiGender {
-    return switch (gender) {
+    return switch (currentGender) {
       Gender.male => MqAppUiGender.male,
       Gender.female => MqAppUiGender.famale,
     };

@@ -36,7 +36,10 @@ extension PumpApp on WidgetTester {
               create: (context) => AppThemeCubit(appRepository),
             ),
             BlocProvider(
-              create: (context) => AuthCubit(authRepository),
+              create: (context) => AuthCubit(
+                authRepository: authRepository,
+                auth: authRepository.initialAuth,
+              ),
             ),
             BlocProvider(
               create: (context) => HomeCubit(homeRepo),

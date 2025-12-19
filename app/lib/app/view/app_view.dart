@@ -89,7 +89,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => AuthCubit(context.read<AuthRepository>()),
+          create: (context) => AuthCubit(
+            authRepository: context.read<AuthRepository>(),
+            auth: context.read<AuthRepository>().initialAuth,
+          ),
         ),
         BlocProvider(
           create: (context) => ProfileCubit(context.read<AuthRepository>()),

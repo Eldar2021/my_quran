@@ -110,7 +110,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
         email: widget.email,
         otp: otp,
         languageCode: authState.currentLocale.languageCode,
-        gender: authState.gender,
+        gender: authState.currentGender,
       );
     }
   }
