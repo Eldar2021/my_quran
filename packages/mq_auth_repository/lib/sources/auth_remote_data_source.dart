@@ -34,9 +34,9 @@ final class AuthRemoteDataSource {
     required String otp,
     required String languageCode,
     required Gender gender,
-  }) async {
+  }) {
     try {
-      return await client.postType(
+      return client.postType(
         '/api/v1/accounts/otp/verify/',
         fromJson: AuthModel.fromJson,
         body: {'email': email, 'opt': otp},
@@ -135,7 +135,7 @@ final class AuthRemoteDataSource {
     }
   }
 
-  Future<UserModel> patchUserData(UpdateUserDataParam param) async {
+  Future<UserModel> patchUserData(UpdateUserDataParam param) {
     try {
       return client.patchType(
         '/api/v1/accounts/profile/${param.userId}/',
