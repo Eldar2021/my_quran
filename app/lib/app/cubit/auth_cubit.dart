@@ -8,18 +8,9 @@ import 'package:my_quran/l10n/l10.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit({
-    required this.authRepository,
-    this.auth,
-  }) : super(AuthState(auth: auth));
+  AuthCubit(this.auth) : super(AuthState(auth: auth));
 
-  final AuthRepository authRepository;
   final AuthModel? auth;
-
-  Future<void> setUserData(AuthModel authModel) {
-    emit(state.copyWith(auth: authModel));
-    return authRepository.saveUser(authModel);
-  }
 
   void updateAuth(AuthModel auth) {
     emit(state.copyWith(auth: auth));

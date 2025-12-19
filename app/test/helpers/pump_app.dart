@@ -36,16 +36,19 @@ extension PumpApp on WidgetTester {
               create: (context) => AppThemeCubit(appRepository),
             ),
             BlocProvider(
-              create: (context) => AuthCubit(
-                authRepository: authRepository,
-                auth: authRepository.initialAuth,
-              ),
+              create: (context) => AuthCubit(authRepository.initialAuth),
             ),
             BlocProvider(
               create: (context) => HomeCubit(homeRepo),
             ),
             BlocProvider(
               create: (context) => RemoteConfigCubit(remoteConfig),
+            ),
+            BlocProvider(
+              create: (context) => ProfileCubit(authRepository),
+            ),
+            BlocProvider(
+              create: (context) => NotificationCubit(authRepository),
             ),
           ],
           child: const QuranApp(),
