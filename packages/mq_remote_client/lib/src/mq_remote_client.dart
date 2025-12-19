@@ -24,7 +24,6 @@ class MqRemoteClient {
     required this.network,
     this.language,
     this.token,
-    this.oldToken,
   });
 
   /// The Dio instance used for making HTTP requests.
@@ -39,9 +38,6 @@ class MqRemoteClient {
   /// A function that resolves the authorization token for the headers.
   final ResolveValue? token;
 
-  /// A function that resolves the old token for the headers.
-  final ResolveValue? oldToken;
-
   /// Initializes the Dio instance with interceptors to add custom headers.
   void initilize() {
     dio.interceptors.add(
@@ -49,14 +45,12 @@ class MqRemoteClient {
         onRequest: (options, handler) {
           final tokenValue = token?.call();
           final languageValue = language?.call();
-          final oldTokenValue = oldToken?.call();
           options.headers = {
             'Content-Type': 'application/json; charset=utf-8',
             'Accept': 'application/json',
             'X-CSRFTOKEN': '9KDITf4aeXMyyQffH5TMtuuUtSfOSLtnZIeF2JZBXJziDfbP0wLo7xrWsUVeL2wO',
             if (tokenValue != null) 'Authorization': 'Token $tokenValue',
             'Accept-Language': ?languageValue,
-            if (oldTokenValue != null) 'old-token': 'Old Token $oldTokenValue',
           };
           return handler.next(options);
         },

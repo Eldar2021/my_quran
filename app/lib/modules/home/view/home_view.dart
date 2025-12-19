@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
+import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
@@ -27,13 +30,13 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
   void initState() {
     super.initState();
     _getHomeData();
-    final user = context.read<AuthCubit>().state.user;
-    final validName = user?.username.replaceAll(RegExp(r'\W+'), '_');
-    if (user != null) {
-      MqCrashlytics.setUserIdentifier(validName ?? user.accessToken);
-      MqAnalytic.setUserProperty(validName ?? user.accessToken);
+    final auth = context.read<AuthCubit>().state.auth;
+    final validName = auth?.user.username?.replaceAll(RegExp(r'\W+'), '_');
+    if (auth != null) {
+      MqCrashlytics.setUserIdentifier(validName ?? auth.key);
+      MqAnalytic.setUserProperty(validName ?? auth.key);
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        initializeNotification(user, context);
+        initializeNotification(auth, context);
       });
     }
     context.read<LocationCubit>().init();
@@ -199,7 +202,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
                     hatim: hatims!,
                   );
                 } else {
-                  _onJoinToHatim(hatims?.first.id ?? '');
+                  _onJoinToHatim(hatims ?? []);
                 }
               },
               child: Text(context.l10n.joinToHatim),
@@ -210,12 +213,17 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     );
   }
 
-  void _onJoinToHatim(String hatimId) {
-    MqAnalytic.track(AnalyticKey.goHatim);
-    context.goNamedIfAuthenticated(
-      AppRouter.hatim,
-      pathParameters: {'hatimId': hatimId},
-    );
+  void _onJoinToHatim(List<MqHatimsModel> hatims) {
+    final hatimId = hatims.isNotEmpty ? hatims.first.id : null;
+    if (hatimId != null) {
+      MqAnalytic.track(AnalyticKey.goHatim);
+      context.goNamedIfAuthenticated(
+        AppRouter.hatim,
+        pathParameters: {'hatimId': hatimId},
+      );
+    } else {
+      context.pushNamed(AppRouter.loginWihtSoccial);
+    }
   }
 
   Future<void> _getHomeData() async {
@@ -224,6 +232,10 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     final authCubit = context.read<AuthCubit>();
     final bannerCubit = context.read<HomeBannersCubit>();
     final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
+
+    if (authCubit.state.auth != null) {
+      unawaited(context.read<ProfileCubit>().getUserData(authCubit.state.auth!.key));
+    }
 
     await Future.wait([
       homeCubit.getData(),

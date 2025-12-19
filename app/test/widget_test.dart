@@ -22,10 +22,7 @@ void main() {
       MqHomeRemoteDataSourceMock(),
     );
 
-    const authRepository = AuthRepositoryImpl(
-      localDataSource: AuthLocalDataSourceMock(),
-      remoteDataSource: AuthRemoteDataSourceMock(),
-    );
+    const authRepository = AuthRepositoryMock();
 
     final storage = MockStorage();
 

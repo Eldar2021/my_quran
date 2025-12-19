@@ -11,6 +11,7 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/utils/show/snackbars.dart';
 
 class SettingActionsWidget extends StatelessWidget {
   const SettingActionsWidget({super.key});
@@ -158,37 +159,62 @@ class SettingActionsWidget extends StatelessWidget {
           title: context.l10n.forDevelopers,
         ),
         if (authCubit.state.isAuthedticated)
-          BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {
-              if (!state.isAuthedticated) {
-                context.go('/login');
-              }
-            },
-            child: DrawerTile(
-              key: const Key(MqKeys.logoutButton),
-              onTap: () {
-                MqBottomSheets.showConfirmSheet<void>(
-                  context: context,
-                  title: context.l10n.logout,
-                  content: context.l10n.confirmLogout,
-                  confirmText: context.l10n.yes,
-                  cancelText: context.l10n.cancel,
-                  confirmKey: MqKeys.confirmLogoutButtonYes,
-                  onConfirm: () {
-                    MqAnalytic.track(AnalyticKey.tapLogout);
-                    authCubit.logout();
+          DrawerTile(
+            key: const Key(MqKeys.logoutButton),
+            onTap: () {
+              MqBottomSheets.showConfirmSheet<void>(
+                context: context,
+                title: context.l10n.logout,
+                content: context.l10n.confirmLogout,
+                cancelText: context.l10n.cancel,
+                onCancel: () => Navigator.pop(context),
+                confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
+                  listener: (context, state) {
+                    if (state is ProfileLogout) {
+                      context.read<AuthCubit>().clearAuth();
+                      context.go('/login');
+                    } else if (state is ProfileError) {
+                      AppSnackbar.showError(
+                        context: context,
+                        title: context.l10n.error,
+                      );
+                      final authCubit = context.read<AuthCubit>();
+                      final profileCubit = context.read<ProfileCubit>();
+                      if (authCubit.state.auth != null) {
+                        profileCubit.setAuth(authCubit.state.auth!);
+                      }
+                    }
                   },
-                  onCancel: () => Navigator.pop(context),
-                );
-              },
-              icon: Assets.icons.logout.svg(
-                colorFilter: ColorFilter.mode(
-                  colorScheme.primary,
-                  BlendMode.srcIn,
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      key: const Key(MqKeys.confirmLogoutButtonYes),
+                      onPressed: () {
+                        MqAnalytic.track(AnalyticKey.tapLogout);
+                        context.read<ProfileCubit>().logout();
+                      },
+                      child: switch (state) {
+                        ProfileLoading(:final type) =>
+                          type == ProfileLoadingType.logout
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                    color: Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                )
+                              : Text(context.l10n.yes),
+                        _ => Text(context.l10n.yes),
+                      },
+                    );
+                  },
                 ),
+              );
+            },
+            icon: Assets.icons.logout.svg(
+              colorFilter: ColorFilter.mode(
+                colorScheme.primary,
+                BlendMode.srcIn,
               ),
-              title: context.l10n.logout,
             ),
+            title: context.l10n.logout,
           ),
         if (authCubit.state.isAuthedticated)
           DrawerTile(
@@ -197,13 +223,46 @@ class SettingActionsWidget extends StatelessWidget {
                 context: context,
                 title: context.l10n.deleteAccount,
                 content: context.l10n.confirmDeleteAccount,
-                confirmText: context.l10n.yes,
                 cancelText: context.l10n.cancel,
-                onConfirm: () {
-                  MqAnalytic.track(AnalyticKey.tapDeleteAccount);
-                  authCubit.deleteAccount();
-                },
                 onCancel: () => Navigator.pop(context),
+                confirmButton: BlocConsumer<ProfileCubit, ProfileState>(
+                  listener: (context, state) {
+                    if (state is ProfileDeleted) {
+                      context.read<AuthCubit>().clearAuth();
+                      context.go('/login');
+                    } else if (state is ProfileError) {
+                      AppSnackbar.showError(
+                        context: context,
+                        title: context.l10n.error,
+                      );
+                      final authCubit = context.read<AuthCubit>();
+                      final profileCubit = context.read<ProfileCubit>();
+                      if (authCubit.state.auth != null) {
+                        profileCubit.setAuth(authCubit.state.auth!);
+                      }
+                    }
+                  },
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      key: const Key(MqKeys.deleteAccountButton),
+                      onPressed: () {
+                        MqAnalytic.track(AnalyticKey.tapDeleteAccount);
+                        context.read<ProfileCubit>().deleteAccount();
+                      },
+                      child: switch (state) {
+                        ProfileLoading(:final type) =>
+                          type == ProfileLoadingType.deleteAccount
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                    color: Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                )
+                              : Text(context.l10n.yes),
+                        _ => Text(context.l10n.yes),
+                      },
+                    );
+                  },
+                ),
               );
             },
             icon: Assets.icons.trash.svg(
@@ -215,36 +274,42 @@ class SettingActionsWidget extends StatelessWidget {
             title: context.l10n.deleteAccount,
           ),
         if (authCubit.state.isAuthedticated)
-          BlocBuilder<NotificationCubit, NotificationGlobalState>(
-            builder: (context, state) {
-              final permissionState = state.permissionState;
-              if (permissionState is NotificationPermissionInitial) {
-                return const SizedBox.shrink();
-              }
-              return DrawerTile(
-                icon: Icon(
-                  Icons.notifications_none_outlined,
-                  color: colorScheme.primary,
-                ),
-                title: context.l10n.notifications,
-                trailing: switch (permissionState) {
-                  NotificationPermissionInitial() => const CupertinoActivityIndicator(),
-                  NotificationPermissionLoading() => const CupertinoActivityIndicator(),
+          DrawerTile(
+            icon: Icon(
+              Icons.notifications_none_outlined,
+              color: colorScheme.primary,
+            ),
+            title: context.l10n.notifications,
+            trailing: BlocConsumer<NotificationCubit, NotificationState>(
+              listener: (context, state) {
+                final allowedState = state.allowedState;
+                if (allowedState is NotificationAllowedError) {
+                  AppSnackbar.showError(
+                    context: context,
+                    title: allowedState.error.toString(),
+                  );
+                }
+              },
+              builder: (context, state) {
+                final allowedState = state.allowedState;
+                return switch (allowedState) {
+                  NotificationAllowedInitial() => const SizedBox.shrink(),
+                  NotificationAllowedLoading() => const CupertinoActivityIndicator(),
                   _ => Transform.scale(
                     scale: 0.8,
                     child: Switch(
-                      value: permissionState.isNotificationEnabled,
+                      value: allowedState.value,
                       onChanged: (value) {
                         context.read<NotificationCubit>().toggleNotification(
-                          userToken: authCubit.state.user?.accessToken ?? '',
-                          value: value,
+                          context.read<AuthCubit>().userId,
+                          value,
                         );
                       },
                     ),
                   ),
-                },
-              );
-            },
+                };
+              },
+            ),
           ),
         const SizedBox(height: 20),
       ],

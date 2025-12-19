@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:mq_analytics/mq_analytics.dart';
@@ -7,7 +6,6 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
@@ -26,18 +24,20 @@ class SignInView extends StatefulWidget {
 }
 
 class _SignInViewState extends State<SignInView> with NotificationMixin {
-  final formKey = GlobalKey<FormState>();
-  late TextEditingController emailController;
+  late final GlobalKey<FormState> _formKey;
+  late final TextEditingController _emailController;
 
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
+    _formKey = GlobalKey<FormState>();
+    _emailController = TextEditingController();
   }
 
   @override
   void dispose() {
-    emailController.dispose();
+    _formKey.currentState?.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -48,27 +48,11 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
     final size = MediaQuery.sizeOf(context);
     return ScaffoldWithBgImage(
       key: const Key(MqKeys.signInView),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            context.goNamed(AppRouter.login);
-          },
-        ),
-      ),
-      body: BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state.user != null) {
-            _onLoginSuccess(state.user!);
-          } else if (state.exception != null) {
-            AppAlert.showErrorDialog(
-              context,
-              errorText: state.exception.toString(),
-            );
-          }
-        },
+      appBar: AppBar(),
+      body: BlocListener<LoginCubit, LoginState>(
+        listener: _loginListener,
         child: Form(
-          key: formKey,
+          key: _formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: ListView(
             padding: const EdgeInsets.all(24),
@@ -86,16 +70,9 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
               SizedBox(height: size.height * 0.07),
               TextFormField(
                 key: const Key(MqKeys.emailTextField),
-                controller: emailController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return context.l10n.enterEmail;
-                  }
-                  if (!AppRegExp.email.hasMatch(value)) {
-                    return context.l10n.enterEmail;
-                  }
-                  return null;
-                },
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) => Validators.email(value, context),
                 decoration: InputDecoration(
                   labelText: context.l10n.enterEmail,
                   prefixIcon: const Icon(Icons.email, size: 28),
@@ -105,25 +82,8 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
               const SizedBox(height: 30),
               ElevatedButton(
                 key: const Key(MqKeys.sendOtp),
+                onPressed: _sendOtp,
                 child: Text(context.l10n.login),
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    MqAnalytic.track(AnalyticKey.goVerificationOtp);
-                    try {
-                      unawaited(AppAlert.showLoading(context));
-                      context.read<AuthCubit>().loginWithEmail(
-                        emailController.text,
-                      );
-                      context.goNamed(
-                        AppRouter.verificationCode,
-                        pathParameters: {'email': emailController.text},
-                      );
-                      if (context.mounted) context.loaderOverlay.hide();
-                    } on Exception catch (e) {
-                      log(e.toString());
-                    }
-                  }
-                },
               ),
               const SizedBox(height: 40),
               Row(
@@ -140,44 +100,23 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
               GoogleSignInButton(
                 key: Key(MqKeys.loginTypeName('google')),
                 label: context.l10n.continueWithGoogle,
-                onPressed: () async {
-                  MqAnalytic.track(
-                    AnalyticKey.tapLogin,
-                    params: {'soccial': 'google'},
-                  );
-                  unawaited(AppAlert.showLoading(context));
-                  await context.read<AuthCubit>().signInWithGoogle();
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
+                onPressed: () => _signIn(true),
               ),
               const SizedBox(height: 14),
               if (Platform.isIOS)
                 AppleSignInButton(
                   key: Key(MqKeys.loginTypeName('apple')),
                   label: context.l10n.continueWithApple,
-                  onPressed: () async {
-                    MqAnalytic.track(
-                      AnalyticKey.tapLogin,
-                      params: {'soccial': 'apple'},
-                    );
-                    unawaited(AppAlert.showLoading(context));
-                    await context.read<AuthCubit>().signInWithApple();
-                    if (context.mounted) context.loaderOverlay.hide();
-                  },
+                  onPressed: () => _signIn(false),
                 ),
               SizedBox(height: size.height * 0.04),
               LinkTextButton(
                 text: context.l10n.privacyPolicy,
-                onPressed: () {
-                  MqAnalytic.track(AnalyticKey.tapPrivacyPolicy);
-                  AppLaunch.launchURL(ApiConst.provicyPolicy);
-                },
+                onPressed: _onPrivacyPolicy,
               ),
               SizedBox(height: size.height * 0.04),
               TextButton(
-                onPressed: () {
-                  context.goNamed(AppRouter.home);
-                },
+                onPressed: _onContinueAsGuest,
                 child: Text(
                   context.l10n.continueAsGuest,
                   style: prTextTheme.titleMedium?.copyWith(
@@ -192,11 +131,70 @@ class _SignInViewState extends State<SignInView> with NotificationMixin {
     );
   }
 
-  Future<void> _onLoginSuccess(UserModelResponse user) async {
-    await Future.wait<void>([
-      context.read<AuthCubit>().setUserData(user),
-      initializeNotification(user, context),
-    ]);
+  void _loginListener(BuildContext context, LoginState state) {
+    context.manageLoader(state is LoginLoading);
+    if (state is LoginSuccess) {
+      _onLoginSuccess(state.data);
+    } else if (state is LoginError) {
+      _onLoginError(state.error);
+    }
+  }
+
+  void _signIn(bool isGoogle) {
+    MqAnalytic.track(
+      AnalyticKey.tapLogin,
+      params: {'soccial': isGoogle ? 'google' : 'apple'},
+    );
+    final authState = context.read<AuthCubit>().state;
+    if (isGoogle) {
+      context.read<LoginCubit>().signInWithGoogle(
+        languageCode: authState.currentLocale.languageCode,
+        gender: authState.currentGender,
+      );
+    } else {
+      context.read<LoginCubit>().signInWithApple(
+        languageCode: authState.currentLocale.languageCode,
+        gender: authState.currentGender,
+      );
+    }
+  }
+
+  Future<void> _sendOtp() async {
+    if (!_formKey.currentState!.validate()) return;
+    MqAnalytic.track(AnalyticKey.goVerificationOtp);
+    final email = _emailController.text.trim();
+    unawaited(context.read<LoginCubit>().loginWithEmail(email));
+    if (mounted) {
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => BlocProvider.value(
+            value: context.read<LoginCubit>(),
+            child: VerificationCodeView(email: email),
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onLoginSuccess(AuthModel auth) async {
+    context.read<AuthCubit>().updateAuth(auth);
+    await initializeNotification(auth, context);
     if (mounted) context.goNamed(AppRouter.home);
+  }
+
+  void _onLoginError(Object error) {
+    AppAlert.showErrorDialog(
+      context,
+      errorText: error.toString(),
+    );
+  }
+
+  void _onContinueAsGuest() {
+    context.goNamed(AppRouter.home);
+  }
+
+  void _onPrivacyPolicy() {
+    MqAnalytic.track(AnalyticKey.tapPrivacyPolicy);
+    AppLaunch.launchURL(ApiConst.provicyPolicy);
   }
 }

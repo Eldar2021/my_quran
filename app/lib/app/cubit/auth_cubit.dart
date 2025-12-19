@@ -3,124 +3,68 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:mq_storage/mq_storage.dart';
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.authRepository) : super(AuthState(user: authRepository.init));
+  AuthCubit({
+    required this.storage,
+    this.auth,
+  }) : super(AuthState(auth: auth));
 
-  final AuthRepository authRepository;
+  final AuthModel? auth;
+  final PreferencesStorage storage;
 
-  Future<void> loginWithEmail(String email) async {
-    try {
-      await authRepository.loginWithEmail(email);
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-    }
-  }
-
-  Future<AuthState> verifyOtp(String otp, String email) async {
-    try {
-      final user = await authRepository.verifyOtp(
-        email: email,
-        otp: otp,
-        languageCode: state.currentLocale.languageCode,
-        gender: state.gender,
+  void init() {
+    if (state.auth == null) {
+      final locale = storage.readString(key: StorageKeys.localeKey);
+      final gender = Gender.fromData(
+        storage.readString(key: StorageKeys.genderKey),
       );
-      emit(state.copyWith(user: user));
-      return state;
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-      return state;
+      emit(AuthState(locale: locale, gender: gender));
     }
   }
 
-  Future<AuthState> signInWithGoogle() async {
-    try {
-      final user = await authRepository.signWithGoogle(
-        state.currentLocale.languageCode,
-        state.gender,
+  void updateAuth(AuthModel auth) {
+    if (auth.user.language != null) {
+      storage.writeString(
+        key: StorageKeys.localeKey,
+        value: auth.user.language!,
       );
-      emit(state.copyWith(user: user));
-      return state;
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-      return state;
     }
-  }
 
-  Future<AuthState> signInWithApple() async {
-    try {
-      final user = await authRepository.signWithApple(
-        state.currentLocale.languageCode,
-        state.gender,
+    if (auth.user.gender != null) {
+      storage.writeString(
+        key: StorageKeys.genderKey,
+        value: auth.user.gender!.name,
       );
-      emit(state.copyWith(user: user));
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
     }
-
-    return state;
+    emit(state.copyWith(auth: auth));
   }
 
-  Future<void> setUserData(UserModelResponse userModel) {
-    return authRepository.setUserData(userModel);
+  void clearAuth() => emit(
+    AuthState(locale: state.locale, gender: state.gender),
+  );
+
+  void uupdateLocale(String locale) {
+    storage.writeString(
+      key: StorageKeys.localeKey,
+      value: locale,
+    );
+    emit(state.copyWith(locale: locale));
   }
 
-  Future<void> saveLocale(String localeCode) async {
-    if (state.isAuthedticated) {
-      try {
-        final res = await authRepository.patchLocaleCode(
-          userId: state.user!.accessToken,
-          localeCode: localeCode,
-        );
-        final newUser = state.user!.copyWith(localeCode: res.localeValue);
-        emit(state.copyWith(user: newUser));
-      } on Exception catch (e) {
-        emit(state.copyWith(exception: e));
-        return;
-      }
-    } else {
-      emit(state.copyWith(localeForNow: localeCode));
-    }
+  void updateGender(Gender gender) {
+    storage.writeString(
+      key: StorageKeys.genderKey,
+      value: gender.name,
+    );
+    emit(state.copyWith(gender: gender));
   }
 
-  Future<void> saveGender(Gender gender) async {
-    if (state.isAuthedticated) {
-      try {
-        final res = await authRepository.patchGender(
-          userId: state.user!.accessToken,
-          gender: gender,
-        );
-        final newUser = state.user!.copyWith(gender: res.genderValue);
-        emit(state.copyWith(user: newUser));
-      } on Exception catch (e) {
-        emit(state.copyWith(exception: e));
-        return;
-      }
-    } else {
-      emit(state.copyWith(genderForNow: gender));
-    }
-  }
-
-  Future<void> deleteAccount() async {
-    try {
-      await authRepository.deleteAccount();
-      emit(const AuthState());
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-    }
-  }
-
-  Future<void> logout() async {
-    try {
-      await authRepository.logout();
-      emit(const AuthState());
-    } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
-    }
-  }
-
-  bool get isAuthedticated => state.user != null;
+  bool get isAuthedticated => state.isAuthedticated;
+  String get userId => state.auth?.key ?? '';
 }

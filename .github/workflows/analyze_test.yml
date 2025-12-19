@@ -32,7 +32,7 @@ jobs:
         run: melos format-check
 
       - name: "Analyze Code"
-        run: melos analyze-check
+        run: flutter analyze --fatal-warnings
 
       - name: "Run unit tests"
         run: melos unit-test

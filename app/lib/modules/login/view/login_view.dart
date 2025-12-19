@@ -68,18 +68,11 @@ class LoginBody extends StatelessWidget {
           key: const Key(MqKeys.language),
           value: authCubit.state.currentLocale,
           items: AppLocalizationHelper.locales,
-          onChanged: (v) async {
-            final authCubit = context.read<AuthCubit>();
-            await authCubit.saveLocale(v?.languageCode ?? 'en');
-          },
+          onChanged: (v) => _updateLanguage(v, context),
           itemBuilder: (value) {
-            final name = AppLocalizationHelper.getName(
-              value?.toLanguageTag() ?? 'en',
-            );
+            final name = AppLocalizationHelper.getName(value?.toLanguageTag() ?? 'en');
             return DropdownMenuItem(
-              key: Key(
-                MqKeys.languageCode(value?.languageCode ?? 'en'),
-              ),
+              key: Key(MqKeys.languageCode(value?.languageCode ?? 'en')),
               value: value,
               child: Text(name),
             );
@@ -97,26 +90,14 @@ class LoginBody extends StatelessWidget {
           key: Key(MqKeys.genderName('male')),
           gender: authCubit.state.appUiGender,
           title: context.l10n.male,
-          onChanged: (p0) {
-            MqAnalytic.track(
-              AnalyticKey.selectGender,
-              params: {'gender': Gender.male.name},
-            );
-            context.read<AuthCubit>().saveGender(Gender.male);
-          },
+          onChanged: (p0) => _updateGender(Gender.male, context),
         ),
         GenderRedioWidget(
           key: Key(MqKeys.genderName('female')),
           gender: authCubit.state.appUiGender,
           itemIsMale: false,
           title: context.l10n.female,
-          onChanged: (p0) {
-            MqAnalytic.track(
-              AnalyticKey.selectGender,
-              params: {'gender': Gender.female.name},
-            );
-            context.read<AuthCubit>().saveGender(Gender.female);
-          },
+          onChanged: (p0) => _updateGender(Gender.female, context),
         ),
         const Spacer(flex: 3),
         ElevatedButton(
@@ -129,5 +110,19 @@ class LoginBody extends StatelessWidget {
         SizedBox(height: AppSpacing.bottomSpace),
       ],
     );
+  }
+
+  void _updateLanguage(Locale? locale, BuildContext context) {
+    context.read<AuthCubit>().uupdateLocale(
+      locale?.languageCode ?? 'en',
+    );
+  }
+
+  void _updateGender(Gender gender, BuildContext context) {
+    MqAnalytic.track(
+      AnalyticKey.selectGender,
+      params: {'gender': gender.name},
+    );
+    context.read<AuthCubit>().updateGender(gender);
   }
 }

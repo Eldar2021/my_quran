@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loader_overlay/loader_overlay.dart';
-import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
 class CustomAppSettingView extends StatelessWidget {
@@ -15,19 +14,18 @@ class CustomAppSettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authCubit = context.watch<AuthCubit>();
     return ScaffoldWithBgImage(
       appBar: AppBar(
         key: const Key(MqKeys.settingsGenderLangPage),
         title: Text(context.l10n.customApp),
       ),
-      body: BlocListener<AuthCubit, AuthState>(
+      body: BlocListener<ProfileCubit, ProfileState>(
         listener: (context, state) {
-          if (state.exception != null) {
-            AppAlert.showErrorDialog(
-              context,
-              errorText: state.exception.toString(),
-            );
+          context.manageLoader(state is ProfileLoading);
+          if (state is ProfileSuccess) {
+            _onSuccess(state.user, context);
+          } else if (state is ProfileError) {
+            _onError(state.error, context);
           }
         },
         child: Padding(
@@ -38,27 +36,19 @@ class CustomAppSettingView extends StatelessWidget {
               const SizedBox(height: 30),
               Text(context.l10n.pleaseSelectLanguage),
               const SizedBox(height: 8),
-              LanguageDropdownButtonFormField<Locale>(
-                value: authCubit.state.currentLocale,
-                items: AppLocalizationHelper.locales,
-                onChanged: (v) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectLanguage,
-                    params: {'language': v?.languageCode ?? 'en'},
-                  );
-                  context.loaderOverlay.show();
-                  await context.read<AuthCubit>().saveLocale(
-                    v?.languageCode ?? 'en',
-                  );
-                  if (context.mounted) context.loaderOverlay.hide();
-                },
-                itemBuilder: (value) {
-                  final name = AppLocalizationHelper.getName(
-                    value?.toLanguageTag() ?? 'en',
-                  );
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(name),
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  return LanguageDropdownButtonFormField<Locale>(
+                    value: state.currentLocale,
+                    items: AppLocalizationHelper.locales,
+                    onChanged: (v) => _updateLanguage(v, context),
+                    itemBuilder: (v) {
+                      final name = AppLocalizationHelper.getName(v?.toLanguageTag());
+                      return DropdownMenuItem(
+                        value: v,
+                        child: Text(name),
+                      );
+                    },
                   );
                 },
               ),
@@ -68,33 +58,25 @@ class CustomAppSettingView extends StatelessWidget {
               Text(
                 context.l10n.selectGenderForPersonalization,
               ),
-              GenderRedioWidget(
-                key: const Key(MqKeys.settingsGenderMale),
-                gender: authCubit.state.appUiGender,
-                title: context.l10n.male,
-                onChanged: (p0) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectGender,
-                    params: {'gender': Gender.male.name},
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  return GenderRedioWidget(
+                    key: const Key(MqKeys.settingsGenderMale),
+                    gender: state.appUiGender,
+                    title: context.l10n.male,
+                    onChanged: (p0) => _updateGender(Gender.male, context),
                   );
-                  context.loaderOverlay.show();
-                  await context.read<AuthCubit>().saveGender(Gender.male);
-                  if (context.mounted) context.loaderOverlay.hide();
                 },
               ),
-              GenderRedioWidget(
-                key: const Key(MqKeys.settingsGenderFemale),
-                gender: authCubit.state.appUiGender,
-                itemIsMale: false,
-                title: context.l10n.female,
-                onChanged: (p0) async {
-                  MqAnalytic.track(
-                    AnalyticKey.selectGender,
-                    params: {'gender': Gender.female.name},
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  return GenderRedioWidget(
+                    key: const Key(MqKeys.settingsGenderFemale),
+                    gender: state.appUiGender,
+                    itemIsMale: false,
+                    title: context.l10n.female,
+                    onChanged: (p0) => _updateGender(Gender.female, context),
                   );
-                  context.loaderOverlay.show();
-                  await context.read<AuthCubit>().saveGender(Gender.female);
-                  if (context.mounted) context.loaderOverlay.hide();
                 },
               ),
               const Spacer(),
@@ -108,5 +90,58 @@ class CustomAppSettingView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onSuccess(AuthModel model, BuildContext context) {
+    context.read<AuthCubit>().updateAuth(model);
+  }
+
+  void _onError(Object error, BuildContext context) {
+    AppSnackbar.showError(
+      context: context,
+      title: error.toString(),
+    );
+    final authCubit = context.read<AuthCubit>();
+    final profileCubit = context.read<ProfileCubit>();
+    if (authCubit.state.auth != null) {
+      profileCubit.setAuth(authCubit.state.auth!);
+    }
+  }
+
+  void _updateLanguage(
+    Locale? locale,
+    BuildContext context,
+  ) {
+    final authCubit = context.read<AuthCubit>();
+    final profileCubit = context.read<ProfileCubit>();
+    final localeCode = locale?.languageCode ?? 'en';
+    if (authCubit.state.auth != null) {
+      profileCubit.updateUserData(
+        UpdateLanguageParam(
+          language: localeCode,
+          userId: authCubit.state.auth?.key ?? '',
+        ),
+      );
+    } else {
+      authCubit.uupdateLocale(localeCode);
+    }
+  }
+
+  void _updateGender(
+    Gender gender,
+    BuildContext context,
+  ) {
+    final authCubit = context.read<AuthCubit>();
+    final profileCubit = context.read<ProfileCubit>();
+    if (authCubit.state.auth != null) {
+      profileCubit.updateUserData(
+        UpdateGenderParam(
+          gender: gender,
+          userId: authCubit.state.auth?.key ?? '',
+        ),
+      );
+    } else {
+      authCubit.updateGender(gender);
+    }
   }
 }

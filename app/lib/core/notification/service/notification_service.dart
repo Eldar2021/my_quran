@@ -6,13 +6,11 @@ class NotificationService {
   NotificationService({
     required this.firebase,
     required this.local,
-    required this.repository,
     required this.isIntegrationTesting,
   });
 
   final FirebaseNotificationService firebase;
   final LocalNotificationService local;
-  final NotificationRepository repository;
   final bool isIntegrationTesting;
 
   bool isInitialized = false;
@@ -24,6 +22,7 @@ class NotificationService {
     required FirebaseNotificationClickHandler onFirebaseNotificationClick,
     required FutureOr<void> Function() onPermissionEnabled,
     required FutureOr<void> Function() onPermissionDisabled,
+    required FutureOr<void> Function(String) onSendTokenToServer,
   }) async {
     if (isIntegrationTesting) return;
     if (isInitialized) return;
@@ -35,13 +34,7 @@ class NotificationService {
       onNotificationClick: onFirebaseNotificationClick,
       onPermissionEnabled: onPermissionEnabled,
       onPermissionDisabled: onPermissionDisabled,
-      onSendTokenToServer: (fcmToken) {
-        return repository.setNotificationToken(
-          token: fcmToken,
-          userToken: userToken,
-          locale: locale,
-        );
-      },
+      onSendTokenToServer: onSendTokenToServer,
     );
   }
 }

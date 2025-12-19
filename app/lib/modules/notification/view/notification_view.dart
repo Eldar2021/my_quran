@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -18,8 +17,11 @@ class _NotificationViewState extends State<NotificationView> {
   @override
   void initState() {
     super.initState();
-    final user = context.read<AuthCubit>().state.user;
-    context.read<NotificationCubit>().getNotification(user?.localeCode);
+    final auth = context.read<AuthCubit>().state.auth;
+    context.read<NotificationCubit>().getNotification(
+      auth?.user.language ?? 'en',
+      auth?.key ?? '',
+    );
   }
 
   @override
@@ -32,12 +34,12 @@ class _NotificationViewState extends State<NotificationView> {
         ),
         centerTitle: true,
       ),
-      body: BlocBuilder<NotificationCubit, NotificationGlobalState>(
+      body: BlocBuilder<NotificationCubit, NotificationState>(
         builder: (context, state) {
           final fetchState = state.fetchState;
-          if (fetchState is NotificationInitial) {
+          if (fetchState is NotificationFetchLoading) {
             return const Center(child: CircularProgressIndicator.adaptive());
-          } else if (fetchState is NotificationSuccess) {
+          } else if (fetchState is NotificationFetchSuccess) {
             final notifications = fetchState.notifications;
             if (notifications == null || notifications.isEmpty) {
               return const NotificationEmptyState();
@@ -63,10 +65,7 @@ class _NotificationViewState extends State<NotificationView> {
   }
 
   void _showDialog() {
-    final fcmToken = context.read<PreferencesStorage>().readString(
-      key: NotificationRepository.fcmTokenCacheKey,
-    );
-
+    final fcmToken = context.read<PreferencesStorage>().readString(key: 'notification-token');
     showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(

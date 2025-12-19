@@ -2,65 +2,60 @@ part of 'auth_cubit.dart';
 
 class AuthState extends Equatable {
   const AuthState({
-    this.user,
-    this.exception,
-    this.localeForNow,
-    this.genderForNow,
+    this.auth,
+    this.locale,
+    this.gender,
   });
 
-  final UserModelResponse? user;
-  final Object? exception;
-  final String? localeForNow;
-  final Gender? genderForNow;
+  final AuthModel? auth;
+  final String? locale;
+  final Gender? gender;
 
   @override
   List<Object?> get props => [
-    user,
-    exception,
-    localeForNow,
-    genderForNow,
+    auth,
+    locale,
+    gender,
   ];
 
   AuthState copyWith({
-    UserModelResponse? user,
-    Object? exception,
-    String? localeForNow,
-    Gender? genderForNow,
+    AuthModel? auth,
+    String? locale,
+    Gender? gender,
   }) {
     return AuthState(
-      user: user ?? this.user,
-      exception: exception ?? this.exception,
-      localeForNow: localeForNow ?? this.localeForNow,
-      genderForNow: genderForNow ?? this.genderForNow,
+      auth: auth ?? this.auth,
+      locale: locale ?? this.locale,
+      gender: gender ?? this.gender,
     );
   }
 
   Locale get currentLocale {
-    if (user != null) return Locale(user!.localeCode);
-    if (localeForNow != null) return Locale(localeForNow!);
+    if (auth != null) return Locale(auth!.user.language?.toLowerCase() ?? 'en');
+    if (locale != null) return Locale(locale!.toLowerCase());
     final deviceLocal = WidgetsBinding.instance.platformDispatcher.locale;
     return AppLocalizationHelper.getSupportedLocale(deviceLocal.languageCode);
   }
 
-  Gender get gender {
-    if (user != null) return user!.gender;
-    if (genderForNow != null) return genderForNow!;
+  Gender get currentGender {
+    if (auth != null) return auth!.user.gender ?? Gender.male;
+    if (gender != null) return gender!;
     return Gender.male;
   }
 
   AppUiGender get appUiGender {
-    return switch (gender) {
+    return switch (currentGender) {
       Gender.male => AppUiGender.male,
       Gender.female => AppUiGender.famela,
     };
   }
 
   MqAppUiGender get mqAppUiGender {
-    return switch (gender) {
+    return switch (currentGender) {
       Gender.male => MqAppUiGender.male,
       Gender.female => MqAppUiGender.famale,
     };
   }
 
-  bool get isAuthedticated => user != null;
+  bool get isAuthedticated => auth != null;
 }

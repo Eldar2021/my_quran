@@ -20,7 +20,7 @@ final class AppLocalizationHelper {
     Locale('ru'),
   ];
 
-  static String getName(String code) {
+  static String getName(String? code) {
     return switch (code) {
       'en' => 'English',
       'ky' => 'Кыргызча',

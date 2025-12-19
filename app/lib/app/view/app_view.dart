@@ -14,7 +14,6 @@ import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -58,18 +57,21 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider<AuthRepository>(
           create: (context) {
+            if (isMockData) return const AuthRepositoryMock();
             return AuthRepositoryImpl(
-              localDataSource: isMockData
-                  ? const AuthLocalDataSourceMock()
-                  : AuthLocalDataSourceImpl(context.read<PreferencesStorage>()),
-              remoteDataSource: isMockData
-                  ? const AuthRemoteDataSourceMock()
-                  : AuthRemoteDataSourceImpl(
-                      client: context.read<MqRemoteClient>(),
-                      storage: context.read<PreferencesStorage>(),
-                      soccialAuth: SoccialAuth(),
-                      isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
-                    ),
+              localDataSource: AuthLocalDataSource(context.read<PreferencesStorage>()),
+              remoteDataSource: AuthRemoteDataSource(
+                client: context.read<MqRemoteClient>(),
+                googleSocialAuthService: GoogleSocialAuthService(
+                  googleSignIn: GoogleSignIn.instance,
+                  firebaseAuth: FirebaseAuth.instance,
+                  isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
+                ),
+                appleSocialAuthService: AppleSocialAuthService(
+                  firebaseAuth: FirebaseAuth.instance,
+                  isIntegrationTest: context.read<AppConfig>().isIntegrationTest,
+                ),
+              ),
             );
           },
         ),
@@ -87,7 +89,16 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => AuthCubit(context.read<AuthRepository>()),
+          create: (context) => AuthCubit(
+            auth: context.read<AuthRepository>().initialAuth,
+            storage: context.read<PreferencesStorage>(),
+          )..init(),
+        ),
+        BlocProvider(
+          create: (context) => ProfileCubit(context.read<AuthRepository>()),
+        ),
+        BlocProvider(
+          create: (context) => NotificationCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
           create: (context) => HomeCubit(context.read<MqHomeRepository>()),
@@ -113,9 +124,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AppThemeCubit(context.read<AppRepository>()),
-        ),
-        BlocProvider(
-          create: (context) => NotificationCubit(context.read<NotificationRepository>()),
         ),
       ],
       child: const QuranApp(),

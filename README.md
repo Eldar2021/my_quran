@@ -62,7 +62,7 @@ melos bootstrap
 - If you have an AVD or real device attached, you can do
 
 ```shell
-melos run-app
+cd app && flutter run
 ```
 
 ## Run tests

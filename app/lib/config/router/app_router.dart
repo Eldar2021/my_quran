@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -33,7 +35,6 @@ final class AppRouter {
 
   static const login = 'login';
   static const loginWihtSoccial = 'login-with-soccial';
-  static const verificationCode = 'verification-code';
 
   static const settingsPage = 'settings';
   static const customAppSettings = 'custom-settings';
@@ -66,17 +67,14 @@ final class AppRouter {
           builder: (context, state) => const LoginView(),
         ),
         GoRoute(
-          path: '/$verificationCode/:email',
-          name: verificationCode,
-          builder: (context, state) {
-            final email = state.pathParameters['email'];
-            return VerificationCodeView(email: email!);
-          },
-        ),
-        GoRoute(
           path: '/$loginWihtSoccial',
           name: loginWihtSoccial,
-          builder: (context, state) => const SignInView(),
+          builder: (context, state) {
+            return BlocProvider<LoginCubit>(
+              create: (context) => LoginCubit(context.read<AuthRepository>()),
+              child: const SignInView(),
+            );
+          },
         ),
         GoRoute(
           path: '/$devModeView',

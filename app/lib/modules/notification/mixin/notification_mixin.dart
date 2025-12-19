@@ -10,23 +10,19 @@ import 'package:my_quran/modules/modules.dart';
 
 mixin NotificationMixin {
   Future<void> initializeNotification(
-    UserModelResponse user,
+    AuthModel auth,
     BuildContext context,
   ) async {
+    final notificationCubit = context.read<NotificationCubit>();
     try {
       await context.read<NotificationService>().initialize(
-        userToken: user.accessToken,
-        locale: user.localeCode,
+        userToken: auth.key,
+        locale: auth.user.language ?? 'en',
         onPermissionEnabled: () {
-          context.read<NotificationCubit>().toggleNotification(
-            userToken: user.accessToken,
-          );
+          notificationCubit.toggleNotification(auth.key, true);
         },
         onPermissionDisabled: () {
-          context.read<NotificationCubit>().toggleNotification(
-            userToken: user.accessToken,
-            value: false,
-          );
+          notificationCubit.toggleNotification(auth.key, false);
         },
         onNotificationClick: (data) {
           rootNavigatorKey.currentContext?.goNamed(
@@ -36,6 +32,12 @@ mixin NotificationMixin {
         onFirebaseNotificationClick: (data) {
           rootNavigatorKey.currentContext?.goNamed(
             AppRouter.notification,
+          );
+        },
+        onSendTokenToServer: (fcmToken) {
+          notificationCubit.setNotificationToken(
+            auth,
+            fcmToken,
           );
         },
       );

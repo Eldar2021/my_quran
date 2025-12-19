@@ -89,7 +89,6 @@ Future<void> main({bool isIntegrationTest = false}) async {
     network: netWorkClient,
     language: () => storage.readString(key: StorageKeys.localeKey),
     token: () => storage.readString(key: StorageKeys.tokenKey),
-    oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
   )..initilize();
 
   final localNotificationService = LocalNotificationService(
@@ -101,15 +100,9 @@ Future<void> main({bool isIntegrationTest = false}) async {
     onShowNotification: localNotificationService.showNotification,
   );
 
-  final notificationRepository = NotificationRepository(
-    client: remoteClient,
-    storage: storage,
-  );
-
   final notificationService = NotificationService(
     firebase: firebaseNotificationService,
     local: localNotificationService,
-    repository: notificationRepository,
     isIntegrationTesting: isIntegrationTest,
   );
 
@@ -136,9 +129,6 @@ Future<void> main({bool isIntegrationTest = false}) async {
         ),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => remoteClient,
-        ),
-        RepositoryProvider<NotificationRepository>(
-          create: (context) => notificationRepository,
         ),
       ],
       child: const MyApp(),

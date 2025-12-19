@@ -9,4 +9,5 @@ export 'settings/settings.dart';
 export 'dev_mode/dev_mode.dart';
 export 'donation/donation.dart';
 export 'create_hatim/create_hatim.dart';
+export 'profile/profile.dart';
 export 'notification/notification.dart';

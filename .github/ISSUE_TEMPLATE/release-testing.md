@@ -28,12 +28,12 @@ assignees: ""
 
 - [ ] Verify Android keys (`android_password.dart`, `android_upload_keystore`).
 - [ ] Set `android/app/build.gradle` to `release` mode.
-- [ ] Build: `melos flutter-clean && melos pub-get && cd app && flutter build appbundle`
+- [ ] Build: `flutter clean && flutter pub get && cd app && flutter build appbundle`
 - [ ] Upload to Play Store, add release notes, submit, and publish after approval.
 
 ## 5. iOS Deployment
 
-- [ ] Build: `melos flutter-clean && melos pub-get`
+- [ ] Build: `flutter clean && flutter pub get`
 - [ ] In Xcode: Verify certificates, profiles, Bundle ID, and Team ID.
 - [ ] "Product" -> "Archive", then "Distribute App" to "TestFlight & App Store".
 - [ ] In App Store Connect: Create new version, add notes, select build, and submit.

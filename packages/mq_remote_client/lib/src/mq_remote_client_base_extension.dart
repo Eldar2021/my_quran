@@ -80,6 +80,16 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
     }
   }
 
+  /// Performs an HTTP DELETE request to the specified [url] with an optional [body].
+  Future<Response<T>> deleteResponse<T>(String url, {Map<String, dynamic>? body}) async {
+    try {
+      return dio.delete<T>(url, data: body);
+    } catch (e, s) {
+      log('MqRemoteClientBaseMehtods._delete', error: e, stackTrace: s);
+      rethrow;
+    }
+  }
+
   /// Converts JSON data to a specific type [T] using [fromJson] function.
   Future<T> _convertType<T>({
     required Map<String, dynamic> jsonData,

@@ -85,51 +85,27 @@ melos:
       usePubspecOverrides: true
 
   scripts:
-    format-code:
+    format:
       exec: dart format . --line-length 120
+      concurrency: 1
       description: "Format Dart code for selected package"
 
     format-check:
       run: |
         dart format . --line-length 120 --set-exit-if-changed
-        melos pub-get
+        flutter pub get
       description: "Check format all Dart code"
 
-    analyze:
-      exec: flutter analyze
-      description: "Analyze all Dart code"
-
-    analyze-check:
-      exec: flutter analyze --fatal-warnings
-      description: "Analyze all Dart code and exit if there are any fatal warnings"
-
-    flutter-clean:
-      exec: flutter clean
-      description: "Clean pub dependencies"
-
-    pub-get:
-      exec: flutter pub get
-      description: "Get pub dependencies"
-
     unit-test:
-      exec: flutter test
+      run: melos exec -c 1 -- flutter test
       description: "Run unit tests (all packages)"
-
-    doctor:
-      run: flutter doctor
-      description: "Run Flutter doctor"
 
     run-build-runner:
       run: |
         ./scripts/delete_g_files.sh
-        melos exec --depends-on="build_runner" -- flutter pub run build_runner build
+        melos exec -c 1 --depends-on="build_runner" -- flutter pub run build_runner build
         dart format . --line-length 120
-        melos pub-get
       description: "Generate code with build_runner"
-
-    run-app:
-      run: cd app && flutter run
-      description: "Run my_quran"
 
     build-apk:
       run: cd app && flutter build apk
