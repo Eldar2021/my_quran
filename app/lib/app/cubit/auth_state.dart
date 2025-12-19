@@ -32,7 +32,7 @@ class AuthState extends Equatable {
 
   Locale get currentLocale {
     if (auth != null) return Locale(auth!.user.language?.toLowerCase() ?? 'en');
-    if (locale != null) return Locale(locale!);
+    if (locale != null) return Locale(locale!.toLowerCase());
     final deviceLocal = WidgetsBinding.instance.platformDispatcher.locale;
     return AppLocalizationHelper.getSupportedLocale(deviceLocal.languageCode);
   }

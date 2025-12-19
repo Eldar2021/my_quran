@@ -32,29 +32,41 @@ final class AuthRepositoryImpl implements AuthRepository {
     required String otp,
     required String languageCode,
     required Gender gender,
-  }) {
-    return remoteDataSource.verifyOtp(
+  }) async {
+    final auth = await remoteDataSource.verifyOtp(
       email: email,
       otp: otp,
       languageCode: languageCode,
       gender: gender,
     );
+    await localDataSource.saveUser(auth);
+    return auth;
   }
 
   @override
   Future<AuthModel> signWithGoogle(
     String languageCode,
     Gender gender,
-  ) {
-    return remoteDataSource.signInWithGoogle(languageCode, gender);
+  ) async {
+    final auth = await remoteDataSource.signInWithGoogle(
+      languageCode,
+      gender,
+    );
+    await localDataSource.saveUser(auth);
+    return auth;
   }
 
   @override
   Future<AuthModel> signWithApple(
     String languageCode,
     Gender gender,
-  ) {
-    return remoteDataSource.signInWithApple(languageCode, gender);
+  ) async {
+    final auth = await remoteDataSource.signInWithApple(
+      languageCode,
+      gender,
+    );
+    await localDataSource.saveUser(auth);
+    return auth;
   }
 
   @override

@@ -89,7 +89,6 @@ Future<void> main({bool isIntegrationTest = false}) async {
     network: netWorkClient,
     language: () => storage.readString(key: StorageKeys.localeKey),
     token: () => storage.readString(key: StorageKeys.tokenKey),
-    oldToken: () => storage.readString(key: StorageKeys.oldTokenKey),
   )..initilize();
 
   final localNotificationService = LocalNotificationService(

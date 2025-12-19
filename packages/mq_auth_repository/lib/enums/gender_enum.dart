@@ -9,8 +9,8 @@ enum Gender {
 
   factory Gender.fromData(String? src) {
     return switch (src) {
-      'male' => Gender.male,
-      'female' => Gender.female,
+      'male' || 'MALE' || 'Male' => Gender.male,
+      'female' || 'FEMALE' || 'Female' => Gender.female,
       _ => Gender.male,
     };
   }
