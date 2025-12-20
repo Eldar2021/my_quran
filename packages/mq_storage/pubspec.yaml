@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences:
-  # flutter_secure_storage:
+  flutter_secure_storage:
 
 dev_dependencies:
   flutter_test:

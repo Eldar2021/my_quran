@@ -6,3 +6,6 @@ export 'src/interface/storage_interface.dart';
 export 'src/interface/storage_sync_read_interface.dart';
 export 'src/preferences_storage.dart';
 export 'src/secure_storage.dart';
+
+export 'package:flutter_secure_storage/flutter_secure_storage.dart';
+export 'package:shared_preferences/shared_preferences.dart';
