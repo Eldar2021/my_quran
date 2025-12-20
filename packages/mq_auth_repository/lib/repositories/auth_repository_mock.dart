@@ -133,6 +133,18 @@ const _userJsonData = <String, dynamic>{
 
 const notificationJsonData = <Map<String, dynamic>>[
   {
+    'id': 'ntf_005',
+    'title': 'Security Alert',
+    'body': 'New login detected on your account from a generic device. Was this you?',
+    'type': 'security',
+  },
+  {
+    'id': 'ntf_006',
+    'title': 'Subscription Renewal',
+    'body': 'Your Premium subscription is set to renew in 3 days.',
+    'type': 'subscription',
+  },
+  {
     'id': 'ntf_001',
     'title': 'Order Shipped',
     'body': 'Your order #1293 has been shipped. Tap to track your package.',
@@ -167,5 +179,23 @@ const notificationJsonData = <Map<String, dynamic>>[
     'title': 'Subscription Renewal',
     'body': 'Your Premium subscription is set to renew in 3 days.',
     'type': 'subscription',
+  },
+  {
+    'id': 'ntf_002',
+    'title': '50% Off Everything!',
+    'body': "Don't miss out on our biggest sale of the season. Shop now while supplies last.",
+    'type': 'promotion',
+  },
+  {
+    'id': 'ntf_003',
+    'title': 'Scheduled Maintenance',
+    'body': 'We will be performing system maintenance tonight between 02:00 AM and 04:00 AM UTC.',
+    'type': 'system_alert',
+  },
+  {
+    'id': 'ntf_004',
+    'title': 'New Message',
+    'body': 'Sarah Jenkins sent you a photo.',
+    'type': 'message',
   },
 ];
