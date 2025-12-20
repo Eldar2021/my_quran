@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_storage/mq_storage.dart';
 import 'package:uuid/uuid.dart';
@@ -37,6 +38,17 @@ final class DeviceManager {
       log('✅ Generated deviceId: $newId');
       await secureStorage.write(key: _keyDeviceId, value: newId);
       return newId;
+    }
+  }
+
+  Future<String> getDeviceTimezone() async {
+    try {
+      final deviceTimezone = await FlutterTimezone.getLocalTimezone();
+      log('✅ DeviceTimezone: $deviceTimezone');
+      return deviceTimezone.toString();
+    } on Object catch (e) {
+      log('❌ DeviceIdManager getDeviceTimezone:', error: e);
+      return 'UTC';
     }
   }
 }

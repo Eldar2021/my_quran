@@ -120,6 +120,7 @@ final class AuthRemoteDataSource {
     required String notificationToken,
     required String deviceType,
     required String deviceId,
+    required String deviceTimezone,
   }) {
     try {
       return client.postResponse<void>(

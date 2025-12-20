@@ -37,10 +37,12 @@ mixin NotificationMixin {
         },
         onSendTokenToServer: (fcmToken) async {
           final deviceId = await deviceManager.getDeviceId();
+          final deviceTimezone = await deviceManager.getDeviceTimezone();
           await notificationCubit.setNotificationToken(
             auth: auth,
             fcmToken: fcmToken,
             deviceId: deviceId,
+            deviceTimezone: deviceTimezone,
           );
         },
       );

@@ -30,6 +30,7 @@ class NotificationCubit extends Cubit<NotificationState> {
     required AuthModel auth,
     required String fcmToken,
     required String deviceId,
+    required String deviceTimezone,
   }) async {
     emit(state.copyWith(tokenState: const NotificationTokenLoading()));
     try {
@@ -38,6 +39,7 @@ class NotificationCubit extends Cubit<NotificationState> {
         notificationToken: fcmToken,
         deviceType: Platform.isAndroid ? 'android' : 'ios',
         deviceId: deviceId,
+        deviceTimezone: deviceTimezone,
       );
       emit(
         state.copyWith(

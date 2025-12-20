@@ -31,6 +31,7 @@ abstract class AuthRepository {
     required String notificationToken,
     required String deviceType,
     required String deviceId,
+    required String deviceTimezone,
   });
 
   Future<List<NotificationModel>> getNotifications(
