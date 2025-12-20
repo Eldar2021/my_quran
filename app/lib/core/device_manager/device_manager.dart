@@ -45,7 +45,7 @@ final class DeviceManager {
     try {
       final deviceTimezone = await FlutterTimezone.getLocalTimezone();
       log('✅ DeviceTimezone: $deviceTimezone');
-      return deviceTimezone.toString();
+      return deviceTimezone.identifier;
     } on Object catch (e) {
       log('❌ DeviceIdManager getDeviceTimezone:', error: e);
       return 'UTC';
