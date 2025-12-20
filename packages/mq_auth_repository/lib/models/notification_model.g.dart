@@ -8,7 +8,7 @@ part of 'notification_model.dart';
 
 NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) => NotificationModel(
   id: json['id'] as String,
-  isRead: json['isRead'] as bool,
+  isRead: json['is_read'] as bool,
   type: $enumDecode(_$NotificationTypeEnumMap, json['type']),
   title: json['title'] as String,
   description: json['description'] as String,
@@ -20,7 +20,7 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) => Noti
 
 Map<String, dynamic> _$NotificationModelToJson(NotificationModel instance) => <String, dynamic>{
   'id': instance.id,
-  'isRead': instance.isRead,
+  'is_read': instance.isRead,
   'type': _$NotificationTypeEnumMap[instance.type]!,
   'avatar': instance.avatar,
   'title': instance.title,
@@ -38,19 +38,19 @@ const _$NotificationTypeEnumMap = {
 };
 
 NotificationAction _$NotificationActionFromJson(Map<String, dynamic> json) => NotificationAction(
-  buttonText: json['buttonText'] as String,
-  isActive: json['isActive'] as bool,
+  buttonText: json['button_text'] as String,
+  isActive: json['is_active'] as bool,
   actionType: $enumDecode(
     _$NotificationActionTypeEnumMap,
-    json['actionType'],
+    json['action_type'],
   ),
   payload: json['payload'],
 );
 
 Map<String, dynamic> _$NotificationActionToJson(NotificationAction instance) => <String, dynamic>{
-  'buttonText': instance.buttonText,
-  'isActive': instance.isActive,
-  'actionType': _$NotificationActionTypeEnumMap[instance.actionType]!,
+  'button_text': instance.buttonText,
+  'is_active': instance.isActive,
+  'action_type': _$NotificationActionTypeEnumMap[instance.actionType]!,
   'payload': instance.payload,
 };
 

@@ -22,14 +22,23 @@ final class NotificationModel {
   factory NotificationModel.fromJson(Map<String, dynamic> json) => _$NotificationModelFromJson(json);
   Map<String, dynamic> toJson() => _$NotificationModelToJson(this);
 
+  @JsonKey(name: 'id')
   final String id;
+  @JsonKey(name: 'is_read')
   final bool isRead;
+  @JsonKey(name: 'type')
   final NotificationType type;
+  @JsonKey(name: 'avatar')
   final String? avatar;
+  @JsonKey(name: 'title')
   final String title;
+  @JsonKey(name: 'description')
   final String description;
+  @JsonKey(name: 'date')
   final DateTime date;
+  @JsonKey(name: 'image')
   final String? image;
+  @JsonKey(name: 'action')
   final NotificationAction? action;
 }
 
@@ -46,9 +55,13 @@ final class NotificationAction {
   factory NotificationAction.fromJson(Map<String, dynamic> json) => _$NotificationActionFromJson(json);
   Map<String, dynamic> toJson() => _$NotificationActionToJson(this);
 
+  @JsonKey(name: 'button_text')
   final String buttonText;
+  @JsonKey(name: 'is_active')
   final bool isActive;
+  @JsonKey(name: 'action_type')
   final NotificationActionType actionType;
+  @JsonKey(name: 'payload')
   final dynamic payload;
 }
 
