@@ -19,6 +19,7 @@ final class AppBlueTheme extends AppTheme {
       onSurface: AppColors.black,
       error: AppColors.darkred,
       onError: AppColors.white,
+      surfaceContainerHigh: AppColors.dollopOfCreamLight,
     );
   }
 

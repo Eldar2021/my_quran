@@ -13,7 +13,11 @@ abstract class AppTheme {
   TextTheme get primaryTextTheme;
 
   AppBarTheme get appBarTheme {
-    return const AppBarTheme(centerTitle: true);
+    return AppBarTheme(
+      backgroundColor: colorScheme.surface,
+      surfaceTintColor: Colors.transparent,
+      centerTitle: true,
+    );
   }
 
   SnackBarThemeData get snackBarTheme {

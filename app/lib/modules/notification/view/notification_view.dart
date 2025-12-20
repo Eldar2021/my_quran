@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mq_storage/mq_storage.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/utils/show/snackbars.dart';
 
 class NotificationView extends StatefulWidget {
   const NotificationView({super.key});
@@ -13,14 +12,14 @@ class NotificationView extends StatefulWidget {
   State<NotificationView> createState() => _NotificationViewState();
 }
 
-class _NotificationViewState extends State<NotificationView> {
+class _NotificationViewState extends State<NotificationView> with NotificationDevMixin {
   @override
   void initState() {
     super.initState();
     final auth = context.read<AuthCubit>().state.auth;
     context.read<NotificationCubit>().getNotification(
-      auth?.user.language ?? 'en',
-      auth?.key ?? '',
+      auth?.user.language,
+      auth?.key,
     );
   }
 
@@ -28,59 +27,38 @@ class _NotificationViewState extends State<NotificationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: InkWell(
-          onDoubleTap: _showDialog,
+          onDoubleTap: () => showDevDialog(context),
           child: Text(context.l10n.notifications),
         ),
-        centerTitle: true,
       ),
-      body: BlocBuilder<NotificationCubit, NotificationState>(
+      body: BlocConsumer<NotificationCubit, NotificationState>(
+        listener: (context, state) {
+          final fetchState = state.fetchState;
+          if (fetchState is NotificationFetchError) {
+            _onError(fetchState.error);
+          }
+        },
         builder: (context, state) {
           final fetchState = state.fetchState;
-          if (fetchState is NotificationFetchLoading) {
-            return const Center(child: CircularProgressIndicator.adaptive());
-          } else if (fetchState is NotificationFetchSuccess) {
-            final notifications = fetchState.notifications;
-            if (notifications == null || notifications.isEmpty) {
-              return const NotificationEmptyState();
-            }
-            return ListView.separated(
-              itemCount: notifications.length,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 30),
-              separatorBuilder: (context, index) => const SizedBox(height: 12),
-              itemBuilder: (context, index) {
-                final item = notifications[index];
-                return NotificationItem(
-                  title: item.title,
-                  body: item.body,
-                );
-              },
-            );
-          } else {
-            return const NotificationEmptyState();
-          }
+          return switch (fetchState) {
+            NotificationFetchInitial() => const NotificationLoadingWidget(),
+            NotificationFetchLoading() => const NotificationLoadingWidget(),
+            NotificationFetchSuccess() => NotificationListWidget(
+              notifications: fetchState.notifications ?? [],
+            ),
+            NotificationFetchError() => const NotificationEmptyState(),
+          };
         },
       ),
     );
   }
 
-  void _showDialog() {
-    final fcmToken = context.read<PreferencesStorage>().readString(key: 'notification-token');
-    showDialog<void>(
+  void _onError(Object error) {
+    AppSnackbar.showError(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('FCM Token'),
-        content: Text(fcmToken ?? 'Empty'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Clipboard.setData(ClipboardData(text: fcmToken ?? 'Empty'));
-              Navigator.pop(context);
-            },
-            child: const Text('Copy'),
-          ),
-        ],
-      ),
+      title: error.toString(),
     );
   }
 }
