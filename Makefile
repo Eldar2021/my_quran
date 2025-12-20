@@ -1,3 +1,9 @@
+clean:
+	echo "Cleaning..."
+	flutter clean
+	cd app && flutter clean
+	flutter pub get
+
 pod-install:
 	echo "Installing pods..."
 	flutter clean
