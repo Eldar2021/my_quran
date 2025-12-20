@@ -81,11 +81,13 @@ final class AuthRepositoryImpl implements AuthRepository {
     required String userId,
     required String notificationToken,
     required String deviceType,
+    required String deviceId,
   }) async {
     await remoteDataSource.setNotificationToken(
       userId: userId,
       notificationToken: notificationToken,
       deviceType: deviceType,
+      deviceId: deviceId,
     );
     await localDataSource.saveNotificationToken(notificationToken);
   }

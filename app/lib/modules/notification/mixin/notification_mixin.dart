@@ -14,6 +14,7 @@ mixin NotificationMixin {
     BuildContext context,
   ) async {
     final notificationCubit = context.read<NotificationCubit>();
+    final deviceManager = context.read<DeviceManager>();
     try {
       await context.read<NotificationService>().initialize(
         userToken: auth.key,
@@ -34,10 +35,12 @@ mixin NotificationMixin {
             AppRouter.notification,
           );
         },
-        onSendTokenToServer: (fcmToken) {
-          notificationCubit.setNotificationToken(
-            auth,
-            fcmToken,
+        onSendTokenToServer: (fcmToken) async {
+          final deviceId = await deviceManager.getDeviceId();
+          await notificationCubit.setNotificationToken(
+            auth: auth,
+            fcmToken: fcmToken,
+            deviceId: deviceId,
           );
         },
       );

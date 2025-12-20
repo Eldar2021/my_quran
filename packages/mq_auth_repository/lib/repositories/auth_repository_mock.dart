@@ -76,6 +76,7 @@ final class AuthRepositoryMock implements AuthRepository {
     required String userId,
     required String notificationToken,
     required String deviceType,
+    required String deviceId,
   }) {
     return Future.value();
   }

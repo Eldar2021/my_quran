@@ -119,6 +119,7 @@ final class AuthRemoteDataSource {
     required String userId,
     required String notificationToken,
     required String deviceType,
+    required String deviceId,
   }) {
     try {
       return client.postResponse<void>(
@@ -127,6 +128,7 @@ final class AuthRemoteDataSource {
           'name': userId,
           'registration_id': notificationToken,
           'type': deviceType,
+          'device_id': deviceId,
         },
       );
     } on Object catch (e) {
