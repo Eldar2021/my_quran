@@ -29,7 +29,7 @@ class _NotificationListWidgetState extends State<NotificationListWidget> {
         final item = widget.notifications[index];
         return NotificationItemEx(
           title: item.title,
-          body: item.body,
+          body: item.description,
           date: DateTime.now(),
           //
           // ignore: use_is_even_rather_than_modulo
