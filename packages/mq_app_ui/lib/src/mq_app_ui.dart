@@ -9,6 +9,7 @@ export 'typography/app_text_styles.dart';
 export 'generated/assets.gen.dart';
 export 'generated/fonts.gen.dart';
 export 'shape/custom_track_shape.dart';
+export 'shape/chat_bubble_card.dart';
 export 'decoration/gradient_decorated_box.dart';
 export 'enum/gender_enum.dart';
 export 'show/mq_alert_dialogs.dart';
