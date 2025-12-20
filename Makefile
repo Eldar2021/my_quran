@@ -18,3 +18,9 @@ gen-assets:
 
 build-runner:
 	melos run-build-runner
+
+git-update:
+	echo "Updating git..."
+	git pull
+	git branch | grep -v "main" | xargs git branch -D
+	git remote prune origin
