@@ -37,6 +37,7 @@ mixin NotificationMixin {
         },
         onSendTokenToServer: (fcmToken) async {
           final deviceId = await deviceManager.getDeviceId();
+          log('✅ deviceId: $deviceId');
           await notificationCubit.setNotificationToken(
             auth: auth,
             fcmToken: fcmToken,
