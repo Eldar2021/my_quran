@@ -135,8 +135,9 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '100',
     'is_read': false,
-    'type': 'standard',
-    'avatar': 'https://i.pravatar.cc/150?img=1',
+    'type': 'STANDARD',
+    'avatar':
+        'https://img.freepik.com/free-photo/animal-eye-staring-close-up-watch-nature-generative-ai_188544-15471.jpg?semt=ais_hybrid&w=740&q=80',
     'title': 'Juma Mubarak, Ediiar!',
     'description': "May this Friday bring peace and happiness to your heart. Don't forget to read Surah Al-Kahf today.",
     'date': '2025-12-21T14:30:00.000Z',
@@ -144,14 +145,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Read Al-Kahf',
       'is_active': true,
-      'action_type': 'open_surah',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'surah_id': 18},
     },
   },
   {
     'id': '101',
     'is_read': false,
-    'type': 'promo',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Win a Trip to Umrah!',
     'description':
@@ -161,14 +162,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Apply Now',
       'is_active': true,
-      'action_type': 'open_webview',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'url': 'https://myquran.app/contest'},
     },
   },
   {
     'id': '102',
     'is_read': true,
-    'type': 'alert',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'System Maintenance',
     'description':
@@ -180,7 +181,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '103',
     'is_read': false,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=5',
     'title': 'New Hatim Started',
     'description': 'Your friend Ali has started a new Hatim circle. Would you like to join and take a Juz?',
@@ -189,30 +190,31 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Join Hatim',
       'is_active': true,
-      'action_type': 'open_hatim',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'hatim_id': '8821'},
     },
   },
   {
     'id': '104',
     'is_read': true,
-    'type': 'info',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=8',
     'title': 'Update Available',
     'description': 'Version 2.0 is now live! We have added Dark Mode and new fonts for better readability.',
     'date': '2025-12-20T10:00:00.000Z',
-    'image': 'https://images.unsplash.com/photo-1555421689-4926337752c3?w=600&q=80',
+    'image':
+        'https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg?cs=srgb&dl=pexels-pixabay-56866.jpg&fm=jpg',
     'action': {
       'button_text': 'Update App',
       'is_active': true,
-      'action_type': 'open_store',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'store_id': 'com.myquran.app'},
     },
   },
   {
     'id': '105',
     'is_read': true,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Did you know?',
     'description': 'The Quran was revealed over a period of approximately 23 years.',
@@ -223,7 +225,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '106',
     'is_read': true,
-    'type': 'promo',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=12',
     'title': 'Ramadan Early Bird Offer',
     'description': 'Get 50% off on Premium subscription before Ramadan starts. Limited time offer!',
@@ -232,30 +234,31 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Get Premium',
       'is_active': false,
-      'action_type': 'open_payment',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'product_id': 'premium_yearly'},
     },
   },
   {
     'id': '107',
     'is_read': false,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=3',
     'title': 'Community Gathering',
     'description': 'Join us this Saturday at the Central Mosque for a community Iftar.',
     'date': '2025-12-19T09:30:00.000Z',
-    'image': 'https://images.unsplash.com/photo-1584558837943-0955681691a5?w=600&q=80',
+    'image':
+        'https://png.pngtree.com/thumb_back/fh260/background/20240421/pngtree-stunning-4k-image-showcasing-the-beauty-of-nature-image_15718240.jpg',
     'action': {
       'button_text': 'Get Directions',
       'is_active': true,
-      'action_type': 'open_maps',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'lat': 42.87, 'lng': 74.59},
     },
   },
   {
     'id': '108',
     'is_read': true,
-    'type': 'alert',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Profile Incomplete',
     'description': 'Please complete your profile to access all features of the application.',
@@ -264,7 +267,7 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Edit Profile',
       'is_active': true,
-      'action_type': 'open_profile',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {
         'id': '1',
       },
@@ -273,7 +276,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '109',
     'is_read': true,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=15',
     'title': 'Feedback Request',
     'description': 'How was your experience reading Surah Yasin yesterday?',
@@ -284,18 +287,19 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '110',
     'is_read': false,
-    'type': 'info',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'New Font Added',
     'description': "We have added the 'Uthmanic Hafs' font based on your requests.",
     'date': '2025-12-17T22:00:00.000Z',
-    'image': 'https://images.unsplash.com/photo-1621159828236-0c7f07d2c31e?w=600&q=80',
+    'image':
+        'https://png.pngtree.com/thumb_back/fh260/background/20250328/pngtree-archway-framing-a-tranquil-paradise-image_17151502.jpg',
     'action': null,
   },
   {
     'id': '111',
     'is_read': true,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=33',
     'title': 'Donation Success',
     'description': 'Thank you! Your donation for the mosque construction has been received.',
@@ -304,14 +308,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'View Receipt',
       'is_active': true,
-      'action_type': 'open_pdf',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'url': 'https://myquran.app/receipts/111'},
     },
   },
   {
     'id': '112',
     'is_read': true,
-    'type': 'promo',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Partner Offer: Halal Food',
     'description': "Order from 'Bishkek Kebab' and get 10% discount with code QURAN10.",
@@ -320,14 +324,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Order Now',
       'is_active': true,
-      'action_type': 'open_browser',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'url': 'https://foodapp.com/bishkek'},
     },
   },
   {
     'id': '113',
     'is_read': true,
-    'type': 'alert',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Password Changed',
     'description': "Your account password was changed successfully. If this wasn't you, contact support.",
@@ -336,7 +340,7 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Contact Support',
       'is_active': true,
-      'action_type': 'open_support',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {
         'id': '1',
       },
@@ -345,7 +349,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '114',
     'is_read': false,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=20',
     'title': 'Daily Ayah',
     'description': '"Indeed, with hardship [will be] ease." (94:6)',
@@ -354,14 +358,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Share',
       'is_active': true,
-      'action_type': 'share_text',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'text': 'Surah Ash-Sharh 94:6'},
     },
   },
   {
     'id': '115',
     'is_read': true,
-    'type': 'info',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Privacy Policy Update',
     'description': 'We have updated our Terms of Service and Privacy Policy effective immediately.',
@@ -370,14 +374,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Read Policy',
       'is_active': true,
-      'action_type': 'open_webview',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'url': 'https://myquran.app/privacy'},
     },
   },
   {
     'id': '116',
     'is_read': true,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=25',
     'title': 'Memorization Progress',
     'description': "You haven't practiced your memorization for 3 days. Keep the streak going!",
@@ -386,7 +390,7 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Practice Now',
       'is_active': true,
-      'action_type': 'open_hifz',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {
         'id': '1',
       },
@@ -395,7 +399,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '117',
     'is_read': true,
-    'type': 'promo',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Limited Time: Lifetime Access',
     'description': 'Get lifetime access to all Premium features for a one-time payment.',
@@ -404,14 +408,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Upgrade',
       'is_active': false,
-      'action_type': 'open_payment',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {'product_id': 'lifetime_deal'},
     },
   },
   {
     'id': '118',
     'is_read': true,
-    'type': 'standard',
+    'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=40',
     'title': 'Welcome Back!',
     'description': "It's been a while since we saw you. We missed you!",
@@ -422,7 +426,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   {
     'id': '119',
     'is_read': true,
-    'type': 'info',
+    'type': 'STANDARD',
     'avatar': null,
     'title': 'Welcome to MyQuran',
     'description': 'Thank you for installing our application. We hope it helps you in your spiritual journey.',
@@ -431,7 +435,7 @@ const notificationJsonData = <Map<String, dynamic>>[
     'action': {
       'button_text': 'Start Tour',
       'is_active': true,
-      'action_type': 'start_onboarding',
+      'action_type': 'JOIN_TO_HATIM',
       'payload': {
         'id': '1',
       },
