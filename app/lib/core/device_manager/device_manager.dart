@@ -19,17 +19,22 @@ final class DeviceManager {
   Future<String> getDeviceId() async {
     try {
       final deviceId = await secureStorage.read(_keyDeviceId);
-      if (deviceId != null && deviceId.isNotEmpty) return deviceId;
+      if (deviceId != null && deviceId.isNotEmpty) {
+        log('✅ Cached deviceId: $deviceId');
+        return deviceId;
+      }
       final generatedId = uuid.v4();
       await secureStorage.write(
         key: _keyDeviceId,
         value: generatedId,
       );
+      log('✅ Generated deviceId: $generatedId');
       return generatedId;
     } on Object catch (e) {
-      log('DeviceIdManager getDeviceId:', error: e);
+      log('❌ DeviceIdManager getDeviceId:', error: e);
       await secureStorage.delete(_keyDeviceId);
       final newId = uuid.v4();
+      log('✅ Generated deviceId: $newId');
       await secureStorage.write(key: _keyDeviceId, value: newId);
       return newId;
     }
