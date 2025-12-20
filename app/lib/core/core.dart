@@ -1,4 +1,5 @@
 export 'launch/app_launch.dart';
+export 'device_manager/device_manager.dart';
 export 'share/app_share.dart';
 export 'enums/fetch_status.dart';
 export 'bloc/bloc_cancel_token.dart';

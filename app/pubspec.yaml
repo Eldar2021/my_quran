@@ -31,6 +31,8 @@ dependencies:
   toastification:
   go_router:
   internet_connection_checker_plus:
+  uuid:
+  flutter_timezone:
 
   mq_ci_keys:
   mq_remote_client:

@@ -48,7 +48,7 @@ class FirebaseNotificationService {
 
       final fcmToken = await firebaseMessaging.getToken();
       log('========================================');
-      log('TOKEN: $fcmToken');
+      log('✅ FCM TOKEN: $fcmToken');
       log('========================================');
 
       if (fcmToken != null) {
@@ -56,6 +56,9 @@ class FirebaseNotificationService {
       }
 
       firebaseMessaging.onTokenRefresh.listen((newToken) async {
+        log('========================================');
+        log('✅ FCM TOKEN REFRESH: $newToken');
+        log('========================================');
         await onSendTokenToServer(newToken);
       });
     } else {

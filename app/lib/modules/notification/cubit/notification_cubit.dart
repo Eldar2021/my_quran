@@ -26,16 +26,20 @@ class NotificationCubit extends Cubit<NotificationState> {
     }
   }
 
-  Future<void> setNotificationToken(
-    AuthModel auth,
-    String fcmToken,
-  ) async {
+  Future<void> setNotificationToken({
+    required AuthModel auth,
+    required String fcmToken,
+    required String deviceId,
+    required String deviceTimezone,
+  }) async {
     emit(state.copyWith(tokenState: const NotificationTokenLoading()));
     try {
       await repository.setNotificationToken(
         userId: auth.key,
         notificationToken: fcmToken,
         deviceType: Platform.isAndroid ? 'android' : 'ios',
+        deviceId: deviceId,
+        deviceTimezone: deviceTimezone,
       );
       emit(
         state.copyWith(

@@ -19,6 +19,7 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/firebase_options.dart';
+import 'package:uuid/uuid.dart';
 
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,6 +101,11 @@ Future<void> main({bool isIntegrationTest = false}) async {
     onShowNotification: localNotificationService.showNotification,
   );
 
+  const deviceIdManager = DeviceManager(
+    secureStorage: SecureStorage(),
+    uuid: Uuid(),
+  );
+
   final notificationService = NotificationService(
     firebase: firebaseNotificationService,
     local: localNotificationService,
@@ -129,6 +135,9 @@ Future<void> main({bool isIntegrationTest = false}) async {
         ),
         RepositoryProvider<MqRemoteClient>(
           create: (context) => remoteClient,
+        ),
+        RepositoryProvider<DeviceManager>(
+          create: (context) => deviceIdManager,
         ),
       ],
       child: const MyApp(),
