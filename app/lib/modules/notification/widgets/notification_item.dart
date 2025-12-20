@@ -10,37 +10,105 @@ class NotificationItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: item.isRead ? Colors.transparent : theme.colorScheme.primary,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _NotificationAvatar(item.avatar),
+        const SizedBox(width: 2),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _NotificationCard(
+                title: item.title,
+                description: item.description,
+                time: item.date,
+                isRead: item.isRead,
+              ),
+              if (item.action != null) _NotificationActionWidget(item.action!),
+            ],
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(4),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _NotificationAvatar(item.avatar),
-            const SizedBox(width: 2),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _NotificationCard(
-                    title: item.title,
-                    description: item.description,
-                    time: item.date,
-                  ),
-                  if (item.action != null) _NotificationActionWidget(item.action!),
-                ],
+      ],
+    );
+  }
+}
+
+class _NotificationCard extends StatelessWidget {
+  const _NotificationCard({
+    required this.title,
+    required this.description,
+    required this.time,
+    required this.isRead,
+  });
+
+  final String title;
+  final String description;
+  final DateTime time;
+  final bool isRead;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final locale = Localizations.localeOf(context);
+    return ChatBubble(
+      backgroundColor: theme.colorScheme.surfaceContainerHigh,
+      child: Stack(
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: theme.primaryTextTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                description,
+                style: theme.textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  _formatTime(time, locale.languageCode),
+                  style: theme.textTheme.bodySmall,
+                ),
+              ),
+            ],
+          ),
+          if (!isRead)
+            Positioned(
+              top: 0,
+              right: 0,
+              child: CircleAvatar(
+                radius: 3,
+                backgroundColor: theme.colorScheme.primary,
               ),
             ),
-          ],
-        ),
+        ],
       ),
+    );
+  }
+
+  String _formatTime(DateTime dt, String locale) {
+    return DateFormat('dd MMM hh:mm', locale).format(dt);
+  }
+}
+
+class _NotificationAvatar extends StatelessWidget {
+  const _NotificationAvatar(this.avatar);
+
+  final String? avatar;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: 20,
+      backgroundImage: avatar != null ? CachedNetworkImageProvider(avatar!) : Assets.images.appIcon.provider(),
     );
   }
 }
@@ -65,69 +133,6 @@ class _NotificationActionWidget extends StatelessWidget {
         ),
         child: Text(action.buttonText),
       ),
-    );
-  }
-}
-
-class _NotificationCard extends StatelessWidget {
-  const _NotificationCard({
-    required this.title,
-    required this.description,
-    required this.time,
-  });
-
-  final String title;
-  final String description;
-  final DateTime time;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final locale = Localizations.localeOf(context);
-    return ChatBubble(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: theme.primaryTextTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            description,
-            style: theme.textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 8),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Text(
-              _formatTime(time, locale.languageCode),
-              style: theme.textTheme.bodySmall,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _formatTime(DateTime dt, String locale) {
-    return DateFormat('dd MMM hh:mm', locale).format(dt);
-  }
-}
-
-class _NotificationAvatar extends StatelessWidget {
-  const _NotificationAvatar(this.avatar);
-
-  final String? avatar;
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 20,
-      backgroundImage: avatar != null ? CachedNetworkImageProvider(avatar!) : Assets.images.appIcon.provider(),
     );
   }
 }

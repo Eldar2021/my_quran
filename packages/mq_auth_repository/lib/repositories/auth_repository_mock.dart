@@ -140,7 +140,7 @@ const notificationJsonData = <Map<String, dynamic>>[
         'https://img.freepik.com/free-photo/animal-eye-staring-close-up-watch-nature-generative-ai_188544-15471.jpg?semt=ais_hybrid&w=740&q=80',
     'title': 'Juma Mubarak, Ediiar!',
     'description': "May this Friday bring peace and happiness to your heart. Don't forget to read Surah Al-Kahf today.",
-    'date': '2025-12-21T14:30:00.000Z',
+    'date': '2025-12-22T14:30:00.000Z',
     'image': 'https://images.unsplash.com/photo-1564121211835-e88c852648ab?w=600&q=80',
     'action': {
       'button_text': 'Read Al-Kahf',
@@ -161,14 +161,14 @@ const notificationJsonData = <Map<String, dynamic>>[
     'image': 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80',
     'action': {
       'button_text': 'Apply Now',
-      'is_active': true,
+      'is_active': false,
       'action_type': 'JOIN_TO_HATIM',
       'payload': {'url': 'https://myquran.app/contest'},
     },
   },
   {
     'id': '102',
-    'is_read': true,
+    'is_read': false,
     'type': 'STANDARD',
     'avatar': null,
     'title': 'System Maintenance',
@@ -180,7 +180,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   },
   {
     'id': '103',
-    'is_read': false,
+    'is_read': true,
     'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=5',
     'title': 'New Hatim Started',
@@ -240,7 +240,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   },
   {
     'id': '107',
-    'is_read': false,
+    'is_read': true,
     'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=3',
     'title': 'Community Gathering',
@@ -286,7 +286,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   },
   {
     'id': '110',
-    'is_read': false,
+    'is_read': true,
     'type': 'STANDARD',
     'avatar': null,
     'title': 'New Font Added',
@@ -348,7 +348,7 @@ const notificationJsonData = <Map<String, dynamic>>[
   },
   {
     'id': '114',
-    'is_read': false,
+    'is_read': true,
     'type': 'STANDARD',
     'avatar': 'https://i.pravatar.cc/150?img=20',
     'title': 'Daily Ayah',
@@ -405,12 +405,6 @@ const notificationJsonData = <Map<String, dynamic>>[
     'description': 'Get lifetime access to all Premium features for a one-time payment.',
     'date': '2025-12-12T09:00:00.000Z',
     'image': 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80',
-    'action': {
-      'button_text': 'Upgrade',
-      'is_active': false,
-      'action_type': 'JOIN_TO_HATIM',
-      'payload': {'product_id': 'lifetime_deal'},
-    },
   },
   {
     'id': '118',
@@ -421,7 +415,12 @@ const notificationJsonData = <Map<String, dynamic>>[
     'description': "It's been a while since we saw you. We missed you!",
     'date': '2025-12-10T11:00:00.000Z',
     'image': null,
-    'action': null,
+    'action': {
+      'button_text': 'Upgrade',
+      'is_active': false,
+      'action_type': 'JOIN_TO_HATIM',
+      'payload': {'product_id': 'lifetime_deal'},
+    },
   },
   {
     'id': '119',
