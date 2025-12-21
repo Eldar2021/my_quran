@@ -40,7 +40,9 @@ class _NotificationViewState extends State<NotificationView> with NotificationDe
       body: BlocConsumer<NotificationCubit, NotificationState>(
         listener: (context, state) {
           final fetchState = state.fetchState;
-          if (fetchState is NotificationFetchError) {
+          if (fetchState is NotificationFetchSuccess) {
+            context.read<NotificationCubit>().resetNotificationCount();
+          } else if (fetchState is NotificationFetchError) {
             _onError(fetchState.error);
           }
         },

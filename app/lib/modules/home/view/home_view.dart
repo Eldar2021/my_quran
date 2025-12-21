@@ -70,15 +70,8 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
             ),
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () => context.pushNamed(AppRouter.notification),
-            icon: Icon(
-              Icons.notifications_none_outlined,
-              color: colorScheme.onSurface,
-              size: 28,
-            ),
-          ),
+        actions: const [
+          NotificationCountBadgeWidget(),
         ],
       ),
       body: RefreshIndicator(

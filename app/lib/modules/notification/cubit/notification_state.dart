@@ -41,6 +41,15 @@ final class NotificationState extends Equatable {
 sealed class NotificationCountState extends Equatable {
   const NotificationCountState();
 
+  int get count {
+    if (this is NotificationCountSuccess) {
+      final state = this as NotificationCountSuccess;
+      return state.data.unreadCount > 99 ? 99 : state.data.unreadCount;
+    } else {
+      return 0;
+    }
+  }
+
   @override
   List<Object?> get props => [];
 }

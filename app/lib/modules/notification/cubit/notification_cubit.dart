@@ -32,6 +32,11 @@ class NotificationCubit extends Cubit<NotificationState> {
     }
   }
 
+  void resetNotificationCount() {
+    const newCountState = NotificationCountSuccess(NotificationCount(0));
+    emit(state.copyWith(countState: newCountState));
+  }
+
   Future<void> getNotification(
     String? locale,
     String? userId,
