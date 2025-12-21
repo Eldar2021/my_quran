@@ -156,7 +156,7 @@ final class AuthRemoteDataSource {
   ) {
     try {
       return client.getType(
-        '/api/v1/accounts/notifications/count/',
+        '/api/v1/notifications/',
         fromJson: NotificationCount.fromJson,
       );
     } on Object catch (e) {
