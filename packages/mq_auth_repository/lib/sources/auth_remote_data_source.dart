@@ -151,6 +151,20 @@ final class AuthRemoteDataSource {
     }
   }
 
+  Future<NotificationCount> getNotificationCount(
+    String userId,
+  ) {
+    try {
+      return client.getType(
+        '/api/v1/accounts/notifications/count/',
+        fromJson: NotificationCount.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getNotificationCount:', error: e);
+      rethrow;
+    }
+  }
+
   Future<List<NotificationModel>> getNotifications(
     String userId,
     String locale,

@@ -95,6 +95,11 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<NotificationCount> getNotificationCount(String userId) {
+    return remoteDataSource.getNotificationCount(userId);
+  }
+
+  @override
   Future<List<NotificationModel>> getNotifications(
     String userId,
     String locale,

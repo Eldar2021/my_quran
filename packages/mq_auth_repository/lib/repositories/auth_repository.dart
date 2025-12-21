@@ -26,6 +26,10 @@ abstract class AuthRepository {
 
   Future<void> saveUser(AuthModel user);
 
+  Future<NotificationCount> getNotificationCount(
+    String userId,
+  );
+
   Future<void> setNotificationToken({
     required String userId,
     required String notificationToken,

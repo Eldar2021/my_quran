@@ -13,6 +13,25 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   final AuthRepository repository;
 
+  Future<void> getNotificationCount(String? userId) async {
+    emit(state.copyWith(countState: const NotificationCountLoading()));
+    try {
+      if (userId == null) {
+        emit(
+          state.copyWith(
+            countState: const NotificationCountSuccess(NotificationCount(0)),
+          ),
+        );
+      } else {
+        final result = await repository.getNotificationCount(userId);
+        emit(state.copyWith(countState: NotificationCountSuccess(result)));
+      }
+    } on Object catch (e) {
+      log('getNotificationCount', error: e);
+      emit(state.copyWith(countState: NotificationCountError(e)));
+    }
+  }
+
   Future<void> getNotification(
     String? locale,
     String? userId,
@@ -21,6 +40,7 @@ class NotificationCubit extends Cubit<NotificationState> {
     if (data != null) {
       emit(state.copyWith(fetchState: NotificationHasInitialData(data)));
     }
+    await Future<void>.delayed(const Duration(seconds: 5));
     try {
       if (userId == null && data == null) {
         emit(state.copyWith(fetchState: const NotificationFetchSuccess([])));
