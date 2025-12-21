@@ -38,7 +38,7 @@ sealed class NoticationFetchState extends Equatable {
   const NoticationFetchState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 @immutable
@@ -52,10 +52,26 @@ final class NotificationFetchLoading extends NoticationFetchState {
 }
 
 @immutable
+final class NotificationHasInitialData extends NoticationFetchState {
+  const NotificationHasInitialData(this.data);
+
+  final NotificationModel data;
+
+  @override
+  List<Object?> get props => [data];
+}
+
+@immutable
 final class NotificationFetchSuccess extends NoticationFetchState {
   const NotificationFetchSuccess(this.notifications);
 
   final List<NotificationModel>? notifications;
+
+  @override
+  List<Object?> get props => [
+    notifications,
+    notifications?.length,
+  ];
 }
 
 @immutable

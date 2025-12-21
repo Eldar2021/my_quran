@@ -13,12 +13,19 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   final AuthRepository repository;
 
-  Future<void> getNotification(String? locale, String? userId) async {
+  Future<void> getNotification(
+    String? locale,
+    String? userId,
+    NotificationModel? data,
+  ) async {
+    if (data != null) {
+      emit(state.copyWith(fetchState: NotificationHasInitialData(data)));
+    }
     try {
-      if (userId == null) {
+      if (userId == null && data == null) {
         emit(state.copyWith(fetchState: const NotificationFetchSuccess([])));
         return;
-      } else {
+      } else if (userId != null) {
         final result = await repository.getNotifications(
           locale ?? 'en',
           userId,

@@ -204,7 +204,9 @@ final class AppRouter {
         name: notification,
         path: notification,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const NotificationView(),
+        builder: (context, state) => NotificationView(
+          state.extra as NotificationModel?,
+        ),
       ),
     ];
   }
