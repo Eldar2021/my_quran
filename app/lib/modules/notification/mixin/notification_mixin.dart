@@ -22,6 +22,9 @@ mixin NotificationMixin {
         locale: auth.user.language ?? 'en',
         onNotificationClick: _onNotificationClick,
         onFirebaseNotificationClick: _onNotificationClick,
+        onReceiveNotification: () {
+          notificationCubit.resetNotificationCount();
+        },
         onPermissionEnabled: () {
           notificationCubit.toggleNotification(auth.key, true);
         },
