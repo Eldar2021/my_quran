@@ -44,14 +44,14 @@ NotificationAction _$NotificationActionFromJson(Map<String, dynamic> json) => No
     _$NotificationActionTypeEnumMap,
     json['action_type'],
   ),
-  payload: json['payload'],
+  payload: json['action_payload'],
 );
 
 Map<String, dynamic> _$NotificationActionToJson(NotificationAction instance) => <String, dynamic>{
   'button_text': instance.buttonText,
   'is_active': instance.isActive,
   'action_type': _$NotificationActionTypeEnumMap[instance.actionType]!,
-  'payload': instance.payload,
+  'action_payload': instance.payload,
 };
 
 const _$NotificationActionTypeEnumMap = {
