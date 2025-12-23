@@ -23,6 +23,7 @@ class NotificationService {
     required FutureOr<void> Function() onPermissionEnabled,
     required FutureOr<void> Function() onPermissionDisabled,
     required FutureOr<void> Function(String) onSendTokenToServer,
+    required FutureOr<void> Function() onReceiveNotification,
   }) async {
     if (isIntegrationTesting) return;
     if (isInitialized) return;
@@ -32,6 +33,7 @@ class NotificationService {
 
     await firebase.initialize(
       onNotificationClick: onFirebaseNotificationClick,
+      onReceiveNotification: onReceiveNotification,
       onPermissionEnabled: onPermissionEnabled,
       onPermissionDisabled: onPermissionDisabled,
       onSendTokenToServer: onSendTokenToServer,

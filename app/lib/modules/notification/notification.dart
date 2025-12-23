@@ -6,3 +6,4 @@ export 'view/notification_list_widget.dart';
 export 'widgets/notification_item.dart';
 export 'widgets/notification_empty_state.dart';
 export 'widgets/notification_loading_widget.dart';
+export 'widgets/notification_count_badge_widget.dart';

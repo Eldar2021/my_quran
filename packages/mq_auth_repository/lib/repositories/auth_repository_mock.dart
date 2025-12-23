@@ -100,6 +100,16 @@ final class AuthRepositoryMock implements AuthRepository {
       () => UserModel.fromJson(_userJsonData),
     );
   }
+
+  @override
+  Future<NotificationCount> getNotificationCount(
+    String userId,
+  ) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () => const NotificationCount(0),
+    );
+  }
 }
 
 const _authJsonData = <String, dynamic>{

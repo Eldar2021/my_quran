@@ -6,21 +6,25 @@ final class NotificationState extends Equatable {
     this.fetchState = const NotificationFetchInitial(),
     this.tokenState = const NotificationTokenInitial(),
     this.allowedState = const NotificationAllowedInitial(false),
+    this.countState = const NotificationCountInitial(),
   });
 
   final NoticationFetchState fetchState;
   final NotificaionTokenState tokenState;
   final NotificationAllowedState allowedState;
+  final NotificationCountState countState;
 
   NotificationState copyWith({
     NoticationFetchState? fetchState,
     NotificaionTokenState? tokenState,
     NotificationAllowedState? allowedState,
+    NotificationCountState? countState,
   }) {
     return NotificationState(
       fetchState: fetchState ?? this.fetchState,
       tokenState: tokenState ?? this.tokenState,
       allowedState: allowedState ?? this.allowedState,
+      countState: countState ?? this.countState,
     );
   }
 
@@ -32,13 +36,58 @@ final class NotificationState extends Equatable {
   ];
 }
 
+/// -------------Count State---------------
+@immutable
+sealed class NotificationCountState extends Equatable {
+  const NotificationCountState();
+
+  int get count {
+    if (this is NotificationCountSuccess) {
+      final state = this as NotificationCountSuccess;
+      return state.data.unreadCount > 99 ? 99 : state.data.unreadCount;
+    } else {
+      return 0;
+    }
+  }
+
+  @override
+  List<Object?> get props => [];
+}
+
+@immutable
+final class NotificationCountInitial extends NotificationCountState {
+  const NotificationCountInitial();
+}
+
+@immutable
+final class NotificationCountLoading extends NotificationCountState {
+  const NotificationCountLoading();
+}
+
+@immutable
+final class NotificationCountSuccess extends NotificationCountState {
+  const NotificationCountSuccess(this.data);
+
+  final NotificationCount data;
+
+  @override
+  List<Object?> get props => [data];
+}
+
+@immutable
+final class NotificationCountError extends NotificationCountState {
+  const NotificationCountError(this.error);
+
+  final Object error;
+}
+
 /// -------------Fetch state---------------
 @immutable
 sealed class NoticationFetchState extends Equatable {
   const NoticationFetchState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 @immutable
@@ -52,10 +101,26 @@ final class NotificationFetchLoading extends NoticationFetchState {
 }
 
 @immutable
+final class NotificationHasInitialData extends NoticationFetchState {
+  const NotificationHasInitialData(this.data);
+
+  final NotificationModel data;
+
+  @override
+  List<Object?> get props => [data];
+}
+
+@immutable
 final class NotificationFetchSuccess extends NoticationFetchState {
   const NotificationFetchSuccess(this.notifications);
 
   final List<NotificationModel>? notifications;
+
+  @override
+  List<Object?> get props => [
+    notifications,
+    notifications?.length,
+  ];
 }
 
 @immutable

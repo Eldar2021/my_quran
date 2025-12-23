@@ -61,7 +61,7 @@ final class NotificationAction {
   final bool isActive;
   @JsonKey(name: 'action_type')
   final NotificationActionType actionType;
-  @JsonKey(name: 'payload')
+  @JsonKey(name: 'action_payload')
   final dynamic payload;
 }
 

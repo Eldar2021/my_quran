@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -19,21 +20,16 @@ mixin NotificationMixin {
       await context.read<NotificationService>().initialize(
         userToken: auth.key,
         locale: auth.user.language ?? 'en',
+        onNotificationClick: _onNotificationClick,
+        onFirebaseNotificationClick: _onNotificationClick,
+        onReceiveNotification: () {
+          notificationCubit.resetNotificationCount();
+        },
         onPermissionEnabled: () {
           notificationCubit.toggleNotification(auth.key, true);
         },
         onPermissionDisabled: () {
           notificationCubit.toggleNotification(auth.key, false);
-        },
-        onNotificationClick: (data) {
-          rootNavigatorKey.currentContext?.goNamed(
-            AppRouter.notification,
-          );
-        },
-        onFirebaseNotificationClick: (data) {
-          rootNavigatorKey.currentContext?.goNamed(
-            AppRouter.notification,
-          );
         },
         onSendTokenToServer: (fcmToken) async {
           final [deviceId, deviceTimezone] = await Future.wait([
@@ -50,6 +46,31 @@ mixin NotificationMixin {
       );
     } on Object catch (e) {
       log('initializeNotification', error: e);
+    }
+  }
+
+  Future<void> _onNotificationClick(Object? data) async {
+    final model = _parseNotificationModel(data);
+    rootNavigatorKey.currentContext?.goNamed(
+      AppRouter.notification,
+      extra: model,
+    );
+  }
+
+  NotificationModel? _parseNotificationModel(Object? data) {
+    try {
+      if (data is String) {
+        return NotificationModel.fromJson(
+          jsonDecode(data) as Map<String, dynamic>,
+        );
+      } else if (data is Map<String, dynamic>) {
+        return NotificationModel.fromJson(data);
+      } else {
+        return null;
+      }
+    } on Object catch (e) {
+      log('❌ parseNotificationModel', error: e);
+      return null;
     }
   }
 }

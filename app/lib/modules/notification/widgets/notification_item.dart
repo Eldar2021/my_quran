@@ -24,6 +24,7 @@ class NotificationItemWidget extends StatelessWidget {
                 description: item.description,
                 time: item.date,
                 isRead: item.isRead,
+                image: item.image,
               ),
               if (item.action != null) _NotificationActionWidget(item.action!),
             ],
@@ -40,12 +41,14 @@ class _NotificationCard extends StatelessWidget {
     required this.description,
     required this.time,
     required this.isRead,
+    this.image,
   });
 
   final String title;
   final String description;
   final DateTime time;
   final bool isRead;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +60,7 @@ class _NotificationCard extends StatelessWidget {
         children: [
           Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
@@ -71,6 +75,18 @@ class _NotificationCard extends StatelessWidget {
                 style: theme.textTheme.bodyMedium,
               ),
               const SizedBox(height: 8),
+              if (image != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: image!,
+                      fit: BoxFit.fitHeight,
+                      errorWidget: (context, url, error) => const SizedBox(),
+                    ),
+                  ),
+                ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Text(

@@ -151,19 +151,29 @@ final class AuthRemoteDataSource {
     }
   }
 
+  Future<NotificationCount> getNotificationCount(
+    String userId,
+  ) {
+    try {
+      return client.getType(
+        '/api/v1/notifications/unread_count/',
+        fromJson: NotificationCount.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getNotificationCount:', error: e);
+      rethrow;
+    }
+  }
+
   Future<List<NotificationModel>> getNotifications(
     String userId,
     String locale,
   ) {
     try {
-      return Future.delayed(
-        const Duration(seconds: 1),
-        () => notificationJsonData.map(NotificationModel.fromJson).toList(),
+      return client.getListOfType(
+        '/api/v1/notifications/',
+        fromJson: NotificationModel.fromJson,
       );
-      // return client.getListOfType(
-      //   '/api/v1/accounts/notifications/',
-      //   fromJson: NotificationModel.fromJson,
-      // );
     } on Object catch (e) {
       log('AuthRemoteDataSource getNotifications:', error: e);
       rethrow;
