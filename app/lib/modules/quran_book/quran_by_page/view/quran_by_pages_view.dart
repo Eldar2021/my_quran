@@ -5,9 +5,14 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranByPagesView extends StatelessWidget {
-  const QuranByPagesView(this.pagesNumber, {super.key});
+  const QuranByPagesView({
+    required this.pagesNumber,
+    this.hatimId,
+    super.key,
+  });
 
   final List<int> pagesNumber;
+  final String? hatimId;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,7 @@ class QuranByPagesView extends StatelessWidget {
           create: (context) => QuranPagePagingBloc(
             repository: context.read<MqQuranRepository>(),
             pagesNumber: pagesNumber,
+            hatimId: hatimId,
           ),
         ),
       ],

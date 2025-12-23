@@ -7,15 +7,16 @@ import 'package:mq_crashlytics/mq_crashlytics.dart';
 final class ParseParams {
   const ParseParams._();
 
-  static List<int> parseRead(Map<String, String> args) {
+  static (List<int>, String?) parseRead(Map<String, String> args) {
     try {
       final p1 = args['pages'] ?? '[1]';
       final pages = p1.substring(1, p1.length - 1).split(',').map(int.parse).toList();
-      return pages;
+      final hatimId = args['hatimId'];
+      return (pages, hatimId);
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
       log(e.toString());
-      return [1];
+      return ([1], null);
     }
   }
 
