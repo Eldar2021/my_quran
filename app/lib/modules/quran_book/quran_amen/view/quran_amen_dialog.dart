@@ -101,9 +101,8 @@ class QuranAmenDialogContent extends StatelessWidget {
   }
 
   void _onAmen(BuildContext context) {
-    context.read<QuranAmenCubit>().amen(pages, hatimId: hatimId);
-    if (hatimId == null && onAmen != null) {
-      onAmen!(context, true);
+    if (pages.isNotEmpty) {
+      context.read<QuranAmenCubit>().amen(pages, hatimId: hatimId);
     }
   }
 }

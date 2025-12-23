@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranBySurahView extends StatelessWidget {
@@ -84,15 +86,43 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
                 QuranBookBySurahInitial() => const QuranBookSliverSizedBoxShrink(),
                 QuranBookBySurahLoading() => const QuranBookSliverSizedBoxShrink(),
                 QuranBookBySurahError() => const QuranBookSliverSizedBoxShrink(),
-                QuranBookBySurahLoaded() => QuranBookSliverAmenButton(
-                  onAmenPressed: () => Navigator.pop(context),
-                  afterAmenPressed: () => Navigator.pop(context),
-                ),
+                QuranBookBySurahLoaded() => QuranBookSliverAmenButton(onAmenPressed: _onReaded),
               };
             },
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _onReaded() async {
+    final readThemeState = context.read<QuranBookThemeCubit>().state;
+    final surahNumber = context.read<QuranBookBySurahCubit>().surahNumber;
+    final pages = _getPagesForSurah(surahNumber);
+    MqAnalytic.track(AnalyticKey.showAmin);
+
+    await QuranAmenDialog.showAmen<void>(
+      context: context,
+      content: QuranAmenDialogContent(
+        readThemeState: readThemeState,
+        pages: pages,
+        gender: context.read<AuthCubit>().state.currentGender,
+        onAmen: (ctx, result) {
+          Navigator.pop(ctx);
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
+
+  List<int> _getPagesForSurah(int surahNumber) {
+    final range = surahRanges[surahNumber];
+    if (range == null) return [];
+    final (startPage, endPage) = range;
+    if (startPage > endPage) return [];
+    return List.generate(
+      endPage - startPage + 1,
+      (i) => startPage + i,
     );
   }
 }

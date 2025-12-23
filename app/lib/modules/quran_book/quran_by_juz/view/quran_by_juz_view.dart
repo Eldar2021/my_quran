@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -92,15 +94,42 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
                 QuranBookByJuzInitial() => const QuranBookSliverSizedBoxShrink(),
                 QuranBookByJuzLoading() => const QuranBookSliverSizedBoxShrink(),
                 QuranBookByJuzError() => const QuranBookSliverSizedBoxShrink(),
-                QuranBookByJuzLoaded() => QuranBookSliverAmenButton(
-                  onAmenPressed: () => Navigator.pop(context),
-                  afterAmenPressed: () => Navigator.pop(context),
-                ),
+                QuranBookByJuzLoaded() => QuranBookSliverAmenButton(onAmenPressed: _onReaded),
               };
             },
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _onReaded() async {
+    final readThemeState = context.read<QuranBookThemeCubit>().state;
+    final juzNumber = context.read<QuranBookByJuzCubit>().juzNumber;
+    final pages = _getJuzPages(juzNumber);
+    MqAnalytic.track(AnalyticKey.showAmin);
+    await QuranAmenDialog.showAmen<void>(
+      context: context,
+      content: QuranAmenDialogContent(
+        readThemeState: readThemeState,
+        pages: pages,
+        gender: context.read<AuthCubit>().state.currentGender,
+        onAmen: (ctx, result) {
+          Navigator.pop(ctx);
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
+
+  List<int> _getJuzPages(int juzNumber) {
+    final range = juzPages[juzNumber];
+    if (range == null || range.length < 2) return [];
+    final startPage = range[0];
+    final endPage = range[1];
+    return List.generate(
+      endPage - startPage + 1,
+      (index) => startPage + index,
     );
   }
 }

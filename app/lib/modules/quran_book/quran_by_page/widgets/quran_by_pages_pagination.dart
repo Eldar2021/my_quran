@@ -84,10 +84,12 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
         pages: _pagesNumber,
         gender: context.read<AuthCubit>().state.currentGender,
         hatimId: context.read<QuranPagePagingBloc>().hatimId,
-        onAmen: (context, result) {
+        onAmen: (ctx, result) {
           if (result) {
+            Navigator.pop(ctx);
             Navigator.pop(context);
           } else {
+            Navigator.pop(ctx, true);
             Navigator.pop(context, true);
           }
         },
