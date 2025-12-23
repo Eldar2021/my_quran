@@ -81,6 +81,7 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
       content: QuranAmenDialogContent(
         readThemeState: readThemeState,
         pages: _pagesNumber,
+        confirmMessage: context.l10n.confirmPagesReaded,
         gender: context.read<AuthCubit>().state.currentGender,
         hatimId: context.read<QuranPagePagingBloc>().hatimId,
         onAmen: (ctx, result) {

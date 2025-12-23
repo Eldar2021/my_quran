@@ -31,6 +31,7 @@ abstract class QuranAmenDialog {
 class QuranAmenDialogContent extends StatelessWidget {
   const QuranAmenDialogContent({
     required this.readThemeState,
+    required this.confirmMessage,
     required this.pages,
     this.gender = Gender.male,
     this.hatimId,
@@ -41,12 +42,29 @@ class QuranAmenDialogContent extends StatelessWidget {
   final QuranBookThemeState readThemeState;
   final List<int> pages;
   final Gender gender;
+  final String confirmMessage;
   final String? hatimId;
   final void Function(BuildContext context, bool result)? onAmen;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final genderIcon = switch (gender) {
+      Gender.male => Assets.icons.userMale.svg(
+        height: 100,
+        colorFilter: ColorFilter.mode(
+          readThemeState.frColor,
+          BlendMode.srcIn,
+        ),
+      ),
+      Gender.female => Assets.icons.userFemale.svg(
+        height: 100,
+        colorFilter: ColorFilter.mode(
+          readThemeState.frColor,
+          BlendMode.srcIn,
+        ),
+      ),
+    };
     return AlertDialog(
       backgroundColor: readThemeState.bgColor,
       contentTextStyle: textTheme.titleMedium?.copyWith(
@@ -56,22 +74,34 @@ class QuranAmenDialogContent extends StatelessWidget {
         color: readThemeState.frColor,
       ),
       actionsAlignment: MainAxisAlignment.center,
-      icon: switch (gender) {
-        Gender.male => Assets.icons.userMale.svg(
-          height: 100,
-          colorFilter: ColorFilter.mode(
-            readThemeState.frColor,
-            BlendMode.srcIn,
+      iconPadding: EdgeInsets.zero,
+      icon: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 2, left: 4),
+            child: IconButton(
+              icon: Icon(Icons.close, color: Colors.transparent),
+              onPressed: null,
+            ),
           ),
-        ),
-        Gender.female => Assets.icons.userFemale.svg(
-          height: 100,
-          colorFilter: ColorFilter.mode(
-            readThemeState.frColor,
-            BlendMode.srcIn,
+          Expanded(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: genderIcon,
+              ),
+            ),
           ),
-        ),
-      },
+          Padding(
+            padding: const EdgeInsets.only(top: 2, right: 4),
+            child: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+        ],
+      ),
       title: Text(
         context.l10n.amen,
         style: Theme.of(context).textTheme.headlineMedium,
@@ -88,7 +118,7 @@ class QuranAmenDialogContent extends StatelessWidget {
           const Icon(Icons.info),
           const SizedBox(height: 6),
           Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            confirmMessage,
             style: Theme.of(context).textTheme.labelMedium,
             textAlign: TextAlign.center,
           ),

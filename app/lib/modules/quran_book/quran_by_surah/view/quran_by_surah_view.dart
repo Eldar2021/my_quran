@@ -4,6 +4,7 @@ import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranBySurahView extends StatelessWidget {
@@ -106,6 +107,7 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
       content: QuranAmenDialogContent(
         readThemeState: readThemeState,
         pages: pages,
+        confirmMessage: context.l10n.confirmSurahReaded,
         gender: context.read<AuthCubit>().state.currentGender,
         onAmen: (ctx, result) {
           Navigator.pop(ctx);

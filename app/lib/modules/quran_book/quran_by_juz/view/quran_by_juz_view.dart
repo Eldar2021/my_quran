@@ -114,6 +114,7 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
         readThemeState: readThemeState,
         pages: pages,
         gender: context.read<AuthCubit>().state.currentGender,
+        confirmMessage: context.l10n.confirmJuzReaded,
         onAmen: (ctx, result) {
           Navigator.pop(ctx);
           Navigator.pop(context);
