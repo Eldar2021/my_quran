@@ -109,8 +109,8 @@ class MqQuranRemoteDataSourceMock implements MqQuranRemoteDataSource {
   @override
   Future<bool> setDonPages({
     required List<int> pageNumber,
-    required String? hatimId,
     required String status,
+    String? hatimId,
   }) async {
     await Future<void>.delayed(const Duration(seconds: 1));
     return true;

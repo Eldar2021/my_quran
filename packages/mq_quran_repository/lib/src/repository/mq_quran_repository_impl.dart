@@ -106,8 +106,8 @@ final class MqQuranRepositoryImpl implements MqQuranRepository {
   @override
   Future<bool> setDonPages({
     required List<int> pageNumber,
-    required String? hatimId,
     required String status,
+    String? hatimId,
   }) {
     return remoteDataSource.setDonPages(
       pageNumber: pageNumber,
