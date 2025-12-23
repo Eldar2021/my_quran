@@ -78,7 +78,6 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
     MqAnalytic.track(AnalyticKey.showAmin);
     await QuranAmenDialog.showAmen<void>(
       context: context,
-      barrierDismissible: false,
       content: QuranAmenDialogContent(
         readThemeState: readThemeState,
         pages: _pagesNumber,

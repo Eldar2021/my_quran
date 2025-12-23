@@ -72,10 +72,27 @@ class QuranAmenDialogContent extends StatelessWidget {
           ),
         ),
       },
-      title: Text(context.l10n.amen),
-      content: Text(
-        context.l10n.dua,
-        textAlign: TextAlign.center,
+      title: Text(
+        context.l10n.amen,
+        style: Theme.of(context).textTheme.headlineMedium,
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            context.l10n.dua,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 16),
+          const Icon(Icons.info),
+          const SizedBox(height: 6),
+          Text(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            style: Theme.of(context).textTheme.labelMedium,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
       actions: [
         BlocConsumer<QuranAmenCubit, QuranAmenState>(
