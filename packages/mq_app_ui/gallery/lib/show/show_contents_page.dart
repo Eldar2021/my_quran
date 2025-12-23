@@ -18,7 +18,6 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
-    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(title: const Text('Show Contents')),
       body: ListView(
@@ -27,46 +26,6 @@ class _ShowContentsPageState extends State<ShowContentsPage> {
           Text(
             'Show amen',
             style: prTextTheme.titleMedium,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TextButton(
-                onPressed: () {
-                  MqAlertDialogs.showAmen<void>(
-                    context: context,
-                    backgroundColor: colorScheme.surface,
-                    foregroundColor: colorScheme.onSurface,
-                    onPressed: () {},
-                  );
-                },
-                child: const Text('Male'),
-              ),
-              TextButton(
-                onPressed: () {
-                  MqAlertDialogs.showAmen<void>(
-                    context: context,
-                    backgroundColor: colorScheme.surface,
-                    foregroundColor: colorScheme.onSurface,
-                    gender: MqAppUiGender.famale,
-                    onPressed: () {},
-                  );
-                },
-                child: const Text('Famale'),
-              ),
-              TextButton(
-                onPressed: () {
-                  MqAlertDialogs.showAmen<void>(
-                    context: context,
-                    backgroundColor: colorScheme.surface,
-                    foregroundColor: colorScheme.onSurface,
-                    gender: MqAppUiGender.unknown,
-                    onPressed: () {},
-                  );
-                },
-                child: const Text('Unknown'),
-              ),
-            ],
           ),
           const SizedBox(height: 20),
           const Divider(),

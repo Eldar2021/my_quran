@@ -12,7 +12,6 @@ export 'shape/custom_track_shape.dart';
 export 'shape/chat_bubble_card.dart';
 export 'decoration/gradient_decorated_box.dart';
 export 'enum/gender_enum.dart';
-export 'show/mq_alert_dialogs.dart';
 export 'show/mq_bottom_sheet.dart';
 export 'show/mq_popup_actions.dart';
 export 'components/pinput_widget.dart';
