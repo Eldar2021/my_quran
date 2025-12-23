@@ -31,8 +31,7 @@ final class QuranDataEntity {
 
       while (parsedPageEndings[currentPage] != null &&
           (surah > parsedPageEndings[currentPage]!.$1 ||
-              (surah == parsedPageEndings[currentPage]!.$1 &&
-                  ayah > parsedPageEndings[currentPage]!.$2))) {
+              (surah == parsedPageEndings[currentPage]!.$1 && ayah > parsedPageEndings[currentPage]!.$2))) {
         currentPage++;
       }
 

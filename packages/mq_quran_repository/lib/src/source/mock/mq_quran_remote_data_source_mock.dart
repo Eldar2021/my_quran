@@ -95,8 +95,7 @@ class MqQuranRemoteDataSourceMock implements MqQuranRemoteDataSource {
         {
           'id': 7,
           'verse_key': '1:7',
-          quranFmt:
-              'صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ',
+          quranFmt: 'صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ',
         },
       ],
       'meta': {
