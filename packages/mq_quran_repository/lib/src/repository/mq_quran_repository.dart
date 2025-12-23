@@ -19,4 +19,10 @@ abstract class MqQuranRepository {
     int surahNumber,
     String quranFmt,
   );
+
+  Future<bool> setDonPages({
+    required List<int> pageNumber,
+    required String? hatimId,
+    required String status,
+  });
 }

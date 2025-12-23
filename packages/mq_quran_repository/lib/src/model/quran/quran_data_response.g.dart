@@ -15,10 +15,11 @@ QuranDataResponse _$QuranDataResponseFromJson(
   meta: QuranDataMetaResponse.fromJson(json['meta'] as Map<String, dynamic>),
 );
 
-Map<String, dynamic> _$QuranDataResponseToJson(QuranDataResponse instance) => <String, dynamic>{
-  'verses': instance.verses,
-  'meta': instance.meta,
-};
+Map<String, dynamic> _$QuranDataResponseToJson(QuranDataResponse instance) =>
+    <String, dynamic>{
+      'verses': instance.verses,
+      'meta': instance.meta,
+    };
 
 QuranDataMetaResponse _$QuranDataMetaResponseFromJson(
   Map<String, dynamic> json,

@@ -16,7 +16,8 @@ final class JuzModelResponse {
     required this.verseMapping,
   });
 
-  factory JuzModelResponse.fromJson(Map<String, dynamic> json) => _$JuzModelResponseFromJson(json);
+  factory JuzModelResponse.fromJson(Map<String, dynamic> json) =>
+      _$JuzModelResponseFromJson(json);
   Map<String, dynamic> toJson() => _$JuzModelResponseToJson(this);
 
   @JsonKey(name: 'id')

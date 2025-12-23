@@ -38,11 +38,12 @@ sealed class QuranDataVerseResponse {
         verseKey: verseKey,
         textUtmani: text,
       ),
-      QuranDataVerseUthmaniSimpleResponse() => QuranDataVerseUthmaniSimpleEntity(
-        id: id,
-        verseKey: verseKey,
-        textUtmaniSimple: text,
-      ),
+      QuranDataVerseUthmaniSimpleResponse() =>
+        QuranDataVerseUthmaniSimpleEntity(
+          id: id,
+          verseKey: verseKey,
+          textUtmaniSimple: text,
+        ),
       QuranDataVerseImlaeiResponse() => QuranDataVerseImlaeiEntity(
         id: id,
         verseKey: verseKey,
@@ -85,7 +86,8 @@ final class QuranDataVerseUthmaniSimpleResponse extends QuranDataVerseResponse {
   ) => _$QuranDataVerseUthmaniSimpleResponseFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$QuranDataVerseUthmaniSimpleResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$QuranDataVerseUthmaniSimpleResponseToJson(this);
 
   @JsonKey(name: 'text_uthmani_simple')
   final String textUtmaniSimple;

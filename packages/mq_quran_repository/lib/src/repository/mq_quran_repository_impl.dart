@@ -102,4 +102,17 @@ final class MqQuranRepositoryImpl implements MqQuranRepository {
 
     return data.toEntity();
   }
+
+  @override
+  Future<bool> setDonPages({
+    required List<int> pageNumber,
+    required String? hatimId,
+    required String status,
+  }) {
+    return remoteDataSource.setDonPages(
+      pageNumber: pageNumber,
+      hatimId: hatimId,
+      status: status,
+    );
+  }
 }
