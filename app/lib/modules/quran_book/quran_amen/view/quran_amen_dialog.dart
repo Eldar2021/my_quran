@@ -104,7 +104,9 @@ class QuranAmenDialogContent extends StatelessWidget {
       ),
       title: Text(
         context.l10n.amen,
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+          color: readThemeState.frColor,
+        ),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -112,14 +114,21 @@ class QuranAmenDialogContent extends StatelessWidget {
           Text(
             context.l10n.dua,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              color: readThemeState.frColor,
+            ),
           ),
           const SizedBox(height: 16),
-          const Icon(Icons.info),
+          Icon(
+            Icons.info,
+            color: readThemeState.frColor,
+          ),
           const SizedBox(height: 6),
           Text(
             confirmMessage,
-            style: Theme.of(context).textTheme.labelMedium,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: readThemeState.frColor,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
