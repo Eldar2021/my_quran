@@ -29,24 +29,6 @@ class MainView extends StatelessWidget {
           onTap: _onTap,
           items: [
             BottomNavigationBarItem(
-              key: const Key(MqKeys.quaranRead),
-              label: context.l10n.quran,
-              activeIcon: Assets.icons.quran.svg(
-                width: 27,
-                colorFilter: ColorFilter.mode(
-                  colorScheme.primary,
-                  BlendMode.srcIn,
-                ),
-              ),
-              icon: Assets.icons.quran.svg(
-                width: 27,
-                colorFilter: ColorFilter.mode(
-                  colorScheme.outline,
-                  BlendMode.srcIn,
-                ),
-              ),
-            ),
-            BottomNavigationBarItem(
               key: const Key(MqKeys.home),
               label: context.l10n.home,
               activeIcon: Assets.icons.prayingMan.svg(
@@ -57,6 +39,24 @@ class MainView extends StatelessWidget {
                 ),
               ),
               icon: Assets.icons.prayingMan.svg(
+                width: 27,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              key: const Key(MqKeys.quaranRead),
+              label: context.l10n.quran,
+              activeIcon: Assets.icons.quran.svg(
+                width: 27,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: Assets.icons.quran.svg(
                 width: 27,
                 colorFilter: ColorFilter.mode(
                   colorScheme.outline,

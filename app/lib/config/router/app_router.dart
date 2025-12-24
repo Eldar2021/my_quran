@@ -7,10 +7,10 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
-final _sectionNavigatorKey1 = GlobalKey<NavigatorState>(debugLabel: 'home');
-final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
-final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
-final _sectionNavigatorKey4 = GlobalKey<NavigatorState>(debugLabel: 'more');
+final _sectionNavigatorKeyHome = GlobalKey<NavigatorState>(debugLabel: 'home');
+final _sectionNavigatorKeyQuran = GlobalKey<NavigatorState>(debugLabel: 'quran');
+final _sectionNavigatorKeyQuranAudio = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
+final _sectionNavigatorKeyMore = GlobalKey<NavigatorState>(debugLabel: 'more');
 
 @immutable
 final class AppRouter {
@@ -87,18 +87,7 @@ final class AppRouter {
           },
           branches: [
             StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey1,
-              routes: [
-                GoRoute(
-                  path: '/$quran',
-                  name: quran,
-                  builder: (context, state) => const QuranView(),
-                  routes: _quranSubRoutes,
-                ),
-              ],
-            ),
-            StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey2,
+              navigatorKey: _sectionNavigatorKeyHome,
               routes: [
                 GoRoute(
                   path: '/$home',
@@ -109,7 +98,18 @@ final class AppRouter {
               ],
             ),
             StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey3,
+              navigatorKey: _sectionNavigatorKeyQuran,
+              routes: [
+                GoRoute(
+                  path: '/$quran',
+                  name: quran,
+                  builder: (context, state) => const QuranView(),
+                  routes: _quranSubRoutes,
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              navigatorKey: _sectionNavigatorKeyQuranAudio,
               routes: [
                 GoRoute(
                   path: '/$quranAudio',
@@ -119,7 +119,7 @@ final class AppRouter {
               ],
             ),
             StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey4,
+              navigatorKey: _sectionNavigatorKeyMore,
               routes: [
                 GoRoute(
                   path: '/$more',
