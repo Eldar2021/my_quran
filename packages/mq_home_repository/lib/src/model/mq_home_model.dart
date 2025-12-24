@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
@@ -6,7 +7,7 @@ part 'mq_home_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class MqHomeModel {
+final class MqHomeModel extends Equatable {
   const MqHomeModel({
     required this.allDoneHatims,
     required this.allDonePages,
@@ -25,4 +26,14 @@ final class MqHomeModel {
   final bool enableCreationHatim;
   final List<MqHomeInvitedHatimsModel>? invitedHatims;
   final List<MqHatimsModel>? hatims;
+
+  @override
+  List<Object?> get props => [
+    allDoneHatims,
+    allDonePages,
+    donePages,
+    enableCreationHatim,
+    invitedHatims,
+    hatims,
+  ];
 }

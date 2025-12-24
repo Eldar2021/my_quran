@@ -128,6 +128,7 @@ class QuranAmenDialogContent extends StatelessWidget {
         BlocConsumer<QuranAmenCubit, QuranAmenState>(
           listener: (BuildContext context, QuranAmenState state) {
             if (state is QuranAmenSuccess) {
+              context.read<HomeCubit>().getData();
               onAmen!(context, true);
             } else if (state is QuranAmenError) {
               onAmen!(context, false);
