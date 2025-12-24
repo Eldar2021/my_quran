@@ -15,4 +15,10 @@ abstract class MqQuranRemoteDataSource {
     int surahNumber,
     String quranFmt,
   );
+
+  Future<bool> setDonPages({
+    required List<int> pageNumber,
+    required String status,
+    String? hatimId,
+  });
 }

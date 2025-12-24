@@ -40,4 +40,21 @@ final class MqQuranRemoteDataSourceImpl implements MqQuranRemoteDataSource {
       fromJson: QuranDataResponse.fromJson,
     );
   }
+
+  @override
+  Future<bool> setDonPages({
+    required List<int> pageNumber,
+    required String status,
+    String? hatimId,
+  }) async {
+    final response = await remoteClient.postResponse<dynamic>(
+      'https://myquran.life/api/v1/hatim/pages_status',
+      body: <String, dynamic>{
+        'pageNumber': pageNumber,
+        'hatimId': hatimId,
+        'status': status,
+      },
+    );
+    return response.statusCode == 200;
+  }
 }

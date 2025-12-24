@@ -14,6 +14,7 @@ class QuranPagePagingBloc extends Bloc<QuranPagePagingEvent, QuranPagePagingStat
   QuranPagePagingBloc({
     required this.repository,
     required this.pagesNumber,
+    this.hatimId,
   }) : super(QuranPagePagingState()) {
     on<QuranPagePagingFetchNex>(_onQuranPagePagingFetchNex);
     on<QuranPagePagingRefresh>(_onQuranPagePagingRefresh);
@@ -22,6 +23,7 @@ class QuranPagePagingBloc extends Bloc<QuranPagePagingEvent, QuranPagePagingStat
 
   final MqQuranRepository repository;
   final List<int> pagesNumber;
+  final String? hatimId;
 
   Future<List<QuranDataEntity>> _fetchItem(
     int pageNumber,

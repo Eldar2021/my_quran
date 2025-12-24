@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mq_analytics/mq_analytics.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:my_quran/app/app.dart';
@@ -48,7 +47,6 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
   @override
   Widget build(BuildContext context) {
     final themeCubit = context.watch<QuranBookThemeCubit>();
-
     return BlocBuilder<QuranPagePagingBloc, QuranPagePagingState>(
       bloc: _bloc,
       builder: (context, state) {
@@ -66,11 +64,36 @@ class _QuranByPagesPaginationState extends State<QuranByPagesPagination> {
                 isLast: isLast,
                 firstKey: item.verses.first.verseKey,
                 page: page,
+                onReaded: _onReaded,
               );
             },
           ),
         );
       },
+    );
+  }
+
+  Future<void> _onReaded() async {
+    final readThemeState = context.read<QuranBookThemeCubit>().state;
+    MqAnalytic.track(AnalyticKey.showAmin);
+    await QuranAmenDialog.showAmen<void>(
+      context: context,
+      content: QuranAmenDialogContent(
+        readThemeState: readThemeState,
+        pages: _pagesNumber,
+        confirmMessage: context.l10n.confirmPagesReaded,
+        gender: context.read<AuthCubit>().state.currentGender,
+        hatimId: context.read<QuranPagePagingBloc>().hatimId,
+        onAmen: (ctx, result) {
+          if (result) {
+            Navigator.pop(ctx);
+            Navigator.pop(context);
+          } else {
+            Navigator.pop(ctx, true);
+            Navigator.pop(context, true);
+          }
+        },
+      ),
     );
   }
 }
@@ -82,6 +105,7 @@ class _QuranPageItem extends StatelessWidget {
     required this.isLast,
     required this.firstKey,
     required this.page,
+    this.onReaded,
   });
 
   final List<QuranDataVerseEntity> verses;
@@ -89,6 +113,7 @@ class _QuranPageItem extends StatelessWidget {
   final bool isLast;
   final String firstKey;
   final int? page;
+  final void Function()? onReaded;
 
   @override
   Widget build(BuildContext context) {
@@ -134,24 +159,7 @@ class _QuranPageItem extends StatelessWidget {
                   right: 24,
                 ),
                 child: ElevatedButton(
-                  onPressed: () async {
-                    final readThemeState = context.read<QuranBookThemeCubit>().state;
-                    MqAnalytic.track(AnalyticKey.showAmin);
-                    final value = await MqAlertDialogs.showAmen<bool>(
-                      context: context,
-                      backgroundColor: readThemeState.bgColor,
-                      foregroundColor: readThemeState.frColor,
-                      title: context.l10n.amen,
-                      content: context.l10n.dua,
-                      buttonText: context.l10n.ameen,
-                      gender: context.read<AuthCubit>().state.mqAppUiGender,
-                      onPressed: () => Navigator.pop(context, true),
-                    );
-
-                    if (value != null && value && context.mounted) {
-                      Navigator.pop(context, true);
-                    }
-                  },
+                  onPressed: onReaded,
                   child: Text(context.l10n.readed),
                 ),
               ),

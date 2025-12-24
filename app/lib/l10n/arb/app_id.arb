@@ -141,5 +141,8 @@
   "generalHatim": "Hatim Umum",
   "notifications": "Pemberitahuan",
   "notificationEmptyTitle": "Belum ada pemberitahuan",
-  "notificationEmptyBody": "Tetap pantau! Kami akan memberitahu Anda saat ada pembaruan."
+  "notificationEmptyBody": "Tetap pantau! Kami akan memberitahu Anda saat ada pembaruan.",
+  "confirmSurahReaded": "Pastikan Anda telah membaca Surah ini sepenuhnya. MyQuran akan menyimpan Surah ini sebagai dibaca dan memperbarui kemajuan Anda.",
+  "confirmJuzReaded": "Pastikan Anda telah membaca Juz ini sepenuhnya. MyQuran akan menyimpan Juz ini sebagai dibaca dan memperbarui kemajuan Anda.",
+  "confirmPagesReaded": "Pastikan Anda telah membaca halaman-halaman ini sepenuhnya. MyQuran akan menyimpan halaman terkait sebagai dibaca dan memperbarui kemajuan Anda."
 }
