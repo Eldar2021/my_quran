@@ -76,6 +76,22 @@ class MainView extends StatelessWidget {
               ),
               label: context.l10n.listening,
             ),
+            BottomNavigationBarItem(
+              key: const Key(MqKeys.morePageKey),
+              activeIcon: Assets.icons.more.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: Assets.icons.more.svg(
+                colorFilter: ColorFilter.mode(
+                  colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: context.l10n.more,
+            ),
           ],
           onTap: _onTap,
         ),

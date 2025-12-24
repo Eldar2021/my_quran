@@ -9,9 +9,8 @@ import 'package:my_quran/modules/modules.dart';
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final _sectionNavigatorKey1 = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
-final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(
-  debugLabel: 'quran-audio',
-);
+final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
+final _sectionNavigatorKey4 = GlobalKey<NavigatorState>(debugLabel: 'more');
 
 @immutable
 final class AppRouter {
@@ -48,6 +47,7 @@ final class AppRouter {
   static const createHatim = 'create-hatim';
   static const search = 'search';
   static const createHatimSuccess = 'create-hatim-success';
+  static const more = 'more';
 
   GoRouter router() {
     return GoRouter(
@@ -115,6 +115,16 @@ final class AppRouter {
                   path: '/$quranAudio',
                   name: quranAudio,
                   builder: (context, state) => const QuranAudioView(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              navigatorKey: _sectionNavigatorKey4,
+              routes: [
+                GoRoute(
+                  path: '/$more',
+                  name: more,
+                  builder: (context, state) => const MoreView(),
                 ),
               ],
             ),

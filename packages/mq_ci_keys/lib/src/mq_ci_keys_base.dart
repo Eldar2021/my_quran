@@ -51,6 +51,8 @@ final class MqKeys {
   static const quranAudioBottomSheet = 'quran-audio-bottom-sheet';
   static const quranAudioPlayPause = 'quran-audio-play-pause';
 
+  static const morePageKey = 'more-page-key';
+
   // settings
   static const settings = 'settings';
   static const settingsView = 'settings-view';

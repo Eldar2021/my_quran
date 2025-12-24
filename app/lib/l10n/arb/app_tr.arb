@@ -144,5 +144,6 @@
   "notificationEmptyBody": "Bizi izlemeye devam edin! Güncellemeler olduğunda sizi bilgilendireceğiz.",
   "confirmSurahReaded": "Lütfen bu sureyi tamamen okuduğunuzdan emin olun. MyQuran, bu sureyi okundu olarak kaydedip ilerlemenizi güncelleyecektir.",
   "confirmJuzReaded": "Lütfen bu cüzü tamamen okuduğunuzdan emin olun. MyQuran, bu cüzü okundu olarak kaydedip ilerlemenizi güncelleyecektir.",
-  "confirmPagesReaded": "Lütfen bu sayfaları tamamen okuduğunuzdan emin olun. MyQuran, ilgili sayfaları okundu olarak kaydedip ilerlemenizi güncelleyecektir."
+  "confirmPagesReaded": "Lütfen bu sayfaları tamamen okuduğunuzdan emin olun. MyQuran, ilgili sayfaları okundu olarak kaydedip ilerlemenizi güncelleyecektir.",
+  "more": "Fazla"
 }
