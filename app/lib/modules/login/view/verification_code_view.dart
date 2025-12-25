@@ -81,6 +81,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
               ),
               const SizedBox(height: 26),
               PinputWidget(
+                length: 6,
                 key: const Key(MqKeys.otpTextField),
                 controller: _controller,
                 validator: (v) => Validators.otpValidator(v, context),

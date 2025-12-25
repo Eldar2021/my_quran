@@ -130,6 +130,7 @@ final class AuthRemoteDataSource {
           'registration_id': notificationToken,
           'type': deviceType,
           'device_id': deviceId,
+          'timezone': deviceTimezone,
         },
       );
     } on Object catch (e) {
