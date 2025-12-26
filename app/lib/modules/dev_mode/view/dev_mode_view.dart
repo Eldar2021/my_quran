@@ -5,6 +5,7 @@ import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/app_config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/show/alerts.dart';
+import 'package:chucker_flutter/chucker_flutter.dart';
 
 class DevModeView extends StatefulWidget {
   const DevModeView({super.key});
@@ -67,6 +68,13 @@ class _DevModeViewState extends State<DevModeView> {
             child: Text(context.l10n.save),
           ),
           const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              LogDialogContent.showLogDialog(context);
+            },
+            child: Text(context.l10n.save),
+          ),
+          const SizedBox(height: 20),
           TextButton(
             onPressed: () async {
               MqCrashlytics.report(
@@ -88,6 +96,54 @@ class _DevModeViewState extends State<DevModeView> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class LogDialogContent extends StatefulWidget {
+  const LogDialogContent({super.key});
+
+  static void showLogDialog(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      pageBuilder: (context, animation, page) {
+        return const AlertDialog(
+          content: LogDialogContent(),
+        );
+      },
+    );
+  }
+
+  @override
+  State<LogDialogContent> createState() => _LogDialogContentState();
+}
+
+class _LogDialogContentState extends State<LogDialogContent> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Text('Dev mode'),
+        const Text('Network notification bottom center'),
+        Switch.adaptive(
+          value: ChuckerFlutter.showNotification,
+          onChanged: (v) {
+            setState(() {
+              ChuckerFlutter.showNotification = v;
+            });
+          },
+        ),
+        const ElevatedButton(
+          onPressed: ChuckerFlutter.showChuckerScreen,
+          child: Text('Navigate to dev tools'),
+        ),
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Close'),
+        ),
+      ],
     );
   }
 }

@@ -45,6 +45,7 @@ class NotificationCubit extends Cubit<NotificationState> {
     if (data != null) {
       emit(state.copyWith(fetchState: NotificationHasInitialData(data)));
     }
+    await Future<void>.delayed(const Duration(seconds: 3));
     try {
       if (userId == null && data == null) {
         emit(state.copyWith(fetchState: const NotificationFetchSuccess([])));

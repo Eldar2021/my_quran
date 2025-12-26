@@ -66,6 +66,7 @@ dependencies:
   mockingjay: ^2.0.0
   flutter_secure_storage: ^10.0.0
   uuid: ^4.5.2
+  chucker_flutter: ^1.9.0
 
   # flutter_native_splash: ^2.4.7
 

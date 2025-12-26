@@ -13,6 +13,7 @@ dependencies:
   connectivity_plus:
   dio:
   meta:
+  chucker_flutter:
 
 dev_dependencies:
   flutter_test:

@@ -33,6 +33,7 @@ dependencies:
   internet_connection_checker_plus:
   uuid:
   flutter_timezone:
+  chucker_flutter:
 
   mq_ci_keys:
   mq_remote_client:

@@ -40,7 +40,7 @@ class MqRemoteClient {
 
   /// Initializes the Dio instance with interceptors to add custom headers.
   void initilize() {
-    dio.interceptors.add(
+    dio.interceptors.addAll([
       InterceptorsWrapper(
         onRequest: (options, handler) {
           final tokenValue = token?.call();
@@ -55,7 +55,8 @@ class MqRemoteClient {
           return handler.next(options);
         },
       ),
-    );
+      CustomChuckerDioInterceptor(),
+    ]);
   }
 
   /// Makes a GET request to the given [url] and parses the response as type [T]

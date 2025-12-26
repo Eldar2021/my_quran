@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -23,6 +24,8 @@ import 'package:uuid/uuid.dart';
 
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  ChuckerFlutter.showOnRelease = true;
 
   try {
     if (Firebase.apps.isEmpty) {
