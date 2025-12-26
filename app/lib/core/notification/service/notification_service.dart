@@ -29,7 +29,9 @@ class NotificationService {
     if (isInitialized) return;
     isInitialized = true;
 
-    await local.initialize(onNotificationClick: onNotificationClick);
+    await local.initialize(
+      onNotificationClick: onNotificationClick,
+    );
 
     await firebase.initialize(
       onNotificationClick: onFirebaseNotificationClick,

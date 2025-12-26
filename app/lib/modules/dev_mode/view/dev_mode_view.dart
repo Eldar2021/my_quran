@@ -67,6 +67,13 @@ class _DevModeViewState extends State<DevModeView> {
             child: Text(context.l10n.save),
           ),
           const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              LogDialogContent.showLogDialog(context);
+            },
+            child: const Text('Dio logs'),
+          ),
+          const SizedBox(height: 20),
           TextButton(
             onPressed: () async {
               MqCrashlytics.report(
@@ -88,6 +95,54 @@ class _DevModeViewState extends State<DevModeView> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class LogDialogContent extends StatefulWidget {
+  const LogDialogContent({super.key});
+
+  static void showLogDialog(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: 'Language',
+      transitionDuration: const Duration(milliseconds: 250),
+      pageBuilder: (context, animation, page) {
+        return const AlertDialog(
+          content: LogDialogContent(),
+        );
+      },
+    );
+  }
+
+  @override
+  State<LogDialogContent> createState() => _LogDialogContentState();
+}
+
+class _LogDialogContentState extends State<LogDialogContent> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Text('Dev mode'),
+        const Text('Network notification bottom center'),
+        // Switch.adaptive(
+        //   value: true,
+        //   onChanged: (v) {},
+        // ),
+        // const SizedBox(height: 20),
+        // const ElevatedButton(
+        //   onPressed: () {},
+        //   child: Text('Navigate to dev tools'),
+        // ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Close'),
+        ),
+      ],
     );
   }
 }

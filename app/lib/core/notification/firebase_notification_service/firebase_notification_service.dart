@@ -15,7 +15,11 @@ class FirebaseNotificationService {
   });
 
   final FirebaseMessaging firebaseMessaging;
-  final FutureOr<void> Function(RemoteMessage message) onShowNotification;
+  final FutureOr<void> Function(
+    RemoteMessage message,
+    FutureOr<void> Function() onReceiveNotification,
+  )
+  onShowNotification;
 
   Future<void> initialize({
     required OnSendTokenToServer onSendTokenToServer,
@@ -43,7 +47,7 @@ class FirebaseNotificationService {
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         log('🔔 Ön Planda Bildirim Geldi: ${message.notification?.title}');
         onReceiveNotification();
-        onShowNotification(message);
+        onShowNotification(message, onReceiveNotification);
       });
 
       await _setupInteractedMessage(onNotificationClick);
@@ -84,22 +88,5 @@ class FirebaseNotificationService {
   ) {
     log('Tapped on notification: ${message.data}');
     onNotificationClick(message.data);
-    // final payload = {
-    //   'id': '100',
-    //   'is_read': false,
-    //   'type': 'STANDARD',
-    //   'avatar': 'https://img.freepik.com/free-photo/',
-    //   'title': 'Hi Eldiiar! Firebase Msj',
-    //   'description': "Don't forget to read Surah Al-Kahf today.",
-    //   'date': '2025-12-22T14:30:00.000Z',
-    //   'image': 'https://images.unsplash.com/',
-    //   'action': {
-    //     'button_text': 'Read Al-Kahf',
-    //     'is_active': true,
-    //     'action_type': 'JOIN_TO_HATIM',
-    //     'payload': {'surah_id': 18},
-    //   },
-    // };
-    // onNotificationClick(payload);
   }
 }

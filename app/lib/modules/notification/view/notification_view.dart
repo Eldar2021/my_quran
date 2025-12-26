@@ -20,6 +20,7 @@ class _NotificationViewState extends State<NotificationView> with NotificationDe
   void initState() {
     super.initState();
     final auth = context.read<AuthCubit>().state.auth;
+    context.read<NotificationCubit>().resetNotificationCount();
     context.read<NotificationCubit>().getNotification(
       auth?.user.language,
       auth?.key,

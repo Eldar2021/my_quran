@@ -26,9 +26,11 @@ class _NotificationCountBadgeWidgetState extends State<NotificationCountBadgeWid
     return BlocBuilder<NotificationCubit, NotificationState>(
       buildWhen: (p, c) => p.countState != c.countState,
       builder: (context, state) {
+        final count = state.countState.count;
         return Badge.count(
-          count: state.countState.count,
-          isLabelVisible: state.countState.count > 0,
+          offset: const Offset(0, 10),
+          count: count,
+          isLabelVisible: count > 0,
           child: IconButton(
             onPressed: () {
               context.pushNamed(AppRouter.notification);

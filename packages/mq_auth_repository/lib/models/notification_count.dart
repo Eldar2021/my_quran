@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'notification_count.g.dart';
 
 @JsonSerializable()
 @immutable
-final class NotificationCount {
+final class NotificationCount extends Equatable {
   const NotificationCount(this.unreadCount);
 
   factory NotificationCount.fromJson(Map<String, dynamic> json) => _$NotificationCountFromJson(json);
@@ -17,4 +18,7 @@ final class NotificationCount {
   NotificationCount copyWith(int unreadCount) {
     return NotificationCount(unreadCount);
   }
+
+  @override
+  List<Object?> get props => [unreadCount];
 }

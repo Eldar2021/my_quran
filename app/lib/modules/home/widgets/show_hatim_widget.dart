@@ -63,41 +63,32 @@ class ShowHatimWidget {
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          MqAnalytic.track(AnalyticKey.goHatim);
-                          context.goNamedIfAuthenticated(
-                            AppRouter.hatim,
-                            pathParameters: {'hatimId': item.id},
-                          );
-                        },
-                        child: GradientDecoratedBox(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 18,
-                              vertical: 30,
+                      child: GradientDecoratedBox(
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            MqAnalytic.track(AnalyticKey.goHatim);
+                            context.goNamedIfAuthenticated(
+                              AppRouter.hatim,
+                              pathParameters: {'hatimId': item.id},
+                            );
+                          },
+                          contentPadding: const EdgeInsets.all(16),
+                          leading: Assets.icons.quran.svg(
+                            colorFilter: ColorFilter.mode(
+                              colorScheme.primary,
+                              BlendMode.srcIn,
                             ),
-                            child: Row(
-                              children: [
-                                Assets.icons.quran.svg(
-                                  colorFilter: ColorFilter.mode(
-                                    colorScheme.primary,
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  '$titleText',
-                                  style: prTextTheme.titleMedium,
-                                ),
-                                const Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  color: colorScheme.primary,
-                                ),
-                              ],
-                            ),
+                          ),
+                          title: Text(
+                            '$titleText',
+                            style: prTextTheme.titleMedium,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: colorScheme.primary,
                           ),
                         ),
                       ),

@@ -7,27 +7,25 @@ part of 'notification_model.dart';
 // **************************************************************************
 
 NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) => NotificationModel(
-  id: json['id'] as String,
+  id: (json['id'] as num).toInt(),
   isRead: json['is_read'] as bool,
-  type: $enumDecode(_$NotificationTypeEnumMap, json['type']),
+  type: $enumDecodeNullable(_$NotificationTypeEnumMap, json['type']),
   title: json['title'] as String,
   description: json['description'] as String,
   date: DateTime.parse(json['date'] as String),
   avatar: json['avatar'] as String?,
   image: json['image'] as String?,
-  action: json['action'] == null ? null : NotificationAction.fromJson(json['action'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$NotificationModelToJson(NotificationModel instance) => <String, dynamic>{
   'id': instance.id,
   'is_read': instance.isRead,
-  'type': _$NotificationTypeEnumMap[instance.type]!,
+  'type': _$NotificationTypeEnumMap[instance.type],
   'avatar': instance.avatar,
   'title': instance.title,
   'description': instance.description,
   'date': instance.date.toIso8601String(),
   'image': instance.image,
-  'action': instance.action,
 };
 
 const _$NotificationTypeEnumMap = {
