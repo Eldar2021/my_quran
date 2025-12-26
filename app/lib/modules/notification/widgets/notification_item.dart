@@ -13,7 +13,7 @@ class NotificationItemWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _NotificationAvatar(item.avatar),
+        _NotificationAvatar(item.avatar ?? ''),
         const SizedBox(width: 2),
         Expanded(
           child: Column(
@@ -118,13 +118,13 @@ class _NotificationCard extends StatelessWidget {
 class _NotificationAvatar extends StatelessWidget {
   const _NotificationAvatar(this.avatar);
 
-  final String? avatar;
+  final String avatar;
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 20,
-      backgroundImage: avatar != null ? CachedNetworkImageProvider(avatar!) : Assets.images.appIcon.provider(),
+      backgroundImage: avatar.isNotEmpty ? CachedNetworkImageProvider(avatar) : Assets.images.appIcon.provider(),
     );
   }
 }

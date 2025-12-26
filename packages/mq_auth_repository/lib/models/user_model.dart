@@ -19,6 +19,7 @@ final class UserModel {
     this.language,
     this.canCreateHatim,
     this.allowNotifications,
+    this.timezone,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
@@ -49,6 +50,9 @@ final class UserModel {
   @JsonKey(name: 'allow_notifications')
   final bool? allowNotifications;
 
+  @JsonKey(name: 'timezone')
+  final String? timezone;
+
   UserModel copyWith({
     String? firstName,
     String? lastName,
@@ -61,6 +65,7 @@ final class UserModel {
     String? language,
     bool? canCreateHatim,
     bool? allowNotifications,
+    String? timezone,
   }) {
     return UserModel(
       firstName: firstName ?? this.firstName,
@@ -74,6 +79,7 @@ final class UserModel {
       language: language ?? this.language,
       canCreateHatim: canCreateHatim ?? this.canCreateHatim,
       allowNotifications: allowNotifications ?? this.allowNotifications,
+      timezone: timezone ?? this.timezone,
     );
   }
 }

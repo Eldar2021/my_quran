@@ -33,6 +33,7 @@ final class NotificationState extends Equatable {
     fetchState,
     tokenState,
     allowedState,
+    countState,
   ];
 }
 
@@ -51,7 +52,7 @@ sealed class NotificationCountState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [count];
 }
 
 @immutable

@@ -21,6 +21,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   language: json['language'] as String?,
   canCreateHatim: json['can_create_hatim'] as bool?,
   allowNotifications: json['allow_notifications'] as bool?,
+  timezone: json['timezone'] as String?,
 );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -38,6 +39,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
   'language': instance.language,
   'can_create_hatim': instance.canCreateHatim,
   'allow_notifications': instance.allowNotifications,
+  'timezone': instance.timezone,
 };
 
 Value? _$JsonConverterFromJson<Json, Value>(
