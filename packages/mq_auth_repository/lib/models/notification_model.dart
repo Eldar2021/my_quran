@@ -16,7 +16,6 @@ final class NotificationModel {
     required this.date,
     this.avatar,
     this.image,
-    this.action,
   });
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) => _$NotificationModelFromJson(json);
@@ -38,8 +37,11 @@ final class NotificationModel {
   final DateTime date;
   @JsonKey(name: 'image')
   final String? image;
-  @JsonKey(name: 'action')
-  final NotificationAction? action;
+
+  // @JsonKey(name: 'action')
+  // final NotificationAction? action;
+
+  NotificationAction? get action => null;
 }
 
 @JsonSerializable()

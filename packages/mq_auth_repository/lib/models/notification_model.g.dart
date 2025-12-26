@@ -15,7 +15,6 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) => Noti
   date: DateTime.parse(json['date'] as String),
   avatar: json['avatar'] as String?,
   image: json['image'] as String?,
-  action: json['action'] == null ? null : NotificationAction.fromJson(json['action'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$NotificationModelToJson(NotificationModel instance) => <String, dynamic>{
@@ -27,7 +26,6 @@ Map<String, dynamic> _$NotificationModelToJson(NotificationModel instance) => <S
   'description': instance.description,
   'date': instance.date.toIso8601String(),
   'image': instance.image,
-  'action': instance.action,
 };
 
 const _$NotificationTypeEnumMap = {
