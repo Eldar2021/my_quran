@@ -12,6 +12,7 @@ assignees: ""
 
 - [ ] Confirm all PRs are merged.
 - [ ] Update version in `app/pubspec.yaml` and `CHANGELOG.md`.
+- [ ] Ensure `ChuckerFlutter.showOnRelease = false`.
 - [ ] Create, commit, and push release branch: `git checkout -b rl/v<version>`, `git commit -m "release: v<version>"`, `git push --set-upstream origin rl/v<version>`
 - [ ] Create PR and verify all CI tests pass.
 
