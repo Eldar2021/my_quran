@@ -25,7 +25,7 @@ import 'package:uuid/uuid.dart';
 Future<void> main({bool isIntegrationTest = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  ChuckerFlutter.showOnRelease = true;
+  ChuckerFlutter.showOnRelease = false;
 
   try {
     if (Firebase.apps.isEmpty) {
