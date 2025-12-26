@@ -72,7 +72,7 @@ class _DevModeViewState extends State<DevModeView> {
             onPressed: () {
               LogDialogContent.showLogDialog(context);
             },
-            child: Text(context.l10n.save),
+            child: const Text('Chucker'),
           ),
           const SizedBox(height: 20),
           TextButton(
@@ -107,6 +107,8 @@ class LogDialogContent extends StatefulWidget {
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
+      barrierLabel: 'Language',
+      transitionDuration: const Duration(milliseconds: 250),
       pageBuilder: (context, animation, page) {
         return const AlertDialog(
           content: LogDialogContent(),
@@ -135,10 +137,12 @@ class _LogDialogContentState extends State<LogDialogContent> {
             });
           },
         ),
+        const SizedBox(height: 20),
         const ElevatedButton(
           onPressed: ChuckerFlutter.showChuckerScreen,
           child: Text('Navigate to dev tools'),
         ),
+        const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () => Navigator.pop(context),
           child: const Text('Close'),
