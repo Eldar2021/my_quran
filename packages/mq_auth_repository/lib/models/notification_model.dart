@@ -22,11 +22,11 @@ final class NotificationModel {
   Map<String, dynamic> toJson() => _$NotificationModelToJson(this);
 
   @JsonKey(name: 'id')
-  final String id;
+  final int id;
   @JsonKey(name: 'is_read')
   final bool isRead;
   @JsonKey(name: 'type')
-  final NotificationType type;
+  final NotificationType? type;
   @JsonKey(name: 'avatar')
   final String? avatar;
   @JsonKey(name: 'title')

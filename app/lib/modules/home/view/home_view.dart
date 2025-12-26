@@ -72,6 +72,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
         ),
         actions: const [
           NotificationCountBadgeWidget(),
+          SizedBox(width: 10),
         ],
       ),
       body: RefreshIndicator(
