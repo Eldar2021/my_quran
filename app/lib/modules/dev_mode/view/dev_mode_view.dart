@@ -5,7 +5,6 @@ import 'package:mq_crashlytics/mq_crashlytics.dart';
 import 'package:my_quran/config/app_config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/show/alerts.dart';
-import 'package:chucker_flutter/chucker_flutter.dart';
 
 class DevModeView extends StatefulWidget {
   const DevModeView({super.key});
@@ -72,7 +71,7 @@ class _DevModeViewState extends State<DevModeView> {
             onPressed: () {
               LogDialogContent.showLogDialog(context);
             },
-            child: const Text('Chucker'),
+            child: const Text('Dio logs'),
           ),
           const SizedBox(height: 20),
           TextButton(
@@ -129,19 +128,15 @@ class _LogDialogContentState extends State<LogDialogContent> {
       children: [
         const Text('Dev mode'),
         const Text('Network notification bottom center'),
-        Switch.adaptive(
-          value: ChuckerFlutter.showNotification,
-          onChanged: (v) {
-            setState(() {
-              ChuckerFlutter.showNotification = v;
-            });
-          },
-        ),
-        const SizedBox(height: 20),
-        const ElevatedButton(
-          onPressed: ChuckerFlutter.showChuckerScreen,
-          child: Text('Navigate to dev tools'),
-        ),
+        // Switch.adaptive(
+        //   value: true,
+        //   onChanged: (v) {},
+        // ),
+        // const SizedBox(height: 20),
+        // const ElevatedButton(
+        //   onPressed: () {},
+        //   child: Text('Navigate to dev tools'),
+        // ),
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () => Navigator.pop(context),

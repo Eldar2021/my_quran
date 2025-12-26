@@ -1,4 +1,3 @@
-import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,7 +54,6 @@ final class AppRouter {
       initialLocation: isFirstTime ? '/$login' : '/home',
       navigatorKey: rootNavigatorKey,
       debugLogDiagnostics: kDebugMode,
-      observers: [ChuckerFlutter.navigatorObserver],
       routes: [
         GoRoute(
           path: '/',
