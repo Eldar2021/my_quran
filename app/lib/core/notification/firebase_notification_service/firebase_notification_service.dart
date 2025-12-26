@@ -15,7 +15,11 @@ class FirebaseNotificationService {
   });
 
   final FirebaseMessaging firebaseMessaging;
-  final FutureOr<void> Function(RemoteMessage message) onShowNotification;
+  final FutureOr<void> Function(
+    RemoteMessage message,
+    FutureOr<void> Function() onReceiveNotification,
+  )
+  onShowNotification;
 
   Future<void> initialize({
     required OnSendTokenToServer onSendTokenToServer,
@@ -43,7 +47,7 @@ class FirebaseNotificationService {
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         log('🔔 Ön Planda Bildirim Geldi: ${message.notification?.title}');
         onReceiveNotification();
-        onShowNotification(message);
+        onShowNotification(message, onReceiveNotification);
       });
 
       await _setupInteractedMessage(onNotificationClick);

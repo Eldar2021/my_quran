@@ -23,7 +23,7 @@ mixin NotificationMixin {
         onNotificationClick: _onNotificationClick,
         onFirebaseNotificationClick: _onNotificationClick,
         onReceiveNotification: () {
-          notificationCubit.resetNotificationCount();
+          notificationCubit.getNotificationCount(auth.key);
         },
         onPermissionEnabled: () {
           notificationCubit.toggleNotification(auth.key, true);
@@ -50,26 +50,43 @@ mixin NotificationMixin {
   }
 
   Future<void> _onNotificationClick(Object? data) async {
-    final model = _parseNotificationModel(data);
+    final model = _getNotificationData(data);
     rootNavigatorKey.currentContext?.goNamed(
       AppRouter.notification,
       extra: model,
     );
   }
 
-  NotificationModel? _parseNotificationModel(Object? data) {
+  NotificationModel? _getNotificationData(Object? data) {
     try {
+      Map<String, dynamic> map;
       if (data is String) {
-        return NotificationModel.fromJson(
-          jsonDecode(data) as Map<String, dynamic>,
-        );
+        map = jsonDecode(data) as Map<String, dynamic>;
       } else if (data is Map<String, dynamic>) {
-        return NotificationModel.fromJson(data);
+        map = data;
       } else {
         return null;
       }
+
+      final id = map['id'] != null
+          ? map['id'] is String
+                ? int.tryParse(map['id'] as String)
+                : map['id'] is int
+                ? map['id'] as int?
+                : null
+          : null;
+      final date = map['date'] != null ? DateTime.tryParse(map['date'] as String) : null;
+
+      return NotificationModel(
+        id: id ?? 0,
+        isRead: false,
+        type: NotificationType.standard,
+        title: map['title'] != null ? map['title'] as String : '',
+        description: map['description'] != null ? map['description'] as String : '',
+        date: date ?? DateTime.now(),
+      );
     } on Object catch (e) {
-      log('❌ parseNotificationModel', error: e);
+      log('❌ _getNotificationData', error: e);
       return null;
     }
   }

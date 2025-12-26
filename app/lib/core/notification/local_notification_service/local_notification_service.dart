@@ -1,3 +1,4 @@
+import 'dart:async' show FutureOr;
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -49,34 +50,21 @@ class LocalNotificationService {
         log('🔔 Tapped on Notification: ${response.payload}');
         final payload = response.payload;
         if (payload != null) onNotificationClick(payload);
-        // final payload = jsonEncode({
-        //   'id': '100',
-        //   'is_read': false,
-        //   'type': 'STANDARD',
-        //   'avatar': 'https://img.freepik.com',
-        //   'title': 'Hi Eldiiar! Local Msj',
-        //   'description': "Don't forget to read Surah Al-Kahf today.",
-        //   'date': '2025-12-22T14:30:00.000Z',
-        //   'image': 'https://images.unsplash.com',
-        //   'action': {
-        //     'button_text': 'Read Al-Kahf',
-        //     'is_active': true,
-        //     'action_type': 'JOIN_TO_HATIM',
-        //     'payload': {'surah_id': 18},
-        //   },
-        // });
-        // onNotificationClick(payload);
       },
     );
 
     log('✅ LocalNotificationService initialized.');
   }
 
-  Future<void> showNotification(RemoteMessage message) async {
+  Future<void> showNotification(
+    RemoteMessage message,
+    FutureOr<void> Function() onReceiveNotification,
+  ) async {
     final notification = message.notification;
     final android = message.notification?.android;
 
     if (notification != null && android != null && Platform.isAndroid) {
+      onReceiveNotification();
       await localNotification.show(
         notification.hashCode,
         notification.title,
