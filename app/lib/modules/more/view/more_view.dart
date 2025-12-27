@@ -6,11 +6,6 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
-/*
-3. App Settings
-4. App Info
-*/
-
 class MoreView extends StatelessWidget {
   const MoreView({super.key});
 
@@ -63,6 +58,8 @@ class MoreView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           const MoreActions(),
+          const SizedBox(height: 16),
+          const MyQuranAppVersionTile(),
           const SizedBox(height: 40),
         ],
       ),

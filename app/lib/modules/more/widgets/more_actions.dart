@@ -96,18 +96,6 @@ class MoreActions extends StatelessWidget {
                 }
               },
             ),
-            BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
-              builder: (context, state) {
-                return DrawerTile(
-                  title: '${ApiConst.appName} ${state.version}(${state.buildNumber})',
-                  icon: CircleAvatar(
-                    backgroundImage: Assets.images.appIcon.provider(),
-                  ),
-                  trailing: const SizedBox.shrink(),
-                  onLongPress: () => context.pushNamed(AppRouter.devModeView),
-                );
-              },
-            ),
           ],
         ),
       ),
