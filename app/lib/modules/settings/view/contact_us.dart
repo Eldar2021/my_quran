@@ -18,21 +18,23 @@ class ContactUsView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               context.l10n.assalamuAlaikum,
               style: prTextTheme.titleMedium,
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
             Text(
               context.l10n.feedbackMessage,
               style: prTextTheme.bodyMedium,
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 15),
             Text(
               context.l10n.withRespect,
               style: prTextTheme.bodyMedium,
+              textAlign: TextAlign.center,
             ),
             const Spacer(),
             const SizedBox(height: 16),

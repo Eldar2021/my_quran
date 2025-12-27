@@ -9,7 +9,6 @@ import 'package:my_quran/modules/modules.dart';
 /*
 3. App Settings
 4. App Info
-5. Basic actions navigation
 */
 
 class MoreView extends StatelessWidget {

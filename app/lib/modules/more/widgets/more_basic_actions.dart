@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/constants/contants.dart';
+import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 
 class MoreBasicActions extends StatelessWidget {
@@ -29,12 +33,10 @@ class MoreBasicActions extends StatelessWidget {
                 color: colors.primary,
               ),
             ),
-
-            /// About Us
             DrawerTile(
               key: const Key(MqKeys.settingsAboutUs),
               title: context.l10n.aboutUs,
-              onTap: () {},
+              onTap: () => context.pushNamed(AppRouter.aboutUs),
               icon: Assets.icons.users.svg(
                 colorFilter: ColorFilter.mode(
                   colors.primary,
@@ -42,12 +44,10 @@ class MoreBasicActions extends StatelessWidget {
                 ),
               ),
             ),
-
-            /// Contact Us
             DrawerTile(
               key: const Key(MqKeys.settingsContactUs),
               title: context.l10n.contactUs,
-              onTap: () {},
+              onTap: () => context.pushNamed(AppRouter.contactUs),
               icon: Assets.icons.phone.svg(
                 colorFilter: ColorFilter.mode(
                   colors.primary,
@@ -55,11 +55,12 @@ class MoreBasicActions extends StatelessWidget {
                 ),
               ),
             ),
-
-            /// Share app
             DrawerTile(
               title: context.l10n.share,
-              onTap: () {},
+              onTap: () => AppShare.shareUri(
+                context: context,
+                url: ApiConst.oneLink,
+              ),
               icon: Assets.icons.shareFill.svg(
                 colorFilter: ColorFilter.mode(
                   colors.primary,
@@ -67,12 +68,10 @@ class MoreBasicActions extends StatelessWidget {
                 ),
               ),
             ),
-
-            /// For Developers
             DrawerTile(
               key: const Key(MqKeys.settingsDevelopers),
               title: context.l10n.forDevelopers,
-              onTap: () {},
+              onTap: () => context.pushNamed(AppRouter.developers),
               icon: Assets.icons.developers.svg(
                 colorFilter: ColorFilter.mode(
                   colors.primary,
@@ -80,14 +79,12 @@ class MoreBasicActions extends StatelessWidget {
                 ),
               ),
             ),
-
-            /// Donation
             BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
               builder: (context, state) {
                 if (state.isDonaitonEnable) {
                   return DrawerTile(
                     title: context.l10n.donate,
-                    onTap: () {},
+                    onTap: () => context.pushNamed(AppRouter.donation),
                     icon: Assets.icons.donate.svg(
                       colorFilter: ColorFilter.mode(
                         colors.primary,

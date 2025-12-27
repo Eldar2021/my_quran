@@ -176,30 +176,6 @@ final class AppRouter {
         builder: (context, state) => const ThemeSettingsView(),
       ),
       GoRoute(
-        path: aboutUs,
-        name: aboutUs,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const AboutUsVuew(),
-      ),
-      GoRoute(
-        path: contactUs,
-        name: contactUs,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const ContactUsView(),
-      ),
-      GoRoute(
-        path: donation,
-        name: donation,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const MqDonationView(),
-      ),
-      GoRoute(
-        path: developers,
-        name: developers,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const DevelopersView(),
-      ),
-      GoRoute(
         name: notification,
         path: notification,
         parentNavigatorKey: rootNavigatorKey,
@@ -237,6 +213,30 @@ final class AppRouter {
             builder: (context, state) => const SuccessView(),
           ),
         ],
+      ),
+      GoRoute(
+        path: aboutUs,
+        name: aboutUs,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const AboutUsVuew(),
+      ),
+      GoRoute(
+        path: contactUs,
+        name: contactUs,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const ContactUsView(),
+      ),
+      GoRoute(
+        path: developers,
+        name: developers,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const DevelopersView(),
+      ),
+      GoRoute(
+        path: donation,
+        name: donation,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const MqDonationView(),
       ),
     ];
   }
