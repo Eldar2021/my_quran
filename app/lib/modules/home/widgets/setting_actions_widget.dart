@@ -36,7 +36,7 @@ class SettingActionsWidget extends StatelessWidget {
           key: const Key(MqKeys.settingsGenderLang),
           onTap: () {
             MqAnalytic.track(AnalyticKey.goGenderPage);
-            context.pushNamed(AppRouter.customAppSettings);
+            // context.pushNamed(AppRouter.customAppSettings);
           },
           icon: Icon(
             Icons.translate,

@@ -37,7 +37,7 @@ final class AppRouter {
   static const loginWihtSoccial = 'login-with-soccial';
 
   static const settingsPage = 'settings';
-  static const customAppSettings = 'custom-settings';
+  static const appSettings = 'app-settings';
   static const themeSettings = 'theme-settings';
   static const aboutUs = 'about-us';
   static const contactUs = 'contect-us';
@@ -163,12 +163,7 @@ final class AppRouter {
           ),
         ],
       ),
-      GoRoute(
-        path: customAppSettings,
-        name: customAppSettings,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const CustomAppSettingView(),
-      ),
+
       GoRoute(
         path: themeSettings,
         name: themeSettings,
@@ -213,6 +208,12 @@ final class AppRouter {
             builder: (context, state) => const SuccessView(),
           ),
         ],
+      ),
+      GoRoute(
+        path: appSettings,
+        name: appSettings,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const AppSettingsView(),
       ),
       GoRoute(
         path: aboutUs,

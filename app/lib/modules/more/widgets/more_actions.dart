@@ -23,11 +23,10 @@ class MoreActions extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
-            /// Theme, if auth state is unauthenticated, show gender selection, language selection, Notification settings
             DrawerTile(
               key: const Key(MqKeys.settingsGenderLang),
               title: context.l10n.customApp,
-              onTap: () {},
+              onTap: () => context.pushNamed(AppRouter.appSettings),
               icon: Icon(
                 Icons.settings,
                 color: colors.primary,
