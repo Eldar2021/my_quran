@@ -20,6 +20,7 @@ final class AppBlueDarkTheme extends AppTheme {
       error: AppColors.darkred,
       onError: AppColors.white,
       surfaceContainerHigh: AppColors.dollopOfCreamDark,
+      surfaceContainerLow: AppColors.surfaceContainerLowDart,
       brightness: Brightness.dark,
     );
   }

@@ -82,4 +82,9 @@ final class UserModel {
       timezone: timezone ?? this.timezone,
     );
   }
+
+  String? get fullName {
+    if (firstName == null || lastName == null) return null;
+    return '${firstName ?? ''} ${lastName ?? ''}';
+  }
 }

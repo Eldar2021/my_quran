@@ -145,5 +145,7 @@
   "confirmSurahReaded": "Please ensure you have read this Surah completely. MyQuran will save this Surah as read and update your progress.",
   "confirmJuzReaded": "Please ensure you have read this Juz completely. MyQuran will save this Juz as read and update your progress.",
   "confirmPagesReaded": "Please ensure you have read these pages completely. MyQuran will save the relevant pages as read and update your progress.",
-  "more": "More"
+  "more": "More",
+  "guest": "Guest",
+  "authMessage": "Log in to unlock all features"
 }
