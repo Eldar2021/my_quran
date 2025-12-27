@@ -147,5 +147,6 @@
   "confirmPagesReaded": "Please ensure you have read these pages completely. MyQuran will save the relevant pages as read and update your progress.",
   "more": "More",
   "guest": "Guest",
-  "authMessage": "Log in to unlock all features"
+  "authMessage": "Log in to unlock all features",
+  "aboutApp": "About app"
 }

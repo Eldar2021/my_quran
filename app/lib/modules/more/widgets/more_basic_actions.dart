@@ -100,8 +100,10 @@ class MoreBasicActions extends StatelessWidget {
                 }
               },
             ),
+
+            /// About App
             DrawerTile(
-              title: 'О приложении',
+              title: context.l10n.aboutApp,
               onTap: () {},
               icon: Icon(
                 Icons.info_outline,

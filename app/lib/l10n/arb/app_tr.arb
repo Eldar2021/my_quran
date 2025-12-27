@@ -147,5 +147,6 @@
   "confirmPagesReaded": "Lütfen bu sayfaları tamamen okuduğunuzdan emin olun. MyQuran, ilgili sayfaları okundu olarak kaydedip ilerlemenizi güncelleyecektir.",
   "more": "Fazla",
   "guest": "Misafir",
-  "authMessage": "Tüm özellikleri açmak için giriş yapın"
+  "authMessage": "Tüm özellikleri açmak için giriş yapın",
+  "aboutApp": "Uygulama hakkında"
 }
