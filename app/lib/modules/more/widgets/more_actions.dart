@@ -9,8 +9,8 @@ import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 
-class MoreBasicActions extends StatelessWidget {
-  const MoreBasicActions({super.key});
+class MoreActions extends StatelessWidget {
+  const MoreActions({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,15 +97,17 @@ class MoreBasicActions extends StatelessWidget {
                 }
               },
             ),
-
-            /// About App
-            DrawerTile(
-              title: context.l10n.aboutApp,
-              onTap: () {},
-              icon: Icon(
-                Icons.info_outline,
-                color: colors.primary,
-              ),
+            BlocBuilder<RemoteConfigCubit, RemoteConfigState>(
+              builder: (context, state) {
+                return DrawerTile(
+                  title: '${ApiConst.appName} ${state.version}(${state.buildNumber})',
+                  icon: CircleAvatar(
+                    backgroundImage: Assets.images.appIcon.provider(),
+                  ),
+                  trailing: const SizedBox.shrink(),
+                  onLongPress: () => context.pushNamed(AppRouter.devModeView),
+                );
+              },
             ),
           ],
         ),
