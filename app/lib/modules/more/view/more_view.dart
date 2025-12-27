@@ -45,6 +45,16 @@ class MoreView extends StatelessWidget {
             },
           ),
           const SizedBox(height: 16),
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              final auth = state.auth;
+              return MoreServices(
+                enableCreateHatims: auth?.user.canCreateHatim ?? false,
+                enableJoinHatims: auth != null,
+              );
+            },
+          ),
+          const SizedBox(height: 16),
           const MoreBasicActions(),
         ],
       ),

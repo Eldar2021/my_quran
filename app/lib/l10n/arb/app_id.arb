@@ -148,5 +148,9 @@
   "more": "Lebih",
   "guest": "Tamu",
   "authMessage": "Masuk untuk membuka semua fitur",
-  "aboutApp": "Tentang aplikasi"
+  "aboutApp": "Tentang aplikasi",
+  "readByJuz": "Baca Al-Qur'an per Juz",
+  "readBySurah": "Baca Al-Qur'an per Surah",
+  "listenQuran": "Dengarkan Al-Qur'an",
+  "readQuran": "Baca Al-Qur'an"
 }

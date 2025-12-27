@@ -148,5 +148,9 @@
   "more": "More",
   "guest": "Guest",
   "authMessage": "Log in to unlock all features",
-  "aboutApp": "About app"
+  "aboutApp": "About app",
+  "readByJuz": "Read Quran by Juz",
+  "readBySurah": "Read Quran by Surah",
+  "listenQuran": "Listen to Quran",
+  "readQuran": "Read Quran"
 }

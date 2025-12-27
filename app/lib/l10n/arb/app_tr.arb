@@ -148,5 +148,9 @@
   "more": "Fazla",
   "guest": "Misafir",
   "authMessage": "Tüm özellikleri açmak için giriş yapın",
-  "aboutApp": "Uygulama hakkında"
+  "aboutApp": "Uygulama hakkında",
+  "readByJuz": "Cüzlere göre Kur'an oku",
+  "readBySurah": "Surelere göre Kur'an oku",
+  "listenQuran": "Kur'an dinle",
+  "readQuran": "Kur'an oku"
 }
