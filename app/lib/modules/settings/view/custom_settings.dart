@@ -123,7 +123,7 @@ class CustomAppSettingView extends StatelessWidget {
         ),
       );
     } else {
-      authCubit.uupdateLocale(localeCode);
+      authCubit.updateLocale(localeCode);
     }
   }
 

@@ -81,7 +81,7 @@ class MoreServices extends StatelessWidget {
   }
 
   void _createHatim(BuildContext context) {
-    if (!enableCreateHatims) {
+    if (enableCreateHatims) {
       context.pushNamed(AppRouter.createHatim);
     } else {
       AppAlert.showErrorDialog(
@@ -94,7 +94,7 @@ class MoreServices extends StatelessWidget {
   }
 
   void _joinToHatim(BuildContext context) {
-    if (!enableJoinHatims) {
+    if (enableJoinHatims) {
       sectionNavigatorKeyMain.currentState?.goBranch(0, initialLocation: true);
     } else {
       AppAlert.showErrorDialog(
