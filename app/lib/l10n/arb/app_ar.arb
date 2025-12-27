@@ -152,5 +152,10 @@
   "readByJuz": "قراءة القرآن بالأجزاء",
   "readBySurah": "قراءة القرآن بالسور",
   "listenQuran": "الاستماع إلى القرآن",
-  "readQuran": "قراءة القرآن"
+  "readQuran": "قراءة القرآن",
+  "joinKhatimUnavailable": "الانضمام إلى الختمة غير متاح",
+  "joinKhatimLoginPrompt": "إذا كنت ترغب في الانضمام إلى الختمة، يرجى تسجيل الدخول",
+  "ok": "حسناً",
+  "createKhatimUnavailable": "إنشاء الختمة غير متاح",
+  "createKhatimContactPrompt": "إذا كنت ترغب في إنشاء ختمة، يرجى التواصل معنا عبر قسم «{value}»"
 }

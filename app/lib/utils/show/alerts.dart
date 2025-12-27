@@ -38,17 +38,18 @@ final class AppAlert {
     Widget? title,
     void Function()? onPressed,
     TextStyle? textStyle,
+    String? buttonText,
   }) {
     showCupertinoDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: Text(context.l10n.error),
+          title: title ?? Text(context.l10n.error),
           content: Text(errorText, style: textStyle),
           actions: <Widget>[
             CupertinoButton(
               onPressed: onPressed ?? () => context.pop(),
-              child: Text(context.l10n.cancel, style: textStyle),
+              child: Text(buttonText ?? context.l10n.cancel, style: textStyle),
             ),
           ],
         );

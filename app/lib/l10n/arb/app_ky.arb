@@ -152,5 +152,10 @@
   "readByJuz": "Куранды жүз боюнча окуу",
   "readBySurah": "Куранды сүрө боюнча окуу",
   "listenQuran": "Куран угуу",
-  "readQuran": "Куран окуу"
+  "readQuran": "Куран окуу",
+  "joinKhatimUnavailable": "Хатымга кошулуу жеткиликсиз",
+  "joinKhatimLoginPrompt": "Эгерде сиз хатымга кошулууну кааласаңыз, авторизациядан өтүңүз",
+  "ok": "Ок",
+  "createKhatimUnavailable": "Хатым түзүү жеткиликсиз",
+  "createKhatimContactPrompt": "Эгерде сиз хатым түзүүнү кааласаңыз, «{value}» бөлүмү аркылуу биз менен байланышыңыз"
 }

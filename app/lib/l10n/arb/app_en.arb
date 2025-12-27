@@ -152,5 +152,10 @@
   "readByJuz": "Read Quran by Juz",
   "readBySurah": "Read Quran by Surah",
   "listenQuran": "Listen to Quran",
-  "readQuran": "Read Quran"
+  "readQuran": "Read Quran",
+  "joinKhatimUnavailable": "Joining khatm is unavailable",
+  "joinKhatimLoginPrompt": "If you want to join the khatm, please log in",
+  "ok": "OK",
+  "createKhatimUnavailable": "Creating khatm is unavailable",
+  "createKhatimContactPrompt": "If you want to create a khatm, please contact us via the «{value}» section."
 }

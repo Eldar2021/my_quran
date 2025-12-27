@@ -152,5 +152,10 @@
   "readByJuz": "Cüzlere göre Kur'an oku",
   "readBySurah": "Surelere göre Kur'an oku",
   "listenQuran": "Kur'an dinle",
-  "readQuran": "Kur'an oku"
+  "readQuran": "Kur'an oku",
+  "joinKhatimUnavailable": "Hatim'e katılma özelliği kullanılamıyor",
+  "joinKhatimLoginPrompt": "Hatim'e katılmak istiyorsanız lütfen giriş yapın",
+  "ok": "Tamam",
+  "createKhatimUnavailable": "Hatim oluşturma özelliği kullanılamıyor",
+  "createKhatimContactPrompt": "Hatim oluşturmak istiyorsanız lütfen «{value}» bölümünden bizimle iletişime geçin."
 }

@@ -152,5 +152,10 @@
   "readByJuz": "Baca Al-Qur'an per Juz",
   "readBySurah": "Baca Al-Qur'an per Surah",
   "listenQuran": "Dengarkan Al-Qur'an",
-  "readQuran": "Baca Al-Qur'an"
+  "readQuran": "Baca Al-Qur'an",
+  "joinKhatimUnavailable": "Bergabung dengan khatam tidak tersedia",
+  "joinKhatimLoginPrompt": "Jika Anda ingin bergabung dengan khatam, silakan masuk",
+  "ok": "Oke",
+  "createKhatimUnavailable": "Pembuatan khatam tidak tersedia",
+  "createKhatimContactPrompt": "Jika Anda ingin membuat khatam, silakan hubungi kami melalui bagian «{value}»"
 }

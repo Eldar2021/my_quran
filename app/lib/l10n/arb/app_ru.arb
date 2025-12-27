@@ -152,5 +152,10 @@
   "readByJuz": "Читать Коран по джузам",
   "readBySurah": "Читать Коран по сурам",
   "listenQuran": "Слушать Коран",
-  "readQuran": "Читать Коран"
+  "readQuran": "Читать Коран",
+  "joinKhatimUnavailable": "Присоединиться к хатим недоступно",
+  "joinKhatimLoginPrompt": "Если вы хотите присоединиться к хатим, пожалуйста, авторизуйтесь",
+  "ok": "Oк",
+  "createKhatimUnavailable": "Создание хатим недоступно",
+  "createKhatimContactPrompt": "Если вы хотите создать хатим, пожалуйста, свяжитесь с нами через раздел «{value}»"
 }

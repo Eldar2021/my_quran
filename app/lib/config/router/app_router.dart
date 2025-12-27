@@ -7,6 +7,7 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
+final sectionNavigatorKeyMain = GlobalKey<StatefulNavigationShellState>(debugLabel: 'main');
 final _sectionNavigatorKeyHome = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _sectionNavigatorKeyQuran = GlobalKey<NavigatorState>(debugLabel: 'quran');
 final _sectionNavigatorKeyQuranAudio = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
@@ -48,6 +49,7 @@ final class AppRouter {
   static const search = 'search';
   static const createHatimSuccess = 'create-hatim-success';
   static const more = 'more';
+  static const profile = 'profile';
 
   GoRouter router() {
     return GoRouter(
@@ -82,6 +84,7 @@ final class AppRouter {
           builder: (context, state) => const DevModeView(),
         ),
         StatefulShellRoute.indexedStack(
+          key: sectionNavigatorKeyMain,
           builder: (context, state, navigationShell) {
             return MainView(navigationShell);
           },
@@ -125,6 +128,7 @@ final class AppRouter {
                   path: '/$more',
                   name: more,
                   builder: (context, state) => const MoreView(),
+                  routes: _moreSubRoutes,
                 ),
               ],
             ),
@@ -196,30 +200,43 @@ final class AppRouter {
         builder: (context, state) => const DevelopersView(),
       ),
       GoRoute(
-        path: createHatim,
-        name: createHatim,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const CreateHatimView(),
-      ),
-      GoRoute(
-        path: search,
-        name: search,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const SearchView(),
-      ),
-      GoRoute(
-        name: createHatimSuccess,
-        path: createHatimSuccess,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const SuccessView(),
-      ),
-      GoRoute(
         name: notification,
         path: notification,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => NotificationView(
           state.extra as NotificationModel?,
         ),
+      ),
+    ];
+  }
+
+  static List<RouteBase> get _moreSubRoutes {
+    return [
+      GoRoute(
+        path: profile,
+        name: profile,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const ProfileView(),
+      ),
+      GoRoute(
+        path: createHatim,
+        name: createHatim,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const CreateHatimView(),
+        routes: [
+          GoRoute(
+            path: search,
+            name: search,
+            parentNavigatorKey: rootNavigatorKey,
+            builder: (context, state) => const SearchView(),
+          ),
+          GoRoute(
+            name: createHatimSuccess,
+            path: createHatimSuccess,
+            parentNavigatorKey: rootNavigatorKey,
+            builder: (context, state) => const SuccessView(),
+          ),
+        ],
       ),
     ];
   }

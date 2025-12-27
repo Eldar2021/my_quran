@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+
+/*
+3. App Settings
+4. App Info
+5. Basic actions navigation
+*/
 
 class MoreView extends StatelessWidget {
   const MoreView({super.key});
@@ -35,12 +43,12 @@ class MoreView extends StatelessWidget {
               if (auth != null) {
                 return UserProfileAuthenticatedCard(
                   auth: auth,
-                  onTap: () {},
+                  onTap: () => _navigateToProfile(context),
                 );
               }
               return UserProfileUnauthenticatedCard(
                 gender: gender,
-                onTap: () {},
+                onTap: () => _navigateToLogin(context),
               );
             },
           ),
@@ -59,5 +67,13 @@ class MoreView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _navigateToProfile(BuildContext context) {
+    context.pushNamed(AppRouter.profile);
+  }
+
+  void _navigateToLogin(BuildContext context) {
+    context.pushNamed(AppRouter.loginWihtSoccial);
   }
 }
