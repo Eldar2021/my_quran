@@ -19,9 +19,7 @@ class DrawerTile extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return ListTile(
       onTap: onTap,
-      contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
-        radius: 17,
         backgroundColor: colorScheme.onInverseSurface,
         child: icon,
       ),

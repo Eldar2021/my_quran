@@ -25,7 +25,10 @@ class UserProfileAuthenticatedCard extends StatelessWidget {
       margin: EdgeInsets.zero,
       color: colorScheme.surface,
       child: ListTile(
-        contentPadding: const EdgeInsets.all(8),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 16,
+        ),
         onTap: onTap,
         title: Text(
           auth.user.fullName ?? context.l10n.assalamuAlaikum,

@@ -44,6 +44,8 @@ class MoreView extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 16),
+          const MoreBasicActions(),
         ],
       ),
     );
