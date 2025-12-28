@@ -92,7 +92,7 @@ class _ProfileViewState extends State<ProfileView> {
             title: context.l10n.country,
             value: country,
             hintText: country.isEmpty ? context.l10n.empty : null,
-            onEdit: () {},
+            onEdit: () => _onEdit(ProfileEditCountryView(country)),
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
