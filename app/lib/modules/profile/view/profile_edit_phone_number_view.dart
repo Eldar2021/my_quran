@@ -111,7 +111,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
                                 const SizedBox(width: 6),
                                 Expanded(
                                   child: Text(
-                                    e.name.common,
+                                    e.namesNative.first.name,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
