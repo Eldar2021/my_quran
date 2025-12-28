@@ -11,6 +11,7 @@ class EditUserDataAsStringBody extends StatelessWidget {
     required this.formKey,
     required this.controller,
     required this.onSave,
+    this.keyboardType = TextInputType.name,
     this.hintText,
     this.validator,
     super.key,
@@ -21,6 +22,7 @@ class EditUserDataAsStringBody extends StatelessWidget {
   final String? hintText;
   final String? Function(String?)? validator;
   final void Function(String key, String value) onSave;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class EditUserDataAsStringBody extends StatelessWidget {
             TextFormField(
               controller: controller,
               autofocus: true,
+              keyboardType: keyboardType,
               decoration: InputDecoration(
                 hintText: hintText,
                 fillColor: colorScheme.surface,

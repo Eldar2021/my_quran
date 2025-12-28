@@ -67,7 +67,7 @@ class _ProfileViewState extends State<ProfileView> {
             title: context.l10n.email,
             value: email,
             hintText: email.isEmpty ? context.l10n.empty : null,
-            onEdit: () {},
+            onEdit: () => _onEdit(ProfileEditEmailView(email)),
           ),
           const SizedBox(height: 16),
           UserProfileItemField(

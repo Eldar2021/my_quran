@@ -43,7 +43,8 @@ class _ProfileEditFirstNameViewState extends State<ProfileEditFirstNameView> {
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
             return 'Введите ваше имя';
-          } else if (value.trim() == widget.initialValue) {
+          }
+          if (value.trim() == widget.initialValue) {
             return 'Имя не может быть таким же как текущее';
           }
           return null;
