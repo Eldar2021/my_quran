@@ -27,30 +27,39 @@ class UserProfileItemField extends StatelessWidget {
           style: textTheme.titleMedium,
         ),
         const SizedBox(height: 6),
-        TextFormField(
-          readOnly: true,
-          controller: TextEditingController(text: value),
-          decoration: InputDecoration(
-            hintText: hintText,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide.none,
-            ),
-            fillColor: colorScheme.surfaceContainerLow,
-            filled: true,
-            suffixIcon: onEdit != null
-                ? IconButton(
-                    onPressed: onEdit,
-                    icon: const Icon(Icons.edit),
-                  )
-                : null,
+        Badge(
+          backgroundColor: Colors.transparent,
+          isLabelVisible: value.isEmpty,
+          offset: const Offset(-6, -6),
+          label: Icon(
+            Icons.info,
+            color: colorScheme.error,
           ),
-          contextMenuBuilder: (context, editableTextState) {
-            return AdaptiveTextSelectionToolbar.buttonItems(
-              anchors: editableTextState.contextMenuAnchors,
-              buttonItems: editableTextState.contextMenuButtonItems,
-            );
-          },
+          child: TextFormField(
+            readOnly: true,
+            controller: TextEditingController(text: value),
+            decoration: InputDecoration(
+              hintText: hintText,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none,
+              ),
+              fillColor: colorScheme.surfaceContainerLow,
+              filled: true,
+              suffixIcon: onEdit != null
+                  ? IconButton(
+                      onPressed: onEdit,
+                      icon: const Icon(Icons.edit),
+                    )
+                  : null,
+            ),
+            contextMenuBuilder: (context, editableTextState) {
+              return AdaptiveTextSelectionToolbar.buttonItems(
+                anchors: editableTextState.contextMenuAnchors,
+                buttonItems: editableTextState.contextMenuButtonItems,
+              );
+            },
+          ),
         ),
       ],
     );

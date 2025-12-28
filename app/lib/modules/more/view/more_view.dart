@@ -36,6 +36,7 @@ class MoreView extends StatelessWidget {
               if (auth != null) {
                 return UserProfileAuthenticatedCard(
                   auth: auth,
+                  unfieldsCount: auth.user.unfieldsCount,
                   onTap: () => _navigateToProfile(context),
                 );
               }
