@@ -16,14 +16,14 @@ class ProfileView extends StatelessWidget {
     final user = auth.user;
     final avatarUrl = user.avatar;
     final gender = user.gender ?? Gender.male;
-    final firstName = user.firstName ?? '';
-    final lastName = user.lastName ?? '';
-    final userName = user.username ?? '';
-    final email = user.email ?? '';
-    final phoneNumber = user.phoneNumber ?? '';
-    final country = user.country ?? '';
+    final firstName = (user.firstName ?? '').trim();
+    final lastName = (user.lastName ?? '').trim();
+    final userName = (user.username ?? '').trim();
+    final email = (user.email ?? '').trim();
+    final phoneNumber = (user.phoneNumber ?? '').trim();
+    final country = (user.country ?? '').trim();
     final language = user.language ?? 'en';
-    final timeZone = user.timezone ?? '';
+    final timeZone = (user.timezone ?? '').trim();
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.profile),

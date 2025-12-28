@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
-import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/constants/contants.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class MoreView extends StatelessWidget {
@@ -19,10 +19,9 @@ class MoreView extends StatelessWidget {
         title: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
             final auth = state.auth;
-            if (auth != null) {
-              return Text(auth.user.fullName ?? context.l10n.myQuran);
-            }
-            return Text(context.l10n.myQuran);
+            final fullName = (auth?.user.fullName ?? '').trim();
+            if (fullName.isNotEmpty) return Text(fullName);
+            return const Text(ApiConst.appName);
           },
         ),
       ),

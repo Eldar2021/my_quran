@@ -85,6 +85,6 @@ final class UserModel {
 
   String? get fullName {
     if (firstName == null || lastName == null) return null;
-    return '${firstName ?? ''} ${lastName ?? ''}';
+    return '${firstName ?? ''} ${lastName ?? ''}'.trim();
   }
 }

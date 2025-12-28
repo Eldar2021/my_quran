@@ -20,6 +20,8 @@ class UserProfileAuthenticatedCard extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final avatarUrl = auth.user.avatar;
     final gender = auth.user.gender ?? Gender.male;
+    final fullName = (auth.user.fullName ?? '').trim();
+    final email = (auth.user.email ?? '').trim();
     return Card(
       elevation: 0,
       margin: EdgeInsets.zero,
@@ -31,11 +33,9 @@ class UserProfileAuthenticatedCard extends StatelessWidget {
         ),
         onTap: onTap,
         title: Text(
-          auth.user.fullName ?? context.l10n.assalamuAlaikum,
+          fullName.isNotEmpty ? fullName : context.l10n.hello,
         ),
-        subtitle: Text(
-          auth.user.email ?? '',
-        ),
+        subtitle: email.isNotEmpty ? Text(auth.user.email ?? '') : null,
         trailing: const Icon(Icons.arrow_forward_ios),
         leading: CircleAvatar(
           radius: _avatarRadius,
