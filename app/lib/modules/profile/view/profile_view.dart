@@ -100,6 +100,8 @@ class ProfileView extends StatelessWidget {
             hintText: timeZone.isEmpty ? context.l10n.empty : null,
             onEdit: () {},
           ),
+          const SizedBox(height: 30),
+          const UserProfileLogoutDeleteSections(),
           const SizedBox(height: 50),
         ],
       ),

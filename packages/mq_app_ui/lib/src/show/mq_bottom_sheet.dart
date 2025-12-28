@@ -68,7 +68,7 @@ abstract class MqBottomSheets {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: MediaQuery.of(context).padding.bottom + 30),
               ],
             ),
           ),
