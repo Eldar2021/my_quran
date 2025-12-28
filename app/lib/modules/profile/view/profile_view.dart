@@ -26,7 +26,7 @@ class ProfileView extends StatelessWidget {
     final timeZone = user.timezone ?? '';
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(context.l10n.profile),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -38,21 +38,21 @@ class ProfileView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'First name',
+            title: context.l10n.firstName,
             value: firstName,
             hintText: firstName.isEmpty ? context.l10n.empty : null,
             onEdit: () {},
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'Last name',
+            title: context.l10n.lastName,
             value: lastName,
             hintText: lastName.isEmpty ? context.l10n.empty : null,
             onEdit: () {},
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'User name',
+            title: context.l10n.userName,
             value: userName,
             hintText: userName.isEmpty ? context.l10n.empty : null,
             onEdit: () {},
@@ -66,21 +66,21 @@ class ProfileView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'Phone number',
+            title: context.l10n.phoneNumber,
             value: phoneNumber,
             hintText: phoneNumber.isEmpty ? context.l10n.empty : null,
             onEdit: () {},
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'Country',
+            title: context.l10n.country,
             value: country,
             hintText: country.isEmpty ? context.l10n.empty : null,
             onEdit: () {},
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'Gender',
+            title: context.l10n.gender,
             value: switch (gender) {
               Gender.male => context.l10n.male,
               Gender.female => context.l10n.female,
@@ -89,13 +89,13 @@ class ProfileView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'Language',
+            title: context.l10n.language,
             value: AppLocalizationHelper.getName(language.toLowerCase()),
             onEdit: () {},
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
-            title: 'Time zone',
+            title: context.l10n.timeZone,
             value: timeZone,
             hintText: timeZone.isEmpty ? context.l10n.empty : null,
             onEdit: () {},

@@ -157,5 +157,14 @@
   "joinKhatimLoginPrompt": "Эгерде сиз хатымга кошулууну кааласаңыз, авторизациядан өтүңүз",
   "ok": "Ок",
   "createKhatimUnavailable": "Хатым түзүү жеткиликсиз",
-  "createKhatimContactPrompt": "Эгерде сиз хатым түзүүнү кааласаңыз, «{value}» бөлүмү аркылуу биз менен байланышыңыз"
+  "createKhatimContactPrompt": "Эгерде сиз хатым түзүүнү кааласаңыз, «{value}» бөлүмү аркылуу биз менен байланышыңыз",
+  "profile": "Профиль",
+  "firstName": "Аты",
+  "lastName": "Фамилиясы",
+  "userName": "Колдонуучунун аты",
+  "phoneNumber": "Телефон номери",
+  "country": "Өлкө",
+  "gender": "Жынысы",
+  "language": "Тил",
+  "timeZone": "Убакыт алкагы"
 }

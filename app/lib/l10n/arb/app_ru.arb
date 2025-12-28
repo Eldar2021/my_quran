@@ -157,5 +157,14 @@
   "joinKhatimLoginPrompt": "Если вы хотите присоединиться к хатим, пожалуйста, авторизуйтесь",
   "ok": "Oк",
   "createKhatimUnavailable": "Создание хатим недоступно",
-  "createKhatimContactPrompt": "Если вы хотите создать хатим, пожалуйста, свяжитесь с нами через раздел «{value}»"
+  "createKhatimContactPrompt": "Если вы хотите создать хатим, пожалуйста, свяжитесь с нами через раздел «{value}»",
+  "profile": "Профиль",
+  "firstName": "Имя",
+  "lastName": "Фамилия",
+  "userName": "Имя пользователя",
+  "phoneNumber": "Номер телефона",
+  "country": "Страна",
+  "gender": "Пол",
+  "language": "Язык",
+  "timeZone": "Часовой пояс"
 }

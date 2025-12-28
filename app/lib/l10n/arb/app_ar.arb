@@ -157,5 +157,14 @@
   "joinKhatimLoginPrompt": "إذا كنت ترغب في الانضمام إلى الختمة، يرجى تسجيل الدخول",
   "ok": "حسناً",
   "createKhatimUnavailable": "إنشاء الختمة غير متاح",
-  "createKhatimContactPrompt": "إذا كنت ترغب في إنشاء ختمة، يرجى التواصل معنا عبر قسم «{value}»"
+  "createKhatimContactPrompt": "إذا كنت ترغب في إنشاء ختمة، يرجى التواصل معنا عبر قسم «{value}»",
+  "profile": "الملف الشخصي",
+  "firstName": "الاسم الأول",
+  "lastName": "اسم العائلة",
+  "userName": "اسم المستخدم",
+  "phoneNumber": "رقم الهاتف",
+  "country": "البلد",
+  "gender": "الجنس",
+  "language": "اللغة",
+  "timeZone": "المنطقة الزمنية"
 }

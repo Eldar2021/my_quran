@@ -157,5 +157,14 @@
   "joinKhatimLoginPrompt": "Jika Anda ingin bergabung dengan khatam, silakan masuk",
   "ok": "Oke",
   "createKhatimUnavailable": "Pembuatan khatam tidak tersedia",
-  "createKhatimContactPrompt": "Jika Anda ingin membuat khatam, silakan hubungi kami melalui bagian «{value}»"
+  "createKhatimContactPrompt": "Jika Anda ingin membuat khatam, silakan hubungi kami melalui bagian «{value}»",
+  "profile": "Profil",
+  "firstName": "Nama depan",
+  "lastName": "Nama belakang",
+  "userName": "Nama pengguna",
+  "phoneNumber": "Nomor telepon",
+  "country": "Negara",
+  "gender": "Jenis kelamin",
+  "language": "Bahasa",
+  "timeZone": "Zona waktu"
 }

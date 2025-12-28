@@ -157,5 +157,14 @@
   "joinKhatimLoginPrompt": "Hatim'e katılmak istiyorsanız lütfen giriş yapın",
   "ok": "Tamam",
   "createKhatimUnavailable": "Hatim oluşturma özelliği kullanılamıyor",
-  "createKhatimContactPrompt": "Hatim oluşturmak istiyorsanız lütfen «{value}» bölümünden bizimle iletişime geçin."
+  "createKhatimContactPrompt": "Hatim oluşturmak istiyorsanız lütfen «{value}» bölümünden bizimle iletişime geçin.",
+  "profile": "Profil",
+  "firstName": "Ad",
+  "lastName": "Soyad",
+  "userName": "Kullanıcı adı",
+  "phoneNumber": "Telefon numarası",
+  "country": "Ülke",
+  "gender": "Cinsiyet",
+  "language": "Dil",
+  "timeZone": "Saat dilimi"
 }

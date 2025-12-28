@@ -157,5 +157,14 @@
   "joinKhatimLoginPrompt": "If you want to join the khatm, please log in",
   "ok": "OK",
   "createKhatimUnavailable": "Creating khatm is unavailable",
-  "createKhatimContactPrompt": "If you want to create a khatm, please contact us via the «{value}» section."
+  "createKhatimContactPrompt": "If you want to create a khatm, please contact us via the «{value}» section.",
+  "profile": "Profile",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "userName": "Username",
+  "phoneNumber": "Phone number",
+  "country": "Country",
+  "gender": "Gender",
+  "language": "Language",
+  "timeZone": "Time zone"
 }

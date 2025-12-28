@@ -157,5 +157,14 @@
   "joinKhatimLoginPrompt": "Егер хатымға қосылғыңыз келсе, жүйеге кіріңіз",
   "ok": "Ок",
   "createKhatimUnavailable": "Хатым жасау қолжетімсіз",
-  "createKhatimContactPrompt": "Егер хатым жасағыңыз келсе, «{value}» бөлімі арқылы бізге хабарласыңыз"
+  "createKhatimContactPrompt": "Егер хатым жасағыңыз келсе, «{value}» бөлімі арқылы бізге хабарласыңыз",
+  "profile": "Профиль",
+  "firstName": "Есімі",
+  "lastName": "Тегі",
+  "userName": "Пайдаланушы аты",
+  "phoneNumber": "Телефон нөмірі",
+  "country": "Ел",
+  "gender": "Жынысы",
+  "language": "Тіл",
+  "timeZone": "Уақыт белдеуі"
 }
