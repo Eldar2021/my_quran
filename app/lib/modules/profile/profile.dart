@@ -1,5 +1,9 @@
 export 'cubit/profile_cubit.dart';
 export 'view/profile_view.dart';
+export 'view/profile_edit_first_name_view.dart';
+export 'view/profile_edit_last_name_view.dart';
+export 'view/profile_edit_user_name_view.dart';
 export 'widgets/user_profile_avatar_widget.dart';
 export 'widgets/user_profile_item_field.dart';
 export 'widgets/user_profile_logout_delete_sections.dart';
+export 'widgets/edit_user_data_as_string_body.dart';

@@ -7,22 +7,27 @@ import 'package:my_quran/modules/modules.dart';
 
 const _defaultAuthMode = AuthModel(key: 'key', user: UserModel());
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
   @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthCubit>().auth ?? _defaultAuthMode;
+    final gender = context.watch<AuthCubit>().state.currentGender;
+    final language = context.watch<AuthCubit>().state.currentLocale.languageCode;
     final user = auth.user;
     final avatarUrl = user.avatar;
-    final gender = user.gender ?? Gender.male;
     final firstName = (user.firstName ?? '').trim();
     final lastName = (user.lastName ?? '').trim();
     final userName = (user.username ?? '').trim();
     final email = (user.email ?? '').trim();
     final phoneNumber = (user.phoneNumber ?? '').trim();
     final country = (user.country ?? '').trim();
-    final language = user.language ?? 'en';
     final timeZone = (user.timezone ?? '').trim();
     return Scaffold(
       appBar: AppBar(
@@ -41,21 +46,21 @@ class ProfileView extends StatelessWidget {
             title: context.l10n.firstName,
             value: firstName,
             hintText: firstName.isEmpty ? context.l10n.empty : null,
-            onEdit: () {},
+            onEdit: () => _onEdit(ProfileEditFirstNameView(firstName)),
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
             title: context.l10n.lastName,
             value: lastName,
             hintText: lastName.isEmpty ? context.l10n.empty : null,
-            onEdit: () {},
+            onEdit: () => _onEdit(ProfileEditLastNameView(lastName)),
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
             title: context.l10n.userName,
             value: userName,
             hintText: userName.isEmpty ? context.l10n.empty : null,
-            onEdit: () {},
+            onEdit: () => _onEdit(ProfileEditUserNameView(userName)),
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
@@ -104,6 +109,17 @@ class ProfileView extends StatelessWidget {
           const UserProfileLogoutDeleteSections(),
           const SizedBox(height: 50),
         ],
+      ),
+    );
+  }
+
+  void _onEdit(Widget widget) {
+    Navigator.push<void>(
+      context,
+      MaterialPageRoute<void>(
+        fullscreenDialog: true,
+        barrierDismissible: true,
+        builder: (context) => widget,
       ),
     );
   }

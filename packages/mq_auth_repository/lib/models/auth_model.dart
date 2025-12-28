@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
@@ -6,7 +7,7 @@ part 'auth_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class AuthModel {
+final class AuthModel extends Equatable {
   const AuthModel({
     required this.key,
     required this.user,
@@ -27,4 +28,7 @@ final class AuthModel {
       user: user ?? this.user,
     );
   }
+
+  @override
+  List<Object?> get props => [key, user];
 }

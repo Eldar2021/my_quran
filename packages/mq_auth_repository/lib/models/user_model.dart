@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
@@ -6,7 +7,7 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class UserModel {
+final class UserModel extends Equatable {
   const UserModel({
     this.firstName,
     this.lastName,
@@ -102,4 +103,20 @@ final class UserModel {
     if (timezone?.trim().isEmpty ?? true) count++;
     return count;
   }
+
+  @override
+  List<Object?> get props => [
+    firstName,
+    lastName,
+    username,
+    avatar,
+    email,
+    country,
+    phoneNumber,
+    gender,
+    language,
+    canCreateHatim,
+    allowNotifications,
+    timezone,
+  ];
 }
