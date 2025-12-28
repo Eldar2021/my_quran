@@ -60,7 +60,7 @@ class EditUserDataAsStringBody extends StatelessWidget {
               builder: (context, state) {
                 return ElevatedButton(
                   onPressed: () => _onSave(context),
-                  child: Text(context.l10n.save),
+                  child: state.isLoading ? const CircularProgressIndicator() : Text(context.l10n.save),
                 );
               },
             ),

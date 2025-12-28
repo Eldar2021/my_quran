@@ -70,11 +70,22 @@ class _ProfileViewState extends State<ProfileView> {
             onEdit: () => _onEdit(ProfileEditEmailView(email)),
           ),
           const SizedBox(height: 16),
-          UserProfileItemField(
-            title: context.l10n.phoneNumber,
-            value: phoneNumber,
-            hintText: phoneNumber.isEmpty ? context.l10n.empty : null,
-            onEdit: () {},
+          Builder(
+            builder: (context) {
+              String value;
+              final a1 = phoneNumber.split('-');
+              if (a1.length > 1) {
+                value = a1[1];
+              } else {
+                value = phoneNumber;
+              }
+              return UserProfileItemField(
+                title: context.l10n.phoneNumber,
+                value: value,
+                hintText: phoneNumber.isEmpty ? context.l10n.empty : null,
+                onEdit: () => _onEdit(ProfileEditPhoneNumberView(phoneNumber)),
+              );
+            },
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
