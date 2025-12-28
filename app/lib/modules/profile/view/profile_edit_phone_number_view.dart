@@ -12,6 +12,15 @@ class ProfileEditPhoneNumberView extends StatefulWidget {
 class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final colorScheme = Theme.of(context).colorScheme;
+    return Scaffold(
+      backgroundColor: colorScheme.surfaceContainerLow,
+      appBar: AppBar(
+        backgroundColor: colorScheme.surfaceContainerLow,
+      ),
+      body: Column(
+        children: [],
+      ),
+    );
   }
 }
