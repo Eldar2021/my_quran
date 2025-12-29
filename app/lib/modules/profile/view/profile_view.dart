@@ -101,7 +101,7 @@ class _ProfileViewState extends State<ProfileView> {
               Gender.male => context.l10n.male,
               Gender.female => context.l10n.female,
             },
-            onEdit: () {},
+            onEdit: () => _onEdit(ProfileEditGenderView(gender)),
           ),
           const SizedBox(height: 16),
           UserProfileItemField(
