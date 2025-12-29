@@ -61,7 +61,7 @@ class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
                 child: DropdownButton<WorldCountry>(
                   value: selectedCountry,
                   isExpanded: true,
-                  hint: const Text('Select country'),
+                  hint: const Text('Выберите страну'),
                   icon: const Icon(Icons.keyboard_arrow_down),
                   borderRadius: BorderRadius.circular(16),
                   onChanged: (WorldCountry? newValue) {
@@ -142,7 +142,7 @@ class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
         UpdateCountryParam(userId: authKey, country: countryCode),
       );
     } else {
-      AppSnackbar.showError(context: context, title: 'Country is required');
+      AppSnackbar.showError(context: context, title: 'Пожалуйста, выберите страну');
     }
   }
 }

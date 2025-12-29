@@ -73,12 +73,12 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your phone number';
+                    return 'Пожалуйста, введите ваш номер телефона';
                   }
                   return null;
                 },
                 decoration: InputDecoration(
-                  hintText: 'Enter your phone number',
+                  hintText: 'Введите свой номер телефона',
                   fillColor: colorScheme.surface,
                   filled: true,
                   border: OutlineInputBorder(

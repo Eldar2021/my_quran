@@ -57,7 +57,7 @@ class _ProfileEditTimezoneViewState extends State<ProfileEditTimezoneView> {
     return Scaffold(
       backgroundColor: colorScheme.surfaceContainerLow,
       appBar: AppBar(
-        title: const Text('Saat Dilimi Seçin'),
+        title: const Text('Выберите часовой пояс'),
         backgroundColor: colorScheme.surfaceContainerLow,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(60),
@@ -66,7 +66,7 @@ class _ProfileEditTimezoneViewState extends State<ProfileEditTimezoneView> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Şehir veya kıta ara (örn: Istanbul)',
+                hintText: 'Поиск по городу или континенту',
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
                 fillColor: colorScheme.surface,
