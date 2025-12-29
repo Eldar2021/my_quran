@@ -8,6 +8,7 @@ export 'view/profile_edit_phone_number_view.dart';
 export 'view/profile_edit_country_view.dart';
 export 'view/profile_edit_gender_view.dart';
 export 'view/profile_edit_language.dart';
+export 'view/profile_edit_timezone_view.dart';
 export 'widgets/user_profile_avatar_widget.dart';
 export 'widgets/user_profile_item_field.dart';
 export 'widgets/user_profile_logout_delete_sections.dart';

@@ -116,7 +116,7 @@ class _ProfileViewState extends State<ProfileView> {
             title: context.l10n.timeZone,
             value: timeZone,
             hintText: timeZone.isEmpty ? context.l10n.empty : null,
-            onEdit: () {},
+            onEdit: () => _onEdit(ProfileEditTimezoneView(timeZone)),
           ),
           const SizedBox(height: 30),
           const UserProfileLogoutDeleteSections(),
