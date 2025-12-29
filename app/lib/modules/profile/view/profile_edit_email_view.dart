@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
@@ -41,13 +42,13 @@ class _ProfileEditEmailViewState extends State<ProfileEditEmailView> {
         formKey: _formKey,
         controller: _controller,
         keyboardType: TextInputType.emailAddress,
-        hintText: 'Введите ваш email',
+        hintText: context.l10n.enterEmail2,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
-            return 'Введите ваш email';
+            return context.l10n.enterEmail2;
           }
           if (value.trim() == widget.initialValue) {
-            return 'Email не может быть таким же как текущий';
+            return context.l10n.emailSameAsCurrent;
           }
           return Validators.email(value, context);
         },

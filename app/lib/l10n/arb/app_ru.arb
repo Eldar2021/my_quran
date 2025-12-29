@@ -166,5 +166,19 @@
   "country": "Страна",
   "gender": "Пол",
   "language": "Язык",
-  "timeZone": "Часовой пояс"
+  "timeZone": "Часовой пояс",
+  "selectCountry": "Выберите страну",
+  "pleaseSelectCountry": "Пожалуйста, выберите страну",
+  "enterEmail2": "Введите ваш email",
+  "emailSameAsCurrent": "Email не может быть таким же как текущий",
+  "enterFirstName": "Введите ваше имя",
+  "firstNameSameAsCurrent": "Имя не может быть таким же как текущее",
+  "enterLastName": "Введите вашу фамилию",
+  "lastNameSameAsCurrent": "Фамилия не может быть такой же как текущая",
+  "pleaseEnterPhone": "Пожалуйста, введите ваш номер телефона",
+  "enterPhone": "Введите свой номер телефона",
+  "selectTimeZone": "Выберите часовой пояс",
+  "searchCityOrContinent": "Поиск по городу или континенту",
+  "enterUserName": "Введите ваше имя пользователя",
+  "userNameSameAsCurrent": "Имя пользователя не может быть таким же как текущее"
 }

@@ -166,5 +166,19 @@
   "country": "البلد",
   "gender": "الجنس",
   "language": "اللغة",
-  "timeZone": "المنطقة الزمنية"
+  "timeZone": "المنطقة الزمنية",
+  "selectCountry": "اختر الدولة",
+  "pleaseSelectCountry": "يرجى اختيار الدولة",
+  "enterEmail2": "أدخل بريدك الإلكتروني",
+  "emailSameAsCurrent": "لا يمكن أن يكون البريد الإلكتروني هو نفسه الحالي",
+  "enterFirstName": "أدخل اسمك الأول",
+  "firstNameSameAsCurrent": "لا يمكن أن يكون الاسم الأول هو نفسه الحالي",
+  "enterLastName": "أدخل اسم عائلتك",
+  "lastNameSameAsCurrent": "لا يمكن أن يكون اسم العائلة هو نفسه الحالي",
+  "pleaseEnterPhone": "يرجى إدخال رقم هاتفك",
+  "enterPhone": "أدخل رقم هاتفك",
+  "selectTimeZone": "اختر المنطقة الزمنية",
+  "searchCityOrContinent": "البحث حسب المدينة أو القارة",
+  "enterUserName": "أدخل اسم المستخدم الخاص بك",
+  "userNameSameAsCurrent": "لا يمكن أن يكون اسم المستخدم هو نفسه الحالي"
 }

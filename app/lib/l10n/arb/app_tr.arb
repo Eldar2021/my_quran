@@ -166,5 +166,19 @@
   "country": "Ülke",
   "gender": "Cinsiyet",
   "language": "Dil",
-  "timeZone": "Saat dilimi"
+  "timeZone": "Saat dilimi",
+  "selectCountry": "Ülke seçin",
+  "pleaseSelectCountry": "Lütfen bir ülke seçin",
+  "enterEmail2": "E-postanızı girin",
+  "emailSameAsCurrent": "E-posta mevcut olanla aynı olamaz",
+  "enterFirstName": "Adınızı girin",
+  "firstNameSameAsCurrent": "Ad mevcut olanla aynı olamaz",
+  "enterLastName": "Soyadınızı girin",
+  "lastNameSameAsCurrent": "Soyad mevcut olanla aynı olamaz",
+  "pleaseEnterPhone": "Lütfen telefon numaranızı girin",
+  "enterPhone": "Telefon numaranızı girin",
+  "selectTimeZone": "Saat dilimi seçin",
+  "searchCityOrContinent": "Şehir veya kıtaya göre ara",
+  "enterUserName": "Kullanıcı adınızı girin",
+  "userNameSameAsCurrent": "Kullanıcı adı mevcut olanla aynı olamaz"
 }

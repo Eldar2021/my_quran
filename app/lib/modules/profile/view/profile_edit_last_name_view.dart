@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class ProfileEditLastNameView extends StatefulWidget {
@@ -39,13 +40,13 @@ class _ProfileEditLastNameViewState extends State<ProfileEditLastNameView> {
       body: EditUserDataAsStringBody(
         formKey: _formKey,
         controller: _controller,
-        hintText: 'Введите вашу фамилию',
+        hintText: context.l10n.enterLastName,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
-            return 'Введите вашу фамилию';
+            return context.l10n.enterLastName;
           }
           if (value.trim() == widget.initialValue) {
-            return 'Фамилия не может быть такой же как текущая';
+            return context.l10n.lastNameSameAsCurrent;
           }
           return null;
         },

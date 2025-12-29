@@ -166,5 +166,19 @@
   "country": "Country",
   "gender": "Gender",
   "language": "Language",
-  "timeZone": "Time zone"
+  "timeZone": "Time zone",
+  "selectCountry": "Select country",
+  "pleaseSelectCountry": "Please select a country",
+  "enterEmail2": "Enter your email",
+  "emailSameAsCurrent": "Email cannot be the same as the current one",
+  "enterFirstName": "Enter your first name",
+  "firstNameSameAsCurrent": "First name cannot be the same as the current one",
+  "enterLastName": "Enter your last name",
+  "lastNameSameAsCurrent": "Last name cannot be the same as the current one",
+  "pleaseEnterPhone": "Please enter your phone number",
+  "enterPhone": "Enter your phone number",
+  "selectTimeZone": "Select time zone",
+  "searchCityOrContinent": "Search by city or continent",
+  "enterUserName": "Enter your username",
+  "userNameSameAsCurrent": "Username cannot be the same as the current one"
 }

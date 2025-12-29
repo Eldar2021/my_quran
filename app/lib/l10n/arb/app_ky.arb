@@ -166,5 +166,19 @@
   "country": "Өлкө",
   "gender": "Жынысы",
   "language": "Тил",
-  "timeZone": "Убакыт алкагы"
+  "timeZone": "Убакыт алкагы",
+  "selectCountry": "Өлкөнү тандаңыз",
+  "pleaseSelectCountry": "Сураныч, өлкөнү тандаңыз",
+  "enterEmail2": "Электрондук почтаңызды киргизиңиз",
+  "emailSameAsCurrent": "Электрондук почта учурдагы менен бирдей болбошу керек",
+  "enterFirstName": "Атыңызды киргизиңиз",
+  "firstNameSameAsCurrent": "Атыңыз учурдагы менен бирдей болбошу керек",
+  "enterLastName": "Фамилияңызды киргизиңиз",
+  "lastNameSameAsCurrent": "Фамилияңыз учурдагы менен бирдей болбошу керек",
+  "pleaseEnterPhone": "Сураныч, телефон номериңизді киргизиңиз",
+  "enterPhone": "Телефон номериңізді киргизиңиз",
+  "selectTimeZone": "Убакыт алкагын тандаңыз",
+  "searchCityOrContinent": "Шаар же континент боюнча издөө",
+  "enterUserName": "Колдонуучунун атын киргизиңиз",
+  "userNameSameAsCurrent": "Колдонуучунун аты учурдагы менен бирдей болбошу керек"
 }

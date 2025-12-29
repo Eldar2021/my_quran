@@ -166,5 +166,19 @@
   "country": "Ел",
   "gender": "Жынысы",
   "language": "Тіл",
-  "timeZone": "Уақыт белдеуі"
+  "timeZone": "Уақыт белдеуі",
+  "selectCountry": "Елді таңдаңыз",
+  "pleaseSelectCountry": "Елді таңдауыңызды өтінеміз",
+  "enterEmail2": "Электрондық поштаңызды енгізіңіз",
+  "emailSameAsCurrent": "Электрондық пошта ағымдағымен бірдей болмауы керек",
+  "enterFirstName": "Есіміңізді енгізіңіз",
+  "firstNameSameAsCurrent": "Есіміңіз ағымдағымен бірдей болмауы керек",
+  "enterLastName": "Тегіңізді енгізіңіз",
+  "lastNameSameAsCurrent": "Тегіңіз ағымдағымен бірдей болмауы керек",
+  "pleaseEnterPhone": "Телефон нөміріңізді енгізуіңізді өтінеміз",
+  "enterPhone": "Телефон нөміріңізді енгізіңіз",
+  "selectTimeZone": "Уақыт белдеуін таңдаңыз",
+  "searchCityOrContinent": "Қала немесе континент бойынша іздеу",
+  "enterUserName": "Пайдаланушы атын енгізіңіз",
+  "userNameSameAsCurrent": "Пайдаланушы аты ағымдағымен бірдей болмауы керек"
 }

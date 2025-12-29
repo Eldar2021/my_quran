@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class ProfileEditUserNameView extends StatefulWidget {
@@ -39,13 +40,13 @@ class _ProfileEditUserNameViewState extends State<ProfileEditUserNameView> {
       body: EditUserDataAsStringBody(
         formKey: _formKey,
         controller: _controller,
-        hintText: 'Введите ваше имя пользователя',
+        hintText: context.l10n.enterUserName,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
-            return 'Введите ваше имя пользователя';
+            return context.l10n.enterUserName;
           }
           if (value.trim() == widget.initialValue) {
-            return 'Имя пользователя не может быть таким же как текущее';
+            return context.l10n.userNameSameAsCurrent;
           }
           return null;
         },

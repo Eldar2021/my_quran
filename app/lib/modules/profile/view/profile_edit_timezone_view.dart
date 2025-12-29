@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 import 'package:timezone/data/latest.dart';
@@ -57,7 +58,7 @@ class _ProfileEditTimezoneViewState extends State<ProfileEditTimezoneView> {
     return Scaffold(
       backgroundColor: colorScheme.surfaceContainerLow,
       appBar: AppBar(
-        title: const Text('Выберите часовой пояс'),
+        title: Text(context.l10n.selectTimeZone),
         backgroundColor: colorScheme.surfaceContainerLow,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(60),
@@ -66,7 +67,7 @@ class _ProfileEditTimezoneViewState extends State<ProfileEditTimezoneView> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Поиск по городу или континенту',
+                hintText: context.l10n.searchCityOrContinent,
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
                 fillColor: colorScheme.surface,

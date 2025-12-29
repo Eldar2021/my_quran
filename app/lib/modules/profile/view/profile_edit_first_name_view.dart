@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class ProfileEditFirstNameView extends StatefulWidget {
@@ -39,13 +40,13 @@ class _ProfileEditFirstNameViewState extends State<ProfileEditFirstNameView> {
       body: EditUserDataAsStringBody(
         formKey: _formKey,
         controller: _controller,
-        hintText: 'Введите ваше имя',
+        hintText: context.l10n.enterFirstName,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
-            return 'Введите ваше имя';
+            return context.l10n.enterFirstName;
           }
           if (value.trim() == widget.initialValue) {
-            return 'Имя не может быть таким же как текущее';
+            return context.l10n.firstNameSameAsCurrent;
           }
           return null;
         },
