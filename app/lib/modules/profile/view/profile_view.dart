@@ -17,7 +17,7 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthCubit>().auth ?? _defaultAuthMode;
+    final auth = context.watch<AuthCubit>().state.auth ?? _defaultAuthMode;
     final gender = context.watch<AuthCubit>().state.currentGender;
     final locale = context.watch<AuthCubit>().state.currentLocale;
     final user = auth.user;
