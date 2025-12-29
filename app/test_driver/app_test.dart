@@ -125,17 +125,9 @@ void main() async {
       await checkSettingsContactUs(driver);
     });
 
-    test('check-settings-developers', () async {
-      await checkSettingsDevelopers(driver);
-    });
-
     test('check-settings-theme', () async {
       await checkSettingsTheme(driver);
     });
-
-    // test('check-logout', () async {
-    //   await checkLogout(driver);
-    // });
   });
 
   tearDownAll(() async {

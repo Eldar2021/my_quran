@@ -41,7 +41,13 @@ class UserProfileAuthenticatedCard extends StatelessWidget {
           title: Text(
             fullName.isNotEmpty ? fullName : context.l10n.hello,
           ),
-          subtitle: email.isNotEmpty ? Text(auth.user.email ?? '') : null,
+          subtitle: email.isNotEmpty
+              ? Text(
+                  auth.user.email ?? '',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                )
+              : null,
           trailing: const Icon(Icons.arrow_forward_ios),
           leading: CircleAvatar(
             radius: _avatarRadius,
