@@ -19,7 +19,7 @@ class _ProfileViewState extends State<ProfileView> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthCubit>().auth ?? _defaultAuthMode;
     final gender = context.watch<AuthCubit>().state.currentGender;
-    final language = context.watch<AuthCubit>().state.currentLocale.languageCode;
+    final locale = context.watch<AuthCubit>().state.currentLocale;
     final user = auth.user;
     final avatarUrl = user.avatar;
     final firstName = (user.firstName ?? '').trim();
@@ -106,8 +106,10 @@ class _ProfileViewState extends State<ProfileView> {
           const SizedBox(height: 16),
           UserProfileItemField(
             title: context.l10n.language,
-            value: AppLocalizationHelper.getName(language.toLowerCase()),
-            onEdit: () {},
+            value: AppLocalizationHelper.getName(
+              locale.languageCode.toLowerCase(),
+            ),
+            onEdit: () => _onEdit(ProfileEditLanguageView(locale)),
           ),
           const SizedBox(height: 16),
           UserProfileItemField(

@@ -11,14 +11,14 @@ import 'package:my_quran/utils/urils.dart';
 class ProfileEditGenderView extends StatefulWidget {
   const ProfileEditGenderView(this.gender, {super.key});
 
-  final Gender gender;
+  final Gender? gender;
 
   @override
   State<ProfileEditGenderView> createState() => _ProfileEditGenderViewState();
 }
 
 class _ProfileEditGenderViewState extends State<ProfileEditGenderView> {
-  late Gender _gender;
+  late Gender? _gender;
 
   @override
   void initState() {
@@ -57,6 +57,7 @@ class _ProfileEditGenderViewState extends State<ProfileEditGenderView> {
                       gender: switch (_gender) {
                         Gender.male => AppUiGender.male,
                         Gender.female => AppUiGender.famela,
+                        _ => AppUiGender.male,
                       },
                       title: context.l10n.male,
                       onChanged: (p0) => _updateGender(Gender.male, context),
@@ -66,6 +67,7 @@ class _ProfileEditGenderViewState extends State<ProfileEditGenderView> {
                       gender: switch (_gender) {
                         Gender.male => AppUiGender.male,
                         Gender.female => AppUiGender.famela,
+                        _ => AppUiGender.famela,
                       },
                       itemIsMale: false,
                       title: context.l10n.female,
@@ -88,6 +90,7 @@ class _ProfileEditGenderViewState extends State<ProfileEditGenderView> {
   }
 
   void _onError(Object error, BuildContext context) {
+    setState(() => _gender = widget.gender);
     AppSnackbar.showError(context: context, title: error.toString());
   }
 
