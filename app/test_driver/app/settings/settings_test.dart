@@ -6,13 +6,14 @@ import '../navigation.dart';
 
 Future<void> goSettings(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
-    await driver.tap(find.byValueKey(MqKeys.settings));
+    await goBottomMore(driver);
+    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLang));
   });
 }
 
 Future<void> checkSettingsView(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
-    await driver.waitFor(find.byValueKey(MqKeys.settingsView));
+    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLang));
     await driver.takeScreenshot(Screenshots.settingsInit);
   });
 }
@@ -21,7 +22,7 @@ Future<void> checkSettingsGender(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
     await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLang));
     await driver.tap(find.byValueKey(MqKeys.settingsGenderLang));
-    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLangPage));
+    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderMale));
     await driver.tap(find.byValueKey(MqKeys.settingsGenderMale));
     await driver.takeScreenshot(Screenshots.settingsGenderMale);
     await driver.tap(find.byValueKey(MqKeys.settingsGenderFemale));
@@ -62,9 +63,9 @@ Future<void> checkSettingsDevelopers(FlutterDriver driver) async {
 
 Future<void> checkSettingsTheme(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
-    await driver.waitFor(find.byValueKey(MqKeys.settingsTheme));
-    await driver.tap(find.byValueKey(MqKeys.settingsTheme));
-    await driver.waitFor(find.byValueKey(MqKeys.settingsThemePage));
+    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLang));
+    await driver.tap(find.byValueKey(MqKeys.settingsGenderLang));
+    await driver.waitFor(find.byValueKey(MqKeys.settingsThemeColorName('Orange')));
     await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Orange')));
     await driver.takeScreenshot(Screenshots.settingsThemePageLightGreen);
     await driver.tap(find.byValueKey(MqKeys.settingsThemeColorName('Blue')));
@@ -75,7 +76,7 @@ Future<void> checkSettingsTheme(FlutterDriver driver) async {
 
 Future<void> checkLogout(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
-    await driver.waitFor(find.byValueKey(MqKeys.settingsView));
+    await driver.waitFor(find.byValueKey(MqKeys.settingsGenderLang));
     await driver.tap(find.byValueKey(MqKeys.logoutButton));
     await driver.takeScreenshot(Screenshots.logout);
   });
