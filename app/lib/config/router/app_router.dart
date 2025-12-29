@@ -32,19 +32,15 @@ final class AppRouter {
   static const quranByPages = 'quran-by-pages';
   static const hatimRead = 'hatim-read';
   static const notification = 'notification';
-
   static const login = 'login';
   static const loginWihtSoccial = 'login-with-soccial';
-
   static const settingsPage = 'settings';
   static const appSettings = 'app-settings';
-  static const themeSettings = 'theme-settings';
   static const aboutUs = 'about-us';
   static const contactUs = 'contect-us';
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
   static const donation = 'donation';
-
   static const createHatim = 'create-hatim';
   static const search = 'search';
   static const createHatimSuccess = 'create-hatim-success';
@@ -162,13 +158,6 @@ final class AppRouter {
             },
           ),
         ],
-      ),
-
-      GoRoute(
-        path: themeSettings,
-        name: themeSettings,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const ThemeSettingsView(),
       ),
       GoRoute(
         name: notification,
