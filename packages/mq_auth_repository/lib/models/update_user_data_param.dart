@@ -156,3 +156,16 @@ final class NotificationEnabledParam extends UpdateUserDataParam {
   @override
   Map<String, dynamic> toJson() => {'allow_notifications': enabled};
 }
+
+@immutable
+final class UpdateTimezoneParam extends UpdateUserDataParam {
+  const UpdateTimezoneParam({
+    required this.timezone,
+    required super.userId,
+  });
+
+  final String timezone;
+
+  @override
+  Map<String, dynamic> toJson() => {'timezone': timezone};
+}

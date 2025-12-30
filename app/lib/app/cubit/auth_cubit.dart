@@ -49,7 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
     AuthState(locale: state.locale, gender: state.gender),
   );
 
-  void uupdateLocale(String locale) {
+  void updateLocale(String locale) {
     storage.writeString(
       key: StorageKeys.localeKey,
       value: locale,

@@ -20,6 +20,7 @@ final class AppOrangeTheme extends AppTheme {
       error: AppColors.darkred,
       onError: AppColors.white,
       surfaceContainerHigh: AppColors.dollopOfCreamLight,
+      surfaceContainerLow: AppColors.surfaceContainerLow,
     );
   }
 

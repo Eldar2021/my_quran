@@ -57,6 +57,18 @@ abstract class AppColors {
   /// This is a notification background color
   static const Color dollopOfCreamDark = Color(0xFF1F2125);
 
+  /// Dollop of cream dark figma style properties
+  /// hex: #F8EbD5
+  /// opacity: 1
+  /// This is a notification background color
+  static const Color surfaceContainerLow = Color(0xFFF3F3F3);
+
+  /// Dollop of cream dark figma style properties
+  /// hex: #F8EbD5
+  /// opacity: 1
+  /// This is a notification background color
+  static const Color surfaceContainerLowDart = Color(0xFF0F0F0F);
+
   /// Tomato figma style properties
   /// hex: #EB4F29
   /// opacity: 1

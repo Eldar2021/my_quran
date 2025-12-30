@@ -5,6 +5,10 @@ Future<void> goBottomHome(FlutterDriver driver) async {
   await driver.tap(find.byValueKey(MqKeys.home));
 }
 
+Future<void> goBottomMore(FlutterDriver driver) async {
+  await driver.tap(find.byValueKey(MqKeys.morePageKey));
+}
+
 Future<void> goBottomQuranRead(FlutterDriver driver) async {
   await driver.tap(find.byValueKey(MqKeys.quaranRead));
 }

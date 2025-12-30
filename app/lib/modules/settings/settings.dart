@@ -1,5 +1,9 @@
 export 'view/about_us.dart';
+export 'view/app_settings_view.dart';
 export 'view/contact_us.dart';
 export 'view/developers_view.dart';
-export 'view/custom_settings.dart';
-export 'view/theme_settings.dart';
+export 'widgets/theme_color_changer_card.dart';
+export 'widgets/theme_mode_changer_icon_button.dart';
+export 'widgets/unauthenticated_language_settings.dart';
+export 'widgets/unauthenticated_gender_settings.dart';
+export 'widgets/toggle_notification.dart';

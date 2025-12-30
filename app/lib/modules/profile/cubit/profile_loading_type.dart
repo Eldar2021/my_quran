@@ -13,6 +13,7 @@ enum ProfileLoadingType {
   updateLanguage,
   updateCreateHatim,
   updateAllowNotification,
+  updateTimezone,
   logout,
   deleteAccount;
 
@@ -29,6 +30,7 @@ enum ProfileLoadingType {
       UpdateLanguageParam() => updateLanguage,
       UpdateCanCreateHatimParam() => updateCreateHatim,
       NotificationEnabledParam() => updateAllowNotification,
+      UpdateTimezoneParam() => updateTimezone,
     };
   }
 }

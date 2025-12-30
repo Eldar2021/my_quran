@@ -6,6 +6,8 @@ sealed class ProfileState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  bool get isLoading => this is ProfileLoading;
 }
 
 @immutable

@@ -7,11 +7,11 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
-final _sectionNavigatorKey1 = GlobalKey<NavigatorState>(debugLabel: 'home');
-final _sectionNavigatorKey2 = GlobalKey<NavigatorState>(debugLabel: 'quran');
-final _sectionNavigatorKey3 = GlobalKey<NavigatorState>(
-  debugLabel: 'quran-audio',
-);
+final sectionNavigatorKeyMain = GlobalKey<StatefulNavigationShellState>(debugLabel: 'main');
+final _sectionNavigatorKeyHome = GlobalKey<NavigatorState>(debugLabel: 'home');
+final _sectionNavigatorKeyQuran = GlobalKey<NavigatorState>(debugLabel: 'quran');
+final _sectionNavigatorKeyQuranAudio = GlobalKey<NavigatorState>(debugLabel: 'quran-audio');
+final _sectionNavigatorKeyMore = GlobalKey<NavigatorState>(debugLabel: 'more');
 
 @immutable
 final class AppRouter {
@@ -32,22 +32,20 @@ final class AppRouter {
   static const quranByPages = 'quran-by-pages';
   static const hatimRead = 'hatim-read';
   static const notification = 'notification';
-
   static const login = 'login';
   static const loginWihtSoccial = 'login-with-soccial';
-
   static const settingsPage = 'settings';
-  static const customAppSettings = 'custom-settings';
-  static const themeSettings = 'theme-settings';
+  static const appSettings = 'app-settings';
   static const aboutUs = 'about-us';
   static const contactUs = 'contect-us';
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
   static const donation = 'donation';
-
   static const createHatim = 'create-hatim';
   static const search = 'search';
   static const createHatimSuccess = 'create-hatim-success';
+  static const more = 'more';
+  static const profile = 'profile';
 
   GoRouter router() {
     return GoRouter(
@@ -82,23 +80,13 @@ final class AppRouter {
           builder: (context, state) => const DevModeView(),
         ),
         StatefulShellRoute.indexedStack(
+          key: sectionNavigatorKeyMain,
           builder: (context, state, navigationShell) {
             return MainView(navigationShell);
           },
           branches: [
             StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey1,
-              routes: [
-                GoRoute(
-                  path: '/$quran',
-                  name: quran,
-                  builder: (context, state) => const QuranView(),
-                  routes: _quranSubRoutes,
-                ),
-              ],
-            ),
-            StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey2,
+              navigatorKey: _sectionNavigatorKeyHome,
               routes: [
                 GoRoute(
                   path: '/$home',
@@ -109,12 +97,34 @@ final class AppRouter {
               ],
             ),
             StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey3,
+              navigatorKey: _sectionNavigatorKeyQuran,
+              routes: [
+                GoRoute(
+                  path: '/$quran',
+                  name: quran,
+                  builder: (context, state) => const QuranView(),
+                  routes: _quranSubRoutes,
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              navigatorKey: _sectionNavigatorKeyQuranAudio,
               routes: [
                 GoRoute(
                   path: '/$quranAudio',
                   name: quranAudio,
                   builder: (context, state) => const QuranAudioView(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              navigatorKey: _sectionNavigatorKeyMore,
+              routes: [
+                GoRoute(
+                  path: '/$more',
+                  name: more,
+                  builder: (context, state) => const MoreView(),
+                  routes: _moreSubRoutes,
                 ),
               ],
             ),
@@ -150,16 +160,49 @@ final class AppRouter {
         ],
       ),
       GoRoute(
-        path: customAppSettings,
-        name: customAppSettings,
+        name: notification,
+        path: notification,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const CustomAppSettingView(),
+        builder: (context, state) => NotificationView(
+          state.extra as NotificationModel?,
+        ),
+      ),
+    ];
+  }
+
+  static List<RouteBase> get _moreSubRoutes {
+    return [
+      GoRoute(
+        path: profile,
+        name: profile,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: themeSettings,
-        name: themeSettings,
+        path: createHatim,
+        name: createHatim,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const ThemeSettingsView(),
+        builder: (context, state) => const CreateHatimView(),
+        routes: [
+          GoRoute(
+            path: search,
+            name: search,
+            parentNavigatorKey: rootNavigatorKey,
+            builder: (context, state) => const SearchView(),
+          ),
+          GoRoute(
+            name: createHatimSuccess,
+            path: createHatimSuccess,
+            parentNavigatorKey: rootNavigatorKey,
+            builder: (context, state) => const SuccessView(),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: appSettings,
+        name: appSettings,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const AppSettingsView(),
       ),
       GoRoute(
         path: aboutUs,
@@ -174,42 +217,16 @@ final class AppRouter {
         builder: (context, state) => const ContactUsView(),
       ),
       GoRoute(
-        path: donation,
-        name: donation,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const MqDonationView(),
-      ),
-      GoRoute(
         path: developers,
         name: developers,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const DevelopersView(),
       ),
       GoRoute(
-        path: createHatim,
-        name: createHatim,
+        path: donation,
+        name: donation,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const CreateHatimView(),
-      ),
-      GoRoute(
-        path: search,
-        name: search,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const SearchView(),
-      ),
-      GoRoute(
-        name: createHatimSuccess,
-        path: createHatimSuccess,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const SuccessView(),
-      ),
-      GoRoute(
-        name: notification,
-        path: notification,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => NotificationView(
-          state.extra as NotificationModel?,
-        ),
+        builder: (context, state) => const MqDonationView(),
       ),
     ];
   }

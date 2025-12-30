@@ -107,6 +107,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/moon_islamic.svg
   SvgGenImage get moonIslamic => const SvgGenImage('assets/icons/moon_islamic.svg');
 
+  /// File path: assets/icons/more.svg
+  SvgGenImage get more => const SvgGenImage('assets/icons/more.svg');
+
   /// File path: assets/icons/next_fill.svg
   SvgGenImage get nextFill => const SvgGenImage('assets/icons/next_fill.svg');
 
@@ -223,6 +226,7 @@ class $AssetsIconsGen {
     location,
     logout,
     moonIslamic,
+    more,
     nextFill,
     outlineFill,
     pauseFill,

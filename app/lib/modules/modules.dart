@@ -1,5 +1,6 @@
 export 'home/home.dart';
 export 'hatim/hatim.dart';
+export 'more/more.dart';
 export 'login/login.dart';
 export 'main/main.dart';
 export 'quran/quran.dart';

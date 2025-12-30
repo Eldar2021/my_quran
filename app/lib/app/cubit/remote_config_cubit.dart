@@ -22,6 +22,7 @@ class RemoteConfigCubit extends Cubit<RemoteConfigState> {
       isHatimEnable: _hatimIsEnable,
       isDonaitonEnable: _isDonaitonEnable,
       version: remoteConfig.appVersion,
+      buildNumber: remoteConfig.buildBumber,
     );
     emit(newState);
   }

@@ -113,7 +113,7 @@ class LoginBody extends StatelessWidget {
   }
 
   void _updateLanguage(Locale? locale, BuildContext context) {
-    context.read<AuthCubit>().uupdateLocale(
+    context.read<AuthCubit>().updateLocale(
       locale?.languageCode ?? 'en',
     );
   }

@@ -6,26 +6,30 @@ class DrawerTile extends StatelessWidget {
     required this.title,
     this.onTap,
     this.trailing,
+    this.subtitle,
+    this.onLongPress,
     super.key,
   });
 
   final Widget icon;
   final String title;
+  final Widget? subtitle;
   final Widget? trailing;
   final void Function()? onTap;
+  final void Function()? onLongPress;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return ListTile(
       onTap: onTap,
-      contentPadding: EdgeInsets.zero,
+      onLongPress: onLongPress,
       leading: CircleAvatar(
-        radius: 17,
         backgroundColor: colorScheme.onInverseSurface,
         child: icon,
       ),
       title: Text(title),
+      subtitle: subtitle,
       trailing: trailing ?? const Icon(Icons.arrow_forward_ios),
     );
   }

@@ -24,8 +24,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with NotificationMixin {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   void initState() {
     super.initState();
@@ -47,29 +45,10 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      key: _scaffoldKey,
-      drawer: HomeDrawer(
-        closeDrawer: () {
-          _scaffoldKey.currentState?.closeDrawer();
-        },
-      ),
       appBar: AppBar(
         key: const Key(MqKeys.homeView),
         title: Text(context.l10n.hello),
         centerTitle: true,
-        leading: IconButton(
-          key: const Key(MqKeys.settings),
-          padding: const EdgeInsets.only(left: 24),
-          onPressed: () {
-            _scaffoldKey.currentState?.openDrawer();
-          },
-          icon: Assets.icons.settingsBurger.svg(
-            colorFilter: ColorFilter.mode(
-              colorScheme.onSurface,
-              BlendMode.srcIn,
-            ),
-          ),
-        ),
         actions: const [
           NotificationCountBadgeWidget(),
           SizedBox(width: 10),

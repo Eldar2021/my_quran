@@ -1,6 +1,8 @@
 final class ApiConst {
   const ApiConst._();
 
+  static const appName = 'MyQuran';
+
   static const domain = 'https://myquran.life';
 
   static String audio(String surahIndex) =>

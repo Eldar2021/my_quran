@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
@@ -6,7 +7,7 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class UserModel {
+final class UserModel extends Equatable {
   const UserModel({
     this.firstName,
     this.lastName,
@@ -82,4 +83,40 @@ final class UserModel {
       timezone: timezone ?? this.timezone,
     );
   }
+
+  String? get fullName {
+    if (firstName == null || lastName == null) return null;
+    return '${firstName ?? ''} ${lastName ?? ''}'.trim();
+  }
+
+  int get unfieldsCount {
+    var count = 0;
+    if (firstName?.trim().isEmpty ?? true) count++;
+    if (lastName?.trim().isEmpty ?? true) count++;
+    if (username?.trim().isEmpty ?? true) count++;
+    // if (avatar?.isEmpty ?? true) count++;
+    if (email?.trim().isEmpty ?? true) count++;
+    if (phoneNumber?.trim().isEmpty ?? true) count++;
+    if (country?.trim().isEmpty ?? true) count++;
+    if (gender == null) count++;
+    if (language?.trim().isEmpty ?? true) count++;
+    if (timezone?.trim().isEmpty ?? true) count++;
+    return count;
+  }
+
+  @override
+  List<Object?> get props => [
+    firstName,
+    lastName,
+    username,
+    avatar,
+    email,
+    country,
+    phoneNumber,
+    gender,
+    language,
+    canCreateHatim,
+    allowNotifications,
+    timezone,
+  ];
 }

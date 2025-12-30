@@ -24,26 +24,13 @@ class MainView extends StatelessWidget {
           ],
         ),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: navigationShell.currentIndex,
+          onTap: _onTap,
           items: [
             BottomNavigationBarItem(
-              key: const Key(MqKeys.quaranRead),
-              activeIcon: Assets.icons.quran.svg(
-                colorFilter: ColorFilter.mode(
-                  colorScheme.primary,
-                  BlendMode.srcIn,
-                ),
-              ),
-              icon: Assets.icons.quran.svg(
-                colorFilter: ColorFilter.mode(
-                  colorScheme.outline,
-                  BlendMode.srcIn,
-                ),
-              ),
-              label: context.l10n.quran,
-            ),
-            BottomNavigationBarItem(
               key: const Key(MqKeys.home),
+              label: context.l10n.home,
               activeIcon: Assets.icons.prayingMan.svg(
                 width: 27,
                 colorFilter: ColorFilter.mode(
@@ -58,26 +45,64 @@ class MainView extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              label: context.l10n.home,
+            ),
+            BottomNavigationBarItem(
+              key: const Key(MqKeys.quaranRead),
+              label: context.l10n.quran,
+              activeIcon: Assets.icons.quran.svg(
+                width: 27,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: Assets.icons.quran.svg(
+                width: 27,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
             BottomNavigationBarItem(
               key: const Key(MqKeys.quranAudio),
+              label: context.l10n.listening,
               activeIcon: Assets.icons.listenQuran.svg(
+                width: 27,
                 colorFilter: ColorFilter.mode(
                   colorScheme.primary,
                   BlendMode.srcIn,
                 ),
               ),
               icon: Assets.icons.listenQuran.svg(
+                width: 27,
                 colorFilter: ColorFilter.mode(
                   colorScheme.outline,
                   BlendMode.srcIn,
                 ),
               ),
-              label: context.l10n.listening,
+            ),
+            BottomNavigationBarItem(
+              key: const Key(MqKeys.morePageKey),
+              label: context.l10n.more,
+              activeIcon: Assets.icons.more.svg(
+                width: 27,
+                height: 25,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: Assets.icons.more.svg(
+                width: 27,
+                height: 25,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
           ],
-          onTap: _onTap,
         ),
       ),
     );

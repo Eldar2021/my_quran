@@ -7,6 +7,7 @@ class RemoteConfigState extends Equatable {
     this.isDonaitonEnable = false,
     this.version,
     this.deviceId,
+    this.buildNumber,
   });
 
   final AppVersionStatus appVersionStatus;
@@ -14,6 +15,7 @@ class RemoteConfigState extends Equatable {
   final bool isHatimEnable;
   final bool isDonaitonEnable;
   final String? version;
+  final String? buildNumber;
 
   @override
   List<Object?> get props => [
@@ -22,6 +24,7 @@ class RemoteConfigState extends Equatable {
     isHatimEnable,
     isDonaitonEnable,
     version,
+    buildNumber,
   ];
 
   RemoteConfigState copyWith({
@@ -30,6 +33,7 @@ class RemoteConfigState extends Equatable {
     bool? isHatimEnable,
     bool? isDonaitonEnable,
     String? version,
+    String? buildNumber,
   }) {
     return RemoteConfigState(
       appVersionStatus: appVersionStatus ?? this.appVersionStatus,
@@ -37,6 +41,7 @@ class RemoteConfigState extends Equatable {
       deviceId: deviceId ?? this.deviceId,
       isDonaitonEnable: isDonaitonEnable ?? this.isDonaitonEnable,
       version: version ?? this.version,
+      buildNumber: buildNumber ?? this.buildNumber,
     );
   }
 }

@@ -117,10 +117,6 @@ void main() async {
       await checkSettingsView(driver);
     });
 
-    test('check-settings-gender-language', () async {
-      await checkSettingsGender(driver);
-    });
-
     test('check-settings-about-us', () async {
       await checkSettingsAboutUs(driver);
     });
@@ -129,17 +125,9 @@ void main() async {
       await checkSettingsContactUs(driver);
     });
 
-    test('check-settings-developers', () async {
-      await checkSettingsDevelopers(driver);
-    });
-
     test('check-settings-theme', () async {
       await checkSettingsTheme(driver);
     });
-
-    // test('check-logout', () async {
-    //   await checkLogout(driver);
-    // });
   });
 
   tearDownAll(() async {

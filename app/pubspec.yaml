@@ -3,7 +3,7 @@ description: A new Flutter project.
 resolution: workspace
 publish_to: "none"
 
-version: 1.3.22+35
+version: 1.3.22+36
 
 environment:
   sdk: ^3.9.2
@@ -33,6 +33,7 @@ dependencies:
   internet_connection_checker_plus:
   uuid:
   flutter_timezone:
+  sealed_countries:
 
   mq_ci_keys:
   mq_remote_client:
@@ -46,6 +47,7 @@ dependencies:
   mq_hatim_repository:
   mq_app_ui:
   mq_prayer_time:
+  timezone:
 
   # flutter_native_splash:
 
