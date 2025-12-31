@@ -294,3 +294,19 @@
 ## [Bug Fixes]
 
 - Fixed web socket reconnection
+
+---
+
+# What's Changed v1.3.22+37
+
+## [UX]
+
+- Added more section
+- Added Profile page
+- Implemented push notification
+- Implemented done pages for read quran by juz and surah
+
+## [Technical]
+
+- Improved auth module
+- Get device id and Time Zone for push notification
