@@ -12,7 +12,7 @@ final class CreateHatimState extends Equatable {
 
   final FetchStatus status;
   final Object? exception;
-  final MqHatimsModel? hatimModel;
+  final MqHatimModel? hatimModel;
   final MqSearchModel? searchModel;
   final List<MqUserIdModel> selectedUsers;
 
@@ -28,7 +28,7 @@ final class CreateHatimState extends Equatable {
   CreateHatimState copyWith({
     FetchStatus? status,
     Object? exception,
-    MqHatimsModel? hatimModel,
+    MqHatimModel? hatimModel,
     MqSearchModel? searchModel,
     List<MqUserIdModel>? selectedUsers,
   }) {

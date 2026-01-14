@@ -1,9 +1,23 @@
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
-abstract class MqHatimRemoteDataSource {
-  Future<MqSearchModel> getSearch(String? user);
+abstract interface class MqHatimRemoteDataSource {
+  Future<MqSearchModel> searchParticipants(
+    String value,
+  );
 
-  Future<MqHatimsModel> createHatim(
-    MqHatimCreateModel hatim,
+  Future<MqHatimModel> getHatimDataById(
+    String id,
+  );
+
+  Future<MqHatimModel> createHatim(
+    MqHatimCreateModel param,
+  );
+
+  Future<MqHatimModel> updateHatim(
+    MqHatimUpdateModel param,
+  );
+
+  Future<void> deleteHatim(
+    String id,
   );
 }

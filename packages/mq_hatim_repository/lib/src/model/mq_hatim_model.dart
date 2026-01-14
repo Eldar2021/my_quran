@@ -6,19 +6,19 @@ part 'mq_hatim_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class MqHatimsModel {
-  const MqHatimsModel({
+final class MqHatimModel {
+  const MqHatimModel({
     required this.id,
     required this.title,
     required this.description,
     required this.type,
     required this.status,
     required this.creator,
-    required this.participantsDetails,
+    required this.participants,
   });
 
-  factory MqHatimsModel.fromJson(Map<String, dynamic> json) => _$MqHatimsModelFromJson(json);
-  Map<String, dynamic> toJson() => _$MqHatimsModelToJson(this);
+  factory MqHatimModel.fromJson(Map<String, dynamic> json) => _$MqHatimModelFromJson(json);
+  Map<String, dynamic> toJson() => _$MqHatimModelToJson(this);
 
   final String id;
   final String? title;
@@ -28,5 +28,5 @@ final class MqHatimsModel {
   final MqHatimCreateUserModel? creator;
 
   @JsonKey(name: 'participants_details')
-  final List<MqHatimParticipantsDetailUserModel>? participantsDetails;
+  final List<MqHatimParticipantModel>? participants;
 }

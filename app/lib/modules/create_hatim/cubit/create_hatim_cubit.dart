@@ -34,7 +34,7 @@ class CreateHatimCubit extends Cubit<CreateHatimState> {
     emit(state.copyWith(status: FetchStatus.loading));
 
     try {
-      final response = await mqHatimRepository.getSearch(user);
+      final response = await mqHatimRepository.searchParticipants(user);
       emit(
         state.copyWith(
           status: FetchStatus.success,

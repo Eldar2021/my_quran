@@ -10,14 +10,27 @@ final class MqHatimReadRepositoryImpl implements MqHatimRepository {
   final MqHatimRemoteDataSource dataSource;
 
   @override
-  Future<MqSearchModel> getSearch(String user) async {
-    final res = await dataSource.getSearch(user);
-    return res;
+  Future<MqSearchModel> searchParticipants(String value) async {
+    return dataSource.searchParticipants(value);
   }
 
   @override
-  Future<MqHatimsModel> createHatim(MqHatimCreateModel hatim) async {
-    final res = await dataSource.createHatim(hatim);
-    return res;
+  Future<MqHatimModel> getHatimDataById(String id) {
+    return dataSource.getHatimDataById(id);
+  }
+
+  @override
+  Future<MqHatimModel> createHatim(MqHatimCreateModel param) async {
+    return dataSource.createHatim(param);
+  }
+
+  @override
+  Future<MqHatimModel> updateHatim(MqHatimUpdateModel param) {
+    return dataSource.updateHatim(param);
+  }
+
+  @override
+  Future<void> deleteHatim(String id) {
+    return dataSource.deleteHatim(id);
   }
 }
