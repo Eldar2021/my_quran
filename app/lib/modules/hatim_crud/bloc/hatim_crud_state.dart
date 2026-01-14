@@ -40,7 +40,9 @@ final class HatimCreateLoading extends HatimCrudState {
 
 @immutable
 final class HatimCreateSuccess extends HatimCrudState {
-  const HatimCreateSuccess();
+  const HatimCreateSuccess(this.res);
+
+  final MqHatimModel? res;
 }
 
 @immutable
@@ -58,7 +60,9 @@ final class HatimUpdateLoading extends HatimCrudState {
 
 @immutable
 final class HatimUpdateSuccess extends HatimCrudState {
-  const HatimUpdateSuccess();
+  const HatimUpdateSuccess(this.res);
+
+  final MqHatimModel? res;
 }
 
 @immutable
