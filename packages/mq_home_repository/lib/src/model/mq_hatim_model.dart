@@ -29,4 +29,8 @@ final class MqHatimsModel {
 
   @JsonKey(name: 'participants_details')
   final List<MqHatimParticipantsDetailModel>? participantsDetails;
+
+  bool isCreator(String value) {
+    return creator?.userName == value;
+  }
 }

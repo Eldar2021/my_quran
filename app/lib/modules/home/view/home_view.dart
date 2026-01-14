@@ -187,12 +187,16 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
   }
 
   void _onJoinToHatim(List<MqHatimsModel> hatims) {
-    final hatimId = hatims.isNotEmpty ? hatims.first.id : null;
-    if (hatimId != null) {
+    final hatim = hatims.isNotEmpty ? hatims.first : null;
+    final user = context.read<AuthCubit>().state.auth;
+    if (hatim != null) {
       MqAnalytic.track(AnalyticKey.goHatim);
       context.goNamedIfAuthenticated(
         AppRouter.hatim,
-        pathParameters: {'hatimId': hatimId},
+        pathParameters: {
+          'hatimId': hatim.id,
+          'isCreator': hatim.isCreator(user?.user.username ?? '').toString(),
+        },
       );
     } else {
       context.pushNamed(AppRouter.loginWihtSoccial);

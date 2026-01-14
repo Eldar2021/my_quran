@@ -141,8 +141,8 @@ final class AppRouter {
         name: hatim,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
-          final hatimId = ParseParams.parseHatimId(state.pathParameters);
-          return HatimView(hatimId);
+          final param = ParseParams.parseHatimId(state.pathParameters);
+          return HatimView(param);
         },
         routes: [
           GoRoute(
