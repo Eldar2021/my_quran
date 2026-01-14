@@ -92,7 +92,7 @@ class _HatimUIState extends State<HatimUI>
               icon: const Icon(Icons.edit),
               onPressed: () {},
             ),
-          const SizedBox(width: 30),
+          const SizedBox(width: 12),
         ],
         bottom: const HatimConnectionStateWidget(),
       ),

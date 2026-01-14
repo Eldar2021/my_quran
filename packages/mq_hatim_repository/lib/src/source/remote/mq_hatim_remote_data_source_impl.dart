@@ -18,7 +18,7 @@ final class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
         fromJson: MqSearchModel.fromJson,
       );
     } catch (e) {
-      throw Exception('Error getSearch: $e');
+      throw Exception('Error searchParticipants: $e');
     }
   }
 
@@ -30,7 +30,7 @@ final class MqHatimRemoteDataSourceImpl implements MqHatimRemoteDataSource {
         fromJson: MqHatimModel.fromJson,
       );
     } catch (e) {
-      throw Exception('Error getSearch: $e');
+      throw Exception('Error getHatimDataById: $e');
     }
   }
 

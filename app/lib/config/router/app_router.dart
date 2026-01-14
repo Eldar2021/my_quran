@@ -137,7 +137,7 @@ final class AppRouter {
   static List<RouteBase> get _homeSubRoutes {
     return [
       GoRoute(
-        path: '$hatim/:hatimId',
+        path: '$hatim/:hatimId/:isCreator',
         name: hatim,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
