@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 part 'mq_user_id_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class MqUserIdModel {
+final class MqUserIdModel extends Equatable {
   const MqUserIdModel({
     required this.id,
     required this.userName,
@@ -31,4 +32,13 @@ final class MqUserIdModel {
   final String? lastName;
 
   // final String? avatar;
+
+  @override
+  List<Object?> get props => [
+    id,
+    userName,
+    email,
+    firstName,
+    lastName,
+  ];
 }
