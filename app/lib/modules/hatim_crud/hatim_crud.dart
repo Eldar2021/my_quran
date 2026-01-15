@@ -5,3 +5,4 @@ export 'view/hatim_participants_view.dart';
 export 'view/hatim_crud_succes_view.dart';
 export 'widgets/form_label.dart';
 export 'widgets/hatim_crud_text_field.dart';
+export 'widgets/participant_tile.dart';

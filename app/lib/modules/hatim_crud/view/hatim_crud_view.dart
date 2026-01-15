@@ -117,9 +117,72 @@ class __BodyState extends State<_Body> {
                 ),
               ),
             ),
+            const SizedBox(height: 12),
+            ValueListenableBuilder(
+              valueListenable: _participants,
+              builder: (context, value, child) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: value.length,
+                  itemBuilder: (context, index) {
+                    final user = value[index];
+                    return ParticipantTile(
+                      user: user,
+                      text: context.l10n.remove,
+                      isOutlined: true,
+                      onPressed: () => _removeParticipant(user),
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: BlocConsumer<HatimCrudBloc, HatimCrudState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            final loading = state.isLoading;
+            return ElevatedButton(
+              key: const Key(MqKeys.createHatimButton),
+              onPressed: loading ? null : _onSubmit,
+              child: loading
+                  ? const SizedBox.square(
+                      dimension: 25,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : Text(context.l10n.createHatim),
+            );
+          },
+        ),
+      ),
     );
+  }
+
+  void _onSubmit() {
+    if (!_formKey.currentState!.validate()) return;
+    final bloc = context.read<HatimCrudBloc>();
+    final data = MqHatimCreateModel(
+      title: _titleCtl.text,
+      description: _descriptionCtl.text,
+      participants: _participants.value.map((e) => e.id.toString()).toList(),
+      type: 'GROUP',
+    );
+    if (bloc.hatimId != null) {
+      final eventData = MqHatimUpdateModel(id: bloc.hatimId!, data: data);
+      bloc.add(UpdateHatimByIdEvent(eventData));
+    } else {
+      bloc.add(CreateHatimEvent(data));
+    }
+  }
+
+  void _removeParticipant(MqUserIdModel user) {
+    _participants.value.remove(user);
   }
 }

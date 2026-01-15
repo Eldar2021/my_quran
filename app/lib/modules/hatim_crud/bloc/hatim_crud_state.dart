@@ -5,6 +5,8 @@ sealed class HatimCrudState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  bool get isLoading => this is HatimCreateLoading || this is HatimUpdateLoading || this is HatimDeleteLoading;
 }
 
 @immutable
