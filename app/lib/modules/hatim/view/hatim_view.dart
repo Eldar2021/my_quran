@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
@@ -90,7 +91,12 @@ class _HatimUIState extends State<HatimUI>
           if (widget.params.isCreator)
             IconButton(
               icon: const Icon(Icons.edit),
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(
+                  AppRouter.hatimCrud,
+                  queryParameters: {'hatimId': widget.params.hatimId},
+                );
+              },
             ),
           const SizedBox(width: 12),
         ],

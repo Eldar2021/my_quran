@@ -9,6 +9,6 @@ export 'quran_audio/quran_audio.dart';
 export 'settings/settings.dart';
 export 'dev_mode/dev_mode.dart';
 export 'donation/donation.dart';
-export 'create_hatim/create_hatim.dart';
 export 'profile/profile.dart';
+export 'hatim_crud/hatim_crud.dart';
 export 'notification/notification.dart';

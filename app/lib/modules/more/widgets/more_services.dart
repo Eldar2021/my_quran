@@ -82,7 +82,7 @@ class MoreServices extends StatelessWidget {
 
   void _createHatim(BuildContext context) {
     if (enableCreateHatims) {
-      context.pushNamed(AppRouter.createHatim);
+      context.pushNamed(AppRouter.hatimCrud);
     } else {
       AppAlert.showErrorDialog(
         context,

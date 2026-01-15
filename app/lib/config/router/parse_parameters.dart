@@ -52,4 +52,14 @@ final class ParseParams {
       return const HatimViewParams(hatimId: '');
     }
   }
+
+  static String? parseHatimCrud(Map<String, dynamic> args) {
+    try {
+      final hatimId = args['hatimId'] as String?;
+      return hatimId;
+    } on Exception catch (e, s) {
+      MqCrashlytics.report(e, s);
+      return null;
+    }
+  }
 }
