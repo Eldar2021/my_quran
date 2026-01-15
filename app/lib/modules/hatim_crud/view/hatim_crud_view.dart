@@ -5,6 +5,9 @@ import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
+import 'package:my_quran/utils/urils.dart';
+
+part 'hatim_crud_view_mixin.dart';
 
 class HatimCrudView extends StatelessWidget {
   const HatimCrudView(this.hatimId, {super.key});
@@ -18,39 +21,19 @@ class HatimCrudView extends StatelessWidget {
         repository: context.read<MqHatimRepository>(),
         hatimId: hatimId,
       ),
-      child: const _Body(),
+      child: const HatimCrudViewBody(),
     );
   }
 }
 
-class _Body extends StatefulWidget {
-  const _Body();
+class HatimCrudViewBody extends StatefulWidget {
+  const HatimCrudViewBody({super.key});
 
   @override
-  State<_Body> createState() => __BodyState();
+  State<HatimCrudViewBody> createState() => _HatimCrudViewBodyState();
 }
 
-class __BodyState extends State<_Body> {
-  late final GlobalKey<FormState> _formKey;
-  late final TextEditingController _titleCtl;
-  late final TextEditingController _descriptionCtl;
-  late final ValueNotifier<List<MqUserIdModel>> _participants;
-
-  @override
-  void initState() {
-    _formKey = GlobalKey<FormState>();
-    _titleCtl = TextEditingController();
-    _descriptionCtl = TextEditingController();
-    _participants = ValueNotifier([]);
-    super.initState();
-    final bloc = context.read<HatimCrudBloc>();
-    if (bloc.hatimId != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        bloc.add(GetHatimDataByIdEvent(bloc.hatimId!));
-      });
-    }
-  }
-
+class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudViewMixin {
   @override
   Widget build(BuildContext context) {
     final isUpdate = context.read<HatimCrudBloc>().hatimId != null;
@@ -144,7 +127,26 @@ class __BodyState extends State<_Body> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: BlocConsumer<HatimCrudBloc, HatimCrudState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            context.manageLoader(state is HatimFetchedInitialDataLoading);
+            if (state is HatimFetchedInitialDataSuccess) {
+              _onFechedInitialData(state.data);
+            } else if (state is HatimFetchedInitialDataError) {
+              _onFechedInitialDataError(state.error);
+            } else if (state is HatimCreateSuccess) {
+              _onCreateSuccess(state.res);
+            } else if (state is HatimCreateError) {
+              _onCreateError(state.error);
+            } else if (state is HatimUpdateSuccess) {
+              _onUpdateSuccess(state.res);
+            } else if (state is HatimUpdateError) {
+              _onUpdateError(state.error);
+            } else if (state is HatimDeleteSuccess) {
+              _onDeleteSuccess();
+            } else if (state is HatimDeleteError) {
+              _onDeleteError(state.error);
+            }
+          },
           builder: (context, state) {
             final loading = state.isLoading;
             return ElevatedButton(
@@ -163,26 +165,5 @@ class __BodyState extends State<_Body> {
         ),
       ),
     );
-  }
-
-  void _onSubmit() {
-    if (!_formKey.currentState!.validate()) return;
-    final bloc = context.read<HatimCrudBloc>();
-    final data = MqHatimCreateModel(
-      title: _titleCtl.text,
-      description: _descriptionCtl.text,
-      participants: _participants.value.map((e) => e.id.toString()).toList(),
-      type: 'GROUP',
-    );
-    if (bloc.hatimId != null) {
-      final eventData = MqHatimUpdateModel(id: bloc.hatimId!, data: data);
-      bloc.add(UpdateHatimByIdEvent(eventData));
-    } else {
-      bloc.add(CreateHatimEvent(data));
-    }
-  }
-
-  void _removeParticipant(MqUserIdModel user) {
-    _participants.value.remove(user);
   }
 }

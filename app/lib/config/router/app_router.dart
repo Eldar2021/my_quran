@@ -43,7 +43,6 @@ final class AppRouter {
   static const donation = 'donation';
   static const hatimCrud = 'hatim-crud';
   static const hatimParticipants = 'hatim-participants';
-  static const hatimCrudSuccess = 'hatim-crud-success';
   static const more = 'more';
   static const profile = 'profile';
 
@@ -192,12 +191,6 @@ final class AppRouter {
             name: hatimParticipants,
             parentNavigatorKey: rootNavigatorKey,
             builder: (context, state) => const HatimParticipantsView(),
-          ),
-          GoRoute(
-            name: hatimCrudSuccess,
-            path: hatimCrudSuccess,
-            parentNavigatorKey: rootNavigatorKey,
-            builder: (context, state) => const HatimCrudSuccesView(),
           ),
         ],
       ),
