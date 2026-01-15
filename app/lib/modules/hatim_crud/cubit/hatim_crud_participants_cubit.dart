@@ -35,6 +35,11 @@ class HatimCrudParticipantsCubit extends Cubit<HatimCrudParticipantsState> {
         participants: [...state.participants, participant],
       ),
     );
+    if (state.searchState is HatimCrudParticipantsSearchSuccess) {
+      final searchState = state.searchState as HatimCrudParticipantsSearchSuccess;
+      searchState.data?.users?.removeWhere((p) => p.id == participant.id);
+      emit(state.copyWith(searchState: searchState));
+    }
   }
 
   void removeParticipant(MqUserIdModel participant) {
@@ -43,5 +48,10 @@ class HatimCrudParticipantsCubit extends Cubit<HatimCrudParticipantsState> {
         participants: state.participants.where((p) => p.id != participant.id).toList(),
       ),
     );
+    if (state.searchState is HatimCrudParticipantsSearchSuccess) {
+      final searchState = state.searchState as HatimCrudParticipantsSearchSuccess;
+      searchState.data?.users?.add(participant);
+      emit(state.copyWith(searchState: searchState));
+    }
   }
 }

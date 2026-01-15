@@ -42,7 +42,6 @@ final class AppRouter {
   static const devModeView = 'dev-mode-view';
   static const donation = 'donation';
   static const hatimCrud = 'hatim-crud';
-  static const hatimParticipants = 'hatim-participants';
   static const more = 'more';
   static const profile = 'profile';
 
@@ -185,14 +184,6 @@ final class AppRouter {
           final param = ParseParams.parseHatimCrud(state.uri.queryParameters);
           return HatimCrudView(param);
         },
-        routes: [
-          GoRoute(
-            path: hatimParticipants,
-            name: hatimParticipants,
-            parentNavigatorKey: rootNavigatorKey,
-            builder: (context, state) => const HatimParticipantsView(),
-          ),
-        ],
       ),
       GoRoute(
         path: appSettings,
