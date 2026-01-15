@@ -61,8 +61,8 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
   void _onDeleteSuccess() {
     HatimCrudSuccesView.show(
       context: context,
-      title: 'Hatim deleted',
-      description: 'Hatim deleted successfully',
+      title: context.l10n.hatimDeleted,
+      description: context.l10n.hatimDeletedSuccessfully,
     );
   }
 
@@ -76,7 +76,7 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
   void _onUpdateSuccess(MqHatimModel? data) {
     HatimCrudSuccesView.show(
       context: context,
-      title: 'Hatim updated',
+      title: context.l10n.hatimUpdated,
       description: context.l10n.hatimDescription,
     );
   }
@@ -99,7 +99,7 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
   void _onFechedInitialDataError(Object error) {
     AppAlert.showErrorDialog(
       context,
-      errorText: 'Now can not fetch initial data. Please try again later.',
+      errorText: context.l10n.initialDataFetchError,
       onPressed: () {
         Navigator.of(context).pop();
         Navigator.of(context).pop();

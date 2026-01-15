@@ -180,5 +180,12 @@
   "selectTimeZone": "اختر المنطقة الزمنية",
   "searchCityOrContinent": "البحث حسب المدينة أو القارة",
   "enterUserName": "أدخل اسم المستخدم الخاص بك",
-  "userNameSameAsCurrent": "لا يمكن أن يكون اسم المستخدم هو نفسه الحالي"
+  "userNameSameAsCurrent": "لا يمكن أن يكون اسم المستخدم هو نفسه الحالي",
+  "hatimDeleted": "تم حذف الختمة",
+  "hatimDeletedSuccessfully": "تم حذف الختمة بنجاح",
+  "hatimUpdated": "تم تحديث الختمة",
+  "initialDataFetchError": "تعذر جلب البيانات الأولية الآن. يرجى المحاولة مرة أخرى لاحقًا.",
+  "updateHatim": "تحديث الختمة",
+  "deleteHatim": "حذف الختمة",
+  "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذه الختمة؟"
 }

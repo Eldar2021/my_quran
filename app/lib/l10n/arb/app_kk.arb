@@ -180,5 +180,12 @@
   "selectTimeZone": "Уақыт белдеуін таңдаңыз",
   "searchCityOrContinent": "Қала немесе континент бойынша іздеу",
   "enterUserName": "Пайдаланушы атын енгізіңіз",
-  "userNameSameAsCurrent": "Пайдаланушы аты ағымдағымен бірдей болмауы керек"
+  "userNameSameAsCurrent": "Пайдаланушы аты ағымдағымен бірдей болмауы керек",
+  "hatimDeleted": "Хатм өшірілді",
+  "hatimDeletedSuccessfully": "Хатм сәтті өшірілді",
+  "hatimUpdated": "Хатм жаңартылды",
+  "initialDataFetchError": "Бастапқы деректерді алу мүмкін емес. Кейінірек қайталап көріңіз.",
+  "updateHatim": "Хатмды жаңарту",
+  "deleteHatim": "Хатмды өшіру",
+  "deleteConfirmation": "Бұл хатмды өшіргіңіз келетініне сенімдісіз бе?"
 }

@@ -42,7 +42,7 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
       key: const Key(MqKeys.createHatim),
       appBar: AppBar(
         centerTitle: true,
-        title: Text(isUpdate ? 'Update Hatim' : context.l10n.createHatim),
+        title: Text(isUpdate ? context.l10n.updateHatim : context.l10n.createHatim),
       ),
       body: Form(
         key: _formKey,

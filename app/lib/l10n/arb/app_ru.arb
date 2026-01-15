@@ -180,5 +180,12 @@
   "selectTimeZone": "Выберите часовой пояс",
   "searchCityOrContinent": "Поиск по городу или континенту",
   "enterUserName": "Введите ваше имя пользователя",
-  "userNameSameAsCurrent": "Имя пользователя не может быть таким же как текущее"
+  "userNameSameAsCurrent": "Имя пользователя не может быть таким же как текущее",
+  "hatimDeleted": "Хатим удален",
+  "hatimDeletedSuccessfully": "Хатим успешно удален",
+  "hatimUpdated": "Хатим обновлен",
+  "initialDataFetchError": "Не удалось загрузить начальные данные. Пожалуйста, попробуйте позже.",
+  "updateHatim": "Обновить Хатим",
+  "deleteHatim": "Удалить Хатим",
+  "deleteConfirmation": "Вы уверены, что хотите удалить этот хатим?"
 }

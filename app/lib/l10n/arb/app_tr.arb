@@ -180,5 +180,12 @@
   "selectTimeZone": "Saat dilimi seçin",
   "searchCityOrContinent": "Şehir veya kıtaya göre ara",
   "enterUserName": "Kullanıcı adınızı girin",
-  "userNameSameAsCurrent": "Kullanıcı adı mevcut olanla aynı olamaz"
+  "userNameSameAsCurrent": "Kullanıcı adı mevcut olanla aynı olamaz",
+  "hatimDeleted": "Hatim silindi",
+  "hatimDeletedSuccessfully": "Hatim başarıyla silindi",
+  "hatimUpdated": "Hatim güncellendi",
+  "initialDataFetchError": "Şu anda başlangıç verileri alınamıyor. Lütfen daha sonra tekrar deneyin.",
+  "updateHatim": "Hatmi Güncelle",
+  "deleteHatim": "Hatmi Sil",
+  "deleteConfirmation": "Bu hatmi silmek istediğinizden emin misiniz?"
 }
