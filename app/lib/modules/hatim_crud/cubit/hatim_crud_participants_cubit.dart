@@ -14,12 +14,13 @@ class HatimCrudParticipantsCubit extends Cubit<HatimCrudParticipantsState> {
   }) : super(HatimCrudParticipantsState(participants: participants));
 
   final MqHatimRepository repository;
-  final List<MqUserIdModel> participants;
+  final Set<MqUserIdModel> participants;
 
   Future<void> search(String query) async {
     emit(state.copyWith(searchState: const HatimCrudParticipantsSearchLoading()));
     try {
       final searchResult = await repository.searchParticipants(query);
+      searchResult.users?.removeWhere((p) => participants.any((participant) => participant.id == p.id));
       final newState = HatimCrudParticipantsSearchSuccess(searchResult);
       emit(state.copyWith(searchState: newState));
     } on Object catch (e) {
@@ -32,7 +33,7 @@ class HatimCrudParticipantsCubit extends Cubit<HatimCrudParticipantsState> {
   void addParticipant(MqUserIdModel participant) {
     emit(
       state.copyWith(
-        participants: [...state.participants, participant],
+        participants: {...state.participants, participant},
       ),
     );
     if (state.searchState is HatimCrudParticipantsSearchSuccess) {
@@ -45,7 +46,7 @@ class HatimCrudParticipantsCubit extends Cubit<HatimCrudParticipantsState> {
   void removeParticipant(MqUserIdModel participant) {
     emit(
       state.copyWith(
-        participants: state.participants.where((p) => p.id != participant.id).toList(),
+        participants: state.participants.where((p) => p.id != participant.id).toSet(),
       ),
     );
     if (state.searchState is HatimCrudParticipantsSearchSuccess) {

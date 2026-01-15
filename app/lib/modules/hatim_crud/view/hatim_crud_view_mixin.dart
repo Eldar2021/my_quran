@@ -48,7 +48,7 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
   }
 
   void _removeParticipant(MqUserIdModel user) {
-    _participants.value.remove(user);
+    _participants.value = List.from(_participants.value)..remove(user);
   }
 
   void _onDeleteError(Object error) {
@@ -123,5 +123,19 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
           )
           .toList();
     }
+  }
+
+  Future<void> _onNavigateToHatimParticipants() async {
+    await HatimParticipantsView.show(
+      context: context,
+      onAddParticipant: (item) {
+        _participants.value = List.from(_participants.value)..add(item);
+      },
+      onRemoveParticipant: (item) {
+        _participants.value = List.from(_participants.value)..remove(item);
+      },
+      initialParticipants: _participants.value,
+    );
+    if (mounted) setState(() {});
   }
 }

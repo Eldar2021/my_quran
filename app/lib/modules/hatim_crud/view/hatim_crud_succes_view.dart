@@ -18,7 +18,7 @@ class HatimCrudSuccesView extends StatelessWidget {
     required String title,
     String? description,
   }) {
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).push(
       MaterialPageRoute<void>(
         fullscreenDialog: true,
         builder: (context) => HatimCrudSuccesView(

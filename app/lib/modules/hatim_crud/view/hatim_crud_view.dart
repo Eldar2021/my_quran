@@ -83,8 +83,7 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
             FormLabel(context.l10n.participants),
             ExcludeFocus(
               child: HatimCrudTextField(
-                onTap: () {},
-                validator: (_) => _participants.value.isEmpty ? context.l10n.addParticipantsToHatim : null,
+                onTap: _onNavigateToHatimParticipants,
                 readOnly: true,
                 hintText: context.l10n.addParticipantsToYourHatim,
                 prefixIcon: Assets.icons.solidUsers.svg(
@@ -120,6 +119,7 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
                 );
               },
             ),
+            const SizedBox(height: 100),
           ],
         ),
       ),
@@ -159,7 +159,7 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
                         strokeWidth: 2,
                       ),
                     )
-                  : Text(context.l10n.createHatim),
+                  : Text(isUpdate ? context.l10n.updateHatim : context.l10n.createHatim),
             );
           },
         ),

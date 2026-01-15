@@ -7,11 +7,11 @@ final class HatimCrudParticipantsState extends Equatable {
     this.searchState = const HatimCrudParticipantsSearchInitial(),
   });
 
-  final List<MqUserIdModel> participants;
+  final Set<MqUserIdModel> participants;
   final HatimCrudParticipantsSearchState searchState;
 
   HatimCrudParticipantsState copyWith({
-    List<MqUserIdModel>? participants,
+    Set<MqUserIdModel>? participants,
     HatimCrudParticipantsSearchState? searchState,
   }) {
     return HatimCrudParticipantsState(
@@ -23,6 +23,7 @@ final class HatimCrudParticipantsState extends Equatable {
   @override
   List<Object?> get props => [
     participants,
+    participants.length,
     searchState,
   ];
 }
