@@ -16,7 +16,7 @@
   "privacyPolicy": "Политика конфиденциальности",
   "continueAsGuest": "Продолжить как гость",
   "verification": "Подтверждение",
-  "enter4DigitCode": "Введите 4-значный код из email",
+  "enter4DigitCode": "Введите 6-значный код из email",
   "verify": "Подтвердить",
   "enterVerificationCode": "Введите код",
   "hello": "Ассаламу алайкум",
