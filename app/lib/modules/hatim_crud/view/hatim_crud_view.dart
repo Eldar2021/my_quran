@@ -103,16 +103,17 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
             ValueListenableBuilder(
               valueListenable: _participants,
               builder: (context, value, child) {
-                return ListView.builder(
+                return ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: value.length,
+                  separatorBuilder: (context, index) => const Divider(),
                   itemBuilder: (context, index) {
                     final user = value[index];
                     return ParticipantTile(
                       user: user,
-                      text: context.l10n.remove,
-                      isOutlined: true,
+                      buttonText: context.l10n.remove,
+                      isRemove: true,
                       onPressed: () => _removeParticipant(user),
                     );
                   },
@@ -155,9 +156,7 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
               child: loading
                   ? const SizedBox.square(
                       dimension: 25,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                      ),
+                      child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : Text(isUpdate ? context.l10n.updateHatim : context.l10n.createHatim),
             );

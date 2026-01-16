@@ -26,17 +26,18 @@ class ParticipantsListWidget extends StatelessWidget {
           style: prTextTheme.titleMedium,
         ),
         const SizedBox(height: 10),
-        ListView.builder(
+        ListView.separated(
           itemCount: participants.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.only(bottom: 10),
+          separatorBuilder: (context, index) => const Divider(),
           itemBuilder: (context, index) {
             final user = participants[index];
             return ParticipantTile(
               user: user,
-              text: context.l10n.remove,
-              isOutlined: true,
+              buttonText: context.l10n.remove,
+              isRemove: true,
               onPressed: () => onRemoveParticipant(user),
             );
           },

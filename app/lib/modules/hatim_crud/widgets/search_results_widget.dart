@@ -23,15 +23,16 @@ class SearchResultsWidget extends StatelessWidget {
         ),
       );
     }
-    return ListView.builder(
+    return ListView.separated(
       itemCount: users.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
+      separatorBuilder: (context, index) => const Divider(),
       itemBuilder: (context, index) {
         final user = users.elementAt(index);
         return ParticipantTile(
           user: user,
-          text: context.l10n.add,
+          buttonText: context.l10n.add,
           onPressed: () => onAddParticipant(user),
         );
       },

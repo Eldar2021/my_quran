@@ -31,7 +31,27 @@ final class MqUserIdModel extends Equatable {
   @JsonKey(name: 'last_name')
   final String? lastName;
 
-  // final String? avatar;
+  String get uiTitle {
+    if (firstName != null && firstName!.isNotEmpty) {
+      return firstName!;
+    } else if (lastName != null && lastName!.isNotEmpty) {
+      return lastName!;
+    } else if (userName != null && userName!.isNotEmpty) {
+      return userName!;
+    } else if (email != null && email!.isNotEmpty) {
+      return email!;
+    }
+    return '$id';
+  }
+
+  String get uiSubtitle {
+    if (userName != null && userName!.isNotEmpty && userName != uiTitle) {
+      return userName!;
+    } else if (email != null && email!.isNotEmpty && email != uiTitle) {
+      return email!;
+    }
+    return '$id';
+  }
 
   @override
   List<Object?> get props => [

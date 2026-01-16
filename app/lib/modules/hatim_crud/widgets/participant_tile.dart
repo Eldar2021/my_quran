@@ -1,65 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 
 class ParticipantTile extends StatelessWidget {
   const ParticipantTile({
     required this.user,
     required this.onPressed,
-    required this.text,
-    this.isOutlined = false,
+    required this.buttonText,
+    this.isRemove = false,
     super.key,
   });
 
   final MqUserIdModel user;
-  final String text;
+  final String buttonText;
   final void Function()? onPressed;
-  final bool isOutlined;
+  final bool isRemove;
 
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
-    final colorScheme = Theme.of(context).colorScheme;
-
+    final colors = Theme.of(context).colorScheme;
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
-        backgroundColor: colorScheme.onSurface.withValues(alpha: 0.1),
-        child: Assets.icons.userMale.svg(
-          colorFilter: ColorFilter.mode(
-            colorScheme.onSurface,
-            BlendMode.srcIn,
+        radius: 24,
+        backgroundColor: colors.surfaceBright,
+        child: Text(
+          user.uiTitle[0].toUpperCase(),
+          style: prTextTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w400,
           ),
         ),
       ),
       title: Text(
-        '${user.firstName} ${user.lastName}',
-        overflow: TextOverflow.ellipsis,
+        user.uiTitle,
         style: prTextTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w400,
         ),
       ),
       subtitle: Text(
-        '${user.userName}',
-        overflow: TextOverflow.ellipsis,
+        user.uiSubtitle,
         style: prTextTheme.titleSmall?.copyWith(
           fontWeight: FontWeight.w400,
         ),
       ),
-      trailing: isOutlined
-          ? OutlinedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(118, 36),
-              ),
+      trailing: isRemove
+          ? IconButton.outlined(
               onPressed: onPressed,
-              child: Text(text),
+              style: ButtonStyle(
+                side: WidgetStateProperty.all(
+                  BorderSide(color: colors.primary, width: 2),
+                ),
+              ),
+              icon: Icon(
+                Icons.remove,
+                color: colors.primary,
+              ),
             )
-          : ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(130, 36),
-              ),
+          : IconButton.filled(
               onPressed: onPressed,
-              child: Text(text),
+              icon: Icon(
+                Icons.add,
+                color: colors.onPrimary,
+              ),
             ),
     );
   }
