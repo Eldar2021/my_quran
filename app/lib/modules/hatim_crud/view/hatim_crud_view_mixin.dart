@@ -138,4 +138,42 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
     );
     if (mounted) setState(() {});
   }
+
+  void _onDelete() {
+    MqBottomSheets.showConfirmSheet<void>(
+      context: context,
+      title: context.l10n.deleteHatim,
+      content: context.l10n.deleteConfirmation,
+      cancelText: context.l10n.cancel,
+      onCancel: () => Navigator.pop(context),
+      confirmButton: BlocProvider.value(
+        value: context.read<HatimCrudBloc>(),
+        child: BlocConsumer<HatimCrudBloc, HatimCrudState>(
+          listener: (context, state) {
+            if (state is HatimDeleteSuccess) {
+              _onDeleteSuccess();
+            } else if (state is HatimDeleteError) {
+              _onDeleteError(state.error);
+            }
+          },
+          builder: (context, state) {
+            return ElevatedButton(
+              onPressed: () {
+                final bloc = context.read<HatimCrudBloc>();
+                bloc.add(DeleteHatimByIdEvent(bloc.hatimId!));
+              },
+              child: switch (state) {
+                HatimDeleteLoading() => Center(
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+                _ => Text(context.l10n.yes),
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
 }

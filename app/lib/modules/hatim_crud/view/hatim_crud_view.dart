@@ -43,6 +43,19 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
       appBar: AppBar(
         centerTitle: true,
         title: Text(isUpdate ? context.l10n.updateHatim : context.l10n.createHatim),
+        actions: [
+          if (isUpdate)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: IconButton(
+                onPressed: _onDelete,
+                icon: Icon(
+                  Icons.delete,
+                  color: colorScheme.error,
+                ),
+              ),
+            ),
+        ],
       ),
       body: Form(
         key: _formKey,
@@ -142,10 +155,6 @@ class _HatimCrudViewBodyState extends State<HatimCrudViewBody> with HatimCrudVie
               _onUpdateSuccess(state.res);
             } else if (state is HatimUpdateError) {
               _onUpdateError(state.error);
-            } else if (state is HatimDeleteSuccess) {
-              _onDeleteSuccess();
-            } else if (state is HatimDeleteError) {
-              _onDeleteError(state.error);
             }
           },
           builder: (context, state) {

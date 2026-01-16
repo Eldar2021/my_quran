@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class HatimCrudSuccesView extends StatelessWidget {
   const HatimCrudSuccesView({
@@ -34,47 +36,56 @@ class HatimCrudSuccesView extends StatelessWidget {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-            const Spacer(),
-            Container(
-              width: 90,
-              height: 90,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: colorScheme.primary,
-              ),
-              child: Icon(
-                Icons.check_outlined,
-                size: 50,
-                color: colorScheme.onPrimary,
-              ),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Center(
+            child: Column(
+              children: [
+                const Spacer(),
+                Container(
+                  width: 90,
+                  height: 90,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: colorScheme.primary,
+                  ),
+                  child: Icon(
+                    Icons.check_outlined,
+                    size: 50,
+                    color: colorScheme.onPrimary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: prTextTheme.headlineMedium,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  description ?? '',
+                  textAlign: TextAlign.center,
+                  style: prTextTheme.bodyLarge,
+                ),
+                const Spacer(),
+              ],
             ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: prTextTheme.headlineMedium,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              description ?? '',
-              textAlign: TextAlign.center,
-              style: prTextTheme.bodyLarge,
-            ),
-            const Spacer(),
-          ],
+          ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: ElevatedButton(
-          onPressed: () => context.goNamed(AppRouter.home),
-          child: Text(context.l10n.backToHome),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              context.read<HomeCubit>().getData();
+              context.goNamed(AppRouter.home);
+            },
+            child: Text(context.l10n.backToHome),
+          ),
         ),
       ),
     );
