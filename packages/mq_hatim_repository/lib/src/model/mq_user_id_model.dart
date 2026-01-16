@@ -64,5 +64,6 @@ final class MqUserIdModel extends Equatable {
     email,
     firstName,
     lastName,
+    accepted,
   ];
 }
