@@ -187,5 +187,7 @@
   "initialDataFetchError": "Now can not fetch initial data. Please try again later.",
   "updateHatim": "Update Hatim",
   "deleteHatim": "Delete Hatim",
-  "deleteConfirmation": "Are you sure you want to delete this hatim?"
+  "deleteConfirmation": "Are you sure you want to delete this hatim?",
+  "accepted": "Accepted",
+  "invited": "Invited"
 }

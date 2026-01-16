@@ -119,6 +119,7 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
               email: e.user?.email,
               firstName: e.user?.firstName,
               lastName: e.user?.lastName,
+              accepted: e.accepted,
             ),
           )
           .toList();

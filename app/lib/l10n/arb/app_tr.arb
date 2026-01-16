@@ -187,5 +187,7 @@
   "initialDataFetchError": "Şu anda başlangıç verileri alınamıyor. Lütfen daha sonra tekrar deneyin.",
   "updateHatim": "Hatmi Güncelle",
   "deleteHatim": "Hatmi Sil",
-  "deleteConfirmation": "Bu hatmi silmek istediğinizden emin misiniz?"
+  "deleteConfirmation": "Bu hatmi silmek istediğinizden emin misiniz?",
+  "accepted": "Kabul etti",
+  "invited": "Davet edildi"
 }

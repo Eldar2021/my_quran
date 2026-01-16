@@ -187,5 +187,7 @@
   "initialDataFetchError": "تعذر جلب البيانات الأولية الآن. يرجى المحاولة مرة أخرى لاحقًا.",
   "updateHatim": "تحديث الختمة",
   "deleteHatim": "حذف الختمة",
-  "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذه الختمة؟"
+  "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذه الختمة؟",
+  "accepted": "تم القبول",
+  "invited": "مدعو"
 }

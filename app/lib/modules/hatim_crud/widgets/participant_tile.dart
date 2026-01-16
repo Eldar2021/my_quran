@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class ParticipantTile extends StatelessWidget {
   const ParticipantTile({
@@ -33,15 +35,42 @@ class ParticipantTile extends StatelessWidget {
       ),
       title: Text(
         user.uiTitle,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
         style: prTextTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w400,
         ),
       ),
-      subtitle: Text(
-        user.uiSubtitle,
-        style: prTextTheme.titleSmall?.copyWith(
-          fontWeight: FontWeight.w400,
-        ),
+      subtitle: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            user.uiSubtitle,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: prTextTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          switch (user.accepted) {
+            true => Text(
+              context.l10n.accepted,
+              style: prTextTheme.bodySmall?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: AppColors.greenText,
+              ),
+            ),
+            false => Text(
+              context.l10n.invited,
+              style: prTextTheme.bodySmall?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: AppColors.deepYellow,
+              ),
+            ),
+            _ => const SizedBox.shrink(),
+          },
+        ],
       ),
       trailing: isRemove
           ? IconButton.outlined(

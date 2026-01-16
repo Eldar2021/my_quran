@@ -187,5 +187,7 @@
   "initialDataFetchError": "Sekarang tidak dapat mengambil data awal. Silakan coba lagi nanti.",
   "updateHatim": "Perbarui Hatim",
   "deleteHatim": "Hapus Hatim",
-  "deleteConfirmation": "Apakah Anda yakin ingin menghapus hatim ini?"
+  "deleteConfirmation": "Apakah Anda yakin ingin menghapus hatim ini?",
+  "accepted": "Diterima",
+  "invited": "Diundang"
 }
