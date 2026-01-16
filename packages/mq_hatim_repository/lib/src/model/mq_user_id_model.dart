@@ -13,6 +13,7 @@ final class MqUserIdModel extends Equatable {
     required this.email,
     required this.firstName,
     required this.lastName,
+    this.accepted,
   });
 
   factory MqUserIdModel.fromJson(Map<String, dynamic> json) => _$MqUserIdModelFromJson(json);
@@ -30,6 +31,9 @@ final class MqUserIdModel extends Equatable {
 
   @JsonKey(name: 'last_name')
   final String? lastName;
+
+  @JsonKey(includeFromJson: false, includeToJson: false, defaultValue: null)
+  final bool? accepted;
 
   String get uiTitle {
     if (firstName != null && firstName!.isNotEmpty) {

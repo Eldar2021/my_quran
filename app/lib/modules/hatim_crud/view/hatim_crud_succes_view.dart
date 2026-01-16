@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -80,9 +78,8 @@ class HatimCrudSuccesView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pop();
               context.read<HomeCubit>().getData();
-              context.goNamed(AppRouter.home);
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
             child: Text(context.l10n.backToHome),
           ),
