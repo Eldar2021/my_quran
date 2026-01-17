@@ -7,3 +7,4 @@
 */
 
 "NSLocationWhenInUseUsageDescription" = "Kami menggunakan lokasi Anda untuk menentukan waktu salat yang tepat berdasarkan data saat ini. Jika Anda menonaktifkan akses lokasi, kota Mekah akan dipilih secara default.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Berdasarkan data saat ini, kami menggunakan lokasi Anda untuk menentukan arah kiblat yang tepat.";

@@ -189,5 +189,10 @@
   "deleteHatim": "Hatmi Sil",
   "deleteConfirmation": "Bu hatmi silmek istediğinizden emin misiniz?",
   "accepted": "Kabul etti",
-  "invited": "Davet edildi"
+  "invited": "Davet edildi",
+  "compassCalibrationRequired": "Pusula Kalibrasyonu Gerekli",
+  "locationAccessUnavailable": "Konum Erişimine Ulaşılamıyor",
+  "compassSensorError": "Pusula sensörü şu anda düzgün çalışmıyor. Lütfen uygulamayı yeniden başlatmayı deneyin. Sorun devam ederse, “{value}” bölümünden bildirebilirsiniz.",
+  "locationPermissionRequired": "Kıble yönünü doğru hesaplayabilmek için konum iznine ihtiyacımız var. Lütfen cihaz ayarlarınızdan uygulamanın konum izinlerini kontrol edin.",
+  "sunrise": "Gündoğumu"
 }

@@ -33,14 +33,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.7.1"
-  animated_analog_clock:
-    dependency: "direct main"
-    description:
-      name: animated_analog_clock
-      sha256: "8db7da3dd5b59c7e7c7a06652637ef86ccdde883b4611f9ed34059399080014c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.2"
   ansi_styles:
     dependency: transitive
     description:
@@ -598,6 +590,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.1"
+  flutter_compass:
+    dependency: "direct main"
+    description:
+      name: flutter_compass
+      sha256: "1b4d7e6c95a675ec8482b5c9c9ccf1ebf0ced3dbec59dce28ad609da953de850"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.1"
   flutter_driver:
     dependency: transitive
     description: flutter
