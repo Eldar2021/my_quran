@@ -189,5 +189,9 @@
   "deleteHatim": "Delete Hatim",
   "deleteConfirmation": "Are you sure you want to delete this hatim?",
   "accepted": "Accepted",
-  "invited": "Invited"
+  "invited": "Invited",
+  "compassCalibrationRequired": "Compass Calibration Required",
+  "locationAccessUnavailable": "Location Access Unavailable",
+  "compassSensorError": "The compass sensor is not functioning properly at this time. Please try restarting the app. If the issue persists, you can report it via the “{value}” section.",
+  "locationPermissionRequired": "We require location permission to accurately calculate the qibla direction. Please check the app's location permissions in your device settings."
 }

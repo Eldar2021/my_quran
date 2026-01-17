@@ -37,27 +37,24 @@ class _QiblaCompassState extends State<QiblaCompass> {
       listenable: _notifier,
       builder: (context, _) {
         final state = _notifier.state;
-        if (state is QiblaCompassErrorState) {
-          return const Center(child: Text('Konum verisi alınamadı.'));
-        }
-        if (state is QiblaCompassSuccessState) {
-          return StreamBuilder<CompassEvent>(
-            stream: FlutterCompass.events,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) return const Text('Sensör hatası');
-              if (!snapshot.hasData) return const CircularProgressIndicator();
-              final direction = snapshot.data!.heading;
-              final qiblaDirection = state.qiblaDirection;
-              if (direction == null) return const Text('Cihazda pusula yok');
-              return QiblaDirectionWidget(
-                size: widget.size,
-                direction: direction,
-                qiblaDirection: qiblaDirection,
-              );
-            },
-          );
-        }
-        return const Center(child: CircularProgressIndicator());
+        return StreamBuilder<CompassEvent>(
+          stream: FlutterCompass.events,
+          builder: (context, snapshot) {
+            final direction = snapshot.data?.heading;
+            return QiblaDirectionWidget(
+              size: widget.size,
+              direction: direction ?? 0,
+              errorType: switch (state) {
+                QiblaCompassErrorState() => QiblaCompassErrorType.location,
+                _ => direction == null ? QiblaCompassErrorType.compass : null,
+              },
+              qiblaDirection: switch (state) {
+                QiblaCompassSuccessState() => state.qiblaDirection,
+                _ => 0,
+              },
+            );
+          },
+        );
       },
     );
   }

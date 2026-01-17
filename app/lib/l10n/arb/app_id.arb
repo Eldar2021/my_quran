@@ -189,5 +189,9 @@
   "deleteHatim": "Hapus Hatim",
   "deleteConfirmation": "Apakah Anda yakin ingin menghapus hatim ini?",
   "accepted": "Diterima",
-  "invited": "Diundang"
+  "invited": "Diundang",
+  "compassCalibrationRequired": "Kalibrasi Kompas Diperlukan",
+  "locationAccessUnavailable": "Akses Lokasi Tidak Tersedia",
+  "compassSensorError": "Sensor kompas tidak berfungsi dengan baik saat ini. Silakan coba mulai ulang aplikasi. Jika masalah berlanjut, Anda dapat melaporkannya melalui bagian \"{value}\".",
+  "locationPermissionRequired": "Kami memerlukan izin lokasi untuk menghitung arah kiblat secara akurat. Silakan periksa izin lokasi aplikasi di pengaturan perangkat Anda."
 }

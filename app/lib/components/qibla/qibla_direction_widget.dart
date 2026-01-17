@@ -1,18 +1,41 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/utils/show/alerts.dart';
+
+enum QiblaCompassErrorType {
+  compass,
+  location;
+
+  String uiTitle(BuildContext context) {
+    return switch (this) {
+      QiblaCompassErrorType.compass => context.l10n.compassCalibrationRequired,
+      QiblaCompassErrorType.location => context.l10n.locationAccessUnavailable,
+    };
+  }
+
+  String uiText(BuildContext context) {
+    return switch (this) {
+      QiblaCompassErrorType.compass => context.l10n.compassSensorError(context.l10n.contactUs),
+      QiblaCompassErrorType.location => context.l10n.locationPermissionRequired,
+    };
+  }
+}
 
 class QiblaDirectionWidget extends StatelessWidget {
   const QiblaDirectionWidget({
     required this.size,
     required this.direction,
     required this.qiblaDirection,
+    this.errorType,
     super.key,
   });
 
   final double size;
   final double direction;
   final double qiblaDirection;
+  final QiblaCompassErrorType? errorType;
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +46,17 @@ class QiblaDirectionWidget extends StatelessWidget {
       child: Badge(
         backgroundColor: Colors.transparent,
         offset: Offset(-(size * 0.35), size * 0.15),
+        isLabelVisible: errorType != null,
         label: IconButton(
           iconSize: size * 0.25,
           padding: EdgeInsets.zero,
-          onPressed: () {},
+          onPressed: errorType != null ? () => _showInfo(errorType!, context) : null,
           icon: CircleAvatar(
             radius: (size * 0.25) / 2,
             backgroundColor: colorScheme.surface,
             child: Icon(
               Icons.info,
-              color: colorScheme.primary,
+              color: errorType != null ? colorScheme.error : colorScheme.primary,
             ),
           ),
         ),
@@ -79,6 +103,15 @@ class QiblaDirectionWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _showInfo(QiblaCompassErrorType errorType, BuildContext context) {
+    AppAlert.showErrorDialog(
+      context,
+      title: Text(errorType.uiTitle(context)),
+      errorText: errorType.uiText(context),
+      buttonText: context.l10n.ok,
     );
   }
 }
