@@ -1,4 +1,3 @@
-import 'package:animated_analog_clock/animated_analog_clock.dart';
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
@@ -15,6 +14,7 @@ class MqSalaahCard extends StatefulWidget {
     required this.locationLabel,
     required this.onLocationPressed,
     required this.location,
+    this.extraWidget,
     super.key,
   });
 
@@ -28,6 +28,7 @@ class MqSalaahCard extends StatefulWidget {
   final String locationLabel;
   final String location;
   final void Function() onLocationPressed;
+  final Widget? extraWidget;
 
   @override
   State<MqSalaahCard> createState() => _MqSalaahCardState();
@@ -169,21 +170,7 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                 ],
               ),
             ),
-            SizedBox(width: context.withWidth(7)),
-            AnimatedAnalogClock(
-              size: context.withWidth(99),
-              location: widget.location,
-              hourHandColor: colorScheme.onSurface,
-              minuteHandColor: colorScheme.onSurface,
-              secondHandColor: colorScheme.primary,
-              centerDotColor: colorScheme.primary,
-              extendHourHand: true,
-              extendMinuteHand: true,
-              extendSecondHand: true,
-              dialType: DialType.numberAndDashes,
-              numberColor: colorScheme.onSurface,
-              hourDashColor: colorScheme.onSurface,
-            ),
+            if (widget.extraWidget != null) widget.extraWidget!,
           ],
         ),
       ),

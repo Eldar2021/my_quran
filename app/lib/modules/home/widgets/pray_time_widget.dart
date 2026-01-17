@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:my_quran/components/components.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/show/alerts.dart';
@@ -31,6 +32,7 @@ class MqSalaahTimeWidget extends StatelessWidget {
             onLocationPressed: () {},
             lat: state.position.latitude,
             lon: state.position.longitude,
+            extraWidget: const QiblaCompass(),
           );
         },
       ),
