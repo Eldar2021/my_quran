@@ -17,11 +17,11 @@ class QiblaCompassNotifier extends ChangeNotifier {
         ),
       );
 
-      final qiblaDegree = Qibla.qibla(
+      final qiblaDirection = Qibla.qibla(
         Coordinates(position.latitude, position.longitude),
       );
 
-      _state = QiblaCompassSuccessState(qiblaDegree);
+      _state = QiblaCompassSuccessState(qiblaDirection);
       notifyListeners();
     } on Object catch (e) {
       log('getQiblaAngle error', error: e);
@@ -46,12 +46,12 @@ final class QiblaCompassLoadingState extends QiblaCompassState {
 
 @immutable
 final class QiblaCompassSuccessState extends QiblaCompassState {
-  const QiblaCompassSuccessState(this.qiblaAngle);
+  const QiblaCompassSuccessState(this.qiblaDirection);
 
-  final double qiblaAngle;
+  final double qiblaDirection;
 
   @override
-  List<Object?> get props => [qiblaAngle];
+  List<Object?> get props => [qiblaDirection];
 }
 
 @immutable
