@@ -193,5 +193,6 @@
   "compassCalibrationRequired": "Compass Calibration Required",
   "locationAccessUnavailable": "Location Access Unavailable",
   "compassSensorError": "The compass sensor is not functioning properly at this time. Please try restarting the app. If the issue persists, you can report it via the “{value}” section.",
-  "locationPermissionRequired": "We require location permission to accurately calculate the qibla direction. Please check the app's location permissions in your device settings."
+  "locationPermissionRequired": "We require location permission to accurately calculate the qibla direction. Please check the app's location permissions in your device settings.",
+  "sunrise": "Sunrise"
 }

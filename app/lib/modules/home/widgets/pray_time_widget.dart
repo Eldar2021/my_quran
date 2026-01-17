@@ -23,6 +23,7 @@ class MqSalaahTimeWidget extends StatelessWidget {
         builder: (context, state) {
           return MqSalaahCard(
             fajrLabel: context.l10n.fajr,
+            sunriseLabel: context.l10n.sunrise,
             zuhrLabel: context.l10n.zuhr,
             asrLabel: context.l10n.asr,
             maghribLabel: context.l10n.maghrib,

@@ -7,6 +7,7 @@ class MqSalaahCard extends StatefulWidget {
     required this.lat,
     required this.lon,
     required this.fajrLabel,
+    required this.sunriseLabel,
     required this.zuhrLabel,
     required this.asrLabel,
     required this.maghribLabel,
@@ -21,6 +22,7 @@ class MqSalaahCard extends StatefulWidget {
   final double lat;
   final double lon;
   final String fajrLabel;
+  final String sunriseLabel;
   final String zuhrLabel;
   final String asrLabel;
   final String maghribLabel;
@@ -72,105 +74,117 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
     return GradientDecoratedBox(
       child: Padding(
         padding: EdgeInsets.all(context.withWidth(10)),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Wrap(
-                    spacing: context.withWidth(7),
-                    runSpacing: context.withWidth(6),
+            Row(
+              spacing: context.withWidth(8),
+              children: [
+                SalaahItemTimeCard(
+                  salaahName: widget.fajrLabel,
+                  timeOfClock: _prayerTimes.fajrTime,
+                  isActive: !_prayerTimes.fajrActive,
+                ),
+                SalaahItemTimeCard(
+                  salaahName: widget.sunriseLabel,
+                  timeOfClock: _prayerTimes.sunriseTime,
+                  isActive: !_prayerTimes.sunriseActive,
+                ),
+                SalaahItemTimeCard(
+                  salaahName: widget.zuhrLabel,
+                  timeOfClock: _prayerTimes.dhuhrTime,
+                  isActive: !_prayerTimes.dhuhrActive,
+                ),
+              ],
+            ),
+            SizedBox(height: context.withWidth(8)),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
                     children: [
-                      SalaahItemTimeCard(
-                        salaahName: widget.fajrLabel,
-                        timeOfClock: _prayerTimes.fajrTime,
-                        isActive: !_prayerTimes.fajrActive,
-                      ),
-                      SalaahItemTimeCard(
-                        salaahName: widget.zuhrLabel,
-                        timeOfClock: _prayerTimes.dhuhrTime,
-                        isActive: !_prayerTimes.dhuhrActive,
-                      ),
-                      SalaahItemTimeCard(
-                        salaahName: widget.asrLabel,
-                        timeOfClock: _prayerTimes.asrTime,
-                        isActive: !_prayerTimes.asrActive,
-                      ),
-                      SalaahItemTimeCard(
-                        salaahName: widget.maghribLabel,
-                        timeOfClock: _prayerTimes.maghribTime,
-                        isActive: !_prayerTimes.maghribActive,
-                      ),
-                      SalaahItemTimeCard(
-                        salaahName: widget.ishaLabel,
-                        timeOfClock: _prayerTimes.ishaTime,
-                        isActive: !_prayerTimes.ishaActive,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: context.withWidth(8)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      StreamBuilder<(int, Duration)>(
-                        stream: _nextPrayerTime,
-                        builder: (context, snapshot) {
-                          return snapshot.data?.$1 != 0
-                              ? Row(
-                                  children: [
-                                    Text(
-                                      _getPreyerLabel(snapshot.data?.$1),
-                                      style: prTextTheme.bodyLarge,
-                                    ),
-                                    SizedBox(width: context.withWidth(7)),
-                                    Text(
-                                      _printDuration(
-                                        snapshot.data?.$2 ?? Duration.zero,
-                                      ),
-                                      style: prTextTheme.bodyLarge?.copyWith(
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : const SizedBox.shrink();
-                        },
-                      ),
-                      SizedBox(width: context.withWidth(8)),
-                      Flexible(
-                        child: TextButton.icon(
-                          onPressed: widget.onLocationPressed,
-                          label: Text(
-                            widget.locationLabel,
-                            maxLines: 2,
-                            overflow: TextOverflow.fade,
+                      Row(
+                        spacing: context.withWidth(8),
+                        children: [
+                          SalaahItemTimeCard(
+                            salaahName: widget.asrLabel,
+                            timeOfClock: _prayerTimes.asrTime,
+                            isActive: !_prayerTimes.asrActive,
                           ),
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            minimumSize: Size.zero,
-                            foregroundColor: colorScheme.onSurface,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            alignment: Alignment.centerLeft,
+                          SalaahItemTimeCard(
+                            salaahName: widget.maghribLabel,
+                            timeOfClock: _prayerTimes.maghribTime,
+                            isActive: !_prayerTimes.maghribActive,
                           ),
-                          icon: Assets.icons.location.svg(
-                            width: 12,
-                            colorFilter: ColorFilter.mode(
-                              colorScheme.onSurface,
-                              BlendMode.srcIn,
+                          SalaahItemTimeCard(
+                            salaahName: widget.ishaLabel,
+                            timeOfClock: _prayerTimes.ishaTime,
+                            isActive: !_prayerTimes.ishaActive,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: context.withWidth(8)),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          StreamBuilder<(int, Duration)>(
+                            stream: _nextPrayerTime,
+                            builder: (context, snapshot) {
+                              return snapshot.data?.$1 != 0
+                                  ? Row(
+                                      children: [
+                                        Text(
+                                          _getPreyerLabel(snapshot.data?.$1),
+                                          style: prTextTheme.bodyLarge,
+                                        ),
+                                        SizedBox(width: context.withWidth(7)),
+                                        Text(
+                                          _printDuration(
+                                            snapshot.data?.$2 ?? Duration.zero,
+                                          ),
+                                          style: prTextTheme.bodyLarge?.copyWith(
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox.shrink();
+                            },
+                          ),
+                          SizedBox(width: context.withWidth(8)),
+                          Flexible(
+                            child: TextButton.icon(
+                              onPressed: widget.onLocationPressed,
+                              label: Text(
+                                widget.locationLabel,
+                                maxLines: 2,
+                                overflow: TextOverflow.fade,
+                              ),
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                foregroundColor: colorScheme.onSurface,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                alignment: Alignment.centerLeft,
+                              ),
+                              icon: Assets.icons.location.svg(
+                                width: 12,
+                                colorFilter: ColorFilter.mode(
+                                  colorScheme.onSurface,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                if (widget.extraWidget != null) widget.extraWidget!,
+              ],
             ),
-            if (widget.extraWidget != null) widget.extraWidget!,
           ],
         ),
       ),

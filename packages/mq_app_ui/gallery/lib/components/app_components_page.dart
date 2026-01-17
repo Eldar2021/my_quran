@@ -106,6 +106,7 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
           MqSalaahCard(
             fajrLabel: 'Fajr',
             zuhrLabel: 'Zuhr',
+            sunriseLabel: 'Sunrise',
             asrLabel: 'Asr',
             maghribLabel: 'Maghrib',
             ishaLabel: 'Isha',
@@ -114,6 +115,10 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             onLocationPressed: () {},
             lat: 42.8746,
             lon: 74.5698,
+            extraWidget: const SizedBox(
+              height: 100,
+              width: 100,
+            ),
           ),
           const SizedBox(height: 20),
           const Divider(),
