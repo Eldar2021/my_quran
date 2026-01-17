@@ -33,7 +33,10 @@ class MqSalaahTimeWidget extends StatelessWidget {
             onLocationPressed: () {},
             lat: state.position.latitude,
             lon: state.position.longitude,
-            extraWidget: const QiblaCompass(),
+            extraWidget: QiblaCompass(
+              latitude: state.position.latitude,
+              longitude: state.position.longitude,
+            ),
           );
         },
       ),

@@ -4,59 +4,46 @@ import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/utils/show/alerts.dart';
 
-enum QiblaCompassErrorType {
-  compass,
-  location;
-
-  String uiTitle(BuildContext context) {
-    return switch (this) {
-      QiblaCompassErrorType.compass => context.l10n.compassCalibrationRequired,
-      QiblaCompassErrorType.location => context.l10n.locationAccessUnavailable,
-    };
-  }
-
-  String uiText(BuildContext context) {
-    return switch (this) {
-      QiblaCompassErrorType.compass => context.l10n.compassSensorError(context.l10n.contactUs),
-      QiblaCompassErrorType.location => context.l10n.locationPermissionRequired,
-    };
-  }
-}
-
 class QiblaDirectionWidget extends StatelessWidget {
   const QiblaDirectionWidget({
     required this.size,
     required this.direction,
     required this.qiblaDirection,
-    this.errorType,
+    required this.directionDiff,
+    this.isError = false,
     super.key,
   });
 
   final double size;
   final double direction;
   final double qiblaDirection;
-  final QiblaCompassErrorType? errorType;
+  final int directionDiff;
+  final bool isError;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final primaryColor = switch (directionDiff) {
+      < 5 && > -5 => AppColors.green,
+      _ => colorScheme.primary,
+    };
     return SizedBox(
       width: size,
       height: size,
       child: Badge(
         backgroundColor: Colors.transparent,
         offset: Offset(-(size * 0.35), size * 0.15),
-        isLabelVisible: errorType != null,
+        isLabelVisible: isError,
         label: IconButton(
           iconSize: size * 0.25,
           padding: EdgeInsets.zero,
-          onPressed: errorType != null ? () => _showInfo(errorType!, context) : null,
+          onPressed: isError ? () => _showInfo(context) : null,
           icon: CircleAvatar(
             radius: (size * 0.25) / 2,
             backgroundColor: colorScheme.surface,
             child: Icon(
               Icons.info,
-              color: errorType != null ? colorScheme.error : colorScheme.primary,
+              color: isError ? colorScheme.error : colorScheme.primary,
             ),
           ),
         ),
@@ -76,7 +63,7 @@ class QiblaDirectionWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: colorScheme.primary,
+                          color: primaryColor,
                           width: 2,
                         ),
                       ),
@@ -90,11 +77,8 @@ class QiblaDirectionWidget extends StatelessWidget {
                         height: size * 0.3,
                         width: size * 0.3,
                       ),
-                      Icon(
-                        Icons.navigation,
-                        color: colorScheme.primary,
-                      ),
-                      Text('${qiblaDirection.toInt() - direction.toInt()}°'),
+                      Icon(Icons.navigation, color: primaryColor),
+                      Text('$directionDiff°'),
                     ],
                   ),
                 ),
@@ -106,11 +90,11 @@ class QiblaDirectionWidget extends StatelessWidget {
     );
   }
 
-  void _showInfo(QiblaCompassErrorType errorType, BuildContext context) {
+  void _showInfo(BuildContext context) {
     AppAlert.showErrorDialog(
       context,
-      title: Text(errorType.uiTitle(context)),
-      errorText: errorType.uiText(context),
+      title: Text(context.l10n.compassCalibrationRequired),
+      errorText: context.l10n.compassSensorError(context.l10n.contactUs),
       buttonText: context.l10n.ok,
     );
   }
