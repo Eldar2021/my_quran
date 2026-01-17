@@ -1,11 +1,15 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:my_quran/components/qibla/qibla_compass_notifier.dart';
+import 'package:my_quran/components/qibla/qibla_direction_widget.dart';
 
 class QiblaCompass extends StatefulWidget {
-  const QiblaCompass({super.key});
+  const QiblaCompass({
+    this.size = 100,
+    super.key,
+  });
+
+  final double size;
 
   @override
   State<QiblaCompass> createState() => _QiblaCompassState();
@@ -42,51 +46,13 @@ class _QiblaCompassState extends State<QiblaCompass> {
             builder: (context, snapshot) {
               if (snapshot.hasError) return const Text('Sensör hatası');
               if (!snapshot.hasData) return const CircularProgressIndicator();
-
               final direction = snapshot.data!.heading;
               final qiblaDirection = state.qiblaDirection;
               if (direction == null) return const Text('Cihazda pusula yok');
-
-              return SizedBox(
-                width: 100,
-                height: 100,
-                child: Transform.rotate(
-                  angle: -2 * math.pi * (direction / 360),
-                  child: Transform(
-                    alignment: FractionalOffset.center,
-                    transform: Matrix4.rotationZ(qiblaDirection * math.pi / 180),
-                    origin: Offset.zero,
-                    child: Stack(
-                      children: [
-                        Align(
-                          child: SizedBox(
-                            width: 80,
-                            height: 80,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.grey, width: 2),
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Align(
-                          child: Column(
-                            children: [
-                              Assets.images.kaaba.image(
-                                height: 30,
-                                width: 30,
-                              ),
-                              const Icon(Icons.navigation),
-                              Text('${qiblaDirection.toInt() - direction.toInt()}°'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              return QiblaDirectionWidget(
+                size: widget.size,
+                direction: direction,
+                qiblaDirection: qiblaDirection,
               );
             },
           );
