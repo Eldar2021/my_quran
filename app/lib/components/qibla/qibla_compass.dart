@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:my_quran/components/qibla/qibla_direction_widget.dart';
 
-class QiblaCompass extends StatefulWidget {
+class QiblaCompass extends StatelessWidget {
   const QiblaCompass({
     required this.latitude,
     required this.longitude,
@@ -16,31 +16,19 @@ class QiblaCompass extends StatefulWidget {
   final double longitude;
 
   @override
-  State<QiblaCompass> createState() => _QiblaCompassState();
-}
-
-class _QiblaCompassState extends State<QiblaCompass> {
-  late final double _qiblaDirection;
-
-  @override
-  void initState() {
-    super.initState();
-    _qiblaDirection = Qibla.qibla(
-      Coordinates(widget.latitude, widget.longitude),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final qiblaDirection = Qibla.qibla(
+      Coordinates(latitude, longitude),
+    );
     return StreamBuilder<CompassEvent>(
       stream: FlutterCompass.events,
       builder: (context, snapshot) {
         final direction = snapshot.data?.heading;
         return QiblaDirectionWidget(
-          size: widget.size,
-          qiblaDirection: _qiblaDirection,
+          size: size,
+          qiblaDirection: qiblaDirection,
           direction: direction ?? 0,
-          directionDiff: (((_qiblaDirection - (direction ?? 0)) % 360 + 540) % 360 - 180).round(),
+          directionDiff: (((qiblaDirection - (direction ?? 0)) % 360 + 540) % 360 - 180).round(),
           isError: direction == null,
         );
       },
