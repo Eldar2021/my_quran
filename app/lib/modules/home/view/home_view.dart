@@ -193,10 +193,8 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
       MqAnalytic.track(AnalyticKey.goHatim);
       context.goNamedIfAuthenticated(
         AppRouter.hatim,
-        pathParameters: {
-          'hatimId': hatim.id,
-          'isCreator': hatim.isCreator(user?.user.username ?? '').toString(),
-        },
+        pathParameters: {'hatimId': hatim.id},
+        extra: hatim.isCreator(user?.user.username ?? ''),
       );
     } else {
       context.pushNamed(AppRouter.loginWihtSoccial);

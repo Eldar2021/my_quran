@@ -39,13 +39,13 @@ final class ParseParams {
     }
   }
 
-  static HatimViewParams parseHatimId(Map<String, String> args) {
+  static HatimViewParams parseHatimId(Map<String, String> args, Object? extra) {
     try {
       final hatimId = args['hatimId'] ?? '';
-      final isCreator = args['isCreator'] ?? 'false';
+      final isCreator = extra as bool? ?? false;
       return HatimViewParams(
         hatimId: hatimId,
-        isCreator: bool.tryParse(isCreator) ?? false,
+        isCreator: isCreator,
       );
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);

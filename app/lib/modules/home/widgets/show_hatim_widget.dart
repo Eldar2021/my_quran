@@ -73,10 +73,8 @@ class ShowHatimWidget {
                             final user = context.read<AuthCubit>().state.auth;
                             context.goNamedIfAuthenticated(
                               AppRouter.hatim,
-                              pathParameters: {
-                                'hatimId': item.id,
-                                'isCreator': item.isCreator(user?.user.username ?? '').toString(),
-                              },
+                              pathParameters: {'hatimId': item.id},
+                              extra: item.isCreator(user?.user.username ?? ''),
                             );
                           },
                           contentPadding: const EdgeInsets.all(16),
