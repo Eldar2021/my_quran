@@ -24,11 +24,6 @@ final class WorldCountry extends Equatable {
     required this.idd,
   });
 
-  factory WorldCountry.usa() {
-    final firstData = countries.firstWhere((e) => e['code'] == 'USA');
-    return WorldCountry.fromJson(firstData);
-  }
-
   factory WorldCountry.fromJson(Map<String, dynamic> json) => _$WorldCountryFromJson(json);
   Map<String, dynamic> toJson() => _$WorldCountryToJson(this);
 
@@ -50,14 +45,16 @@ final class WorldCountry extends Equatable {
     return null;
   }
 
-  static List<WorldCountry> get all {
+  static final List<WorldCountry> all = (() {
     try {
       return countries.map(WorldCountry.fromJson).toList();
     } on Object catch (e) {
       log('WorldCountry.all', error: e);
-      return [];
+      return <WorldCountry>[];
     }
-  }
+  })();
+
+  static final WorldCountry usa = WorldCountry.fromJson(countries.firstWhere((e) => e['code'] == 'USA'));
 
   @override
   List<Object?> get props => [
@@ -70,12 +67,13 @@ final class WorldCountry extends Equatable {
     commonNative,
     altSpellings,
     timezones,
+    idd,
   ];
 }
 
 @JsonSerializable()
 @immutable
-final class CountryIdd {
+final class CountryIdd extends Equatable {
   const CountryIdd({
     required this.root,
     required this.suffixes,
@@ -86,4 +84,10 @@ final class CountryIdd {
 
   final int root;
   final List<int> suffixes;
+
+  @override
+  List<Object?> get props => [
+    root,
+    suffixes,
+  ];
 }

@@ -21,7 +21,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
   late final List<WorldCountry> countries;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  WorldCountry selectedCountry = WorldCountry.usa();
+  WorldCountry selectedCountry = WorldCountry.usa;
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
       try {
         final item = widget.initialValue.split('-');
         if (item.length > 1) _controller.text = item[1];
-        selectedCountry = WorldCountry.fromCode(item.last) ?? WorldCountry.usa();
+        selectedCountry = WorldCountry.fromCode(item.last) ?? WorldCountry.usa;
       } on Object catch (e) {
         dev.log('_parseInitialValue', error: e);
       }
