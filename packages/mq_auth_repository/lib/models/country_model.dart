@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mq_auth_repository/static/countries.dart';
@@ -7,7 +10,7 @@ part 'country_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class WorldCountry {
+final class WorldCountry extends Equatable {
   const WorldCountry({
     required this.code,
     required this.codeShort,
@@ -48,8 +51,26 @@ final class WorldCountry {
   }
 
   static List<WorldCountry> get all {
-    return countries.map(WorldCountry.fromJson).toList();
+    try {
+      return countries.map(WorldCountry.fromJson).toList();
+    } on Object catch (e) {
+      log('WorldCountry.all', error: e);
+      return [];
+    }
   }
+
+  @override
+  List<Object?> get props => [
+    code,
+    codeShort,
+    emoji,
+    officialEn,
+    commonEn,
+    nameNative,
+    commonNative,
+    altSpellings,
+    timezones,
+  ];
 }
 
 @JsonSerializable()

@@ -18,10 +18,12 @@ class ProfileEditCountryView extends StatefulWidget {
 
 class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
   WorldCountry? selectedCountry;
+  late final List<WorldCountry> countries;
 
   @override
   void initState() {
     super.initState();
+    countries = WorldCountry.all;
     _parseInitialValue();
   }
 
@@ -69,14 +71,14 @@ class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
                     }
                   },
                   selectedItemBuilder: (context) {
-                    return WorldCountry.all.map((e) {
+                    return countries.map((e) {
                       return Align(
                         alignment: Alignment.centerLeft,
                         child: Text('${e.emoji}  ${e.commonNative}'),
                       );
                     }).toList();
                   },
-                  items: WorldCountry.all.map((e) {
+                  items: countries.map((e) {
                     return DropdownMenuItem<WorldCountry>(
                       value: e,
                       child: Row(

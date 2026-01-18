@@ -18,6 +18,7 @@ class ProfileEditPhoneNumberView extends StatefulWidget {
 
 class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView> {
   late final TextEditingController _controller;
+  late final List<WorldCountry> countries;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   WorldCountry selectedCountry = WorldCountry.usa();
@@ -25,6 +26,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
   @override
   void initState() {
     _controller = TextEditingController();
+    countries = WorldCountry.all;
     super.initState();
     _parseInitialValue();
   }
@@ -87,7 +89,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
                   prefixIcon: Container(
                     padding: const EdgeInsets.only(left: 6),
                     child: DropdownButtonHideUnderline(
-                      child: DropdownButton<WorldCountry>(
+                      child: DropdownButton(
                         value: selectedCountry,
                         isDense: true,
                         onChanged: (WorldCountry? newValue) {
@@ -96,12 +98,12 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
                           }
                         },
                         selectedItemBuilder: (context) {
-                          return WorldCountry.all.map((e) {
+                          return countries.map((e) {
                             return Text('${e.emoji} ${getPhoneCode(e)}');
                           }).toList();
                         },
-                        items: WorldCountry.all.map((e) {
-                          return DropdownMenuItem<WorldCountry>(
+                        items: countries.map((e) {
+                          return DropdownMenuItem(
                             value: e,
                             child: Row(
                               children: [
