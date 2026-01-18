@@ -22,6 +22,24 @@ Future<void> createAndWriteJsonFile(
   }
 }
 
+Future<void> createAndWriteListJsonFile(
+  String filePath,
+  List<dynamic> data,
+) async {
+  try {
+    final file = File(filePath);
+    final jsonString = const JsonEncoder.withIndent('  ').convert(data);
+    if (!file.existsSync()) {
+      await file.create(recursive: true);
+    }
+    await file.writeAsString(jsonString);
+    print('JSON file created and written: $filePath');
+  } on Exception catch (e) {
+    print('Error creating and writing JSON file: $e');
+    rethrow;
+  }
+}
+
 Future<Map<String, dynamic>> readJsonFile(String filePath) async {
   try {
     final file = File(filePath);

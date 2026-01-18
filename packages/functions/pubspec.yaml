@@ -7,5 +7,8 @@ publish_to: none
 environment:
   sdk: ^3.9.2
 
+dependencies:
+  sealed_countries:
+
 dev_dependencies:
   test:
