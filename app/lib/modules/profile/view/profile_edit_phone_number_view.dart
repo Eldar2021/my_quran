@@ -5,7 +5,6 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
-import 'package:sealed_countries/sealed_countries.dart';
 import 'dart:developer' as dev;
 
 class ProfileEditPhoneNumberView extends StatefulWidget {
@@ -21,7 +20,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
   late final TextEditingController _controller;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  WorldCountry selectedCountry = const CountryUsa();
+  WorldCountry selectedCountry = WorldCountry.usa();
 
   @override
   void initState() {
@@ -35,7 +34,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
       try {
         final item = widget.initialValue.split('-');
         if (item.length > 1) _controller.text = item[1];
-        selectedCountry = WorldCountry.fromCode(item.last);
+        selectedCountry = WorldCountry.fromCode(item.last) ?? WorldCountry.usa();
       } on Object catch (e) {
         dev.log('_parseInitialValue', error: e);
       }
@@ -97,11 +96,11 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
                           }
                         },
                         selectedItemBuilder: (context) {
-                          return WorldCountry.list.map((e) {
+                          return WorldCountry.all.map((e) {
                             return Text('${e.emoji} ${getPhoneCode(e)}');
                           }).toList();
                         },
-                        items: WorldCountry.list.map((e) {
+                        items: WorldCountry.all.map((e) {
                           return DropdownMenuItem<WorldCountry>(
                             value: e,
                             child: Row(
@@ -111,7 +110,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
                                 const SizedBox(width: 6),
                                 Expanded(
                                   child: Text(
-                                    e.namesNative.first.name,
+                                    e.commonNative,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
