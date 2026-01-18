@@ -36,7 +36,6 @@ dependencies:
   adhan_dart:
   geolocator:
   flutter_compass:
-  sealed_countries:
 
   mq_ci_keys:
   mq_remote_client:
