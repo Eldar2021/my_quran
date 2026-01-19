@@ -28,6 +28,7 @@ class MqSalaahTimeWidget extends StatelessWidget {
             asrLabel: context.l10n.asr,
             maghribLabel: context.l10n.maghrib,
             ishaLabel: context.l10n.isya,
+            tahajjudLabel: context.l10n.tahajjud,
             locationLabel: state.locationName,
             location: state.timeZoneLocation,
             onLocationPressed: () {},

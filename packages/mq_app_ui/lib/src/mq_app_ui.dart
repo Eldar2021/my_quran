@@ -23,6 +23,8 @@ export 'components/quran_read_audio_progressing_widget.dart';
 export 'components/quran_audio_progressing_widget.dart';
 export 'components/my_quran_statics_info_widget.dart';
 export 'components/mq_salaah_card.dart';
+export 'components/salaah_item_time_card.dart';
+export 'components/mq_salah_time_stream_text.dart';
 export 'components/circle_button.dart';
 export 'components/column_info_colored_box.dart';
 export 'components/hatim_juz_item_card.dart';

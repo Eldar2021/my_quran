@@ -110,6 +110,7 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             asrLabel: 'Asr',
             maghribLabel: 'Maghrib',
             ishaLabel: 'Isha',
+            tahajjudLabel: 'Tahajjud',
             locationLabel: 'Bishkek',
             location: 'Asia/Bishkek',
             onLocationPressed: () {},
