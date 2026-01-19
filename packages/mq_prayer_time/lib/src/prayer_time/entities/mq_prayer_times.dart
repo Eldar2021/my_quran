@@ -19,12 +19,21 @@ final class MqPrayerTime {
   final DateTime maghrib;
   final DateTime isha;
 
+  DateTime get tahajjud {
+    var nightDuration = fajr.difference(isha);
+    if (nightDuration.isNegative) {
+      nightDuration += const Duration(days: 1);
+    }
+    return isha.add(nightDuration * 2 ~/ 3);
+  }
+
   String get fajrTime => DateFormat.Hm().format(fajr);
   String get sunriseTime => DateFormat.Hm().format(sunrise);
   String get dhuhrTime => DateFormat.Hm().format(dhuhr);
   String get asrTime => DateFormat.Hm().format(asr);
   String get maghribTime => DateFormat.Hm().format(maghrib);
   String get ishaTime => DateFormat.Hm().format(isha);
+  String get tahajjudTime => DateFormat.Hm().format(tahajjud);
 
   bool get fajrActive {
     final now = DateTime.now();
@@ -54,5 +63,10 @@ final class MqPrayerTime {
   bool get ishaActive {
     final now = DateTime.now();
     return now.isBefore(isha);
+  }
+
+  bool get tahajjudActive {
+    final now = DateTime.now();
+    return now.isBefore(tahajjud);
   }
 }

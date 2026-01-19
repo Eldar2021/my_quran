@@ -24,6 +24,8 @@
 		<!-- Geolocation -->
         <key>NSLocationWhenInUseUsageDescription</key>
         <string>We use your location to determine the exact prayer time based on current data. If you disable location access, the city of Mecca will be selected by default.</string>
+        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>Based on the current data, we use your location to determine the exact qibla direction.</string>
         <key>LSApplicationCategoryType</key>
         <string></string>
         <key>CFBundleDisplayName</key>

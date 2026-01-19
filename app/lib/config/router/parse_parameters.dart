@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:meta/meta.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
+import 'package:my_quran/modules/modules.dart';
 
 @immutable
 final class ParseParams {
@@ -38,12 +39,27 @@ final class ParseParams {
     }
   }
 
-  static String parseHatimId(Map<String, String> args) {
+  static HatimViewParams parseHatimId(Map<String, String> args, Object? extra) {
     try {
-      return args['hatimId'] ?? '';
+      final hatimId = args['hatimId'] ?? '';
+      final isCreator = extra as bool? ?? false;
+      return HatimViewParams(
+        hatimId: hatimId,
+        isCreator: isCreator,
+      );
     } on Exception catch (e, s) {
       MqCrashlytics.report(e, s);
-      return '';
+      return const HatimViewParams(hatimId: '');
+    }
+  }
+
+  static String? parseHatimCrud(Map<String, dynamic> args) {
+    try {
+      final hatimId = args['hatimId'] as String?;
+      return hatimId;
+    } on Exception catch (e, s) {
+      MqCrashlytics.report(e, s);
+      return null;
     }
   }
 }

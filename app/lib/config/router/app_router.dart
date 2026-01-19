@@ -41,9 +41,7 @@ final class AppRouter {
   static const developers = 'developers';
   static const devModeView = 'dev-mode-view';
   static const donation = 'donation';
-  static const createHatim = 'create-hatim';
-  static const search = 'search';
-  static const createHatimSuccess = 'create-hatim-success';
+  static const hatimCrud = 'hatim-crud';
   static const more = 'more';
   static const profile = 'profile';
 
@@ -141,8 +139,11 @@ final class AppRouter {
         name: hatim,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
-          final hatimId = ParseParams.parseHatimId(state.pathParameters);
-          return HatimView(hatimId);
+          final param = ParseParams.parseHatimId(
+            state.pathParameters,
+            state.extra,
+          );
+          return HatimView(param);
         },
         routes: [
           GoRoute(
@@ -179,24 +180,13 @@ final class AppRouter {
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: createHatim,
-        name: createHatim,
+        path: hatimCrud,
+        name: hatimCrud,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const CreateHatimView(),
-        routes: [
-          GoRoute(
-            path: search,
-            name: search,
-            parentNavigatorKey: rootNavigatorKey,
-            builder: (context, state) => const SearchView(),
-          ),
-          GoRoute(
-            name: createHatimSuccess,
-            path: createHatimSuccess,
-            parentNavigatorKey: rootNavigatorKey,
-            builder: (context, state) => const SuccessView(),
-          ),
-        ],
+        builder: (context, state) {
+          final param = ParseParams.parseHatimCrud(state.uri.queryParameters);
+          return HatimCrudView(param);
+        },
       ),
       GoRoute(
         path: appSettings,

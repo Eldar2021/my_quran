@@ -5,7 +5,6 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
-import 'package:sealed_countries/sealed_countries.dart';
 import 'dart:developer';
 
 class ProfileEditCountryView extends StatefulWidget {
@@ -19,10 +18,12 @@ class ProfileEditCountryView extends StatefulWidget {
 
 class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
   WorldCountry? selectedCountry;
+  late final List<WorldCountry> countries;
 
   @override
   void initState() {
     super.initState();
+    countries = WorldCountry.all;
     _parseInitialValue();
   }
 
@@ -70,14 +71,14 @@ class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
                     }
                   },
                   selectedItemBuilder: (context) {
-                    return WorldCountry.list.map((e) {
+                    return countries.map((e) {
                       return Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('${e.emoji}  ${e.namesNative.first.name}'),
+                        child: Text('${e.emoji}  ${e.commonNative}'),
                       );
                     }).toList();
                   },
-                  items: WorldCountry.list.map((e) {
+                  items: countries.map((e) {
                     return DropdownMenuItem<WorldCountry>(
                       value: e,
                       child: Row(
@@ -85,7 +86,7 @@ class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
                           Text(e.emoji),
                           const SizedBox(width: 3),
                           Expanded(
-                            child: Text(e.namesNative.first.name),
+                            child: Text(e.commonNative),
                           ),
                           if (e == selectedCountry)
                             Icon(
@@ -136,7 +137,7 @@ class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
 
   void _onSave(BuildContext context) {
     if (selectedCountry != null) {
-      final countryCode = '${selectedCountry!.emoji} ${selectedCountry!.name.common}-${selectedCountry!.code}';
+      final countryCode = '${selectedCountry!.emoji} ${selectedCountry!.commonEn}-${selectedCountry!.code}';
       final authKey = context.read<AuthCubit>().auth?.key ?? '';
       context.read<ProfileCubit>().updateUserData(
         UpdateCountryParam(userId: authKey, country: countryCode),

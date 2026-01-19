@@ -33,7 +33,9 @@ dependencies:
   internet_connection_checker_plus:
   uuid:
   flutter_timezone:
-  sealed_countries:
+  adhan_dart:
+  geolocator:
+  flutter_compass:
 
   mq_ci_keys:
   mq_remote_client:

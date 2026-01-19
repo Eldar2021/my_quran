@@ -61,7 +61,7 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
               MqQuranStatic.bismallah,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontFamily: FontFamily.uthmanicV2,
                 color: themeCubit.state.frColor,
               ),
@@ -125,9 +125,9 @@ class __QuranByJuzViewState extends State<_QuranByJuzView> {
 
   List<int> _getJuzPages(int juzNumber) {
     final range = juzPages[juzNumber];
-    if (range == null || range.length < 2) return [];
-    final startPage = range[0];
-    final endPage = range[1];
+    if (range == null) return [];
+    final (startPage, endPage) = range;
+    if (startPage > endPage) return [];
     return List.generate(
       endPage - startPage + 1,
       (index) => startPage + index,

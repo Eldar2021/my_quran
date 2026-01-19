@@ -276,6 +276,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/background_orange_dark.png
   AssetGenImage get backgroundOrangeDark => const AssetGenImage('assets/images/background_orange_dark.png');
 
+  /// File path: assets/images/kaaba.png
+  AssetGenImage get kaaba => const AssetGenImage('assets/images/kaaba.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     appIcon,
@@ -283,6 +286,7 @@ class $AssetsImagesGen {
     backgroundBlueDark,
     backgroundOrange,
     backgroundOrangeDark,
+    kaaba,
   ];
 }
 

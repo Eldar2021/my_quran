@@ -9,6 +9,12 @@ abstract class AppColors {
   /// This is a green color
   static const Color green = Color(0xff00FF00);
 
+  /// Green figma style properties
+  /// hex: #008000
+  /// opacity: 1
+  /// This is a green color
+  static const Color greenText = Color(0xff008000);
+
   /// Red figma style properties
   /// hex: #FF0000
   /// opacity: 0
@@ -160,6 +166,12 @@ abstract class AppColors {
   /// opacity: 1
   /// This is a goldenrod color
   static const Color goldenrod = Color(0xffFFB651);
+
+  /// deep yellow figma style properties
+  /// hex: #F6BE00
+  /// opacity: 1
+  /// This is a deep yellow color
+  static const Color deepYellow = Color.fromARGB(240, 235, 180, 0);
 
   /// Black figma style properties
   /// hex: #000000

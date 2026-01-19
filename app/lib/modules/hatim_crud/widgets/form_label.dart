@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FormLabel extends StatelessWidget {
-  const FormLabel({required this.title, super.key});
+  const FormLabel(this.title, {super.key});
 
   final String title;
 

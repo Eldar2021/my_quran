@@ -6,6 +6,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
@@ -86,6 +87,13 @@ class MyApp extends StatelessWidget {
           create: (context) => MqQuranRepositoryImpl(
             MqQuranLocalDataSourceImpl(context.read<PreferencesStorage>()),
             MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+          ),
+        ),
+        RepositoryProvider<MqHatimRepository>(
+          create: (context) => MqHatimReadRepositoryImpl(
+            dataSource: isMockData
+                ? const MqHatimRemoteDataSourceMock()
+                : MqHatimRemoteDataSourceImpl(context.read<MqRemoteClient>()),
           ),
         ),
         BlocProvider(

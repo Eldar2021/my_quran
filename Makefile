@@ -24,3 +24,10 @@ git-update:
 	git pull
 	git branch | grep -v "main" | xargs git branch -D
 	git remote prune origin
+
+fvm-check:
+	echo "Checking flutter..."
+	fvm list
+	fvm use 3.35.6
+	fvm global 3.35.6
+	fvm list

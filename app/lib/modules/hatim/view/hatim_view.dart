@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
@@ -9,10 +10,21 @@ import 'package:my_quran/core/core.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class HatimView extends StatelessWidget {
-  const HatimView(this.hatimId, {super.key});
+@immutable
+final class HatimViewParams {
+  const HatimViewParams({
+    required this.hatimId,
+    this.isCreator = false,
+  });
 
   final String hatimId;
+  final bool isCreator;
+}
+
+class HatimView extends StatelessWidget {
+  const HatimView(this.params, {super.key});
+
+  final HatimViewParams params;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +33,7 @@ class HatimView extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => HatimBloc(
-            hatimId: hatimId,
+            hatimId: params.hatimId,
             socket: isMockData ? MqHatimSocketMock() : MqHatimSocketImpl(),
             token: context.read<AuthCubit>().userId,
           )..add(const GetInitialDataEvent()),
@@ -30,13 +42,15 @@ class HatimView extends StatelessWidget {
           create: (context) => HatimConnectionCubit(),
         ),
       ],
-      child: const HatimUI(),
+      child: HatimUI(params),
     );
   }
 }
 
 class HatimUI extends StatefulWidget {
-  const HatimUI({super.key});
+  const HatimUI(this.params, {super.key});
+
+  final HatimViewParams params;
 
   @override
   State<HatimUI> createState() => _HatimUIState();
@@ -74,7 +88,17 @@ class _HatimUIState extends State<HatimUI>
               };
             },
           ),
-          const SizedBox(width: 30),
+          if (widget.params.isCreator)
+            IconButton(
+              icon: const Icon(Icons.edit),
+              onPressed: () {
+                context.pushNamed(
+                  AppRouter.hatimCrud,
+                  queryParameters: {'hatimId': widget.params.hatimId},
+                );
+              },
+            ),
+          const SizedBox(width: 12),
         ],
         bottom: const HatimConnectionStateWidget(),
       ),

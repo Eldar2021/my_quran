@@ -21,3 +21,14 @@ final class MqHatimCreateModel {
   final String type;
   final List<String> participants;
 }
+
+@immutable
+final class MqHatimUpdateModel {
+  const MqHatimUpdateModel({
+    required this.id,
+    required this.data,
+  });
+
+  final String id;
+  final MqHatimCreateModel data;
+}

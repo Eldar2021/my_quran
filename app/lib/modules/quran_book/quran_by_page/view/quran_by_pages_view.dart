@@ -51,7 +51,7 @@ class _QuranByPagesView extends StatelessWidget {
               MqQuranStatic.bismallah,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontFamily: FontFamily.uthmanicV2,
                 color: themeCubit.state.frColor,
               ),

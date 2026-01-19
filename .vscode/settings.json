@@ -1,7 +1,7 @@
 {
   "dart.lineLength": 120,
   "git.ignoreLimitWarning": true,
-  "explorer.autoReveal": false,
+  "explorer.autoReveal": true,
   "dart.flutterSdkPath": ".fvm/versions/3.35.6",
   "search.exclude": {
     "**/.fvm": true

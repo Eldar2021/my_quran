@@ -20,7 +20,7 @@ class QuranVersesWidget extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
           fontFamily: FontFamily.uthmanicV2,
           fontSize: themeCubit.state.textSize,
           color: themeCubit.state.frColor,
@@ -36,7 +36,7 @@ class QuranVersesWidget extends StatelessWidget {
               TextSpan(text: e.text),
               TextSpan(
                 text: ' ${e.ayatNumber.toArabicDigits} ',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontFamily: FontFamily.uthmanicRegular,
                   fontSize: themeCubit.state.textSize,
                   color: themeCubit.state.frColor,

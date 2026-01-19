@@ -14,7 +14,6 @@ dependencies:
   pinput:
   mockingjay:
   flutter_svg:
-  animated_analog_clock:
   syncfusion_flutter_charts:
   flutter_instagram_storyboard:
   cached_network_image:

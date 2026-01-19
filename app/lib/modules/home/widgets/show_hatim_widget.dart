@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 
@@ -68,9 +70,11 @@ class ShowHatimWidget {
                           onTap: () {
                             Navigator.of(context).pop();
                             MqAnalytic.track(AnalyticKey.goHatim);
+                            final user = context.read<AuthCubit>().state.auth;
                             context.goNamedIfAuthenticated(
                               AppRouter.hatim,
                               pathParameters: {'hatimId': item.id},
+                              extra: item.isCreator(user?.user.username ?? ''),
                             );
                           },
                           contentPadding: const EdgeInsets.all(16),

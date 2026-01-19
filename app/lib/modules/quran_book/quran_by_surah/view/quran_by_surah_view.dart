@@ -62,7 +62,7 @@ class __QuranBySurahViewState extends State<_QuranBySurahView> {
               _surahEntity.nameArabic,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontFamily: FontFamily.uthmanicV2,
                 fontSize: 32,
                 color: themeCubit.state.frColor,
