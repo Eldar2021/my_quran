@@ -153,11 +153,10 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                     ),
                   ],
                 ),
-                if (widget.extraWidget != null)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: widget.extraWidget,
-                  ),
+                if (widget.extraWidget != null) ...[
+                  const Spacer(),
+                  widget.extraWidget!,
+                ],
               ],
             ),
           ],
