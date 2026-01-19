@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: "Select Xcode 16.3"
-        run: sudo xcode-select -s /Applications/Xcode_16.3.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
       - name: "Confirm Xcode Version and Check Platform"
         run: |
