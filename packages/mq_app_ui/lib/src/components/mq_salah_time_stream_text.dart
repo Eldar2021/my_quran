@@ -8,6 +8,7 @@ class MqSalahTimeStreamText extends StatelessWidget {
     required this.asrLabel,
     required this.maghribLabel,
     required this.ishaLabel,
+    required this.tahajjudLabel,
     required this.locationLabel,
     required this.nextPrayerTime,
     required this.onLocationPressed,
@@ -19,6 +20,7 @@ class MqSalahTimeStreamText extends StatelessWidget {
   final String asrLabel;
   final String maghribLabel;
   final String ishaLabel;
+  final String tahajjudLabel;
   final String locationLabel;
   final Stream<(int, Duration)> nextPrayerTime;
   final void Function() onLocationPressed;
@@ -98,6 +100,7 @@ class MqSalahTimeStreamText extends StatelessWidget {
       3 => asrLabel,
       4 => maghribLabel,
       5 => ishaLabel,
+      6 => tahajjudLabel,
       _ => '',
     };
   }

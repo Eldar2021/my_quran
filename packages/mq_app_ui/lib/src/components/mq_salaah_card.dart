@@ -146,6 +146,7 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                         asrLabel: widget.asrLabel,
                         maghribLabel: widget.maghribLabel,
                         ishaLabel: widget.ishaLabel,
+                        tahajjudLabel: widget.tahajjudLabel,
                         locationLabel: widget.locationLabel,
                         onLocationPressed: widget.onLocationPressed,
                         nextPrayerTime: _nextPrayerTime,
@@ -176,7 +177,9 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
     } else if (now.isBefore(_prayerTimes.maghrib)) {
       return (4, _prayerTimes.maghrib.difference(now));
     } else if (now.isBefore(_prayerTimes.isha)) {
-      return (4, _prayerTimes.isha.difference(now));
+      return (5, _prayerTimes.isha.difference(now));
+    } else if (now.isBefore(_prayerTimes.tahajjud)) {
+      return (6, _prayerTimes.tahajjud.difference(now));
     }
     return (0, Duration.zero);
   }

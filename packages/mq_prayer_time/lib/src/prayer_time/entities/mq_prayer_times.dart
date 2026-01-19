@@ -20,7 +20,10 @@ final class MqPrayerTime {
   final DateTime isha;
 
   DateTime get tahajjud {
-    final nightDuration = fajr.difference(isha);
+    var nightDuration = fajr.difference(isha);
+    if (nightDuration.isNegative) {
+      nightDuration += const Duration(days: 1);
+    }
     return isha.add(nightDuration * 2 ~/ 3);
   }
 
