@@ -9,8 +9,8 @@ on:
 
 jobs:
   build_ios:
-    runs-on: macos-latest
-    if: github.event_name == 'push' || (github.event.pull_request.draft == false)
+    runs-on: macos-15
+    # if: github.event_name == 'push' || (github.event.pull_request.draft == false)
     steps:
       - uses: actions/checkout@v5
 
