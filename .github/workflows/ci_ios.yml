@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - device: "iPhone 15"
+          - device: "iPhone 15 Pro Max"
       fail-fast: true
 
     steps:

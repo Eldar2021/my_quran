@@ -195,5 +195,6 @@
   "compassSensorError": "Sensor kompas tidak berfungsi dengan baik saat ini. Silakan coba mulai ulang aplikasi. Jika masalah berlanjut, Anda dapat melaporkannya melalui bagian \"{value}\".",
   "locationPermissionRequired": "Kami memerlukan izin lokasi untuk menghitung arah kiblat secara akurat. Silakan periksa izin lokasi aplikasi di pengaturan perangkat Anda.",
   "sunrise": "Matahari Terbit",
-  "tahajjud": "Tahajud"
+  "tahajjud": "Tahajud",
+  "qiblaCompassWarning": "Kompas Kiblat: Medan magnet di sekitar dapat menyebabkan penyimpangan. Jauhkan ponsel Anda dari benda logam untuk pengukuran yang akurat."
 }
