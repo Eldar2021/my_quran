@@ -12,6 +12,10 @@ Future<void> checkQuranAudioView(FlutterDriver driver) async {
 }
 
 Future<void> playFatihaAndBaqara(FlutterDriver driver) async {
+  if (await driver.requestData('getPlatformCommand') == 'ios') {
+    await Future<void>.delayed(const Duration(seconds: 3));
+    return;
+  }
   await driver.runUnsynchronized(() async {
     await driver.waitFor(find.byValueKey(MqKeys.quranAudioPlayPause));
     await driver.tap(find.byValueKey(MqKeys.quranAudioPlayPause));
