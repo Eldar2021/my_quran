@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mq_app_ui/mq_app_ui.dart';
 
 class SalaahItemTimeCard extends StatelessWidget {
   const SalaahItemTimeCard({
@@ -27,14 +26,12 @@ class SalaahItemTimeCard extends StatelessWidget {
       margin: EdgeInsets.zero,
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          context.withWidth(8),
-        ),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.withWidth(5),
-          horizontal: context.withWidth(7),
+        padding: const EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 7,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -46,7 +43,7 @@ class SalaahItemTimeCard extends StatelessWidget {
               style: prTextTheme.bodyMedium?.copyWith(
                 color: (!isActive && isDark) ? colorScheme.onSurface : colorScheme.onPrimary,
                 fontWeight: FontWeight.w700,
-                fontSize: context.withWidth(14),
+                fontSize: 14,
               ),
             ),
             Text(
@@ -54,7 +51,7 @@ class SalaahItemTimeCard extends StatelessWidget {
               style: prTextTheme.bodyMedium?.copyWith(
                 color: (!isActive && isDark) ? colorScheme.onSurface : colorScheme.onPrimary,
                 fontWeight: FontWeight.w700,
-                fontSize: context.withWidth(10),
+                fontSize: 10,
               ),
             ),
           ],

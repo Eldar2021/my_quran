@@ -113,6 +113,8 @@ class _AppComponentsPageState extends State<AppComponentsPage> {
             tahajjudLabel: 'Tahajjud',
             locationLabel: 'Bishkek',
             location: 'Asia/Bishkek',
+            qiblaCompassWarning:
+                'Qibla Compass: Surrounding magnetic fields may cause deviations. Keep your phone away from metal objects for accurate measurement.',
             onLocationPressed: () {},
             lat: 42.8746,
             lon: 74.5698,
