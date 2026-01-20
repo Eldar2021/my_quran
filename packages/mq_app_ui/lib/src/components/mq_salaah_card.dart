@@ -69,10 +69,8 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
 
   void _setPrayersTime() {
     _prayerTimes = _prayerTimesService.getPrayerTimes(
-      latitude: 42.87,
-      longitude: 74.57,
-      // latitude: widget.lat,
-      // longitude: widget.lon,
+      latitude: widget.lat,
+      longitude: widget.lon,
       location: widget.location,
     );
     _nextPrayerTime = Stream.periodic(
@@ -167,6 +165,7 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
                         Tooltip(
                           triggerMode: TooltipTriggerMode.tap,
                           message: widget.qiblaCompassWarning,
+                          showDuration: const Duration(seconds: 6),
                           child: Text(
                             widget.qiblaCompassWarning,
                             maxLines: 2,
