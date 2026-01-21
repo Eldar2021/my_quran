@@ -64,6 +64,7 @@ const _mockatimData = MqHatimModel(
       hatim: 'test hatim',
       accepted: false,
       user: MqUserHatimModel(
+        id: 1,
         userName: 'user',
         email: 'email',
         firstName: 'user',
