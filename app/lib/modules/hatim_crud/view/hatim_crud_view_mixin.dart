@@ -114,7 +114,7 @@ mixin HatimCrudViewMixin on State<HatimCrudViewBody> {
       _participants.value = data.participants!
           .map(
             (e) => MqUserIdModel(
-              id: e.id,
+              id: e.user?.id,
               userName: e.user?.userName,
               email: e.user?.email,
               firstName: e.user?.firstName,

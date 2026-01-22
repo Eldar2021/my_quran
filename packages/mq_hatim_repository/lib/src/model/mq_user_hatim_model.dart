@@ -7,6 +7,7 @@ part 'mq_user_hatim_model.g.dart';
 @immutable
 final class MqUserHatimModel {
   const MqUserHatimModel({
+    required this.id,
     required this.firstName,
     required this.lastName,
     required this.userName,
@@ -16,6 +17,8 @@ final class MqUserHatimModel {
 
   factory MqUserHatimModel.fromJson(Map<String, dynamic> json) => _$MqUserHatimModelFromJson(json);
   Map<String, dynamic> toJson() => _$MqUserHatimModelToJson(this);
+
+  final int id;
 
   @JsonKey(name: 'first_name')
   final String? firstName;
