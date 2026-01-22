@@ -310,3 +310,18 @@
 
 - Improved auth module
 - Get device id and Time Zone for push notification
+
+---
+
+# What's Changed v1.3.23+38
+
+## [UX]
+
+- Implemented update & delete group hatim
+- Added sunrises and tahajjud times
+- Implemented qibla compass
+
+## [Technical]
+
+- Removed unused sealed_countries pkg
+- Fixed IOS CI tests
