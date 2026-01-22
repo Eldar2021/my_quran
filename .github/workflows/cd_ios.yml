@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - "v*"
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
