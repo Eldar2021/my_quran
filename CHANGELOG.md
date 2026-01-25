@@ -16,6 +16,8 @@
 - Integrated `go_router` for navigation
 - Fixed crash screenshot CI on IOS
 
+---
+
 # What's Changed v1.3.1
 
 ## [Bug Fixes]
@@ -34,6 +36,8 @@
 - Implement detect untranslated localizations
 - Change module architecture (data & domain & presentation)
 - Changed api to myquran.life
+
+---
 
 # What's Changed v1.3.2
 
@@ -310,3 +314,18 @@
 
 - Improved auth module
 - Get device id and Time Zone for push notification
+
+---
+
+# What's Changed v1.3.23+38
+
+## [UX]
+
+- Implemented update & delete group hatim
+- Added sunrises and tahajjud times
+- Implemented qibla compass
+
+## [Technical]
+
+- Removed unused sealed_countries pkg
+- Fixed IOS CI tests
