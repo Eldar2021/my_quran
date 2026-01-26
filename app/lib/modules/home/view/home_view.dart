@@ -15,6 +15,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:my_quran/modules/user_activity/user_activity.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -121,7 +122,11 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
               },
             ),
             const SizedBox(height: 10),
-            const HomeBannerWidget(),
+            // const HomeBannerWidget(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: UserActivityMainCard(),
+            ),
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
