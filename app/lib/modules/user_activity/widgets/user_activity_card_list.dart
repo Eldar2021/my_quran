@@ -88,29 +88,28 @@ class AvtivityDayItemCard extends StatelessWidget {
     return Tooltip(
       triggerMode: TooltipTriggerMode.tap,
       message: message,
-      child: Container(
-        width: 12,
-        height: 12,
+      child: DecoratedBox(
         decoration: BoxDecoration(
-          color: _getBoxColor(score),
+          color: _getBoxColor(score, context),
           borderRadius: BorderRadius.circular(2),
+          border: Border.all(color: _getBoxColor(score, context)),
         ),
+        child: const SizedBox(width: 12, height: 12),
       ),
     );
   }
 
-  Color _getBoxColor(int score) {
+  Color _getBoxColor(int score, BuildContext context) {
     return switch (score) {
-      0 => Colors.green.shade50,
+      0 => switch (Theme.of(context).brightness) {
+        Brightness.light => const Color(0xffEFF2F5),
+        Brightness.dark => const Color.fromARGB(255, 34, 40, 47),
+      },
       1 => Colors.green.shade100,
       2 => Colors.green.shade300,
-      3 => Colors.green.shade400,
-      4 => Colors.green.shade500,
-      5 => Colors.green.shade600,
-      6 => Colors.green.shade700,
-      7 => Colors.green.shade800,
-      8 => Colors.green.shade900,
-      _ => Colors.grey,
+      3 => Colors.green.shade600,
+      4 => Colors.green,
+      _ => Colors.green,
     };
   }
 }

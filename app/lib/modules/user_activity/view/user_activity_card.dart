@@ -40,6 +40,7 @@ class _UserActivityCardState extends State<UserActivityCard> {
 
   Map<DateTime, List<UserActivityModel>> groupByMonth(List<UserActivityModel> activities) {
     final grouped = <DateTime, List<UserActivityModel>>{};
+    activities.sort((a, b) => a.date.compareTo(b.date));
     for (final activity in activities) {
       final month = DateTime(activity.date.year, activity.date.month);
       if (!grouped.containsKey(month)) {
