@@ -213,6 +213,8 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     if (authCubit.state.auth != null) {
       unawaited(context.read<ProfileCubit>().getUserData(authCubit.state.auth!.key));
       unawaited(context.read<UserActivityCubit>().loadActivities(authCubit.state.auth!.key));
+    } else {
+      context.read<UserActivityCubit>().setUnauthorized();
     }
 
     await Future.wait([
