@@ -3,8 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class UserActivityCard extends StatelessWidget {
+class UserActivityCard extends StatefulWidget {
   const UserActivityCard({super.key});
+
+  @override
+  State<UserActivityCard> createState() => _UserActivityCardState();
+}
+
+class _UserActivityCardState extends State<UserActivityCard> {
+  late final List<UserActivityModel> defaultActivities;
+
+  @override
+  void initState() {
+    defaultActivities = AuthRepositoryMock.generateMockActivities(DateTime.now(), 365);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

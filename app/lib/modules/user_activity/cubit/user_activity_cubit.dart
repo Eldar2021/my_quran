@@ -15,6 +15,8 @@ class UserActivityCubit extends Cubit<UserActivityState> {
     try {
       final activities = await _authRepository.getUserActivity(userId);
       emit(UserActivityLoaded(activities));
+      await Future<void>.delayed(const Duration(seconds: 1));
+      emit(const UserActivityLoading());
     } on Object catch (e) {
       emit(UserActivityError(e));
     }

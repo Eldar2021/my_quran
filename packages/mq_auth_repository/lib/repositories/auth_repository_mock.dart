@@ -114,9 +114,12 @@ final class AuthRepositoryMock implements AuthRepository {
   @override
   Future<List<UserActivityModel>> getUserActivity(String userId) async {
     await Future<void>.delayed(const Duration(seconds: 1));
+    return generateMockActivities(DateTime.now(), 365);
+  }
+
+  static List<UserActivityModel> generateMockActivities(DateTime startDate, int count) {
     final mocks = <UserActivityModel>[];
-    final startDate = DateTime.now();
-    for (var i = 0; i < 365; i++) {
+    for (var i = 0; i < count; i++) {
       final date = startDate.subtract(Duration(days: i));
       mocks.add(
         UserActivityModel(
