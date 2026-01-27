@@ -123,7 +123,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
             const SizedBox(height: 10),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
-              child: UserActivityMainCard(),
+              child: UserActivityCard(),
             ),
             const SizedBox(height: 10),
             Padding(
