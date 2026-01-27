@@ -196,5 +196,6 @@
   "locationPermissionRequired": "Kıble yönünü doğru hesaplayabilmek için konum iznine ihtiyacımız var. Lütfen cihaz ayarlarınızdan uygulamanın konum izinlerini kontrol edin.",
   "sunrise": "Gündoğumu",
   "tahajjud": "Teheccüd",
-  "qiblaCompassWarning": "Kıble Pusulası: Çevredeki manyetik alanlar sapmalara neden olabilir. Doğru ölçüm için telefonunuzu metal nesnelerden uzak tutunuz."
+  "qiblaCompassWarning": "Kıble Pusulası: Çevredeki manyetik alanlar sapmalara neden olabilir. Doğru ölçüm için telefonunuzu metal nesnelerden uzak tutunuz.",
+  "loginToSeeActivity": "Etkinliğinizi görmek için giriş yapın"
 }

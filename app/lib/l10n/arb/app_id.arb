@@ -196,5 +196,6 @@
   "locationPermissionRequired": "Kami memerlukan izin lokasi untuk menghitung arah kiblat secara akurat. Silakan periksa izin lokasi aplikasi di pengaturan perangkat Anda.",
   "sunrise": "Matahari Terbit",
   "tahajjud": "Tahajud",
-  "qiblaCompassWarning": "Kompas Kiblat: Medan magnet di sekitar dapat menyebabkan penyimpangan. Jauhkan ponsel Anda dari benda logam untuk pengukuran yang akurat."
+  "qiblaCompassWarning": "Kompas Kiblat: Medan magnet di sekitar dapat menyebabkan penyimpangan. Jauhkan ponsel Anda dari benda logam untuk pengukuran yang akurat.",
+  "loginToSeeActivity": "Masuk untuk melihat aktivitas Anda"
 }

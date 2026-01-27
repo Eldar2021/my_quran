@@ -196,5 +196,6 @@
   "locationPermissionRequired": "We require location permission to accurately calculate the qibla direction. Please check the app's location permissions in your device settings.",
   "sunrise": "Sunrise",
   "tahajjud": "Tahajjud",
-  "qiblaCompassWarning": "Qibla Compass: Surrounding magnetic fields may cause deviations. Keep your phone away from metal objects for accurate measurement."
+  "qiblaCompassWarning": "Qibla Compass: Surrounding magnetic fields may cause deviations. Keep your phone away from metal objects for accurate measurement.",
+  "loginToSeeActivity": "Log in to see your activity"
 }
