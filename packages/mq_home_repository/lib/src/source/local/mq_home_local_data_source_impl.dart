@@ -10,7 +10,6 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
   final PreferencesStorage storage;
 
   static const _homeDataCacheKey = 'home-model';
-  static const _homeBannersCacheKey = 'home-banners';
 
   @override
   MqHomeModel getLocalData() {
@@ -35,31 +34,6 @@ final class MqHomeLocalDataSourceImpl implements MqHomeLocalDataSource {
     await storage.writeString(
       key: _homeDataCacheKey,
       value: jsonEncode(data.toJson()),
-    );
-  }
-
-  @override
-  List<MqHomeBannerResponse> getHomeBanners() {
-    final localValue = storage.readString(key: _homeBannersCacheKey);
-    if (localValue != null) {
-      final data = jsonDecode(localValue) as List<dynamic>;
-      return data
-          .map(
-            (e) => MqHomeBannerResponse.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList();
-    } else {
-      return [];
-    }
-  }
-
-  @override
-  Future<void> setHomeBanners(List<MqHomeBannerResponse> banners) async {
-    await storage.writeString(
-      key: _homeBannersCacheKey,
-      value: jsonEncode(banners.map((e) => e.toJson()).toList()),
     );
   }
 }

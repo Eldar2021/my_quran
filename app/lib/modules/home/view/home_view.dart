@@ -15,7 +15,6 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
-import 'package:my_quran/modules/user_activity/user_activity.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -122,7 +121,6 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
               },
             ),
             const SizedBox(height: 10),
-            // const HomeBannerWidget(),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: UserActivityMainCard(),
@@ -210,17 +208,16 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     final homeCubit = context.read<HomeCubit>();
     final storyCubit = context.read<MqStoryCubit>();
     final authCubit = context.read<AuthCubit>();
-    final bannerCubit = context.read<HomeBannersCubit>();
     final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
 
     if (authCubit.state.auth != null) {
       unawaited(context.read<ProfileCubit>().getUserData(authCubit.state.auth!.key));
+      unawaited(context.read<UserActivityCubit>().loadActivities(authCubit.state.auth!.key));
     }
 
     await Future.wait([
       homeCubit.getData(),
       storyCubit.getStories(authCubit.state.currentLocale.languageCode),
-      bannerCubit.getBanners(),
     ]);
 
     final invites = homeCubit.state.homeModel?.invitedHatims;

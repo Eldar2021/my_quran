@@ -12,3 +12,4 @@ export 'donation/donation.dart';
 export 'profile/profile.dart';
 export 'hatim_crud/hatim_crud.dart';
 export 'notification/notification.dart';
+export 'user_activity/user_activity.dart';
