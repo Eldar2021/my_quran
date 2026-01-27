@@ -15,7 +15,11 @@ class _UserActivityCardState extends State<UserActivityCard> {
 
   @override
   void initState() {
-    defaultActivities = AuthRepositoryMock.generateMockActivities(DateTime.now(), 365);
+    defaultActivities = AuthRepositoryMock.generateMockActivities(
+      DateTime.now(),
+      180,
+      (i) => false,
+    );
     super.initState();
   }
 
@@ -24,8 +28,8 @@ class _UserActivityCardState extends State<UserActivityCard> {
     return BlocBuilder<UserActivityCubit, UserActivityState>(
       builder: (context, state) {
         return switch (state) {
-          UserActivityInitial() => const UserActivityLoadingWidget(),
-          UserActivityLoading() => const UserActivityLoadingWidget(),
+          UserActivityInitial() => UserActivityLoadingWidget(groupByMonth(defaultActivities)),
+          UserActivityLoading() => UserActivityLoadingWidget(groupByMonth(defaultActivities)),
           UserActivityLoaded() => UserActivityLoadedWidget(groupByMonth(state.activities)),
           UserActivityUnauthorized() => const UserActivityUnauthorizedWidget(),
           UserActivityError() => const UserActivityErrorWidget(),

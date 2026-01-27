@@ -114,24 +114,29 @@ final class AuthRepositoryMock implements AuthRepository {
   @override
   Future<List<UserActivityModel>> getUserActivity(String userId) async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    return generateMockActivities(DateTime.now(), 365);
+    return generateMockActivities(DateTime.now(), 365, (i) => i.isEven);
   }
 
-  static List<UserActivityModel> generateMockActivities(DateTime startDate, int count) {
+  static List<UserActivityModel> generateMockActivities(
+    DateTime startDate,
+    int count,
+    bool Function(int)? predicate,
+  ) {
     final mocks = <UserActivityModel>[];
     for (var i = 0; i < count; i++) {
       final date = startDate.subtract(Duration(days: i));
+      final isTrue = predicate?.call(i) ?? i.isEven;
       mocks.add(
         UserActivityModel(
           date: date,
-          openedApp: i.isEven,
-          quranReadedPagesCount: i.isEven ? 12 : 0,
-          listenedQuranSeconds: i.isEven ? 600.0 : 0.0,
-          fajrDone: i.isEven,
-          zuhrDone: i.isEven,
-          asrDone: i.isEven,
-          maghribDone: i.isEven,
-          ishaDone: i.isEven,
+          openedApp: isTrue,
+          quranReadedPagesCount: isTrue ? 12 : 0,
+          listenedQuranSeconds: isTrue ? 600.0 : 0.0,
+          fajrDone: isTrue,
+          zuhrDone: isTrue,
+          asrDone: isTrue,
+          maghribDone: isTrue,
+          ishaDone: isTrue,
         ),
       );
     }
