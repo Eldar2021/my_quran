@@ -110,6 +110,30 @@ final class AuthRepositoryMock implements AuthRepository {
       () => const NotificationCount(0),
     );
   }
+
+  @override
+  Future<List<UserActivityModel>> getUserActivity(String userId) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    final mocks = <UserActivityModel>[];
+    final startDate = DateTime.now();
+    for (var i = 0; i < 365; i++) {
+      final date = startDate.subtract(Duration(days: i));
+      mocks.add(
+        UserActivityModel(
+          date: date,
+          openedApp: i.isEven,
+          quranReadedPagesCount: i.isEven ? 12 : 0,
+          listenedQuranSeconds: i.isEven ? 600.0 : 0.0,
+          fajrDone: i.isEven,
+          zuhrDone: i.isEven,
+          asrDone: i.isEven,
+          maghribDone: i.isEven,
+          ishaDone: i.isEven,
+        ),
+      );
+    }
+    return mocks;
+  }
 }
 
 const _authJsonData = <String, dynamic>{

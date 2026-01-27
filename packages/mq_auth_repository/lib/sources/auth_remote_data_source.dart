@@ -181,6 +181,18 @@ final class AuthRemoteDataSource {
     }
   }
 
+  Future<List<UserActivityModel>> getUserActivity(String userId) {
+    try {
+      return client.getListOfType(
+        'https://eldar2021.github.io/my-quran/activity/mock_activity.json',
+        fromJson: UserActivityModel.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getUserActivity:', error: e);
+      rethrow;
+    }
+  }
+
   Future<void> deleteAccount() async {
     try {
       await client.deleteResponse<void>(
