@@ -197,5 +197,6 @@
   "sunrise": "Gündoğumu",
   "tahajjud": "Teheccüd",
   "qiblaCompassWarning": "Kıble Pusulası: Çevredeki manyetik alanlar sapmalara neden olabilir. Doğru ölçüm için telefonunuzu metal nesnelerden uzak tutunuz.",
-  "loginToSeeActivity": "Etkinliğinizi görmek için giriş yapın"
+  "loginToSeeActivity": "Etkinliğinizi görmek için giriş yapın",
+  "errorMessage": "Bir hata oluştu. Bu konu üzerinde çalışıyoruz. Lütfen daha sonra tekrar deneyin."
 }

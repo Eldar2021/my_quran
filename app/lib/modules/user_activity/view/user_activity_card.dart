@@ -32,7 +32,7 @@ class _UserActivityCardState extends State<UserActivityCard> {
           UserActivityLoading() => UserActivityLoadingWidget(groupByMonth(defaultActivities)),
           UserActivityLoaded() => UserActivityLoadedWidget(groupByMonth(state.activities)),
           UserActivityUnauthorized() => UserActivityUnauthorizedWidget(groupByMonth(defaultActivities)),
-          UserActivityError() => const UserActivityErrorWidget(),
+          UserActivityError() => UserActivityErrorWidget(groupByMonth(defaultActivities)),
         };
       },
     );

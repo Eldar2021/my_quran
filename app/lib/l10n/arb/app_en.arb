@@ -197,5 +197,6 @@
   "sunrise": "Sunrise",
   "tahajjud": "Tahajjud",
   "qiblaCompassWarning": "Qibla Compass: Surrounding magnetic fields may cause deviations. Keep your phone away from metal objects for accurate measurement.",
-  "loginToSeeActivity": "Log in to see your activity"
+  "loginToSeeActivity": "Log in to see your activity",
+  "errorMessage": "An error occurred. We are working on it. Please try again later."
 }

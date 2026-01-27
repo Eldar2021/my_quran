@@ -197,5 +197,6 @@
   "sunrise": "Matahari Terbit",
   "tahajjud": "Tahajud",
   "qiblaCompassWarning": "Kompas Kiblat: Medan magnet di sekitar dapat menyebabkan penyimpangan. Jauhkan ponsel Anda dari benda logam untuk pengukuran yang akurat.",
-  "loginToSeeActivity": "Masuk untuk melihat aktivitas Anda"
+  "loginToSeeActivity": "Masuk untuk melihat aktivitas Anda",
+  "errorMessage": "Terjadi kesalahan. Kami sedang menanganinya. Silakan coba lagi nanti."
 }
