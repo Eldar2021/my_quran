@@ -55,11 +55,7 @@ class AvtivityMonthItemCard extends StatelessWidget {
             spacing: 3,
             runSpacing: 3,
             children: activities.map((activity) {
-              final score = activity.score;
-              return AvtivityDayItemCard(
-                score: score,
-                message: DateFormat.yMMMd(languageCode).format(activity.date),
-              );
+              return AvtivityDayItemCard(activity.score);
             }).toList(),
           ),
         ),
@@ -74,28 +70,19 @@ class AvtivityMonthItemCard extends StatelessWidget {
 }
 
 class AvtivityDayItemCard extends StatelessWidget {
-  const AvtivityDayItemCard({
-    required this.score,
-    required this.message,
-    super.key,
-  });
+  const AvtivityDayItemCard(this.score, {super.key});
 
   final int score;
-  final String message;
 
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      triggerMode: TooltipTriggerMode.tap,
-      message: message,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: _getBoxColor(score, context),
-          borderRadius: BorderRadius.circular(2),
-          border: Border.all(color: _getBoxColor(score, context)),
-        ),
-        child: const SizedBox(width: 12, height: 12),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: _getBoxColor(score, context),
+        borderRadius: BorderRadius.circular(2),
+        border: Border.all(color: _getBoxColor(score, context)),
       ),
+      child: const SizedBox(width: 12, height: 12),
     );
   }
 

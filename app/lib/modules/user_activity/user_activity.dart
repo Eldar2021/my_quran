@@ -1,5 +1,6 @@
 export 'cubit/user_activity_cubit.dart';
 export 'view/user_activity_card.dart';
+export 'view/user_activity_view.dart';
 export 'widgets/user_activity_error_widget.dart';
 export 'widgets/user_activity_loading_widget.dart';
 export 'widgets/user_activity_unauthorized_widget.dart';

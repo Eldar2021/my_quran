@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class UserActivityLoadedWidget extends StatelessWidget {
@@ -16,7 +18,13 @@ class UserActivityLoadedWidget extends StatelessWidget {
         margin: EdgeInsets.zero,
         child: Padding(
           padding: const EdgeInsets.all(8),
-          child: UserActivityCardList(groupedData),
+          child: InkWell(
+            onTap: () => context.pushNamed(
+              AppRouter.userActivity,
+              extra: groupedData,
+            ),
+            child: UserActivityCardList(groupedData),
+          ),
         ),
       ),
     );

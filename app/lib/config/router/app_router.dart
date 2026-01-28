@@ -44,6 +44,7 @@ final class AppRouter {
   static const hatimCrud = 'hatim-crud';
   static const more = 'more';
   static const profile = 'profile';
+  static const userActivity = 'user-activity';
 
   GoRouter router() {
     return GoRouter(
@@ -166,6 +167,14 @@ final class AppRouter {
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => NotificationView(
           state.extra as NotificationModel?,
+        ),
+      ),
+      GoRoute(
+        name: userActivity,
+        path: userActivity,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => UserActivityView(
+          state.extra! as Map<DateTime, List<UserActivityModel>>,
         ),
       ),
     ];
