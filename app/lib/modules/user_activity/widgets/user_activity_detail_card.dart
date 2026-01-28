@@ -61,26 +61,26 @@ class UserActivityDetailCard extends StatelessWidget {
                       value: e.listenedQuranSeconds > 0,
                       title: context.l10n.quranListened,
                     ),
-                    UserActivityCheckItem(
-                      value: e.fajrDone,
-                      title: context.l10n.fajr,
-                    ),
-                    UserActivityCheckItem(
-                      value: e.zuhrDone,
-                      title: context.l10n.zuhr,
-                    ),
-                    UserActivityCheckItem(
-                      value: e.asrDone,
-                      title: context.l10n.asr,
-                    ),
-                    UserActivityCheckItem(
-                      value: e.maghribDone,
-                      title: context.l10n.maghrib,
-                    ),
-                    UserActivityCheckItem(
-                      value: e.ishaDone,
-                      title: context.l10n.isya,
-                    ),
+                    // UserActivityCheckItem(
+                    //   value: e.fajrDone,
+                    //   title: context.l10n.fajr,
+                    // ),
+                    // UserActivityCheckItem(
+                    //   value: e.zuhrDone,
+                    //   title: context.l10n.zuhr,
+                    // ),
+                    // UserActivityCheckItem(
+                    //   value: e.asrDone,
+                    //   title: context.l10n.asr,
+                    // ),
+                    // UserActivityCheckItem(
+                    //   value: e.maghribDone,
+                    //   title: context.l10n.maghrib,
+                    // ),
+                    // UserActivityCheckItem(
+                    //   value: e.ishaDone,
+                    //   title: context.l10n.isya,
+                    // ),
                     const SizedBox(height: 8),
                   ],
                 ),
