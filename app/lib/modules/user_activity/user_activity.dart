@@ -7,3 +7,4 @@ export 'widgets/user_activity_unauthorized_widget.dart';
 export 'widgets/user_activity_card_list.dart';
 export 'widgets/user_activity_loaded_widget.dart';
 export 'widgets/user_activity_check_item.dart';
+export 'widgets/user_activity_detail_card.dart';
