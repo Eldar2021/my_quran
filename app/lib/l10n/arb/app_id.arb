@@ -196,5 +196,16 @@
   "locationPermissionRequired": "Kami memerlukan izin lokasi untuk menghitung arah kiblat secara akurat. Silakan periksa izin lokasi aplikasi di pengaturan perangkat Anda.",
   "sunrise": "Matahari Terbit",
   "tahajjud": "Tahajud",
-  "qiblaCompassWarning": "Kompas Kiblat: Medan magnet di sekitar dapat menyebabkan penyimpangan. Jauhkan ponsel Anda dari benda logam untuk pengukuran yang akurat."
+  "qiblaCompassWarning": "Kompas Kiblat: Medan magnet di sekitar dapat menyebabkan penyimpangan. Jauhkan ponsel Anda dari benda logam untuk pengukuran yang akurat.",
+  "loginToSeeActivity": "Masuk untuk melihat aktivitas Anda",
+  "errorMessage": "Terjadi kesalahan. Kami sedang menanganinya. Silakan coba lagi nanti.",
+  "userActivity": "Aktivitas Pengguna",
+  "appOpened": "Aplikasi dibuka",
+  "quranRead": "Membaca Al-Qur'an ({value} halaman)",
+  "quranListened": "Mendengarkan Al-Qur'an",
+  "activityDescription": "Di sini Anda dapat melihat seberapa aktif Anda menggunakan aplikasi",
+  "noActivityDay": "Anda tidak menggunakan aplikasi pada hari ini",
+  "openedOnceDay": "Anda membuka aplikasi sekali pada hari ini",
+  "readQuranActivity": "Anda membaca Al-Qur'an di aplikasi",
+  "listenQuranActivity": "Anda mendengarkan Al-Qur'an di aplikasi"
 }

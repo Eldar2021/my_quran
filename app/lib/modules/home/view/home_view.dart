@@ -121,7 +121,10 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
               },
             ),
             const SizedBox(height: 10),
-            const HomeBannerWidget(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: UserActivityCard(),
+            ),
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -205,17 +208,18 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
     final homeCubit = context.read<HomeCubit>();
     final storyCubit = context.read<MqStoryCubit>();
     final authCubit = context.read<AuthCubit>();
-    final bannerCubit = context.read<HomeBannersCubit>();
     final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
 
     if (authCubit.state.auth != null) {
       unawaited(context.read<ProfileCubit>().getUserData(authCubit.state.auth!.key));
+      unawaited(context.read<UserActivityCubit>().loadActivities(authCubit.state.auth!.key));
+    } else {
+      context.read<UserActivityCubit>().setUnauthorized();
     }
 
     await Future.wait([
       homeCubit.getData(),
       storyCubit.getStories(authCubit.state.currentLocale.languageCode),
-      bannerCubit.getBanners(),
     ]);
 
     final invites = homeCubit.state.homeModel?.invitedHatims;

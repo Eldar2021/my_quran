@@ -196,5 +196,16 @@
   "locationPermissionRequired": "Kıble yönünü doğru hesaplayabilmek için konum iznine ihtiyacımız var. Lütfen cihaz ayarlarınızdan uygulamanın konum izinlerini kontrol edin.",
   "sunrise": "Gündoğumu",
   "tahajjud": "Teheccüd",
-  "qiblaCompassWarning": "Kıble Pusulası: Çevredeki manyetik alanlar sapmalara neden olabilir. Doğru ölçüm için telefonunuzu metal nesnelerden uzak tutunuz."
+  "qiblaCompassWarning": "Kıble Pusulası: Çevredeki manyetik alanlar sapmalara neden olabilir. Doğru ölçüm için telefonunuzu metal nesnelerden uzak tutunuz.",
+  "loginToSeeActivity": "Etkinliğinizi görmek için giriş yapın",
+  "errorMessage": "Bir hata oluştu. Bu konu üzerinde çalışıyoruz. Lütfen daha sonra tekrar deneyin.",
+  "userActivity": "Kullanıcı Etkinliği",
+  "appOpened": "Uygulama açıldı",
+  "quranRead": "Kur'an okundu ({value} sayfa)",
+  "quranListened": "Kur'an dinlendi",
+  "activityDescription": "Burada uygulamayı ne kadar aktif kullandığınızı görebilirsiniz",
+  "noActivityDay": "Bu gün uygulamayı kullanmadınız",
+  "openedOnceDay": "Bu gün uygulamayı bir kez açtınız",
+  "readQuranActivity": "Uygulamada Kur'an okudunuz",
+  "listenQuranActivity": "Uygulamada Kur'an dinlediniz"
 }

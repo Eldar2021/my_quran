@@ -36,6 +36,7 @@ dependencies:
   adhan_dart:
   geolocator:
   flutter_compass:
+  shimmer_animation:
 
   mq_ci_keys:
   mq_remote_client:

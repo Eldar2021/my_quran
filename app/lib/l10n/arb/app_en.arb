@@ -196,5 +196,16 @@
   "locationPermissionRequired": "We require location permission to accurately calculate the qibla direction. Please check the app's location permissions in your device settings.",
   "sunrise": "Sunrise",
   "tahajjud": "Tahajjud",
-  "qiblaCompassWarning": "Qibla Compass: Surrounding magnetic fields may cause deviations. Keep your phone away from metal objects for accurate measurement."
+  "qiblaCompassWarning": "Qibla Compass: Surrounding magnetic fields may cause deviations. Keep your phone away from metal objects for accurate measurement.",
+  "loginToSeeActivity": "Log in to see your activity",
+  "errorMessage": "An error occurred. We are working on it. Please try again later.",
+  "userActivity": "User Activity",
+  "appOpened": "App opened",
+  "quranRead": "Qur’an read ({value} pages)",
+  "quranListened": "Qur’an listened",
+  "activityDescription": "Here you can see how actively you used the app",
+  "noActivityDay": "You did not use the app on this day",
+  "openedOnceDay": "You opened the app once on this day",
+  "readQuranActivity": "You read the Qur’an in the app",
+  "listenQuranActivity": "You listened to the Qur’an in the app"
 }

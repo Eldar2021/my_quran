@@ -47,6 +47,10 @@ abstract class AuthRepository {
     UpdateUserDataParam param,
   );
 
+  Future<List<UserActivityModel>> getUserActivity(
+    String userId,
+  );
+
   Future<void> deleteAccount();
 
   Future<void> logout();

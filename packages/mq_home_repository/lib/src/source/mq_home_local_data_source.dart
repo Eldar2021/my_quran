@@ -6,10 +6,4 @@ abstract class MqHomeLocalDataSource {
   Future<void> saveLocalData(
     MqHomeModel data,
   );
-
-  List<MqHomeBannerResponse> getHomeBanners();
-
-  Future<void> setHomeBanners(
-    List<MqHomeBannerResponse> banners,
-  );
 }

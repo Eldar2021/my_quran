@@ -117,6 +117,13 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<List<UserActivityModel>> getUserActivity(
+    String userId,
+  ) {
+    return remoteDataSource.getUserActivity(userId);
+  }
+
+  @override
   Future<void> deleteAccount() async {
     try {
       await localDataSource.clearUserData();

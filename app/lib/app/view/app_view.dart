@@ -106,6 +106,9 @@ class MyApp extends StatelessWidget {
           create: (context) => ProfileCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
+          create: (context) => UserActivityCubit(context.read<AuthRepository>()),
+        ),
+        BlocProvider(
           create: (context) => NotificationCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
@@ -113,9 +116,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => MqStoryCubit(context.read<MqHomeRepository>()),
-        ),
-        BlocProvider(
-          create: (context) => HomeBannersCubit(context.read<MqHomeRepository>()),
         ),
         BlocProvider(
           create: (context) => QuranAudioCubit(
