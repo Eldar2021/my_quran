@@ -1,13 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart' as auth;
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/config/config.dart';
+import 'package:my_quran/l10n/l10.dart';
+
+class UserActivityWrapWithDescriptionList extends StatelessWidget {
+  const UserActivityWrapWithDescriptionList(this.groupedData, {super.key});
+
+  final Map<DateTime, List<auth.UserActivityModel>> groupedData;
+
+  @override
+  Widget build(BuildContext context) {
+    final locale = context.read<AuthCubit>().state.currentLocale;
+    return Row(
+      children: [
+        ...groupedData.keys.map((data) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: AvtivityMonthItemCard(
+              data: data,
+              activities: groupedData[data]!,
+              languageCode: locale.languageCode,
+            ),
+          );
+        }),
+        Expanded(
+          child: TextButton.icon(
+            onPressed: () => context.pushNamed(
+              AppRouter.userActivity,
+              extra: groupedData,
+            ),
+            label: Text(context.l10n.activityDescription),
+            iconAlignment: IconAlignment.end,
+            icon: CircleAvatar(
+              radius: 16,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              child: const Icon(Icons.arrow_forward_ios),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class UserActivityCardList extends StatelessWidget {
   const UserActivityCardList(this.groupedData, {super.key});
 
-  final Map<DateTime, List<UserActivityModel>> groupedData;
+  final Map<DateTime, List<auth.UserActivityModel>> groupedData;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +80,7 @@ class AvtivityMonthItemCard extends StatelessWidget {
     super.key,
   });
 
-  final List<UserActivityModel> activities;
+  final List<auth.UserActivityModel> activities;
   final DateTime data;
   final String languageCode;
 

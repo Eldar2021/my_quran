@@ -8,11 +8,11 @@ class UserActivityLoadedWidget extends StatelessWidget {
   const UserActivityLoadedWidget(
     this.groupedData, {
     super.key,
-    this.isShowDescription = false,
+    this.canUseWrapList = false,
   });
 
   final Map<DateTime, List<UserActivityModel>> groupedData;
-  final bool isShowDescription;
+  final bool canUseWrapList;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +28,16 @@ class UserActivityLoadedWidget extends StatelessWidget {
               AppRouter.userActivity,
               extra: groupedData,
             ),
-            child: UserActivityCardList(groupedData),
+            child: showDescription
+                ? UserActivityWrapWithDescriptionList(groupedData)
+                : UserActivityCardList(groupedData),
           ),
         ),
       ),
     );
+  }
+
+  bool get showDescription {
+    return canUseWrapList && groupedData.length < 3;
   }
 }

@@ -16,9 +16,9 @@ class _UserActivityCardState extends State<UserActivityCard> {
   @override
   void initState() {
     defaultActivities = AuthRepositoryMock.generateMockActivities(
-      DateTime(2026),
-      59,
-      (i) => true,
+      DateTime.now(),
+      180,
+      (i) => false,
     );
     super.initState();
   }
@@ -30,13 +30,9 @@ class _UserActivityCardState extends State<UserActivityCard> {
         return switch (state) {
           UserActivityInitial() => UserActivityLoadingWidget(groupByMonth(defaultActivities)),
           UserActivityLoading() => UserActivityLoadingWidget(groupByMonth(defaultActivities)),
-          // UserActivityLoaded() => UserActivityLoadedWidget(
-          //   groupByMonth(state.activities),
-          //   isShowDescription: true,
-          // ),
           UserActivityLoaded() => UserActivityLoadedWidget(
-            groupByMonth(defaultActivities),
-            isShowDescription: true,
+            groupByMonth(state.activities),
+            canUseWrapList: true,
           ),
           UserActivityUnauthorized() => UserActivityUnauthorizedWidget(groupByMonth(defaultActivities)),
           UserActivityError() => UserActivityErrorWidget(groupByMonth(defaultActivities)),
