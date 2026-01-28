@@ -198,5 +198,9 @@
   "tahajjud": "Teheccüd",
   "qiblaCompassWarning": "Kıble Pusulası: Çevredeki manyetik alanlar sapmalara neden olabilir. Doğru ölçüm için telefonunuzu metal nesnelerden uzak tutunuz.",
   "loginToSeeActivity": "Etkinliğinizi görmek için giriş yapın",
-  "errorMessage": "Bir hata oluştu. Bu konu üzerinde çalışıyoruz. Lütfen daha sonra tekrar deneyin."
+  "errorMessage": "Bir hata oluştu. Bu konu üzerinde çalışıyoruz. Lütfen daha sonra tekrar deneyin.",
+  "userActivity": "Kullanıcı Etkinliği",
+  "appOpened": "Uygulama açıldı",
+  "quranRead": "Kur'an okundu ({value} sayfa)",
+  "quranListened": "Kur'an dinlendi"
 }
