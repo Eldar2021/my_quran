@@ -202,5 +202,10 @@
   "userActivity": "Kullanıcı Etkinliği",
   "appOpened": "Uygulama açıldı",
   "quranRead": "Kur'an okundu ({value} sayfa)",
-  "quranListened": "Kur'an dinlendi"
+  "quranListened": "Kur'an dinlendi",
+  "activityDescription": "Burada uygulamayı ne kadar aktif kullandığınızı görebilirsiniz",
+  "noActivityDay": "Bu gün uygulamayı kullanmadınız",
+  "openedOnceDay": "Bu gün uygulamayı bir kez açtınız",
+  "readQuranActivity": "Uygulamada Kur'an okudunuz",
+  "listenQuranActivity": "Uygulamada Kur'an dinlediniz"
 }

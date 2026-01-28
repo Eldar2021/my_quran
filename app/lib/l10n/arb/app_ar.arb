@@ -202,5 +202,10 @@
   "userActivity": "نشاط المستخدم",
   "appOpened": "تم فتح التطبيق",
   "quranRead": "قراءة القرآن ({value} صفحات)",
-  "quranListened": "الاستماع إلى القرآن"
+  "quranListened": "الاستماع إلى القرآن",
+  "activityDescription": "هنا يمكنك معرفة مدى نشاطك في استخدام التطبيق",
+  "noActivityDay": "لم تستخدم التطبيق في هذا اليوم",
+  "openedOnceDay": "فتحت التطبيق مرة واحدة في هذا اليوم",
+  "readQuranActivity": "قرأت القرآن في التطبيق",
+  "listenQuranActivity": "استمعت إلى القرآن في التطبيق"
 }

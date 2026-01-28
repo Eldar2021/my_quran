@@ -35,7 +35,9 @@ class _UserActivityViewState extends State<UserActivityView> {
         children: [
           const SizedBox(height: 16),
           UserActivityLoadedWidget(widget.data),
-          const SizedBox(height: 24),
+          const SizedBox(height: 8),
+          const UserActivityInfoDetailCard(),
+          const SizedBox(height: 16),
           UserActivityDetailCard(_filteredActivities),
         ],
       ),
