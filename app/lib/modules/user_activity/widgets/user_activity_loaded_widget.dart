@@ -5,9 +5,14 @@ import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class UserActivityLoadedWidget extends StatelessWidget {
-  const UserActivityLoadedWidget(this.groupedData, {super.key});
+  const UserActivityLoadedWidget(
+    this.groupedData, {
+    super.key,
+    this.isShowDescription = false,
+  });
 
   final Map<DateTime, List<UserActivityModel>> groupedData;
+  final bool isShowDescription;
 
   @override
   Widget build(BuildContext context) {

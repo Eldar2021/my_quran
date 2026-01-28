@@ -124,7 +124,7 @@ final class AuthRepositoryMock implements AuthRepository {
   ) {
     final mocks = <UserActivityModel>[];
     for (var i = 0; i < count; i++) {
-      final date = startDate.subtract(Duration(days: i));
+      final date = startDate.add(Duration(days: i));
       final isTrue = predicate?.call(i) ?? i.isEven;
       mocks.add(
         UserActivityModel(
