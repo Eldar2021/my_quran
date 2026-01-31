@@ -109,3 +109,21 @@ melos run-build-runner-all
 ```sh
 ./scripts/pod_install.sh
 ```
+
+
+/// ---------------------------
+1. Uygulama ilk kurulduguda Kuran'i sayfalara bolerek indirmeye baslariz.
+  - V2 Glyph codes of ayah olarak text'i indirilmeli
+  - ttf olarak normal quran font'u indirilmeli
+  - woff2 olarak tajweed quran font'u indirilmeli
+2. Read by Surab/Page/Juz hangisi olursa olsun onlarin kapdadigi sayfalari gosteririz.
+   - Eger gerekli veriler indilmis ise normal acilacak
+   - Eger gerekli veriler indilmemis ise once indirilmesi isteyen dialog acilacak
+     - Indirilme devam ediyorsa indirme hakkinda bilgi verilecek
+     - Indirilme baslamamis ise indirme baslatilacak button gosterilecek
+3. Fatiha ve Bakara 1-5 ayetleri icin ayri sayfa yapilacak
+4. Quran read view page view olarak sayfalara bolunerek gosterilecek (PageView.builder)
+
+Fonts: https://github.com/quran/quran.com-frontend-next/tree/production/public/fonts/quran
+
+Texts: https://apis-prelive.quran.foundation/content/api/v4/quran/verses/code_v2?chapter_number=1;

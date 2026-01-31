@@ -15,6 +15,7 @@ import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:my_quran/modules/quran_ex/quran_ex.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -170,17 +171,18 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
             final hatims = state.homeModel?.hatims;
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
-              onPressed: () {
-                final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
-                if ((hatims?.length ?? 0) > 1 && !isIntegrationTest) {
-                  ShowHatimWidget.showHatimSheet<void>(
-                    context: context,
-                    hatim: hatims!,
-                  );
-                } else {
-                  _onJoinToHatim(hatims ?? []);
-                }
-              },
+              onPressed: () => QuranExView.show(context),
+              // onPressed: () {
+              //   final isIntegrationTest = context.read<AppConfig>().isIntegrationTest;
+              //   if ((hatims?.length ?? 0) > 1 && !isIntegrationTest) {
+              //     ShowHatimWidget.showHatimSheet<void>(
+              //       context: context,
+              //       hatim: hatims!,
+              //     );
+              //   } else {
+              //     _onJoinToHatim(hatims ?? []);
+              //   }
+              // },
               child: Text(context.l10n.joinToHatim),
             );
           },

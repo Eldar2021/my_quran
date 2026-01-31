@@ -41,6 +41,15 @@ flutter:
     - family: uthmanic_regular
       fonts:
         - asset: assets/fonts/uthmanic_regular/UthmanicRegular.ttf
+    - family: page_1
+      fonts:
+        - asset: assets/fonts/page/p1.ttf
+    - family: page_1_v2
+      fonts:
+        - asset: assets/fonts/page/p1_v2.ttf
+    - family: page_1_woff2
+      fonts:
+        - asset: assets/fonts/page/p1.woff2
 
 flutter_gen:
   assets:
