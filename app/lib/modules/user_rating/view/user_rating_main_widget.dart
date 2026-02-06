@@ -29,9 +29,6 @@ class _UserRatingMainWidgetState extends State<UserRatingMainWidget> {
       elevation: 0,
       margin: EdgeInsets.zero,
       color: Theme.of(context).colorScheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -45,8 +42,8 @@ class _UserRatingMainWidgetState extends State<UserRatingMainWidget> {
               padding: const EdgeInsets.all(8),
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
                   bottomLeft: Radius.circular(6),
                   bottomRight: Radius.circular(6),
                 ),

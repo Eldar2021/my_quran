@@ -193,6 +193,18 @@ final class AuthRemoteDataSource {
     }
   }
 
+  Future<UserRatingMainModel> getUserRatingMain(String userId) {
+    try {
+      return client.getType(
+        '/api/v1/accounts/rating_main/',
+        fromJson: UserRatingMainModel.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getUserRatingMain:', error: e);
+      rethrow;
+    }
+  }
+
   Future<void> deleteAccount() async {
     try {
       await client.deleteResponse<void>(

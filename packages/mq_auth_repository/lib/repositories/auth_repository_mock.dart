@@ -142,7 +142,29 @@ final class AuthRepositoryMock implements AuthRepository {
     }
     return mocks;
   }
+
+  @override
+  Future<UserRatingMainModel> getUserRatingMain(String userId) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () => UserRatingMainModel.fromJson(_userRatingMainJsonData),
+    );
+  }
 }
+
+const _userRatingMainJsonData = <String, Object>{
+  'world_rank': 492,
+  'country_rank': 3,
+  'weekly_data': [
+    {'date': '2026-02-01T21:44:00.000Z', 'readed_pages_count': 3, 'listened_quran_by_hours': 1},
+    {'date': '2026-02-02T21:44:00.000Z', 'readed_pages_count': 1, 'listened_quran_by_hours': 3},
+    {'date': '2026-02-03T21:44:00.000Z', 'readed_pages_count': 2, 'listened_quran_by_hours': 2},
+    {'date': '2026-02-04T21:44:00.000Z', 'readed_pages_count': 5, 'listened_quran_by_hours': 6},
+    {'date': '2026-02-05T21:44:00.000Z', 'readed_pages_count': 1, 'listened_quran_by_hours': 4},
+    {'date': '2026-02-06T21:44:00.000Z', 'readed_pages_count': 2, 'listened_quran_by_hours': 1},
+    {'date': '2026-02-07T21:44:00.000Z', 'readed_pages_count': 1, 'listened_quran_by_hours': 5},
+  ],
+};
 
 const _authJsonData = <String, dynamic>{
   'key': 'user_key',
