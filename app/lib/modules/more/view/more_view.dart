@@ -50,10 +50,7 @@ class MoreView extends StatelessWidget {
             builder: (context, state) {
               final auth = state.auth;
               if (auth != null) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: UserRatingMainWidget(auth),
-                );
+                return UserRatingMainWidget(auth);
               }
               return const SizedBox.shrink();
             },

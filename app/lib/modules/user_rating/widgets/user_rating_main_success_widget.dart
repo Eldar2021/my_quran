@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class UserRatingMainLoadingWidget extends StatelessWidget {
-  const UserRatingMainLoadingWidget({super.key});
+class UserRatingMainSuccessWidget extends StatelessWidget {
+  const UserRatingMainSuccessWidget({
+    required this.data,
+    this.countryFlag,
+    super.key,
+  });
+
+  final UserRatingMainModel data;
+  final String? countryFlag;
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +37,25 @@ class UserRatingMainLoadingWidget extends StatelessWidget {
                   bottomRight: Radius.circular(6),
                 ),
                 child: UserRatingMainChart(
-                  List.generate(
-                    7,
-                    (index) => UserRatingMainChartData(
-                      DateTime.now().subtract(Duration(days: index)),
-                      0,
-                      0,
-                    ),
-                  ),
+                  data.weeklyData
+                      .map(
+                        (e) => UserRatingMainChartData(
+                          e.date,
+                          e.readedPagesCount,
+                          e.listenedQuranByHours,
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: UserRatingMainRatingTile(
-              countryRank: 0,
-              worldRank: 0,
+              countryRank: data.countryRank,
+              worldRank: data.worldRank,
+              countryFlag: countryFlag,
             ),
           ),
           const SizedBox(height: 12),

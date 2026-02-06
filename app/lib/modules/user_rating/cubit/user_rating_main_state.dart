@@ -7,4 +7,26 @@ sealed class UserRatingMainState extends Equatable {
   List<Object> get props => [];
 }
 
-final class UserRatingMainInitial extends UserRatingMainState {}
+@immutable
+final class UserRatingMainInitial extends UserRatingMainState {
+  const UserRatingMainInitial();
+}
+
+@immutable
+final class UserRatingMainLoading extends UserRatingMainState {
+  const UserRatingMainLoading();
+}
+
+@immutable
+final class UserRatingMainSuccess extends UserRatingMainState {
+  const UserRatingMainSuccess(this.data);
+
+  final UserRatingMainModel data;
+}
+
+@immutable
+final class UserRatingMainError extends UserRatingMainState {
+  const UserRatingMainError(this.error);
+
+  final Object error;
+}
