@@ -25,54 +25,64 @@ class MoreView extends StatelessWidget {
           },
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        children: [
-          const SizedBox(height: 16),
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              final auth = state.auth;
-              final gender = state.currentGender;
-              if (auth != null) {
-                return UserProfileAuthenticatedCard(
-                  auth: auth,
-                  unfieldsCount: auth.user.unfieldsCount,
-                  onTap: () => _navigateToProfile(context),
+      body: RefreshIndicator.adaptive(
+        onRefresh: () => _refresh(context),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          children: [
+            const SizedBox(height: 16),
+            BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, state) {
+                final auth = state.auth;
+                final gender = state.currentGender;
+                if (auth != null) {
+                  return UserProfileAuthenticatedCard(
+                    auth: auth,
+                    unfieldsCount: auth.user.unfieldsCount,
+                    onTap: () => _navigateToProfile(context),
+                  );
+                }
+                return UserProfileUnauthenticatedCard(
+                  gender: gender,
+                  onTap: () => _navigateToLogin(context),
                 );
-              }
-              return UserProfileUnauthenticatedCard(
-                gender: gender,
-                onTap: () => _navigateToLogin(context),
-              );
-            },
-          ),
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              final auth = state.auth;
-              if (auth != null) {
-                return UserRatingMainWidget(auth);
-              }
-              return const SizedBox.shrink();
-            },
-          ),
-          const SizedBox(height: 16),
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              final auth = state.auth;
-              return MoreServices(
-                enableCreateHatims: auth?.user.canCreateHatim ?? false,
-                enableJoinHatims: auth != null,
-              );
-            },
-          ),
-          const SizedBox(height: 16),
-          const MoreActions(),
-          const SizedBox(height: 16),
-          const MyQuranAppVersionTile(),
-          const SizedBox(height: 40),
-        ],
+              },
+            ),
+            BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, state) {
+                final auth = state.auth;
+                if (auth != null) {
+                  return UserRatingMainWidget(auth);
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+            const SizedBox(height: 16),
+            BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, state) {
+                final auth = state.auth;
+                return MoreServices(
+                  enableCreateHatims: auth?.user.canCreateHatim ?? false,
+                  enableJoinHatims: auth != null,
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            const MoreActions(),
+            const SizedBox(height: 16),
+            const MyQuranAppVersionTile(),
+            const SizedBox(height: 40),
+          ],
+        ),
       ),
     );
+  }
+
+  Future<void> _refresh(BuildContext context) async {
+    final auth = context.read<AuthCubit>().state.auth;
+    if (auth != null) {
+      await context.read<UserRatingMainCubit>().refresh(auth.key);
+    }
   }
 
   void _navigateToProfile(BuildContext context) {

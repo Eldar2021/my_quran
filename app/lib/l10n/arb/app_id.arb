@@ -207,5 +207,6 @@
   "noActivityDay": "Anda tidak menggunakan aplikasi pada hari ini",
   "openedOnceDay": "Anda membuka aplikasi sekali pada hari ini",
   "readQuranActivity": "Anda membaca Al-Qur'an di aplikasi",
-  "listenQuranActivity": "Anda mendengarkan Al-Qur'an di aplikasi"
+  "listenQuranActivity": "Anda mendengarkan Al-Qur'an di aplikasi",
+  "yourRating": "Peringkat Anda"
 }

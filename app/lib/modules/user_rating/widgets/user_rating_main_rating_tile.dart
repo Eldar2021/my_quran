@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class UserRatingMainRatingTile extends StatelessWidget {
   const UserRatingMainRatingTile({
@@ -18,7 +19,7 @@ class UserRatingMainRatingTile extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            'Ваш рейтинг:  $ratingText',
+            '${context.l10n.yourRating}:  $ratingText',
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),

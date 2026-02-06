@@ -45,7 +45,7 @@ class UserRatingMainLoadingWidget extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 8),
               child: UserRatingMainRatingTile(
                 countryRank: 0,
                 worldRank: 0,

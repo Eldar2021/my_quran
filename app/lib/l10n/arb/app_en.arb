@@ -207,5 +207,6 @@
   "noActivityDay": "You did not use the app on this day",
   "openedOnceDay": "You opened the app once on this day",
   "readQuranActivity": "You read the Qur’an in the app",
-  "listenQuranActivity": "You listened to the Qur’an in the app"
+  "listenQuranActivity": "You listened to the Qur’an in the app",
+  "yourRating": "Your rating"
 }

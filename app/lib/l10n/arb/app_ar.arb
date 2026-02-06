@@ -207,5 +207,6 @@
   "noActivityDay": "لم تستخدم التطبيق في هذا اليوم",
   "openedOnceDay": "فتحت التطبيق مرة واحدة في هذا اليوم",
   "readQuranActivity": "قرأت القرآن في التطبيق",
-  "listenQuranActivity": "استمعت إلى القرآن في التطبيق"
+  "listenQuranActivity": "استمعت إلى القرآن في التطبيق",
+  "yourRating": "تقييمك"
 }

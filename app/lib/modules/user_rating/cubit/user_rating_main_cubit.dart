@@ -19,4 +19,22 @@ class UserRatingMainCubit extends Cubit<UserRatingMainState> {
       emit(UserRatingMainError(e));
     }
   }
+
+  Future<void> refresh(String userId) async {
+    final defaultData = switch (state) {
+      UserRatingMainSuccess(:final data) => data,
+      _ => null,
+    };
+    emit(const UserRatingMainLoading());
+    try {
+      final result = await const AuthRepositoryMock().getUserRatingMain(userId);
+      emit(UserRatingMainSuccess(result));
+    } on Object catch (e) {
+      if (defaultData != null) {
+        emit(UserRatingMainSuccess(defaultData));
+      } else {
+        emit(UserRatingMainError(e));
+      }
+    }
+  }
 }

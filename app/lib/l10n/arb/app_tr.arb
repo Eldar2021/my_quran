@@ -207,5 +207,6 @@
   "noActivityDay": "Bu gün uygulamayı kullanmadınız",
   "openedOnceDay": "Bu gün uygulamayı bir kez açtınız",
   "readQuranActivity": "Uygulamada Kur'an okudunuz",
-  "listenQuranActivity": "Uygulamada Kur'an dinlediniz"
+  "listenQuranActivity": "Uygulamada Kur'an dinlediniz",
+  "yourRating": "Sıralamanız"
 }
