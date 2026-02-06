@@ -122,7 +122,7 @@ class MyApp extends StatelessWidget {
             AudioPlayer(),
             context.read<NetworkClient>(),
             context.read<MqQuranRepository>(),
-          )..init(),
+          ),
         ),
         BlocProvider(
           create: (context) => RemoteConfigCubit(context.read<MqRemoteConfig>()),
