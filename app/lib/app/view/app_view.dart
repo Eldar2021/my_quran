@@ -109,10 +109,7 @@ class MyApp extends StatelessWidget {
           create: (context) => UserActivityCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
-          create: (context) => UserRatingMainCubit(
-            // context.read<AuthRepository>(),
-            const AuthRepositoryMock(),
-          ),
+          create: (context) => UserRatingMainCubit(context.read<AuthRepository>()),
         ),
         BlocProvider(
           create: (context) => NotificationCubit(context.read<AuthRepository>()),

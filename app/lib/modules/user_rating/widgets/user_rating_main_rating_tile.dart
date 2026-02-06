@@ -18,7 +18,7 @@ class UserRatingMainRatingTile extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            'Your rating:  $ratingText',
+            'Ваш рейтинг:  $ratingText',
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
