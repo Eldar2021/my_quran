@@ -22,9 +22,10 @@ class UserRatingMainRatingTile extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
-        const Icon(
+        Icon(
           Icons.arrow_forward_ios,
           size: 18,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
       ],
     );
