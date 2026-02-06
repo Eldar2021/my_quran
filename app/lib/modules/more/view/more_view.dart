@@ -46,6 +46,18 @@ class MoreView extends StatelessWidget {
               );
             },
           ),
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              final auth = state.auth;
+              if (auth != null) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: UserRatingMainWidget(auth),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
           const SizedBox(height: 16),
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) {

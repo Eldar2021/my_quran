@@ -37,6 +37,7 @@ dependencies:
   geolocator:
   flutter_compass:
   shimmer_animation:
+  syncfusion_flutter_charts:
 
   mq_ci_keys:
   mq_remote_client:
