@@ -14,17 +14,18 @@ class UserRatingBloc extends Bloc<UserRatingEvent, UserRatingState> {
   UserRatingBloc({
     required this.repository,
     required this.userId,
-    required this.periodType,
+    required this.areaType,
   }) : super(UserRatingState()) {
     on<UserRatingFetchNext>(_onUserRatingFetchNext);
     on<UserRatingRefresh>(_onUserRatingRefresh);
     on<UserRatingCancel>(_onUserRatingCancel);
   }
 
-  Future<RatingResponseModel> _fetchItem(
-    int pageNumber,
-    AreaType areaType,
-  ) {
+  final AuthRepository repository;
+  final String userId;
+  final AreaType areaType;
+
+  Future<RatingResponseModel> _fetchItem(int pageNumber, PeriodType periodType) {
     return repository.getRatingData(
       RatingRequestModel(
         userId: userId,
@@ -34,10 +35,6 @@ class UserRatingBloc extends Bloc<UserRatingEvent, UserRatingState> {
       ),
     );
   }
-
-  final AuthRepository repository;
-  final String userId;
-  final PeriodType periodType;
 
   FutureOr<void> _onUserRatingFetchNext(
     UserRatingFetchNext event,
@@ -64,7 +61,7 @@ class UserRatingBloc extends Bloc<UserRatingEvent, UserRatingState> {
     );
 
     try {
-      final result = await _fetchItem(pageKey, event.areaType);
+      final result = await _fetchItem(pageKey, event.periodType);
       if (cancelToken.isCancelled) return;
 
       emit(
@@ -98,7 +95,7 @@ class UserRatingBloc extends Bloc<UserRatingEvent, UserRatingState> {
   ) {
     state.cancelToken?.cancel();
     emit(state.reset());
-    add(UserRatingFetchNext(event.areaType));
+    add(UserRatingFetchNext(event.periodType));
   }
 
   void _onUserRatingCancel(

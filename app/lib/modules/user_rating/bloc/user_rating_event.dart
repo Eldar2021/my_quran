@@ -9,16 +9,16 @@ sealed class UserRatingEvent extends Equatable {
 
 @immutable
 final class UserRatingFetchNext extends UserRatingEvent {
-  const UserRatingFetchNext(this.areaType);
+  const UserRatingFetchNext(this.periodType);
 
-  final AreaType areaType;
+  final PeriodType periodType;
 }
 
 @immutable
 final class UserRatingRefresh extends UserRatingEvent {
-  const UserRatingRefresh(this.areaType);
+  const UserRatingRefresh(this.periodType);
 
-  final AreaType areaType;
+  final PeriodType periodType;
 }
 
 @immutable
