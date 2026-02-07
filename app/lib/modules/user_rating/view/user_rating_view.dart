@@ -42,24 +42,27 @@ class _UserRatingViewState extends State<UserRatingView> {
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return <Widget>[
-              SliverAppBar(
-                title: const Text('Ratings'),
-                centerTitle: true,
-                pinned: true,
-                floating: true,
-                snap: true,
-                forceElevated: innerBoxIsScrolled,
-                bottom: TabBar.secondary(
-                  labelColor: colorScheme.primary,
-                  indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
-                  labelStyle: prTextTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+              SliverOverlapAbsorber(
+                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                sliver: SliverAppBar(
+                  title: const Text('Ratings'),
+                  centerTitle: true,
+                  pinned: true,
+                  floating: true,
+                  snap: true,
+                  forceElevated: innerBoxIsScrolled,
+                  bottom: TabBar.secondary(
+                    labelColor: colorScheme.primary,
+                    indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
+                    labelStyle: prTextTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    dividerColor: colorScheme.surfaceBright,
+                    tabs: const [
+                      Tab(text: 'World'),
+                      Tab(text: 'Country'),
+                    ],
                   ),
-                  dividerColor: colorScheme.surfaceBright,
-                  tabs: const [
-                    Tab(text: 'World'),
-                    Tab(text: 'Country'),
-                  ],
                 ),
               ),
             ];
