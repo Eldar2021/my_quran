@@ -207,5 +207,20 @@
   "noActivityDay": "Bu gün uygulamayı kullanmadınız",
   "openedOnceDay": "Bu gün uygulamayı bir kez açtınız",
   "readQuranActivity": "Uygulamada Kur'an okudunuz",
-  "listenQuranActivity": "Uygulamada Kur'an dinlediniz"
+  "listenQuranActivity": "Uygulamada Kur'an dinlediniz",
+  "yourRating": "Sıralamanız",
+  "ratings": "Sıralamalar",
+  "world": "Dünya",
+  "country2": "Ülke",
+  "countryNotSelected": "Ülke seçilmedi",
+  "ratingCountryPrompt": "Profilinizden ülkenizi seçerseniz ülke bazındaki sıralamanızı görebilirsiniz",
+  "noName": "İsimsiz",
+  "noUsername": "Kullanıcı Adı Yok",
+  "weekly": "Haftalık",
+  "monthly": "Aylık",
+  "quarterly": "Üç Aylık",
+  "yearly": "Yıllık",
+  "errorTryAgain": "Bir hata oluştu. Lütfen tekrar deneyin.",
+  "tryAgain": "Tekrar dene",
+  "participantsNotFound": "Katılımcı bulunamadı.\nLütfen daha sonra tekrar deneyin."
 }

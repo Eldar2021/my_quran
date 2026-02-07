@@ -23,7 +23,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   late final Stream<PlayerState> playerStateStream;
   late final List<MqSurahEntity> surahs;
 
-  Future<void> init() async {
+  Future<void> init(String? userId) async {
     try {
       surahs = quranRepository.getSurahsData();
       sequenceStateStream = player.sequenceStateStream;

@@ -207,5 +207,20 @@
   "noActivityDay": "لم تستخدم التطبيق في هذا اليوم",
   "openedOnceDay": "فتحت التطبيق مرة واحدة في هذا اليوم",
   "readQuranActivity": "قرأت القرآن في التطبيق",
-  "listenQuranActivity": "استمعت إلى القرآن في التطبيق"
+  "listenQuranActivity": "استمعت إلى القرآن في التطبيق",
+  "yourRating": "تقييمك",
+  "ratings": "التقييمات",
+  "world": "العالم",
+  "country2": "البلد",
+  "countryNotSelected": "البلد غير محدد",
+  "ratingCountryPrompt": "يمكنك رؤية تقييمك حسب البلد إذا قمت باختيار بلدك في الملف الشخصي",
+  "noName": "بدون اسم",
+  "noUsername": "بدون اسم مستخدم",
+  "weekly": "أسبوعي",
+  "monthly": "شهري",
+  "quarterly": "ربع سنوي",
+  "yearly": "سنوي",
+  "errorTryAgain": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+  "tryAgain": "حاول مرة أخرى",
+  "participantsNotFound": "تعذر العثور على المشاركين.\nيرجى المحاولة مرة أخرى لاحقاً."
 }

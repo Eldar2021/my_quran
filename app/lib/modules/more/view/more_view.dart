@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/constants/contants.dart';
@@ -25,45 +26,67 @@ class MoreView extends StatelessWidget {
           },
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        children: [
-          const SizedBox(height: 16),
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              final auth = state.auth;
-              final gender = state.currentGender;
-              if (auth != null) {
-                return UserProfileAuthenticatedCard(
-                  auth: auth,
-                  unfieldsCount: auth.user.unfieldsCount,
-                  onTap: () => _navigateToProfile(context),
+      body: RefreshIndicator.adaptive(
+        onRefresh: () => _refresh(context),
+        child: ListView(
+          key: const Key(MqKeys.moreListView),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          children: [
+            const SizedBox(height: 16),
+            BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, state) {
+                final auth = state.auth;
+                final gender = state.currentGender;
+                if (auth != null) {
+                  return UserProfileAuthenticatedCard(
+                    auth: auth,
+                    unfieldsCount: auth.user.unfieldsCount,
+                    onTap: () => _navigateToProfile(context),
+                  );
+                }
+                return UserProfileUnauthenticatedCard(
+                  gender: gender,
+                  onTap: () => _navigateToLogin(context),
                 );
-              }
-              return UserProfileUnauthenticatedCard(
-                gender: gender,
-                onTap: () => _navigateToLogin(context),
-              );
-            },
-          ),
-          const SizedBox(height: 16),
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              final auth = state.auth;
-              return MoreServices(
-                enableCreateHatims: auth?.user.canCreateHatim ?? false,
-                enableJoinHatims: auth != null,
-              );
-            },
-          ),
-          const SizedBox(height: 16),
-          const MoreActions(),
-          const SizedBox(height: 16),
-          const MyQuranAppVersionTile(),
-          const SizedBox(height: 40),
-        ],
+              },
+            ),
+            BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, state) {
+                final auth = state.auth;
+                if (auth != null) {
+                  return UserRatingMainWidget(auth);
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+            const SizedBox(height: 16),
+            BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, state) {
+                final auth = state.auth;
+                return MoreServices(
+                  enableCreateHatims: auth?.user.canCreateHatim ?? false,
+                  enableJoinHatims: auth != null,
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            const MoreActions(),
+            const SizedBox(height: 16),
+            const MyQuranAppVersionTile(
+              key: Key(MqKeys.moreAppVersionTile),
+            ),
+            const SizedBox(height: 40),
+          ],
+        ),
       ),
     );
+  }
+
+  Future<void> _refresh(BuildContext context) async {
+    final auth = context.read<AuthCubit>().state.auth;
+    if (auth != null) {
+      await context.read<UserRatingMainCubit>().refresh(auth.key);
+    }
   }
 
   void _navigateToProfile(BuildContext context) {

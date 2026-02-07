@@ -104,6 +104,16 @@ final class UserModel extends Equatable {
     return count;
   }
 
+  String? get countryFlag {
+    if (country == null) return null;
+    try {
+      final countryFlag = country!.split(' ');
+      return countryFlag.first;
+    } on Object catch (_) {
+      return null;
+    }
+  }
+
   @override
   List<Object?> get props => [
     firstName,

@@ -117,6 +117,10 @@ void main() async {
       await checkSettingsView(driver);
     });
 
+    test('scroll-to-bottom-from-more-view', () async {
+      await scrollToBottomFromMoreView(driver);
+    });
+
     test('check-settings-about-us', () async {
       await checkSettingsAboutUs(driver);
     });

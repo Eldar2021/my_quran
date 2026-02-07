@@ -67,8 +67,15 @@ class MqRemoteClient {
   /// from a JSON object.
   ///
   /// The [fromJson] parameter is used to parse the JSON response.
-  Future<T> getType<T>(String url, {required FromJson<T> fromJson}) async {
-    final data = await _get<Map<String, dynamic>>(url);
+  Future<T> getType<T>(
+    String url, {
+    required FromJson<T> fromJson,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    final data = await _get<Map<String, dynamic>>(
+      url,
+      queryParameters: queryParameters,
+    );
     return _convertType<T>(jsonData: data, fromJson: fromJson);
   }
 

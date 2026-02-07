@@ -45,6 +45,7 @@ final class AppRouter {
   static const more = 'more';
   static const profile = 'profile';
   static const userActivity = 'user-activity';
+  static const userRating = 'user-rating';
 
   GoRouter router() {
     return GoRouter(
@@ -226,6 +227,12 @@ final class AppRouter {
         name: donation,
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) => const MqDonationView(),
+      ),
+      GoRoute(
+        path: userRating,
+        name: userRating,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const UserRatingView(),
       ),
     ];
   }

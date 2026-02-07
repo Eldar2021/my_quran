@@ -51,6 +51,14 @@ abstract class AuthRepository {
     String userId,
   );
 
+  Future<UserRatingMainModel> getUserRatingMain(
+    String userId,
+  );
+
+  Future<RatingResponseModel> getRatingData(
+    RatingRequestModel param,
+  );
+
   Future<void> deleteAccount();
 
   Future<void> logout();
