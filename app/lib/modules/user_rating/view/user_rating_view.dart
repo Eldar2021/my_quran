@@ -11,7 +11,8 @@ class UserRatingView extends StatefulWidget {
   State<UserRatingView> createState() => _UserRatingViewState();
 }
 
-class _UserRatingViewState extends State<UserRatingView> {
+class _UserRatingViewState extends State<UserRatingView> with TickerProviderStateMixin {
+  late final TabController _tabController;
   late final UserRatingBloc _userRatingByWorldBloc;
   late final UserRatingBloc _userRatingByCountryBloc;
 
@@ -28,7 +29,7 @@ class _UserRatingViewState extends State<UserRatingView> {
       repository: context.read<AuthRepository>(),
       areaType: AreaType.country,
     );
-
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -37,50 +38,74 @@ class _UserRatingViewState extends State<UserRatingView> {
     final colorScheme = Theme.of(context).colorScheme;
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Scaffold(
-      body: DefaultTabController(
-        length: 2,
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return <Widget>[
-              SliverOverlapAbsorber(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                sliver: SliverAppBar(
-                  title: const Text('Ratings'),
-                  centerTitle: true,
-                  pinned: true,
-                  floating: true,
-                  snap: true,
-                  forceElevated: innerBoxIsScrolled,
-                  bottom: TabBar.secondary(
-                    labelColor: colorScheme.primary,
-                    indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
-                    labelStyle: prTextTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    dividerColor: colorScheme.surfaceBright,
-                    tabs: const [
-                      Tab(text: 'World'),
-                      Tab(text: 'Country'),
-                    ],
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return <Widget>[
+            SliverOverlapAbsorber(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              sliver: SliverAppBar(
+                title: const Text('Ratings'),
+                centerTitle: true,
+                pinned: true,
+                floating: true,
+                snap: true,
+                forceElevated: innerBoxIsScrolled,
+                bottom: TabBar.secondary(
+                  controller: _tabController,
+                  labelColor: colorScheme.primary,
+                  indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
+                  labelStyle: prTextTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
+                  dividerColor: colorScheme.surfaceBright,
+                  tabs: const [
+                    Tab(text: 'World'),
+                    Tab(text: 'Country'),
+                  ],
                 ),
               ),
-            ];
-          },
-          body: TabBarView(
-            children: [
-              BlocProvider.value(
-                value: _userRatingByWorldBloc,
-                child: const UserRatingTabView(),
-              ),
-              BlocProvider.value(
-                value: _userRatingByCountryBloc,
-                child: const UserRatingTabView(),
-              ),
-            ],
-          ),
+            ),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            BlocProvider.value(
+              value: _userRatingByWorldBloc,
+              child: const UserRatingTabView(),
+            ),
+            BlocProvider.value(
+              value: _userRatingByCountryBloc,
+              child: const UserRatingTabView(),
+            ),
+          ],
         ),
       ),
+      bottomNavigationBar: ListenableBuilder(
+        listenable: _tabController,
+        builder: (context, child) {
+          return BlocBuilder<UserRatingBloc, UserRatingState>(
+            bloc: _tabController.index == 0 ? _userRatingByWorldBloc : _userRatingByCountryBloc,
+            builder: (context, state) {
+              if (state.ownerData != null) {
+                return const SafeArea(
+                  child: ListTile(
+                    title: Text('Text state.ownerData'),
+                  ),
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
+          );
+        },
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 }

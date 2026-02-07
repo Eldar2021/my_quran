@@ -29,6 +29,9 @@ class _UserRatingTabViewState extends State<UserRatingTabView> {
 
   Future<void> _onRefresh() async {
     _bloc.add(UserRatingRefresh(selectedPeriod.value));
+    await _bloc.stream.firstWhere(
+      (state) => state.status != PagingStatus.loadingFirstPage,
+    );
   }
 
   void _onPeriodChanged(PeriodType period) {
