@@ -88,9 +88,15 @@ class _UserRatingViewState extends State<UserRatingView> with TickerProviderStat
             bloc: _tabController.index == 0 ? _userRatingByWorldBloc : _userRatingByCountryBloc,
             builder: (context, state) {
               if (state.ownerData != null) {
-                return const SafeArea(
-                  child: ListTile(
-                    title: Text('Text state.ownerData'),
+                return SafeArea(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border(top: BorderSide(color: colorScheme.primary)),
+                    ),
+                    child: UserRatingOwnerDataWidget(
+                      ownerData: state.ownerData!,
+                      user: context.read<AuthCubit>().state.auth!.user,
+                    ),
                   ),
                 );
               } else {

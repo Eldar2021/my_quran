@@ -8,3 +8,5 @@ export 'widgets/user_rating_main_loading_widget.dart';
 export 'widgets/user_rating_main_chart.dart';
 export 'widgets/user_rating_main_rating_tile.dart';
 export 'widgets/user_rating_main_success_widget.dart';
+export 'widgets/rating_participant_card.dart';
+export 'widgets/user_rating_owner_data_widget.dart';

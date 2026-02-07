@@ -29,9 +29,9 @@ class _UserRatingTabViewState extends State<UserRatingTabView> {
 
   Future<void> _onRefresh() async {
     _bloc.add(UserRatingRefresh(selectedPeriod.value));
-    await _bloc.stream.firstWhere(
-      (state) => state.status != PagingStatus.loadingFirstPage,
-    );
+    await _bloc.stream
+        .firstWhere((state) => state.status != PagingStatus.loadingFirstPage)
+        .timeout(const Duration(seconds: 4), onTimeout: () => _bloc.state);
   }
 
   void _onPeriodChanged(PeriodType period) {
@@ -63,22 +63,23 @@ class _UserRatingTabViewState extends State<UserRatingTabView> {
                 );
               },
             ),
-            BlocBuilder<UserRatingBloc, UserRatingState>(
-              bloc: _bloc,
-              builder: (context, state) {
-                return PagedSliverList<int, RatingParticipantModel>(
-                  state: state,
-                  fetchNextPage: _nextPage,
-                  builderDelegate: PagedChildBuilderDelegate<RatingParticipantModel>(
-                    itemBuilder: (context, item, index) {
-                      return ListTile(
-                        title: Text(item.fullName),
-                        subtitle: Text(item.ratingNumber.toString()),
-                      );
-                    },
-                  ),
-                );
-              },
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              sliver: BlocBuilder<UserRatingBloc, UserRatingState>(
+                bloc: _bloc,
+                builder: (context, state) {
+                  return PagedSliverList<int, RatingParticipantModel>.separated(
+                    state: state,
+                    fetchNextPage: _nextPage,
+                    separatorBuilder: (context, index) => const Divider(),
+                    builderDelegate: PagedChildBuilderDelegate<RatingParticipantModel>(
+                      itemBuilder: (context, item, index) {
+                        return RatingParticipantCard(item);
+                      },
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         );
