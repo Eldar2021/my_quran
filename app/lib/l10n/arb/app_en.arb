@@ -208,5 +208,19 @@
   "openedOnceDay": "You opened the app once on this day",
   "readQuranActivity": "You read the Qur’an in the app",
   "listenQuranActivity": "You listened to the Qur’an in the app",
-  "yourRating": "Your rating"
+  "yourRating": "Your rating",
+  "ratings": "Ratings",
+  "world": "World",
+  "country2": "Country",
+  "countryNotSelected": "Country not selected",
+  "ratingCountryPrompt": "You can see your rating by country if you select your country in profile",
+  "noName": "No Name",
+  "noUsername": "No Username",
+  "weekly": "Weekly",
+  "monthly": "Monthly",
+  "quarterly": "Quarterly",
+  "yearly": "Yearly",
+  "errorTryAgain": "An error occurred. Please try again.",
+  "tryAgain": "Try again",
+  "participantsNotFound": "Participants could not be found.\nPlease try again later."
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class UserRatingPeriodTypesHeader extends StatelessWidget {
   const UserRatingPeriodTypesHeader({
@@ -34,10 +35,10 @@ class UserRatingPeriodTypesHeader extends StatelessWidget {
               selected: isSelected,
               label: Text(
                 switch (period) {
-                  PeriodType.weekly => 'Weekly',
-                  PeriodType.monthly => 'Monthly',
-                  PeriodType.threeMonth => 'Three Month',
-                  PeriodType.year => 'Year',
+                  PeriodType.weekly => context.l10n.weekly,
+                  PeriodType.monthly => context.l10n.monthly,
+                  PeriodType.threeMonth => context.l10n.quarterly,
+                  PeriodType.year => context.l10n.yearly,
                 },
               ),
               onSelected: (selected) => onPeriodChanged(period),

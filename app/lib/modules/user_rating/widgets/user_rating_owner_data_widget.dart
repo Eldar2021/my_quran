@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class UserRatingOwnerDataWidget extends StatelessWidget {
   const UserRatingOwnerDataWidget({
@@ -25,8 +26,8 @@ class UserRatingOwnerDataWidget extends StatelessWidget {
           style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary),
         ),
       },
-      title: Text(user.fullName ?? 'No Name'),
-      subtitle: Text(user.username ?? 'No Username'),
+      title: Text(user.fullName ?? context.l10n.noName),
+      subtitle: Text(user.username ?? context.l10n.noUsername),
       trailing: Text(
         '${ownerData.readedPagesCount}',
         style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.primary),

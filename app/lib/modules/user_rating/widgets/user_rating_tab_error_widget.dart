@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class UserRatingTabErrorWidget extends StatelessWidget {
   const UserRatingTabErrorWidget({
@@ -21,13 +22,13 @@ class UserRatingTabErrorWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          'An error occurred. Please try again.',
+          context.l10n.errorTryAgain,
           style: theme.textTheme.titleMedium,
         ),
         const SizedBox(height: 16),
         TextButton(
           onPressed: onRefresh,
-          child: const Text('Try again'),
+          child: Text(context.l10n.tryAgain),
         ),
       ],
     );

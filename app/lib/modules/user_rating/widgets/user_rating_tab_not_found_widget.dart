@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_quran/l10n/l10.dart';
 
 class UserRatingTabNotFoundWidget extends StatelessWidget {
   const UserRatingTabNotFoundWidget({super.key});
@@ -16,7 +17,7 @@ class UserRatingTabNotFoundWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          'Participants could not be found.\nPlease try again later.',
+          context.l10n.participantsNotFound,
           style: theme.textTheme.titleMedium,
           textAlign: TextAlign.center,
         ),

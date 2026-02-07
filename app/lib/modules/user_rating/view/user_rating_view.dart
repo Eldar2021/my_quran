@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:my_quran/app/app.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class UserRatingView extends StatefulWidget {
@@ -44,7 +45,7 @@ class _UserRatingViewState extends State<UserRatingView> with TickerProviderStat
             SliverOverlapAbsorber(
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               sliver: SliverAppBar(
-                title: const Text('Ratings'),
+                title: Text(context.l10n.ratings),
                 centerTitle: true,
                 pinned: true,
                 floating: true,
@@ -58,9 +59,9 @@ class _UserRatingViewState extends State<UserRatingView> with TickerProviderStat
                     fontWeight: FontWeight.bold,
                   ),
                   dividerColor: colorScheme.surfaceBright,
-                  tabs: const [
-                    Tab(text: 'World'),
-                    Tab(text: 'Country'),
+                  tabs: [
+                    Tab(text: context.l10n.world),
+                    Tab(text: context.l10n.country2),
                   ],
                 ),
               ),
