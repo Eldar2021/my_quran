@@ -150,7 +150,214 @@ final class AuthRepositoryMock implements AuthRepository {
       () => UserRatingMainModel.fromJson(_userRatingMainJsonData),
     );
   }
+
+  @override
+  Future<RatingResponseModel> getRatingData(
+    RatingRequestModel param,
+  ) async {
+    final data = Map<String, dynamic>.from(_ratingMockRes);
+    data['period_type'] = param.periodType.getValue();
+    data['area_type'] = param.areaType.getValue();
+    await Future<void>.delayed(const Duration(seconds: 1));
+    return RatingResponseModel.fromJson(data);
+  }
 }
+
+const _ratingMockRes = <String, dynamic>{
+  'period_type': 'weekly', // weekly/monthly/three_month/year
+  'area_type': 'world', // world/country
+  'owner_data': {
+    'rating_number': 3,
+    'readed_pages_count': 9999,
+  },
+  'pagination': {
+    'current_page': 0,
+    'total_pages': 33,
+    'has_next': true,
+  },
+  'list': [
+    {
+      'rating_number': 1,
+      'full_name': 'Eldiiar Almazbekov',
+      'email': null,
+      'user_name': 'eldi_01',
+      'avatar_url': null,
+      'readed_pages_count': 99992,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 2,
+      'full_name': 'Akyl Tashmatov',
+      'email': 'akyl.tash@example.com',
+      'user_name': 'akyl_t',
+      'avatar_url': 'https://i.pravatar.cc/150?u=2',
+      'readed_pages_count': 85430,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 3,
+      'full_name': 'Alymbek Almazbekov',
+      'email': null,
+      'user_name': 'alym_bek',
+      'avatar_url': null,
+      'readed_pages_count': 72100,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 4,
+      'full_name': 'Zamirbek Kaparov',
+      'email': 'zamir.k@example.com',
+      'user_name': 'zamir_k',
+      'avatar_url': 'https://i.pravatar.cc/150?u=4',
+      'readed_pages_count': 68524,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 5,
+      'full_name': 'Elena Petrova',
+      'email': 'elena.p@mail.ru',
+      'user_name': 'elena_99',
+      'avatar_url': null,
+      'readed_pages_count': 54320,
+      'country': '🇷🇺 Russia RUS',
+    },
+    {
+      'rating_number': 6,
+      'full_name': 'John Doe',
+      'email': 'john.doe@gmail.com',
+      'user_name': 'johndoe',
+      'avatar_url': 'https://i.pravatar.cc/150?u=6',
+      'readed_pages_count': 48210,
+      'country': '🇺🇸 USA USA',
+    },
+    {
+      'rating_number': 7,
+      'full_name': 'Bakyt Asanov',
+      'email': null,
+      'user_name': 'bakyt_a',
+      'avatar_url': null,
+      'readed_pages_count': 45100,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 8,
+      'full_name': 'Nurila Joldosheva',
+      'email': 'nurila.j@example.com',
+      'user_name': 'nurila_j',
+      'avatar_url': 'https://i.pravatar.cc/150?u=8',
+      'readed_pages_count': 42050,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 9,
+      'full_name': 'Ahmet Yılmaz',
+      'email': 'ahmet.y@yandex.com',
+      'user_name': 'ahmet_y',
+      'avatar_url': null,
+      'readed_pages_count': 39800,
+      'country': '🇹🇷 Turkey TUR',
+    },
+    {
+      'rating_number': 10,
+      'full_name': 'Sarah Connor',
+      'email': null,
+      'user_name': 'terminator_fan',
+      'avatar_url': 'https://i.pravatar.cc/150?u=10',
+      'readed_pages_count': 35600,
+      'country': '🇬🇧 UK GBR',
+    },
+    {
+      'rating_number': 11,
+      'full_name': 'Ulan Saparov',
+      'email': 'ulan.s@example.kg',
+      'user_name': 'ulan_s',
+      'avatar_url': null,
+      'readed_pages_count': 31200,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 12,
+      'full_name': 'Maria Garcia',
+      'email': 'm.garcia@example.es',
+      'user_name': 'm_garcia',
+      'avatar_url': 'https://i.pravatar.cc/150?u=12',
+      'readed_pages_count': 28900,
+      'country': '🇪🇸 Spain ESP',
+    },
+    {
+      'rating_number': 13,
+      'full_name': 'Azamat Ismailov',
+      'email': null,
+      'user_name': 'azam_01',
+      'avatar_url': null,
+      'readed_pages_count': 25400,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 14,
+      'full_name': 'Yuki Tanaka',
+      'email': 'tanaka@example.jp',
+      'user_name': 'yuki_t',
+      'avatar_url': 'https://i.pravatar.cc/150?u=14',
+      'readed_pages_count': 22150,
+      'country': '🇯🇵 Japan JPN',
+    },
+    {
+      'rating_number': 15,
+      'full_name': 'Gulnara Sydykova',
+      'email': 'gulnara@example.com',
+      'user_name': 'gul_syd',
+      'avatar_url': null,
+      'readed_pages_count': 18900,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 16,
+      'full_name': 'Hans Schmidt',
+      'email': null,
+      'user_name': 'hans_s',
+      'avatar_url': 'https://i.pravatar.cc/150?u=16',
+      'readed_pages_count': 15600,
+      'country': '🇩🇪 Germany DEU',
+    },
+    {
+      'rating_number': 17,
+      'full_name': 'Aisuluu Keneshova',
+      'email': 'aisuluu.k@mail.kg',
+      'user_name': 'ais_ken',
+      'avatar_url': null,
+      'readed_pages_count': 12450,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 18,
+      'full_name': 'Li Wei',
+      'email': 'li.wei@example.cn',
+      'user_name': 'li_wei_china',
+      'avatar_url': 'https://i.pravatar.cc/150?u=18',
+      'readed_pages_count': 9800,
+      'country': '🇨🇳 China CHN',
+    },
+    {
+      'rating_number': 19,
+      'full_name': 'Nurbek Aliev',
+      'email': null,
+      'user_name': 'nurbek_a',
+      'avatar_url': null,
+      'readed_pages_count': 7500,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+    {
+      'rating_number': 20,
+      'full_name': 'Asema Asanbekova',
+      'email': 'asema.a@example.com',
+      'user_name': '@asanbekova20',
+      'avatar_url': 'https://i.pravatar.cc/150?u=20',
+      'readed_pages_count': 5200,
+      'country': '🇰🇬 Kyrgyzstan KGZ',
+    },
+  ],
+};
 
 const _userRatingMainJsonData = <String, Object>{
   'world_rank': 492,

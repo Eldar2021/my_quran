@@ -3,9 +3,12 @@ part of 'mq_remote_client.dart';
 /// Extension on [MqRemoteClient] providing base methods for HTTP operations.
 extension MqRemoteClientBaseMehtods on MqRemoteClient {
   /// Performs an HTTP GET request to the specified [url].
-  Future<T> _get<T>(String url) async {
+  Future<T> _get<T>(
+    String url, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
-      final response = await dio.get<T>(url);
+      final response = await dio.get<T>(url, queryParameters: queryParameters);
       return response.data as T;
     } catch (e, s) {
       log('MqRemoteClientBaseMehtods._get', error: e, stackTrace: s);
