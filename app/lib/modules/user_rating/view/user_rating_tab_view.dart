@@ -90,6 +90,14 @@ class _UserRatingTabViewState extends State<UserRatingTabView> {
                         itemBuilder: (context, item, index) {
                           return RatingParticipantCard(item);
                         },
+                        firstPageErrorIndicatorBuilder: (context) {
+                          return UserRatingTabErrorWidget(
+                            onRefresh: _onRefresh,
+                          );
+                        },
+                        noItemsFoundIndicatorBuilder: (context) {
+                          return const UserRatingTabNotFoundWidget();
+                        },
                       ),
                     );
                   },
