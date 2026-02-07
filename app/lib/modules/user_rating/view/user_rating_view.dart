@@ -72,11 +72,11 @@ class _UserRatingViewState extends State<UserRatingView> with TickerProviderStat
           children: [
             BlocProvider.value(
               value: _userRatingByWorldBloc,
-              child: const UserRatingTabView(),
+              child: const UserRatingTabView(AreaType.world),
             ),
             BlocProvider.value(
               value: _userRatingByCountryBloc,
-              child: const UserRatingTabView(),
+              child: const UserRatingTabView(AreaType.country),
             ),
           ],
         ),
