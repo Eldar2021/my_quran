@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
+import 'package:my_quran/config/config.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class UserRatingMainSuccessWidget extends StatelessWidget {
@@ -18,48 +20,52 @@ class UserRatingMainSuccessWidget extends StatelessWidget {
       elevation: 0,
       margin: EdgeInsets.zero,
       color: Theme.of(context).colorScheme.surface,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxHeight: 180,
-              minHeight: 80,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                  bottomLeft: Radius.circular(6),
-                  bottomRight: Radius.circular(6),
-                ),
-                child: UserRatingMainChart(
-                  data.weeklyData
-                      .map(
-                        (e) => UserRatingMainChartData(
-                          e.date,
-                          e.readedPagesCount,
-                          e.listenedQuranByHours,
-                        ),
-                      )
-                      .toList(),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () => context.pushNamed(AppRouter.userRating),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 180,
+                minHeight: 80,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12),
+                    bottomLeft: Radius.circular(6),
+                    bottomRight: Radius.circular(6),
+                  ),
+                  child: UserRatingMainChart(
+                    data.weeklyData
+                        .map(
+                          (e) => UserRatingMainChartData(
+                            e.date,
+                            e.readedPagesCount,
+                            e.listenedQuranByHours,
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: UserRatingMainRatingTile(
-              countryRank: data.countryRank,
-              worldRank: data.worldRank,
-              countryFlag: countryFlag,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: UserRatingMainRatingTile(
+                countryRank: data.countryRank,
+                worldRank: data.worldRank,
+                countryFlag: countryFlag,
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-        ],
+            const SizedBox(height: 12),
+          ],
+        ),
       ),
     );
   }
