@@ -21,7 +21,10 @@ class UserActivityLoadingWidget extends StatelessWidget {
             colorOpacity: 0.9,
             duration: const Duration(seconds: 2),
             interval: const Duration(milliseconds: 400),
-            child: UserActivityCardList(groupedData),
+            child: UserActivityCardList(
+              groupedData,
+              enabledTooltip: false,
+            ),
           ),
         ),
       ),

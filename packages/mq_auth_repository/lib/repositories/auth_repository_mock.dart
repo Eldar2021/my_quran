@@ -132,11 +132,6 @@ final class AuthRepositoryMock implements AuthRepository {
           openedApp: isTrue,
           quranReadedPagesCount: isTrue ? 12 : 0,
           listenedQuranSeconds: isTrue ? 600.0 : 0.0,
-          fajrDone: isTrue,
-          zuhrDone: isTrue,
-          asrDone: isTrue,
-          maghribDone: isTrue,
-          ishaDone: isTrue,
         ),
       );
     }

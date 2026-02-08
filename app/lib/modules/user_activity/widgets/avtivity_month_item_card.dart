@@ -7,12 +7,14 @@ class AvtivityMonthItemCard extends StatelessWidget {
     required this.activities,
     required this.data,
     required this.languageCode,
+    required this.enabledTooltip,
     super.key,
   });
 
   final List<auth.UserActivityModel> activities;
   final DateTime data;
   final String languageCode;
+  final bool enabledTooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,15 @@ class AvtivityMonthItemCard extends StatelessWidget {
             spacing: 3,
             runSpacing: 3,
             children: activities.map((activity) {
-              return AvtivityDayItemCard(activity.score);
+              if (enabledTooltip) {
+                return Tooltip(
+                  triggerMode: TooltipTriggerMode.tap,
+                  message: DateFormat.MMMMd(languageCode).format(activity.date),
+                  child: AvtivityDayItemCard(activity.score),
+                );
+              } else {
+                return AvtivityDayItemCard(activity.score);
+              }
             }).toList(),
           ),
         ),
@@ -67,9 +77,8 @@ class AvtivityDayItemCard extends StatelessWidget {
         Brightness.dark => const Color.fromARGB(255, 34, 40, 47),
       },
       1 => Colors.green.shade100,
-      2 => Colors.green.shade300,
-      3 => Colors.green.shade600,
-      4 => Colors.green,
+      2 => Colors.green.shade200,
+      3 => Colors.green,
       _ => Colors.green,
     };
   }

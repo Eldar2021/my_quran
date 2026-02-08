@@ -22,7 +22,10 @@ class UserActivityErrorWidget extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
-              child: UserActivityCardList(groupedData),
+              child: UserActivityCardList(
+                groupedData,
+                enabledTooltip: false,
+              ),
             ),
             Positioned.fill(
               child: DecoratedBox(

@@ -184,7 +184,7 @@ final class AuthRemoteDataSource {
   Future<List<UserActivityModel>> getUserActivity(String userId) {
     try {
       return client.getListOfType(
-        'https://eldar2021.github.io/my-quran/activity/mock_activity.json',
+        '/api/v1/accounts/stats/daily/',
         fromJson: UserActivityModel.fromJson,
       );
     } on Object catch (e) {

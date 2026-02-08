@@ -8,9 +8,14 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class UserActivityWrapWithDescriptionList extends StatelessWidget {
-  const UserActivityWrapWithDescriptionList(this.groupedData, {super.key});
+  const UserActivityWrapWithDescriptionList(
+    this.groupedData, {
+    required this.enabledTooltip,
+    super.key,
+  });
 
   final Map<DateTime, List<auth.UserActivityModel>> groupedData;
+  final bool enabledTooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,7 @@ class UserActivityWrapWithDescriptionList extends StatelessWidget {
               data: data,
               activities: groupedData[data]!,
               languageCode: locale.languageCode,
+              enabledTooltip: enabledTooltip,
             ),
           );
         }),
@@ -49,9 +55,14 @@ class UserActivityWrapWithDescriptionList extends StatelessWidget {
 }
 
 class UserActivityCardList extends StatefulWidget {
-  const UserActivityCardList(this.groupedData, {super.key});
+  const UserActivityCardList(
+    this.groupedData, {
+    required this.enabledTooltip,
+    super.key,
+  });
 
   final Map<DateTime, List<auth.UserActivityModel>> groupedData;
+  final bool enabledTooltip;
 
   @override
   State<UserActivityCardList> createState() => _UserActivityCardListState();
@@ -83,6 +94,7 @@ class _UserActivityCardListState extends State<UserActivityCardList> {
           data: data,
           activities: widget.groupedData[data]!,
           languageCode: locale.languageCode,
+          enabledTooltip: widget.enabledTooltip,
         );
       },
     );
