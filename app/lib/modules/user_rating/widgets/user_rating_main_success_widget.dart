@@ -28,9 +28,9 @@ class UserRatingMainSuccessWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxHeight: 180,
-                minHeight: 80,
+              constraints: BoxConstraints(
+                maxHeight: data.dataIsBad ? 100 : 180,
+                minHeight: 100,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8),
@@ -56,7 +56,7 @@ class UserRatingMainSuccessWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: UserRatingMainRatingTile(
                 countryRank: data.countryRank,
                 worldRank: data.worldRank,

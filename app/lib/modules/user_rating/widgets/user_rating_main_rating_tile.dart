@@ -20,7 +20,7 @@ class UserRatingMainRatingTile extends StatelessWidget {
         Expanded(
           child: Text(
             '${context.l10n.yourRating}:  $ratingText',
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
         Icon(
