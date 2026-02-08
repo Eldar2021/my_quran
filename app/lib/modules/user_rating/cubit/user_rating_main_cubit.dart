@@ -13,7 +13,8 @@ class UserRatingMainCubit extends Cubit<UserRatingMainState> {
   Future<void> getUserRatingMain(String userId) async {
     emit(const UserRatingMainLoading());
     try {
-      final result = await const AuthRepositoryMock().getUserRatingMain(userId);
+      // final result = await const AuthRepositoryMock().getUserRatingMain(userId);
+      final result = await repository.getUserRatingMain(userId);
       emit(UserRatingMainSuccess(result));
     } on Object catch (e) {
       emit(UserRatingMainError(e));

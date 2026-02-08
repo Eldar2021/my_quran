@@ -196,7 +196,7 @@ final class AuthRemoteDataSource {
   Future<UserRatingMainModel> getUserRatingMain(String userId) {
     try {
       return client.getType(
-        '/api/v1/accounts/rating_main/',
+        '/api/v1/accounts/stats/weekly/',
         fromJson: UserRatingMainModel.fromJson,
       );
     } on Object catch (e) {
@@ -210,7 +210,7 @@ final class AuthRemoteDataSource {
   ) {
     try {
       return client.getType(
-        '/api/v1/accounts/rating/',
+        '//api/v1/accounts/leaderboard/',
         queryParameters: param.toJson(),
         fromJson: RatingResponseModel.fromJson,
       );

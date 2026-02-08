@@ -11,6 +11,7 @@ final class RatingRequestModel {
     required this.userId,
     required this.periodType,
     required this.areaType,
+    this.pageSize = 20,
     this.page = 0,
   });
 
@@ -28,6 +29,9 @@ final class RatingRequestModel {
 
   @JsonKey(name: 'page')
   final int page;
+
+  @JsonKey(name: 'page_size')
+  final int pageSize;
 }
 
 @JsonSerializable()
@@ -143,17 +147,17 @@ enum PeriodType {
   weekly,
   @JsonValue('monthly')
   monthly,
-  @JsonValue('three_month')
-  threeMonth,
-  @JsonValue('year')
-  year;
+  @JsonValue('quarterly')
+  quarterly,
+  @JsonValue('yearly')
+  yearly;
 
   String getValue() {
     return switch (this) {
       PeriodType.weekly => 'weekly',
       PeriodType.monthly => 'monthly',
-      PeriodType.threeMonth => 'three_month',
-      PeriodType.year => 'year',
+      PeriodType.quarterly => 'quarterly',
+      PeriodType.yearly => 'yearly',
     };
   }
 }
