@@ -25,7 +25,7 @@ class UserActivityWrapWithDescriptionList extends StatelessWidget {
         ...groupedData.keys.map((data) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: AvtivityMonthItemCard(
+            child: ActivityMonthItemCard(
               data: data,
               activities: groupedData[data]!,
               languageCode: locale.languageCode,
@@ -90,7 +90,7 @@ class _UserActivityCardListState extends State<UserActivityCardList> {
       separatorBuilder: (context, index) => const SizedBox(width: 8),
       itemBuilder: (context, index) {
         final data = widget.groupedData.keys.elementAt(index);
-        return AvtivityMonthItemCard(
+        return ActivityMonthItemCard(
           data: data,
           activities: widget.groupedData[data]!,
           languageCode: locale.languageCode,

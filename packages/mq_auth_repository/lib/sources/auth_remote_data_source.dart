@@ -210,7 +210,7 @@ final class AuthRemoteDataSource {
   ) {
     try {
       return client.getType(
-        '//api/v1/accounts/leaderboard/',
+        '/api/v1/accounts/leaderboard/',
         queryParameters: param.toJson(),
         fromJson: RatingResponseModel.fromJson,
       );

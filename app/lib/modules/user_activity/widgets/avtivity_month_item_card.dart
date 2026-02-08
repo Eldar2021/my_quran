@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart' as auth;
 
-class AvtivityMonthItemCard extends StatelessWidget {
-  const AvtivityMonthItemCard({
+class ActivityMonthItemCard extends StatelessWidget {
+  const ActivityMonthItemCard({
     required this.activities,
     required this.data,
     required this.languageCode,
@@ -35,10 +35,10 @@ class AvtivityMonthItemCard extends StatelessWidget {
                 return Tooltip(
                   triggerMode: TooltipTriggerMode.tap,
                   message: DateFormat.MMMMd(languageCode).format(activity.date),
-                  child: AvtivityDayItemCard(activity.score),
+                  child: ActivityDayItemCard(activity.score),
                 );
               } else {
-                return AvtivityDayItemCard(activity.score);
+                return ActivityDayItemCard(activity.score);
               }
             }).toList(),
           ),
@@ -53,8 +53,8 @@ class AvtivityMonthItemCard extends StatelessWidget {
   }
 }
 
-class AvtivityDayItemCard extends StatelessWidget {
-  const AvtivityDayItemCard(this.score, {super.key});
+class ActivityDayItemCard extends StatelessWidget {
+  const ActivityDayItemCard(this.score, {super.key});
 
   final int score;
 
