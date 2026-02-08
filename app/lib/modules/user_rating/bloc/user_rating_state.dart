@@ -65,4 +65,9 @@ final class UserRatingState extends PagingStateBase<int, RatingParticipantModel>
     ownerData?.ratingNumber,
     ownerData?.readedPagesCount,
   );
+
+  int get nextIntPageKey {
+    if (pages?.isEmpty ?? true) return 0;
+    return (keys?.lastOrNull ?? 0) + 1;
+  }
 }
