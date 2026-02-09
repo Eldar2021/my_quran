@@ -329,3 +329,12 @@
 
 - Removed unused sealed_countries pkg
 - Fixed IOS CI tests
+
+---
+
+# What's Changed v1.3.24+40
+
+## [UX]
+
+- Implemented user activity
+- Implemented user rating
