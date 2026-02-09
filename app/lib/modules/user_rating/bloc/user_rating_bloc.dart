@@ -26,7 +26,7 @@ class UserRatingBloc extends Bloc<UserRatingEvent, UserRatingState> {
   final AreaType areaType;
 
   Future<RatingResponseModel> _fetchItem(int pageNumber, PeriodType periodType) {
-    return const AuthRepositoryMock().getRatingData(
+    return repository.getRatingData(
       RatingRequestModel(
         userId: userId,
         periodType: periodType,

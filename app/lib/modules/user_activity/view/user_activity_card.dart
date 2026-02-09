@@ -33,6 +33,8 @@ class _UserActivityCardState extends State<UserActivityCard> {
           UserActivityLoaded() => UserActivityLoadedWidget(
             groupByMonth(state.activities),
             canUseWrapList: true,
+            canTap: true,
+            enabledTooltip: false,
           ),
           UserActivityUnauthorized() => UserActivityUnauthorizedWidget(groupByMonth(defaultActivities)),
           UserActivityError() => UserActivityErrorWidget(groupByMonth(defaultActivities)),

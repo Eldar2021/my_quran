@@ -5,8 +5,12 @@ final class ApiConst {
 
   static const domain = 'https://myquran.life';
 
-  static String audio(String surahIndex) =>
-      'https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/$surahIndex.mp3';
+  // 'https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/001.mp3';
+  static String audio(String surahIndex, String? token) {
+    final path = 'https://myquran.life/media/quran_audio/$surahIndex.mp3';
+    if (token != null) return '$path?token=$token';
+    return path;
+  }
 
   static const urlGitHub = 'https://github.com/Eldar2021/my_quran';
   static const oneLink = 'https://onelink.to/q58a9t';

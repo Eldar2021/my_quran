@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart' as auth;
 import 'package:my_quran/app/app.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
+import 'package:my_quran/modules/modules.dart';
 
 class UserActivityWrapWithDescriptionList extends StatelessWidget {
-  const UserActivityWrapWithDescriptionList(this.groupedData, {super.key});
+  const UserActivityWrapWithDescriptionList(
+    this.groupedData, {
+    required this.enabledTooltip,
+    super.key,
+  });
 
   final Map<DateTime, List<auth.UserActivityModel>> groupedData;
+  final bool enabledTooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +25,11 @@ class UserActivityWrapWithDescriptionList extends StatelessWidget {
         ...groupedData.keys.map((data) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: AvtivityMonthItemCard(
+            child: ActivityMonthItemCard(
               data: data,
               activities: groupedData[data]!,
               languageCode: locale.languageCode,
+              enabledTooltip: enabledTooltip,
             ),
           );
         }),
@@ -48,99 +54,49 @@ class UserActivityWrapWithDescriptionList extends StatelessWidget {
   }
 }
 
-class UserActivityCardList extends StatelessWidget {
-  const UserActivityCardList(this.groupedData, {super.key});
+class UserActivityCardList extends StatefulWidget {
+  const UserActivityCardList(
+    this.groupedData, {
+    required this.enabledTooltip,
+    super.key,
+  });
 
   final Map<DateTime, List<auth.UserActivityModel>> groupedData;
+  final bool enabledTooltip;
+
+  @override
+  State<UserActivityCardList> createState() => _UserActivityCardListState();
+}
+
+class _UserActivityCardListState extends State<UserActivityCardList> {
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final locale = context.read<AuthCubit>().state.currentLocale;
     return ListView.separated(
+      controller: _scrollController,
       scrollDirection: Axis.horizontal,
-      itemCount: groupedData.length,
+      itemCount: widget.groupedData.length,
       separatorBuilder: (context, index) => const SizedBox(width: 8),
       itemBuilder: (context, index) {
-        final data = groupedData.keys.elementAt(index);
-        return AvtivityMonthItemCard(
+        final data = widget.groupedData.keys.elementAt(index);
+        return ActivityMonthItemCard(
           data: data,
-          activities: groupedData[data]!,
+          activities: widget.groupedData[data]!,
           languageCode: locale.languageCode,
+          enabledTooltip: widget.enabledTooltip,
         );
       },
     );
-  }
-}
-
-class AvtivityMonthItemCard extends StatelessWidget {
-  const AvtivityMonthItemCard({
-    required this.activities,
-    required this.data,
-    required this.languageCode,
-    super.key,
-  });
-
-  final List<auth.UserActivityModel> activities;
-  final DateTime data;
-  final String languageCode;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          _formatMonthByNumber(data.month),
-        ),
-        const SizedBox(height: 4),
-        Expanded(
-          child: Wrap(
-            direction: Axis.vertical,
-            spacing: 3,
-            runSpacing: 3,
-            children: activities.map((activity) {
-              return AvtivityDayItemCard(activity.score);
-            }).toList(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  String _formatMonthByNumber(int i) {
-    final date = DateTime(DateTime.now().year, i);
-    return DateFormat('MMM', languageCode).format(date);
-  }
-}
-
-class AvtivityDayItemCard extends StatelessWidget {
-  const AvtivityDayItemCard(this.score, {super.key});
-
-  final int score;
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: _getBoxColor(score, context),
-        borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: _getBoxColor(score, context)),
-      ),
-      child: const SizedBox(width: 12, height: 12),
-    );
-  }
-
-  Color _getBoxColor(int score, BuildContext context) {
-    return switch (score) {
-      0 => switch (Theme.of(context).brightness) {
-        Brightness.light => const Color(0xffEFF2F5),
-        Brightness.dark => const Color.fromARGB(255, 34, 40, 47),
-      },
-      1 => Colors.green.shade100,
-      2 => Colors.green.shade300,
-      3 => Colors.green.shade600,
-      4 => Colors.green,
-      _ => Colors.green,
-    };
   }
 }

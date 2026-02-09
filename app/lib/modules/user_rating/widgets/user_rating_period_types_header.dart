@@ -37,8 +37,8 @@ class UserRatingPeriodTypesHeader extends StatelessWidget {
                 switch (period) {
                   PeriodType.weekly => context.l10n.weekly,
                   PeriodType.monthly => context.l10n.monthly,
-                  PeriodType.threeMonth => context.l10n.quarterly,
-                  PeriodType.year => context.l10n.yearly,
+                  PeriodType.quarterly => context.l10n.quarterly,
+                  PeriodType.yearly => context.l10n.yearly,
                 },
               ),
               onSelected: (selected) => onPeriodChanged(period),

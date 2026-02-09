@@ -10,6 +10,7 @@ RatingRequestModel _$RatingRequestModelFromJson(Map<String, dynamic> json) => Ra
   userId: json['user_id'] as String,
   periodType: $enumDecode(_$PeriodTypeEnumMap, json['period_type']),
   areaType: $enumDecode(_$AreaTypeEnumMap, json['area_type']),
+  pageSize: (json['page_size'] as num?)?.toInt() ?? 20,
   page: (json['page'] as num?)?.toInt() ?? 0,
 );
 
@@ -18,13 +19,14 @@ Map<String, dynamic> _$RatingRequestModelToJson(RatingRequestModel instance) => 
   'period_type': _$PeriodTypeEnumMap[instance.periodType]!,
   'area_type': _$AreaTypeEnumMap[instance.areaType]!,
   'page': instance.page,
+  'page_size': instance.pageSize,
 };
 
 const _$PeriodTypeEnumMap = {
   PeriodType.weekly: 'weekly',
   PeriodType.monthly: 'monthly',
-  PeriodType.threeMonth: 'three_month',
-  PeriodType.year: 'year',
+  PeriodType.quarterly: 'quarterly',
+  PeriodType.yearly: 'yearly',
 };
 
 const _$AreaTypeEnumMap = {

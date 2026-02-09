@@ -23,6 +23,13 @@ final class UserRatingMainModel {
 
   @JsonKey(name: 'country_rank')
   final int? countryRank;
+
+  bool get dataIsBad {
+    if (weeklyData.isEmpty) return true;
+    return weeklyData.every((day) {
+      return day.readedPagesCount == 0 && day.listenedQuranByHours == 0;
+    });
+  }
 }
 
 @JsonSerializable()

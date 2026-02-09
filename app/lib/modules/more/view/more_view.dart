@@ -30,34 +30,39 @@ class MoreView extends StatelessWidget {
         onRefresh: () => _refresh(context),
         child: ListView(
           key: const Key(MqKeys.moreListView),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
             const SizedBox(height: 16),
-            BlocBuilder<AuthCubit, AuthState>(
-              builder: (context, state) {
-                final auth = state.auth;
-                final gender = state.currentGender;
-                if (auth != null) {
-                  return UserProfileAuthenticatedCard(
-                    auth: auth,
-                    unfieldsCount: auth.user.unfieldsCount,
-                    onTap: () => _navigateToProfile(context),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  final auth = state.auth;
+                  final gender = state.currentGender;
+                  if (auth != null) {
+                    return UserProfileAuthenticatedCard(
+                      auth: auth,
+                      unfieldsCount: auth.user.unfieldsCount,
+                      onTap: () => _navigateToProfile(context),
+                    );
+                  }
+                  return UserProfileUnauthenticatedCard(
+                    gender: gender,
+                    onTap: () => _navigateToLogin(context),
                   );
-                }
-                return UserProfileUnauthenticatedCard(
-                  gender: gender,
-                  onTap: () => _navigateToLogin(context),
-                );
-              },
+                },
+              ),
             ),
-            BlocBuilder<AuthCubit, AuthState>(
-              builder: (context, state) {
-                final auth = state.auth;
-                if (auth != null) {
-                  return UserRatingMainWidget(auth);
-                }
-                return const SizedBox.shrink();
-              },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  final auth = state.auth;
+                  if (auth != null) {
+                    return UserRatingMainWidget(auth);
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
             ),
             const SizedBox(height: 16),
             BlocBuilder<AuthCubit, AuthState>(
@@ -70,10 +75,16 @@ class MoreView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
-            const MoreActions(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: MoreActions(),
+            ),
             const SizedBox(height: 16),
-            const MyQuranAppVersionTile(
-              key: Key(MqKeys.moreAppVersionTile),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: MyQuranAppVersionTile(
+                key: Key(MqKeys.moreAppVersionTile),
+              ),
             ),
             const SizedBox(height: 40),
           ],
