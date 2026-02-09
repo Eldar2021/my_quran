@@ -336,5 +336,5 @@
 
 ## [UX]
 
-- Implemented user activity
-- Implemented user rating
+- Added a User Activity screen to track your progress
+- Introduced User Ratings to see your rank against other users
