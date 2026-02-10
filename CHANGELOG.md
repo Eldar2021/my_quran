@@ -329,3 +329,12 @@
 
 - Removed unused sealed_countries pkg
 - Fixed IOS CI tests
+
+---
+
+# What's Changed v1.3.24+40
+
+## [UX]
+
+- Added a User Activity screen to track your progress
+- Introduced User Ratings to see your rank against other users
