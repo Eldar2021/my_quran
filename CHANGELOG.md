@@ -338,3 +338,11 @@
 
 - Added a User Activity screen to track your progress
 - Introduced User Ratings to see your rank against other users
+
+---
+
+# What's Changed v1.3.25+41
+
+## [Bug Fixes]
+
+- Fixed hatim state

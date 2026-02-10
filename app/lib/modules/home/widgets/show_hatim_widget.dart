@@ -61,8 +61,6 @@ class ShowHatimWidget {
                   ),
                   itemBuilder: (context, index) {
                     final item = hatim[index];
-                    final titleText = item.type == 'GENERAL' ? context.l10n.generalHatim : item.title;
-
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: GradientDecoratedBox(
@@ -85,7 +83,7 @@ class ShowHatimWidget {
                             ),
                           ),
                           title: Text(
-                            '$titleText',
+                            item.uiTitle ?? context.l10n.generalHatim,
                             style: prTextTheme.titleMedium,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,

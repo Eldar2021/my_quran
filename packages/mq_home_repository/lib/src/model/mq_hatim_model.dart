@@ -14,7 +14,6 @@ final class MqHatimsModel {
     required this.type,
     required this.status,
     required this.creator,
-    required this.participantsDetails,
   });
 
   factory MqHatimsModel.fromJson(Map<String, dynamic> json) => _$MqHatimsModelFromJson(json);
@@ -27,10 +26,13 @@ final class MqHatimsModel {
   final String status;
   final MqHatimCreatorModel? creator;
 
-  @JsonKey(name: 'participants_details')
-  final List<MqHatimParticipantsDetailModel>? participantsDetails;
-
   bool isCreator(String value) {
     return creator?.userName == value;
+  }
+
+  String? get uiTitle {
+    if (title == null) return null;
+    if (title!.contains('General')) return null;
+    return title;
   }
 }
