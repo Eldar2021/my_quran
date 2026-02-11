@@ -23,24 +23,24 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   late final Stream<PlayerState> playerStateStream;
   late final List<MqSurahEntity> surahs;
 
-  Future<void> init() async {
+  Future<void> init(String? userId) async {
     try {
       surahs = quranRepository.getSurahsData();
       sequenceStateStream = player.sequenceStateStream;
       playerStateStream = player.playerStateStream;
-      final playList = surahs
-          .map(
-            (s) => AudioSource.uri(
-              Uri.parse(ApiConst.audio(s.surahPath)),
-              tag: MediaItem(
-                id: '${s.id}',
-                album: 'Quran',
-                title: s.nameSimple,
-                artUri: Uri.parse(ApiConst.appLogoLink),
-              ),
+      final playList = surahs.map(
+        (s) {
+          return AudioSource.uri(
+            Uri.parse(ApiConst.audio(s.surahPath, userId)),
+            tag: MediaItem(
+              id: '${s.id}',
+              album: 'Quran',
+              title: s.nameSimple,
+              artUri: Uri.parse(ApiConst.appLogoLink),
             ),
-          )
-          .toList();
+          );
+        },
+      ).toList();
       await player.setAudioSources(
         playList,
         initialIndex: 0,

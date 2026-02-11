@@ -169,6 +169,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             final hatims = state.homeModel?.hatims;
+            if (hatims?.isEmpty ?? true) return const SizedBox.shrink();
             return ElevatedButton(
               key: const Key(MqKeys.participantToHatim),
               onPressed: () => QuranExView.show(context),

@@ -184,11 +184,38 @@ final class AuthRemoteDataSource {
   Future<List<UserActivityModel>> getUserActivity(String userId) {
     try {
       return client.getListOfType(
-        'https://eldar2021.github.io/my-quran/activity/mock_activity.json',
+        '/api/v1/accounts/stats/daily/',
         fromJson: UserActivityModel.fromJson,
       );
     } on Object catch (e) {
       log('AuthRemoteDataSource getUserActivity:', error: e);
+      rethrow;
+    }
+  }
+
+  Future<UserRatingMainModel> getUserRatingMain(String userId) {
+    try {
+      return client.getType(
+        '/api/v1/accounts/stats/weekly/',
+        fromJson: UserRatingMainModel.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getUserRatingMain:', error: e);
+      rethrow;
+    }
+  }
+
+  Future<RatingResponseModel> getRatingData(
+    RatingRequestModel param,
+  ) {
+    try {
+      return client.getType(
+        '/api/v1/accounts/leaderboard/',
+        queryParameters: param.toJson(),
+        fromJson: RatingResponseModel.fromJson,
+      );
+    } on Object catch (e) {
+      log('AuthRemoteDataSource getRatingData:', error: e);
       rethrow;
     }
   }

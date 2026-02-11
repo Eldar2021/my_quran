@@ -207,5 +207,20 @@
   "noActivityDay": "Anda tidak menggunakan aplikasi pada hari ini",
   "openedOnceDay": "Anda membuka aplikasi sekali pada hari ini",
   "readQuranActivity": "Anda membaca Al-Qur'an di aplikasi",
-  "listenQuranActivity": "Anda mendengarkan Al-Qur'an di aplikasi"
+  "listenQuranActivity": "Anda mendengarkan Al-Qur'an di aplikasi",
+  "yourRating": "Peringkat Anda",
+  "ratings": "Peringkat",
+  "world": "Dunia",
+  "country2": "Negara",
+  "countryNotSelected": "Negara belum dipilih",
+  "ratingCountryPrompt": "Anda dapat melihat peringkat Anda berdasarkan negara jika Anda memilih negara di profil Anda",
+  "noName": "Tanpa Nama",
+  "noUsername": "Tanpa Nama Pengguna",
+  "weekly": "Mingguan",
+  "monthly": "Bulanan",
+  "quarterly": "Triwulanan",
+  "yearly": "Tahunan",
+  "errorTryAgain": "Terjadi kesalahan. Silakan coba lagi.",
+  "tryAgain": "Coba lagi",
+  "participantsNotFound": "Peserta tidak ditemukan.\nSilakan coba lagi nanti."
 }

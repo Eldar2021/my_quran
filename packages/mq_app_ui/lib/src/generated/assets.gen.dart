@@ -50,6 +50,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/book_mark_fill.svg
   SvgGenImage get bookMarkFill => const SvgGenImage('assets/icons/book_mark_fill.svg');
 
+  /// File path: assets/icons/champion_1.svg
+  SvgGenImage get champion1 => const SvgGenImage('assets/icons/champion_1.svg');
+
+  /// File path: assets/icons/champion_2.svg
+  SvgGenImage get champion2 => const SvgGenImage('assets/icons/champion_2.svg');
+
+  /// File path: assets/icons/champion_3.svg
+  SvgGenImage get champion3 => const SvgGenImage('assets/icons/champion_3.svg');
+
   /// File path: assets/icons/check.svg
   SvgGenImage get check => const SvgGenImage('assets/icons/check.svg');
 
@@ -207,6 +216,9 @@ class $AssetsIconsGen {
     backIcon,
     book,
     bookMarkFill,
+    champion1,
+    champion2,
+    champion3,
     check,
     cloud,
     copy,

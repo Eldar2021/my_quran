@@ -67,7 +67,7 @@ class _InFoField extends StatelessWidget {
               style: textTheme.titleSmall,
             ),
           ),
-          AvtivityDayItemCard(score),
+          ActivityDayItemCard(score),
         ],
       ),
     );

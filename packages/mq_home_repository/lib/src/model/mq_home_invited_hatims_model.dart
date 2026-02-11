@@ -14,7 +14,6 @@ final class MqHomeInvitedHatimsModel {
     required this.type,
     required this.status,
     required this.creator,
-    required this.participantsDetails,
   });
 
   factory MqHomeInvitedHatimsModel.fromJson(Map<String, dynamic> json) => _$MqHomeInvitedHatimsModelFromJson(json);
@@ -26,5 +25,4 @@ final class MqHomeInvitedHatimsModel {
   final String type;
   final String status;
   final MqHatimCreatorModel? creator;
-  final List<MqHatimParticipantsDetailModel>? participantsDetails;
 }

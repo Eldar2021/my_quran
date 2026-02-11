@@ -56,7 +56,7 @@ dependencies:
   cached_network_image: ^3.4.1
   infinite_scroll_pagination: ^5.1.1
   pinput: ^5.0.2
-  syncfusion_flutter_charts: ^31.2.5
+  syncfusion_flutter_charts: ^32.2.3
   flutter_instagram_storyboard: ^1.0.1 # Need change pkg
   just_audio: ^0.10.5
   just_audio_background: ^0.0.1-beta.17

@@ -31,6 +31,16 @@ Future<void> checkSettingsGender(FlutterDriver driver) async {
   });
 }
 
+Future<void> scrollToBottomFromMoreView(FlutterDriver driver) async {
+  await driver.runUnsynchronized(() async {
+    await driver.scrollUntilVisible(
+      find.byValueKey(MqKeys.moreListView),
+      find.byValueKey(MqKeys.moreAppVersionTile),
+      dyScroll: -200,
+    );
+  });
+}
+
 Future<void> checkSettingsAboutUs(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
     await driver.waitFor(find.byValueKey(MqKeys.settingsAboutUs));

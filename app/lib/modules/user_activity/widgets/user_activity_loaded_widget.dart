@@ -7,12 +7,16 @@ import 'package:my_quran/modules/modules.dart';
 class UserActivityLoadedWidget extends StatelessWidget {
   const UserActivityLoadedWidget(
     this.groupedData, {
-    super.key,
     this.canUseWrapList = false,
+    this.canTap = false,
+    this.enabledTooltip = true,
+    super.key,
   });
 
   final Map<DateTime, List<UserActivityModel>> groupedData;
   final bool canUseWrapList;
+  final bool canTap;
+  final bool enabledTooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +28,21 @@ class UserActivityLoadedWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: InkWell(
-            onTap: () => context.pushNamed(
-              AppRouter.userActivity,
-              extra: groupedData,
-            ),
+            onTap: canTap
+                ? () => context.pushNamed(
+                    AppRouter.userActivity,
+                    extra: groupedData,
+                  )
+                : null,
             child: showDescription
-                ? UserActivityWrapWithDescriptionList(groupedData)
-                : UserActivityCardList(groupedData),
+                ? UserActivityWrapWithDescriptionList(
+                    groupedData,
+                    enabledTooltip: enabledTooltip,
+                  )
+                : UserActivityCardList(
+                    groupedData,
+                    enabledTooltip: enabledTooltip,
+                  ),
           ),
         ),
       ),

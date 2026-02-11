@@ -4,12 +4,25 @@ import 'package:just_audio/just_audio.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
+import 'package:my_quran/app/app.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 import 'package:my_quran/utils/urils.dart';
 
-class QuranAudioView extends StatelessWidget {
+class QuranAudioView extends StatefulWidget {
   const QuranAudioView({super.key});
+
+  @override
+  State<QuranAudioView> createState() => _QuranAudioViewState();
+}
+
+class _QuranAudioViewState extends State<QuranAudioView> {
+  @override
+  void initState() {
+    final userId = context.read<AuthCubit>().auth?.key;
+    context.read<QuranAudioCubit>().init(userId);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

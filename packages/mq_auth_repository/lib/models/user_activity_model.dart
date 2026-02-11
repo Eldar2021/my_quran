@@ -12,11 +12,6 @@ final class UserActivityModel {
     required this.openedApp,
     required this.quranReadedPagesCount,
     required this.listenedQuranSeconds,
-    required this.fajrDone,
-    required this.zuhrDone,
-    required this.asrDone,
-    required this.maghribDone,
-    required this.ishaDone,
   });
 
   factory UserActivityModel.fromJson(Map<String, dynamic> json) => _$UserActivityModelFromJson(json);
@@ -26,22 +21,17 @@ final class UserActivityModel {
   final bool openedApp;
   final int quranReadedPagesCount;
   final double listenedQuranSeconds;
-  final bool fajrDone;
-  final bool zuhrDone;
-  final bool asrDone;
-  final bool maghribDone;
-  final bool ishaDone;
+  // final bool fajrDone;
+  // final bool zuhrDone;
+  // final bool asrDone;
+  // final bool maghribDone;
+  // final bool ishaDone;
 
   int get score {
     var currentScore = 0;
     if (openedApp) currentScore += 1;
     if (quranReadedPagesCount > 0) currentScore += 1;
-    if (listenedQuranSeconds > 10) currentScore += 1;
-    if (fajrDone) currentScore += 1;
-    if (zuhrDone) currentScore += 1;
-    if (asrDone) currentScore += 1;
-    if (maghribDone) currentScore += 1;
-    if (ishaDone) currentScore += 1;
+    if (listenedQuranSeconds > 0) currentScore += 1;
     return currentScore;
   }
 }

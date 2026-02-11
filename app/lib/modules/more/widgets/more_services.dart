@@ -23,6 +23,7 @@ class MoreServices extends StatelessWidget {
       height: 100,
       child: ListView(
         scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           ServiceCard(
             title: context.l10n.createHatim,
