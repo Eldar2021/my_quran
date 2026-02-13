@@ -50,6 +50,18 @@ flutter:
     - family: page_1_woff2
       fonts:
         - asset: assets/fonts/page/p1.woff2
+    - family: normal_v_1_1
+      fonts:
+        - asset: assets/fonts/normal_v_1_1/normal_v_1_1_p1.woff2
+    - family: normal_v_1_2
+      fonts:
+        - asset: assets/fonts/normal_v_1_2/normal_v_1_2_p1.woff2
+    - family: tajweed_v_1_1
+      fonts:
+        - asset: assets/fonts/tajweed_v_1_1/tajweed_v_1_1_p1.woff2
+    - family: tajweed_v_1_2
+      fonts:
+        - asset: assets/fonts/tajweed_v_1_2/tajweed_v_1_2_p1.woff2
 
 flutter_gen:
   assets:

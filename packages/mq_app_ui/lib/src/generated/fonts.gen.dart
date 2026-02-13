@@ -11,6 +11,12 @@
 class FontFamily {
   FontFamily._();
 
+  /// Font family: normal_v_1_1
+  static const String normalV11 = 'normal_v_1_1';
+
+  /// Font family: normal_v_1_2
+  static const String normalV12 = 'normal_v_1_2';
+
   /// Font family: page_1
   static const String page1 = 'page_1';
 
@@ -19,6 +25,12 @@ class FontFamily {
 
   /// Font family: page_1_woff2
   static const String page1Woff2 = 'page_1_woff2';
+
+  /// Font family: tajweed_v_1_1
+  static const String tajweedV11 = 'tajweed_v_1_1';
+
+  /// Font family: tajweed_v_1_2
+  static const String tajweedV12 = 'tajweed_v_1_2';
 
   /// Font family: uthmanic_regular
   static const String uthmanicRegular = 'uthmanic_regular';
