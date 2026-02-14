@@ -36,6 +36,6 @@ final class QuranDataRepoImpl implements QuranDataRepository {
 
   String _getPagePath(int pageNumber) {
     final formattedPage = pageNumber.toString().padLeft(3, '0');
-    return 'assets/quran_pages/$formattedPage.json';
+    return 'packages/mq_quran_client/assets/quran_pages/$formattedPage.json';
   }
 }
