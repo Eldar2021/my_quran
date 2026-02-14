@@ -49,9 +49,14 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
         key: const Key(MqKeys.homeView),
         title: Text(context.l10n.hello),
         centerTitle: true,
-        actions: const [
-          NotificationCountBadgeWidget(),
-          SizedBox(width: 10),
+        actions: [
+          const NotificationCountBadgeWidget(),
+          const SizedBox(width: 10),
+          IconButton(
+            onPressed: () => QuranByPageViewV3.show(context),
+            icon: const Icon(Icons.abc),
+          ),
+          const SizedBox(width: 10),
         ],
       ),
       body: RefreshIndicator(

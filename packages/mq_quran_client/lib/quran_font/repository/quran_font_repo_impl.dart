@@ -49,6 +49,8 @@ final class QuranFontRepoImpl implements QuranFontRepository {
           ? QuranClientConstants.getTajweedUrl(fileName)
           : QuranClientConstants.getNormalUrl(fileName);
 
+      log('URL: $url');
+
       await client.download(url, file.path);
       return file;
     } catch (e) {

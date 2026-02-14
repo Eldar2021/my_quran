@@ -51,6 +51,7 @@ dependencies:
   mq_hatim_repository:
   mq_app_ui:
   mq_prayer_time:
+  mq_quran_client:
   timezone:
 
   # flutter_native_splash:

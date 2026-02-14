@@ -10,7 +10,7 @@ final class QuranDataRepoImpl implements QuranDataRepository {
   const QuranDataRepoImpl();
 
   @override
-  Future<List<QuranVerseModel>> getVersesByPage(
+  Future<QuranPageModel> getVersesByPage(
     int pageNumber, {
     int? sortSurahNumber,
     int? sortJuzNumber,
@@ -18,19 +18,29 @@ final class QuranDataRepoImpl implements QuranDataRepository {
     try {
       final response = await rootBundle.loadString(_getPagePath(pageNumber));
       final data = json.decode(response) as List<dynamic>;
+      log(data.toString());
       final list = data.map((json) => QuranVerseModel.fromJson(json as Map<String, dynamic>)).toList();
       if (sortSurahNumber != null) {
-        return list.where((e) => e.chapterId == sortSurahNumber).toList();
+        return QuranPageModel(
+          pageNumber: pageNumber,
+          verses: list.where((e) => e.hizbNumber == sortSurahNumber).toList(),
+        );
       }
 
       if (sortJuzNumber != null) {
-        return list.where((e) => e.juzNumber == sortJuzNumber).toList();
+        return QuranPageModel(
+          pageNumber: pageNumber,
+          verses: list.where((e) => e.juzNumber == sortJuzNumber).toList(),
+        );
       }
 
-      return list;
+      return QuranPageModel(
+        pageNumber: pageNumber,
+        verses: list,
+      );
     } on Object catch (e) {
       log('QuranDataRepoImpl getVersesByPage error($pageNumber): $e');
-      return [];
+      rethrow;
     }
   }
 

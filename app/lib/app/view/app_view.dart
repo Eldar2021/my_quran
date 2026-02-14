@@ -9,6 +9,7 @@ import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:mq_quran_repository/mq_quran_repository.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
@@ -34,6 +35,14 @@ class MyApp extends StatelessWidget {
                 : AppLocalDataSourceImpl(
                     context.read<PreferencesStorage>(),
                   ),
+          ),
+        ),
+        RepositoryProvider<QuranDataRepository>(
+          create: (context) => const QuranDataRepoImpl(),
+        ),
+        RepositoryProvider<QuranFontRepository>(
+          create: (context) => QuranFontRepoImpl(
+            context.read<MqRemoteClient>(),
           ),
         ),
         RepositoryProvider<MqHomeRepository>(
