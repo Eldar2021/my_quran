@@ -1,0 +1,23 @@
+name: mq_quran_client
+description: MyQuran Quran Client
+version: 0.1.0+1
+resolution: workspace
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  json_annotation:
+
+  mq_remote_client:
+  mq_storage:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail:
+  build_runner:
+  json_serializable:

@@ -20,6 +20,7 @@ workspace:
   - packages/mq_remote_client
   - packages/mq_remote_config
   - packages/mq_storage
+  - packages/mq_quran_client
 
 dependencies:
   cupertino_icons: ^1.0.8
