@@ -9,6 +9,7 @@ linter:
     one_member_abstracts: false
     discarded_futures: false
     avoid_positional_boolean_parameters: false
+    only_throw_errors: false
 
 analyzer:
   exclude:
