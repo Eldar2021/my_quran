@@ -7,6 +7,10 @@ import 'package:path/path.dart' as p;
 
 // https://api-docs.quran.foundation/docs/tutorials/fonts/font-rendering
 
+const _token = '';
+
+const _clientId = '';
+
 const JsonEncoder encoder = JsonEncoder.withIndent('  ');
 
 Future<void> main() async {
@@ -30,7 +34,8 @@ Future<void> getQuranByPages() async {
     try {
       log('Downloading juz $i...');
       final response = await dio.get<Map<String, dynamic>>(
-        'https://apis-prelive.quran.foundation/content/api/v4/verses/by_page/$i?fields=text_imlaei,text_uthmani,code_v2,chapter_id',
+        // 'https://apis-prelive.quran.foundation/content/api/v4/verses/by_page/$i?fields=text_imlaei,text_uthmani,code_v2,chapter_id',
+        'https://apis.quran.foundation/content/api/v4/verses/by_page/$i?fields=text_imlaei,text_uthmani,code_v2,chapter_id',
         options: Options(
           headers: {
             'Accept': 'application/json',
