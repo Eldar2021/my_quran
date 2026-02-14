@@ -35,20 +35,24 @@ final class QuranFontRepoImpl implements QuranFontRepository {
     final dirName = isTajweed ? 'tajweed_fonts' : 'normal_fonts';
 
     final appDir = await getApplicationDocumentsDirectory();
-    final savePath = '${appDir.path}/quran_fonts/$dirName/$fileName.woff2';
-    final file = File(savePath);
+    final fontDir = Directory('${appDir.path}/quran_fonts/$dirName');
 
+    if (!fontDir.existsSync()) {
+      await fontDir.create(recursive: true);
+    }
+
+    final file = File('${fontDir.path}/$fileName.woff2');
     if (file.existsSync()) return file;
-    await file.parent.create(recursive: true);
 
     try {
       final url = isTajweed
           ? QuranClientConstants.getTajweedUrl(fileName)
           : QuranClientConstants.getNormalUrl(fileName);
 
-      await client.download(url, savePath);
+      await client.download(url, file.path);
       return file;
     } catch (e) {
+      if (file.existsSync()) await file.delete();
       log('Download Error: $e');
       rethrow;
     }
