@@ -1,4 +1,7 @@
 /// MyQuran Quran Client
 library;
 
-export 'models/quran_data.dart';
+export 'generated/assets.gen.dart';
+export 'generated/fonts.gen.dart';
+export 'models/quran_verse_model.dart';
+export 'quran_data/quran_data.dart';

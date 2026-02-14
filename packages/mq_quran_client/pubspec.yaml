@@ -10,8 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  meta:
   json_annotation:
-
+  equatable:
   mq_remote_client:
   mq_storage:
 
