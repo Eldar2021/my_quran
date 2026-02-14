@@ -38,7 +38,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         RepositoryProvider<QuranDataRepository>(
-          create: (context) => const QuranDataRepoImpl(),
+          create: (context) => QuranDataRepoImpl(
+            const QuranDataAssetsSource(),
+          ),
         ),
         RepositoryProvider<QuranFontRepository>(
           create: (context) => QuranFontRepoImpl(

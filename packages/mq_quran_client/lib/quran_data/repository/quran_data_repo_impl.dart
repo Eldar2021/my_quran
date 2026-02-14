@@ -1,13 +1,11 @@
-import 'dart:convert';
-import 'dart:developer';
-
-import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 import 'package:mq_quran_client/mq_quran_client.dart';
 
-@immutable
-final class QuranDataRepoImpl implements QuranDataRepository {
-  const QuranDataRepoImpl();
+class QuranDataRepoImpl implements QuranDataRepository {
+  QuranDataRepoImpl(this.source);
+
+  final QuranDataDataSource source;
+
+  final _cache = <int, Future<List<QuranVerseModel>>>{};
 
   @override
   Future<QuranPageModel> getVersesByPage(
@@ -15,37 +13,33 @@ final class QuranDataRepoImpl implements QuranDataRepository {
     int? sortSurahNumber,
     int? sortJuzNumber,
   }) async {
-    try {
-      final response = await rootBundle.loadString(_getPagePath(pageNumber));
-      final data = json.decode(response) as List<dynamic>;
-      log(data.toString());
-      final list = data.map((json) => QuranVerseModel.fromJson(json as Map<String, dynamic>)).toList();
-      if (sortSurahNumber != null) {
-        return QuranPageModel(
-          pageNumber: pageNumber,
-          verses: list.where((e) => e.hizbNumber == sortSurahNumber).toList(),
-        );
-      }
+    final data = await _getVerses(pageNumber);
 
-      if (sortJuzNumber != null) {
-        return QuranPageModel(
-          pageNumber: pageNumber,
-          verses: list.where((e) => e.juzNumber == sortJuzNumber).toList(),
-        );
-      }
+    var filteredVerses = data;
 
-      return QuranPageModel(
-        pageNumber: pageNumber,
-        verses: list,
-      );
-    } on Object catch (e) {
-      log('QuranDataRepoImpl getVersesByPage error($pageNumber): $e');
-      rethrow;
+    if (sortSurahNumber != null) {
+      filteredVerses = filteredVerses.where((e) => e.chapterId == sortSurahNumber).toList();
+    } else if (sortJuzNumber != null) {
+      filteredVerses = filteredVerses.where((e) => e.juzNumber == sortJuzNumber).toList();
     }
+
+    return QuranPageModel(
+      pageNumber: pageNumber,
+      verses: filteredVerses,
+    );
   }
 
-  String _getPagePath(int pageNumber) {
-    final formattedPage = pageNumber.toString().padLeft(3, '0');
-    return 'packages/mq_quran_client/assets/quran_pages/$formattedPage.json';
+  Future<List<QuranVerseModel>> _getVerses(int pageNumber) {
+    if (_cache.containsKey(pageNumber)) {
+      return _cache[pageNumber]!;
+    }
+
+    final future = source.getVersesByPage(pageNumber).catchError((Object e) {
+      _cache.remove(pageNumber);
+      throw e;
+    });
+
+    _cache[pageNumber] = future;
+    return future;
   }
 }
