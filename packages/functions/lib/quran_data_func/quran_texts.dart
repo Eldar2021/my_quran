@@ -25,7 +25,7 @@ Future<void> getQuranByPages() async {
     await dir.create(recursive: true);
   }
 
-  for (var i = 1; i <= 604; i++) {
+  for (var i = 1; i <= 2; i++) {
     final fileName = '${i.toString().padLeft(3, '0')}.json';
     final filePath = p.join(dir.path, fileName);
 

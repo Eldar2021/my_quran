@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart' as p;
 
-// Future<void> downloadQuranFontsTtfFont() async {
+// Future<void> downloadQuranNormalFont() async {
 //   final dio = Dio();
 
-//   final currentProjectPath = '${Directory.current.path}/quran_data/ttf_fonts/';
+//   final currentProjectPath = '${Directory.current.path}/quran_data/normal_fonts/';
 
 //   final dir = Directory(currentProjectPath);
 
@@ -17,10 +17,9 @@ import 'package:path/path.dart' as p;
 //   log('İndirme işlemi başlıyor...');
 
 //   for (var i = 1; i <= 604; i++) {
-//     final url =
-//         'https://raw.githubusercontent.com/quran/quran.com-frontend-next/production/public/fonts/quran/hafs/v2/ttf/p$i.ttf';
+//     final url = 'https://quran.com/fonts/quran/hafs/v2/woff2/p$i.woff2';
 
-//     final fileName = '${i.toString().padLeft(3, '0')}.ttf';
+//     final fileName = '${i.toString().padLeft(3, '0')}.woff2';
 //     final fullPath = p.join(dir.path, fileName);
 
 //     try {
@@ -39,10 +38,15 @@ import 'package:path/path.dart' as p;
 //   log('İşlem tamamlandı! Dosyalar $currentProjectPath klasöründe.');
 // }
 
-Future<void> downloadQuranFontsWoff2Font() async {
+void main() async {
+  await downloadQuranTajweedFont();
+  // await downloadQuranNormalFont();
+}
+
+Future<void> downloadQuranTajweedFont() async {
   final dio = Dio();
 
-  final currentProjectPath = '${Directory.current.path}/quran_data/woff2_fonts/';
+  final currentProjectPath = '${Directory.current.path}/quran_data/tajweed_fonts/';
 
   final dir = Directory(currentProjectPath);
 
@@ -53,8 +57,7 @@ Future<void> downloadQuranFontsWoff2Font() async {
   log('İndirme işlemi başlıyor...');
 
   for (var i = 1; i <= 604; i++) {
-    final url =
-        'https://raw.githubusercontent.com/quran/quran.com-frontend-next/production/public/fonts/quran/hafs/v2/woff2/p$i.woff2';
+    final url = 'https://quran.com/fonts/quran/hafs/v4/colrv1/woff2/p$i.woff2';
 
     final fileName = '${i.toString().padLeft(3, '0')}.woff2';
     final fullPath = p.join(dir.path, fileName);
@@ -73,9 +76,4 @@ Future<void> downloadQuranFontsWoff2Font() async {
   }
 
   log('İşlem tamamlandı! Dosyalar $currentProjectPath klasöründe.');
-}
-
-void main() async {
-  // await downloadQuranFontsTtfFont();
-  await downloadQuranFontsWoff2Font();
 }
