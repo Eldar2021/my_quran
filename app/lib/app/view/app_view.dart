@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider<QuranFontRepository>(
           create: (context) => QuranFontRepoImpl(
-            context.read<MqRemoteClient>(),
+            QuranFontRemoteSource(context.read<MqRemoteClient>()),
           ),
         ),
         RepositoryProvider<MqHomeRepository>(
