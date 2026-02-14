@@ -15,6 +15,7 @@ pod-install:
 
 gen-assets:
 	cd packages/mq_app_ui && flutter pub run build_runner build --delete-conflicting-outputs
+	cd packages/mq_quran_client && flutter pub run build_runner build --delete-conflicting-outputs
 
 build-runner:
 	melos run-build-runner

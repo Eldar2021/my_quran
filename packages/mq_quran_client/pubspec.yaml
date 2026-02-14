@@ -21,3 +21,33 @@ dev_dependencies:
   mocktail:
   build_runner:
   json_serializable:
+  flutter_gen_runner:
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/quran_pages/
+
+  fonts:
+    - family: uthmanic_hafs
+      fonts:
+        - asset: assets/fonts/uthmanic_hafs/UthmanicHafs1Ver18.woff2
+    - family: surah_names
+      fonts:
+        - asset: assets/fonts/surah_names/sura_names.woff2
+
+flutter_gen:
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: true
+      class_name: QuranAssets
+  fonts:
+    outputs:
+      class_name: QuranFontFamily
+  output: lib/generated/
+  line_length: 120
+
+  integrations:
+    flutter_svg: true
