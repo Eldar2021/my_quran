@@ -15,6 +15,7 @@ dependencies:
   equatable:
   mq_remote_client:
   mq_storage:
+  path_provider:
 
 dev_dependencies:
   flutter_test:

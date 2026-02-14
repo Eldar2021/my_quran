@@ -69,6 +69,7 @@ dependencies:
   uuid: ^4.5.2
   flutter_compass: ^0.8.1
   shimmer_animation: ^2.2.2+1
+  path_provider: ^2.1.5
 
   # flutter_native_splash: ^2.4.7
 

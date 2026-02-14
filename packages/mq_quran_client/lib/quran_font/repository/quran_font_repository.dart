@@ -1,3 +1,5 @@
+import 'package:mq_quran_client/mq_quran_client.dart';
+
 abstract interface class QuranFontRepository {
-  Future<void> getFontByPage(int pageNumber);
+  Future<QuranFontModel> getFontByPage(int pageNumber);
 }
