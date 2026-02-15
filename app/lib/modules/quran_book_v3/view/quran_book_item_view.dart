@@ -20,6 +20,7 @@ class QuranBookItemView extends StatelessWidget {
         SliverAppBar(
           backgroundColor: const Color(0xffFFEED6),
           title: Text('$pageNumber'),
+          floating: true,
         ),
         BlocBuilder<QuranPageCubit, QuranPageState>(
           builder: (context, state) {
@@ -33,6 +34,12 @@ class QuranBookItemView extends StatelessWidget {
               ),
             };
           },
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 80,
+            child: Center(child: Text('Footer')),
+          ),
         ),
       ],
     );

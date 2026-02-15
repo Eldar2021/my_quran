@@ -45,13 +45,14 @@ class _QuranBookSuccessWidgetStateV3 extends State<QuranBookSuccessWidgetV3> {
   Widget build(BuildContext context) {
     return switch (_fontStatus) {
       QuranBookFontStatus.loading => widget.sliverLoadingWidget,
-      QuranBookFontStatus.success => SliverFillRemaining(
+      QuranBookFontStatus.success => SliverToBoxAdapter(
         child: QuranCodeV2Content(
           data: widget.data,
           fontFamily: _normalFontFamily,
+          tajweedFontFamily: _tajweedFontFamily,
         ),
       ),
-      QuranBookFontStatus.error => SliverFillRemaining(
+      QuranBookFontStatus.error => SliverToBoxAdapter(
         child: QuranUthmanicContent(
           data: widget.data,
         ),
