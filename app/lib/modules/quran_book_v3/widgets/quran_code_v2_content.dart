@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mq_quran_client/mq_quran_client.dart';
+import 'package:collection/collection.dart';
 
 class QuranCodeV2Content extends StatelessWidget {
   const QuranCodeV2Content({
@@ -27,15 +28,27 @@ class QuranCodeV2Content extends StatelessWidget {
           textHeightBehavior: const TextHeightBehavior(),
           text: TextSpan(
             style: _getStyle(tajweedFontFamily),
-            children: data.verses.map((verse) {
+            children: data.verses.mapIndexed((index, verse) {
               return TextSpan(
                 children: [
                   if (verse.isFirstAyat)
-                    TextSpan(
-                      text: '\n${verse.chapterId.toString().padLeft(3, '0')}\n',
-                      style: _getStyle(QuranFontFamily.surahNames).copyWith(
-                        package: 'mq_quran_client',
-                        fontSize: 42,
+                    WidgetSpan(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            if (index != 0) const Divider(),
+                            Center(
+                              child: Text(
+                                verse.chapterId.toString().padLeft(3, '0'),
+                                style: _getStyle(QuranFontFamily.surahNames).copyWith(
+                                  package: 'mq_quran_client',
+                                  fontSize: 42,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   if (verse.showBismillah) ...[

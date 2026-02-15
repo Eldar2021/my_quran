@@ -16,11 +16,14 @@ class QuranPageCubit extends Cubit<QuranPageState> {
   final QuranDataRepository quranDataRepository;
   final QuranFontRepository quranFontRepository;
 
-  Future<void> loadPage(int pageNumber) async {
+  Future<void> loadPage(int pageNumber, {int? sortSurahNumber}) async {
     if (isClosed) return;
     try {
       emit(const QuranPageLoading());
-      final pageData = await quranDataRepository.getVersesByPage(pageNumber);
+      final pageData = await quranDataRepository.getVersesByPage(
+        pageNumber,
+        sortSurahNumber: sortSurahNumber,
+      );
       if (isClosed) return;
       try {
         final fontModel = await quranFontRepository.getFontByPage(pageNumber);

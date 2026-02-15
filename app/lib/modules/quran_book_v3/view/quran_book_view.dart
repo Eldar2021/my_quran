@@ -11,7 +11,7 @@ class QuranBookView extends StatefulWidget {
   static void show(BuildContext context) {
     Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute<void>(
-        builder: (context) => const QuranBookView(QuranFullArgs()),
+        builder: (context) => const QuranBookView(QuranByJuzArgs(114)),
       ),
     );
   }
@@ -22,10 +22,16 @@ class QuranBookView extends StatefulWidget {
 
 class _QuranBookViewState extends State<QuranBookView> {
   late final PageController _pageController;
+  late final int? sortSurahNumber;
 
   @override
   void initState() {
     super.initState();
+    if (widget.args is QuranBySurahArgs) {
+      sortSurahNumber = (widget.args as QuranBySurahArgs).surahNumber;
+    } else {
+      sortSurahNumber = null;
+    }
     _pageController = PageController();
   }
 
@@ -43,7 +49,7 @@ class _QuranBookViewState extends State<QuranBookView> {
             create: (context) => QuranPageCubit(
               quranDataRepository: context.read<QuranDataRepository>(),
               quranFontRepository: context.read<QuranFontRepository>(),
-            )..loadPage(quranPageNumber),
+            )..loadPage(quranPageNumber, sortSurahNumber: sortSurahNumber),
             child: QuranBookItemView(
               pageController: _pageController,
               pageNumber: quranPageNumber,

@@ -8,24 +8,19 @@ class QuranDataRepoImpl implements QuranDataRepository {
   final _cache = <int, Future<List<QuranVerseModel>>>{};
 
   @override
-  Future<QuranPageModel> getVersesByPage(
-    int pageNumber, {
-    int? sortSurahNumber,
-    int? sortJuzNumber,
-  }) async {
+  Future<QuranPageModel> getVersesByPage(int pageNumber, {int? sortSurahNumber}) async {
     final data = await _getVerses(pageNumber);
 
-    var filteredVerses = data;
-
     if (sortSurahNumber != null) {
-      filteredVerses = filteredVerses.where((e) => e.chapterId == sortSurahNumber).toList();
-    } else if (sortJuzNumber != null) {
-      filteredVerses = filteredVerses.where((e) => e.juzNumber == sortJuzNumber).toList();
+      return QuranPageModel(
+        pageNumber: pageNumber,
+        verses: data.where((e) => e.chapterId == sortSurahNumber).toList(),
+      );
     }
 
     return QuranPageModel(
       pageNumber: pageNumber,
-      verses: filteredVerses,
+      verses: data,
     );
   }
 

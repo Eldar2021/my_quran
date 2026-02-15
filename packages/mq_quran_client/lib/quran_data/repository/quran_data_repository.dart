@@ -4,6 +4,5 @@ abstract interface class QuranDataRepository {
   Future<QuranPageModel> getVersesByPage(
     int pageNumber, {
     int? sortSurahNumber,
-    int? sortJuzNumber,
   });
 }
