@@ -53,7 +53,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
           const NotificationCountBadgeWidget(),
           const SizedBox(width: 10),
           IconButton(
-            onPressed: () => QuranByPageViewV3.show(context),
+            onPressed: () => QuranBookView.show(context),
             icon: const Icon(Icons.abc),
           ),
           const SizedBox(width: 10),
