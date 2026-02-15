@@ -110,13 +110,6 @@ class _QuranTextWithCode2 extends StatelessWidget {
                 fontSize: 28,
                 height: 2,
               ),
-              // style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              //   fontFamily: fontName,
-              //   package: 'mq_quran_client',
-              //   fontSize: 28,
-              //   height: 2,
-              //   color: Colors.black,
-              // ),
             );
           }).toList(),
         ),
