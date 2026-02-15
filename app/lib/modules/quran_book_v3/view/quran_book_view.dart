@@ -19,8 +19,32 @@ class QuranBookView extends StatefulWidget {
 }
 
 class _QuranBookViewState extends State<QuranBookView> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: PageView.builder(
+        controller: _pageController,
+        itemCount: widget.args.pages.length,
+        reverse: true,
+        itemBuilder: (context, index) {
+          final quranPageNumber = widget.args.pages[index];
+          return Center(child: Text('Page $quranPageNumber'));
+        },
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }
