@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranBookView extends StatefulWidget {
@@ -30,13 +32,23 @@ class _QuranBookViewState extends State<QuranBookView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffFFEED6),
       body: PageView.builder(
         controller: _pageController,
         itemCount: widget.args.pages.length,
         reverse: true,
         itemBuilder: (context, index) {
           final quranPageNumber = widget.args.pages[index];
-          return Center(child: Text('Page $quranPageNumber'));
+          return BlocProvider(
+            create: (context) => QuranPageCubit(
+              quranDataRepository: context.read<QuranDataRepository>(),
+              quranFontRepository: context.read<QuranFontRepository>(),
+            )..loadPage(quranPageNumber),
+            child: QuranBookItemView(
+              pageController: _pageController,
+              pageNumber: quranPageNumber,
+            ),
+          );
         },
       ),
     );
