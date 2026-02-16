@@ -7,6 +7,3 @@ export 'widgets/quran_book_sliver_adapter_loading.dart';
 export 'widgets/quran_book_sliver_adapter_error_widget.dart';
 export 'widgets/quran_code_v2_content.dart';
 export 'widgets/quran_uthmanic_content.dart';
-export 'quran_by_juz/quran_by_juz.dart';
-export 'quran_by_page/quran_by_page.dart';
-export 'quran_by_surah/quran_by_surah.dart';

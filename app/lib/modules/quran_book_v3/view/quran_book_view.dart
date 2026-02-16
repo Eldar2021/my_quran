@@ -11,7 +11,7 @@ class QuranBookView extends StatefulWidget {
   static void show(BuildContext context) {
     Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute<void>(
-        builder: (context) => const QuranBookView(QuranByJuzArgs(114)),
+        builder: (context) => const QuranBookView(QuranByJuzArgs(30)),
       ),
     );
   }
