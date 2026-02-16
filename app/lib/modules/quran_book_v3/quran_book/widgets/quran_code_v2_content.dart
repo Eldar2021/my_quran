@@ -67,7 +67,7 @@ class QuranCodeV2Content extends StatelessWidget {
                     WidgetSpan(
                       alignment: PlaceholderAlignment.middle,
                       child: SizedBox(
-                        height: themeCubit.state.textSize * 1.2,
+                        height: themeCubit.state.textSize + 12,
                         width: double.infinity,
                         child: QuranAssets.icons.bismillah.svg(
                           width: double.infinity,

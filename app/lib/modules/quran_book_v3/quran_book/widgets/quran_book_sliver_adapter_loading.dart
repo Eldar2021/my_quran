@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_quran/modules/modules.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class QuranBookSliverAdapterLoading extends StatelessWidget {
@@ -18,32 +20,33 @@ class QuranBookLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final loadingColor = context.watch<QuranBookSettingsCubit>().state.loadingColor;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _shimmerLine(width: width * 0.45),
-          _shimmerLine(width: width * 0.65),
-          _shimmerLine(width: width * 0.85),
-          _shimmerLine(width: width * 0.85),
-          _shimmerLine(width: width * 0.75),
-          _shimmerLine(width: width * 0.55),
-          _shimmerLine(width: width * 0.35),
+          _shimmerLine(width * 0.45, loadingColor),
+          _shimmerLine(width * 0.65, loadingColor),
+          _shimmerLine(width * 0.85, loadingColor),
+          _shimmerLine(width * 0.85, loadingColor),
+          _shimmerLine(width * 0.75, loadingColor),
+          _shimmerLine(width * 0.55, loadingColor),
+          _shimmerLine(width * 0.35, loadingColor),
         ],
       ),
     );
   }
 
-  Widget _shimmerLine({required double width}) {
+  Widget _shimmerLine(double width, Color color) {
     return Shimmer(
       colorOpacity: 1,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: color,
             borderRadius: BorderRadius.circular(16),
           ),
           child: SizedBox(

@@ -3,15 +3,16 @@ part of 'quran_book_settings_cubit.dart';
 const _frReadThemeColor = [
   Color(0xff000000),
   Color(0xff000000),
-  Color(0xffFFFFFF),
-  Color(0xffFFFFFF),
 ];
 
 const _bgReadThemeColor = [
   Color(0xffFFFFFF),
   Color(0xffFFEED6),
-  Color(0xff1C1C1E),
-  Color(0xff0E0E0F),
+];
+
+const _loadingThemeColor = [
+  Color.fromARGB(255, 213, 210, 210),
+  Color.fromARGB(255, 241, 216, 180),
 ];
 
 final class QuranBookSettingsState extends Equatable {
@@ -49,7 +50,27 @@ final class QuranBookSettingsState extends Equatable {
     );
   }
 
-  Color get frColor => _frReadThemeColor[modeIndex];
+  Color get frColor {
+    try {
+      return _frReadThemeColor[modeIndex];
+    } on Object catch (_) {
+      return _frReadThemeColor[1];
+    }
+  }
 
-  Color get bgColor => _bgReadThemeColor[modeIndex];
+  Color get bgColor {
+    try {
+      return _bgReadThemeColor[modeIndex];
+    } on Object catch (_) {
+      return _bgReadThemeColor[1];
+    }
+  }
+
+  Color get loadingColor {
+    try {
+      return _loadingThemeColor[modeIndex];
+    } on Object catch (_) {
+      return _loadingThemeColor[1];
+    }
+  }
 }
