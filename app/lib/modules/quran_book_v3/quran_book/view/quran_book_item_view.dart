@@ -53,6 +53,7 @@ class QuranBookItemView extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: QuranBookFooterWidget(
+            onAmeen: _onReaded,
             nextButtonText: nextPage != null ? '$nextPage-${context.l10n.page}' : null,
             previousButtonText: previousPage != null ? '$previousPage-${context.l10n.page}' : null,
             onNext: nextPage != null
@@ -69,7 +70,6 @@ class QuranBookItemView extends StatelessWidget {
                     );
                   }
                 : null,
-            onAmeen: () {},
           ),
         ),
         SliverToBoxAdapter(
@@ -101,4 +101,6 @@ class QuranBookItemView extends StatelessWidget {
     if (pageNumber == startPage) return null;
     return pageNumber - 1;
   }
+
+  Future<void> _onReaded() async {}
 }
