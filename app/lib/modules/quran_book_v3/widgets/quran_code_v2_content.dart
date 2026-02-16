@@ -17,10 +17,7 @@ class QuranCodeV2Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 12,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: RichText(

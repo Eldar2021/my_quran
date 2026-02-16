@@ -53,6 +53,8 @@ class _QuranBookViewState extends State<QuranBookView> {
             child: QuranBookItemView(
               pageController: _pageController,
               pageNumber: quranPageNumber,
+              startPage: widget.args.pages.first,
+              endPage: widget.args.pages.last,
             ),
           );
         },
