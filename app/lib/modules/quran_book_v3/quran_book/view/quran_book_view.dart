@@ -37,8 +37,9 @@ class _QuranBookViewState extends State<QuranBookView> {
 
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.watch<QuranBookSettingsCubit>();
     return Scaffold(
-      backgroundColor: const Color(0xffFFEED6),
+      backgroundColor: themeCubit.state.bgColor,
       body: PageView.builder(
         controller: _pageController,
         itemCount: widget.args.pages.length,

@@ -147,6 +147,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AppThemeCubit(context.read<AppRepository>()),
         ),
+        BlocProvider(
+          create: (context) => QuranBookSettingsCubit(
+            context.read<ReadThemeRepository>(),
+          )..init(),
+        ),
       ],
       child: const QuranApp(),
     );

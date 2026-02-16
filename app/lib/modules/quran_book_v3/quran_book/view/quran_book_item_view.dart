@@ -21,19 +21,26 @@ class QuranBookItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final themeCubit = context.watch<QuranBookSettingsCubit>();
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
         SliverAppBar(
-          backgroundColor: const Color(0xffFFEED6),
+          backgroundColor: themeCubit.state.bgColor,
+          foregroundColor: themeCubit.state.frColor,
           title: Text('$pageNumber-${context.l10n.page} $juzNumber-${context.l10n.juz}'),
-          titleTextStyle: textTheme.bodyMedium,
+          titleTextStyle: textTheme.bodyMedium?.copyWith(
+            color: themeCubit.state.frColor,
+          ),
           floating: true,
           centerTitle: false,
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.tune),
+              onPressed: () => QuranBookSettingsSheet.show(context),
+              icon: Icon(
+                Icons.tune,
+                color: themeCubit.state.frColor,
+              ),
             ),
             const SizedBox(width: 16),
           ],
@@ -53,7 +60,7 @@ class QuranBookItemView extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: QuranBookFooterWidget(
-            onAmeen: _onReaded,
+            onAmeen: showAmenButton ? _onReaded : null,
             nextButtonText: nextPage != null ? '$nextPage-${context.l10n.page}' : null,
             previousButtonText: previousPage != null ? '$previousPage-${context.l10n.page}' : null,
             onNext: nextPage != null
@@ -101,6 +108,8 @@ class QuranBookItemView extends StatelessWidget {
     if (pageNumber == startPage) return null;
     return pageNumber - 1;
   }
+
+  bool get showAmenButton => pageNumber == endPage;
 
   Future<void> _onReaded() async {}
 }
