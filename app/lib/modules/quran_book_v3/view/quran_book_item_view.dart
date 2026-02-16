@@ -26,7 +26,7 @@ class QuranBookItemView extends StatelessWidget {
       slivers: [
         SliverAppBar(
           backgroundColor: const Color(0xffFFEED6),
-          title: Text('$pageNumber-Бет $juzNumber-${context.l10n.juz}'),
+          title: Text('$pageNumber-${context.l10n.page} $juzNumber-${context.l10n.juz}'),
           titleTextStyle: textTheme.bodyMedium,
           floating: true,
           centerTitle: false,
@@ -53,8 +53,8 @@ class QuranBookItemView extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: QuranBookFooterWidget(
-            nextButtonText: nextPage != null ? '$nextPage-Бет' : null,
-            previousButtonText: previousPage != null ? '$previousPage-Бет' : null,
+            nextButtonText: nextPage != null ? '$nextPage-${context.l10n.page}' : null,
+            previousButtonText: previousPage != null ? '$previousPage-${context.l10n.page}' : null,
             onNext: nextPage != null
                 ? () => pageController.nextPage(
                     duration: const Duration(milliseconds: 300),
