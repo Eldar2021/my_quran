@@ -17,14 +17,11 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/a_digit.svg
-  SvgGenImage get aDigit => const SvgGenImage('assets/icons/a_digit.svg');
-
   /// File path: assets/icons/bismillah.svg
   SvgGenImage get bismillah => const SvgGenImage('assets/icons/bismillah.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [aDigit, bismillah];
+  List<SvgGenImage> get values => [bismillah];
 }
 
 class $AssetsQuranPagesGen {

@@ -32,9 +32,6 @@ flutter:
     - assets/quran_pages/
 
   fonts:
-    - family: uthmanic_hafs
-      fonts:
-        - asset: assets/fonts/uthmanic_hafs/UthmanicHafs1Ver18.woff2
     - family: surah_names
       fonts:
         - asset: assets/fonts/surah_names/sura_names.woff2
