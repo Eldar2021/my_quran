@@ -5,21 +5,6 @@ abstract class MqQuranRepository {
 
   List<MqSurahEntity> getSurahsData();
 
-  Future<QuranDataEntity> fetchQuranByPage(
-    int pageNumber,
-    String quranFmt,
-  );
-
-  Future<QuranDataEntity> fetchQuranByJuz(
-    int juzNumber,
-    String quranFmt,
-  );
-
-  Future<QuranDataEntity> fetchQuranBySurah(
-    int surahNumber,
-    String quranFmt,
-  );
-
   Future<bool> setDonPages({
     required List<int> pageNumber,
     required String status,

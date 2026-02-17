@@ -1,12 +1,6 @@
 export 'entity/juz/mq_juz_entity.dart';
-export 'entity/quran/quran_data_entity.dart';
-export 'entity/quran/quran_data_filter_entity.dart';
-export 'entity/quran/quran_data_verse_entity.dart';
 export 'entity/surah/mq_surah_entity.dart';
 export 'model/juz/juz_model_response.dart';
-export 'model/quran/quran_data_filter_response.dart';
-export 'model/quran/quran_data_response.dart';
-export 'model/quran/quran_data_verse_response.dart';
 export 'model/surah/surah_model_response.dart';
 export 'repository/mq_quran_repository.dart';
 export 'repository/mq_quran_repository_impl.dart';
