@@ -2,7 +2,7 @@ export 'cubit/quran_page_cubit.dart';
 export 'model/quran_book_args.dart';
 export 'view/quran_book_view.dart';
 export 'view/quran_book_item_view.dart';
-export 'view/quran_book_success_widget_v3.dart';
+export 'view/quran_book_success_widget.dart';
 export 'widgets/quran_book_footer_widget.dart';
 export 'widgets/quran_book_sliver_adapter_loading.dart';
 export 'widgets/quran_book_sliver_adapter_error_widget.dart';

@@ -11,8 +11,8 @@ enum QuranBookFontStatus {
   error,
 }
 
-class QuranBookSuccessWidgetV3 extends StatefulWidget {
-  const QuranBookSuccessWidgetV3({
+class QuranBookSuccessWidget extends StatefulWidget {
+  const QuranBookSuccessWidget({
     required this.sliverLoadingWidget,
     required this.data,
     this.fonts,
@@ -24,10 +24,10 @@ class QuranBookSuccessWidgetV3 extends StatefulWidget {
   final QuranFontModel? fonts;
 
   @override
-  State<QuranBookSuccessWidgetV3> createState() => _QuranBookSuccessWidgetStateV3();
+  State<QuranBookSuccessWidget> createState() => _QuranBookSuccessWidgetState();
 }
 
-class _QuranBookSuccessWidgetStateV3 extends State<QuranBookSuccessWidgetV3> {
+class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> {
   late QuranBookFontStatus _fontStatus;
   late final String _normalFontFamily;
   late final String _tajweedFontFamily;

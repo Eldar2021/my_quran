@@ -52,7 +52,7 @@ class QuranBookItemView extends StatelessWidget {
             return switch (state) {
               QuranPageInitial() || QuranPageLoading() => const QuranBookSliverAdapterLoading(),
               QuranPageError() => const QuranBookSliverAdapterErrorWidget(),
-              QuranPageLoaded() => QuranBookSuccessWidgetV3(
+              QuranPageLoaded() => QuranBookSuccessWidget(
                 sliverLoadingWidget: const QuranBookSliverAdapterLoading(),
                 data: state.data,
                 fonts: state.fonts,
