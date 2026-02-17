@@ -15,3 +15,4 @@ export 'models/quran_surah_model.dart';
 export 'quran_data/quran_data.dart';
 export 'quran_font/quran_font.dart';
 export 'quran_static/quran_static.dart';
+export 'quran_extra/quran_extra.dart';
