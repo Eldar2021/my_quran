@@ -118,6 +118,8 @@ final class QuranVerseModel extends Equatable {
     }
   }
 
+  bool get isFirstAyatOfQuran => verseKey == '1:1';
+
   @override
   List<Object?> get props => [
     id,

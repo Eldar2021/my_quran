@@ -2,6 +2,7 @@
 library;
 
 export 'constants/quran_client_constants.dart';
+export 'extension/num_extension.dart';
 export 'generated/assets.gen.dart';
 export 'generated/fonts.gen.dart';
 export 'models/quran_verse_model.dart';
