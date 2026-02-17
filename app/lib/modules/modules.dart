@@ -4,7 +4,6 @@ export 'more/more.dart';
 export 'login/login.dart';
 export 'main/main.dart';
 export 'quran/quran.dart';
-export 'quran_book/quran_book.dart';
 export 'quran_audio/quran_audio.dart';
 export 'settings/settings.dart';
 export 'dev_mode/dev_mode.dart';

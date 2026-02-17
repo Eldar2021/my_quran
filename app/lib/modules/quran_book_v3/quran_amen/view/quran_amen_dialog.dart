@@ -39,7 +39,7 @@ class QuranAmenDialogContent extends StatelessWidget {
     super.key,
   });
 
-  final QuranBookThemeState readThemeState;
+  final QuranBookSettingsState readThemeState;
   final List<int> pages;
   final Gender gender;
   final String confirmMessage;

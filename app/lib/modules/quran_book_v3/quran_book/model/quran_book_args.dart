@@ -3,14 +3,16 @@ import 'package:mq_quran_repository/mq_quran_repository.dart';
 
 @immutable
 sealed class QuranBookArgs {
-  const QuranBookArgs();
+  const QuranBookArgs({this.hatimId});
+
+  final String? hatimId;
 
   List<int> get pages;
 }
 
 @immutable
 final class QuranFullArgs extends QuranBookArgs {
-  const QuranFullArgs();
+  const QuranFullArgs({super.hatimId});
 
   @override
   List<int> get pages {
@@ -20,7 +22,7 @@ final class QuranFullArgs extends QuranBookArgs {
 
 @immutable
 final class QuranByPageArgs extends QuranBookArgs {
-  const QuranByPageArgs(this.pages);
+  const QuranByPageArgs(this.pages, {super.hatimId});
 
   @override
   final List<int> pages;
@@ -28,7 +30,7 @@ final class QuranByPageArgs extends QuranBookArgs {
 
 @immutable
 final class QuranBySurahArgs extends QuranBookArgs {
-  const QuranBySurahArgs(this.surahNumber);
+  const QuranBySurahArgs(this.surahNumber, {super.hatimId});
 
   final int surahNumber;
 
@@ -47,7 +49,7 @@ final class QuranBySurahArgs extends QuranBookArgs {
 
 @immutable
 final class QuranByJuzArgs extends QuranBookArgs {
-  const QuranByJuzArgs(this.juzNumber);
+  const QuranByJuzArgs(this.juzNumber, {super.hatimId});
 
   final int juzNumber;
 
