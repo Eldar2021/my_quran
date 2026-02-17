@@ -3,9 +3,23 @@ import 'package:mq_quran_client/mq_quran_client.dart';
 
 @immutable
 final class QuranExtraRepoImpl implements QuranExtraRepository {
-  const QuranExtraRepoImpl(this.remoteDataSource);
+  const QuranExtraRepoImpl({
+    required this.remoteDataSource,
+    required this.localDataSoruce,
+  });
 
   final QuranExtraRemoteDataSource remoteDataSource;
+  final QuranExtraLocalDataSoruce localDataSoruce;
+
+  @override
+  List<QuranJuzModel> getJuzsData() {
+    return localDataSoruce.getJuzsData();
+  }
+
+  @override
+  List<QuranSurahModel> getSurahsData() {
+    return localDataSoruce.getSurahsData();
+  }
 
   @override
   Future<bool> setDonPages({

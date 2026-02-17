@@ -17,7 +17,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
 
   final AudioPlayer player;
   final NetworkClient networkClient;
-  final QuranStaticRepository repository;
+  final QuranExtraRepository repository;
 
   late final Stream<SequenceState?> sequenceStateStream;
   late final Stream<PlayerState> playerStateStream;

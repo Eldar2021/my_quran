@@ -4,7 +4,7 @@ import 'package:mq_quran_client/mq_quran_client.dart';
 class QuranCubit extends Cubit<int> {
   QuranCubit(this.repository) : super(0);
 
-  final QuranStaticRepository repository;
+  final QuranExtraRepository repository;
 
   void change(int? val) => emit(val ?? 0);
 

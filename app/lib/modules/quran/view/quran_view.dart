@@ -14,7 +14,7 @@ class QuranView extends StatelessWidget {
       length: 2,
       child: BlocProvider(
         create: (context) => QuranCubit(
-          context.read<QuranStaticRepository>(),
+          context.read<QuranExtraRepository>(),
         ),
         child: const QuranBody(),
       ),

@@ -99,8 +99,13 @@ class MyApp extends StatelessWidget {
             MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
           ),
         ),
-        RepositoryProvider<QuranStaticRepository>(
-          create: (context) => const QuranStaticRepositoryImpl(),
+        RepositoryProvider<QuranExtraRepository>(
+          create: (context) => QuranExtraRepoImpl(
+            remoteDataSource: isMockData
+                ? const QuranExtraRemoteDataSourceMock()
+                : QuranExtraRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+            localDataSoruce: isMockData ? const QuranExtraLocalDataSoruceMock() : const QuranExtraLocalDataSoruceImpl(),
+          ),
         ),
         RepositoryProvider<MqHatimRepository>(
           create: (context) => MqHatimReadRepositoryImpl(
@@ -137,7 +142,7 @@ class MyApp extends StatelessWidget {
           create: (context) => QuranAudioCubit(
             AudioPlayer(),
             context.read<NetworkClient>(),
-            context.read<QuranStaticRepository>(),
+            context.read<QuranExtraRepository>(),
           ),
         ),
         BlocProvider(
