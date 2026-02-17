@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_auth_repository/mq_auth_repository.dart';
-import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -19,7 +19,7 @@ abstract class QuranAmenDialog {
       builder: (context) {
         return BlocProvider(
           create: (context) => QuranAmenCubit(
-            context.read<MqQuranRepository>(),
+            context.read<QuranExtraRepository>(),
           ),
           child: content,
         );
