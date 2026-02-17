@@ -4,6 +4,8 @@ library;
 export 'constants/quran_client_constants.dart';
 export 'constants/quran_juzs_data.dart';
 export 'constants/quran_surahs_data.dart';
+export 'constants/juz_ranges_data.dart';
+export 'constants/surah_ranges_data.dart';
 export 'extension/num_extension.dart';
 export 'generated/assets.gen.dart';
 export 'generated/fonts.gen.dart';

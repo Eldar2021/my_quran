@@ -16,7 +16,6 @@ workspace:
   - packages/mq_hatim_repository
   - packages/mq_home_repository
   - packages/mq_prayer_time
-  - packages/mq_quran_repository
   - packages/mq_remote_client
   - packages/mq_remote_config
   - packages/mq_storage

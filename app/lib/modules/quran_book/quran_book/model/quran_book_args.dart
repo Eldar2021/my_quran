@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 
 @immutable
 sealed class QuranBookArgs {

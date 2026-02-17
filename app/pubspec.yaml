@@ -48,7 +48,6 @@ dependencies:
   mq_remote_config:
   mq_auth_repository:
   mq_home_repository:
-  mq_quran_repository:
   mq_hatim_repository:
   mq_app_ui:
   mq_prayer_time:
