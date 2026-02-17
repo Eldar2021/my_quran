@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
@@ -38,6 +39,7 @@ class QuranBookItemView extends StatelessWidget {
           centerTitle: false,
           actions: [
             IconButton(
+              key: const Key(MqKeys.quranReadSettings),
               onPressed: () => QuranBookSettingsSheet.show(context),
               icon: Icon(
                 Icons.tune,

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mq_ci_keys/mq_ci_keys.dart';
 import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -47,6 +48,7 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> {
       QuranBookFontStatus.loading => widget.sliverLoadingWidget,
       QuranBookFontStatus.success => SliverToBoxAdapter(
         child: QuranCodeV2Content(
+          key: const Key(MqKeys.quranReadView),
           data: widget.data,
           fontFamily: _normalFontFamily,
           tajweedFontFamily: _tajweedFontFamily,
@@ -54,6 +56,7 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> {
       ),
       QuranBookFontStatus.error => SliverToBoxAdapter(
         child: QuranUthmanicContent(
+          key: const Key(MqKeys.quranReadView),
           data: widget.data,
         ),
       ),
