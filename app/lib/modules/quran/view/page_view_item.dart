@@ -3,8 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mq_analytics/mq_analytics.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:mq_quran_repository/mq_quran_repository.dart';
-
+import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/config/config.dart';
 import 'package:my_quran/l10n/l10.dart';
 
@@ -24,7 +23,7 @@ class PageViewItem<T> extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = items[index];
-        if (item is MqJuzEntity) {
+        if (item is QuranJuzModel) {
           return QuranItemTile(
             key: Key(MqKeys.quranReadJus(index)),
             index: item.juzNumber,
@@ -41,7 +40,7 @@ class PageViewItem<T> extends StatelessWidget {
               );
             },
           );
-        } else if (item is MqSurahEntity) {
+        } else if (item is QuranSurahModel) {
           return QuranItemTile(
             key: Key(MqKeys.quranReadSurah(index)),
             index: item.id,

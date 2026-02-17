@@ -1,0 +1,8 @@
+import 'package:mq_quran_client/mq_quran_client.dart';
+
+abstract interface class QuranDataRepository {
+  Future<QuranPageModel> getVersesByPage(
+    int pageNumber, {
+    int? sortSurahNumber,
+  });
+}

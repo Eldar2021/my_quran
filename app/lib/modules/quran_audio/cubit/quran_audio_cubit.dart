@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mq_crashlytics/mq_crashlytics.dart';
-import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:my_quran/constants/contants.dart';
 
@@ -12,20 +12,20 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   QuranAudioCubit(
     this.player,
     this.networkClient,
-    this.quranRepository,
+    this.repository,
   ) : super(const QuranAudioState());
 
   final AudioPlayer player;
   final NetworkClient networkClient;
-  final MqQuranRepository quranRepository;
+  final QuranExtraRepository repository;
 
   late final Stream<SequenceState?> sequenceStateStream;
   late final Stream<PlayerState> playerStateStream;
-  late final List<MqSurahEntity> surahs;
+  late final List<QuranSurahModel> surahs;
 
   Future<void> init(String? userId) async {
     try {
-      surahs = quranRepository.getSurahsData();
+      surahs = repository.getSurahsData();
       sequenceStateStream = player.sequenceStateStream;
       playerStateStream = player.playerStateStream;
       final playList = surahs.map(

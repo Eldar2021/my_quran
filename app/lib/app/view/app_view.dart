@@ -9,7 +9,7 @@ import 'package:mq_auth_repository/mq_auth_repository.dart';
 import 'package:mq_hatim_repository/mq_hatim_repository.dart';
 import 'package:mq_home_repository/mq_home_repository.dart';
 import 'package:mq_prayer_time/mq_prayer_time.dart';
-import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:mq_remote_client/mq_remote_client.dart';
 import 'package:mq_remote_config/mq_remote_config.dart';
 import 'package:mq_storage/mq_storage.dart';
@@ -34,6 +34,16 @@ class MyApp extends StatelessWidget {
                 : AppLocalDataSourceImpl(
                     context.read<PreferencesStorage>(),
                   ),
+          ),
+        ),
+        RepositoryProvider<QuranDataRepository>(
+          create: (context) => QuranDataRepoImpl(
+            const QuranDataAssetsSource(),
+          ),
+        ),
+        RepositoryProvider<QuranFontRepository>(
+          create: (context) => QuranFontRepoImpl(
+            QuranFontRemoteSource(context.read<MqRemoteClient>()),
           ),
         ),
         RepositoryProvider<MqHomeRepository>(
@@ -83,10 +93,12 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        RepositoryProvider<MqQuranRepository>(
-          create: (context) => MqQuranRepositoryImpl(
-            MqQuranLocalDataSourceImpl(context.read<PreferencesStorage>()),
-            MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+        RepositoryProvider<QuranExtraRepository>(
+          create: (context) => QuranExtraRepoImpl(
+            remoteDataSource: isMockData
+                ? const QuranExtraRemoteDataSourceMock()
+                : QuranExtraRemoteDataSourceImpl(context.read<MqRemoteClient>()),
+            localDataSoruce: isMockData ? const QuranExtraLocalDataSoruceMock() : const QuranExtraLocalDataSoruceImpl(),
           ),
         ),
         RepositoryProvider<MqHatimRepository>(
@@ -124,7 +136,7 @@ class MyApp extends StatelessWidget {
           create: (context) => QuranAudioCubit(
             AudioPlayer(),
             context.read<NetworkClient>(),
-            context.read<MqQuranRepository>(),
+            context.read<QuranExtraRepository>(),
           ),
         ),
         BlocProvider(
@@ -135,6 +147,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AppThemeCubit(context.read<AppRepository>()),
+        ),
+        BlocProvider(
+          create: (context) => QuranBookSettingsCubit(
+            context.read<ReadThemeRepository>(),
+          )..init(),
         ),
       ],
       child: const QuranApp(),

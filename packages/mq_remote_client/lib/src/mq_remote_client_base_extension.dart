@@ -93,6 +93,38 @@ extension MqRemoteClientBaseMehtods on MqRemoteClient {
     }
   }
 
+  /// Performs an HTTP DOWNLOAD request to the specified [urlPath].
+  Future<Response<dynamic>> download(
+    String urlPath,
+    dynamic savePath, {
+    ProgressCallback? onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    bool deleteOnError = true,
+    FileAccessMode fileAccessMode = FileAccessMode.write,
+    String lengthHeader = Headers.contentLengthHeader,
+    Object? data,
+    Options? options,
+  }) async {
+    try {
+      return dio.download(
+        urlPath,
+        savePath,
+        onReceiveProgress: onReceiveProgress,
+        queryParameters: queryParameters,
+        cancelToken: cancelToken,
+        deleteOnError: deleteOnError,
+        fileAccessMode: fileAccessMode,
+        lengthHeader: lengthHeader,
+        data: data,
+        options: options,
+      );
+    } catch (e, s) {
+      log('MqRemoteClientBaseMehtods.download', error: e, stackTrace: s);
+      rethrow;
+    }
+  }
+
   /// Converts JSON data to a specific type [T] using [fromJson] function.
   Future<T> _convertType<T>({
     required Map<String, dynamic> jsonData,

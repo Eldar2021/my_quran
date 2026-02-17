@@ -38,6 +38,7 @@ dependencies:
   flutter_compass:
   shimmer_animation:
   syncfusion_flutter_charts:
+  collection:
 
   mq_ci_keys:
   mq_remote_client:
@@ -47,10 +48,10 @@ dependencies:
   mq_remote_config:
   mq_auth_repository:
   mq_home_repository:
-  mq_quran_repository:
   mq_hatim_repository:
   mq_app_ui:
   mq_prayer_time:
+  mq_quran_client:
   timezone:
 
   # flutter_native_splash:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mq_ci_keys/mq_ci_keys.dart';
-import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
@@ -14,7 +14,7 @@ class QuranView extends StatelessWidget {
       length: 2,
       child: BlocProvider(
         create: (context) => QuranCubit(
-          mqQuranRepository: context.read<MqQuranRepository>(),
+          context.read<QuranExtraRepository>(),
         ),
         child: const QuranBody(),
       ),
@@ -55,10 +55,10 @@ class QuranBody extends StatelessWidget {
       ),
       body: TabBarView(
         children: [
-          PageViewItem<MqJuzEntity>(
+          PageViewItem<QuranJuzModel>(
             context.read<QuranCubit>().getJuz(),
           ),
-          PageViewItem<MqSurahEntity>(
+          PageViewItem<QuranSurahModel>(
             context.read<QuranCubit>().getSurah(),
           ),
         ],

@@ -154,10 +154,7 @@ final class AppRouter {
             parentNavigatorKey: rootNavigatorKey,
             builder: (context, state) {
               final args = ParseParams.parseRead(state.pathParameters);
-              return QuranByPagesView(
-                pagesNumber: args.$1,
-                hatimId: args.$2,
-              );
+              return QuranBookView(QuranByPageArgs(args.$1, hatimId: args.$2));
             },
           ),
         ],
@@ -245,10 +242,7 @@ final class AppRouter {
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseRead(state.pathParameters);
-          return QuranByPagesView(
-            pagesNumber: args.$1,
-            hatimId: args.$2,
-          );
+          return QuranBookView(QuranByPageArgs(args.$1, hatimId: args.$2));
         },
       ),
       GoRoute(
@@ -257,7 +251,7 @@ final class AppRouter {
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseSurahNumber(state.pathParameters);
-          return QuranBySurahView(args);
+          return QuranBookView(QuranBySurahArgs(args));
         },
       ),
       GoRoute(
@@ -266,7 +260,7 @@ final class AppRouter {
         parentNavigatorKey: rootNavigatorKey,
         builder: (context, state) {
           final args = ParseParams.parseJuzNumber(state.pathParameters);
-          return QuranByJuzView(args);
+          return QuranBookView(QuranByJuzArgs(args));
         },
       ),
     ];

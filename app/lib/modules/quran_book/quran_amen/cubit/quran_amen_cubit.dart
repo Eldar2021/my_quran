@@ -3,14 +3,14 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:mq_quran_repository/mq_quran_repository.dart';
+import 'package:mq_quran_client/mq_quran_client.dart';
 
 part 'quran_amen_state.dart';
 
 class QuranAmenCubit extends Cubit<QuranAmenState> {
   QuranAmenCubit(this._repository) : super(const QuranAmenInitial());
 
-  final MqQuranRepository _repository;
+  final QuranExtraRepository _repository;
 
   Future<void> amen(
     List<int> pageNumber, {
