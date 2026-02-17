@@ -1,13 +1,6 @@
-export 'entity/juz/mq_juz_entity.dart';
-export 'entity/surah/mq_surah_entity.dart';
-export 'model/juz/juz_model_response.dart';
-export 'model/surah/surah_model_response.dart';
 export 'repository/mq_quran_repository.dart';
 export 'repository/mq_quran_repository_impl.dart';
-export 'source/local/mq_quran_local_data_source_impl.dart';
-export 'source/mock/mq_quran_local_data_source_mock.dart';
 export 'source/mock/mq_quran_remote_data_source_mock.dart';
-export 'source/mq_quran_local_data_source.dart';
 export 'source/mq_quran_remote_data_source.dart';
 export 'source/remote/mq_quran_remote_data_source_impl.dart';
 export 'static/mq_quran_static.dart';

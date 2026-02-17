@@ -96,9 +96,11 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider<MqQuranRepository>(
           create: (context) => MqQuranRepositoryImpl(
-            MqQuranLocalDataSourceImpl(context.read<PreferencesStorage>()),
             MqQuranRemoteDataSourceImpl(context.read<MqRemoteClient>()),
           ),
+        ),
+        RepositoryProvider<QuranStaticRepository>(
+          create: (context) => const QuranStaticRepositoryImpl(),
         ),
         RepositoryProvider<MqHatimRepository>(
           create: (context) => MqHatimReadRepositoryImpl(
@@ -135,7 +137,7 @@ class MyApp extends StatelessWidget {
           create: (context) => QuranAudioCubit(
             AudioPlayer(),
             context.read<NetworkClient>(),
-            context.read<MqQuranRepository>(),
+            context.read<QuranStaticRepository>(),
           ),
         ),
         BlocProvider(

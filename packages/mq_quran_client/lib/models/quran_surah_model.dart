@@ -46,6 +46,12 @@ final class QuranSurahModel extends Equatable {
   @JsonKey(name: 'pages')
   final List<int> pages;
 
+  String get surahPath {
+    if (id < 10) return '00$id';
+    if (id < 100) return '0$id';
+    return '$id';
+  }
+
   @override
   List<Object?> get props => [
     id,
