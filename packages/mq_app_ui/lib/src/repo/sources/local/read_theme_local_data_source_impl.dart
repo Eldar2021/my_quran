@@ -13,9 +13,13 @@ final class LocalThemeDataSourceImpl implements LocalThemeDataSource {
 
   @override
   ReadThemeData getInitialThemeState() {
-    final value = storage.readString(key: _readThemeKey);
-    if (value == null) return ReadThemeData.initial;
-    return ReadThemeData.fromJson(json.decode(value) as Map<String, dynamic>);
+    try {
+      final value = storage.readString(key: _readThemeKey);
+      if (value == null) return ReadThemeData.initial;
+      return ReadThemeData.fromJson(json.decode(value) as Map<String, dynamic>);
+    } on Object catch (_) {
+      return ReadThemeData.initial;
+    }
   }
 
   @override

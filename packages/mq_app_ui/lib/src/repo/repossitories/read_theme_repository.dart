@@ -13,6 +13,7 @@ final class ReadThemeData {
     required this.verticalSpaceSize,
     required this.horizontalSpaceSize,
     required this.textSize,
+    required this.fontTypeIndex,
   });
 
   factory ReadThemeData.fromJson(Map<String, dynamic> json) {
@@ -21,6 +22,7 @@ final class ReadThemeData {
       verticalSpaceSize: json['verticalSpaceSize'] as double,
       horizontalSpaceSize: json['horizontalSpaceSize'] as double,
       textSize: json['textSize'] as double,
+      fontTypeIndex: json['fontTypeIndex'] as int,
     );
   }
 
@@ -29,12 +31,14 @@ final class ReadThemeData {
     verticalSpaceSize: 0,
     horizontalSpaceSize: 14,
     textSize: 28,
+    fontTypeIndex: 0,
   );
 
   final int modeIndex;
   final double verticalSpaceSize;
   final double horizontalSpaceSize;
   final double textSize;
+  final int fontTypeIndex;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -42,6 +46,7 @@ final class ReadThemeData {
       'verticalSpaceSize': verticalSpaceSize,
       'horizontalSpaceSize': horizontalSpaceSize,
       'textSize': textSize,
+      'fontTypeIndex': fontTypeIndex,
     };
   }
 

@@ -88,6 +88,20 @@ class _Body extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text(
+          'Тип шрифта',
+          style: prTextTheme.titleMedium?.copyWith(
+            color: themeCubit.state.frColor,
+          ),
+        ),
+        const SizedBox(height: 8),
+        QuranFontsSelectionWidget(
+          initialIndex: themeCubit.state.fontType.indexValue,
+          onChanged: (type) {
+            context.read<QuranBookSettingsCubit>().changeFontType(type);
+          },
+        ),
+        const SizedBox(height: 20),
+        Text(
           context.l10n.verticalSpace,
           style: prTextTheme.titleMedium?.copyWith(
             color: themeCubit.state.frColor,

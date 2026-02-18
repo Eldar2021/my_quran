@@ -18,6 +18,7 @@ class QuranBookSettingsCubit extends Cubit<QuranBookSettingsState> {
         verticalSpaceSize: data.verticalSpaceSize,
         horizontalSpaceSize: data.horizontalSpaceSize,
         textSize: data.textSize,
+        fontType: QuranFontType.fromIndex(data.fontTypeIndex),
       ),
     );
   }
@@ -38,12 +39,17 @@ class QuranBookSettingsCubit extends Cubit<QuranBookSettingsState> {
     emit(state.copyWith(horizontalSpaceSize: space));
   }
 
+  void changeFontType(QuranFontType type) {
+    emit(state.copyWith(fontType: type));
+  }
+
   Future<void> saveChanges() async {
     final date = ReadThemeData(
       modeIndex: state.modeIndex,
       verticalSpaceSize: state.verticalSpaceSize,
       horizontalSpaceSize: state.horizontalSpaceSize,
       textSize: state.textSize,
+      fontTypeIndex: state.fontType.indexValue,
     );
     await repository.saveThemeState(date);
   }

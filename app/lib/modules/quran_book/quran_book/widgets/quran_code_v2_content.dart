@@ -8,13 +8,11 @@ class QuranCodeV2Content extends StatelessWidget {
   const QuranCodeV2Content({
     required this.data,
     required this.fontFamily,
-    required this.tajweedFontFamily,
     super.key,
   });
 
   final QuranPageModel data;
   final String fontFamily;
-  final String tajweedFontFamily;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class QuranCodeV2Content extends StatelessWidget {
           textHeightBehavior: const TextHeightBehavior(),
           text: TextSpan(
             style: _getStyle(
-              tajweedFontFamily,
+              fontFamily,
               themeCubit.state.frColor,
               fontSize,
             ),
