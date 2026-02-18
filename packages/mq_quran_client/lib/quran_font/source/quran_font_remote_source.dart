@@ -38,15 +38,15 @@ class QuranFontRemoteSource implements QuranFontSource {
     final fontDir = Directory('${appDir.path}/quran_fonts/$dirName');
     if (!fontDir.existsSync()) await fontDir.create(recursive: true);
 
-    final file = File('${fontDir.path}/$fileName.woff2');
+    final file = File('${fontDir.path}/$fileName.$fileExtension');
     final tempFile = File('${fontDir.path}/$fileName.temp');
 
     if (file.existsSync()) return file;
 
     try {
       final url = isTajweed
-          ? QuranClientConstants.getTajweedUrl(fileName)
-          : QuranClientConstants.getNormalUrl(fileName);
+          ? QuranClientConstants.getTajweedUrl(fileName, fileExtension)
+          : QuranClientConstants.getNormalUrl(fileName, fileExtension);
 
       await client.download(url, tempFile.path);
       return await tempFile.rename(file.path);
@@ -61,5 +61,9 @@ class QuranFontRemoteSource implements QuranFontSource {
     if (_appDir != null) return _appDir!;
     _appDir = await getApplicationDocumentsDirectory();
     return _appDir!;
+  }
+
+  String get fileExtension {
+    return Platform.isIOS || Platform.isMacOS ? 'woff2' : 'ttf';
   }
 }

@@ -19,10 +19,20 @@ class QuranCodeV2Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeCubit = context.watch<QuranBookSettingsCubit>();
+    final fontSize = switch (data.pageNumber) {
+      1 || 2 => context.defaultFontSize,
+      _ => themeCubit.state.textSize,
+    };
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: themeCubit.state.horizontalSpaceSize,
-        vertical: themeCubit.state.verticalSpaceSize,
+        horizontal: switch (data.pageNumber) {
+          1 || 2 => 16,
+          _ => themeCubit.state.horizontalSpaceSize,
+        },
+        vertical: switch (data.pageNumber) {
+          1 || 2 => 16,
+          _ => themeCubit.state.verticalSpaceSize,
+        },
       ),
       child: Directionality(
         textDirection: TextDirection.rtl,
@@ -33,7 +43,7 @@ class QuranCodeV2Content extends StatelessWidget {
             style: _getStyle(
               tajweedFontFamily,
               themeCubit.state.frColor,
-              themeCubit.state.textSize,
+              fontSize,
             ),
             children: data.verses.mapIndexed((index, verse) {
               return TextSpan(
@@ -52,10 +62,10 @@ class QuranCodeV2Content extends StatelessWidget {
                                     _getStyle(
                                       QuranFontFamily.surahNames,
                                       themeCubit.state.frColor,
-                                      themeCubit.state.textSize,
+                                      fontSize,
                                     ).copyWith(
                                       package: 'mq_quran_client',
-                                      fontSize: themeCubit.state.textSize + 16,
+                                      fontSize: fontSize + 16,
                                     ),
                               ),
                             ),
@@ -67,7 +77,7 @@ class QuranCodeV2Content extends StatelessWidget {
                     WidgetSpan(
                       alignment: PlaceholderAlignment.middle,
                       child: SizedBox(
-                        height: themeCubit.state.textSize + 12,
+                        height: fontSize + 12,
                         width: double.infinity,
                         child: QuranAssets.icons.bismillah.svg(
                           width: double.infinity,
@@ -89,10 +99,7 @@ class QuranCodeV2Content extends StatelessWidget {
   TextStyle _getStyle(String fontFamily, Color color, double fontSize) {
     return TextStyle(
       fontFamily: fontFamily,
-      fontSize: switch (data.pageNumber) {
-        1 || 2 => 28,
-        _ => fontSize,
-      },
+      fontSize: fontSize,
       color: color,
       height: 2.2,
     );
