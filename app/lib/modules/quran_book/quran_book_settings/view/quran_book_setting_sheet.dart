@@ -88,7 +88,7 @@ class _Body extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text(
-          'Тип шрифта',
+          context.l10n.fontType,
           style: prTextTheme.titleMedium?.copyWith(
             color: themeCubit.state.frColor,
           ),

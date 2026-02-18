@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mq_app_ui/mq_app_ui.dart';
+import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranFontsSelectionWidget extends StatefulWidget {
@@ -72,10 +73,10 @@ class _QuranFontsSelectionWidgetState extends State<QuranFontsSelectionWidget> w
                     unselectedLabelColor: colors.onSurfaceVariant,
                     indicatorSize: TabBarIndicatorSize.tab,
                     dividerColor: Colors.transparent,
-                    tabs: const [
-                      Tab(text: 'Комплекс'),
-                      Tab(text: 'Таджвид'),
-                      Tab(text: 'Усмани'),
+                    tabs: [
+                      Tab(text: context.l10n.complex),
+                      Tab(text: context.l10n.tajweed),
+                      Tab(text: context.l10n.uthmani),
                     ],
                   ),
                 ),

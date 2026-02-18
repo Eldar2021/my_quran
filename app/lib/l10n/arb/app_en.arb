@@ -223,5 +223,9 @@
   "errorTryAgain": "An error occurred. Please try again.",
   "tryAgain": "Try again",
   "participantsNotFound": "Participants could not be found.\nPlease try again later.",
-  "page": "Page"
+  "page": "Page",
+  "fontType": "Font type",
+  "complex": "Complex",
+  "tajweed": "Tajweed",
+  "uthmani": "Uthmani"
 }

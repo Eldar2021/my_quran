@@ -223,5 +223,9 @@
   "errorTryAgain": "Bir hata oluştu. Lütfen tekrar deneyin.",
   "tryAgain": "Tekrar dene",
   "participantsNotFound": "Katılımcı bulunamadı.\nLütfen daha sonra tekrar deneyin.",
-  "page": "Sayfa"
+  "page": "Sayfa",
+  "fontType": "Yazı tipi",
+  "complex": "Kompleks",
+  "tajweed": "Tecvid",
+  "uthmani": "Osmani"
 }
