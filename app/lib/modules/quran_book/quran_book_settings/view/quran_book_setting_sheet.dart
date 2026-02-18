@@ -17,6 +17,7 @@ class QuranBookSettingsSheet extends StatelessWidget {
   static void show(BuildContext context) {
     MqAnalytic.track(AnalyticKey.tapQuranReadSettings);
     MqBottomSheets.showScrollableMixModalBottomSheet<void>(
+      initialChildSize: 0.87,
       context: context,
       backgroundColor: context.read<QuranBookSettingsCubit>().state.bgColor,
       builder: (context, scrollController) {
