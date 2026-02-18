@@ -69,7 +69,7 @@ class _QuranFontsSelectionWidgetState extends State<QuranFontsSelectionWidget> w
                     ),
                     padding: const EdgeInsets.all(3),
                     labelColor: colors.onPrimary,
-                    labelStyle: textTheme.titleMedium,
+                    labelStyle: textTheme.titleSmall,
                     unselectedLabelColor: colors.onSurfaceVariant,
                     indicatorSize: TabBarIndicatorSize.tab,
                     dividerColor: Colors.transparent,

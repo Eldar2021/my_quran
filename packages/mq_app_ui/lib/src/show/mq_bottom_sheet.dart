@@ -90,4 +90,37 @@ abstract class MqBottomSheets {
       builder: (context) => child,
     );
   }
+
+  static Future<T?> showScrollableMixModalBottomSheet<T>({
+    required BuildContext context,
+    required Widget Function(BuildContext, ScrollController) builder,
+    double initialChildSize = 0.6,
+    double maxChildSize = 0.9,
+    double minChildSize = 0.4,
+    Color? backgroundColor,
+    Key? scrollKey,
+  }) {
+    return showModalBottomSheet<T>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      showDragHandle: true,
+      backgroundColor: backgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(35),
+          topRight: Radius.circular(35),
+        ),
+      ),
+      builder: (_) {
+        return DraggableScrollableSheet(
+          initialChildSize: initialChildSize,
+          maxChildSize: maxChildSize,
+          minChildSize: minChildSize,
+          expand: false,
+          builder: builder,
+        );
+      },
+    );
+  }
 }

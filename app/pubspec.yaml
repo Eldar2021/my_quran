@@ -54,6 +54,7 @@ dependencies:
   mq_quran_client:
   timezone:
 
+  # device_preview:
   # flutter_native_splash:
 
 dev_dependencies:

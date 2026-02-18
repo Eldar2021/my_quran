@@ -7,59 +7,34 @@ import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranBookSettingsSheet extends StatelessWidget {
-  const QuranBookSettingsSheet({super.key});
+  const QuranBookSettingsSheet({
+    required this.scrollController,
+    super.key,
+  });
+
+  final ScrollController scrollController;
 
   static void show(BuildContext context) {
     MqAnalytic.track(AnalyticKey.tapQuranReadSettings);
-    MqBottomSheets.showReadSettingsSheet<void>(
+    MqBottomSheets.showScrollableMixModalBottomSheet<void>(
       context: context,
       backgroundColor: context.read<QuranBookSettingsCubit>().state.bgColor,
-      child: const QuranBookSettingsSheet(),
+      builder: (context, scrollController) {
+        return QuranBookSettingsSheet(
+          scrollController: scrollController,
+        );
+      },
     );
   }
-
-  @override
-  Widget build(BuildContext context) {
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: themeCubit.state.bgColor,
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(30),
-        ),
-      ),
-      child: const FractionallySizedBox(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 32),
-          child: _Body(),
-        ),
-      ),
-    );
-  }
-}
-
-class _Body extends StatelessWidget {
-  const _Body();
 
   @override
   Widget build(BuildContext context) {
     final themeCubit = context.watch<QuranBookSettingsCubit>();
     final prTextTheme = Theme.of(context).primaryTextTheme;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      controller: scrollController,
       children: [
-        const SizedBox(height: 10),
-        Center(
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: themeCubit.state.frColor.withValues(alpha: 0.7),
-              borderRadius: BorderRadius.circular(99),
-            ),
-            child: const SizedBox(height: 6, width: 58),
-          ),
-        ),
-        const SizedBox(height: 20),
         Text(
           context.l10n.textSize,
           style: prTextTheme.titleMedium?.copyWith(
