@@ -291,6 +291,15 @@ class $AssetsImagesGen {
   /// File path: assets/images/kaaba.png
   AssetGenImage get kaaba => const AssetGenImage('assets/images/kaaba.png');
 
+  /// File path: assets/images/normal_font_example.jpeg
+  AssetGenImage get normalFontExample => const AssetGenImage('assets/images/normal_font_example.jpeg');
+
+  /// File path: assets/images/tajweed_example.jpeg
+  AssetGenImage get tajweedExample => const AssetGenImage('assets/images/tajweed_example.jpeg');
+
+  /// File path: assets/images/uthmanic_example.jpeg
+  AssetGenImage get uthmanicExample => const AssetGenImage('assets/images/uthmanic_example.jpeg');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     appIcon,
@@ -299,6 +308,9 @@ class $AssetsImagesGen {
     backgroundOrange,
     backgroundOrangeDark,
     kaaba,
+    normalFontExample,
+    tajweedExample,
+    uthmanicExample,
   ];
 }
 
