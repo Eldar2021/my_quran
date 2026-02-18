@@ -58,7 +58,7 @@ class QuranCodeV2Content extends StatelessWidget {
                                 verse.chapterId.toString().padLeft(3, '0'),
                                 style:
                                     _getStyle(
-                                      QuranFontFamily.surahNames,
+                                      QuranFontConstants.surahNamesFont,
                                       themeCubit.state.frColor,
                                       fontSize,
                                     ).copyWith(

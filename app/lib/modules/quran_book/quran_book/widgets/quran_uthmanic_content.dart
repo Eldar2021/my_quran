@@ -48,7 +48,7 @@ class QuranUthmanicContent extends StatelessWidget {
                                 verse.chapterId.toString().padLeft(3, '0'),
                                 style:
                                     _getStyle(
-                                      QuranFontFamily.surahNames,
+                                      QuranFontConstants.surahNamesFont,
                                       themeCubit.state.frColor,
                                       themeCubit.state.textSize,
                                     ).copyWith(

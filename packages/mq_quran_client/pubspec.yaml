@@ -35,6 +35,9 @@ flutter:
     - family: surah_names
       fonts:
         - asset: assets/fonts/surah_names/sura_names.woff2
+    - family: surah_names_ttf
+      fonts:
+        - asset: assets/fonts/surah_names_ttf/sura_names.ttf
 
 flutter_gen:
   assets:
