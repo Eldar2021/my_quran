@@ -9,33 +9,43 @@ class QuranSettingsHorizontalSpaceChangeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Assets.icons.aHorizontal.svg(
-              colorFilter: _colorFilter(themeCubit.state.frColor),
+            QuranBookSettingBuilder.changeThemeMode(
+              builder: (context, bgColor, frColor) {
+                return Assets.icons.aHorizontal.svg(colorFilter: _colorFilter(frColor));
+              },
             ),
             Expanded(
-              child: Slider.adaptive(
-                max: 100,
-                value: themeCubit.state.horizontalSpaceSize,
-                onChanged: context.read<QuranBookSettingsCubit>().changeHorizontalSpace,
+              child: QuranBookSettingBuilder.changeSpace(
+                builder: (context, horizontal, vertical) {
+                  return Slider.adaptive(
+                    max: 70,
+                    value: horizontal,
+                    onChanged: context.read<QuranBookSettingsCubit>().changeHorizontalSpace,
+                  );
+                },
               ),
             ),
-            Assets.icons.aHorizontalBig.svg(
-              colorFilter: _colorFilter(themeCubit.state.frColor),
+            QuranBookSettingBuilder.changeThemeMode(
+              builder: (context, bgColor, frColor) {
+                return Assets.icons.aHorizontalBig.svg(colorFilter: _colorFilter(frColor));
+              },
             ),
           ],
         ),
-        Text(
-          context.l10n.horizontalSpace,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
+        QuranBookSettingBuilder.changeThemeMode(
+          builder: (context, bgColor, frColor) {
+            return Text(
+              context.l10n.horizontalSpace,
+              style: prTextTheme.titleMedium?.copyWith(color: frColor),
+            );
+          },
         ),
       ],
     );

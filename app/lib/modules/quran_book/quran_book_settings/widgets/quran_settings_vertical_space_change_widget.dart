@@ -9,37 +9,43 @@ class QuranSettingsVerticalSpaceChangeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Assets.icons.aDigitVerticalSmall.svg(
-              colorFilter: _colorFilter(
-                themeCubit.state.frColor,
-              ),
+            QuranBookSettingBuilder.changeThemeMode(
+              builder: (context, bgColor, frColor) {
+                return Assets.icons.aDigitVerticalSmall.svg(colorFilter: _colorFilter(frColor));
+              },
             ),
             Expanded(
-              child: Slider.adaptive(
-                value: themeCubit.state.verticalSpaceSize,
-                max: 140,
-                onChanged: (v) {
-                  context.read<QuranBookSettingsCubit>().changeVerticalSpace(v);
+              child: QuranBookSettingBuilder.changeSpace(
+                builder: (context, horizontal, vertical) {
+                  return Slider.adaptive(
+                    value: vertical,
+                    max: 100,
+                    onChanged: context.read<QuranBookSettingsCubit>().changeVerticalSpace,
+                  );
                 },
               ),
             ),
-            Assets.icons.aDigitVertical.svg(
-              colorFilter: _colorFilter(themeCubit.state.frColor),
+            QuranBookSettingBuilder.changeThemeMode(
+              builder: (context, bgColor, frColor) {
+                return Assets.icons.aDigitVertical.svg(colorFilter: _colorFilter(frColor));
+              },
             ),
           ],
         ),
-        Text(
-          context.l10n.verticalSpace,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
+        QuranBookSettingBuilder.changeThemeMode(
+          builder: (context, bgColor, frColor) {
+            return Text(
+              context.l10n.verticalSpace,
+              style: prTextTheme.titleMedium?.copyWith(color: frColor),
+            );
+          },
         ),
       ],
     );

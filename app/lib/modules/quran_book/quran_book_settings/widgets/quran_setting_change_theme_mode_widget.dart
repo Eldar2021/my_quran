@@ -9,17 +9,18 @@ class QuranSettingChangeThemeModeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          context.l10n.screenTheme,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
+        QuranBookSettingBuilder.changeThemeMode(
+          builder: (context, bgColor, frColor) {
+            return Text(
+              context.l10n.screenTheme,
+              style: prTextTheme.titleMedium?.copyWith(color: frColor),
+            );
+          },
         ),
         const SizedBox(height: 10),
         Row(
@@ -29,9 +30,7 @@ class QuranSettingChangeThemeModeWidget extends StatelessWidget {
               child: ThemeModeButton(
                 backgroundColor: ReadThemeData.bgReadThemeColor[0],
                 foregroundColor: ReadThemeData.frReadThemeColor[0],
-                onPressed: () {
-                  context.read<QuranBookSettingsCubit>().changeMode(0);
-                },
+                onPressed: () => context.read<QuranBookSettingsCubit>().changeMode(0),
               ),
             ),
             const SizedBox(width: 10),
@@ -39,9 +38,7 @@ class QuranSettingChangeThemeModeWidget extends StatelessWidget {
               child: ThemeModeButton(
                 backgroundColor: ReadThemeData.bgReadThemeColor[1],
                 foregroundColor: ReadThemeData.frReadThemeColor[1],
-                onPressed: () {
-                  context.read<QuranBookSettingsCubit>().changeMode(1);
-                },
+                onPressed: () => context.read<QuranBookSettingsCubit>().changeMode(1),
               ),
             ),
           ],

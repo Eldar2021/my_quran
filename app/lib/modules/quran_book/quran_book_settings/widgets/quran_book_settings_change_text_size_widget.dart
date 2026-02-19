@@ -9,34 +9,43 @@ class QuranBookSettingsChangeTextSizeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BlocBuilder<QuranBookSettingsCubit, QuranBookSettingsState>(
-          builder: (context, state) {
+        QuranBookSettingBuilder.changeThemeMode(
+          builder: (context, bgColor, frColor) {
             return Text(
               context.l10n.textSize,
-              style: prTextTheme.titleMedium?.copyWith(
-                color: themeCubit.state.frColor,
-              ),
+              style: prTextTheme.titleMedium?.copyWith(color: frColor),
             );
           },
         ),
         Row(
           children: [
-            Assets.icons.aDigit.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
+            QuranBookSettingBuilder.changeThemeMode(
+              builder: (context, bgColor, frColor) {
+                return Assets.icons.aDigit.svg(colorFilter: _colorFilter(frColor));
+              },
+            ),
             Expanded(
-              child: Slider.adaptive(
-                max: 50,
-                min: 12,
-                value: themeCubit.state.textSize,
-                onChanged: context.read<QuranBookSettingsCubit>().changeTextSize,
+              child: QuranBookSettingBuilder.changeTextTheme(
+                builder: (context, textSize, fontType) {
+                  return Slider.adaptive(
+                    max: 50,
+                    min: 12,
+                    value: textSize,
+                    onChanged: context.read<QuranBookSettingsCubit>().changeTextSize,
+                  );
+                },
               ),
             ),
-            Assets.icons.aDigitBig.svg(colorFilter: _colorFilter(themeCubit.state.frColor)),
+            QuranBookSettingBuilder.changeThemeMode(
+              builder: (context, bgColor, frColor) {
+                return Assets.icons.aDigitBig.svg(colorFilter: _colorFilter(frColor));
+              },
+            ),
           ],
         ),
       ],
@@ -45,33 +54,5 @@ class QuranBookSettingsChangeTextSizeWidget extends StatelessWidget {
 
   ColorFilter _colorFilter(Color color) {
     return ColorFilter.mode(color, BlendMode.srcIn);
-  }
-}
-
-class QuranBookSettingBuilder extends StatelessWidget {
-  const QuranBookSettingBuilder({
-    required this.builder,
-    this.buildWhen,
-    super.key,
-  });
-
-  final bool Function(
-    QuranBookSettingsState,
-    QuranBookSettingsState,
-  )?
-  buildWhen;
-
-  final Widget Function(
-    BuildContext,
-    QuranBookSettingsState,
-  )
-  builder;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<QuranBookSettingsCubit, QuranBookSettingsState>(
-      buildWhen: buildWhen,
-      builder: builder,
-    );
   }
 }

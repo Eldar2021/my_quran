@@ -33,16 +33,18 @@ class _QuranFontsSelectionWidgetState extends State<QuranFontsSelectionWidget> w
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          context.l10n.fontType,
-          style: prTextTheme.titleMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
+        QuranBookSettingBuilder.changeThemeMode(
+          builder: (context, bgColor, frColor) {
+            return Text(
+              context.l10n.fontType,
+              style: prTextTheme.titleMedium?.copyWith(color: frColor),
+            );
+          },
         ),
         const SizedBox(height: 8),
         SizedBox(
@@ -53,52 +55,71 @@ class _QuranFontsSelectionWidgetState extends State<QuranFontsSelectionWidget> w
               border: Border.all(color: colors.primary),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Column(
+            child: _TabBarView(_controller),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+
+class _TabBarView extends StatelessWidget {
+  const _TabBarView(this.controller);
+
+  final TabController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return Column(
+      children: [
+        SizedBox(
+          height: 50,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: colors.surfaceContainerLowest,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: TabBar(
+                controller: controller,
+                indicator: BoxDecoration(
+                  color: colors.primary,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(3),
+                labelColor: colors.onPrimary,
+                labelStyle: textTheme.titleSmall,
+                unselectedLabelColor: colors.onSurfaceVariant,
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                tabs: [
+                  Tab(text: context.l10n.complex),
+                  Tab(text: context.l10n.tajweed),
+                  Tab(text: context.l10n.uthmani),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 100,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: TabBarView(
+              controller: controller,
               children: [
-                SizedBox(
-                  height: 50,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: colors.surfaceContainerLowest,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: TabBar(
-                        controller: _controller,
-                        indicator: BoxDecoration(
-                          color: colors.primary,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: const EdgeInsets.all(3),
-                        labelColor: colors.onPrimary,
-                        labelStyle: textTheme.titleSmall,
-                        unselectedLabelColor: colors.onSurfaceVariant,
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        dividerColor: Colors.transparent,
-                        tabs: [
-                          Tab(text: context.l10n.complex),
-                          Tab(text: context.l10n.tajweed),
-                          Tab(text: context.l10n.uthmani),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: TabBarView(
-                      controller: _controller,
-                      children: [
-                        Assets.images.normalFontExample.image(),
-                        Assets.images.tajweedExample.image(),
-                        Assets.images.uthmanicExample.image(),
-                      ],
-                    ),
-                  ),
-                ),
+                Assets.images.normalFontExample.image(),
+                Assets.images.tajweedExample.image(),
+                Assets.images.uthmanicExample.image(),
               ],
             ),
           ),
