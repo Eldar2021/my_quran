@@ -16,7 +16,7 @@ class QuranPageCubit extends Cubit<QuranPageState> {
   final QuranDataRepository quranDataRepository;
   final QuranFontRepository quranFontRepository;
 
-  Future<void> loadPage(int pageNumber, {int? sortSurahNumber}) async {
+  Future<void> loadPage(int pageNumber, [int? sortSurahNumber]) async {
     if (isClosed) return;
     try {
       emit(const QuranPageLoading());
