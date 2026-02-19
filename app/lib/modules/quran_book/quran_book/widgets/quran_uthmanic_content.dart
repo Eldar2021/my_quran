@@ -23,75 +23,94 @@ class QuranUthmanicContent extends StatelessWidget {
       ),
       child: Directionality(
         textDirection: TextDirection.rtl,
-        child: RichText(
-          textAlign: TextAlign.center,
-          textHeightBehavior: const TextHeightBehavior(),
-          text: TextSpan(
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontFamily: FontFamily.uthmanicV2,
-              fontSize: themeCubit.state.textSize,
-              color: themeCubit.state.frColor,
-              height: 2.3,
-            ),
-            children: data.verses.mapIndexed((index, verse) {
-              return TextSpan(
-                children: [
-                  if (verse.isFirstAyat)
-                    WidgetSpan(
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            if (index != 0) const Divider(),
-                            Center(
-                              child: Text(
-                                verse.chapterId.toString().padLeft(3, '0'),
-                                style:
-                                    _getStyle(
-                                      QuranFontConstants.surahNamesFont,
-                                      themeCubit.state.frColor,
-                                      themeCubit.state.textSize,
-                                    ).copyWith(
-                                      package: 'mq_quran_client',
-                                      fontSize: themeCubit.state.textSize + 16,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  if (verse.showBismillah) ...[
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: SizedBox(
-                        height: themeCubit.state.textSize + 12,
-                        width: double.infinity,
-                        child: QuranAssets.icons.bismillah.svg(
-                          width: double.infinity,
-                          colorFilter: ColorFilter.mode(
-                            themeCubit.state.frColor,
-                            BlendMode.srcIn,
+        child: _QuranUtnmanicTextWidget(
+          data: data,
+          fontFamily: FontFamily.uthmanicV2,
+        ),
+      ),
+    );
+  }
+}
+
+class _QuranUtnmanicTextWidget extends StatelessWidget {
+  const _QuranUtnmanicTextWidget({
+    required this.data,
+    required this.fontFamily,
+  });
+
+  final QuranPageModel data;
+  final String fontFamily;
+
+  @override
+  Widget build(BuildContext context) {
+    final themeCubit = context.watch<QuranBookSettingsCubit>();
+    return RichText(
+      textAlign: TextAlign.center,
+      textHeightBehavior: const TextHeightBehavior(),
+      text: TextSpan(
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+          fontFamily: FontFamily.uthmanicV2,
+          fontSize: themeCubit.state.textSize,
+          color: themeCubit.state.frColor,
+          height: 2.3,
+        ),
+        children: data.verses.mapIndexed((index, verse) {
+          return TextSpan(
+            children: [
+              if (verse.isFirstAyat)
+                WidgetSpan(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        if (index != 0) const Divider(),
+                        Center(
+                          child: Text(
+                            verse.chapterId.toString().padLeft(3, '0'),
+                            style:
+                                _getStyle(
+                                  QuranFontConstants.surahNamesFont,
+                                  themeCubit.state.frColor,
+                                  themeCubit.state.textSize,
+                                ).copyWith(
+                                  package: 'mq_quran_client',
+                                  fontSize: themeCubit.state.textSize + 16,
+                                ),
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                  TextSpan(text: verse.textUthmani),
-                  TextSpan(
-                    text: ' ${verse.ayatNumber.toArabicDigits} ',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontFamily: FontFamily.uthmanicRegular,
-                      fontSize: themeCubit.state.textSize,
-                      color: themeCubit.state.frColor,
+                      ],
                     ),
                   ),
-                  if (verse.isFirstAyatOfQuran) const TextSpan(text: '\n'),
-                ],
-              );
-            }).toList(),
-          ),
-        ),
+                ),
+              if (verse.showBismillah) ...[
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: SizedBox(
+                    height: themeCubit.state.textSize + 12,
+                    width: double.infinity,
+                    child: QuranAssets.icons.bismillah.svg(
+                      width: double.infinity,
+                      colorFilter: ColorFilter.mode(
+                        themeCubit.state.frColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+              TextSpan(text: verse.textUthmani),
+              TextSpan(
+                text: ' ${verse.ayatNumber.toArabicDigits} ',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontFamily: FontFamily.uthmanicRegular,
+                  fontSize: themeCubit.state.textSize,
+                  color: themeCubit.state.frColor,
+                ),
+              ),
+              if (verse.isFirstAyatOfQuran) const TextSpan(text: '\n'),
+            ],
+          );
+        }).toList(),
       ),
     );
   }
