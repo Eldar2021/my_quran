@@ -64,9 +64,9 @@ class _QuranBookViewState extends State<QuranBookView> {
   Future<void> _onReaded() async {
     final readThemeState = context.read<QuranBookSettingsCubit>().state;
     MqAnalytic.track(AnalyticKey.showAmin);
-    await QuranAmenDialog.showAmen<void>(
+    await QuranAmenDialogContent.showAmen<void>(
       context: context,
-      content: QuranAmenDialogContent(
+      args: QuranAmenDialogContentArgs(
         readThemeState: readThemeState,
         pages: _pages,
         confirmMessage: context.l10n.confirmSurahReaded,
