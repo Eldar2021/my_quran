@@ -46,7 +46,7 @@ class _QuranFontsSelectionWidgetState extends State<QuranFontsSelectionWidget> w
       height: 150,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: bgReadThemeColor[1],
+          color: ReadThemeData.bgReadThemeColor[1],
           border: Border.all(color: colors.primary),
           borderRadius: BorderRadius.circular(8),
         ),

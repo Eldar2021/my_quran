@@ -86,13 +86,6 @@ class MyApp extends StatelessWidget {
             );
           },
         ),
-        RepositoryProvider<ReadThemeRepository>(
-          create: (context) => ReadThemeRepositoryImpl(
-            LocalThemeDataSourceImpl(
-              context.read<PreferencesStorage>(),
-            ),
-          ),
-        ),
         RepositoryProvider<QuranExtraRepository>(
           create: (context) => QuranExtraRepoImpl(
             remoteDataSource: isMockData
@@ -150,8 +143,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => QuranBookSettingsCubit(
-            context.read<ReadThemeRepository>(),
-          )..init(),
+            context.read<PreferencesStorage>(),
+          ),
         ),
       ],
       child: const QuranApp(),

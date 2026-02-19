@@ -22,8 +22,9 @@ class _QuranBookViewState extends State<QuranBookView> {
 
   @override
   void initState() {
-    _pages = widget.args.pages;
     super.initState();
+    context.read<QuranBookSettingsCubit>().init();
+    _pages = widget.args.pages;
     if (widget.args is QuranBySurahArgs) {
       sortSurahNumber = (widget.args as QuranBySurahArgs).surahNumber;
     } else {
