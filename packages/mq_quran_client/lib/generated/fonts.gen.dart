@@ -13,4 +13,7 @@ class QuranFontFamily {
 
   /// Font family: surah_names
   static const String surahNames = 'surah_names';
+
+  /// Font family: surah_names_ttf
+  static const String surahNamesTtf = 'surah_names_ttf';
 }

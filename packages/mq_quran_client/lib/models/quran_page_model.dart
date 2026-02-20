@@ -19,6 +19,8 @@ final class QuranPageModel extends Equatable {
   final int pageNumber;
   final List<QuranVerseModel> verses;
 
+  bool get isSpecialIntroPage => pageNumber == 1 || pageNumber == 2;
+
   @override
   List<Object?> get props => [
     pageNumber,

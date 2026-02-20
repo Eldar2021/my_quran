@@ -40,10 +40,7 @@ class QuranBookFooterWidget extends StatelessWidget {
         const SizedBox(height: 16),
         if (onAmeen != null)
           Padding(
-            padding: const EdgeInsets.only(
-              left: 24,
-              right: 24,
-            ),
+            padding: const EdgeInsets.only(left: 24, right: 24),
             child: ElevatedButton(
               onPressed: onAmeen,
               child: Text(context.l10n.readed),

@@ -34,7 +34,13 @@ Future<void> checkQuranSettings(FlutterDriver driver) async {
   await driver.runUnsynchronized(() async {
     await driver.waitFor(find.byValueKey(MqKeys.quranReadSettings));
     await driver.tap(find.byValueKey(MqKeys.quranReadSettings));
+    await driver.waitFor(find.byValueKey(MqKeys.quranBookSettingsSheet));
     await driver.takeScreenshot(Screenshots.readQuranSettings);
+    await driver.scrollUntilVisible(
+      find.byValueKey(MqKeys.quranBookSettingsSheet),
+      find.byValueKey(MqKeys.quranReadSettingsBack),
+      dyScroll: -200,
+    );
     await driver.tap(find.byValueKey(MqKeys.quranReadSettingsBack));
   });
 }

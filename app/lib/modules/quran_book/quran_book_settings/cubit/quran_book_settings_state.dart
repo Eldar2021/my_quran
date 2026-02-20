@@ -1,32 +1,19 @@
 part of 'quran_book_settings_cubit.dart';
 
-const _frReadThemeColor = [
-  Color(0xff000000),
-  Color(0xff000000),
-];
-
-const _bgReadThemeColor = [
-  Color(0xffFFFFFF),
-  Color(0xffFFEED6),
-];
-
-const _loadingThemeColor = [
-  Color.fromARGB(255, 213, 210, 210),
-  Color.fromARGB(255, 241, 216, 180),
-];
-
 final class QuranBookSettingsState extends Equatable {
   const QuranBookSettingsState({
     this.verticalSpaceSize = 0,
     this.horizontalSpaceSize = 16,
     this.modeIndex = 1,
     this.textSize = 28,
+    this.fontType = QuranFontType.complex,
   });
 
   final double verticalSpaceSize;
   final double horizontalSpaceSize;
   final int modeIndex;
   final double textSize;
+  final QuranFontType fontType;
 
   @override
   List<Object> get props => [
@@ -34,6 +21,7 @@ final class QuranBookSettingsState extends Equatable {
     horizontalSpaceSize,
     modeIndex,
     textSize,
+    fontType,
   ];
 
   QuranBookSettingsState copyWith({
@@ -41,36 +29,38 @@ final class QuranBookSettingsState extends Equatable {
     double? horizontalSpaceSize,
     int? modeIndex,
     double? textSize,
+    QuranFontType? fontType,
   }) {
     return QuranBookSettingsState(
       verticalSpaceSize: verticalSpaceSize ?? this.verticalSpaceSize,
       horizontalSpaceSize: horizontalSpaceSize ?? this.horizontalSpaceSize,
       modeIndex: modeIndex ?? this.modeIndex,
       textSize: textSize ?? this.textSize,
+      fontType: fontType ?? this.fontType,
     );
   }
 
   Color get frColor {
     try {
-      return _frReadThemeColor[modeIndex];
+      return ReadThemeData.frReadThemeColor[modeIndex];
     } on Object catch (_) {
-      return _frReadThemeColor[1];
+      return ReadThemeData.frReadThemeColor[1];
     }
   }
 
   Color get bgColor {
     try {
-      return _bgReadThemeColor[modeIndex];
+      return ReadThemeData.bgReadThemeColor[modeIndex];
     } on Object catch (_) {
-      return _bgReadThemeColor[1];
+      return ReadThemeData.bgReadThemeColor[1];
     }
   }
 
   Color get loadingColor {
     try {
-      return _loadingThemeColor[modeIndex];
+      return ReadThemeData.loadingThemeColor[modeIndex];
     } on Object catch (_) {
-      return _loadingThemeColor[1];
+      return ReadThemeData.loadingThemeColor[1];
     }
   }
 }

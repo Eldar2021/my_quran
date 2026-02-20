@@ -5,7 +5,9 @@ import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/l10n/l10.dart';
 import 'package:my_quran/modules/modules.dart';
 
-class QuranBookItemView extends StatelessWidget {
+part '../mixins/quran_book_item_view_mixin.dart';
+
+class QuranBookItemView extends StatefulWidget {
   const QuranBookItemView({
     required this.pageController,
     required this.pageNumber,
@@ -22,32 +24,35 @@ class QuranBookItemView extends StatelessWidget {
   final int endPage;
 
   @override
+  State<QuranBookItemView> createState() => _QuranBookItemViewState();
+}
+
+class _QuranBookItemViewState extends State<QuranBookItemView> with QuranBookItemViewMixin {
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-        SliverAppBar(
-          backgroundColor: themeCubit.state.bgColor,
-          foregroundColor: themeCubit.state.frColor,
-          title: Text('$pageNumber-${context.l10n.page} $juzNumber-${context.l10n.juz}'),
-          titleTextStyle: textTheme.bodyMedium?.copyWith(
-            color: themeCubit.state.frColor,
-          ),
-          floating: true,
-          centerTitle: false,
-          actions: [
-            IconButton(
-              key: const Key(MqKeys.quranReadSettings),
-              onPressed: () => QuranBookSettingsSheet.show(context),
-              icon: Icon(
-                Icons.tune,
-                color: themeCubit.state.frColor,
-              ),
-            ),
-            const SizedBox(width: 16),
-          ],
+        QuranBookSettingBuilder.changeThemeMode(
+          builder: (context, bgColor, frColor) {
+            return SliverAppBar(
+              backgroundColor: bgColor,
+              foregroundColor: frColor,
+              title: Text(_title),
+              titleTextStyle: textTheme.bodyMedium?.copyWith(color: frColor),
+              floating: true,
+              centerTitle: false,
+              actions: [
+                IconButton(
+                  key: const Key(MqKeys.quranReadSettings),
+                  onPressed: () => QuranBookSettingsSheet.show(context),
+                  icon: Icon(Icons.tune, color: frColor),
+                ),
+                const SizedBox(width: 16),
+              ],
+            );
+          },
         ),
         BlocBuilder<QuranPageCubit, QuranPageState>(
           builder: (context, state) {
@@ -64,23 +69,11 @@ class QuranBookItemView extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: QuranBookFooterWidget(
-            onAmeen: showAmenButton ? onReaded : null,
-            nextButtonText: nextPage != null ? '$nextPage-${context.l10n.page}' : null,
-            previousButtonText: previousPage != null ? '$previousPage-${context.l10n.page}' : null,
-            onNext: nextPage != null
-                ? () => pageController.nextPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  )
-                : null,
-            onPrevious: previousPage != null
-                ? () {
-                    pageController.previousPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    );
-                  }
-                : null,
+            onAmeen: _onAmeen,
+            nextButtonText: _nextButtonText,
+            previousButtonText: _previousButtonText,
+            onNext: _onNext,
+            onPrevious: _onPrevious,
           ),
         ),
         SliverToBoxAdapter(
@@ -91,27 +84,4 @@ class QuranBookItemView extends StatelessWidget {
       ],
     );
   }
-
-  int get juzNumber {
-    for (final entry in juzPages.entries) {
-      final startPage = entry.value.$1;
-      final endPage = entry.value.$2;
-      if (pageNumber >= startPage && pageNumber <= endPage) {
-        return entry.key;
-      }
-    }
-    return 1;
-  }
-
-  int? get nextPage {
-    if (pageNumber == endPage) return null;
-    return pageNumber + 1;
-  }
-
-  int? get previousPage {
-    if (pageNumber == startPage) return null;
-    return pageNumber - 1;
-  }
-
-  bool get showAmenButton => pageNumber == endPage;
 }

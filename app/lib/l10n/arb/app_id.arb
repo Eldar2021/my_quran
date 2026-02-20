@@ -223,5 +223,9 @@
   "errorTryAgain": "Terjadi kesalahan. Silakan coba lagi.",
   "tryAgain": "Coba lagi",
   "participantsNotFound": "Peserta tidak ditemukan.\nSilakan coba lagi nanti.",
-  "page": "Halaman"
+  "page": "Halaman",
+  "fontType": "Tipe font",
+  "complex": "Kompleks",
+  "tajweed": "Tajwid",
+  "uthmani": "Utsmani"
 }

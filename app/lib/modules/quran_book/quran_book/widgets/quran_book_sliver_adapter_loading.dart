@@ -20,21 +20,24 @@ class QuranBookLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final loadingColor = context.watch<QuranBookSettingsCubit>().state.loadingColor;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _shimmerLine(width * 0.45, loadingColor),
-          _shimmerLine(width * 0.65, loadingColor),
-          _shimmerLine(width * 0.85, loadingColor),
-          _shimmerLine(width * 0.85, loadingColor),
-          _shimmerLine(width * 0.75, loadingColor),
-          _shimmerLine(width * 0.55, loadingColor),
-          _shimmerLine(width * 0.35, loadingColor),
-        ],
+      child: BlocBuilder<QuranBookSettingsCubit, QuranBookSettingsState>(
+        buildWhen: (p, c) => p.modeIndex != c.modeIndex,
+        builder: (context, state) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _shimmerLine(width * 0.45, state.loadingColor),
+              _shimmerLine(width * 0.65, state.loadingColor),
+              _shimmerLine(width * 0.85, state.loadingColor),
+              _shimmerLine(width * 0.85, state.loadingColor),
+              _shimmerLine(width * 0.75, state.loadingColor),
+              _shimmerLine(width * 0.55, state.loadingColor),
+              _shimmerLine(width * 0.35, state.loadingColor),
+            ],
+          );
+        },
       ),
     );
   }
@@ -49,10 +52,7 @@ class QuranBookLoadingWidget extends StatelessWidget {
             color: color,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: SizedBox(
-            width: width,
-            height: 32,
-          ),
+          child: SizedBox(width: width, height: 32),
         ),
       ),
     );
