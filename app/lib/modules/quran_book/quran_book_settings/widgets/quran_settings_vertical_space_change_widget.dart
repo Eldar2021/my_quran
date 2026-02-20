@@ -14,6 +14,14 @@ class QuranSettingsVerticalSpaceChangeWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        QuranBookSettingBuilder.changeThemeMode(
+          builder: (context, bgColor, frColor) {
+            return Text(
+              context.l10n.verticalSpace,
+              style: prTextTheme.titleMedium?.copyWith(color: frColor),
+            );
+          },
+        ),
         Row(
           children: [
             QuranBookSettingBuilder.changeThemeMode(
@@ -38,14 +46,6 @@ class QuranSettingsVerticalSpaceChangeWidget extends StatelessWidget {
               },
             ),
           ],
-        ),
-        QuranBookSettingBuilder.changeThemeMode(
-          builder: (context, bgColor, frColor) {
-            return Text(
-              context.l10n.verticalSpace,
-              style: prTextTheme.titleMedium?.copyWith(color: frColor),
-            );
-          },
         ),
       ],
     );

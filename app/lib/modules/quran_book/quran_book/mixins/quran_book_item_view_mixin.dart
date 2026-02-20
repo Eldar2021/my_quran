@@ -1,37 +1,31 @@
 part of '../view/quran_book_item_view.dart';
 
 mixin QuranBookItemViewMixin on State<QuranBookItemView> {
-  late final int _juzNumber;
   late final bool _showAmenButton;
-  late final int? _nextPage;
-  late final int? _previousPage;
 
   @override
   void initState() {
     super.initState();
     _showAmenButton = widget.pageNumber == widget.endPage;
-    _initilizeJuzNumber();
-    _initializeNextPage();
-    _initializePreviousPage();
   }
 
-  void _initializePreviousPage() {
-    if (widget.pageNumber == widget.startPage) _previousPage = null;
-    _previousPage = widget.pageNumber - 1;
+  int? get _previousPage {
+    if (widget.pageNumber == widget.startPage) return null;
+    return widget.pageNumber - 1;
   }
 
-  void _initializeNextPage() {
-    if (widget.pageNumber == widget.endPage) _nextPage = null;
-    _nextPage = widget.pageNumber + 1;
+  int? get _nextPage {
+    if (widget.pageNumber == widget.endPage) return null;
+    return widget.pageNumber + 1;
   }
 
-  void _initilizeJuzNumber() {
+  int get _juzNumber {
     for (final entry in juzPages.entries) {
       final startPage = entry.value.$1;
       final endPage = entry.value.$2;
-      if (widget.pageNumber >= startPage && widget.pageNumber <= endPage) _juzNumber = entry.key;
+      if (widget.pageNumber >= startPage && widget.pageNumber <= endPage) return entry.key;
     }
-    _juzNumber = 1;
+    return 1;
   }
 
   String get _title {
