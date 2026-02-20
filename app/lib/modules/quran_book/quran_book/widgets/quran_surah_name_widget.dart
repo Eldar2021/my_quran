@@ -20,6 +20,7 @@ class QuranSurahNameWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (showDivider) const Divider(),
           Center(

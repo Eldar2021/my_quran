@@ -52,10 +52,7 @@ class QuranBookLoadingWidget extends StatelessWidget {
             color: color,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: SizedBox(
-            width: width,
-            height: 32,
-          ),
+          child: SizedBox(width: width, height: 32),
         ),
       ),
     );

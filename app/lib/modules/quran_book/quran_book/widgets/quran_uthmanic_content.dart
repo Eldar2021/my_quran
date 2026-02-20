@@ -6,54 +6,49 @@ import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranUthmanicContent extends StatelessWidget {
-  const QuranUthmanicContent({
-    required this.data,
-    super.key,
-  });
+  const QuranUthmanicContent(this.data, {super.key});
 
   final QuranPageModel data;
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: themeCubit.state.horizontalSpaceSize,
-        vertical: themeCubit.state.verticalSpaceSize,
-      ),
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: _QuranUtnmanicTextWidget(
-          data: data,
-          fontFamily: FontFamily.uthmanicV2,
-        ),
-      ),
+    return QuranBookSettingBuilder.changeSpace(
+      builder: (context, horizontal, vertical) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: horizontal,
+            vertical: vertical,
+          ),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: _QuranUtnmanicTextWidget(data),
+          ),
+        );
+      },
     );
   }
 }
 
 class _QuranUtnmanicTextWidget extends StatelessWidget {
-  const _QuranUtnmanicTextWidget({
-    required this.data,
-    required this.fontFamily,
-  });
+  const _QuranUtnmanicTextWidget(this.data);
 
   final QuranPageModel data;
-  final String fontFamily;
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.watch<QuranBookSettingsCubit>();
+    final settings = context.select((QuranBookSettingsCubit cubit) => cubit.state);
+    final baseStyle = Theme.of(context).textTheme.headlineSmall?.copyWith(
+      fontFamily: FontFamily.uthmanicV2,
+      fontSize: settings.textSize,
+      color: settings.frColor,
+      height: 2.3,
+    );
+
     return RichText(
       textAlign: TextAlign.center,
       textHeightBehavior: const TextHeightBehavior(),
       text: TextSpan(
-        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-          fontFamily: FontFamily.uthmanicV2,
-          fontSize: themeCubit.state.textSize,
-          color: themeCubit.state.frColor,
-          height: 2.3,
-        ),
+        style: baseStyle,
         children: data.verses.mapIndexed((index, verse) {
           return TextSpan(
             children: [
@@ -61,8 +56,8 @@ class _QuranUtnmanicTextWidget extends StatelessWidget {
                 WidgetSpan(
                   child: QuranSurahNameWidget(
                     chapterId: verse.chapterId,
-                    color: themeCubit.state.frColor,
-                    textSize: themeCubit.state.textSize,
+                    color: settings.frColor,
+                    textSize: settings.textSize,
                     showDivider: index != 0,
                   ),
                 ),
@@ -70,8 +65,8 @@ class _QuranUtnmanicTextWidget extends StatelessWidget {
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   child: QuranBismillahWidget(
-                    color: themeCubit.state.frColor,
-                    textSize: themeCubit.state.textSize,
+                    color: settings.frColor,
+                    textSize: settings.textSize,
                   ),
                 ),
               ],
@@ -80,8 +75,8 @@ class _QuranUtnmanicTextWidget extends StatelessWidget {
                 text: ' ${verse.ayatNumber.toArabicDigits} ',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontFamily: FontFamily.uthmanicRegular,
-                  fontSize: themeCubit.state.textSize,
-                  color: themeCubit.state.frColor,
+                  fontSize: settings.textSize,
+                  color: settings.frColor,
                 ),
               ),
               if (verse.isFirstAyatOfQuran) const TextSpan(text: '\n'),

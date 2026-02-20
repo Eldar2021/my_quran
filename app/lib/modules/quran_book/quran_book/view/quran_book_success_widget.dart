@@ -36,8 +36,8 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> with Qu
           builder: (context, state) {
             if (state.fontType == QuranFontType.uthmanic) {
               return QuranUthmanicContent(
+                widget.data,
                 key: const Key(MqKeys.quranReadView),
-                data: widget.data,
               );
             }
             return QuranCodeV2Content(
@@ -53,8 +53,8 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> with Qu
       ),
       QuranBookFontStatus.error => SliverToBoxAdapter(
         child: QuranUthmanicContent(
+          widget.data,
           key: const Key(MqKeys.quranReadView),
-          data: widget.data,
         ),
       ),
     };
