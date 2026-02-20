@@ -26,7 +26,7 @@ class QuranPageCubit extends Cubit<QuranPageState> {
       );
       if (isClosed) return;
       try {
-        final fontModel = await quranFontRepository.getFontByPage(pageNumber);
+        final fontModel = await quranFontRepository.getFontByPage(pageData.pageNumber);
         if (isClosed) return;
         emit(QuranPageLoaded(data: pageData, fonts: fontModel));
       } on Object catch (e) {

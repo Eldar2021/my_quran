@@ -34,7 +34,8 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> with Qu
         child: BlocBuilder<QuranBookSettingsCubit, QuranBookSettingsState>(
           buildWhen: (p, c) => p.fontType != c.fontType,
           builder: (context, state) {
-            if (state.fontType == QuranFontType.uthmanic) {
+            final isBrokenPage = _brokenPages.contains(widget.data.pageNumber);
+            if (state.fontType == QuranFontType.uthmanic || isBrokenPage) {
               return QuranUthmanicContent(
                 widget.data,
                 key: const Key(MqKeys.quranReadView),
@@ -60,3 +61,7 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> with Qu
     };
   }
 }
+
+const _brokenPages = [
+  121,
+];
