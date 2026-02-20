@@ -41,6 +41,7 @@ final class MqKeys {
   static String quranReadSurah(int index) => 'qaran-read-surah-$index';
   static const quranReadView = 'quran-read-view';
   static const quranReadSettings = 'quran-read-settings';
+  static const quranBookSettingsSheet = 'quran-book-settings-sheet';
   static const quranReadSettingsBack = 'quran-read-settings-back';
   static const quranReadSettingsSave = 'quran-read-settings-save';
 
