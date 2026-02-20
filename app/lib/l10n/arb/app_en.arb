@@ -227,5 +227,13 @@
   "fontType": "Font type",
   "complex": "Complex",
   "tajweed": "Tajweed",
-  "uthmani": "Uthmani"
+  "uthmani": "Uthmani",
+  "silentLetter": "Silent letter",
+  "normalMadd": "Normal madd (2)",
+  "separatedMadd": "Separated madd (2/4/6)",
+  "connectedMadd": "Connected madd (4/5)",
+  "necessaryMadd": "Necessary madd (6)",
+  "ghunnaIkhfa": "Ghunna/ikhfa",
+  "qalqala": "Qalqala (echo)",
+  "tafkhim": "Tafkhim (heavy)"
 }

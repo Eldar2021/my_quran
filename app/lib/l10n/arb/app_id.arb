@@ -227,5 +227,13 @@
   "fontType": "Tipe font",
   "complex": "Kompleks",
   "tajweed": "Tajwid",
-  "uthmani": "Utsmani"
+  "uthmani": "Utsmani",
+  "silentLetter": "Huruf diam",
+  "normalMadd": "Mad asli (2)",
+  "separatedMadd": "Mad jaiz munfasil (2/4/6)",
+  "connectedMadd": "Mad wajib muttasil (4/5)",
+  "necessaryMadd": "Mad lazim (6)",
+  "ghunnaIkhfa": "Ghunnah / Ikhfa",
+  "qalqala": "Qalqalah",
+  "tafkhim": "Tafkhim"
 }

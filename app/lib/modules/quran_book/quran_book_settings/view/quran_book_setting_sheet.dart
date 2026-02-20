@@ -36,6 +36,8 @@ class QuranBookSettingsSheet extends StatelessWidget {
         SizedBox(height: 20),
         QuranFontsSelectionWidget(),
         SizedBox(height: 20),
+        QuranBookTajweedInfoWidget(),
+        SizedBox(height: 20),
         QuranSettingsVerticalSpaceChangeWidget(),
         SizedBox(height: 20),
         QuranSettingsHorizontalSpaceChangeWidget(),

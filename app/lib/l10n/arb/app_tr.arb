@@ -227,5 +227,13 @@
   "fontType": "Yazı tipi",
   "complex": "Kompleks",
   "tajweed": "Tecvid",
-  "uthmani": "Osmani"
+  "uthmani": "Osmani",
+  "silentLetter": "Sessiz Harf",
+  "normalMadd": "Normal Uzatma (2)",
+  "separatedMadd": "Ayrı Uzatma (2/4/6)",
+  "connectedMadd": "Bitişik Uzatma (4/5)",
+  "necessaryMadd": "Gerekli Uzatma (6)",
+  "ghunnaIkhfa": "Gunne / İhfa",
+  "qalqala": "Kalkale",
+  "tafkhim": "Kalın Okunan"
 }

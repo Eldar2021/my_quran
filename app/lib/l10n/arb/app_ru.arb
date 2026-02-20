@@ -227,5 +227,13 @@
   "fontType": "Тип шрифта",
   "complex": "Комплекс",
   "tajweed": "Таджвид",
-  "uthmani": "Усмани"
+  "uthmani": "Усмани",
+  "silentLetter": "Непроизносимая буква",
+  "normalMadd": "Обычное удлинение (2)",
+  "separatedMadd": "Раздельное удлинение (2/4/6)",
+  "connectedMadd": "Слитное удлинение (4/5)",
+  "necessaryMadd": "Обязательное удлинение (6)",
+  "ghunnaIkhfa": "Гунна / Ихфа",
+  "qalqala": "Калькаля",
+  "tafkhim": "Тафхим (Твердо)"
 }

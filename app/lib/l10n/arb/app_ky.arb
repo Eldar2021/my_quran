@@ -227,5 +227,13 @@
   "fontType": "Арип түрү",
   "complex": "Комплекс",
   "tajweed": "Тажвид",
-  "uthmani": "Осман"
+  "uthmani": "Осман",
+  "silentLetter": "Айтылбаган тамга",
+  "normalMadd": "Кадимки созуу (2)",
+  "separatedMadd": "Бөлөк созуу (2/4/6)",
+  "connectedMadd": "Бириккен созуу (4/5)",
+  "necessaryMadd": "Милдеттүү созуу (6)",
+  "ghunnaIkhfa": "Гунна / Ихфа",
+  "qalqala": "Калкала",
+  "tafkhim": "Тафхим (Жоон)"
 }

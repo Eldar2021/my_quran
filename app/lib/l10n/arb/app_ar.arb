@@ -227,5 +227,13 @@
   "fontType": "نوع الخط",
   "complex": "مجمع",
   "tajweed": "تجويد",
-  "uthmani": "عثماني"
+  "uthmani": "عثماني",
+  "silentLetter": "حرف صامت",
+  "normalMadd": "مد طبيعي (2)",
+  "separatedMadd": "مد منفصل (2/4/6)",
+  "connectedMadd": "مد متصل (4/5)",
+  "necessaryMadd": "مد لازم (6)",
+  "ghunnaIkhfa": "غنة / إخفاء",
+  "qalqala": "قلقلة",
+  "tafkhim": "تفخيم"
 }
