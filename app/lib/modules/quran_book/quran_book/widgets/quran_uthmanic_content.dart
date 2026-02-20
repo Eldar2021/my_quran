@@ -59,42 +59,19 @@ class _QuranUtnmanicTextWidget extends StatelessWidget {
             children: [
               if (verse.isFirstAyat)
                 WidgetSpan(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        if (index != 0) const Divider(),
-                        Center(
-                          child: Text(
-                            verse.chapterId.toString().padLeft(3, '0'),
-                            style:
-                                _getStyle(
-                                  QuranFontConstants.surahNamesFont,
-                                  themeCubit.state.frColor,
-                                  themeCubit.state.textSize,
-                                ).copyWith(
-                                  package: 'mq_quran_client',
-                                  fontSize: themeCubit.state.textSize + 16,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  child: QuranSurahNameWidget(
+                    chapterId: verse.chapterId,
+                    color: themeCubit.state.frColor,
+                    textSize: themeCubit.state.textSize,
+                    showDivider: index != 0,
                   ),
                 ),
               if (verse.showBismillah) ...[
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
-                  child: SizedBox(
-                    height: themeCubit.state.textSize + 12,
-                    width: double.infinity,
-                    child: QuranAssets.icons.bismillah.svg(
-                      width: double.infinity,
-                      colorFilter: ColorFilter.mode(
-                        themeCubit.state.frColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                  child: QuranBismillahWidget(
+                    color: themeCubit.state.frColor,
+                    textSize: themeCubit.state.textSize,
                   ),
                 ),
               ],
@@ -112,18 +89,6 @@ class _QuranUtnmanicTextWidget extends StatelessWidget {
           );
         }).toList(),
       ),
-    );
-  }
-
-  TextStyle _getStyle(String fontFamily, Color color, double fontSize) {
-    return TextStyle(
-      fontFamily: fontFamily,
-      fontSize: switch (data.pageNumber) {
-        1 || 2 => 28,
-        _ => fontSize,
-      },
-      color: color,
-      height: 2.2,
     );
   }
 }

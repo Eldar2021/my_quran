@@ -64,65 +64,26 @@ class _QuranV2TextWidget extends StatelessWidget {
           return TextSpan(
             children: [
               if (verse.isFirstAyat)
-                _buildSurahHeader(
-                  index,
-                  verse.chapterId,
-                  settings.frColor,
-                  fontSize,
+                WidgetSpan(
+                  child: QuranSurahNameWidget(
+                    chapterId: verse.chapterId,
+                    color: settings.frColor,
+                    textSize: fontSize,
+                    showDivider: index != 0,
+                  ),
                 ),
               if (verse.showBismillah)
-                _buildBismillah(
-                  fontSize,
-                  settings.frColor,
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: QuranBismillahWidget(
+                    color: settings.frColor,
+                    textSize: fontSize,
+                  ),
                 ),
               TextSpan(text: verse.formattedCode2),
             ],
           );
         }).toList(),
-      ),
-    );
-  }
-
-  InlineSpan _buildSurahHeader(
-    int index,
-    int chapterId,
-    Color color,
-    double fontSize,
-  ) {
-    return WidgetSpan(
-      child: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            if (index != 0) const Divider(),
-            Center(
-              child: Text(
-                chapterId.toString().padLeft(3, '0'),
-                style: TextStyle(
-                  fontFamily: QuranFontConstants.surahNamesFont,
-                  package: 'mq_quran_client',
-                  fontSize: fontSize + 16,
-                  color: color,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  InlineSpan _buildBismillah(double fontSize, Color color) {
-    return WidgetSpan(
-      alignment: PlaceholderAlignment.middle,
-      child: Container(
-        height: fontSize + 12,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        child: QuranAssets.icons.bismillah.svg(
-          width: double.infinity,
-          colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-        ),
       ),
     );
   }
