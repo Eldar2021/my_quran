@@ -9,3 +9,4 @@ export 'widgets/quran_settings_vertical_space_change_widget.dart';
 export 'widgets/quran_settings_horizontal_space_change_widget.dart';
 export 'widgets/quran_setting_change_theme_mode_widget.dart';
 export 'widgets/quran_book_setting_save_and_cancel_buttons.dart';
+export 'widgets/quran_book_tajweed_info_widget.dart';

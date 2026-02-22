@@ -53,8 +53,9 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> with Qu
       ),
       QuranBookFontStatus.error => SliverToBoxAdapter(
         child: QuranUthmanicContent(
-          widget.data,
           key: const Key(MqKeys.quranReadView),
+          showErrorMessage: true,
+          widget.data,
         ),
       ),
     };

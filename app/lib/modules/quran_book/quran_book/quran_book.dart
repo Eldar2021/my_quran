@@ -10,3 +10,4 @@ export 'widgets/quran_book_sliver_adapter_loading.dart';
 export 'widgets/quran_code_v2_content.dart';
 export 'widgets/quran_surah_name_widget.dart';
 export 'widgets/quran_uthmanic_content.dart';
+export 'widgets/quran_broken_banner.dart';

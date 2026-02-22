@@ -227,5 +227,14 @@
   "fontType": "Yazı tipi",
   "complex": "Kompleks",
   "tajweed": "Tecvid",
-  "uthmani": "Osmani"
+  "uthmani": "Osmani",
+  "silentLetter": "Sessiz Harf",
+  "normalMadd": "Normal Uzatma (2)",
+  "separatedMadd": "Ayrı Uzatma (2/4/6)",
+  "connectedMadd": "Bitişik Uzatma (4/5)",
+  "necessaryMadd": "Gerekli Uzatma (6)",
+  "ghunnaIkhfa": "Gunne / İhfa",
+  "qalqala": "Kalkale",
+  "tafkhim": "Kalın Okunan",
+  "fontErrorMessage": "Bu sayfanın özel font yapısında bir hata oluştu. Kur'an'ı doğru okuyabilmeniz için geçici olarak standart Uthmani fontu gösterilmektedir. En kısa sürede düzeltilecektir. Anlayışınız için teşekkür ederiz."
 }

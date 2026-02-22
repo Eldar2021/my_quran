@@ -227,5 +227,14 @@
   "fontType": "Font type",
   "complex": "Complex",
   "tajweed": "Tajweed",
-  "uthmani": "Uthmani"
+  "uthmani": "Uthmani",
+  "silentLetter": "Silent letter",
+  "normalMadd": "Normal madd (2)",
+  "separatedMadd": "Separated madd (2/4/6)",
+  "connectedMadd": "Connected madd (4/5)",
+  "necessaryMadd": "Necessary madd (6)",
+  "ghunnaIkhfa": "Ghunna/ikhfa",
+  "qalqala": "Qalqala (echo)",
+  "tafkhim": "Tafkhim (heavy)",
+  "fontErrorMessage": "An error occurred in the custom font structure of this page. To ensure you can read the Qur’an correctly, the standard Uthmani font is being displayed temporarily. It will be fixed as soon as possible. Thank you for your understanding."
 }
