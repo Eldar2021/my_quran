@@ -235,5 +235,6 @@
   "necessaryMadd": "Mad lazim (6)",
   "ghunnaIkhfa": "Ghunnah / Ikhfa",
   "qalqala": "Qalqalah",
-  "tafkhim": "Tafkhim"
+  "tafkhim": "Tafkhim",
+  "fontErrorMessage": "Terjadi kesalahan pada struktur font khusus halaman ini. Agar Anda dapat membaca Al-Qur'an dengan benar, font standar Utsmani ditampilkan untuk sementara. Masalah ini akan segera diperbaiki. Terima kasih atas pengertian Anda."
 }

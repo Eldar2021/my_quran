@@ -235,5 +235,6 @@
   "necessaryMadd": "Necessary madd (6)",
   "ghunnaIkhfa": "Ghunna/ikhfa",
   "qalqala": "Qalqala (echo)",
-  "tafkhim": "Tafkhim (heavy)"
+  "tafkhim": "Tafkhim (heavy)",
+  "fontErrorMessage": "An error occurred in the custom font structure of this page. To ensure you can read the Qur’an correctly, the standard Uthmani font is being displayed temporarily. It will be fixed as soon as possible. Thank you for your understanding."
 }

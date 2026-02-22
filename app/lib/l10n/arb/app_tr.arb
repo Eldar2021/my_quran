@@ -235,5 +235,6 @@
   "necessaryMadd": "Gerekli Uzatma (6)",
   "ghunnaIkhfa": "Gunne / İhfa",
   "qalqala": "Kalkale",
-  "tafkhim": "Kalın Okunan"
+  "tafkhim": "Kalın Okunan",
+  "fontErrorMessage": "Bu sayfanın özel font yapısında bir hata oluştu. Kur'an'ı doğru okuyabilmeniz için geçici olarak standart Uthmani fontu gösterilmektedir. En kısa sürede düzeltilecektir. Anlayışınız için teşekkür ederiz."
 }
