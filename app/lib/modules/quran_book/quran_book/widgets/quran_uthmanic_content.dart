@@ -6,9 +6,14 @@ import 'package:mq_quran_client/mq_quran_client.dart';
 import 'package:my_quran/modules/modules.dart';
 
 class QuranUthmanicContent extends StatelessWidget {
-  const QuranUthmanicContent(this.data, {super.key});
+  const QuranUthmanicContent(
+    this.data, {
+    super.key,
+    this.showErrorMessage = false,
+  });
 
   final QuranPageModel data;
+  final bool showErrorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +24,14 @@ class QuranUthmanicContent extends StatelessWidget {
             horizontal: horizontal,
             vertical: vertical,
           ),
-          child: Directionality(
-            textDirection: TextDirection.rtl,
-            child: _QuranUtnmanicTextWidget(data),
+          child: Column(
+            children: [
+              if (showErrorMessage) const QuranBrokenBanner(),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: _QuranUtnmanicTextWidget(data),
+              ),
+            ],
           ),
         );
       },

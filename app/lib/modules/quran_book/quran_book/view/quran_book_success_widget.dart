@@ -34,8 +34,7 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> with Qu
         child: BlocBuilder<QuranBookSettingsCubit, QuranBookSettingsState>(
           buildWhen: (p, c) => p.fontType != c.fontType,
           builder: (context, state) {
-            final isBrokenPage = _brokenPages.contains(widget.data.pageNumber);
-            if (state.fontType == QuranFontType.uthmanic || isBrokenPage) {
+            if (state.fontType == QuranFontType.uthmanic) {
               return QuranUthmanicContent(
                 widget.data,
                 key: const Key(MqKeys.quranReadView),
@@ -54,39 +53,11 @@ class _QuranBookSuccessWidgetState extends State<QuranBookSuccessWidget> with Qu
       ),
       QuranBookFontStatus.error => SliverToBoxAdapter(
         child: QuranUthmanicContent(
-          widget.data,
           key: const Key(MqKeys.quranReadView),
+          showErrorMessage: true,
+          widget.data,
         ),
       ),
     };
   }
 }
-
-const _brokenPages = [
-  121,
-  122,
-  123,
-  124,
-  144,
-  532,
-  533,
-  534,
-  565,
-  568,
-  570,
-  576,
-  584,
-  585,
-  587,
-  588,
-  589,
-  591,
-  592,
-  593,
-  594,
-  595,
-  596,
-  597,
-  598,
-  599,
-];
