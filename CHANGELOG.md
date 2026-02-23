@@ -346,3 +346,11 @@
 ## [Bug Fixes]
 
 - Fixed hatim state
+
+---
+
+# What's Changed v1.3.26+42
+
+## [UX]
+
+- Added new design for quran book
