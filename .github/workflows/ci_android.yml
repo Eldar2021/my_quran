@@ -65,7 +65,6 @@ jobs:
           arch: x86_64
           ram-size: 4096M
           heap-size: 1024M
-          profile: preconfigured
           emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
           disable-animations: true
           script: melos integration-test
