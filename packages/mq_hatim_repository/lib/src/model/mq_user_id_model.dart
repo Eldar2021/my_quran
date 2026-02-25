@@ -32,7 +32,7 @@ final class MqUserIdModel extends Equatable {
   @JsonKey(name: 'last_name')
   final String? lastName;
 
-  @JsonKey(includeFromJson: false, includeToJson: false, defaultValue: null)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final bool? accepted;
 
   String get uiTitle {

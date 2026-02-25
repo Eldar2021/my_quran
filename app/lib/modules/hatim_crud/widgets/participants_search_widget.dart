@@ -22,7 +22,7 @@ class ParticipantsSearchWidget extends StatelessWidget {
       HatimCrudParticipantsSearchLoading() => const Center(
         child: CircularProgressIndicator.adaptive(),
       ),
-      HatimCrudParticipantsSearchSuccess(data: final data) => SearchResultsWidget(
+      HatimCrudParticipantsSearchSuccess(:final data) => SearchResultsWidget(
         users: (data?.users ?? []).toSet(),
         onAddParticipant: onAddParticipant,
       ),

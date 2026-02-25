@@ -23,65 +23,61 @@ workspace:
 
 dependencies:
   cupertino_icons: ^1.0.8
-  meta: ^1.16.0 #1.17.0 flutter_test
+  meta: ^1.17.0 # latest version 1.18.1
   intl: ^0.20.2
-  firebase_core: ^4.2.1
-  firebase_analytics: ^12.0.4
-  firebase_auth: ^6.1.2
-  firebase_crashlytics: ^5.0.4
-  firebase_remote_config: ^6.1.1
-  firebase_messaging: ^16.0.4
-  flutter_local_notifications: ^19.5.0
+  firebase_core: ^4.4.0
+  firebase_analytics: ^12.1.2
+  firebase_auth: ^6.1.4
+  firebase_crashlytics: ^5.0.7
+  firebase_remote_config: ^6.1.4
+  firebase_messaging: ^16.1.1
+  flutter_local_notifications: ^20.1.0
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
-  bloc: ^9.1.0
+  bloc: ^9.2.0
   flutter_bloc: ^9.1.1
-  equatable: ^2.0.7
-  json_annotation: ^4.9.0
-  dio: ^5.9.0
+  equatable: ^2.0.8
+  json_annotation: ^4.11.0
+  dio: ^5.9.1
   web_socket_client: ^0.2.1
-  shared_preferences: ^2.5.3
+  shared_preferences: ^2.5.4
   url_launcher: ^6.3.2
   share_plus: ^12.0.1
   connectivity_plus: ^7.0.0
-  internet_connection_checker_plus: ^2.9.1+1
-  package_info_plus: ^8.3.1 #9.0.0 geolocator
+  internet_connection_checker_plus: ^2.9.1+2
+  package_info_plus: ^9.0.0
   geocoding: ^4.0.0
   geolocator: ^14.0.2
-  timezone: ^0.10.1
+  timezone: ^0.10.1 # latest version 0.11.0
   collection: ^1.19.1
   flutter_timezone: ^5.0.1
   adhan_dart: ^1.2.0
-  flutter_svg: ^2.2.2
+  flutter_svg: ^2.2.3
   cached_network_image: ^3.4.1
   infinite_scroll_pagination: ^5.1.1
-  pinput: ^5.0.2
-  syncfusion_flutter_charts: ^32.2.3
-  flutter_instagram_storyboard: ^1.0.1 # Need change pkg
+  pinput: ^6.0.2
+  syncfusion_flutter_charts: ^32.2.7
+  flutter_instagram_storyboard: ^1.0.1
   just_audio: ^0.10.5
   just_audio_background: ^0.0.1-beta.17
   loader_overlay: ^5.0.0
   toastification: ^3.0.3
-  go_router: ^17.0.0
-  mockingjay: ^2.0.0
+  go_router: ^17.1.0
+  mockingjay: ^2.1.0
   flutter_secure_storage: ^10.0.0
-  uuid: ^4.5.2
+  uuid: ^4.5.3
   flutter_compass: ^0.8.1
   shimmer_animation: ^2.2.2+1
   path_provider: ^2.1.5
 
-  # device_preview: ^1.3.1
-  # flutter_native_splash: ^2.4.7
-
 dev_dependencies:
-  melos: ^7.3.0
-  very_good_analysis: ^10.0.0
-  test: ^1.26.2
+  melos: ^7.4.0
+  very_good_analysis: ^10.2.0
+  test: ^1.29.0
   mocktail: ^1.0.4
-  build_runner: ^2.7.1 #2.10.1 json_serializable
-  json_serializable: ^6.11.1
+  build_runner: ^2.11.1
+  json_serializable: ^6.13.0
   flutter_gen_runner: ^5.12.0
-  # flutter_launcher_icons: ^0.14.4
 
 melos:
   command:

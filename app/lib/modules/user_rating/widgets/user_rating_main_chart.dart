@@ -40,8 +40,8 @@ class UserRatingMainChart extends StatelessWidget {
         ColumnSeries<UserRatingMainChartData, String>(
           spacing: 0.5,
           dataSource: chartData,
-          xValueMapper: (UserRatingMainChartData data, _) => data.dayOfTheWeek(locale),
-          yValueMapper: (UserRatingMainChartData data, _) => data.pages,
+          xValueMapper: (data, _) => data.dayOfTheWeek(locale),
+          yValueMapper: (data, _) => data.pages,
           name: page,
           color: AppColors.tomato,
           dataLabelSettings: const DataLabelSettings(isVisible: true),
@@ -50,8 +50,8 @@ class UserRatingMainChart extends StatelessWidget {
         ColumnSeries<UserRatingMainChartData, String>(
           spacing: 0.5,
           dataSource: chartData,
-          xValueMapper: (UserRatingMainChartData data, _) => data.dayOfTheWeek(locale),
-          yValueMapper: (UserRatingMainChartData data, _) => data.hours,
+          xValueMapper: (data, _) => data.dayOfTheWeek(locale),
+          yValueMapper: (data, _) => data.hours,
           name: hour,
           color: AppColors.darkslateblue,
           yAxisName: hourAxisName,

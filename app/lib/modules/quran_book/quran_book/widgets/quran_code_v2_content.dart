@@ -46,7 +46,7 @@ class _QuranV2TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.select((QuranBookSettingsCubit cubit) => cubit.state);
+    final settings = context.select<QuranBookSettingsCubit, QuranBookSettingsState>((cubit) => cubit.state);
     final fontSize = data.isSpecialIntroPage ? context.defaultFontSize : settings.textSize;
     final baseStyle = TextStyle(
       fontFamily: fontFamily,

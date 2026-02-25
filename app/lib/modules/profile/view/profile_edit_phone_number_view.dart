@@ -92,7 +92,7 @@ class _ProfileEditPhoneNumberViewState extends State<ProfileEditPhoneNumberView>
                       child: DropdownButton(
                         value: selectedCountry,
                         isDense: true,
-                        onChanged: (WorldCountry? newValue) {
+                        onChanged: (newValue) {
                           if (newValue != null) {
                             setState(() => selectedCountry = newValue);
                           }

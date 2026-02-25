@@ -54,7 +54,7 @@ class _ProfileEditLanguageViewState extends State<ProfileEditLanguageView> {
                 builder: (context, state) {
                   return RadioGroup<Locale>(
                     groupValue: _locale,
-                    onChanged: (Locale? value) {
+                    onChanged: (value) {
                       _updateLanguage(value, context);
                     },
                     child: Column(

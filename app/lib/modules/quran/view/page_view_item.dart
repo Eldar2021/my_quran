@@ -21,7 +21,7 @@ class PageViewItem<T> extends StatelessWidget {
         horizontal: 24,
       ),
       itemCount: items.length,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         final item = items[index];
         if (item is QuranJuzModel) {
           return QuranItemTile(

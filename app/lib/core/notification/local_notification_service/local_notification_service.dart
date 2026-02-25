@@ -45,7 +45,7 @@ class LocalNotificationService {
         ?.createNotificationChannel(_channel);
 
     await localNotification.initialize(
-      initializationSettings,
+      settings: initializationSettings,
       onDidReceiveNotificationResponse: (response) {
         log('🔔 Tapped on Notification: ${response.payload}');
         final payload = response.payload;
@@ -66,11 +66,11 @@ class LocalNotificationService {
     if (notification != null && android != null && Platform.isAndroid) {
       onReceiveNotification();
       await localNotification.show(
-        notification.hashCode,
-        notification.title,
-        notification.body,
+        id: notification.hashCode,
+        title: notification.title,
+        body: notification.body,
         payload: jsonEncode(message.data),
-        NotificationDetails(
+        notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
             _channel.id,
             _channel.name,

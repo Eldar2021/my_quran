@@ -44,7 +44,7 @@ class FirebaseNotificationService {
 
       FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      FirebaseMessaging.onMessage.listen((message) {
         log('🔔 Ön Planda Bildirim Geldi: ${message.notification?.title}');
         onReceiveNotification();
         onShowNotification(message, onReceiveNotification);
