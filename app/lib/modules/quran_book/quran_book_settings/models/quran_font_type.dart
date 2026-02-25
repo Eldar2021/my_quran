@@ -1,7 +1,8 @@
 enum QuranFontType {
   complex,
   tajweed,
-  uthmanic;
+  uthmanic
+  ;
 
   factory QuranFontType.fromIndex(int index) {
     return switch (index) {

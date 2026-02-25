@@ -150,7 +150,8 @@ enum PeriodType {
   @JsonValue('quarterly')
   quarterly,
   @JsonValue('yearly')
-  yearly;
+  yearly
+  ;
 
   String getValue() {
     return switch (this) {
@@ -166,7 +167,8 @@ enum AreaType {
   @JsonValue('world')
   world,
   @JsonValue('country')
-  country;
+  country
+  ;
 
   String getValue() {
     return switch (this) {

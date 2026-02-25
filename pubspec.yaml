@@ -2,7 +2,7 @@ name: my_quran_main
 publish_to: none
 
 environment:
-  sdk: ^3.9.2
+  sdk: ^3.11.0
 
 workspace:
   - app

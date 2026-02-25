@@ -15,7 +15,8 @@ enum ProfileLoadingType {
   updateAllowNotification,
   updateTimezone,
   logout,
-  deleteAccount;
+  deleteAccount
+  ;
 
   factory ProfileLoadingType.fromUpdateValueType(UpdateUserDataParam type) {
     return switch (type) {
