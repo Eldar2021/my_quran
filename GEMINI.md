@@ -6,7 +6,7 @@ This file serves as a quick reference and set of guidelines for AI interactions 
 
 - **Tech Stack:** Flutter, Dart, Melos (Workspace).
 - **Primary Entry Point:** `app/lib/main.dart`
-- **Minimum SDK:** Dart ^3.9.2
+- **Minimum SDK:** Dart ^3.11.0
 - **Linter:** `package:very_good_analysis` with custom overrides in root `analysis_options.yaml`.
 
 ## 2. Architecture
