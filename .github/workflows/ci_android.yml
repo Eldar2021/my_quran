@@ -68,7 +68,7 @@ jobs:
           arch: x86_64
           ram-size: 4096M
           heap-size: 1024M
-          emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
             adb shell pm grant com.alee.my_quran android.permission.ACCESS_FINE_LOCATION || true
