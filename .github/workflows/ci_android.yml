@@ -63,10 +63,10 @@ jobs:
         with:
           api-level: 34
           arch: x86_64
-          ram-size: 6144M
-          heap-size: 2048M
+          ram-size: 2048M
+          heap-size: 512M
           disk-size: 8192M
-          emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim -gpu swiftshader_indirect"
+          emulator-options: "-no-window -no-snapshot -no-audio -no-boot-anim"
           disable-animations: true
           emulator-boot-timeout: 300
           script: melos integration-test
