@@ -34,7 +34,7 @@ class HatimCrudTextField extends StatelessWidget {
       maxLines: maxLines,
       minLines: 1,
       enabled: enabled,
-      onTapOutside: (PointerDownEvent event) {
+      onTapOutside: (event) {
         FocusScope.of(context).unfocus();
       },
       textAlignVertical: TextAlignVertical.top,

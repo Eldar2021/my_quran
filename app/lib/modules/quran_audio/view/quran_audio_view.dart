@@ -53,7 +53,7 @@ class _QuranAudioViewState extends State<QuranAudioView> {
           key: const Key(MqKeys.quranAudioView),
           padding: const EdgeInsets.fromLTRB(24, 0, 24, 30),
           itemCount: context.read<QuranAudioCubit>().surahs.length,
-          itemBuilder: (BuildContext context, int index) {
+          itemBuilder: (context, index) {
             final item = context.read<QuranAudioCubit>().surahs[index];
             return QuranItemTile(
               key: Key(MqKeys.quranAudioSurahIndex(index)),
@@ -69,7 +69,7 @@ class _QuranAudioViewState extends State<QuranAudioView> {
               },
             );
           },
-          separatorBuilder: (BuildContext context, int index) {
+          separatorBuilder: (context, index) {
             return Divider(
               height: 0.5,
               color: colorScheme.onSurface.withValues(alpha: 0.1),

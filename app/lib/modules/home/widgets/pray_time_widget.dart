@@ -14,7 +14,7 @@ class MqSalaahTimeWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: BlocConsumer<LocationCubit, LocationState>(
-        listener: (BuildContext context, LocationState state) {
+        listener: (context, state) {
           final eventState = state.eventState;
           if (eventState is LocationEventNewLocation) {
             _onEventNewLocation(context, eventState.newLocationName);

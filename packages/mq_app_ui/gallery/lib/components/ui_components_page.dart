@@ -308,7 +308,7 @@ class _UiComponentsPageState extends State<UiComponentsPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 1,
-        onTap: (int index) {
+        onTap: (index) {
           setState(() {
             bottomIndex = index;
           });

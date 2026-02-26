@@ -17,7 +17,7 @@ mixin InternetConnectionMixin<T extends StatefulWidget> on State<T> {
   }
 
   void _initInternetListener() {
-    _internetSubscription = InternetConnection().onStatusChange.listen((InternetStatus status) {
+    _internetSubscription = InternetConnection().onStatusChange.listen((status) {
       if (status == InternetStatus.connected) {
         onConnectedInternet?.call();
       } else {

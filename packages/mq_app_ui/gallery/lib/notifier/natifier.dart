@@ -9,7 +9,8 @@ enum MqAppUiType {
   orange,
   orangeDark,
   blue,
-  blueDark;
+  blueDark
+  ;
 
   factory MqAppUiType.fromString(String? value) {
     return switch (value) {

@@ -65,7 +65,7 @@ class _ProfileEditCountryViewState extends State<ProfileEditCountryView> {
                   hint: Text(context.l10n.selectCountry),
                   icon: const Icon(Icons.keyboard_arrow_down),
                   borderRadius: BorderRadius.circular(16),
-                  onChanged: (WorldCountry? newValue) {
+                  onChanged: (newValue) {
                     if (newValue != null) {
                       setState(() => selectedCountry = newValue);
                     }

@@ -52,7 +52,7 @@ class HatimJuzListBuilder extends StatelessWidget {
     await Navigator.push<void>(
       context,
       MaterialPageRoute<void>(
-        builder: (BuildContext context) {
+        builder: (context) {
           return MultiBlocProvider(
             providers: [
               BlocProvider.value(value: bloc),

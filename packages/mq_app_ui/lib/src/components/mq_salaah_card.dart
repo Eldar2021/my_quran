@@ -89,7 +89,7 @@ class _MqSalaahCardState extends State<MqSalaahCard> {
           children: [
             const SizedBox(height: 8),
             SizedBox(
-              height: 45,
+              height: 48,
               child: ListView(
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,

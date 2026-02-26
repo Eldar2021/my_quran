@@ -35,7 +35,7 @@ class QuranBookTajweedInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontType = context.select((QuranBookSettingsCubit cubit) => cubit.state.fontType);
+    final fontType = context.select<QuranBookSettingsCubit, QuranFontType>((cubit) => cubit.state.fontType);
     if (fontType != QuranFontType.tajweed) {
       return const SizedBox.shrink();
     }

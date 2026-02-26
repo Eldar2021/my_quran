@@ -40,7 +40,8 @@ enum HatimPageStatus {
   @JsonValue('IN_PROGRESS')
   inProgress,
   @JsonValue('DONE')
-  done;
+  done
+  ;
 
   Color get bgColor {
     return switch (this) {

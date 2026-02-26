@@ -10,7 +10,7 @@ import 'mocks/app_mocks.dart';
 // flutter test
 
 void main() {
-  testWidgets('Punmp app', (WidgetTester tester) async {
+  testWidgets('Punmp app', (tester) async {
     final mockRemoteConfig = MockMqRemoteConfig();
 
     const appRepository = AppRepositoryImpl(

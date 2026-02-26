@@ -42,7 +42,7 @@ final class AppAlert {
   }) {
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return CupertinoAlertDialog(
           title: title ?? Text(context.l10n.error),
           content: Text(errorText, style: textStyle),
@@ -60,7 +60,7 @@ final class AppAlert {
   static void showRestartDialog(BuildContext context) {
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return CupertinoAlertDialog(
           title: Text(context.l10n.restartApp),
           content: Text(context.l10n.restartForDevMode),
@@ -83,7 +83,7 @@ final class AppAlert {
   }) {
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext ctx) {
+      builder: (ctx) {
         return CupertinoAlertDialog(
           title: Text(
             context.l10n.newLocationDetected,
