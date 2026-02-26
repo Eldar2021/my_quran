@@ -10,6 +10,9 @@ on:
 jobs:
   integration_test_android:
     runs-on: ubuntu-latest
+    env:
+      JAVA_OPTS: "-Xmx4g"
+      GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false"
     if: github.event_name == 'push' || (github.event.pull_request.draft == false)
     steps:
       - name: "Check out repository"
