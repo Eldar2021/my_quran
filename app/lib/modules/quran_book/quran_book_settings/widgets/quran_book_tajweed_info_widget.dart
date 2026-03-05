@@ -46,7 +46,7 @@ class QuranBookTajweedInfoWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.primary),
-        color: ReadThemeData.bgReadThemeColor[1],
+        color: context.select<QuranBookSettingsCubit, Color>((c) => c.state.bgColor),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
