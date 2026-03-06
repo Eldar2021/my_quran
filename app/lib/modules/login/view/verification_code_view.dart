@@ -126,6 +126,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> with Notifi
   }
 
   Future<void> _onLoginSuccess(AuthModel auth) async {
+    FocusScope.of(context).unfocus();
     context.read<AuthCubit>().updateAuth(auth);
     await initializeNotification(auth, context);
     if (mounted) context.goNamed(AppRouter.home);
