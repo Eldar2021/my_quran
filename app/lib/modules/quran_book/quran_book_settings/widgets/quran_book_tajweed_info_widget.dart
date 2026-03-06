@@ -45,7 +45,8 @@ class QuranBookTajweedInfoWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardTheme.color ?? Theme.of(context).cardColor,
+        border: Border.all(color: Theme.of(context).colorScheme.primary),
+        color: context.select<QuranBookSettingsCubit, Color>((c) => c.state.bgColor),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -98,7 +99,7 @@ class _TajweedInfoItem extends StatelessWidget {
           child: Text(
             title,
             style: AppTextStyles.bodyMedium.copyWith(
-              color: Theme.of(context).textTheme.bodyMedium?.color,
+              color: Theme.of(context).colorScheme.scrim,
             ),
           ),
         ),

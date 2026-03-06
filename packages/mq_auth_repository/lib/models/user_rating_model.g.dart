@@ -23,10 +23,10 @@ Map<String, dynamic> _$RatingRequestModelToJson(RatingRequestModel instance) => 
 };
 
 const _$PeriodTypeEnumMap = {
-  PeriodType.weekly: 'weekly',
-  PeriodType.monthly: 'monthly',
-  PeriodType.quarterly: 'quarterly',
   PeriodType.yearly: 'yearly',
+  PeriodType.quarterly: 'quarterly',
+  PeriodType.monthly: 'monthly',
+  PeriodType.weekly: 'weekly',
 };
 
 const _$AreaTypeEnumMap = {

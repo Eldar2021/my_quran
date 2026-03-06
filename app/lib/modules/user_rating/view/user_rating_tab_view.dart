@@ -23,7 +23,7 @@ class _UserRatingTabViewState extends State<UserRatingTabView> {
   @override
   void initState() {
     _bloc = context.read<UserRatingBloc>();
-    selectedPeriod = ValueNotifier(PeriodType.weekly);
+    selectedPeriod = ValueNotifier(PeriodType.yearly);
     final country = context.read<AuthCubit>().state.auth?.user.country;
     _showSelectCountryState = widget.areaType == AreaType.country && country == null;
     super.initState();

@@ -86,7 +86,7 @@ class _TabBarView extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: colors.surfaceContainerLowest,
+                color: colors.onPrimary,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: TabBar(
@@ -98,7 +98,7 @@ class _TabBarView extends StatelessWidget {
                 padding: const EdgeInsets.all(3),
                 labelColor: colors.onPrimary,
                 labelStyle: textTheme.titleSmall,
-                unselectedLabelColor: colors.onSurfaceVariant,
+                unselectedLabelColor: colors.primary,
                 indicatorSize: TabBarIndicatorSize.tab,
                 dividerColor: Colors.transparent,
                 tabs: [

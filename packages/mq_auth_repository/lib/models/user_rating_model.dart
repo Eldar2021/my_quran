@@ -143,14 +143,14 @@ final class RatingOwnerModel {
 }
 
 enum PeriodType {
-  @JsonValue('weekly')
-  weekly,
-  @JsonValue('monthly')
-  monthly,
+  @JsonValue('yearly')
+  yearly,
   @JsonValue('quarterly')
   quarterly,
-  @JsonValue('yearly')
-  yearly
+  @JsonValue('monthly')
+  monthly,
+  @JsonValue('weekly')
+  weekly
   ;
 
   String getValue() {
