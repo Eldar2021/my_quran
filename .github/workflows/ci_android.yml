@@ -20,7 +20,6 @@ jobs:
 
       - name: "Free Disk Space (Ubuntu)"
         run: |
-          sudo rm -rf /usr/local/lib/android/sdk/ndk
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf /opt/ghc
           sudo rm -rf /usr/local/share/boost
