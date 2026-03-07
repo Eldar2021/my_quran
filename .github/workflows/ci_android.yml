@@ -1,85 +1,85 @@
-# name: CI Android
+name: CI Android
 
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     types: [opened, reopened, ready_for_review, synchronize]
-#     branches: [main]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
+    branches: [main]
 
-# jobs:
-#   integration_test_android:
-#     runs-on: ubuntu-latest
-#     env:
-#       JAVA_OPTS: "-Xmx4g"
-#       GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false"
-#     if: github.event_name == 'push' || (github.event.pull_request.draft == false)
-#     steps:
-#       - name: "Check out repository"
-#         uses: actions/checkout@v4
+jobs:
+  integration_test_android:
+    runs-on: ubuntu-latest
+    env:
+      JAVA_OPTS: "-Xmx4g"
+      GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false"
+    if: github.event_name == 'push' || (github.event.pull_request.draft == false)
+    steps:
+      - name: "Check out repository"
+        uses: actions/checkout@v4
 
-#       - name: "Free Disk Space (Ubuntu)"
-#         run: |
-#           sudo rm -rf /usr/local/lib/android/sdk/ndk
-#           sudo rm -rf /usr/share/dotnet
-#           sudo rm -rf /opt/ghc
-#           sudo rm -rf /usr/local/share/boost
-#           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+      - name: "Free Disk Space (Ubuntu)"
+        run: |
+          sudo rm -rf /usr/local/lib/android/sdk/ndk
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
-#       - name: "Set up Flutter"
-#         uses: subosito/flutter-action@v2
-#         with:
-#           flutter-version: "3.41.4"
-#           channel: stable
-#           cache: true
+      - name: "Set up Flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.4"
+          channel: stable
+          cache: true
 
-#       - name: "Set up Java"
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: "17"
-#           distribution: "temurin"
-#           cache: gradle
+      - name: "Set up Java"
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: gradle
 
-#       - name: "Add Android SDK tools to PATH"
-#         run: echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
+      - name: "Add Android SDK tools to PATH"
+        run: echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
 
-#       - name: "Flutter Doctor"
-#         run: flutter doctor -v
+      - name: "Flutter Doctor"
+        run: flutter doctor -v
 
-#       - name: "Activate Flutterfire CLI"
-#         run: dart pub global activate flutterfire_cli
+      - name: "Activate Flutterfire CLI"
+        run: dart pub global activate flutterfire_cli
 
-#       - name: "Activate Melos"
-#         run: dart pub global activate melos
+      - name: "Activate Melos"
+        run: dart pub global activate melos
 
-#       - name: "Melos Bootstrap"
-#         run: melos bootstrap
+      - name: "Melos Bootstrap"
+        run: melos bootstrap
 
-#       - name: "Enable KVM"
-#         run: |
-#           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-#           sudo udevadm control --reload-rules
-#           sudo udevadm trigger --name-match=kvm
+      - name: "Enable KVM"
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
 
-#       - name: "Run test"
-#         uses: reactivecircus/android-emulator-runner@v2
-#         with:
-#           api-level: 30
-#           target: aosp_atd
-#           arch: x86_64
-#           cores: 2
-#           ram-size: 2048M
-#           heap-size: 512M
-#           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-#           disable-animations: true
-#           script: |
-#             adb shell pm grant com.alee.my_quran android.permission.ACCESS_FINE_LOCATION || true
-#             adb shell pm grant com.alee.my_quran android.permission.ACCESS_COARSE_LOCATION || true
-#             melos integration-test
+      - name: "Run test"
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: aosp_atd
+          arch: x86_64
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            adb shell pm grant com.alee.my_quran android.permission.ACCESS_FINE_LOCATION || true
+            adb shell pm grant com.alee.my_quran android.permission.ACCESS_COARSE_LOCATION || true
+            melos integration-test
 
-#       - name: "Upload screenshots"
-#         uses: actions/upload-artifact@v4
-#         if: always()
-#         with:
-#           name: android-screenshots
-#           path: ./screenshots/*
+      - name: "Upload screenshots"
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-screenshots
+          path: ./screenshots/*
