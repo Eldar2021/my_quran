@@ -13,24 +13,24 @@
 Regardless of your nationality, place of residence, gender, or social status, you're invited to join a global community with MyQuran App. This app offers a personalized and comprehensive way to engage with the Quran, making it easy for users to track their recitations, follow prayer times. [App link.](https://onelink.to/q58a9t)
 
 <p align="center">
-  <img src="doc/iPhone 16 Pro Max/005-login-google-page.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/021-home-init.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/004-login_page.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/006_home_page.png" width="22%" />
   <img src="doc/iPhone 16 Pro Max/041-hatim-juzs.png" width="22%" />
   <img src="doc/iPhone 16 Pro Max/042-hatim-pages.png" width="22%" />
 </p>
 
 <p align="center">
-  <img src="doc/iPhone 16 Pro Max/062-read-quran-surahs.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/063-read-quran-baqarah.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/064-read-quran-settings.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/010_surahs_page.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/063-read-quran_tajweed.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/061-read-quran-settings_complex.png" width="22%" />
   <img src="doc/iPhone 16 Pro Max/082-quran-audio-play-fatiha.png" width="22%" />
 </p>
 
 <p align="center">
   <img src="doc/iPhone 16 Pro Max/101-settings-init.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/102-settings-gender-male.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/111-settings-theme-page-light-blue.png" width="22%" />
-  <img src="doc/iPhone 16 Pro Max/113-logout.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/030_profile_page.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/128_world_raigings_page.png" width="22%" />
+  <img src="doc/iPhone 16 Pro Max/021-settings-theme-page-light-blue.png" width="22%" />
 </p>
 
 ## Requirements
