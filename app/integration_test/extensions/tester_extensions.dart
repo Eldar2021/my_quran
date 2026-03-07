@@ -7,9 +7,19 @@ extension TesterExtensions on WidgetTester {
   }
 
   Future<void> takeScreenshot(String name) async {
-    // Screenshot functionality can be bound here using integration_test binding if needed.
-    // For now we just pump to ensure everything is rendered.
     await pumpAndSettle();
-    // In actual implementation, `IntegrationTestWidgetsFlutterBinding.instance.takeScreenshot(name);` could be used.
+
+    // In order for takeScreenshot to work on Android/iOS natively,
+    // we need to call the binding's takeScreenshot method.
+    final binding = IntegrationTestWidgetsFlutterBinding.instance;
+    await binding.convertFlutterSurfaceToImage();
+    await pumpAndSettle();
+
+    try {
+      await binding.takeScreenshot(name);
+      debugPrint('Screenshot captured: $name');
+    } catch (e) {
+      debugPrint('Failed to capture screenshot $name: $e');
+    }
   }
 }

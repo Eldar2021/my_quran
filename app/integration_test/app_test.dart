@@ -13,13 +13,6 @@ import 'app/settings/settings_test.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  // Note: FlutterDriver maintains state across individual tests in a single session.
-  // With integration_test and WidgetTester, each testWidgets() resets the widget tree!
-  // To preserve the sequential flow (e.g. Login -> Home -> Navigate around app),
-  // we must run the entire flow inside a single testWidgets call.
-  // If we run them in separate testWidgets, we would need to manually recreate
-  // the app state before each test (e.g. login and navigate to the starting page).
-
   group('Hatim App Integration Test Flow', () {
     testWidgets('Full end-to-end user journey', (tester) async {
       // 1. App Init

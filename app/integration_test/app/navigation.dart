@@ -32,7 +32,6 @@ Future<void> backPage(WidgetTester tester) async {
   if (backButton.evaluate().isNotEmpty) {
     await tester.tap(backButton.first);
   } else {
-    // Fallback if there is a generic back button type
     await tester.tap(find.byType(BackButton));
   }
   await tester.pumpAndSettle();
