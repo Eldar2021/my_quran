@@ -3,4 +3,4 @@ set -euxo pipefail
 
 avdmanager list device || echo "error displaying emulator devices"
 
-flutter drive --target=test_driver/app.dart
+flutter test integration_test/app_test.dart

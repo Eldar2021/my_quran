@@ -62,8 +62,6 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  flutter_driver:
-    sdk: flutter
   test:
   mocktail:
   # flutter_launcher_icons
