@@ -2,7 +2,7 @@ name: CI IOS
 
 on:
   push:
-    branches: [main]
+    branches: [main, el/migrate-integration-tests]
   pull_request:
     types: [opened, reopened, ready_for_review, synchronize]
     branches: [main]
