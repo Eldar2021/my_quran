@@ -126,8 +126,4 @@ melos:
 
     integration-test:
       description: Run all integration tests in this project.
-      exec:
-        run: cd app && flutter test integration_test/app_test.dart
-      packageFilters:
-        dirExists:
-          - integration_test
+      run: cd app && flutter test integration_test/app_test.dart
