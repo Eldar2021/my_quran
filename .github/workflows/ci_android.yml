@@ -89,10 +89,3 @@ jobs:
             adb shell pm grant com.alee.my_quran android.permission.ACCESS_FINE_LOCATION || true
             adb shell pm grant com.alee.my_quran android.permission.ACCESS_COARSE_LOCATION || true
             melos integration-test
-
-      - name: "Upload screenshots"
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: android-screenshots
-          path: ./screenshots/*

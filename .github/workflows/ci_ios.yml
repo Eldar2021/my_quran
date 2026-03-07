@@ -66,9 +66,3 @@ jobs:
 
       - name: "Run Integration Test"
         run: melos integration-test -- --timeout 5m
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: ${{ matrix.device }}-screenshots
-          path: ./screenshots/*
