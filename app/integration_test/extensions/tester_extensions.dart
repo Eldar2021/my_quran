@@ -10,11 +10,15 @@ extension TesterExtensions on WidgetTester {
 
   Future<void> takeScreenshot(String name) async {
     await pumpAndSettle();
-
     final binding = IntegrationTestWidgetsFlutterBinding.instance;
-    await binding.convertFlutterSurfaceToImage();
-    await pumpAndSettle();
-
+    try {
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        await binding.convertFlutterSurfaceToImage();
+        await pumpAndSettle();
+      }
+    } on Object catch (_) {
+      debugPrint('Surface already converted or other error');
+    }
     try {
       await binding.takeScreenshot(name);
       debugPrint('Screenshot captured: $name');
