@@ -9,21 +9,11 @@ on:
 
 jobs:
   integration_test_android:
-    runs-on: ubuntu-latest
-    env:
-      JAVA_OPTS: "-Xmx3200m"
-      GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx3200m -Dorg.gradle.daemon=false"
+    runs-on: macos-latest
     if: github.event_name == 'push' || (github.event.pull_request.draft == false)
     steps:
       - name: "Check out repository"
         uses: actions/checkout@v4
-
-      - name: "Free Disk Space (Ubuntu)"
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf /usr/local/share/boost
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
       - name: "Set up Flutter"
         uses: subosito/flutter-action@v2
@@ -65,12 +55,6 @@ jobs:
       - name: "Melos Bootstrap"
         run: melos bootstrap
 
-      - name: "Enable KVM"
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-
       - name: "Pre-build APK"
         run: cd app && flutter build apk --debug
 
@@ -78,12 +62,12 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
-          target: aosp_atd
-          arch: x86_64
+          target: google_apis
+          arch: arm64-v8a
           cores: 2
           ram-size: 2048M
           heap-size: 512M
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-snapshot-save -no-window -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
             adb shell pm grant com.alee.my_quran android.permission.ACCESS_FINE_LOCATION || true
