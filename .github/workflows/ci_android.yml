@@ -2,7 +2,7 @@ name: CI Android
 
 on:
   push:
-    branches: [main]
+    branches: [main, el/bump-flutter]
   pull_request:
     types: [opened, reopened, synchronize]
     branches: [main]
