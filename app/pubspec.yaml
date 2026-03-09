@@ -58,9 +58,9 @@ dependencies:
   # flutter_native_splash:
 
 dev_dependencies:
-  flutter_test:
+  integration_test:
     sdk: flutter
-  flutter_driver:
+  flutter_test:
     sdk: flutter
   test:
   mocktail:

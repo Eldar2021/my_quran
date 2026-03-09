@@ -101,6 +101,6 @@ The project uses a Melos-managed workspace:
   - Command: `melos unit-test`.
   - Framework: `flutter_test`, `mocktail`.
 - **Integration Testing:**
-  - Command: `melos integration-test` (runs `flutter drive`).
-  - Target: `app/test_driver/app.dart`.
+  - Command: `melos integration-test` (runs `flutter test`).
+  - Target: `app/integration_test/app_test.dart`.
 - **Mocks:** Extensive use of mock data sources (e.g., `AuthRepositoryMock`, `AppLocalDataSourceMock`) for testing and dev modes.

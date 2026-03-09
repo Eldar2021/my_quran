@@ -29,6 +29,6 @@ git-update:
 fvm-check:
 	echo "Checking flutter..."
 	fvm list
-	fvm use 3.41.2
-	fvm global 3.41.2
+	fvm use 3.41.4
+	fvm global 3.41.4
 	fvm list

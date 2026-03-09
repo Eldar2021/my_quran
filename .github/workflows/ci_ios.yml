@@ -40,7 +40,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.41.2"
+          flutter-version: "3.41.4"
           channel: stable
 
       - run: flutter doctor -v
@@ -66,9 +66,3 @@ jobs:
 
       - name: "Run Integration Test"
         run: melos integration-test -- --timeout 5m
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: ${{ matrix.device }}-screenshots
-          path: ./screenshots/*
