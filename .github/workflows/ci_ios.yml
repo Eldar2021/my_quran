@@ -9,29 +9,29 @@ on:
 
 jobs:
   integration_test_ios:
-    runs-on: macos-14
+    runs-on: macos-latest
     if: github.event_name == 'push' || (github.event.pull_request.draft == false)
     strategy:
       matrix:
         include:
-          - device: "iPhone 15 Pro Max"
+          - device: "iPhone 17 Pro Max"
       fail-fast: true
 
     steps:
       - uses: actions/checkout@v5
 
-      - name: "Select Xcode 16.2"
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+      - name: "Select Xcode 26.3"
+        run: sudo xcode-select -s /Applications/Xcode_26.3.app/Contents/Developer
 
       - name: "Confirm Xcode Version and Check Platform"
         run: |
           xcodebuild -version
           xcrun simctl list runtimes
 
-      - name: "Install Missing iOS 17.5 Simulator Runtime"
+      - name: "Install Missing iOS 26.3 Simulator Runtime"
         run: |
-          echo "Installing iOS 17.5 Runtime..."
-          sudo xcodebuild -downloadPlatform iOS -buildVersion 17.5 || true
+          echo "Installing iOS 26.3 Runtime..."
+          sudo xcodebuild -downloadPlatform iOS -buildVersion 26.3 || true
           echo "Installation completed."
           xcrun simctl list runtimes
 

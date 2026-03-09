@@ -37,8 +37,7 @@ Regardless of your nationality, place of residence, gender, or social status, yo
 
 - Dart sdk: ^3.11.0
 - Flutter: "3.41.4"
-- Android: minSdkVersion 23
-- iOS: --ios-language swift, Xcode version >= 16.3
+- Xcode version >= 26.3
 
 ## Melos
 
