@@ -125,5 +125,5 @@ melos:
       description: "Build an appbundle file"
 
     integration-test:
-      run: cd app && flutter drive --no-enable-impeller --target=test_driver/app.dart
-      description: "Run integration tests for the my_quran"
+      description: Run all integration tests in this project.
+      run: cd app && flutter test integration_test/app_test.dart
