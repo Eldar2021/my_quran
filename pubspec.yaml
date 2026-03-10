@@ -57,7 +57,6 @@ dependencies:
   infinite_scroll_pagination: ^5.1.1
   pinput: ^6.0.2
   syncfusion_flutter_charts: ^32.2.8
-  flutter_instagram_storyboard: ^1.0.1
   just_audio: ^0.10.5
   just_audio_background: ^0.0.1-beta.17
   loader_overlay: ^5.0.0
