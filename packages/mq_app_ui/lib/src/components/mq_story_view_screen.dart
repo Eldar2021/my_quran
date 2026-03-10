@@ -21,7 +21,7 @@ class MqStoryViewScreen extends StatefulWidget {
     Navigator.of(context, rootNavigator: true).push(
       PageRouteBuilder<void>(
         opaque: false,
-        barrierColor: Colors.black.withValues(alpha: 0.01),
+        barrierColor: AppColors.black.withValues(alpha: 0.01),
         pageBuilder: (_, animation, _) => FadeTransition(
           opacity: animation,
           child: MqStoryViewScreen(
@@ -139,10 +139,11 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     if (widget.items.isEmpty) return const SizedBox.shrink();
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       body: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onVerticalDragUpdate: (details) {
@@ -167,7 +168,7 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
             final radius = (dragFactor / 200 * 32).clamp(0.0, 32.0);
 
             return ColoredBox(
-              color: Colors.black.withValues(alpha: opacity),
+              color: AppColors.black.withValues(alpha: opacity),
               child: Transform.translate(
                 offset: Offset(0, offset),
                 child: Transform.scale(
@@ -260,9 +261,12 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
                                     child: CachedNetworkImage(
                                       imageUrl: imageUrl,
                                       fit: BoxFit.cover,
-                                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                                      errorWidget: (context, url, err) =>
-                                          const Center(child: Icon(Icons.error, color: Colors.white)),
+                                      placeholder: (context, url) {
+                                        return const Center(child: CircularProgressIndicator());
+                                      },
+                                      errorWidget: (context, url, err) {
+                                        return Center(child: Icon(Icons.error, color: colorScheme.onPrimary));
+                                      },
                                     ),
                                   ),
                                 ),
@@ -316,11 +320,12 @@ class _StoryProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       height: 2.5,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.3),
+        color: colorScheme.primary.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(1.5),
       ),
       child: isActive
@@ -332,7 +337,7 @@ class _StoryProgressIndicator extends StatelessWidget {
                   widthFactor: controller.value,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: colorScheme.primary,
                       borderRadius: BorderRadius.circular(1.5),
                     ),
                   ),
@@ -342,7 +347,7 @@ class _StoryProgressIndicator extends StatelessWidget {
           : isPassed
           ? Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: colorScheme.secondary,
                 borderRadius: BorderRadius.circular(1.5),
               ),
             )
