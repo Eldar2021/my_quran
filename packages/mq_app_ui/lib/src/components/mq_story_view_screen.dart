@@ -251,76 +251,74 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
                               _isHolding = false;
                               _updateTimerState();
                             },
-                            child: SafeArea(
-                              child: Stack(
-                                children: [
-                                  Positioned.fill(
-                                    child: CachedNetworkImage(
-                                      imageUrl: imageUrl,
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                                      errorWidget: (context, url, err) =>
-                                          const Center(child: Icon(Icons.error, color: Colors.white)),
-                                    ),
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: CachedNetworkImage(
+                                    imageUrl: imageUrl,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, err) =>
+                                        const Center(child: Icon(Icons.error, color: Colors.white)),
                                   ),
-                                  Positioned(
-                                    top: 10,
-                                    left: 10,
-                                    right: 10,
-                                    child: Row(
-                                      children: List.generate(
-                                        item.storyPagesImages.length,
-                                        (i) => Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 2),
-                                            child: _StoryProgressIndicator(
-                                              isActive: i == currentImageIndex,
-                                              isPassed: i < currentImageIndex,
-                                              controller: _animationController,
-                                            ),
+                                ),
+                                Positioned(
+                                  top: 10,
+                                  left: 10,
+                                  right: 10,
+                                  child: Row(
+                                    children: List.generate(
+                                      item.storyPagesImages.length,
+                                      (i) => Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 2),
+                                          child: _StoryProgressIndicator(
+                                            isActive: i == currentImageIndex,
+                                            isPassed: i < currentImageIndex,
+                                            controller: _animationController,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                  Positioned(
-                                    top: 30,
-                                    left: 10,
-                                    right: 10,
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                          backgroundImage: CachedNetworkImageProvider(item.cardImageLink),
-                                          radius: 20,
-                                          backgroundColor: Colors.grey.shade800,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Expanded(
-                                          child: Text(
-                                            item.cardLabel.replaceAll('\n', ' '),
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              shadows: [
-                                                Shadow(
-                                                  blurRadius: 4,
-                                                  color: Colors.black54,
-                                                  offset: Offset(1, 1),
-                                                ),
-                                              ],
-                                            ),
+                                ),
+                                Positioned(
+                                  top: 30,
+                                  left: 10,
+                                  right: 10,
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundImage: CachedNetworkImageProvider(item.cardImageLink),
+                                        radius: 20,
+                                        backgroundColor: Colors.grey.shade800,
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: Text(
+                                          item.cardLabel.replaceAll('\n', ' '),
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            shadows: [
+                                              Shadow(
+                                                blurRadius: 4,
+                                                color: Colors.black54,
+                                                offset: Offset(1, 1),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        IconButton(
-                                          icon: const Icon(Icons.close, color: Colors.white),
-                                          onPressed: () => Navigator.of(context).pop(),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(Icons.close, color: Colors.white),
+                                        onPressed: () => Navigator.of(context).pop(),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         );
