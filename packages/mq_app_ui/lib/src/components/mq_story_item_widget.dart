@@ -1,6 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram_storyboard/flutter_instagram_storyboard.dart';
+import 'package:mq_app_ui/mq_app_ui.dart';
 
 @immutable
 final class MqStoryItem {
@@ -20,7 +19,7 @@ final class MqStoryItem {
 }
 
 @immutable
-class MqStoryItemsWidget extends StatefulWidget {
+class MqStoryItemsWidget extends StatelessWidget {
   const MqStoryItemsWidget({
     required this.items,
     this.listHeight = 165,
@@ -35,76 +34,67 @@ class MqStoryItemsWidget extends StatefulWidget {
   final double buttonSpacing;
 
   @override
-  State<MqStoryItemsWidget> createState() => _MqStoryItemsWidgetState();
-}
-
-class _MqStoryItemsWidgetState extends State<MqStoryItemsWidget> {
-  late final List<MqStoryItem> _items;
-  late final StoryTimelineController _storyController;
-
-  @override
-  void initState() {
-    _items = widget.items;
-    _storyController = StoryTimelineController();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    if (items.isEmpty) return const SizedBox.shrink();
+
     final colorScheme = Theme.of(context).colorScheme;
-    return StoryListView(
-      listHeight: widget.listHeight,
-      buttonWidth: widget.buttonWidth,
-      buttonSpacing: widget.buttonSpacing,
-      paddingLeft: 24,
-      pageTransform: const StoryPage3DTransform(),
-      buttonDatas: _items
-          .map(
-            (e) => StoryButtonData(
-              storyId: e.id,
-              storyController: _storyController,
-              timelineBackgroundColor: colorScheme.primary,
-              buttonDecoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: CachedNetworkImageProvider(e.cardImageLink),
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: _CradLabelText(e.cardLabel),
-              ),
-              borderDecoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: colorScheme.primary),
-              ),
-              storyPages: e.storyPagesImages
-                  .map(
-                    (i) => StoryPageScaffold(
-                      body: Container(
-                        width: double.infinity,
-                        height: double.infinity,
+
+    return SizedBox(
+      height: listHeight,
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        scrollDirection: Axis.horizontal,
+        itemCount: items.length,
+        separatorBuilder: (_, _) => SizedBox(width: buttonSpacing),
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return GestureDetector(
+            onTap: () {
+              MqStoryViewScreen.view(
+                context,
+                items: items,
+                initialIndex: index,
+              );
+            },
+            child: SizedBox(
+              width: buttonWidth,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: buttonWidth - 16,
+                    height: buttonWidth - 16,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: colorScheme.primary, width: 2),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: Container(
                         decoration: BoxDecoration(
+                          shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: CachedNetworkImageProvider(i),
+                            image: CachedNetworkImageProvider(item.cardImageLink),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                     ),
-                  )
-                  .toList(),
-              segmentDuration: e.storyPageDuration,
+                  ),
+                  const SizedBox(height: 8),
+                  _CardLabelText(item.cardLabel),
+                ],
+              ),
             ),
-          )
-          .toList(),
+          );
+        },
+      ),
     );
   }
 }
 
-class _CradLabelText extends StatelessWidget {
-  const _CradLabelText(this.label);
+class _CardLabelText extends StatelessWidget {
+  const _CardLabelText(this.label);
 
   final String label;
 
@@ -121,13 +111,16 @@ class _CradLabelText extends StatelessWidget {
           textAlign: TextAlign.center,
           style: prTextTheme.bodySmall,
           overflow: TextOverflow.ellipsis,
+          maxLines: 1,
         ),
-        Text(
-          secondText,
-          textAlign: TextAlign.center,
-          style: prTextTheme.bodySmall,
-          overflow: TextOverflow.ellipsis,
-        ),
+        if (secondText != firstText)
+          Text(
+            secondText,
+            textAlign: TextAlign.center,
+            style: prTextTheme.bodySmall,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
       ],
     );
   }
