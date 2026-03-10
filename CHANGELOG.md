@@ -354,3 +354,20 @@
 ## [UX]
 
 - Added new design for quran book
+
+---
+
+# What's Changed v1.3.27+43
+
+## [Bug Fixes]
+
+- Fixed an issue causing incorrect theme application in the Quran book view.
+- Fixed User rating default period type
+- Fixed Dismiss keyboard on successful login
+
+## [Technical]
+
+- Bumped flutter version 3.41.4
+- Updated CI/CD workflows to support Flutter 3.41.4.
+- Updated screenshots
+- Migrated integration tests from flutter_driver to integration_test
