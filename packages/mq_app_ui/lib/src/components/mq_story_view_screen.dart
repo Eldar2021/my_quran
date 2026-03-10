@@ -286,42 +286,6 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
                                     ),
                                   ),
                                 ),
-                                Positioned(
-                                  top: topPadding + 30,
-                                  left: 10,
-                                  right: 10,
-                                  child: Row(
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundImage: CachedNetworkImageProvider(item.cardImageLink),
-                                        radius: 20,
-                                        backgroundColor: Colors.grey.shade800,
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text(
-                                          item.cardLabel.replaceAll('\n', ' '),
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            shadows: [
-                                              Shadow(
-                                                blurRadius: 4,
-                                                color: Colors.black54,
-                                                offset: Offset(1, 1),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      IconButton(
-                                        icon: const Icon(Icons.close, color: Colors.white),
-                                        onPressed: () => Navigator.of(context).pop(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               ],
                             ),
                           ),

@@ -64,8 +64,8 @@ class MqStoryItemsWidget extends StatelessWidget {
                   Hero(
                     tag: item.id,
                     child: Container(
-                      width: buttonWidth - 16,
-                      height: buttonWidth - 16,
+                      width: buttonWidth,
+                      height: buttonWidth,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: colorScheme.primary, width: 2),
