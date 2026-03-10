@@ -611,14 +611,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.13.0"
-  flutter_instagram_storyboard:
-    dependency: "direct main"
-    description:
-      name: flutter_instagram_storyboard
-      sha256: df2f9ba652472f231a104abbc0de99160dacd22184c5d047e918968913c9c83f
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   flutter_local_notifications:
     dependency: "direct main"
     description:

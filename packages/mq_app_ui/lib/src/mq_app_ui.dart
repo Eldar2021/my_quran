@@ -37,6 +37,7 @@ export 'components/soccial_buttons.dart';
 export 'components/quran_item_tile.dart';
 export 'components/link_text_button.dart';
 export 'components/mq_story_item_widget.dart';
+export 'components/mq_story_view_screen.dart';
 export 'components/drawer_tile.dart';
 export 'components/theme_mode_button.dart';
 export 'components/banner_card.dart';

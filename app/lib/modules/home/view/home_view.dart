@@ -69,7 +69,7 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
                 return switch (status) {
                   FetchStatus.initial || FetchStatus.loading || FetchStatus.error => const SizedBox.shrink(),
                   FetchStatus.success => MqStoryItemsWidget(
-                    listHeight: 132,
+                    listHeight: 130,
                     buttonWidth: 70,
                     buttonSpacing: 14,
                     items: state.getStories.asMap().entries.map((e) {
@@ -92,7 +92,6 @@ class _HomeViewState extends State<HomeView> with NotificationMixin {
                 };
               },
             ),
-            const SizedBox(height: 8),
             const MqSalaahTimeWidget(),
             const SizedBox(height: 10),
             Builder(
