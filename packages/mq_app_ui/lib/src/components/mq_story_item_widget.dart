@@ -61,21 +61,24 @@ class MqStoryItemsWidget extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: buttonWidth - 16,
-                    height: buttonWidth - 16,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: colorScheme.primary, width: 2),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: CachedNetworkImageProvider(item.cardImageLink),
-                            fit: BoxFit.cover,
+                  Hero(
+                    tag: item.id,
+                    child: Container(
+                      width: buttonWidth - 16,
+                      height: buttonWidth - 16,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: colorScheme.primary, width: 2),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(item.cardImageLink),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

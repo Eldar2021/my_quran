@@ -18,7 +18,7 @@ class MqStoryViewScreen extends StatefulWidget {
     required List<MqStoryItem> items,
     required int initialIndex,
   }) {
-    Navigator.of(context).push(
+    Navigator.of(context, rootNavigator: true).push(
       PageRouteBuilder<void>(
         opaque: false,
         barrierColor: Colors.black.withValues(alpha: 0.01),
@@ -198,6 +198,7 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
                         }
 
                         final imageUrl = item.storyPagesImages[currentImageIndex];
+                        final topPadding = MediaQuery.of(context).padding.top;
 
                         return AnimatedBuilder(
                           animation: _pageController,
@@ -236,7 +237,7 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
 
                                 final screenWidth = MediaQuery.of(context).size.width;
                                 final isCloseButtonArea =
-                                    details.position.dy < 120 && details.position.dx > screenWidth - 80;
+                                    details.position.dy < topPadding + 120 && details.position.dx > screenWidth - 80;
 
                                 if (duration.inMilliseconds < 250 && distance < 20 && !isCloseButtonArea) {
                                   if (details.position.dx < screenWidth / 3) {
@@ -254,16 +255,19 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
                             child: Stack(
                               children: [
                                 Positioned.fill(
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrl,
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                                    errorWidget: (context, url, err) =>
-                                        const Center(child: Icon(Icons.error, color: Colors.white)),
+                                  child: Hero(
+                                    tag: item.id,
+                                    child: CachedNetworkImage(
+                                      imageUrl: imageUrl,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                                      errorWidget: (context, url, err) =>
+                                          const Center(child: Icon(Icons.error, color: Colors.white)),
+                                    ),
                                   ),
                                 ),
                                 Positioned(
-                                  top: 10,
+                                  top: topPadding + 10,
                                   left: 10,
                                   right: 10,
                                   child: Row(
@@ -283,7 +287,7 @@ class _MqStoryViewScreenState extends State<MqStoryViewScreen> with TickerProvid
                                   ),
                                 ),
                                 Positioned(
-                                  top: 30,
+                                  top: topPadding + 30,
                                   left: 10,
                                   right: 10,
                                   child: Row(
