@@ -52,11 +52,11 @@ class MqSalaahTimeWidget extends StatelessWidget {
     AppAlert.showUpdateLocation(
       context: context,
       newLocation: newLocation,
+      onCancel: Navigator.pop,
       onConfirm: (ctx) {
         context.read<LocationCubit>().updateLocation();
         Navigator.pop(ctx);
       },
-      onCancel: Navigator.pop,
     );
   }
 }
