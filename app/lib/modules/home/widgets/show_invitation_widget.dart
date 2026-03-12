@@ -181,13 +181,14 @@ class _InvitationListItem extends StatelessWidget {
 
     final firstName = creator.firstName ?? '';
     final lastName = creator.lastName ?? '';
-    
+
     if (firstName.isNotEmpty || lastName.isNotEmpty) {
       return '$firstName $lastName'.trim();
     }
-    
+
     return creator.userName;
   }
+
   @override
   Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
