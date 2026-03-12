@@ -60,41 +60,7 @@ class ShowHatimWidget {
                     vertical: 20,
                   ),
                   itemBuilder: (context, index) {
-                    final item = hatim[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: GradientDecoratedBox(
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            MqAnalytic.track(AnalyticKey.goHatim);
-                            final user = context.read<AuthCubit>().state.auth;
-                            context.goNamedIfAuthenticated(
-                              AppRouter.hatim,
-                              pathParameters: {'hatimId': item.id},
-                              extra: item.isCreator(user?.user.username ?? ''),
-                            );
-                          },
-                          contentPadding: const EdgeInsets.all(16),
-                          leading: Assets.icons.quran.svg(
-                            colorFilter: ColorFilter.mode(
-                              colorScheme.primary,
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                          title: Text(
-                            item.uiTitle ?? context.l10n.generalHatim,
-                            style: prTextTheme.titleMedium,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: colorScheme.primary,
-                          ),
-                        ),
-                      ),
-                    );
+                    return _HatimListItem(item: hatim[index]);
                   },
                 ),
               ),
@@ -102,6 +68,53 @@ class ShowHatimWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _HatimListItem extends StatelessWidget {
+  const _HatimListItem({required this.item});
+
+  final MqHatimsModel item;
+
+  @override
+  Widget build(BuildContext context) {
+    final prTextTheme = Theme.of(context).primaryTextTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: GradientDecoratedBox(
+        child: ListTile(
+          onTap: () {
+            Navigator.of(context).pop();
+            MqAnalytic.track(AnalyticKey.goHatim);
+            final user = context.read<AuthCubit>().state.auth;
+            context.goNamedIfAuthenticated(
+              AppRouter.hatim,
+              pathParameters: {'hatimId': item.id},
+              extra: item.isCreator(user?.user.username ?? ''),
+            );
+          },
+          contentPadding: const EdgeInsets.all(16),
+          leading: Assets.icons.quran.svg(
+            colorFilter: ColorFilter.mode(
+              colorScheme.primary,
+              BlendMode.srcIn,
+            ),
+          ),
+          title: Text(
+            item.uiTitle ?? context.l10n.generalHatim,
+            style: prTextTheme.titleMedium,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: Icon(
+            Icons.arrow_forward_ios_rounded,
+            color: colorScheme.primary,
+          ),
+        ),
+      ),
     );
   }
 }

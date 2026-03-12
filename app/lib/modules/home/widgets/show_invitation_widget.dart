@@ -147,6 +147,50 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
     int index,
     Animation<double> animation,
   ) {
+    return _InvitationListItem(
+      item: item,
+      animation: animation,
+      onAccept: () => _removeItem(index, accepted: true),
+      onDecline: () => _removeItem(index, accepted: false),
+      confirmKey: widget.confirmKey,
+      cancelKey: widget.cancelKey,
+    );
+  }
+}
+
+class _InvitationListItem extends StatelessWidget {
+  const _InvitationListItem({
+    required this.item,
+    required this.animation,
+    required this.onAccept,
+    required this.onDecline,
+    this.confirmKey,
+    this.cancelKey,
+  });
+
+  final MqHomeInvitedHatimsModel item;
+  final Animation<double> animation;
+  final VoidCallback onAccept;
+  final VoidCallback onDecline;
+  final String? confirmKey;
+  final String? cancelKey;
+
+  String _getCreatorName(MqHomeInvitedHatimsModel item) {
+    final creator = item.creator;
+    if (creator == null) return '';
+
+    final firstName = creator.firstName ?? '';
+    final lastName = creator.lastName ?? '';
+
+    if (firstName.isNotEmpty || lastName.isNotEmpty) {
+      return '$firstName $lastName'.trim();
+    }
+
+    return creator.userName;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final prTextTheme = Theme.of(context).primaryTextTheme;
     return FadeTransition(
       opacity: animation,
@@ -174,7 +218,7 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  '${context.l10n.hatimCreatedBy}\n${((item.creator?.firstName != null && item.creator!.firstName!.isNotEmpty) || (item.creator?.lastName != null && item.creator!.lastName!.isNotEmpty)) ? '${item.creator?.firstName ?? ''} ${item.creator?.lastName ?? ''}' : (item.creator?.userName ?? '')}',
+                  '${context.l10n.hatimCreatedBy}\n${_getCreatorName(item)}',
                   textAlign: TextAlign.center,
                   style: prTextTheme.bodySmall,
                 ),
@@ -183,20 +227,20 @@ class _InvitationSheetState extends State<_InvitationSheet> with SingleTickerPro
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: () => _removeItem(index, accepted: false),
+                        onPressed: onDecline,
                         child: Text(
                           context.l10n.decline,
-                          key: widget.cancelKey != null ? Key(widget.cancelKey!) : null,
+                          key: cancelKey != null ? Key(cancelKey!) : null,
                         ),
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () => _removeItem(index, accepted: true),
+                        onPressed: onAccept,
                         child: Text(
                           context.l10n.accept,
-                          key: widget.confirmKey != null ? Key(widget.confirmKey!) : null,
+                          key: confirmKey != null ? Key(confirmKey!) : null,
                         ),
                       ),
                     ),
